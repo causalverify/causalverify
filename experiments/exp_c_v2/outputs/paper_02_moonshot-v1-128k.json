@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_02",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:01:07.373644",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 626,
+    "output_tokens": 720,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a difference-in-differences (DiD) approach to identify the causal effect of TARP capital injections on risk-taking behavior in banks' loan portfolios. We will compare changes in risk proxies (loan-to-income ratio, loan-to-value ratio, applicant income, denial rates) for TARP recipients and non-recipients before and after the TARP program.\n\nDirectional Hypothesis:\nH0: TARP recipients did not take on more risk in their loan portfolios compared to non-recipients.\nH1: TARP recipients took on more risk in their loan portfolios compared to non-recipients.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. DiD regression with loan-to-income ratio as the dependent variable.\n2. DiD regression with loan-to-value ratio as the dependent variable.\n3. DiD regression with applicant income as the dependent variable.\n4. DiD regression with denial rates as the dependent variable.\n5. DiD regression with non-performing loan ratio as the dependent variable.\n\n**STEP 3 — FALSIFICATION GATE**\n\nFalsification criteria:\n- If the estimated coefficients for TARP recipients are not significantly different from zero in at least 3 out of the 5 specifications, we will reject the hypothesis that TARP recipients took on more risk.\n\n**STEP 4 — R CODE**\n\n```R\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"bank_data.csv\")\n\n# Create treatment and post-treatment dummy variables\ndata$tarp <- ifelse(data$tarp_recipients == 1, 1, 0)\ndata$post <- ifelse(data$year >= 2008, 1, 0)\ndata$tarp_post <- data$tarp * data$post\n\n# Define panel structure\npdata <- pdata.frame(data, index = c(\"bank_id\", \"year\"))\n\n# Run DiD regressions\nresults <- list()\n\nresults[[1]] <- plm(loan_to_income ~ tarp_post + post + tarp + i.year, data = pdata, model = \"within\")\nresults[[2]] <- plm(loan_to_value ~ tarp_post + post + tarp + i.year, data = pdata, model = \"within\")\nresults[[3]] <- plm(applicant_income ~ tarp_post + post + tarp + i.year, data = pdata, model = \"within\")\nresults[[4]] <- plm(denial_rates ~ tarp_post + post + tarp + i.year, data = pdata, model = \"within\")\nresults[[5]] <- plm(non_performing_loan_ratio ~ tarp_post + post + tarp + i.year, data = pdata, model = \"within\")\n\n# Print results\nfor (i in 1:length(results)) {\n  summary(results[[i]])\n}\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected numerical results:\n- We expect the coefficients for `tarp_post` to be positive and statistically significant in at least 3 out of the 5 specifications, indicating that TARP recipients took on more risk in their loan portfolios compared to non-recipients.\n\nGate assessment:\n- If the coefficients for `tarp_post` are not significantly different from zero in at least 3 out of the 5 specifications, we will reject the hypothesis that TARP recipients took on more risk.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks receiving TARP capital (CPP), control = banks that applied but were rejected or did not apply; pre-period = 2006–2008, post-period = 2009–2010",
+    "key_variables": {
+      "treatment": "TARP Capital Purchase Program recipient (binary)",
+      "control": "similar banks that did not receive TARP capital",
+      "outcome": "average loan-to-income ratio of new mortgage originations; share of high-LTI loans",
+      "time_period": "2006–2010, treatment begins Q4 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP recipients originated riskier mortgages (higher LTI, higher LTV) relative to non-recipients after receiving capital",
+    "main_effect": "TARP banks increased average LTI ratio by ~0.25 relative to non-TARP banks post-injection",
+    "key_robustness": [
+      "propensity score matching",
+      "placebo using non-TARP banks that received other support",
+      "heterogeneity by bank size"
+    ]
+  }
+}

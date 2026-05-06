@@ -1,0 +1,30 @@
+{
+  "status": "incomplete",
+  "n_picked": 20,
+  "n_completed_submissions": 0,
+  "scenario_ids": [
+    "s17",
+    "s18",
+    "s20",
+    "s21",
+    "s26",
+    "s31",
+    "s39",
+    "s41",
+    "s42",
+    "s45",
+    "s51",
+    "s52",
+    "s60",
+    "s73",
+    "s76",
+    "s77",
+    "s86",
+    "s88",
+    "s96",
+    "s98"
+  ],
+  "message": "all submissions are placeholder files; no human R code has been committed yet",
+  "L2b_rate": null,
+  "L2b_plus_rate": null
+}

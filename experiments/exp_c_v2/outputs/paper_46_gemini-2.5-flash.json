@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_46",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:41:08.587420",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 630,
+    "output_tokens": 410,
+    "content": "**BEGIN RID PROTOCOL**\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy is a **Sharp Regression Discontinuity Design (RDD)**. We will exploit the exogenous assignment of houses to different school attendance zones based on their precise location relative to a fixed attendance zone boundary. The running variable is the continuous `distance` to the nearest attendance zone boundary. Houses on one side of the boundary are assigned to a \"treatment\" (higher-performing school) group, and houses on the other side are assigned to a \"control\" (lower-performing school) group, effectively creating a quasi-experimental setup where houses very close to the boundary are comparable on unobservable characteristics, differing primarily by school assignment.\n\n**Directional Hypothesis:**\nParents value school quality. Therefore, we hypothesize that houses located in the attendance zone of a **higher-performing school** (defined by higher state test scores or higher per-pupil expenditures) will have a **higher sale price** compared to observationally identical houses located just across the attendance zone boundary in a lower-performing school zone. We expect a positive and statistically significant \"jump\" in house prices at the boundary for houses assigned to the higher-performing school zone.\n\n---\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nLet `log_sale_price` be the natural logarithm of the house sale price.\nLet `dist` be the running variable: distance to the nearest attendance zone boundary, signed such that `dist >= 0` for houses in the higher-performing school zone and `dist < 0` for houses in the lower-performing school zone. The boundary is at `dist = 0`.\nLet `TREAT_testscore` be a binary indicator: `1` if `dist >= 0` (assigned to higher test score school zone), `0` otherwise.\nLet `TREAT_expenditure` be a binary indicator: `1` if `dist",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Boundary discontinuity design (spatial RDD) — running variable is distance from the school attendance zone boundary; houses on either side of the boundary are in the same neighborhood but assigned to different schools; the discontinuity in school quality at the boundary identifies the school quality premium in house prices",
+    "key_variables": {
+      "treatment": "assignment to the higher-quality school attendance zone (based on test scores)",
+      "control": "houses on the other side of the boundary, assigned to the lower-quality school",
+      "outcome": "log house sale price",
+      "time_period": "1993–1995 (Massachusetts house sales)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Parents value school quality significantly: a one standard deviation increase in test scores (school quality) increases house prices by approximately 2.1% at the attendance boundary, compared to 5-7% in traditional hedonic regressions. The boundary design reveals that roughly 50-70% of the naive school quality premium in hedonic regressions is actually attributable to omitted neighborhood quality rather than school quality. The true willingness to pay for school quality is positive and significant but smaller than previously believed.",
+    "main_effect": "A one SD increase in elementary school test scores raises house prices by approximately 2.1% at attendance boundaries (vs. 5-7% in traditional hedonic regressions without boundary FE)",
+    "key_robustness": [
+      "Varying distance bands from boundary (0.05 mile, 0.10 mile, 0.20 mile)",
+      "Including boundary fixed effects (comparing only houses on opposite sides of the same boundary)",
+      "Controlling for housing characteristics and census tract demographics",
+      "Different school quality measures (test scores, expenditures, teacher salaries)",
+      "Excluding boundaries that coincide with neighborhood changes (major roads, parks)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Boundary discontinuity design (spatial RDD with boundary fixed effects)",
+      "treatment": "School attendance zone assignment (binary: higher-quality vs. lower-quality school side of a boundary)",
+      "event_window": "N/A (cross-sectional property value comparison)",
+      "estimation_window": "Houses within 0.05-0.20 miles of attendance zone boundaries",
+      "sample_period": "1993–1995",
+      "unit_of_observation": "Individual house sale transaction, geocoded to school attendance zone",
+      "key_assumption": "Houses on either side of an attendance zone boundary are in the same neighborhood and differ only in school assignment. The boundary itself does not coincide with other discontinuities (socioeconomic, racial, geographic). Boundary fixed effects absorb any boundary-specific confounds."
+    },
+    "key_magnitudes": {
+      "boundary_premium": "+2.1% per SD of test score increase (boundary discontinuity estimate)",
+      "naive_premium": "+5-7% per SD of test score increase (traditional hedonic without boundary FE)",
+      "bias_share": "Approximately 50-70% of the naive premium is attributable to omitted neighborhood quality, not school quality",
+      "dollar_value": "Approximately $4,000-$8,000 premium per house per SD improvement in test scores (in 1990s dollars)"
+    },
+    "robustness_notes_detail": "Results are robust to distance band choice, boundary fixed effects, and extensive housing and demographic controls. The reduction from 5-7% (naive) to 2.1% (boundary RDD) demonstrates the severity of omitted variable bias in traditional hedonic price regressions. Some boundaries coincide with major roads or natural barriers, which are excluded in robustness checks without materially affecting the estimates."
+  }
+}

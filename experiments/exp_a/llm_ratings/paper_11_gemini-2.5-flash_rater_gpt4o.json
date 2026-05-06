@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model correctly identifies the event study regression as the strategy, including regression of abnormal returns on the G-index/E-index and other controls, matching the ground truth's method of event study with cross-sectional OLS regression. However, the model output does not explicitly state the conclusion direction (negative relationship between governance and returns), which the ground truth specifies.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_11",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:00:33.470536+00:00"
+}

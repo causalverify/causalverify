@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_28",
+  "title": "Contagious Speculation and a Cure for Cancer: A Nonevent That Made Stock Prices Soar",
+  "authors": "Huberman & Regev",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/0022-1082.00330",
+    "title": "Contagious Speculation and a Cure for Cancer: A Nonevent that Made Stock Prices Soar",
+    "year": 2001,
+    "journal": "The Journal of Finance",
+    "citations": 982
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "huberman",
+      "regev"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 982,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

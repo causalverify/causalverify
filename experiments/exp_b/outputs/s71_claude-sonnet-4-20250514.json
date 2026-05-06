@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s71",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Analyst Coverage on Firm Investment",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:59:05.401266",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 457,
+    "output_tokens": 1136,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with broker mergers (z) as an instrument for analyst coverage (x). The key assumptions are: (1) Relevance: broker mergers affect analyst coverage, and (2) Exclusion restriction: broker mergers only affect firm investment through their impact on analyst coverage, not through other channels. This addresses potential endogeneity between analyst coverage and investment decisions.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s71_data.csv\")\n\n# First stage: Check instrument relevance\nfirst_stage <- lm(x ~ z + controls, data = data)\ncat(\"=== FIRST STAGE RESULTS ===\\n\")\nsummary(first_stage)\n\n# F-statistic for instrument strength\nf_stat <- summary(first_stage)$fstatistic[1]\ncat(\"\\nFirst-stage F-statistic:\", round(f_stat, 3), \"\\n\")\ncat(\"Instrument strength:\", ifelse(f_stat > 10, \"Strong\", \"Weak\"), \"\\n\\n\")\n\n# OLS estimation (potentially biased)\nols_model <- lm(y ~ x + controls, data = data)\ncat(\"=== OLS RESULTS (potentially biased) ===\\n\")\nols_coef <- coef(ols_model)[\"x\"]\ncat(\"OLS coefficient on analyst coverage:\", round(ols_coef, 4), \"\\n\\n\")\n\n# IV estimation using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\ncat(\"=== IV/2SLS RESULTS ===\\n\")\nsummary(iv_model)\n\n# Extract key coefficient\niv_coef <- coef(iv_model)[\"x\"]\ncat(\"\\nIV coefficient on analyst coverage:\", round(iv_coef, 4), \"\\n\")\n\n# Robust standard errors\nrobust_se <- sqrt(diag(vcovHC(iv_model, type = \"HC1\")))\nt_stat <- iv_coef / robust_se[\"x\"]\np_value <- 2 * (1 - pt(abs(t_stat), df = df.residual(iv_model)))\n\ncat(\"Robust standard error:\", round(robust_se[\"x\"], 4), \"\\n\")\ncat(\"t-statistic:\", round(t_stat, 3), \"\\n\")\ncat(\"p-value:\", round(p_value, 4), \"\\n\")\n\n# Robustness checks\ncat(\"\\n=== ROBUSTNESS CHECKS ===\\n\")\n\n# 1. Hausman test for endogeneity\nhausman_test <- coeftest(iv_model, vcov = vcovHC, type = \"HC1\") - coeftest(ols_model, vcov = vcovHC, type = \"HC1\")\ncat(\"Hausman test suggests endogeneity is present if coefficients differ substantially\\n\")\ncat(\"OLS vs IV coefficient difference:\", round(abs(ols_coef - iv_coef), 4), \"\\n\")\n\n# 2. Reduced form\nreduced_form <- lm(y ~ z + controls, data = data)\nrf_coef <- coef(reduced_form)[\"z\"]\ncat(\"Reduced form coefficient:\", round(rf_coef, 4), \"\\n\")\n\n# 3. Check if IV coefficient = Reduced form / First stage\nmanual_iv <- rf_coef / coef(first_stage)[\"z\"]\ncat(\"Manual IV calculation (RF/FS):\", round(manual_iv, 4), \"\\n\")\ncat(\"Difference from 2SLS:\", round(abs(manual_iv - iv_coef), 6), \"\\n\")\n\n# Final result\ncat(\"\\n=== MAIN FINDING ===\\n\")\ncat(\"Effect of one unit increase in analyst coverage on firm investment:\", round(iv_coef, 4), \"\\n\")\nif(p_value < 0.05) {\n  cat(\"This effect is statistically significant at the 5% level.\\n\")\n} else {\n  cat(\"This effect is not statistically significant at the 5% level.\\n\")\n}\n```\n\n## 3. Expected Findings\nI expect a positive coefficient (approximately 0.3-0.7) indicating that increased analyst coverage leads to higher firm investment. The theoretical rationale is that greater analyst coverage reduces information asymmetries, lowers cost of capital, and provides better monitoring, all of which should encourage investment. The IV estimate should be larger in magnitude than OLS if there's attenuation bias from measurement error in coverage, or smaller if there's positive selection bias where high-investment firms attract more coverage.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use broker mergers as an instrument for analyst coverage.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Increased analyst coverage significantly boosts firm investment.",
+    "main_effect": "0.45"
+  }
+}

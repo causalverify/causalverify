@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_140",
+  "title": "Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate",
+  "authors": "Roberts & Schlenker",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.103.6.2265",
+    "title": "Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate",
+    "year": 2013,
+    "journal": "American Economic Review",
+    "citations": 383
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "roberts",
+      "schlenker"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 383,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

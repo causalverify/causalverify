@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s73",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Immigration on Native Wages",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:59:40.513244",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 478,
+    "output_tokens": 921,
+    "content": "## 1. Identification Strategy\nI will use **Instrumental Variables (IV)** regression to estimate the causal effect of immigrant inflow on native wages. The instrument is historical settlement patterns (z), which should be correlated with current immigrant inflow (relevance) but uncorrelated with current wage shocks (exclusion restriction). The key assumptions are: (1) **Relevance**: Historical settlement patterns predict current immigrant inflow, and (2) **Exclusion restriction**: Historical settlement patterns only affect current native wages through their effect on immigrant inflow, not through other channels.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s73_data.csv\")\n\n# Display basic summary statistics\ncat(\"Summary Statistics:\\n\")\nsummary(data)\n\n# Check instrument relevance (first stage)\nfirst_stage <- lm(x ~ z + controls, data = data)\ncat(\"\\nFirst Stage Results:\\n\")\nprint(summary(first_stage))\n\n# Calculate F-statistic for weak instrument test\nf_stat <- summary(first_stage)$fstatistic[1]\ncat(\"\\nFirst Stage F-statistic:\", f_stat, \"\\n\")\nif(f_stat > 10) {\n  cat(\"Instrument appears strong (F > 10)\\n\")\n} else {\n  cat(\"Warning: Weak instrument (F < 10)\\n\")\n}\n\n# Run IV regression using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\ncat(\"\\nIV (2SLS) Results:\\n\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coef <- coef(iv_model)[\"x\"]\niv_se <- sqrt(diag(vcov(iv_model)))[\"x\"]\ncat(\"\\nKey Result: Effect of immigrant inflow on native wages\\n\")\ncat(\"Coefficient:\", round(iv_coef, 4), \"\\n\")\ncat(\"Standard Error:\", round(iv_se, 4), \"\\n\")\ncat(\"95% CI: [\", round(iv_coef - 1.96*iv_se, 4), \",\", round(iv_coef + 1.96*iv_se, 4), \"]\\n\")\n\n# Compare with OLS (biased estimate)\nols_model <- lm(y ~ x + controls, data = data)\nols_coef <- coef(ols_model)[\"x\"]\ncat(\"\\nComparison with OLS:\\n\")\ncat(\"OLS coefficient:\", round(ols_coef, 4), \"\\n\")\ncat(\"IV coefficient:\", round(iv_coef, 4), \"\\n\")\ncat(\"Difference (IV - OLS):\", round(iv_coef - ols_coef, 4), \"\\n\")\n\n# Robustness check: Test overidentifying restrictions (if applicable)\n# Since we have exactly one instrument for one endogenous variable, this is just-identified\n\n# Additional robustness: Check correlation between instrument and controls\ncor_z_controls <- cor(data$z, data$controls)\ncat(\"\\nRobustness Check:\\n\")\ncat(\"Correlation between instrument (z) and controls:\", round(cor_z_controls, 4), \"\\n\")\n```\n\n## 3. Expected Findings\nI expect a **negative coefficient** on immigrant inflow, indicating that increased immigration reduces native wages, with a magnitude between **-0.3 to -0.8**. This is consistent with standard labor economics theory where increased labor supply (through immigration) puts downward pressure on wages in the short run. The IV estimate should be larger in absolute value than the OLS estimate because OLS likely suffers from attenuation bias due to measurement error in immigrant inflow, and because immigrants may sort into areas with better economic conditions (positive selection bias that would bias OLS toward zero).",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use historical settlement patterns as an instrument for immigrant inflow.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals that increased immigrant inflow positively affects native wages.",
+    "main_effect": 0.35
+  }
+}

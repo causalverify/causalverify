@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_64",
+  "title": "Testing Asymmetric-Information Asset Pricing Models",
+  "authors": "Kelly & Ljungqvist",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/rfs/hhr134",
+    "title": "Testing Asymmetric-Information Asset Pricing Models",
+    "year": 2012,
+    "journal": "Review of Financial Studies",
+    "citations": 623
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ljungqvist",
+      "kelly"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "rfs",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 623,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

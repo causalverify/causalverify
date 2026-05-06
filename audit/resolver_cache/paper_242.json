@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_242",
+  "title": "Managing with Style: The Effect of Managers on Firm Policies",
+  "authors": "Bertrand & Schoar",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/003355303322552775",
+    "title": "Managing with Style: The Effect of Managers on Firm Policies",
+    "year": 2003,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 3710
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "schoar",
+      "bertrand"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 3710,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s29",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Bandwidth sensitivity and RDD robustness checks",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:28:07.926779",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 449,
+    "output_tokens": 565,
+    "content": "## 1. Identification Strategy\n\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of index membership on institutional ownership. The key assumption of RDD is that there is a sharp discontinuity in the probability of treatment at the cutoff point, and that the running variable is as good as randomly assigned around the cutoff. We will test the robustness of the RDD estimate to different bandwidth choices, polynomial orders, and placebo cutoffs.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s29_data.csv\")\n\n# Define a function to run RDD analysis with different bandwidths and polynomial orders\nrun_rdd <- function(data, bandwidth, order) {\n  # Fit the RDD model\n  model <- rdd::rdreg(y ~ running_var | treated, data = data, c = 0.5, h = bandwidth, order = order)\n  \n  # Extract the coefficient estimate for the treatment effect\n  coef <- coef(model)[2]\n  \n  # Return the coefficient estimate\n  return(coef)\n}\n\n# Run RDD analysis with different bandwidths and polynomial orders\nbandwidths <- c(0.05, 0.1, 0.2, 0.3)\norders <- c(1, 2, 3, 4)\n\n# Store the results\nresults <- data.frame(bandwidth = numeric(), order = numeric(), coef = numeric())\n\nfor (bw in bandwidths) {\n  for (ord in orders) {\n    coef <- run_rdd(data, bw, ord)\n    results <- rbind(results, data.frame(bandwidth = bw, order = ord, coef = coef))\n  }\n}\n\n# Print the results\nprint(results)\n\n# Plot the results\nggplot(results, aes(x = as.factor(order), y = coef, color = as.factor(bandwidth))) +\n  geom_point() +\n  facet_wrap(~bandwidth, scales = \"free\") +\n  labs(title = \"RDD Coefficient Estimates by Bandwidth and Polynomial Order\", x = \"Polynomial Order\", y = \"Coefficient Estimate\")\n```\n\n## 3. Expected Findings\n\nWe expect the coefficient estimates to be positive, as index membership is likely to increase institutional ownership due to increased visibility and demand. The magnitude of the effect may vary depending on the bandwidth and polynomial order, but we expect the estimates to be relatively stable across different specifications. The robustness checks will help us assess the sensitivity of the RDD estimate to different bandwidth choices and polynomial orders, as well as the validity of the placebo cutoffs.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — rank cutoff; rdrobust with CCT bandwidth; donut-hole robustness; placebo cutoffs",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Russell 2000 membership increases institutional ownership; robust to bandwidth choice",
+    "main_effect": "~25pp ownership increase at boundary"
+  }
+}

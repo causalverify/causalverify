@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model correctly identifies the event study methodology with cross-sectional OLS regression approach as the identification strategy, matching the ground truth. However, it does not state the conclusion direction, and thus scores zero for direction.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_11",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:00:31.050376+00:00"
+}

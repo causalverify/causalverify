@@ -1,0 +1,93 @@
+{
+  "paper_id": "paper_21",
+  "source": "Quarterly Journal of Economics, 1999",
+  "authors": "Angrist & Lavy",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement",
+  "doi": "10.1162/003355399556061",
+  "volume": 114,
+  "issue": 2,
+  "pages": "533-575",
+  "domain": "education",
+  "research_question": "What is the causal effect of class size on the scholastic achievement of primary school students? Specifically, does reducing the number of students per class improve performance on standardized tests in core subjects such as reading and mathematics?",
+  "data_description": "The study uses administrative data from Israeli public elementary schools, including class-level enrollment counts and student test outcomes. Key variables include class size, school enrollment (used to construct predicted class size based on the maximum-class-size cap of 40), grade level, and standardized test scores in reading comprehension and mathematics for fourth and fifth graders. The data also include school- and class-level controls such as the percentage of students from disadvantaged backgrounds. Observations are at the class (and school-grade) level, drawn from a nationwide testing program in the early 1990s. The sample covers Jewish public schools across Israel, allowing comparisons across schools and grades that vary in enrollment around the threshold values that mechanically determine class size.",
+  "institutional_context": "Israel's public school system allocates students to classes following a centuries-old principle attributed to Maimonides, which caps class size at 40 pupils. When a grade's enrollment crosses an integer multiple of 40 (e.g., 41, 81, 121), the cohort must be split into an additional class, producing sharp, mechanical drops in average class size at these enrollment thresholds. Because total enrollment is correlated with school characteristics such as urban location and socioeconomic background, simple comparisons of test scores across class sizes are confounded. The administrative rule, however, generates variation in class size that is determined by enrollment in a deterministic, nonlinear way, creating a setting in which schools with similar enrollments end up with substantially different class sizes purely because of the cap. This institutional feature motivates comparisons of achievement across schools situated near these enrollment cutoffs.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.034,
+      "unit": "standard deviations of reading score per additional student in class (2SLS, 4th grade)",
+      "interpretation": "Each additional student in the class reduces average reading achievement by approximately 0.034 standard deviations; a reduction from 35 to 25 students would improve scores by approximately 0.34 SD"
+    },
+    "secondary_estimate": {
+      "value": -0.04,
+      "unit": "standard deviations of math score per additional student (2SLS, 5th grade)",
+      "interpretation": "Math score effect is slightly larger than reading; each additional student reduces math achievement by ~0.04 SD"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 4-6 in Angrist & Lavy (1999)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Israeli Ministry of Education aggregate statistics (partially public)",
+      "Angrist & Lavy replication data (available from Josh Angrist's MIT website)"
+    ],
+    "proprietary_sources": [
+      "Israeli Ministry of Education individual student records (restricted access)"
+    ],
+    "proxy_strategy": "Replication data for the main results is available from Josh Angrist's website. School-level aggregate data can replicate the main IV specifications. Individual student-level data requires Israeli Ministry of Education approval.",
+    "replicability": "medium — school-level replication data is public; individual-level data requires government access",
+    "public_proxy_available": true,
+    "replication_tier": "partial (school-level aggregates available for main results; individual-level data restricted)",
+    "data_limitations": "Israeli education data, so results may not generalize to other countries with different class size norms. The 40-student maximum is specific to the Israeli system. Test scores are from a specific cohort (1991-1992). Some evidence of enrollment manipulation near thresholds weakens the RDD interpretation.",
+    "public_data_sources_detail": [
+      "Josh Angrist's MIT data archive (replication datasets — free)",
+      "Israeli Central Bureau of Statistics (aggregate education data — free)",
+      "OECD Education at a Glance (international comparison data — free)"
+    ]
+  },
+  "method_family_accepted": [
+    "IV",
+    "RDD"
+  ],
+  "hybrid_method_note": "Maimonides' rule: IV using enrollment discontinuity. Both IV and RDD are defensible answers.",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables / fuzzy regression discontinuity — enrollment thresholds at multiples of 40 (Maimonides' rule) create predicted class size as an instrument for actual class size; the first stage relates predicted class size (from the rule) to actual class size; the second stage relates instrumented actual class size to test scores",
+    "key_variables": {
+      "treatment": "actual class size (continuous, endogenous), instrumented by predicted class size from Maimonides' rule",
+      "control": "N/A (continuous treatment with IV; the comparison is between schools just above vs. just below the enrollment thresholds at 40, 80, 120)",
+      "outcome": "average reading and math test scores at the class level (standardized)",
+      "time_period": "1991–1992 academic year in Israeli public schools"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Smaller classes significantly improve student achievement. The IV estimates show that reducing class size by one student raises reading scores by approximately 0.03-0.05 standard deviations and math scores by a similar amount. Effects are larger for disadvantaged students. The IV estimates are generally larger than OLS, consistent with OLS attenuation from measurement error or compensatory resource allocation.",
+    "main_effect": "Reducing class size by one student increases reading scores by approximately 0.03-0.05 SD; math score effects are similar in magnitude. A 10-student reduction improves scores by approximately 0.3-0.5 SD.",
+    "key_robustness": [
+      "Controlling for school-level socioeconomic characteristics (percent disadvantaged)",
+      "Separate estimates at each discontinuity (40, 80, 120 enrollment thresholds)",
+      "Different polynomial specifications in enrollment",
+      "Subsample analysis by student disadvantage status",
+      "Placebo tests at non-threshold enrollment levels"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) using Maimonides' rule predicted class size as instrument for actual class size; can also be interpreted as a fuzzy RDD at enrollment thresholds",
+      "treatment": "Actual class size (endogenous), instrumented by predicted class size = enrollment / ceil(enrollment / 40)",
+      "event_window": "N/A (cross-sectional within one school year)",
+      "estimation_window": "Schools with enrollment near the 40-student thresholds (various bandwidths)",
+      "sample_period": "1991–1992 academic year",
+      "unit_of_observation": "Class-level (average test scores by class) or school-grade level",
+      "key_assumption": "Predicted class size from Maimonides' rule affects student outcomes only through actual class size (exclusion restriction). Schools do not strategically manipulate enrollment around the thresholds. The key concern is that schools near enrollment thresholds may differ systematically — e.g., schools that grow from 39 to 41 students may be in growing neighborhoods with different socioeconomic characteristics."
+    },
+    "key_magnitudes": {
+      "iv_coefficient_reading": "Approximately -0.034 SD per additional student in class (4th grade reading)",
+      "iv_coefficient_math": "Approximately -0.040 SD per additional student in class (5th grade math)",
+      "first_stage": "Predicted class size strongly predicts actual class size; F-statistic well above 10",
+      "implied_star_comparison": "A 7-student reduction (comparable to STAR experiment) implies ~0.25 SD improvement, roughly consistent with STAR findings"
+    },
+    "robustness_notes_detail": "Results are robust to controlling for school socioeconomic composition, using different enrollment bandwidths, and separating estimates by discontinuity (40, 80, 120). Effects are larger for disadvantaged students, consistent with class size reductions being most beneficial for students with fewer alternative educational resources. The first stage is strong, with predicted class size having a high correlation with actual class size. Density tests around enrollment thresholds show some evidence of bunching (schools may adjust enrollment slightly), which the authors address with control variables."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 92,
+  "phase1_source_version": "v2primeprime_full_text"
+}

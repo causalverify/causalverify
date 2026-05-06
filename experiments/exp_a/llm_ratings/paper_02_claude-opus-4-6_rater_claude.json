@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strategy is a strong match - correctly identifies DID as primary approach with TARP recipients as treatment and non-recipients as control, mentions appropriate time periods and bank-level analysis. However, the output is cut off and doesn't clearly state the expected direction of the effect on risk-taking, so direction score is 0 for not being stated rather than being wrong.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_02",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:03:58.966191+00:00"
+}

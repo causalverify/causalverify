@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s89",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Credit Score Threshold on Loan Default Rates",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:49:37.174557",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 451,
+    "output_tokens": 448,
+    "content": "## 1. Identification Strategy\nTo analyze the impact of crossing a specific credit score threshold on loan default rates, we will use the Regression Discontinuity Design (RDD) method. This method is appropriate because the data includes a clear cutoff point (the credit score threshold) that determines treatment status (loan approval), and the running variable (credit score) is continuous. The key assumption is that the probability of default does not change discontinuously at the threshold due to factors other than the treatment. The RDD exploits this discontinuity to estimate the causal effect of meeting the minimum credit score requirement on default rates.\n\n## 2. R Code\n```r\n# Install and load necessary packages\ninstall.packages(c(\"rdrobust\", \"ggplot2\"))\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s89_data.csv\")\n\n# Check the data\nhead(data)\n\n# RDD analysis using rdrobust package\nrd_object <- rdrobust(y = data$y, x = data$running_var, c = 0.5) # assuming threshold is at 0.5, adjust according to actual data\nsummary(rd_object)\n\n# Plot the RD design\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_smooth(method = \"loess\", se = FALSE) +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\") # adjust threshold value\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the treated variable to be negative, indicating that individuals with credit scores above the threshold have lower default rates compared to those just below the threshold. The magnitude will depend on the specific data, but a plausible estimate might suggest that crossing the threshold reduces the default rate by 5-10 percentage points. This effect size is speculative and based on the general idea that higher credit scores are associated with better creditworthiness. The RDD method allows us to isolate this effect by comparing individuals just above and below the threshold, thereby controlling for other factors that might influence default rates.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the discontinuity at the credit score threshold to identify the causal effect.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the credit score threshold increases the default rate.",
+    "main_effect": "Approximately 0.22 increase in default rate."
+  }
+}

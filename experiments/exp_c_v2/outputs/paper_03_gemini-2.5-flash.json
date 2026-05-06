@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_03",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:20.505424",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 674,
+    "output_tokens": 2020,
+    "content": "## Research Integrity by Design (RID) Protocol\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe research question concerns the impact of state-level bank branching deregulation on firm innovation, with deregulation events staggered across states and years. This naturally lends itself to a difference-in-differences (DiD) framework. Specifically, a two-way fixed effects (TWFE) model will be employed, utilizing firm fixed effects to control for time-invariant firm-specific unobservables and year fixed effects to control for common macroeconomic shocks and trends affecting all firms. The staggered adoption of deregulation allows for the comparison of changes in innovation outcomes in states that have deregulated (treated) with changes in innovation outcomes in states that have not yet deregulated (control) over the same period. The identification relies on the parallel trends assumption, meaning that in the absence of deregulation, the innovation trends in treated and control states would have been similar.\n\n**Directional Hypothesis:**\nIncreased banking competition, resulting from the relaxation of geographic restrictions on bank branching, is hypothesized to **positively affect firm innovation**. The mechanism is that greater competition could lead to lower borrowing costs, increased availability of credit, more diverse financial products, and potentially more flexible financing for innovative and risky projects (e.g., R&D), thereby alleviating financial constraints that often hinder firm innovation.\n\n---\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nWe will estimate firm-level panel regressions using the following specifications. `firm_id` refers to firm fixed effects, and `year` refers to year fixed effects. Log transformations will be applied to count variables (patents, citations) and skewed continuous variables (R&D, total assets, HHI, branches) by adding 1 before logging for non-negative values.\n\n1.  **Main DiD Specification (Patents):**\n    $$ \\log(1 + Patents_{ist}) = \\beta_0 + \\beta_1 Deregulated_{st} + \\alpha_i + \\gamma_t + \\epsilon_{ist} $$\n    *   **Dependent Variable:** Log of (1 + number of patents granted to firm $i$ in state $s$ in year $t$).\n    *   **Key Independent Variable:** $Deregulated_{st}$, a dummy variable equal to 1 if state $s$ has deregulated by year $t$, and 0 otherwise.\n    *   **Fixed Effects:** $\\alpha_i$ (firm fixed effects) and $\\gamma_t$ (year fixed effects).\n\n2.  **Main DiD Specification with Firm-level Controls (Patents):**\n    $$ \\log(1 + Patents_{ist}) = \\beta_0 + \\beta_1 Deregulated_{st} + \\mathbf{X}_{ist}'\\mathbf{\\delta} + \\alpha_i + \\gamma_t + \\epsilon_{ist} $$\n    *   **Dependent Variable:** Same as Specification 1.\n    *   **Key Independent Variable:** Same as Specification 1.\n    *   **Controls ($\\mathbf{X}_{ist}$):** Log of (1 + R&D expenditure), Log of (Total Assets), Leverage, Sales Growth, Age (all firm-level and time-varying).\n    *   **Fixed Effects:** Same as Specification 1.\n\n3.  **Main DiD Specification with Firm-level Controls (Citations):**\n    $$ \\log(1 + CitationsPerPatent_{ist}) = \\beta_0 + \\beta_1 Deregulated_{st} + \\mathbf{X}_{ist}'\\mathbf{\\delta} + \\alpha_i + \\gamma_t + \\epsilon_{ist} $$\n    *   **Dependent Variable:** Log of (1 + forward citations per patent granted to firm $i$ in state $s$ in year $t$).\n    *   **Key Independent Variable:** Same as Specification 1.\n    *   **Controls ($\\mathbf{X}_{ist}$):** Same as Specification 2.\n    *   **Fixed Effects:** Same as Specification 1.\n\n4.  **Event Study Specification (Parallel Trends Test - Patents):**\n    $$ \\log(1 + Patents_{ist}) = \\sum_{k \\neq -1} \\beta_k I(rel\\_year = k)_{ist} + \\mathbf{X}_{ist}'\\mathbf{\\delta} + \\alpha_i + \\gamma_t + \\epsilon_{ist} $$\n    *   **Dependent Variable:** Same as Specification 1.\n    *   **Key Independent Variables:** $I(rel\\_year = k)_{ist}$ are dummy variables for event time $k$, where $rel\\_year = year - deregulation\\_year$. We will include indicators for $k \\in \\{-2, -1, 0, 1, 2, ... \\}$. Specifically, we will group `rel_year < -2` and `rel_year > 2` into bins. The $k = -1$ period (the year immediately before deregulation) will be omitted as the reference category.\n    *   **Controls ($\\mathbf{X}_{ist}$):** Same as Specification 2.\n    *   **Fixed Effects:** Same as Specification 1.\n\n5.  **Robustness Check with State-Year Banking Controls (Patents):**\n    $$ \\log(1 + Patents_{ist}) = \\beta_0 + \\beta_1 Deregulated_{st} + \\mathbf{X}_{ist}'\\mathbf{\\delta} + \\mathbf{Z}_{st}'\\mathbf{\\zeta} + \\alpha_i + \\gamma_t + \\epsilon_{ist} $$\n    *   **Dependent Variable:** Same as Specification 1.\n    *   **Key Independent Variable:** Same as Specification 1.\n    *   **Controls ($\\mathbf{X}_{ist}$):** Same as Specification 2.\n    *   **State-Year Banking Controls ($\\mathbf{Z}_{st}$):** Log of (HHI), Log of (Number of bank branches), Deposit Concentration (all state-year level). These control for other potential time-varying state-level banking characteristics that might correlate with both deregulation and innovation.\n    *   **Fixed Effects:** Same as Specification 1.\n\n---\n\n### STEP 3 — FALSIFICATION GATE\n\nMy hypothesis will be rejected if any of the following conditions are met:\n\n1.  **Sign Reversal:** The estimated coefficient $\\beta_1$ on the `Deregulated_st` variable in Specifications 1, 2, or 5 is negative and statistically significant (p < 0.10).\n2.  **Statistical Insignificance:** The estimated coefficient $\\beta_1$ on the `Deregulated_st` variable in Specifications 1, 2, or 5 is not statistically significant at the 10% level (p $\\ge$ 0.10).\n3.  **Falsification of Innovation Quality:** The estimated coefficient $\\beta_1$ on `Deregulated_st` in Specification 3 (using citations) is not statistically significant at the 10% level (p $\\ge$ 0.10) or is negative and statistically significant.\n4.  **Pre-trend Test Failure:** In Specification 4 (event study), any of the lead coefficients (i.e., for $k < -1$) are statistically significant at the 10% level (p < 0.10). This would indicate a violation of the parallel trends assumption, suggesting that treated and control groups were already diverging before the deregulation event. The coefficients for $k < -1$ should be statistically indistinguishable from zero.\n\n---\n\n### STEP 4 — R CODE\n\n```R\n# STEP 4 - R CODE\n\n# Install and load necessary packages\nif (!requireNamespace(\"fixest\", quietly = TRUE)) install.packages(\"fixest\")\nif (!requireNamespace(\"dplyr\", quietly = TRUE)) install.packages(\"dplyr\")\nif (!requireNamespace(\"data.table\", quietly = TRUE)) install.packages(\"data.table\")\nif (!requireNamespace(\"lubridate\", quietly = TRUE)) install.packages(\"lubridate\")\n\nlibrary(fixest)\nlibrary(dplyr)\nlibrary(data.table)\nlibrary(lubridate)\n\n# --- Data Simulation ---\nset.seed(123) # for reproducibility\n\nn_firms <- 500 # Number of firms\nn_states <- 20 # Number of states\nmin_year <- 1976\nmax_year <- 2006\nyears <- min_year:max_year\nn_years <- length(years)\n\n# Create firm-state mapping\nfirm_states <- data.frame(\n  firm_id = 1:n_firms,\n  state_id = sample(1:n_states, n_firms, replace = TRUE)\n)\n\n# Simulate state-level deregulation years\n# Staggered deregulation between 1978 and 1994, some states never deregulate in period\ndereg_years <- data.frame(\n  state_id = 1:n_states,\n  deregulation_year = sample(c(NA, sample(1978:1994, n_states - 5, replace = FALSE)), n_states, replace = FALSE)\n)\n# Ensure at least one state has NA (never deregulates) and some early/late dereg",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Staggered DID — treatment = passage of intrastate bank branching deregulation law, control = states that have not yet deregulated; identification relies on staggered timing of deregulation across states",
+    "key_variables": {
+      "treatment": "binary indicator for whether state has deregulated intrastate branching by year t",
+      "control": "same states before deregulation (within-state variation) and states that have not yet deregulated",
+      "outcome": "log(patents + 1) and log(citations + 1) by state-year",
+      "time_period": "1976–2006, deregulation events staggered 1978–1994"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank deregulation increases firm innovation: states that deregulate experience ~11% increase in patents and ~22% increase in patent citations",
+    "main_effect": "~11% increase in patents after intrastate branching deregulation",
+    "key_robustness": [
+      "pre-trend tests",
+      "placebo deregulation dates",
+      "alternative innovation measures (citations, patent quality)",
+      "controlling for state economic conditions"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences with staggered treatment",
+      "treatment": "Firms in states that removed branching restrictions (increased banking competition)",
+      "control": "Firms in states that had not yet deregulated (or maintained restrictions)",
+      "event": "State-specific dates of branching deregulation (staggered 1994-2005)",
+      "pre_period": "Before state-specific deregulation",
+      "post_period": "After state-specific deregulation",
+      "unit_of_observation": "Firm-year (patenting firms matched with state-level banking deregulation)",
+      "key_assumption": "Parallel trends in innovation between early- and late-deregulating states; timing of deregulation is not driven by anticipated changes in innovation"
+    },
+    "key_magnitudes": {
+      "patent_increase": "Statistically significant increase in patent counts and patent citations following deregulation",
+      "external_finance_channel": "Effect concentrated among firms with higher external finance dependence (Rajan-Zingales measure)"
+    },
+    "robustness_notes_detail": "Robust to controlling for state-level economic conditions, industry trends, firm fixed effects. Addresses potential concern that deregulation was endogenous to expected innovation by showing no pre-trends."
+  }
+}

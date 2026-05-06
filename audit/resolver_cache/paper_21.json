@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_21",
+  "title": "Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement",
+  "authors": "Angrist & Lavy",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/003355399556061",
+    "title": "Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement",
+    "year": 1999,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1499
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lavy",
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1499,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI model accurately identifies the core identification strategy as a 'Two-way difference-in-differences (DID) with continuous treatment intensity', correctly outlining the time (cohorts) and cross-sectional (district intensity) dimensions. It also correctly notes the supplementary 'event-study' and the '2SLS first-stage/returns-to-schooling' exercise, which are integral to the ground truth paper's methodology. The specific definitions of treatment intensity and cohorts are also spot on. However, as the output is an 'Empirical Research Plan,' it does not state the direction of the causal effect, leading to a score of 0 for direction match.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_22",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:24:34.335374+00:00"
+}

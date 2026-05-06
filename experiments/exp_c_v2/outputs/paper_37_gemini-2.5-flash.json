@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_37",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:38:07.336932",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 694,
+    "output_tokens": 164,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nI will employ a Difference-in-Differences (DiD) framework, leveraging the staggered adoption of wrongful discharge laws across U.S. states and over time. The primary strategy will be a two-way fixed effects (TWFE) model, which includes state fixed effects to control for time-invariant state-specific characteristics and year fixed effects to control for common macroeconomic shocks or trends affecting all states.\n\n**Directional Hypothesis:**\nThe adoption of wrongful discharge laws by U.S. states is hypothesized to have **increased** the share and/or level of temporary help employment. Firms, facing higher costs and risks associated with firing directly employed workers due to these laws, will increase their reliance on temporary help agencies to maintain",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered adoption — the treatment is state-level adoption of wrongful discharge doctrines (implied contract, good faith, and public policy exceptions); the staggered timing across states provides treatment variation; state and year fixed effects control for time-invariant state characteristics and national trends in temporary help use",
+    "key_variables": {
+      "treatment": "state adoption of wrongful discharge doctrines (three binary indicators for implied contract, good faith, and public policy exceptions)",
+      "control": "states that have not yet adopted the doctrine at time t (pre-adoption periods serve as controls)",
+      "outcome": "temporary help employment share (temporary help workers as fraction of total state employment); probability of individual working in temporary help",
+      "time_period": "1979–1995 (monthly CPS data matched with state doctrine adoption dates)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The adoption of implied contract wrongful discharge doctrine significantly increased temporary help employment. States adopting the implied contract exception experienced approximately a 14-15% increase in temporary help employment share relative to non-adopting states. The good faith and public policy exceptions had smaller and statistically insignificant effects. The implied contract doctrine is the most relevant because it directly increases dismissal costs for regular employees.",
+    "main_effect": "Adoption of implied contract exception increases temporary help employment share by approximately 14-15% (0.13-0.15 log points) relative to non-adopting states",
+    "key_robustness": [
+      "Separate effects for each doctrine type (implied contract, good faith, public policy)",
+      "Event-study specification showing no pre-trend in temp employment before adoption",
+      "Controlling for state economic conditions (unemployment, manufacturing share)",
+      "Individual-level analysis (CPS) vs. state-level analysis (QCEW)",
+      "Sub-sample by industry and occupation",
+      "Controlling for state unionization rates"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered state-level adoption of wrongful discharge doctrines",
+      "treatment": "Binary indicators for state adoption of implied contract, good faith, and public policy exceptions to employment-at-will (staggered across states, 1970s-1990s)",
+      "event_window": "Post-adoption period (all years after state adopts each doctrine)",
+      "estimation_window": "Pre-adoption years serve as baseline; event-study design shows leads and lags",
+      "sample_period": "1979–1995",
+      "unit_of_observation": "State-year (QCEW analysis) or individual-month (CPS analysis)",
+      "key_assumption": "Parallel trends: absent adoption of wrongful discharge doctrines, temporary help employment would have followed the same trajectory in adopting and non-adopting states. Event-study evidence supports this — no differential pre-trends before doctrine adoption."
+    },
+    "key_magnitudes": {
+      "implied_contract_effect": "+14-15% increase in temp help employment share (0.13-0.15 log points, significant at 5%)",
+      "good_faith_effect": "Small and generally insignificant",
+      "public_policy_effect": "Small and generally insignificant",
+      "aggregate_contribution": "Wrongful discharge doctrines explain approximately 15-20% of the total growth in temporary help employment during 1979-1995"
+    },
+    "robustness_notes_detail": "Event-study plots confirm no pre-trend in temporary help employment before doctrine adoption for the implied contract exception. The effect emerges 1-2 years after adoption and persists. The implied contract doctrine has the largest effect because it directly raises the cost of dismissing regular employees (creating an incentive to use temporary workers instead). The good faith and public policy exceptions have weaker effects because they are narrower in scope. Results are robust to controlling for state-level economic conditions, unionization, and demographic composition."
+  }
+}

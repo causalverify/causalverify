@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_197",
+  "title": "Empirical Strategies in Labor Economics",
+  "authors": "Angrist & Krueger",
+  "year": null,
+  "journal": "ILRR",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/s1573-4463(99)03004-7",
+    "title": "Empirical Strategies in Labor Economics",
+    "year": 1999,
+    "journal": "Handbook of labour economics",
+    "citations": 1630
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist",
+      "krueger"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ilrr",
+    "journal_oa": "handbook of labour economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1630,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

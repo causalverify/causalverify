@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_19",
+  "title": "The Impact of Nearly Universal Insurance Coverage on Health Care Utilization: Evidence from Medicare",
+  "authors": "Card, Dobkin & Maestas",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.98.5.2242",
+    "title": "The Impact of Nearly Universal Insurance Coverage on Health Care Utilization: Evidence from Medicare",
+    "year": 2008,
+    "journal": "American Economic Review",
+    "citations": 716
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dobkin",
+      "card",
+      "maestas"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 716,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

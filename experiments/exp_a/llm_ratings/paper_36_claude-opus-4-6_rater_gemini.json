@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies the core identification strategy as a randomized controlled field experiment (correspondence audit study) with random assignment of names to identical resumes. It accurately describes the mechanism of identification and the estimand (ATE). While the ground truth mentions a 'DID-like structure' for analysis, the AI focuses on the fundamental random assignment for identification, which is correct and the primary method. The direction is implicitly stated correctly by defining the ATE as a 'direct measure of racial discrimination,' which, by its nature, implies a negative effect for the African-American sounding names.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_36",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:28:24.403520+00:00"
+}

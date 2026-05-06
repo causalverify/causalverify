@@ -1,0 +1,46 @@
+# Large directories — don't index in IDE
+.venv/
+venv/
+__pycache__/
+.git/
+node_modules/
+
+# LLM outputs (1500+ files, large but only scripts use them)
+experiments/exp_a/outputs/
+experiments/exp_b/outputs/
+experiments/exp_c/outputs/
+experiments/exp_c_v2/outputs/
+experiments/exp_d/outputs/
+experiments/prompt_sensitivity/outputs/
+
+# PDFs (binary, no text search needed)
+experiments/exp_a/pdfs/
+*.pdf
+
+# Build artifacts
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.out
+paper/latex/*.toc
+paper/latex/*.bbl
+paper/latex/*.blg
+paper/latex/*.fdb_latexmk
+paper/latex/*.fls
+paper/latex/*.synctex.gz
+
+# Caches
+experiments/exp_a/openalex_cache/
+
+# OS junk
+.DS_Store
+Icon
+Thumbs.db
+
+# R artifacts
+*.Rhistory
+*.RData
+.Rproj.user/
+
+# Temporary
+*.tmp
+_tmp_*

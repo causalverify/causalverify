@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_34",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:36:45.414176",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 658,
+    "output_tokens": 2756,
+    "content": "STEP 1 — PRE-COMMITMENT  \nIdentification strategy:  Sharp regression-discontinuity design (RDD) that exploits the exogenous $75 million public-float cut-off determining whether a firm must comply with SOX-404.  The running variable is public float minus 75; treatment is an indicator equal to 1 if the running variable ≥ 0.  Local linear RDD with a triangular kernel delivers the causal effect for firms infinitesimally above vs. below the threshold.\n\nDirectional hypothesis H₁ (main hypothesis): Mandatory SOX-404 compliance improves earnings quality.  Therefore:\n•  τ < 0 for the effect on |Discretionary Accruals|.  \n•  τ < 0 for the effect on |Total Accruals|.  \n•  τ < 0 for the marginal effect on the probability of a subsequent earnings restatement.\n\nI will not alter the identification strategy or the directional predictions after this point.\n\n--------------------------------------------------------------------\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five empirical specifications will be executed:\n\n(1)  |Discretionary Accruals|ᵢₜ = α + τ · AcceleratedFilerᵢₜ + f₊(xᵢₜ)·1(xᵢₜ≥0) + f₋(xᵢₜ)·1(xᵢₜ<0) + εᵢₜ  \n • Outcome: absolute discretionary accruals scaled by assets.  \n • Estimator: rdrobust local–linear with Imbens–Kalyanaraman (IK) bandwidth.  \n • Years: 2004–2006.\n\n(2)  |Total Accruals|ᵢₜ = same specification as (1) but outcome is absolute total accruals / assets.\n\n(3)  Restatementᵢ,ₜ₊₁ (binary) = α + τ · AcceleratedFilerᵢₜ + f(xᵢₜ) + εᵢₜ  \n • Estimated with rdrobust on a binary outcome (equivalent to LPM; logit not used to stay within five specs).  \n • Same bandwidth and sample as (1).\n\n(4)  Sensitivity check for (1): repeat specification (1) using exactly 0.5 × IK bandwidth.\n\n(5)  McCrary density test of the running variable at the cutoff using rddensity with default binning.\n\nNo additional specifications, controls, or bandwidths will be run.\n\n--------------------------------------------------------------------\nSTEP 3 — FALSIFICATION GATE  \nI will reject H₁ if ANY of the following occur:\n\nG1. Specification (1) yields τ ≥ 0 OR two-sided p-value > 0.10 (robust bias-corrected).  \nG2. Specification (3) yields τ ≥ 0 OR p-value > 0.10.  \nG3. Specification (5) shows discontinuity in the density: |log-density jump| significant at the 10 % level (p < 0.10).  \nMeeting any gate implies failure to support the hypothesis.\n\n--------------------------------------------------------------------\nSTEP 4 — R CODE  \nBelow is self-contained R code for the five pre-committed specifications.  \nIt assumes a data frame df with variables: pf (public float, $M), year, abs_dacc (|disc. accruals|/assets), abs_tacc, restate (0/1).\n\n```r\n# Required packages\nlibrary(rdrobust)       # RD estimation\nlibrary(rddensity)      # McCrary test\nlibrary(dplyr)\n\n# 1. Prepare running variable and treatment\ndf <- df %>% \n  mutate(x  = pf - 75,                   # running variable\n         treat = ifelse(x >= 0, 1, 0))   # accelerated filer indicator\n\n# Restrict to implementation window 2004–2006 for specs (1)-(4)\ndf_imp <- df %>% filter(year >= 2004 & year <= 2006)\n\n#-----------------------------------------------------------------\n# (1) RD on |Discretionary Accruals|\nspec1 <- rdrobust(y = df_imp$abs_dacc,\n                  x = df_imp$x,\n                  kernel = \"triangular\")     # IK bandwidth default\n\n#-----------------------------------------------------------------\n# (2) RD on |Total Accruals|\nspec2 <- rdrobust(y = df_imp$abs_tacc,\n                  x = df_imp$x,\n                  kernel = \"triangular\")\n\n#-----------------------------------------------------------------\n# (3) RD on Restatement probability (linear probability model)\nspec3 <- rdrobust(y = df_imp$restate,\n                  x = df_imp$x,\n                  kernel = \"triangular\")\n\n#-----------------------------------------------------------------\n# (4) Sensitivity: half-bandwidth for |Disc. Accruals|\nbw_half <- spec1$bws[1] / 2          # IK bandwidth / 2\nspec4   <- rdrobust(y = df_imp$abs_dacc,\n                    x = df_imp$x,\n                    kernel = \"triangular\",\n                    h = bw_half)\n\n#-----------------------------------------------------------------\n# (5) McCrary density test\nspec5 <- rddensity(X = df$x, c = 0)\n\n#-----------------------------------------------------------------\n# Collect point estimates and p-values\nresults <- list(\n  disc_acc  = c(est = spec1$coef[1], p = spec1$pv[1]),\n  tot_acc   = c(est = spec2$coef[1], p = spec2$pv[1]),\n  restate   = c(est = spec3$coef[1], p = spec3$pv[1]),\n  disc_acc_halfBW = c(est = spec4$coef[1], p = spec4$pv[1]),\n  mccrary   = c(est = spec5$theta,  p = spec5$pv)\n)\n\nprint(results)\n```\n\n--------------------------------------------------------------------\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected ex-ante)\n\nBecause no data have been processed yet, the numbers below are purely anticipatory, calibrated to magnitudes reported in the published literature:\n\n• Spec (1): τ̂ ≈ −0.015, p = 0.04  \n• Spec (2): τ̂ ≈ −0.012, p = 0.07  \n• Spec (3): τ̂ ≈ −0.028, p = 0.08  \n• Spec (4): τ̂ ≈ −0.017, p = 0.09  \n• Spec (5): log-density jump ≈ 0.03, p = 0.65  \n\nGate assessment: All three gating conditions would be satisfied (negative signs and p ≤ 0.10 in specs 1 & 3; no density manipulation). Hence the falsification gate would NOT be triggered, and the evidence would be interpreted as supporting the hypothesis that SOX-404 compliance improves earnings quality for firms around the $75 million threshold.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is public float (market value of shares held by non-affiliates); cutoff at $75 million; treatment is being classified as an accelerated filer subject to SOX Section 404 auditor attestation requirements",
+    "key_variables": {
+      "treatment": "accelerated filer classification (public float ≥ $75M) requiring SOX Section 404 compliance",
+      "control": "non-accelerated filer (public float < $75M) exempt from Section 404",
+      "outcome": "audit fees, total accruals quality (discretionary accruals), earnings restatement probability, stock price reaction to 10-K filing",
+      "time_period": "2004–2006 (first years of Section 404 implementation)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "SOX Section 404 compliance improves earnings quality — firms just above the $75M threshold (subject to Section 404) have significantly lower discretionary accruals and higher accruals quality than firms just below the threshold. However, compliance imposes substantial costs: audit fees increase by approximately 98% for firms just above the cutoff. The positive effect on earnings quality suggests that Section 404 achieves its regulatory objective despite the high costs.",
+    "main_effect": "Section 404 compliance reduces absolute discretionary accruals by approximately 1.2 percentage points of assets; audit fees increase by ~98% (approximately doubling) at the $75M threshold",
+    "key_robustness": [
+      "Varying bandwidth around the $75M threshold",
+      "Polynomial specifications (linear, quadratic, cubic)",
+      "McCrary density test for manipulation of public float",
+      "Falsification tests using pre-SOX period (2001-2003)",
+      "Alternative accruals quality measures (Dechow-Dichev model)",
+      "Year-by-year analysis (2004, 2005, 2006 separately)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD with local linear regression around $75M public float threshold",
+      "treatment": "Accelerated filer status under SOX Section 404 (binary: public float ≥ $75M)",
+      "event_window": "Annual outcomes in the fiscal year of Section 404 compliance",
+      "estimation_window": "Public float bandwidth: $50M-$100M (main); $60M-$90M (narrow); $25M-$125M (wide)",
+      "sample_period": "2004–2006",
+      "unit_of_observation": "Firm-year for firms near the $75M public float threshold",
+      "key_assumption": "Firms cannot precisely manipulate their public float to sort below the $75M threshold. The threshold was externally set by the SEC. Potential outcomes (earnings quality without Section 404) are continuous at the $75M cutoff."
+    },
+    "key_magnitudes": {
+      "accruals_quality_improvement": "-1.2 percentage points reduction in absolute discretionary accruals (as fraction of assets)",
+      "audit_fee_increase": "+98% increase in audit fees at the $75M threshold (~$1.5M additional cost)",
+      "restatement_reduction": "Lower probability of earnings restatement for compliant firms (directional but noisier estimate)",
+      "cost_benefit": "High compliance cost ($1-3M) but measurable improvement in earnings quality"
+    },
+    "robustness_notes_detail": "McCrary density test shows some evidence of firms managing public float just below the threshold (manipulation concern), but the main results are robust to excluding firms in a narrow 'donut hole' around $75M. Pre-SOX period (2001-2003) shows no discontinuity at $75M, confirming that the effect is attributable to Section 404 rather than the threshold itself. Results are stronger in the first year of implementation (2004) and attenuate slightly in later years as firms near the threshold optimize their compliance strategy."
+  }
+}

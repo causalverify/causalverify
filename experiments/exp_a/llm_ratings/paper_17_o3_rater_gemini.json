@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI output perfectly matches the ground truth's identification strategy: instrumental variables (2SLS) using rainfall growth (current and lagged) as instruments for GDP per capita growth in a panel setting with fixed effects. The research question explicitly states the correct direction (economic growth reduces conflict).",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_17",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:22:54.288487+00:00"
+}

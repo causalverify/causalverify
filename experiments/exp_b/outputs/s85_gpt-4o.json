@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s85",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Merit Scholarships on College Enrollment",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:45:15.660401",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 438,
+    "output_tokens": 463,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is Regression Discontinuity Design (RDD). We use RDD because we are interested in the causal impact of meeting a specific GPA threshold on college enrollment. The treatment is determined by whether students' GPA is above or below the cutoff. The key assumption is that students just above and just below the cutoff are similar in all respects except for the receipt of the scholarship, ensuring local randomization at the threshold.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(rdd)\n\n# Load the dataset\ndata <- read.csv(\"experiments/exp_b/data/s85_data.csv\")\n\n# Basic summary of dataset\nsummary(data)\n\n# Running the RDD analysis\nrdd_data <- rdd_data(y = data$y, x = data$running_var, cutpoint = 0.5)\n\n# Fitting the RDD model\nrdd_model <- rdd_reg_lm(rdd_object = rdd_data)\n\n# Summary of the model to see the treatment effect at the threshold\nsummary(rdd_model)\n\n# Printing the estimated treatment effect\ncat(\"Estimated treatment effect at the cutoff: \", rdd_model$coefficients[2], \"\\n\")\n\n# Plot the RDD\nplot_rdd(rdd_model)\n\n# Robustness Checks: Using a smaller bandwidth\nrdd_model_bw <- rdd_reg_lm(rdd_object = rdd_data, bw = 0.1)\nsummary(rdd_model_bw)\n\n# Printing the estimated treatment effect using smaller bandwidth\ncat(\"Estimated treatment effect at the cutoff with smaller bandwidth: \", rdd_model_bw$coefficients[2], \"\\n\")\n\n# Plot the RDD with smaller bandwidth\nplot_rdd(rdd_model_bw)\n```\n\n## 3. Expected Findings\nI expect a positive treatment effect, meaning that meeting the GPA threshold for the merit scholarship will increase college enrollment rates. The intuition is that the availability of financial support will likely reduce the cost burden of attending college, thus incentivizing students to enroll. The magnitude of the effect will depend on the baseline enrollment rate and the financial significance of the scholarship. I would anticipate a modest to moderate positive effect, as financial incentives are a significant factor in education decisions.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the GPA threshold as a cutoff to compare students just above and below the threshold.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Meeting the GPA threshold for a merit scholarship significantly increases college enrollment rates.",
+    "main_effect": "0.25"
+  }
+}

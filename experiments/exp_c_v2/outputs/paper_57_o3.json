@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_57",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:47:59.874153",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 620,
+    "output_tokens": 2340,
+    "content": "STEP 1 — PRE-COMMITMENT  \nIdentification strategy: sharp regression-discontinuity design that exploits the mechanical rounding rule mapping minority-population share into the (integer) number of reserved assembly seats.  \nRunning variable rist = Seats×SCshare – floor(Seats×SCshare) – 0.5.  \nTreatment = 1{ rist ≥ 0 }, which increases SC reserved seats by exactly one.  \nDirectional hypothesis H1: Crossing the threshold (gaining one additional SC-reserved seat) increases redistributive policy toward SC/STs. Formally, E[Y|rist=0⁺] – E[Y|rist=0⁻] > 0 for all redistributive outcomes listed below.\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five estimable specifications, each a local-linear RD with triangular kernel, MSE-optimal bandwidth from rdrobust, standard errors clustered by state.  \nRunning variable rist as defined; sample restricted to |rist| ≤ 0.30 (≈ ±30 % of one seat).  \nCovariates: log(GDP pc), log(population), urbanization %, INC-in-power dummy, total assembly seats (where indicated).  \n\nSpec 1 (primary)  \nOutcome Y₁ = log( SC_ST_Welfare_Spending_perCapita + 1 ).  \nNo covariates.\n\nSpec 2  \nOutcome Y₁, with covariates.\n\nSpec 3  \nOutcome Y₂ = SC/ST share of public-sector employment.  \nNo covariates.\n\nSpec 4  \nOutcome Y₃ = Land_Reform_Hectares_perCapita.  \nWith covariates.\n\nSpec 5 (placebo)  \nOutcome Y₄ = log( Road_Construction_Spending_perCapita + 1 ).  \nNo covariates.\n\nNo other specifications will be run.\n\nSTEP 3 — FALSIFICATION GATE  \nHypothesis H1 is rejected if EITHER of the following occurs:  \na) For Spec 1 the estimated RD treatment effect ≤ 0 OR p-value > 0.10 (bias-corrected).  \nb) For Spec 5 the effect is statistically significant at p ≤ 0.10 (indicating a spurious effect on a placebo outcome).  \nBandwidth tests, first-stage checks, etc., will not alter the gate.\n\nSTEP 4 — R CODE\n\n```r\n# ---------- Load libraries ----------\nlibrary(rdrobust)\nlibrary(dplyr)\nlibrary(readr)\n\n# ---------- Load and prepare data ----------\ndat <- read_csv(\"india_state_panel.csv\")  # user must supply\n\ndat <- dat %>% \n  mutate(\n    rist = Seats * SC_share - floor(Seats * SC_share) - 0.5,\n    treat = ifelse(rist >= 0, 1, 0),\n    log_welfare_pc = log(SC_ST_Welfare_Spending_pc + 1),\n    log_road_pc    = log(Road_Construction_Spending_pc + 1),\n    log_gdppc      = log(GDP_pc),\n    log_pop        = log(Population)\n  ) %>% \n  filter(abs(rist) <= 0.30)            # common window\n\n# ---------- Helper: run RD and store results ----------\nrun_rd <- function(y, covars = NULL) {\n  if (is.null(covars)) {\n    rdrobust(y = dat[[y]], x = dat$rist, vce = \"hc1\", cluster = dat$StateID)\n  } else {\n    rdrobust(y = dat[[y]], x = dat$rist, covs = dat[, covars], \n             vce = \"hc1\", cluster = dat$StateID)\n  }\n}\n\n# ---------- Specification 1 ----------\nrd1 <- run_rd(\"log_welfare_pc\")\n\n# ---------- Specification 2 ----------\ncovariate_vec <- c(\"log_gdppc\", \"log_pop\", \"Urbanization_pct\", \n                   \"INC_party_dummy\", \"Seats\")\nrd2 <- run_rd(\"log_welfare_pc\", covars = covariate_vec)\n\n# ---------- Specification 3 ----------\nrd3 <- run_rd(\"PublicSector_SCST_Share\")\n\n# ---------- Specification 4 ----------\nrd4 <- run_rd(\"LandReform_Ha_perCapita\", covars = covariate_vec)\n\n# ---------- Specification 5 (placebo) ----------\nrd5 <- run_rd(\"log_road_pc\")\n\n# ---------- Collect point estimates & p-values ----------\nresults <- data.frame(\n  Spec = 1:5,\n  Est  = sapply(list(rd1, rd2, rd3, rd4, rd5), function(x) x$coef[1]),\n  pval = sapply(list(rd1, rd2, rd3, rd4, rd5), function(x) x$pv[1])\n)\nprint(results)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected ex-ante)  \nAnticipated point estimates (± rough 1 s.e.):\n\nSpec 1: +0.07  (s.e. 0.03, p ≈ 0.02)  \nSpec 2: +0.06  (0.03, p ≈ 0.05)  \nSpec 3: +0.40 pp (0.23, p ≈ 0.08)  \nSpec 4: +0.030 (0.025, p ≈ 0.12)  \nSpec 5: +0.01  (0.03, p ≈ 0.70)  \n\nGate assessment: Spec 1 is positive and p < 0.10, satisfying (a).  \nSpec 5 is insignificant, satisfying (b).  \nTherefore the falsification gate would NOT be triggered; H1 would not be rejected under the expected results.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Regression discontinuity design — running variable is minority (SC/ST) population share in the state; the step function mapping population share to number of reserved seats creates multiple discontinuities (at each rounding threshold); an additional reserved seat is the treatment; redistributive policy is the outcome",
+    "key_variables": {
+      "treatment": "one additional reserved seat for SC or ST in the state legislative assembly (determined by rounding of population share × total seats)",
+      "control": "states with one fewer reserved seat (just below the rounding threshold)",
+      "outcome": "state government spending on SC/ST welfare, job reservation (quota) implementation, land reform policies, minority public sector employment",
+      "time_period": "1960–1992 (multiple election cycles and Census-based reapportionments)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Mandated minority representation significantly increases redistributive policy favoring the represented group. One additional reserved seat for Scheduled Castes increases state spending on SC welfare programs and strengthens implementation of job reservation (quota) policies. Similarly, additional ST seats increase spending on tribal welfare. The effects are concentrated in policy domains most salient to the minority group (welfare spending, job quotas) rather than general public goods.",
+    "main_effect": "One additional SC reserved seat increases SC-targeted welfare spending by approximately 1-2% of total state budget; one additional ST seat increases ST welfare spending by a similar magnitude",
+    "key_robustness": [
+      "Separate analysis for SC and ST reservations",
+      "Controlling for state-level economic and demographic characteristics",
+      "Different polynomial specifications in population share",
+      "Time-series variation from Census-based reapportionments",
+      "Placebo: reservation does not affect policies not targeted at the reserved group",
+      "State fixed effects to absorb time-invariant state characteristics"
+    ],
+    "identification_strategy_detail": {
+      "method": "RDD exploiting the step function mapping minority population share to number of reserved assembly seats; the rounding at each integer threshold creates discontinuities in representation",
+      "treatment": "One additional reserved legislative seat (discrete jump from the step function at rounding thresholds)",
+      "event_window": "Policy outcomes measured during the legislative term following reapportionment",
+      "estimation_window": "States near each rounding threshold (bandwidth in population share)",
+      "sample_period": "1960–1992 (spanning multiple Census-based reapportionments)",
+      "unit_of_observation": "State-year (16 states × ~33 years)",
+      "key_assumption": "Near the rounding thresholds, the exact minority population share is as-if random with respect to state characteristics that affect redistributive policy. Small differences in enumerated population (driven by Census enumeration quality) determine whether a state gets one more or one fewer reserved seat."
+    },
+    "key_magnitudes": {
+      "sc_welfare_spending": "One additional SC reserved seat increases SC-targeted spending by approximately 1-2% of total state budget",
+      "job_quota": "Stronger implementation of SC/ST job reservation policies in public sector",
+      "general_spending": "No significant effect on non-targeted spending (placebo: reservation affects only targeted policies)",
+      "st_effect": "ST reservation effects are similar in magnitude to SC effects"
+    },
+    "robustness_notes_detail": "The step function creates multiple thresholds, providing several sources of identifying variation within each state over time. Pre-treatment state characteristics (GDP, urbanization, education) are smooth through the thresholds, supporting the RDD validity. The placebo result (no effect on non-targeted policies) is important: it confirms that the effect operates through targeted representation rather than general state capacity. Panel variation from Census-based reapportionments provides within-state identification."
+  }
+}

@@ -1,0 +1,2402 @@
+{
+  "scheme": "static",
+  "static_schemes": {
+    "DID": {
+      "unit_id": "entity_id",
+      "period": "wave",
+      "treated": "group_indicator",
+      "post": "phase_indicator",
+      "treat_x_post": "group_phase_interaction",
+      "y": "outcome"
+    },
+    "EVENT_STUDY": {
+      "stock_id": "series_id",
+      "event_day": "time_offset",
+      "ret": "observation",
+      "mkt_ret": "reference_series",
+      "beta": "sensitivity_coefficient"
+    },
+    "IV": {
+      "y": "outcome",
+      "x": "focal_variable",
+      "z": "auxiliary_variable",
+      "controls": "covariate_a"
+    },
+    "RDD": {
+      "running_var": "assignment_score",
+      "treated": "status_flag",
+      "y": "outcome",
+      "near_cutoff": "proximity_flag"
+    }
+  },
+  "records": [
+    {
+      "scenario_id": "s01",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s01_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s01_data.csv",
+      "obfuscated_sha256_prefix": "721af168056b415b"
+    },
+    {
+      "scenario_id": "s02",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s02_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s02_data.csv",
+      "obfuscated_sha256_prefix": "de31daf0139cb984"
+    },
+    {
+      "scenario_id": "s03",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s03_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s03_data.csv",
+      "obfuscated_sha256_prefix": "5b153c336d097b9e"
+    },
+    {
+      "scenario_id": "s04",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s04_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s04_data.csv",
+      "obfuscated_sha256_prefix": "8a3635eef3b146ab"
+    },
+    {
+      "scenario_id": "s05",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s05_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s05_data.csv",
+      "obfuscated_sha256_prefix": "996e0f2ee329ca6f"
+    },
+    {
+      "scenario_id": "s06",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s06_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s06_data.csv",
+      "obfuscated_sha256_prefix": "4f96b3b0bfe2383e"
+    },
+    {
+      "scenario_id": "s07",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s07_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s07_data.csv",
+      "obfuscated_sha256_prefix": "cf97602869df981d"
+    },
+    {
+      "scenario_id": "s08",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s08_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s08_data.csv",
+      "obfuscated_sha256_prefix": "5ba8709594a229a8"
+    },
+    {
+      "scenario_id": "s09",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s09_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s09_data.csv",
+      "obfuscated_sha256_prefix": "1fe26d9b70c5011a"
+    },
+    {
+      "scenario_id": "s10",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s10_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s10_data.csv",
+      "obfuscated_sha256_prefix": "bbf2d1aa8ad2f52e"
+    },
+    {
+      "scenario_id": "s11",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s11_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s11_data.csv",
+      "obfuscated_sha256_prefix": "a0bd455fe03acf0a"
+    },
+    {
+      "scenario_id": "s12",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s12_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s12_data.csv",
+      "obfuscated_sha256_prefix": "2e23942effebdb6e"
+    },
+    {
+      "scenario_id": "s13",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s13_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s13_data.csv",
+      "obfuscated_sha256_prefix": "9ef22e1e52ebd688"
+    },
+    {
+      "scenario_id": "s14",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s14_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s14_data.csv",
+      "obfuscated_sha256_prefix": "109fc172373c54b2"
+    },
+    {
+      "scenario_id": "s15",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s15_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s15_data.csv",
+      "obfuscated_sha256_prefix": "51b727e625b030ae"
+    },
+    {
+      "scenario_id": "s16",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s16_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s16_data.csv",
+      "obfuscated_sha256_prefix": "f2bd487c98dc16d2"
+    },
+    {
+      "scenario_id": "s17",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s17_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s17_data.csv",
+      "obfuscated_sha256_prefix": "dac8aac9c3b73298"
+    },
+    {
+      "scenario_id": "s18",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s18_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s18_data.csv",
+      "obfuscated_sha256_prefix": "347fa444e28db70a"
+    },
+    {
+      "scenario_id": "s19",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s19_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s19_data.csv",
+      "obfuscated_sha256_prefix": "e423aef92bff55fb"
+    },
+    {
+      "scenario_id": "s20",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s20_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s20_data.csv",
+      "obfuscated_sha256_prefix": "7c44f548004154d5"
+    },
+    {
+      "scenario_id": "s21",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s21_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s21_data.csv",
+      "obfuscated_sha256_prefix": "c0b23efd536bbb56"
+    },
+    {
+      "scenario_id": "s22",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s22_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s22_data.csv",
+      "obfuscated_sha256_prefix": "7b15ff6ab5695f41"
+    },
+    {
+      "scenario_id": "s23",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s23_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s23_data.csv",
+      "obfuscated_sha256_prefix": "f258df68a0a29a32"
+    },
+    {
+      "scenario_id": "s24",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s24_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s24_data.csv",
+      "obfuscated_sha256_prefix": "b3cea76071ede54c"
+    },
+    {
+      "scenario_id": "s25",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s25_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s25_data.csv",
+      "obfuscated_sha256_prefix": "fca963efdacebf07"
+    },
+    {
+      "scenario_id": "s26",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s26_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s26_data.csv",
+      "obfuscated_sha256_prefix": "e78bbb05fc98b2d3"
+    },
+    {
+      "scenario_id": "s27",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s27_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s27_data.csv",
+      "obfuscated_sha256_prefix": "41dae407eb59ac40"
+    },
+    {
+      "scenario_id": "s28",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s28_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s28_data.csv",
+      "obfuscated_sha256_prefix": "ad89dc994532473b"
+    },
+    {
+      "scenario_id": "s29",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s29_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s29_data.csv",
+      "obfuscated_sha256_prefix": "40fea78e23d4d208"
+    },
+    {
+      "scenario_id": "s30",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s30_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s30_data.csv",
+      "obfuscated_sha256_prefix": "91d51c12127ff7a9"
+    },
+    {
+      "scenario_id": "s31",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s31_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s31_data.csv",
+      "obfuscated_sha256_prefix": "91d9de6135f71b72"
+    },
+    {
+      "scenario_id": "s32",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s32_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s32_data.csv",
+      "obfuscated_sha256_prefix": "009a9a4c12766e16"
+    },
+    {
+      "scenario_id": "s33",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s33_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s33_data.csv",
+      "obfuscated_sha256_prefix": "8be23f4499dbf1dc"
+    },
+    {
+      "scenario_id": "s34",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s34_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s34_data.csv",
+      "obfuscated_sha256_prefix": "e956454054ae251c"
+    },
+    {
+      "scenario_id": "s35",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s35_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s35_data.csv",
+      "obfuscated_sha256_prefix": "568f4684765b4f22"
+    },
+    {
+      "scenario_id": "s36",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s36_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s36_data.csv",
+      "obfuscated_sha256_prefix": "700e3b4877a9d3f4"
+    },
+    {
+      "scenario_id": "s37",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1600,
+      "original_csv": "experiments/exp_b/data/s37_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s37_data.csv",
+      "obfuscated_sha256_prefix": "bc06b4faecd38edc"
+    },
+    {
+      "scenario_id": "s38",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s38_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s38_data.csv",
+      "obfuscated_sha256_prefix": "ad1391b3ceb90103"
+    },
+    {
+      "scenario_id": "s39",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s39_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s39_data.csv",
+      "obfuscated_sha256_prefix": "06d9f017cf976244"
+    },
+    {
+      "scenario_id": "s40",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s40_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s40_data.csv",
+      "obfuscated_sha256_prefix": "449997bd0ecc69e3"
+    },
+    {
+      "scenario_id": "s41",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s41_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s41_data.csv",
+      "obfuscated_sha256_prefix": "7cffd17a99ae59d5"
+    },
+    {
+      "scenario_id": "s42",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s42_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s42_data.csv",
+      "obfuscated_sha256_prefix": "0fe10e3da2942a4a"
+    },
+    {
+      "scenario_id": "s43",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s43_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s43_data.csv",
+      "obfuscated_sha256_prefix": "e791f656fe5b1cac"
+    },
+    {
+      "scenario_id": "s44",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1200,
+      "original_csv": "experiments/exp_b/data/s44_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s44_data.csv",
+      "obfuscated_sha256_prefix": "e961bbaf2df48748"
+    },
+    {
+      "scenario_id": "s45",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s45_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s45_data.csv",
+      "obfuscated_sha256_prefix": "7512f40e34c1efca"
+    },
+    {
+      "scenario_id": "s46",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s46_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s46_data.csv",
+      "obfuscated_sha256_prefix": "5867f96795845848"
+    },
+    {
+      "scenario_id": "s47",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s47_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s47_data.csv",
+      "obfuscated_sha256_prefix": "5348aca28b81723f"
+    },
+    {
+      "scenario_id": "s48",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s48_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s48_data.csv",
+      "obfuscated_sha256_prefix": "918216244e2cf56d"
+    },
+    {
+      "scenario_id": "s49",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s49_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s49_data.csv",
+      "obfuscated_sha256_prefix": "1b506860eb143d3c"
+    },
+    {
+      "scenario_id": "s50",
+      "method_family": "DID",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "unit_id": "entity_id",
+        "period": "wave",
+        "treated": "group_indicator",
+        "post": "phase_indicator",
+        "treat_x_post": "group_phase_interaction",
+        "y": "outcome"
+      },
+      "obfuscated_to_original": {
+        "entity_id": "unit_id",
+        "wave": "period",
+        "group_indicator": "treated",
+        "phase_indicator": "post",
+        "group_phase_interaction": "treat_x_post",
+        "outcome": "y"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1000,
+      "original_csv": "experiments/exp_b/data/s50_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s50_data.csv",
+      "obfuscated_sha256_prefix": "23bae204744d0942"
+    },
+    {
+      "scenario_id": "s51",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 2100,
+      "original_csv": "experiments/exp_b/data/s51_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s51_data.csv",
+      "obfuscated_sha256_prefix": "bf7c6f5e5af63601"
+    },
+    {
+      "scenario_id": "s52",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 2100,
+      "original_csv": "experiments/exp_b/data/s52_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s52_data.csv",
+      "obfuscated_sha256_prefix": "e1badb45afb815d7"
+    },
+    {
+      "scenario_id": "s53",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 2100,
+      "original_csv": "experiments/exp_b/data/s53_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s53_data.csv",
+      "obfuscated_sha256_prefix": "a6c8ce76f471cc33"
+    },
+    {
+      "scenario_id": "s54",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 2100,
+      "original_csv": "experiments/exp_b/data/s54_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s54_data.csv",
+      "obfuscated_sha256_prefix": "445c8025de7b95da"
+    },
+    {
+      "scenario_id": "s55",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 2100,
+      "original_csv": "experiments/exp_b/data/s55_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s55_data.csv",
+      "obfuscated_sha256_prefix": "22278bcb29c80166"
+    },
+    {
+      "scenario_id": "s56",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s56_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s56_data.csv",
+      "obfuscated_sha256_prefix": "5f7c2718715d4f56"
+    },
+    {
+      "scenario_id": "s57",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s57_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s57_data.csv",
+      "obfuscated_sha256_prefix": "3e4debb854ff3d8b"
+    },
+    {
+      "scenario_id": "s58",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s58_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s58_data.csv",
+      "obfuscated_sha256_prefix": "ac145ba67dd8748d"
+    },
+    {
+      "scenario_id": "s59",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s59_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s59_data.csv",
+      "obfuscated_sha256_prefix": "73c22a2157925f7e"
+    },
+    {
+      "scenario_id": "s60",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s60_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s60_data.csv",
+      "obfuscated_sha256_prefix": "0a001e5e43ec180f"
+    },
+    {
+      "scenario_id": "s61",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1680,
+      "original_csv": "experiments/exp_b/data/s61_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s61_data.csv",
+      "obfuscated_sha256_prefix": "5a19c7c82a2b0e5f"
+    },
+    {
+      "scenario_id": "s62",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1260,
+      "original_csv": "experiments/exp_b/data/s62_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s62_data.csv",
+      "obfuscated_sha256_prefix": "81b0ba04c6b56bca"
+    },
+    {
+      "scenario_id": "s63",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1260,
+      "original_csv": "experiments/exp_b/data/s63_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s63_data.csv",
+      "obfuscated_sha256_prefix": "007c40b0ba94b1a3"
+    },
+    {
+      "scenario_id": "s64",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1260,
+      "original_csv": "experiments/exp_b/data/s64_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s64_data.csv",
+      "obfuscated_sha256_prefix": "9f4a7a8984e8d371"
+    },
+    {
+      "scenario_id": "s65",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1260,
+      "original_csv": "experiments/exp_b/data/s65_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s65_data.csv",
+      "obfuscated_sha256_prefix": "8b30e91309afba8c"
+    },
+    {
+      "scenario_id": "s66",
+      "method_family": "EVENT_STUDY",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "stock_id": "series_id",
+        "event_day": "time_offset",
+        "ret": "observation",
+        "mkt_ret": "reference_series",
+        "beta": "sensitivity_coefficient"
+      },
+      "obfuscated_to_original": {
+        "series_id": "stock_id",
+        "time_offset": "event_day",
+        "observation": "ret",
+        "reference_series": "mkt_ret",
+        "sensitivity_coefficient": "beta"
+      },
+      "unexpected_columns": [],
+      "n_rows": 1260,
+      "original_csv": "experiments/exp_b/data/s66_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s66_data.csv",
+      "obfuscated_sha256_prefix": "bf708feb62e9c775"
+    },
+    {
+      "scenario_id": "s67",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s67_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s67_data.csv",
+      "obfuscated_sha256_prefix": "1687f3fb5f9c097b"
+    },
+    {
+      "scenario_id": "s68",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s68_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s68_data.csv",
+      "obfuscated_sha256_prefix": "36bd13964f7bfab6"
+    },
+    {
+      "scenario_id": "s69",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s69_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s69_data.csv",
+      "obfuscated_sha256_prefix": "180cbfb6eada58c2"
+    },
+    {
+      "scenario_id": "s70",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s70_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s70_data.csv",
+      "obfuscated_sha256_prefix": "4769167a29c0be77"
+    },
+    {
+      "scenario_id": "s71",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s71_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s71_data.csv",
+      "obfuscated_sha256_prefix": "456a839fd274d7a2"
+    },
+    {
+      "scenario_id": "s72",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s72_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s72_data.csv",
+      "obfuscated_sha256_prefix": "bc256d06473a4928"
+    },
+    {
+      "scenario_id": "s73",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s73_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s73_data.csv",
+      "obfuscated_sha256_prefix": "7eb9fb69a516bc88"
+    },
+    {
+      "scenario_id": "s74",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s74_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s74_data.csv",
+      "obfuscated_sha256_prefix": "2e24e788dfc1bbde"
+    },
+    {
+      "scenario_id": "s75",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s75_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s75_data.csv",
+      "obfuscated_sha256_prefix": "2e8881f96abf49a5"
+    },
+    {
+      "scenario_id": "s76",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s76_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s76_data.csv",
+      "obfuscated_sha256_prefix": "c2c59202a52193b7"
+    },
+    {
+      "scenario_id": "s77",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s77_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s77_data.csv",
+      "obfuscated_sha256_prefix": "500bf3418f564c74"
+    },
+    {
+      "scenario_id": "s78",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s78_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s78_data.csv",
+      "obfuscated_sha256_prefix": "515f01d7a5e22ec8"
+    },
+    {
+      "scenario_id": "s79",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s79_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s79_data.csv",
+      "obfuscated_sha256_prefix": "bc9076a8e2a67fbc"
+    },
+    {
+      "scenario_id": "s80",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s80_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s80_data.csv",
+      "obfuscated_sha256_prefix": "fcdd2d0658f3b1c8"
+    },
+    {
+      "scenario_id": "s81",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s81_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s81_data.csv",
+      "obfuscated_sha256_prefix": "ffded221f4b0dd9c"
+    },
+    {
+      "scenario_id": "s82",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s82_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s82_data.csv",
+      "obfuscated_sha256_prefix": "1db2ba740d78e07c"
+    },
+    {
+      "scenario_id": "s83",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s83_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s83_data.csv",
+      "obfuscated_sha256_prefix": "1080cc1a89dd9f7c"
+    },
+    {
+      "scenario_id": "s84",
+      "method_family": "IV",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "y": "outcome",
+        "x": "focal_variable",
+        "z": "auxiliary_variable",
+        "controls": "covariate_a"
+      },
+      "obfuscated_to_original": {
+        "outcome": "y",
+        "focal_variable": "x",
+        "auxiliary_variable": "z",
+        "covariate_a": "controls"
+      },
+      "unexpected_columns": [],
+      "n_rows": 300,
+      "original_csv": "experiments/exp_b/data/s84_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s84_data.csv",
+      "obfuscated_sha256_prefix": "3152f6a8be8f71c6"
+    },
+    {
+      "scenario_id": "s85",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s85_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s85_data.csv",
+      "obfuscated_sha256_prefix": "802ffedad9355fdc"
+    },
+    {
+      "scenario_id": "s86",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s86_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s86_data.csv",
+      "obfuscated_sha256_prefix": "2e1a3a4d8b173855"
+    },
+    {
+      "scenario_id": "s87",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s87_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s87_data.csv",
+      "obfuscated_sha256_prefix": "eec908055dd59d2c"
+    },
+    {
+      "scenario_id": "s88",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s88_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s88_data.csv",
+      "obfuscated_sha256_prefix": "7ab936a5f9ca10ac"
+    },
+    {
+      "scenario_id": "s89",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 600,
+      "original_csv": "experiments/exp_b/data/s89_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s89_data.csv",
+      "obfuscated_sha256_prefix": "06720bc965709dd3"
+    },
+    {
+      "scenario_id": "s90",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s90_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s90_data.csv",
+      "obfuscated_sha256_prefix": "4fbb17344709d2ea"
+    },
+    {
+      "scenario_id": "s91",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s91_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s91_data.csv",
+      "obfuscated_sha256_prefix": "681289461894e5fe"
+    },
+    {
+      "scenario_id": "s92",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s92_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s92_data.csv",
+      "obfuscated_sha256_prefix": "fd02c7985fd60071"
+    },
+    {
+      "scenario_id": "s93",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s93_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s93_data.csv",
+      "obfuscated_sha256_prefix": "949ffd927b6e293b"
+    },
+    {
+      "scenario_id": "s94",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s94_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s94_data.csv",
+      "obfuscated_sha256_prefix": "e4f8311d34e106c5"
+    },
+    {
+      "scenario_id": "s95",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 500,
+      "original_csv": "experiments/exp_b/data/s95_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s95_data.csv",
+      "obfuscated_sha256_prefix": "2996df0053df6555"
+    },
+    {
+      "scenario_id": "s96",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s96_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s96_data.csv",
+      "obfuscated_sha256_prefix": "c3b921b29182dfaa"
+    },
+    {
+      "scenario_id": "s97",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s97_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s97_data.csv",
+      "obfuscated_sha256_prefix": "d140c0fe1be62710"
+    },
+    {
+      "scenario_id": "s98",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s98_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s98_data.csv",
+      "obfuscated_sha256_prefix": "dd62440fee4813d1"
+    },
+    {
+      "scenario_id": "s99",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s99_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s99_data.csv",
+      "obfuscated_sha256_prefix": "ca985a9b518f5d2e"
+    },
+    {
+      "scenario_id": "s100",
+      "method_family": "RDD",
+      "status": "obfuscated",
+      "original_to_obfuscated": {
+        "running_var": "assignment_score",
+        "treated": "status_flag",
+        "y": "outcome",
+        "near_cutoff": "proximity_flag"
+      },
+      "obfuscated_to_original": {
+        "assignment_score": "running_var",
+        "status_flag": "treated",
+        "outcome": "y",
+        "proximity_flag": "near_cutoff"
+      },
+      "unexpected_columns": [],
+      "n_rows": 400,
+      "original_csv": "experiments/exp_b/data/s100_data.csv",
+      "obfuscated_csv": "experiments/exp_b/data_obfuscated/s100_data.csv",
+      "obfuscated_sha256_prefix": "14ab92966012998e"
+    }
+  ]
+}

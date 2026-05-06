@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s22",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Bartik shift-share IV for local employment shock on wages",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:24.701591",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 439,
+    "output_tokens": 541,
+    "content": "## 1. Identification Strategy\nWe will use a Bartik shift-share IV approach to identify the causal impact of local employment shocks on wages. The Bartik instrument is constructed by interacting national industry growth rates with local industry shares. The key assumptions of this model are: \n\n1. Relevance: The Bartik instrument (national industry growth × local industry shares) is correlated with local employment growth. \n2. Exogeneity: The instrument is uncorrelated with unobserved determinants of wage changes, other than through local employment growth.\n\n## 2. R Code\n```r\n# Complete R code for Bartik shift-share IV analysis\n\n# Load necessary libraries\nlibrary(ivreg) # For instrumental variables regression\nlibrary(lmtest) # For testing\n\n# Load the data\ndata <- read.csv('experiments/exp_b/data/s22_data.csv')\n\n# First Stage: OLS Regression of the endogenous regressor (x) on the instrument (z) and controls\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Reduced Form: Regression of the outcome (y) on the instrument (z) and controls\nreduced_form <- lm(y ~ z + controls, data = data)\nsummary(reduced_form)\n\n# Second Stage: IV Regression of the outcome (y) on the endogenous regressor (x) using the instrument (z)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nsummary(iv_model)\n\n# Robustness checks: Check weak instrument using F-statistic\nfirst_stage_test <- summary(first_stage)\nf_stat <- first_stage_test$fstatistic[1]\ncat(\"F-statistic of first stage:\", f_stat, \"\\n\")\n\n# Check if the instrument is weak\nif (f_stat < 10) {\n    cat(\"Warning: The instrument may be weak.\\n\")\n} else {\n    cat(\"The instrument is strong.\\n\")\n}\n\n# Print the IV result\ncat(\"IV Coefficient on x (local employment growth):\", coef(iv_model)[\"x\"], \"\\n\")\n```\n\n## 3. Expected Findings\nI expect the sign of the coefficient for local employment growth (x) on wages (y) to be positive. This is based on economic intuition that an increase in local employment through demand channels often increases bargaining power or labor demand, thereby potentially increasing local wages. The magnitude of this effect could vary, but I might anticipate a modest positive effect given typical elasticities observed in labor economics. The expected result would confirm whether changes in local labor markets have a statistically significant and economically meaningful effect on wages using this Bartik shift-share instrument.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — Bartik shift-share instrument; identification from national (exogenous) shifts",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Employment growth driven by national shifts raises local wages",
+    "main_effect": "10% employment growth → 4% wage increase (IV estimate)"
+  }
+}

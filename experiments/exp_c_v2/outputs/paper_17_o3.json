@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_17",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:28:48.633350",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 617,
+    "output_tokens": 2242,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy: 2-stage least squares (2SLS) using contemporaneous and one-year-lagged rainfall growth as instruments for real GDP per-capita growth. Country and year fixed effects purge time-invariant heterogeneity and common shocks. Clustered (country) standard errors address within-country serial correlation.  \n\nDirectional hypothesis H: Higher economic growth lowers the probability of civil conflict (onset and incidence). ⇒ The 2SLS coefficient on GDP growth is expected to be negative.\n\n––––––––––––––––––––––––––  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly five)  \n\nAll specifications include: country fixed effects, year fixed effects, and the control vector {democracy, ethnic fractionalization, log population, mountainous terrain share, oil exporter}. Standard errors clustered at the country level.  \n\nSpec 1  (OLS):  \nConflictIncidence_it = α + β_OLS · GDPGrowth_it + γ′Controls_it + μ_i + τ_t + ε_it  \n\nSpec 2  (First stage):  \nGDPGrowth_it = π₀ + π₁·RainGrowth_it + π₂·RainGrowth_{i,t-1} + λ′Controls_it + μ_i + τ_t + υ_it  \n\nSpec 3  (2SLS, conflict incidence):  \nSame left-hand side as Spec 1, instrumenting GDPGrowth_it with RainGrowth_it and RainGrowth_{i,t-1}.  \n\nSpec 4  (2SLS, conflict onset):  \nConflictOnset_it = α + β_onset · ˆGDPGrowth_it + γ′Controls_it + μ_i + τ_t + ε_it  \n\nSpec 5  (Reduced form):  \nConflictIncidence_it = ϕ₀ + ϕ₁·RainGrowth_it + ϕ₂·RainGrowth_{i,t-1} + γ′Controls_it + μ_i + τ_t + ω_it  \n\nNo additional, alternative, or robustness specifications will be run.\n\n––––––––––––––––––––––––––  \n\nSTEP 3 — FALSIFICATION GATE  \n\nThe hypothesis H will be rejected if ANY of the following occurs:\n\na) Weak instrument: first-stage F-statistic on the excluded instruments (π₁, π₂ jointly) < 10.  \nb) Wrong-signed or insignificant IV effect: in Spec 3 and/or Spec 4, β̂ (or β̂_onset) ≥ 0 OR |t| < 1.64 (p > 0.10, two-sided).  \nc) Inconsistency with reduced form: signs of ϕ̂₁ + ϕ̂₂ and β̂ disagree.\n\nIf none of these conditions is met, the hypothesis survives the gate.\n\n––––––––––––––––––––––––––  \n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# Required packages\nlibrary(fixest)   # fast fixed-effects estimation\nlibrary(AER)      # ivreg for first-stage F statistic\nlibrary(lmtest)   # coeftest for clustered SEs\nlibrary(sandwich) # vcovCL\n\n# Load data  (assumed to be in working directory)\n# The data frame 'ssa_panel' must contain:\n#  country, year, conflict_incidence, conflict_onset, gdp_pc_growth,\n#  rain_growth, rain_growth_lag, democracy, ethnic_frac,\n#  log_pop, mountains, oil_exporter\nssa_panel <- readRDS(\"ssa_panel.rds\")\n\n# Helper: clustered variance-covariance matrix\ncl_vcov <- function(model){\n  vcovCL(model, cluster = ~country, type = \"HC1\")\n}\n\n######## SPEC 1: OLS ########\nspec1 <- feols(conflict_incidence ~ gdp_pc_growth + democracy + ethnic_frac +\n                 log_pop + mountains + oil_exporter | country + year,\n               data = ssa_panel, cluster = ~country)\n\n######## SPEC 2: First stage ########\nfirst_stage <- feols(gdp_pc_growth ~ rain_growth + rain_growth_lag +\n                       democracy + ethnic_frac + log_pop + mountains + \n                       oil_exporter | country + year,\n                     data = ssa_panel, cluster = ~country)\n\n# First-stage F statistic on instruments\nfs_fstat <- wald(first_stage, keep = c(\"rain_growth\", \"rain_growth_lag\"))\n\n######## SPEC 3: 2SLS — conflict incidence ########\nspec3 <- feols(conflict_incidence ~ 1 | \n                 gdp_pc_growth ~ rain_growth + rain_growth_lag +\n                 democracy + ethnic_frac + log_pop + mountains + \n                 oil_exporter | country + year,\n               data = ssa_panel, cluster = ~country)\n\n######## SPEC 4: 2SLS — conflict onset ########\nspec4 <- feols(conflict_onset ~ 1 | \n                 gdp_pc_growth ~ rain_growth + rain_growth_lag +\n                 democracy + ethnic_frac + log_pop + mountains + \n                 oil_exporter | country + year,\n               data = ssa_panel, cluster = ~country)\n\n######## SPEC 5: Reduced form ########\nspec5 <- feols(conflict_incidence ~ rain_growth + rain_growth_lag +\n                 democracy + ethnic_frac + log_pop + mountains + \n                 oil_exporter | country + year,\n               data = ssa_panel, cluster = ~country)\n\n######## Output ########\netable(spec1, first_stage, spec3, spec4, spec5,\n       keep = c(\"gdp_pc_growth\", \"rain_growth\", \"rain_growth_lag\"),\n       dict = c(gdp_pc_growth = \"GDP growth\",\n                rain_growth = \"Rain growth (t)\",\n                rain_growth_lag = \"Rain growth (t-1)\"),\n       stats = c(\"n\", \"r2\", \"f\"))\n\n# Store key diagnostics\ndiag_list <- list(\n  first_stage_F = fs_fstat$F,\n  beta_incidence = coef(spec3)[\"fit_gdp_pc_growth\"],\n  se_incidence   = sqrt(diag(cl_vcov(spec3)))[\"fit_gdp_pc_growth\"],\n  beta_onset     = coef(spec4)[\"fit_gdp_pc_growth\"],\n  se_onset       = sqrt(diag(cl_vcov(spec4)))[\"fit_gdp_pc_growth\"],\n  rf_sum         = sum(coef(spec5)[c(\"rain_growth\", \"rain_growth_lag\")])\n)\n\nsaveRDS(diag_list, \"diagnostics.rds\")\n```\n\n––––––––––––––––––––––––––  \n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBased on prior literature (e.g., Miguel, Satyanath & Sergenti 2004), I expect:\n\n• First-stage: π̂₁ ≈ 0.35, π̂₂ ≈ 0.20, joint F ≈ 18 – 25 ⇒ passes condition (a).  \n• 2SLS, conflict incidence (Spec 3): β̂ ≈ −0.05 (s.e. ≈ 0.02) ⇒ t ≈ −2.5, p ≈ 0.013.  \n• 2SLS, conflict onset (Spec 4): β̂_onset ≈ −0.04 (s.e. ≈ 0.022) ⇒ t ≈ −1.8, p ≈ 0.07.  \n• Reduced form: ϕ̂₁ + ϕ̂₂ ≈ −0.023 (p ≈ 0.05), same sign as β̂ ⇒ condition (c) satisfied.\n\nAssessment: All falsification-gate criteria are expected to be met (instruments strong, negative and significant IV coefficients, consistent reduced form). Therefore, the hypothesis that higher economic growth reduces civil conflict in sub-Saharan Africa would NOT be rejected.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — rainfall growth (current and lagged) as an instrument for economic growth (GDP per capita growth); first stage: rainfall → GDP growth; second stage: GDP growth (instrumented) → civil conflict onset/incidence",
+    "key_variables": {
+      "treatment": "economic growth (GDP per capita growth rate), instrumented by rainfall growth",
+      "control": "N/A (continuous treatment with IV identification)",
+      "outcome": "civil conflict onset (binary: new conflict starts) and conflict incidence (binary: ongoing or new conflict in year t)",
+      "time_period": "1981–1999, annual panel of 41 African countries"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Negative economic growth shocks significantly increase the likelihood of civil conflict; a 5 percentage point negative growth shock increases the probability of conflict in the following year by approximately 12.5 percentage points. The IV estimates are larger than OLS, consistent with attenuation bias from measurement error in GDP data.",
+    "main_effect": "A 5pp decline in economic growth increases the probability of civil conflict onset by approximately 12.5 percentage points; conflict incidence increases by roughly 9-11pp per 5pp growth decline",
+    "key_robustness": [
+      "Lagged rainfall as additional instrument (addresses timing)",
+      "Controlling for country fixed effects and country-specific trends",
+      "Alternative conflict datasets (Fearon & Laitin, Collier & Hoeffler)",
+      "Excluding oil exporters (where rainfall-agriculture link is weaker)",
+      "Separating conflict onset from incidence"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with country and year fixed effects",
+      "treatment": "GDP per capita growth rate (endogenous), instrumented by current-year and one-year lagged rainfall growth",
+      "event_window": "Annual",
+      "estimation_window": "Full panel 1981-1999",
+      "sample_period": "1981–1999",
+      "unit_of_observation": "Country-year (41 countries × ~19 years)",
+      "key_assumption": "Exclusion restriction: rainfall affects civil conflict only through its effect on economic growth (income), not through other channels. Supported by the agricultural dependence of African economies. Potential violations: direct effects of extreme weather on population displacement, disease, or water scarcity (though these are partially mediated by economic effects)."
+    },
+    "key_magnitudes": {
+      "first_stage": "Rainfall growth coefficient on GDP growth: approximately +0.10 to +0.15 (a 1pp increase in rainfall growth raises GDP growth by 0.10-0.15pp); F-statistic > 10",
+      "conflict_incidence_iv": "A 1pp decrease in instrumented GDP growth increases conflict incidence probability by approximately 2.1pp (coefficient ≈ -0.021)",
+      "conflict_onset_iv": "A 1pp decrease in instrumented GDP growth increases conflict onset probability by approximately 2.5pp"
+    },
+    "robustness_notes_detail": "Results hold with country fixed effects, year fixed effects, country-specific time trends, and various combinations of controls. Overidentification tests (using current and lagged rainfall as two instruments) do not reject the exclusion restriction. The first-stage F-statistic exceeds 10 in all specifications, ruling out weak instrument concerns. Results are robust to excluding Nigeria, South Africa, and oil exporters."
+  }
+}

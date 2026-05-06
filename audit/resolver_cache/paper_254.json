@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_254",
+  "title": "Economic Impacts of New Unionization on Private Sector Employers: 1984\u20132001",
+  "authors": "DiNardo & Lee",
+  "year": null,
+  "journal": "Journal of Public Economics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/0033553042476189",
+    "title": "Economic Impacts of New Unionization on Private Sector Employers: 1984-2001",
+    "year": 2004,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 509
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dinardo",
+      "lee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpube",
+    "journal_oa": "qje",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 509,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,94 @@
+{
+  "paper_id": "paper_10",
+  "source": "Journal of Finance, 2014",
+  "authors": "Fang, Tian & Tice",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "research_question": "Does an increase in a firm's stock liquidity cause an increase or decrease in the firm's subsequent innovation output? Through what channels—such as exposure to corporate control threats or shifts in the composition of shareholders—does stock liquidity influence managerial incentives to invest in long-term intangible projects?",
+  "data_description": "The sample combines several data sources for U.S. publicly listed firms over 1994–2005 (with liquidity and controls measured 1993–2004). Firm-year patent and citation counts come from the NBER Patent Citation Data File, with truncation adjustments for application–grant lags and citation lags. Intraday trades and quotes from the TAQ database are used to compute the annual relative effective spread as the primary liquidity proxy. Financial controls (size, ROA, R&D/assets, PP&E/assets, leverage, capex/assets, Tobin's Q, KZ index, firm age, Herfindahl index) come from Compustat. Institutional ownership data come from Thomson Reuters 13F filings, with investor-type classifications (transient, quasi-indexer, dedicated) from Brian Bushee. M&A data come from SDC. The unit of observation is the firm-year, with innovation measured 1, 2, and 3 years ahead. The final baseline sample contains 39,469 firm-year observations.",
+  "institutional_context": "The setting exploits U.S. equity market microstructure reforms that altered the minimum tick size and thereby changed trading costs and stock liquidity. In May–June 1997, NYSE, Amex, and NASDAQ reduced the minimum tick from $1/8 to $1/16. Between August 2000 and April 2001, the exchanges further moved to decimal pricing ($0.01 ticks), with NYSE implementing decimalization in staggered phases: a small Phase 1 pilot of 7 issues beginning August 28, 2000, a Phase 2 pilot of 57 issues on September 25, 2000, a Phase 3 expansion of 94 securities on December 4, 2000, and remaining NYSE stocks converted in January 2001; NASDAQ followed in March–April 2001. These regulatory changes generated sizable, cross-sectionally varying reductions in effective spreads that are plausibly unrelated to firms' innovation prospects, providing a setting to study how trading-cost-induced liquidity changes affect long-horizon corporate investment, takeover exposure, and institutional ownership.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.08,
+      "unit": "log(patent count)",
+      "interpretation": "RDD coefficient: Russell 2000 membership (higher liquidity) reduces patents by ~8% vs. Russell 1000 firms at boundary"
+    },
+    "secondary_estimate": {
+      "value": -0.12,
+      "unit": "log(citation-weighted patents)",
+      "interpretation": "Citation-weighted innovation effect: −12%"
+    },
+    "bandwidth": "ranks 900–1100 (±100 from cutoff 1000)",
+    "significance": "p < 0.05",
+    "table_ref": "Table 3, Columns (1)–(2) in Fang, Tian & Tice (2014)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "USPTO patent data (public, bulk download via PatentsView)",
+      "NBER patent database (public, Bronwyn Hall dataset through 2006)"
+    ],
+    "proprietary_sources": [
+      "Frank Russell/FTSE Russell annual reconstitution data (proprietary — required for exact rank assignments)",
+      "CRSP for stock returns and market cap (WRDS)",
+      "Compustat for firm financials (WRDS)"
+    ],
+    "proxy_strategy": "NBER patent data (through 2006) matches study period; Russell rank can be approximately reconstructed from CRSP market cap + float data near June each year, though small measurement error near boundary makes the RDD noisy",
+    "replicability": "medium — patents are public but Russell rank assignment requires either the proprietary data or careful reconstruction from CRSP",
+    "public_proxy_available": true,
+    "replication_tier": "partial (innovation outcomes: full via PatentsView; institutional ownership: full via 13F; exact RDD assignment: requires CRSP or careful reconstruction)",
+    "data_limitations": "Exact Russell index constituent lists are proprietary (FTSE Russell). Reconstructing precise cutoff assignments requires historical end-of-May market cap rankings, which are available from CRSP (commercial) but difficult to construct precisely from free sources. The 'banding' methodology change (post-2007) affects identification. Patent-firm matching requires NBER concordance files. This paper's RDD requires more data infrastructure than Paper 09.",
+    "public_data_sources_detail": [
+      "SEC EDGAR 13F filings (institutional ownership — free, quarterly)",
+      "USPTO PatentsView (patent counts, citations — free)",
+      "yfinance (market cap, stock prices, volume — free, but may not have exact end-of-May historical rankings)",
+      "FTSE Russell methodology documents (public, describe reconstitution rules)",
+      "FRED (macro controls — free)"
+    ]
+  },
+  "title": "Does Stock Liquidity Enhance or Impede Firm Innovation?",
+  "doi": "10.1111/jofi.12187",
+  "volume": 69,
+  "issue": 5,
+  "pages": "2085-2125",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "RDD — running variable = float-adjusted market capitalization rank in Russell reconstitution; cutoff = rank 1000 (boundary between Russell 1000 and Russell 2000); stocks just below 1000 (in Russell 2000) have higher liquidity due to greater index fund tracking",
+    "key_variables": {
+      "running_variable": "float-adjusted market cap rank at annual Russell reconstitution (June)",
+      "cutoff": "rank 1000 (Russell 1000/2000 boundary)",
+      "outcome": "patent count and citation-weighted patents (3-year window after reconstitution); R&D expenditure; stock bid-ask spread (measure of liquidity)",
+      "time_period": "1990–2006, annual index reconstitutions"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher stock liquidity (from Russell 2000 membership) reduces firm innovation: stocks in Russell 2000 have lower patent counts and citation-weighted innovation than comparable stocks in Russell 1000",
+    "main_effect": "~8% fewer patents and ~12% fewer citations for Russell 2000 firms near the boundary vs. Russell 1000 firms",
+    "key_robustness": [
+      "McCrary density test",
+      "bandwidth sensitivity",
+      "placebo cutoffs at ranks 500/1500",
+      "stock-level liquidity as intermediate outcome",
+      "heterogeneity by institutional ownership"
+    ],
+    "identification_strategy_detail": {
+      "method": "Regression discontinuity design (fuzzy)",
+      "running_variable": "End-of-May market capitalization rank (centered at rank 1000, the Russell 1000/2000 cutoff)",
+      "cutoff": "Rank 1000 (firms ranked just above 1000 are in Russell 1000; just below are in Russell 2000)",
+      "treatment": "Assignment to Russell 2000 (which triggers higher index fund ownership → higher liquidity)",
+      "control": "Assignment to Russell 1000 bottom (lower index fund ownership → lower liquidity)",
+      "first_stage": "Russell 2000 inclusion causes a significant increase in institutional ownership and stock liquidity (bid-ask spreads, turnover)",
+      "outcome": "Patent counts, patent citations (innovation output, measured with lags)",
+      "sample_period": "1993-2006",
+      "unit_of_observation": "Firm-year",
+      "key_assumption": "Firms cannot precisely manipulate their market capitalization rank to land on a specific side of the cutoff. No other discontinuous treatment occurs at the rank-1000 threshold."
+    },
+    "key_magnitudes": {
+      "liquidity_effect_on_patents": "Significant positive effect on patent counts and citation-weighted patents",
+      "first_stage_liquidity_jump": "Russell 2000 inclusion increases institutional ownership by ~10 percentage points and significantly reduces bid-ask spreads",
+      "mechanism": "Effect operates through reduced threat of hostile takeover (liquidity enables more efficient monitoring by institutional investors, tolerating long-term innovation investments)"
+    },
+    "robustness_notes_detail": "Robust to different bandwidth choices around the cutoff, polynomial specifications, and placebo thresholds at non-1000 ranks. Results hold using alternative innovation measures (R&D spending, new product announcements). Addresses concern about banding (Russell's proprietary adjustment) using pre-banding sample."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 113219,
+  "phase1_source_version": "v2primeprime_full_text"
+}

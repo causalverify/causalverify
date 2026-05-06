@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s19",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Rainfall as IV for agricultural loan demand",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:32.102963",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 440,
+    "output_tokens": 395,
+    "content": "## 1. Identification Strategy\nWe will use the instrumental variable (IV) method to estimate the causal effect of loans per capita on crop yield. The key assumption is that rainfall (z) is a valid instrument for credit demand (x), meaning that rainfall affects crop yield (y) only through its effect on credit demand. This is the exclusion restriction assumption.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s19_data.csv\")\n\n# First stage: rainfall (z) as an instrument for credit demand (x)\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Second stage: using predicted credit demand to estimate the effect on crop yield (y)\npredicted_x <- predict(first_stage, newdata = data)\nsecond_stage <- lm(y ~ predicted_x + controls, data = data)\nsummary(second_stage)\n\n# Overidentification test (Hansen J test)\noverid_test <- bptest(second_stage, ~ predicted_x | z + controls, data = data)\noverid_test\n\n# Robustness check: using the two-stage least squares (2SLS) method\niv_model <- ivreg(y ~ x | z + controls, data = data)\nsummary(iv_model)\n```\n\n## 3. Expected Findings\nWe expect the coefficient of loans per capita (x) in the second stage regression to be positive, indicating that access to credit improves agricultural output. The magnitude of the effect will depend on the strength of the relationship between credit and crop yield, as well as the validity of the rainfall instrument. If the rainfall instrument is valid and strong, we expect a larger effect of credit on crop yield. However, the exact magnitude is difficult to predict without more information about the underlying relationships in the data.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: rainfall; first stage: rainfall → loans; exclusion restriction: rainfall ⊥ yield | credit",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Credit access significantly increases crop yields",
+    "main_effect": "10% increase in credit → 4% yield increase (IV estimate)"
+  }
+}

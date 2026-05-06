@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_251",
+  "title": "Trade Liberalization, Intermediate Inputs, and Productivity: Evidence from Indonesia",
+  "authors": "Amiti & Konings",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.97.5.1611",
+    "title": "Trade Liberalization, Intermediate Inputs, and Productivity: Evidence from Indonesia",
+    "year": 2007,
+    "journal": "American Economic Review",
+    "citations": 2213
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "konings",
+      "amiti"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2213,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,8 @@
+{
+  "doi": "10.3386/w13039",
+  "title": "Regression Discontinuity Designs: A Guide to Practice",
+  "year": 2007,
+  "abstract": "In Regression Discontinuity (RD) designs for evaluating causal effects of interventions, assignment to a treatment is determined at least partly by the value of an observed covariate lying on either side of a fixed threshold. These designs were first introduced in the evaluation literature by Thistlewaite and Campbell (1960). With the exception of a few unpublished theoretical papers, these methods did not attract much attention in the economics literature until recently. Starting in the late 1990s, there has been a large number of studies in economics applying and extending RD methods. In this paper we review some of the practical and theoretical issues involved in the implementation of RD methods.",
+  "citation_count": 889,
+  "journal": "National Bureau of Economic Research"
+}

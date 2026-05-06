@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s54",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Unexpected CEO Departures on Stock Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:40:49.275621",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 467,
+    "output_tokens": 423,
+    "content": "## 1. Identification Strategy\nWe will use an Event Study approach to analyze the impact of unexpected CEO departures on stock returns. This method is suitable because it allows us to examine the stock performance around the event date (CEO departure) and control for market returns. The key assumption is that the stock returns are not systematically different from the market returns in the absence of the event.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s54_data.csv\")\n\n# Calculate abnormal returns (AR) by subtracting market returns from stock returns\ndata$ar <- data$ret - data$mkt_ret\n\n# Create a factor for event days\ndata$event_day_factor <- as.factor(data$event_day)\n\n# Fit a fixed effects model to estimate the impact of event days on abnormal returns\nfe_model <- plm(ar ~ event_day_factor, data = data, index = c(\"stock_id\", \"event_day\"), model = \"within\")\n\n# Print the coefficient estimates\nsummary(fe_model)\n\n# Perform a robustness check by adding market beta as a control variable\nfe_model_control <- plm(ar ~ event_day_factor + beta, data = data, index = c(\"stock_id\", \"event_day\"), model = \"within\")\n\n# Print the coefficient estimates with control variable\nsummary(fe_model_control)\n```\n\n## 3. Expected Findings\nWe expect to find a significant negative impact on stock returns around the event day of an unexpected CEO departure. The magnitude of the impact may vary depending on the specific event and company, but generally, we expect the stock returns to be lower than the market returns during this period. This is because the market may perceive the unexpected departure as a negative event, leading to a decrease in investor confidence and stock prices. The exact magnitude and significance of the impact will be determined by the empirical analysis.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare stock returns before and after the CEO departure event.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The unexpected CEO departure is associated with a positive cumulative abnormal return.",
+    "main_effect": 0.018
+  }
+}

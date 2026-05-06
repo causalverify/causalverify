@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI model perfectly matches the ground truth identification strategy, proposing instrumental variables (2SLS) with rainfall growth as the instrument for economic growth, in a country-year panel with fixed effects. The justification for relevance and exogeneity is also accurate to the paper. However, the AI output does not state the direction of the effect between economic growth and civil conflict.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_17",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:22:43.713255+00:00"
+}

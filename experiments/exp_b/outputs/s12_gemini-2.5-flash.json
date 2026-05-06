@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s12",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Sudden CEO death and firm value",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:17:57.008755",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 533,
+    "output_tokens": 161,
+    "content": "## 1. Identification Strategy\n\nThe research question, \"Does the sudden, unexpected death of a CEO generate significant negative abnormal returns for the firm's stock in the [0,+1] event window?\", is best addressed using an **Event Study methodology**.\n\n**Why Event Study?**\nAn event study is designed to measure the impact of a specific, identifiable event on the value of a firm's securities. It does this by analyzing \"abnormal returns\" – the portion of a firm's return that cannot be attributed to general market movements or firm-specific risk, and is thus attributable to the event itself. The sudden death of a CEO is a clear, discrete event that is generally unanticipated by the market, making it an ideal candidate for an event study.\n\n**Key Assumptions",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model AR; estimation [−10,−2]; event window [0,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms experience significant negative CAR on CEO death announcement",
+    "main_effect": "CAR ≈ −2.5% in [0,+1]"
+  }
+}

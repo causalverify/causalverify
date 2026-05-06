@@ -1,0 +1,95 @@
+{
+  "paper_id": "paper_13",
+  "source": "Journal of Financial Economics, 2005",
+  "authors": "Harford",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "research_question": "What explains the occurrence and timing of merger waves? Specifically, are clusters of merger activity at the industry and aggregate level driven by industry-specific economic, regulatory, or technological shocks that necessitate large-scale asset reallocation, or by managerial attempts to exploit stock market mispricing? Additionally, what role does the broader availability of capital play in determining whether such shocks actually translate into waves of merger activity?",
+  "data_description": "The study uses merger and tender-offer bids recorded by Thomson Financial's Securities Data Company (SDC) between 1981 and 2000 with transaction values of at least $50 million. Bidders and targets are assigned to one of 48 Fama-French industry groups based on SIC codes. The unit of observation is the industry-year (48 industries over 20 years), with separate firm-year and merger-level analyses. Variables include industry-level economic measures (cash flow margin, asset turnover, R&D, capital expenditures, employee growth, ROA, sales growth), valuation measures (market-to-book ratio and its dispersion, one- and three-year stock returns and dispersion), and a macro capital-liquidity proxy: the spread between the average commercial and industrial loan rate and the federal funds rate from the Federal Reserve's Survey of Terms of Business Lending. Long-term growth forecasts come from I/B/E/S, and partial-firm (divisional) acquisition data also come from SDC.",
+  "institutional_context": "The 1980s and 1990s featured two distinct aggregate merger waves separated by the 1990–1991 recession, with extensive industry-level clustering of merger activity. Major regulatory changes during the period—including banking deregulation (Garn-St. Germain, Interstate Banking Act), the AT&T breakup and the 1996 Telecommunications Act, oil and natural gas decontrol, FERC orders affecting utilities, trucking and shipping deregulation, and cable television acts—reshaped operating environments in numerous industries. Simultaneously, technological change (notably information technology and the Internet) and economic shocks such as the Asian demand collapse affected industries like steel, semiconductors, and pharmaceuticals. These shocks coincided with substantial variation in macroeconomic credit conditions, with periods of easier financing alternating with tighter credit. The setting thus provides industries hit by varied shocks at times of differing capital availability, motivating an examination of how shocks and financing conditions jointly shape industry restructuring through mergers and divisional acquisitions.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.18,
+      "unit": "marginal probability increase (industry merger wave formation)",
+      "interpretation": "When both an industry-level economic shock and high aggregate capital liquidity are present, the probability of an industry-level merger wave increases by approximately 18 percentage points relative to scenarios with only one condition present"
+    },
+    "secondary_estimate": {
+      "value": -0.008,
+      "unit": "CAR fraction (3-day announcement return, in-wave vs. out-of-wave)",
+      "interpretation": "In-wave acquisitions earn approximately 0.8% lower 3-day acquirer announcement CAR compared to out-of-wave deals in the same industry, after controlling for deal and firm characteristics"
+    },
+    "significance": "p < 0.01 (probit interaction term); p < 0.05 (in-wave CAR discount)",
+    "table_ref": "Tables 4–7 in Harford (2005)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Federal Reserve H.15 release (interest rates — free)",
+      "FRED (credit spreads, Moody's Baa/Aaa rates, macro controls — free)",
+      "Ken French data library (Fama-French 48-industry classification, industry returns — free)",
+      "BLS (employment by industry, SIC-based — free)"
+    ],
+    "proprietary_sources": [
+      "SDC Platinum M&A database (Thomson Reuters/Refinitiv, proprietary) for industry-level deal counts and deal characteristics",
+      "CRSP for daily acquirer stock returns (WRDS subscription required)",
+      "Compustat for industry-level fundamentals: assets sales, ROA, R&D, sales (WRDS subscription required)"
+    ],
+    "proxy_strategy": "Industry-level M&A deal counts can be partially reconstructed from EDGAR 8-K filings for public acquirers. Capital liquidity measures (credit spreads, interest rates) are fully available from FRED and Fed H.15. Industry-level economic shocks can be proxied using BLS employment data and Compustat-equivalent data from Wharton or academic databases. Wave identification algorithm can be applied to partial EDGAR-based deal counts as a proxy.",
+    "replicability": "low — SDC Platinum is central to the wave identification algorithm; comprehensive industry-level deal count data requires SDC coverage of private acquirers and targets not available from EDGAR alone",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (capital liquidity measures: full via FRED; industry shock proxies: partial via BLS + public filings; wave detection: partial via EDGAR public deals)",
+    "data_limitations": "SDC Platinum is essential for the core innovation of this paper — identifying industry merger waves using comprehensive deal counts including private-target acquisitions. EDGAR alone captures public-to-public deals, underrepresenting smaller transactions. The capital liquidity measures (credit spreads, Fed funds rate) are fully replicable from public sources. The shock measures from Compustat require WRDS access but industry employment data from BLS provides a free proxy.",
+    "public_data_sources_detail": [
+      "FRED (Moody's Baa-Aaa credit spread, federal funds rate, GDP — free)",
+      "Federal Reserve H.15 (interest rate series — free)",
+      "Ken French data library (Fama-French 48-industry definitions and returns — free)",
+      "BLS Current Employment Statistics (industry employment by SIC — free)",
+      "SEC EDGAR (8-K merger announcements for public acquirers — free)",
+      "yfinance (announcement-period stock returns for acquirers — free)"
+    ]
+  },
+  "title": "What Drives Merger Waves?",
+  "doi": "10.1016/j.jfineco.2004.05.004",
+  "volume": 77,
+  "issue": 3,
+  "pages": "529-560",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Cross-industry probit analysis of merger wave formation combined with event study of announcement returns for in-wave versus out-of-wave deals — the probit model uses industry-year panel data with industry economic shock indicators and aggregate capital liquidity as the key predictors of wave onset; the event study component examines whether in-wave deal CARs differ from comparable out-of-wave deals, using deal announcement dates as events",
+    "key_variables": {
+      "treatment": "interaction of industry-level economic shock indicator AND aggregate capital liquidity (credit conditions); binary indicator for in-wave vs. out-of-wave deal timing in the event study component",
+      "control": "industries with shocks but insufficient capital liquidity (no wave); industries with high liquidity but no shocks (no wave); out-of-wave deals in same industry for announcement return comparison",
+      "outcome": "binary industry merger wave indicator (probit model); acquirer 3-day announcement CAR [-1, +1] for in-wave vs. out-of-wave deals",
+      "time_period": "1981–2000, covering multiple wave cycles across Fama-French 48 industries"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Industry merger waves require BOTH an economic shock AND sufficient aggregate capital liquidity — the joint interaction is statistically significant and economically large; neither condition alone explains wave formation; in-wave acquirers earn approximately 0.7–0.9% lower announcement CAR than out-of-wave deals in the same industry, consistent with adverse selection in wave timing (lower-quality deals completed when capital is cheap)",
+    "main_effect": "Interaction of shock × liquidity increases industry merger wave probability by approximately 15–20 percentage points; in-wave acquirer CARs are 0.7–0.9% lower than out-of-wave deals controlling for deal and industry characteristics",
+    "key_robustness": [
+      "Alternative wave identification algorithms (varying simulation parameters and window lengths)",
+      "Using plausibly exogenous deregulation events as pure industry shock instruments",
+      "Alternative capital liquidity measures (Baa-Aaa spread, real fed funds rate, market-to-book ratio)",
+      "Sub-wave analysis (1980s LBO wave vs. 1990s strategic wave separately)",
+      "Industry fixed effects in announcement return regressions",
+      "Placebo test with randomly assigned wave timing"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-industry probit (wave formation determinants) + event study of announcement abnormal returns (in-wave vs. out-of-wave deal comparison)",
+      "treatment": "Industry merger wave indicator (constructed from SDC data via simulation test); economic shock indicators (industry asset sales, employment, ROA changes); aggregate credit spread (Federal Reserve data) as continuous liquidity measure",
+      "event_window": "[-1, +1] trading days around M&A announcement date for announcement CAR",
+      "estimation_window": "[-210, -11] trading days before announcement for market model parameters",
+      "sample_period": "1981–2000",
+      "unit_of_observation": "Industry-year (for probit wave formation model); individual acquisition deal (for announcement return analysis)",
+      "key_assumption": "Aggregate capital liquidity (credit spreads, interest rates) is exogenous to industry-specific merger opportunities — i.e., Federal Reserve monetary policy and aggregate credit conditions are not driven by any single industry's restructuring needs. Industry-level economic shocks are sufficiently idiosyncratic to identify industry-specific effects separately from aggregate time trends."
+    },
+    "key_magnitudes": {
+      "wave_formation_interaction": "Shock × liquidity interaction marginal effect: approximately +15–20 percentage point increase in industry wave probability when both conditions hold simultaneously",
+      "shock_only": "Industry economic shock alone does not reliably predict merger waves; marginal effect is small and often insignificant",
+      "liquidity_only": "High aggregate liquidity alone does not predict industry merger waves; effect insignificant in the absence of a shock",
+      "car_wave_discount": "In-wave acquirer 3-day CAR is approximately 0.7–0.9% lower than out-of-wave deals in the same industry (adverse selection in wave timing)"
+    },
+    "robustness_notes_detail": "Results hold across decade sub-samples (1980s vs. 1990s). Deregulation events (banking, utilities, telecommunications, transportation) used as plausibly exogenous industry shocks confirm the joint necessity result. The liquidity channel is specifically tied to aggregate credit conditions (debt market), not equity market overvaluation alone. Authors rule out a pure time-trend explanation by showing that cross-industry variation in shock incidence drives heterogeneity in wave formation even in the same aggregate liquidity environment."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 88255,
+  "phase1_source_version": "v2primeprime_full_text"
+}

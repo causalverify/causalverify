@@ -1,0 +1,90 @@
+{
+  "paper_id": "paper_19",
+  "source": "Quarterly Journal of Economics, 2008",
+  "authors": "Card, Dobkin & Maestas",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "The Impact of Nearly Universal Insurance Coverage on Health Care Utilization: Evidence from Medicare",
+  "doi": "10.1162/qjec.2008.123.3.1057",
+  "volume": 123,
+  "issue": 3,
+  "pages": "1057-1089",
+  "domain": "health",
+  "research_question": "Does gaining nearly universal health insurance coverage at retirement age cause changes in health care access, utilization of medical services (including doctor visits, hospital admissions, and preventive screenings), health-related behaviors, self-reported health status, and mortality? To what extent does expanded coverage narrow disparities in access and outcomes across race, ethnicity, and education groups among older adults?",
+  "data_description": "The analysis combines several large U.S. data sources covering individuals aged roughly 50–80. Survey data come from the 1992–2001 National Health Interview Survey (NHIS), with age measured in quarters, and the 1998–2002 Behavioral Risk Factor Surveillance System (BRFSS), with age in years; these provide measures of insurance coverage, delayed/forgone care, doctor visits, hospital stays, preventive screenings (flu shots, cholesterol tests, mammograms, prostate exams), smoking, exercise, body mass index, and self-reported health. Administrative hospital discharge records from California (1995–1999) and Florida (1995–2000) cover roughly 4.07 million and 3.55 million discharges of patients aged 50–75, with detailed diagnosis (ICD-9), procedures, length of stay, charges, and in-hospital mortality. National Hospital Discharge Survey data (1995–1999, ~414,000 records) supplement state files. Mortality analysis uses the Multiple Cause of Death files (1989–1998) with postcensal population denominators by single year of age, gender, race, and ethnicity, plus historical U.S. data around 1966 and Canadian mortality data (1990–1995). March CPS data (1996–2002) are used to check confounders.",
+  "institutional_context": "The setting is the U.S. Medicare program, which provides health insurance to individuals upon reaching age 65, conditional on a 40-quarter work history (own or spouse's). Part A (hospital insurance) is free for those eligible, and Part B (physician services) is available for a modest premium; individuals are notified of impending eligibility around their 65th birthday. Prior to age 65, roughly 20 percent of non-elderly U.S. adults lack any health insurance, with substantially lower coverage among less-educated minorities (blacks, Hispanics, Asians with under 12 years of schooling) compared with more-educated whites. Upon turning 65, coverage rates jump from about 90 to 98 percent for the overall population, and the gap across race-education groups narrows from roughly 20 percentage points to about 5. Medicare also tends to be more generous than many private plans for hospital-based and elective procedures, while age 65 historically coincided with retirement, pension eligibility, and (formerly) mandatory retirement rules.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.012,
+      "unit": "fractional increase in hospital admission rate at age-65 threshold",
+      "interpretation": "Total hospital admission rate increases by approximately 1.2% at the age-65 Medicare eligibility threshold, reflecting the causal effect of gaining insurance coverage on acute care utilization"
+    },
+    "secondary_estimate": {
+      "value": 0.1,
+      "unit": "fractional increase in hip/knee replacement admissions at age 65",
+      "interpretation": "Discretionary surgical admissions (hip/knee replacement) increase by approximately 10% at the Medicare threshold, reflecting pent-up demand for elective procedures among the newly insured"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 2-4 in Card, Dobkin & Maestas (2008)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "National Health Interview Survey (NHIS, free from CDC/NCHS)",
+      "Healthcare Cost and Utilization Project (HCUP) National Inpatient Sample (NIS, requires data use agreement, ~$300)",
+      "Census population estimates by single year of age (free)"
+    ],
+    "proprietary_sources": [
+      "California OSHPD hospital discharge data (requires state DUA, available to researchers)"
+    ],
+    "proxy_strategy": "NHIS is freely available for insurance coverage discontinuity. NIS requires a modest DUA fee. California OSHPD requires a state-level application. For a simplified replication, NHIS insurance data alone can demonstrate the first-stage coverage discontinuity.",
+    "replicability": "high — NHIS is free; NIS is available for ~$300; main results can be replicated with public data",
+    "public_proxy_available": true,
+    "replication_tier": "full (NHIS free; NIS available for modest fee; methodology is straightforward RDD)",
+    "data_limitations": "NIS is a 20% sample of all U.S. hospital discharges (not a census). Patient age is recorded in years, not exact birth date, limiting precision in some specifications. California OSHPD provides the most detailed data but is state-specific.",
+    "public_data_sources_detail": [
+      "NHIS (individual-level insurance coverage and health status by age — free from CDC)",
+      "HCUP NIS (20% sample of U.S. hospital discharges — ~$300 DUA from AHRQ)",
+      "Census Bureau population estimates by single year of age (free)",
+      "CMS Medicare enrollment data (aggregate statistics — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — the running variable is age (measured in quarters or years); the cutoff is exact age 65; treatment is Medicare eligibility (which creates a sharp ~12 percentage point increase in insurance coverage); outcome is hospital admission rates per capita",
+    "key_variables": {
+      "treatment": "Medicare eligibility at age 65 (creates a sharp ~12pp increase in insurance coverage)",
+      "control": "individuals just below age 65 (ages 63-64) who are not yet Medicare-eligible",
+      "outcome": "hospital admission rates per capita; emergency room visit rates; specific-condition admission rates",
+      "time_period": "1992–2003 (NHIS/NIS) and 1992–2002 (California OSHPD)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Gaining Medicare eligibility at age 65 causes a statistically significant increase in hospital admissions, particularly for conditions where a doctor's recommendation is influential (discretionary admissions). Total admissions increase by approximately 1-2% at the age-65 threshold, with larger effects (5-10%) for specific conditions and populations. The effect is concentrated among previously uninsured populations.",
+    "main_effect": "Total admission rate increases by approximately 1-2% at the age-65 Medicare threshold; discretionary admissions (hip/knee replacement, cardiac catheterization) increase by 5-10%",
+    "key_robustness": [
+      "Varying the bandwidth around age 65 (narrow vs. wide windows)",
+      "Polynomial order sensitivity (linear, quadratic, cubic in age)",
+      "Subsample analysis by race, gender, insurance status pre-65",
+      "Placebo tests at other ages (60, 62, 67, 70)",
+      "Checking for manipulation of the running variable (age heaping)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp regression discontinuity design with local polynomial estimation",
+      "treatment": "Medicare eligibility at exact age 65 (sharp cutoff — no choice in timing)",
+      "event_window": "N/A (cross-sectional RDD using age as running variable)",
+      "estimation_window": "Ages 55-75 (with narrower bandwidths as robustness)",
+      "sample_period": "1992–2003",
+      "unit_of_observation": "Individual-level hospital admissions aggregated to age-quarter (or age-year) cells",
+      "key_assumption": "Potential outcomes (health care utilization without Medicare) are continuous at age 65 — i.e., there is no other discontinuity in health status, behavior, or policy at exact age 65 that would independently affect hospital utilization. Individuals cannot precisely manipulate their age to sort around the cutoff."
+    },
+    "key_magnitudes": {
+      "insurance_coverage_jump": "Insurance coverage increases by approximately 8-12 percentage points at age 65",
+      "total_admissions_jump": "Total hospital admission rate increases by approximately 1-2% at the age-65 threshold",
+      "discretionary_admissions": "Admissions for hip/knee replacement increase by ~10% at age 65; cardiac catheterization by ~5%",
+      "er_visits": "Emergency room visits show little or no discontinuity (patients can access ER regardless of insurance)"
+    },
+    "robustness_notes_detail": "Results are robust to bandwidth choice (5-year and 2-year windows around age 65), polynomial specification, and data source (NIS vs. California OSHPD). Density tests show no evidence of age manipulation. Placebo tests at ages 60 and 70 show no comparable discontinuities. The effect is larger for African Americans and Hispanics (who have higher uninsurance rates pre-65), consistent with the insurance mechanism."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 91278,
+  "phase1_source_version": "v2primeprime_full_text"
+}

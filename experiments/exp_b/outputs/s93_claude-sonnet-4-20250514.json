@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s93",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Wilderness Designation on Deforestation",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:06:18.136927",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 467,
+    "output_tokens": 994,
+    "content": "## 1. Identification Strategy\nRegression Discontinuity Design (RDD) is appropriate here since wilderness designation is determined by an elevation cutoff. The key assumption is that areas just below and above the elevation threshold are comparable in all unobservable characteristics except for wilderness designation. We expect a discontinuous jump in deforestation rates at the cutoff, with lower rates in designated wilderness areas.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s93_data.csv\")\n\n# First, identify the cutoff by examining the treatment assignment\ncutoff <- min(data$running_var[data$treated == 1])\nprint(paste(\"Estimated cutoff:\", cutoff))\n\n# Center the running variable around the cutoff\ndata$running_var_centered <- data$running_var - cutoff\n\n# Main RDD analysis using rdrobust\nrdd_result <- rdrobust(y = data$y, x = data$running_var_centered, c = 0)\nprint(\"Main RDD Results:\")\nprint(summary(rdd_result))\n\n# Extract key coefficient\ntreatment_effect <- rdd_result$coef[1]\nprint(paste(\"Treatment Effect (RDD Coefficient):\", round(treatment_effect, 4)))\n\n# Visual inspection - RDD plot\nrdd_plot <- rdplot(y = data$y, x = data$running_var_centered, c = 0,\n                   title = \"RDD: Wilderness Designation and Deforestation\",\n                   x.label = \"Elevation (centered)\", \n                   y.label = \"Deforestation Rate\")\n\n# Robustness checks\nprint(\"\\n=== ROBUSTNESS CHECKS ===\")\n\n# 1. Different bandwidth selection\nrdd_half_bw <- rdrobust(y = data$y, x = data$running_var_centered, c = 0, \n                        h = rdd_result$bws[1,1] * 0.5)\nprint(\"Half bandwidth:\")\nprint(paste(\"Treatment Effect:\", round(rdd_half_bw$coef[1], 4)))\n\nrdd_double_bw <- rdrobust(y = data$y, x = data$running_var_centered, c = 0, \n                          h = rdd_result$bws[1,1] * 2)\nprint(\"Double bandwidth:\")\nprint(paste(\"Treatment Effect:\", round(rdd_double_bw$coef[1], 4)))\n\n# 2. Different polynomial orders\nrdd_quadratic <- rdrobust(y = data$y, x = data$running_var_centered, c = 0, p = 2)\nprint(\"Quadratic polynomial:\")\nprint(paste(\"Treatment Effect:\", round(rdd_quadratic$coef[1], 4)))\n\n# 3. McCrary density test for manipulation\ndensity_test <- rddensity(data$running_var_centered, c = 0)\nprint(\"McCrary Density Test p-value:\")\nprint(paste(\"P-value:\", round(density_test$test$p_jk, 4)))\n\n# Summary statistics around cutoff\nprint(\"\\n=== SUMMARY STATISTICS ===\")\ntreated_mean <- mean(data$y[data$treated == 1])\ncontrol_mean <- mean(data$y[data$treated == 0])\nprint(paste(\"Mean deforestation - Treated (wilderness):\", round(treated_mean, 4)))\nprint(paste(\"Mean deforestation - Control (non-wilderness):\", round(control_mean, 4)))\nprint(paste(\"Simple difference:\", round(treated_mean - control_mean, 4)))\n```\n\n## 3. Expected Findings\nI expect a negative treatment effect (coefficient around -0.1 to -0.3), indicating that wilderness designation reduces deforestation rates. This makes economic sense as wilderness areas have legal protections against logging and development. The magnitude should be meaningful but not extreme, as some deforestation might still occur through natural processes or enforcement gaps. The RDD approach should show a clear discontinuous drop in deforestation rates at the elevation cutoff where wilderness designation begins.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare deforestation rates just above and below the elevation cutoff.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Wilderness designation is associated with a moderate increase in deforestation rates.",
+    "main_effect": 0.2
+  }
+}

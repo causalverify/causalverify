@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s12",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Sudden CEO death and firm value",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:08:04.737092",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 464,
+    "output_tokens": 572,
+    "content": "## 1. Identification Strategy\nIn this research scenario, a classic event study methodology is appropriate to assess how the sudden death of a CEO impacts the firm's stock value over a specific event window. The key assumption is that the market model accurately captures the normal returns, and the sudden death of the CEO is exogenous to the firm's stock performance, allowing us to attribute abnormal returns to the event of interest.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s12_data.csv\")\n\n# Calculate the normal returns using market model for estimation window [-10, -2]\nestimation_window <- data %>% filter(event_day >= -10 & event_day <= -2)\n\n# Fit a market model for each stock to predict normal returns\nnormal_returns <- estimation_window %>%\n  group_by(stock_id) %>%\n  do(model = lm(ret ~ mkt_ret, data = .))\n\n# Extract coefficients\nnormal_return_coefs <- normal_returns %>%\n  summarise(stock_id, intercept = coef(model)[\"(Intercept)\"], slope = coef(model)[\"mkt_ret\"]) %>%\n  ungroup()\n\n# Calculate abnormal returns for the event window [0, +1]\nevent_window <- data %>% filter(event_day >= 0 & event_day <= 1)\n\nabnormal_returns <- event_window %>%\n  left_join(normal_return_coefs, by = \"stock_id\") %>%\n  mutate(normal_ret = intercept + slope * mkt_ret,\n         abnormal_ret = ret - normal_ret)\n\n# Calculate the cumulative abnormal returns (CAR) for the event window [0, +1]\nCAR <- abnormal_returns %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abnormal_ret))\n\n# Average CAR across all firms\naverage_CAR <- mean(CAR$CAR)\n\n# Print the result\nprint(paste(\"Average Cumulative Abnormal Return (CAR) in the [0, +1] event window:\", average_CAR))\n\n# Basic robustness checks: recap and plot the distribution of CARs\nsummary(CAR$CAR)\nhist(CAR$CAR, main = \"Histogram of CAR across firms\", xlab = \"CAR\", col = \"blue\", border = \"black\")\n```\n\n## 3. Expected Findings\nI expect to find a negative average CAR in the [0, +1] event window following the sudden death of a CEO. The unexpected loss of a key leader is likely perceived as a negative signal about the firm's immediate strategic and operational stability, leading to negative abnormal returns. The magnitude could vary, but an average drop between -1% to -3% is a reasonable expectation given the significance of such events in financial markets.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model AR; estimation [−10,−2]; event window [0,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms experience significant negative CAR on CEO death announcement",
+    "main_effect": "CAR ≈ −2.5% in [0,+1]"
+  }
+}

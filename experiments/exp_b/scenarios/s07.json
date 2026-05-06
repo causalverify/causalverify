@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s07",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Pollution regulation on plant total factor productivity",
+  "research_question": "Did tightened air quality regulations (period 4) reduce total factor productivity at high-emission manufacturing plants compared to low-emission plants?",
+  "data_description": "Panel data on 200 manufacturing plants over 8 annual periods. Variables: unit_id, period, treated (1=high-emission plant above regulatory threshold), post, treat_x_post, y (log TFP index). Regulation mandates emission reductions for plants above a pollution threshold.",
+  "ground_truth": {
+    "identification_strategy": "DID — treated=above-threshold plants, control=below-threshold; shock=tighter regulation",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-emission plants experience productivity decline after regulation tightening",
+    "main_effect": "12% TFP reduction for above-threshold plants"
+  },
+  "data_file": "experiments/exp_b/data/s07_data.csv",
+  "dgp_truth": {
+    "type": "did",
+    "effect": -0.12,
+    "direction": "negative"
+  }
+}

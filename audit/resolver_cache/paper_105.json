@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_105",
+  "title": "The Relationship Between Education and Adult Mortality in the United States",
+  "authors": "Lleras-Muney",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/0034-6527.00329",
+    "title": "The Relationship Between Education and Adult Mortality in the United States",
+    "year": 2004,
+    "journal": "The Review of Economic Studies",
+    "citations": 1272
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "restat",
+    "journal_oa": "restud",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1272,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 1/3 gates pass",
+  "error_msg": ""
+}

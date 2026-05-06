@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strong strategy match - correctly identifies IV approach using pre-crisis bank real estate exposure as instrument, recognizes the need to separate supply vs demand effects, and articulates key assumptions (relevance, exogeneity, monotonicity). However, the output is truncated and doesn't state the direction of the causal effect (positive elasticity of employment to credit supply), earning 0 for direction score.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_07",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T13:06:19.010670+00:00"
+}

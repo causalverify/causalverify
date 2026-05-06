@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s23",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Judge leniency as IV for incarceration on recidivism",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:21:37.613747",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 489,
+    "output_tokens": 164,
+    "content": "## 1. Identification Strategy\n\nThe research question aims to determine the causal effect of incarceration ($X$) on recidivism ($Y$). The primary challenge is that incarceration is an endogenous variable; unobserved factors (e.g., severity of the crime, defendant's underlying propensity for crime, quality of legal representation) might simultaneously influence both the likelihood of incarceration and the probability of recidivism, leading to biased OLS estimates.\n\nTo address this endogeneity, an Instrumental Variable (IV) approach is employed. The proposed instrument is judge leniency ($Z$), which is based on the random assignment of criminal cases to judges with varying leniency levels.\n\nThe IV strategy relies on three key assumptions:\n\n1.  **Relevance (First Stage)**: The instrument ($Z$, judge leniency",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — judge leniency instrument; LATE for marginal defendants; test exclusion restriction carefully",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Incarceration increases recidivism for marginal defendants (criminogenic effect)",
+    "main_effect": "Incarceration raises 3-year recidivism probability by ~15pp for compliers"
+  }
+}

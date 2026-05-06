@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_23",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:31:35.445432",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 630,
+    "output_tokens": 2229,
+    "content": "STEP 1 — PRE-COMMITMENT  \nIdentification strategy: Two-way-fixed-effects difference-in-differences (DiD) that exploits the staggered repeal of intrastate branching restrictions across U.S. states (1972–1992). Identification comes from within-state changes over time relative to states that have not yet deregulated, controlling for common shocks with year fixed effects and time-invariant heterogeneity with state fixed effects.  \n\nDirectional hypothesis H : Removing intrastate branching restrictions increases real economic growth; i.e., the average treatment effect on log real per-capita personal income (and on log real per-capita GSP) is positive.\n\nI commit to this identification strategy and hypothesis and will not alter them later.\n\n----------------------------------------------------------------\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five specifications will be estimated. All regressions cluster standard errors at the state level and include the time-varying controls vector X_it (share college-educated, population, urbanization, industry shares, number of banks, bank assets). The treatment variable Dereg_it equals 1 in and after the first year state i allows statewide branching.\n\nSpec 1 (baseline income)  \nlog(Personal Income per capita)_it = α_i + γ_t + β₁ Dereg_it + δ' X_it + ε_it  \n\nSpec 2 (baseline GSP)  \nlog(GSP per capita)_it = α_i + γ_t + β₂ Dereg_it + δ' X_it + ε_it  \n\nSpec 3 (income + state trends)  \nSame as Spec 1 but add state-specific linear time trends τ_i t.  \n\nSpec 4 (event study income)  \nlog(Personal Income pc)_it = α_i + γ_t + Σ_{k=-5}^{+10} θ_k LeadLag_{k,it} + δ' X_it + ε_it  \nwhere LeadLag_{k,it} are dummies for k years relative to deregulation (k=-1 omitted).  \n\nSpec 5 (event study GSP)  \nIdentical to Spec 4 with log GSP per capita as the dependent variable.\n\nNo other specifications will be run.\n\n----------------------------------------------------------------\nSTEP 3 — FALSIFICATION GATE  \nI will reject H if ANY of the following hold:  \na) In Spec 1 the point estimate β₁ ≤ 0 or has p-value > 0.10.  \nb) In Spec 4 any of the three pre-treatment leads (k = -5,-4,-3) are individually significant at p < 0.10, indicating pre-trends.  \nIf neither condition is triggered, the hypothesis passes the gate.\n\n----------------------------------------------------------------\nSTEP 4 — R CODE  \n```r\n# Required packages\nlibrary(fixest)     # fast TWFE and event-study estimators\nlibrary(dplyr)\nlibrary(readr)\n\n# Load data (assumed to be in long panel format)\nstate_panel <- read_csv(\"state_panel_1972_1992.csv\")\n\n# Ensure treatment variable is defined\nstate_panel <- state_panel %>%\n  group_by(state) %>%\n  mutate(dereg_year = min(year[deregulation == 1], na.rm = TRUE),\n         Dereg = ifelse(!is.infinite(dereg_year) & year >= dereg_year, 1L, 0L)) %>%\n  ungroup()\n\n# Lead/lag dummies for event study (-5 to +10, ‑1 omitted)\nmax_lead  <- 5\nmax_lag   <- 10\nstate_panel <- state_panel %>%\n  mutate(rel_year = ifelse(is.infinite(dereg_year), NA, year - dereg_year)) %>%\n  mutate(across(-c(state,year), ~ ., .names = \"{col}\"))  # keep tidyverse happy\n\nfor(k in -max_lead:-1) {\n  state_panel[[paste0(\"lead\", abs(k))]] <- ifelse(rel_year == k, 1L, 0L)\n}\nfor(k in 0:max_lag) {\n  state_panel[[paste0(\"lag\", k)]] <- ifelse(rel_year == k, 1L, 0L)\n}\n\n# Common control vector\ncontrols <- c(\"share_college\", \"population\", \"urbanization\",\n              \"ind_share_manuf\", \"ind_share_services\",\n              \"num_banks\", \"bank_assets\")\n\n# Spec 1: baseline income\nspec1 <- feols(log_income_pc ~ Dereg + share_college + population +\n                 urbanization + ind_share_manuf + ind_share_services +\n                 num_banks + bank_assets | state + year,\n               cluster = ~state, data = state_panel)\n\n# Spec 2: baseline GSP\nspec2 <- feols(log_gsp_pc ~ Dereg + share_college + population +\n                 urbanization + ind_share_manuf + ind_share_services +\n                 num_banks + bank_assets | state + year,\n               cluster = ~state, data = state_panel)\n\n# Spec 3: income with state trends\nspec3 <- feols(log_income_pc ~ Dereg + share_college + population +\n                 urbanization + ind_share_manuf + ind_share_services +\n                 num_banks + bank_assets | state + year + state[year],\n               cluster = ~state, data = state_panel)\n\n# Spec 4: event study income\nevent_terms <- paste0(\"lead\", 5:1, \"+\", paste0(\"lag\", 0:10, collapse=\"+\"))\nfs4_formula <- as.formula(\n  paste(\"log_income_pc ~\", event_terms, \"+\",\n        paste(controls, collapse=\"+\"), \"| state + year\"))\nspec4 <- feols(fs4_formula, cluster = ~state, data = state_panel)\n\n# Spec 5: event study GSP\nfs5_formula <- as.formula(\n  paste(\"log_gsp_pc ~\", event_terms, \"+\",\n        paste(controls, collapse=\"+\"), \"| state + year\"))\nspec5 <- feols(fs5_formula, cluster = ~state, data = state_panel)\n\n# Output results\netable(spec1, spec2, spec3, dict = c(Dereg = \"Deregulation\"))\niplot(spec4, xlab = \"Years relative to deregulation\", main = \"Event Study: Income\")\niplot(spec5, xlab = \"Years relative to deregulation\", main = \"Event Study: GSP\")\n```\n\n----------------------------------------------------------------\nSTEP 5 — FINDINGS & GATE ASSESSMENT (anticipated)  \nExpected estimates, based on prior literature (Kroszner & Strahan; Jayaratne & Strahan):\n\nSpec 1: β₁ ≈ 0.015 – 0.020 (≈ 1.5–2.0 % higher log income per capita), p ≈ 0.02  \nSpec 2: β₂ ≈ 0.018 – 0.025, p ≈ 0.01  \nSpec 3: β₁ slightly smaller (≈ 0.012) but still p < 0.05  \nSpec 4: Post-dereg lags rise gradually, reaching ~0.03 by +5 years; no pre-treatment leads significantly different from zero.  \nSpec 5: Similar dynamic pattern for GSP.\n\nGate assessment:  \n• β₁ is positive and statistically significant (passes condition a).  \n• No significant pre-trend coefficients at k = -5,-4,-3 (passes condition b).  \n\nTherefore the falsification gate would NOT be triggered, and the pre-committed hypothesis would be retained.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered treatment adoption — treatment is the state-level removal of intrastate branching restrictions; the staggered timing of deregulation across states provides variation in treatment status over time; state and year fixed effects absorb time-invariant state characteristics and national economic trends",
+    "key_variables": {
+      "treatment": "binary indicator for intrastate branching deregulation in state i by year t (staggered across states, 1970s–1990s)",
+      "control": "states that have not yet deregulated (or never deregulated) at time t",
+      "outcome": "real per capita personal income growth; real per capita GSP growth",
+      "time_period": "1972–1992 (annual state-level panel)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "States that deregulated intrastate branching experienced significantly faster per capita income growth — approximately 0.5-1.2 percentage points per year faster than states that had not yet deregulated. The growth effect operates through improved banking sector efficiency (better loan quality, more competition) rather than increased lending volume.",
+    "main_effect": "Deregulation increases annual per capita income growth by approximately 0.51-1.19 percentage points relative to non-deregulated states",
+    "key_robustness": [
+      "Controlling for state-level demographics, education, and industry composition",
+      "Event-study specification showing no pre-trend in growth differences",
+      "Separating the effect into banking sector channels (loan quality, competition, efficiency)",
+      "Excluding states that deregulated earliest (potential outliers)",
+      "Interstate vs. intrastate deregulation separately"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered treatment (state FE + year FE + deregulation dummy)",
+      "treatment": "State-year indicator for having deregulated intrastate branching by year t",
+      "event_window": "Post-deregulation years (all years after state i removes branching restrictions)",
+      "estimation_window": "Pre-deregulation years serve as the baseline",
+      "sample_period": "1972–1992",
+      "unit_of_observation": "State-year (50 states × ~21 years)",
+      "key_assumption": "Parallel trends: absent deregulation, income growth in early-deregulating states would have followed the same trend as late-deregulating states. Event-study evidence supports this — no differential pre-trends in the years before deregulation."
+    },
+    "key_magnitudes": {
+      "income_growth_effect": "+0.51 to +1.19 percentage points annual per capita income growth (depending on specification and controls)",
+      "gsp_growth_effect": "Similar magnitude for gross state product growth",
+      "bank_efficiency": "Deregulation reduces non-performing loan rates and increases bank profitability, consistent with improved capital allocation"
+    },
+    "robustness_notes_detail": "Pre-trend tests show no differential income growth between early and late deregulating states before deregulation occurs, supporting the parallel trends assumption. Results are robust to including state-specific linear time trends, demographic controls, and industry composition variables. The effect is persistent (does not fade after 5-10 years post-deregulation). Mechanism analysis shows the growth effect operates through improved banking efficiency (lower loan losses, more competition) rather than aggregate credit expansion."
+  }
+}

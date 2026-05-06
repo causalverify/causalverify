@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_03",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:01:27.333796",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 671,
+    "output_tokens": 1050,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a difference-in-differences (DiD) approach to identify the causal effect of banking competition on firm innovation. The treatment group consists of states that deregulated bank branching, and the control group consists of states that had not yet deregulated at a given point in time. We will use the staggered timing of deregulation across states to estimate the effect of increased banking competition on firm innovation.\n\nDirectional Hypothesis:\nWe hypothesize that increased banking competition, resulting from the relaxation of geographic restrictions on bank branching, will lead to higher firm innovation. Specifically, we expect that states that deregulated earlier will have higher innovative output (measured by patents granted and forward citations per patent) relative to states that deregulated later or not at all.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. OLS regression of the number of patents granted on a deregulation dummy, state fixed effects, and year fixed effects.\n2. OLS regression of forward citations per patent on a deregulation dummy, state fixed effects, and year fixed effects.\n3. OLS regression of the number of patents granted on a deregulation dummy, state fixed effects, year fixed effects, and firm-level controls (R&D expenditure, total assets, leverage, sales growth, age).\n4. OLS regression of forward citations per patent on a deregulation dummy, state fixed effects, year fixed effects, and firm-level controls (R&D expenditure, total assets, leverage, sales growth, age).\n5. OLS regression of the number of patents granted on a deregulation dummy, state fixed effects, year fixed effects, firm-level controls (R&D expenditure, total assets, leverage, sales growth, age), and banking market structure controls (HHI, number of bank branches, deposit concentration).\n\n**STEP 3 — FALSIFICATION GATE**\n\nFalsification Gate:\nWe will reject our hypothesis if the estimated coefficient on the deregulation dummy is not statistically significant (p > 0.10) in at least 3 out of the 5 specifications. Alternatively, if the estimated coefficient on the deregulation dummy is negative and statistically significant in any of the specifications, we will also reject our hypothesis.\n\n**STEP 4 — R CODE**\n\n```R\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"data.csv\")\n\n# Create deregulation dummy variable\ndata$deregulation <- ifelse(data$year >= data$deregulation_year, 1, 0)\n\n# Specification 1: OLS regression of patents on deregulation dummy, state FE, and year FE\nspec1 <- plm(patents ~ deregulation + state + year, data = data, model = \"within\")\n\n# Specification 2: OLS regression of forward citations on deregulation dummy, state FE, and year FE\nspec2 <- plm(forward_citations ~ deregulation + state + year, data = data, model = \"within\")\n\n# Specification 3: OLS regression of patents on deregulation dummy, state FE, year FE, and firm-level controls\nspec3 <- plm(patents ~ deregulation + state + year + RnD + total_assets + leverage + sales_growth + age, data = data, model = \"within\")\n\n# Specification 4: OLS regression of forward citations on deregulation dummy, state FE, year FE, and firm-level controls\nspec4 <- plm(forward_citations ~ deregulation + state + year + RnD + total_assets + leverage + sales_growth + age, data = data, model = \"within\")\n\n# Specification 5: OLS regression of patents on deregulation dummy, state FE, year FE, firm-level controls, and banking market structure controls\nspec5 <- plm(patents ~ deregulation + state + year + RnD + total_assets + leverage + sales_growth + age + HHI + bank_branches + deposit_concentration, data = data, model = \"within\")\n\n# Print summary statistics for each specification\nsummary(spec1)\nsummary(spec2)\nsummary(spec3)\nsummary(spec4)\nsummary(spec5)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected Findings:\nWe expect the estimated coefficient on the deregulation dummy to be positive and statistically significant in most or all of the specifications, indicating that increased banking competition led to higher firm innovation. The inclusion of firm-level controls and banking market structure controls in specifications 3-5 should help to control for potential confounding factors and provide a more accurate estimate of the causal effect.\n\nGate Assessment:\nIf the estimated coefficient on the deregulation dummy is not statistically significant (p > 0.10) in at least 3 out of the 5 specifications, or if the estimated coefficient is negative and statistically significant in any of the specifications, we will reject our hypothesis. Otherwise, we will conclude that the evidence supports our hypothesis that increased banking competition led to higher firm innovation.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Staggered DID — treatment = passage of intrastate bank branching deregulation law, control = states that have not yet deregulated; identification relies on staggered timing of deregulation across states",
+    "key_variables": {
+      "treatment": "binary indicator for whether state has deregulated intrastate branching by year t",
+      "control": "same states before deregulation (within-state variation) and states that have not yet deregulated",
+      "outcome": "log(patents + 1) and log(citations + 1) by state-year",
+      "time_period": "1976–2006, deregulation events staggered 1978–1994"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank deregulation increases firm innovation: states that deregulate experience ~11% increase in patents and ~22% increase in patent citations",
+    "main_effect": "~11% increase in patents after intrastate branching deregulation",
+    "key_robustness": [
+      "pre-trend tests",
+      "placebo deregulation dates",
+      "alternative innovation measures (citations, patent quality)",
+      "controlling for state economic conditions"
+    ]
+  }
+}

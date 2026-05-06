@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_141",
+  "title": "What Do We Learn from the Weather? The New Climate-Economy Literature",
+  "authors": "Dell, Jones & Olken",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/jel.52.3.740",
+    "title": "What Do We Learn from the Weather? The New Climate-Economy Literature",
+    "year": 2014,
+    "journal": "Journal of Economic Literature",
+    "citations": 2163
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dell",
+      "jones",
+      "olken"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "journal of economic literature",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 2163,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

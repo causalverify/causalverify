@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s26",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Test score cutoff and college enrollment",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:49.920252",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 430,
+    "output_tokens": 361,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) because we have data on a running variable (standardized test score) with a known cutoff (0.5) that determines treatment assignment (automatic college admission). The key assumption for RDD is that individuals just below and just above the threshold are comparable, so any discontinuity in the outcome (college enrollment) at the threshold can be attributed to the crossing of the threshold.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(rdrobust)\n\n# Load the data\ndata <- read.csv(\"experiments/exp_b/data/s26_data.csv\")\n\n# Running the RDD analysis\nrdd_result <- rdrobust(y = data$y, x = data$running_var, c = 0.5, kernel = \"triangular\", bwselect = \"mserd\")\n\n# Print the main results\nprint(\"Estimated treatment effect at the cutoff:\")\nrdd_result$coef\n\n# Perform basic robustness check by changing bandwidth\nrdd_result_robust <- rdrobust(y = data$y, x = data$running_var, c = 0.5, kernel = \"triangular\", h = 0.15)\n\n# Print robust result\nprint(\"Robustness check - treatment effect with h = 0.15:\")\nrdd_result_robust$coef\n```\n\n## 3. Expected Findings\nWe expect a positive effect of crossing the test score threshold on college enrollment rates. As the threshold grants automatic college admission, individuals just above the cutoff are more likely to enroll in college than those just below it. The magnitude may vary, but the sign should be positive if automatic admission indeed increases enrollment.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — test score cutoff; continuity of running variable required; McCrary density test",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scoring above cutoff significantly increases college enrollment",
+    "main_effect": "~25pp enrollment increase at cutoff"
+  }
+}

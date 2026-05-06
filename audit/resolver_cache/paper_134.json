@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_134",
+  "title": "Trade, Wages, and the Political Economy of Trade Protection",
+  "authors": "Goldberg & Pavcnik",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "IV",
+  "best_match": {
+    "doi": null,
+    "title": "1 Trade, Wages, and the Political Economy of Trade Protection: Evidence from the Colombian Trade Reforms*",
+    "year": 2001,
+    "journal": "",
+    "citations": 331
+  },
+  "checks": {
+    "title_jaccard": 0.7143,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "pavcnik"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 331,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

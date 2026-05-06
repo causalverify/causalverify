@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s16",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Supply chain disruption on auto manufacturer stocks",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:07.099464",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 466,
+    "output_tokens": 505,
+    "content": "## 1. Identification Strategy\n\nFor this research question, an Event Study methodology is appropriate. The Event Study method is used to measure the impact of a specific event on the stock prices of firms. In this case, the event is the announcement of a major semiconductor shortage. The key assumption is that the stock returns are not affected by other events during the estimation window (-10 to -2) and the event window (0 to +5). We will calculate the Cumulative Abnormal Returns (CAR) for each stock during the event window and then regress the CAR on a measure of chip dependency to see if more dependent firms experience larger negative CARs.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(quantmod)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s16_data.csv\", header = TRUE)\n\n# Calculate abnormal returns\ndata$abnormal_ret <- data$ret - data$mkt_ret\n\n# Calculate cumulative abnormal returns (CAR) for each stock\ncar <- aggregate(abnormal_ret ~ stock_id + event_day, data, sum)\ncar$CAR <- cumsum(car$abnormal_ret)\n\n# Average CAR for each stock over the event window\ncar_avg <- aggregate(CAR ~ stock_id, car, mean, na.rm = TRUE)\n\n# Merge chip dependency data (assuming it's available in a separate file)\n# chip_dependency <- read.csv(\"path_to_chip_dependency_data.csv\")\n# car_avg <- merge(car_avg, chip_dependency, by = \"stock_id\")\n\n# Regression of CAR on chip dependency\n# Assuming chip_dependency has a column named 'chip_dependency'\nmodel <- lm(CAR ~ chip_dependency, data = car_avg)\n\n# Print the coefficient\nsummary(model)\n\n# Robustness checks\n# Using Newey-West standard errors for potential heteroskedasticity\ncoeftest(model, vcovHC(model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\n\nWe expect the coefficient on chip dependency to be negative, indicating that firms with higher chip dependency experience larger negative CARs following the semiconductor shortage announcement. The magnitude of the effect will depend on the actual data, but we expect a significant impact given the importance of semiconductors in modern vehicles. The exact magnitude is difficult to predict without more information about the chip dependency measure and the variability in CARs across firms.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study + cross-sectional CAR regression on firm-level exposure variable",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Auto stocks decline; higher chip-dependency → larger CAR loss",
+    "main_effect": "CAR ≈ −2.8%; cross-sectional gradient significant"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_34",
+  "title": "The Effect of SOX Section 404: Costs, Earnings Quality, and Stock Prices",
+  "authors": "Iliev",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2010.01564.x",
+    "title": "The Effect of SOX Section 404: Costs, Earnings Quality, and Stock Prices",
+    "year": 2010,
+    "journal": "The Journal of Finance",
+    "citations": 493
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "iliev"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 493,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

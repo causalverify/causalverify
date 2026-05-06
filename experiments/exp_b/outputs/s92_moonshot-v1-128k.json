@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s92",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Welfare Eligibility on Labor Supply",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:46:20.931147",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 423,
+    "output_tokens": 530,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of welfare eligibility on labor supply. The key assumption is that there is a sharp discontinuity in the probability of being treated (eligibility for welfare benefits) at the income threshold, and that individuals on either side of the threshold are similar in all other respects, except for their treatment status.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s92_data.csv\")\n\n# Define the running variable and the cutoff point\nrunning_var <- data$running_var\ncutoff <- 0.5  # Assuming the cutoff is at 0.5 based on the data preview\n\n# Estimate the RDD model\n# We will use the rdrobust package to estimate the local polynomial regression\n# and obtain the point estimate of the discontinuity at the cutoff\nresult <- rdrobust(y = data$y, x = data$running_var, c = cutoff, h = 0.05, kernel = \"gaussian\", degree = 2, bias = TRUE, vce = \"unconditional\")\n\n# Print the point estimate of the discontinuity\nprint(result$beta0)\n\n# Basic robustness checks\n# We will check the sensitivity of the results to different bandwidths\nbandwidths <- seq(0.01, 0.1, by = 0.01)\nsens_results <- sapply(bandwidths, function(bw) {\n  rdrobust(y = data$y, x = data$running_var, c = cutoff, h = bw, kernel = \"gaussian\", degree = 2, bias = TRUE, vce = \"unconditional\")\n})\n\n# Plot the sensitivity analysis results\nplot(bandwidths, sens_results$beta0, type = \"b\", xlab = \"Bandwidth\", ylab = \"Point Estimate\", main = \"Sensitivity Analysis\")\n```\n\n## 3. Expected Findings\nWe expect a negative coefficient for the discontinuity in the RDD analysis, indicating that individuals who are eligible for welfare benefits work fewer hours. The magnitude of the effect will depend on the specific context and the generosity of the welfare benefits. However, based on the literature, we expect a moderate reduction in hours worked, as individuals may choose to reduce their labor supply in response to the availability of welfare benefits.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Examine changes in labor supply around the income threshold for welfare eligibility.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Crossing the income threshold for welfare eligibility results in a reduction in labor supply.",
+    "main_effect": "-0.3"
+  }
+}

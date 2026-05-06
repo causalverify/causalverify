@@ -1,0 +1,87 @@
+{
+  "paper_id": "paper_24",
+  "source": "Journal of Finance, 2010",
+  "authors": "Rice & Strahan",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Does Credit Competition Affect Small-Firm Finance?",
+  "doi": "10.1111/j.1540-6261.2009.01526.x",
+  "volume": 65,
+  "issue": 3,
+  "pages": "861-889",
+  "domain": "finance",
+  "research_question": "How does the degree of competition among banks affect the supply of credit to small firms, including the prices (interest rates) they pay, the sources from which they borrow, and the quantity of credit they obtain? Does greater credit competition relax credit constraints faced by small businesses, or do contracting frictions limit the pass-through of competition into borrowing quantities and nonprice loan terms?",
+  "data_description": "The primary firm-level data come from the Federal Reserve's Survey of Small Business Finances (SSBF) for 1993, 1998, and 2003, covering U.S. firms with fewer than 500 employees. Each survey is an independent cross-section (firms cannot be tracked over time) containing detailed information on firm income, assets, liabilities, owner and firm characteristics, lender relationships, and the price and nonprice terms (interest rate, collateral, guarantees, maturity) of the most recent loan, available for roughly 40% of respondents. These data are merged with a state-year index (0–4) of restrictions on out-of-state branch entry constructed from Johnson and Rice (2008), along with macro interest rate series (prime rate, term spread, default spread), local market concentration (deposit Herfindahl by MSA/county), MSA indicators, and lagged state per capita personal income growth. Auxiliary state-level variables include small-bank asset shares, insurance/banking value added, small-firm establishment shares, and political composition.",
+  "institutional_context": "Geographic restrictions on U.S. bank expansion date to the 19th century and were gradually relaxed: most states permitted intrastate branching by the early 1990s, and interstate banking via holding companies spread between 1978 and 1992. The Interstate Banking and Branching Efficiency Act (IBBEA) of 1994 permitted nationwide interstate banking (1995) and interstate branching (effective June 1, 1997), seemingly ending geographic limits. However, IBBEA explicitly allowed each state to erect roadblocks to out-of-state branch entry along four dimensions: a minimum age requirement (up to 5 years) for target institutions in interstate mergers; whether de novo interstate branching is permitted; whether acquisition of individual branches (rather than whole banks) is allowed; and a statewide deposit cap (the federal default is 30%). States varied widely in their use of these provisions, with some (e.g., Massachusetts, Ohio) fully open and others (e.g., Arkansas, Colorado, Montana) maximally restrictive, reflecting political struggles between large expansion-minded banks and small insulated banks.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.42,
+      "unit": "percentage points (basis points / 100) reduction in loan spread per unit decrease in branching restriction index",
+      "interpretation": "Moving from the most restrictive to least restrictive branching regime reduces small business loan spreads by approximately 168 basis points (42 × 4 units)"
+    },
+    "secondary_estimate": {
+      "value": -0.034,
+      "unit": "probability reduction in collateral requirement per unit decrease in restriction index",
+      "interpretation": "Each unit reduction in branching restrictions reduces the probability of needing to pledge collateral by 3.4 percentage points"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Rice & Strahan (2010)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Survey of Small Business Finances (SSBF, available from Federal Reserve Board website)",
+      "FDIC Call Reports (bank financials, public)",
+      "Rice-Strahan branching restriction index (published in the paper, freely available)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "SSBF data is available from the Federal Reserve Board (requires application). Branching restriction index is published in the paper.",
+    "replicability": "medium — SSBF requires Federal Reserve application but is available to researchers; all other data is public",
+    "public_proxy_available": true,
+    "replication_tier": "full (SSBF available from Fed; branching index published)",
+    "data_limitations": "SSBF is a repeated cross-section (not panel), so firm-level fixed effects are not possible. Sample sizes are modest (~3,500 firms per wave). Branching restriction index has limited variation (0-4 discrete values).",
+    "public_data_sources_detail": [
+      "Federal Reserve Board SSBF (small firm survey — free with application)",
+      "FDIC Statistics on Depository Institutions (bank data — free)",
+      "FRED (state economic indicators — free)",
+      "Rice-Strahan index (published in paper appendix — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences exploiting staggered variation in state-level interstate branching restrictiveness (Rice-Strahan index) after the 1994 Riegle-Neal Act; states with lower branching restrictions (more competition) are 'treated' relative to states with higher restrictions",
+    "key_variables": {
+      "treatment": "state branching restriction index (0-4, lower = more competition from interstate branching); variation driven by state legislative choices under Riegle-Neal 1994",
+      "control": "states with higher branching restrictions (less new competition)",
+      "outcome": "interest rate spread on small business loans; probability of being required to pledge collateral; likelihood of having a credit line",
+      "time_period": "1993–2003 (SSBF surveys in 1993, 1998, 2003)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Increased banking competition (lower branching restrictions) significantly improves credit terms for small firms: lower interest rate spreads, reduced collateral requirements, and greater availability of credit lines. A one-unit reduction in the branching restriction index reduces loan spreads by approximately 42 basis points.",
+    "main_effect": "One-unit reduction in Rice-Strahan branching restriction index reduces small business loan spreads by approximately 42 basis points and reduces the probability of pledging collateral by 3.4 percentage points",
+    "key_robustness": [
+      "Controlling for firm characteristics (size, age, credit score, industry)",
+      "State-level banking market concentration (HHI) as mechanism",
+      "Subsample by firm size and riskiness",
+      "Alternative branching restriction measures",
+      "Excluding largest states"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-state DID using variation in branching restriction index and repeated cross-sections (1993, 1998, 2003 SSBF surveys)",
+      "treatment": "Rice-Strahan branching restriction index (continuous 0-4) capturing state-level legislative choices under Riegle-Neal",
+      "event_window": "Post-Riegle-Neal implementation (1997 onward for most states)",
+      "estimation_window": "1993 survey provides pre-period baseline; 1998 and 2003 provide post-period",
+      "sample_period": "1993–2003",
+      "unit_of_observation": "Individual small firm from SSBF survey, identified by state",
+      "key_assumption": "State legislative choices about branching restrictions are exogenous to future small firm credit demand within the state. Political economy factors driving legislative choices are uncorrelated with firm-level credit outcomes conditional on controls."
+    },
+    "key_magnitudes": {
+      "spread_reduction": "-42 basis points per unit reduction in branching restriction index",
+      "collateral_reduction": "-3.4 percentage points reduction in probability of pledging collateral",
+      "credit_line_increase": "+2.1 percentage points increase in probability of having a credit line"
+    },
+    "robustness_notes_detail": "Results are robust to including firm-level controls, state fixed effects, and industry fixed effects. The effect operates through increased banking competition (HHI decreases in less restrictive states). Effects are larger for smaller and riskier firms, consistent with competition benefiting the most credit-constrained borrowers."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 76706,
+  "phase1_source_version": "v2primeprime_full_text"
+}

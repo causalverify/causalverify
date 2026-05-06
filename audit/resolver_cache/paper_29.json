@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_29",
+  "title": "Does the Stock Market Fully Value Intangibles? Employee Satisfaction and Equity Prices",
+  "authors": "Edmans",
+  "year": null,
+  "journal": "Journal of Financial Economics",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2011.03.021",
+    "title": "Does the stock market fully value intangibles? Employee satisfaction and equity prices",
+    "year": 2011,
+    "journal": "Journal of Financial Economics",
+    "citations": 631
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "edmans"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 631,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

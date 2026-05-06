@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_23",
+  "title": "The Finance-Growth Nexus: Evidence from Bank Branch Deregulation",
+  "authors": "Jayaratne & Strahan",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2946668",
+    "title": "The Finance-Growth Nexus: Evidence from Bank Branch Deregulation",
+    "year": 1996,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1768
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jayaratne",
+      "strahan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1768,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

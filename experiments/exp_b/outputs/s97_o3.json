@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s97",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Grade Retention on Future Academic Performance",
+  "model": "o3",
+  "run_at": "2026-04-14T19:55:54.871778",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 433,
+    "output_tokens": 1257,
+    "content": "## 1. Identification Strategy  \nCausal method: Sharp Regression Discontinuity Design (RDD)\n\nWhy: Retention is assigned mechanically by whether the end-of-year test score falls below a known cutoff. Students just above and just below the cutoff are assumed to be quasi-randomly different, making local comparisons credible.\n\nKey assumptions  \n1. Continuity: In the absence of retention, the conditional expectation of future test scores is a smooth function of the running variable at the cutoff.  \n2. No manipulation: Students (or teachers) cannot precisely manipulate scores around the cutoff.  \n3. Sharp design: Treated = 1 if and only if the running variable is below the cutoff (verified in the data).\n\n## 2. R Code\n```r\n#############################################\n# Impact of Grade Retention on Future Scores\n#############################################\n\n# 1. Packages ------------------------------------------------------------\nneed <- c(\"data.table\", \"rdrobust\", \"rddensity\")\nnew  <- need[!(need %in% installed.packages()[,\"Package\"])]\nif(length(new)) install.packages(new, repos = \"https://cloud.r-project.org\")\nlapply(need, require, character.only = TRUE)\n\n# 2. Load data -----------------------------------------------------------\npath <- \"experiments/exp_b/data/s97_data.csv\"\ndat  <- fread(path)\n\n# 3. Quick checks --------------------------------------------------------\n# Cutoff assumed at 0\ncutoff <- 0\n# Verify sharp design\ntable_below <- with(dat, table(below_cutoff = running_var < cutoff, treated))\nprint(table_below)\n\n# 4. Main RDD estimate (local linear, MSE-optimal BW) --------------------\nrdr <- rdrobust(y = dat$y, x = dat$running_var, c = cutoff)\nprint(rdr)\n\n# Extract point estimate\ntau  <- rdr$coef[1]        # treatment effect at cutoff\nse   <- rdr$se[1]\ncat(\"\\nMain RDD estimate (local linear, MSE-optimal BW):\\n\",\n    \"Effect of retention on future score =\",\n    round(tau, 4), \" (SE =\", round(se, 4), \")\\n\")\n\n# 5. Robustness checks ---------------------------------------------------\n\n## 5a. Different bandwidth (±0.20)\nrdr_narrow <- rdrobust(y = dat$y, x = dat$running_var, c = cutoff, h = 0.20)\ncat(\"\\nRDD with ±0.20 bandwidth:\\n\",\n    \"Estimate =\", round(rdr_narrow$coef[1], 4),\n    \" (SE =\", round(rdr_narrow$se[1], 4), \")\\n\")\n\n## 5b. Different polynomial order (quadratic)\nrdr_quad <- rdrobust(y = dat$y, x = dat$running_var, c = cutoff, p = 2)\ncat(\"\\nRDD with quadratic control (p = 2):\\n\",\n    \"Estimate =\", round(rdr_quad$coef[1], 4),\n    \" (SE =\", round(rdr_quad$se[1], 4), \")\\n\")\n\n## 5c. Placebo cutoff at +0.30\nplacebo_cut <- 0.30\nrdr_placebo <- rdrobust(y = dat$y, x = dat$running_var, c = placebo_cut)\ncat(\"\\nPlacebo cutoff at +0.30:\\n\",\n    \"Estimate =\", round(rdr_placebo$coef[1], 4),\n    \" (SE =\", round(rdr_placebo$se[1], 4), \")\\n\")\n\n## 5d. McCrary density test\ndens <- rddensity(x = dat$running_var, c = cutoff)\nprint(dens)\ncat(\"\\nMcCrary density test p-value =\", round(dens$test$p_jk[1], 4), \"\\n\")\n```\n\n## 3. Expected Findings  \nEconomic intuition and prior literature suggest that forcing a child to repeat a grade tends to hamper subsequent performance (stigma, disengagement, age-for-grade mismatch). Therefore:\n\n• Sign: Negative (retained students score lower in the future).  \n• Magnitude: Roughly ‑0.10 to ‑0.20 standard deviations, so an RDD coefficient around −0.12 to −0.18 in the test-score units supplied.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the cutoff in test scores to identify the causal effect.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Students retained due to scoring below the cutoff perform worse on future tests.",
+    "main_effect": "-0.18"
+  }
+}

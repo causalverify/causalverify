@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "IH"
+  ],
+  "reasoning": "The AI model proposes a firm-level panel regression to estimate abnormal returns using the Fama-French-Carhart model, which is a common approach in finance. However, the ground truth paper employs a specific 'calendar-time portfolio event study' strategy, where portfolios are formed and their returns are regressed on factor models. While both strategies use the Fama-French-Carhart model and aim to identify abnormal returns related to an event, the ground truth's portfolio-level time-series regression is distinct from the AI's firm-level panel regression. This makes it a 'mostly right' match (score 2) as it's within the correct broad method family (asset pricing event studies) but misses the specific econometric implementation details of the ground truth strategy. The AI output does not state the direction of the expected effect, hence a direction score of 0. The difference in the specific identification strategy (panel regression vs. calendar-time portfolio) constitutes an Identification Hallucination (IH).",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_29",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:26:29.505278+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_244",
+  "title": "Disease and Development: The Effect of Life Expectancy on Economic Growth",
+  "authors": "Acemoglu & Johnson",
+  "year": null,
+  "journal": "Journal of Political Economy",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/529000",
+    "title": "Disease and Development: The Effect of Life Expectancy on Economic Growth",
+    "year": 2007,
+    "journal": "Journal of Political Economy",
+    "citations": 1271
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "johnson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1271,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_13",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:45.400016",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 717,
+    "output_tokens": 1827,
+    "content": "RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy:  \n• Panel variation across 48 Fama-French industries (i) and semi-annual periods (t).  \n• Dependent variable Wave_it = 1 if SDC test classifies industry-period (i,t) as a merger wave.  \n• Key regressors: IndustryShock_it (need to restructure) and CapitalLiquidity_t (ease of financing) plus their interaction IndustryShock_it × CapitalLiquidity_t.  \n• Identification comes from differential exposure of industries to contemporaneous aggregate capital-market conditions after conditioning on industry and calendar-time fixed effects.  \nDirectional hypotheses (cannot be altered later):  \nH1 (Joint-necessity): β3 on IndustryShock × CapitalLiquidity > 0. Neither β1 (shock alone) nor β2 (liquidity alone) should be significantly positive once β3 is included.  \nH2 (Adverse-selection): Acquirer announcement CARs are lower (more negative) for deals undertaken during Wave_it = 1 versus Wave_it = 0 (γ1 < 0).\n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly 5)  \n\nSpec 1: Linear probability model  \nWave_it = α_i + λ_t + β1 Shock_it + β2 Liquidity_t + β3 Shock_it×Liquidity_t + ε_it  \n\nSpec 2: Logit model (maximum likelihood) with same RHS variables and fixed effects via mean-differencing dummies.\n\nSpec 3: Replace Shock_it with PC1_it, the first principal component of the five shock proxies, keep interaction with Liquidity. Same LPM form with fixed effects.\n\nSpec 4: Same as Spec 1 but add industry-specific linear time trends τ_i·t to rule out spurious interaction due to diverging trends.\n\nSpec 5: Cross-sectional OLS at the deal level  \nCAR_i = δ + γ1 Wave_i + γ2 Log(AcquirerSize_i) + γ3 AllStock_i + γ4 RelativeDealSize_i + YearFE + IndustryFE + υ_i  \n\nNo additional specifications will be run.\n\nSTEP 3 — FALSIFICATION GATE  \n\nFor H1 (Specs 1–4):  \nReject if β3 ≤ 0 or |t(β3)| < 1.64 (p > 0.10, two-sided) in ALL four specifications, OR first-stage F-stat < 10 for Shock or Liquidity (weak-variation concern).\n\nFor H2 (Spec 5):  \nReject if γ1 ≥ 0 or |t(γ1)| < 1.64 (p > 0.10).\n\nSTEP 4 — R CODE (self-contained, no extras)  \n\n```r\n# ----------------------- PACKAGES -----------------------\nlibrary(tidyverse)\nlibrary(fixest)      # for fast FE models\nlibrary(broom)       # for tidy output\nlibrary(pscl)        # for logit with FE via glm\nlibrary(plm)         # for panel data (Spec 4 trends)\nlibrary(FactoMineR)  # for principal components\n\n# ----------------------- LOAD DATA ----------------------\n# Expect two pre-cleaned .csv files:\n# 1. wave_panel.csv : industry-halfyear panel\n# 2. deal_level.csv : individual M&A deals with CARs\nwave <- read_csv(\"wave_panel.csv\")\ndeals <- read_csv(\"deal_level.csv\")\n\n# ---------------- SPEC 1: LPM ---------------------------\nspec1 <- feols(Wave ~ Shock + Liquidity + Shock:Liquidity | Industry + HalfYear,\n               data = wave, cluster = ~Industry)\nsummary(spec1)\n\n# ---------------- SPEC 2: LOGIT -------------------------\n# Create industry & half-year dummies explicitly\nwave_fe <- wave %>% \n  mutate(IndustryFE = factor(Industry),\n         TimeFE     = factor(HalfYear))\n\nspec2 <- glm(Wave ~ Shock + Liquidity + Shock:Liquidity +\n               IndustryFE + TimeFE,\n             family = binomial(link = \"logit\"),\n             data = wave_fe)\nsummary(spec2)\n\n# ---------------- SPEC 3: PC1 interaction ---------------\n# Compute PC1 of five shocks\npc_res <- PCA(wave %>% \n                select(Shock1,Shock2,Shock3,Shock4,Shock5) %>% \n                scale(), graph = FALSE)\nwave$PC1 <- pc_res$ind$coord[,1]\n\nspec3 <- feols(Wave ~ PC1 + Liquidity + PC1:Liquidity | Industry + HalfYear,\n               data = wave, cluster = ~Industry)\nsummary(spec3)\n\n# ---------------- SPEC 4: Trends ------------------------\nwave <- wave %>% group_by(Industry) %>% \n  mutate(Trend = row_number()) %>% ungroup()\n\nspec4 <- feols(Wave ~ Shock + Liquidity + Shock:Liquidity + Trend |\n                 Industry + HalfYear, data = wave, cluster = ~Industry)\nsummary(spec4)\n\n# ---------------- SPEC 5: Deal-level CARs ---------------\nspec5 <- feols(CAR ~ Wave + log(AcqSize) + AllStock +\n                 RelDealSize | Industry + Year,\n               data = deals, cluster = ~Industry)\nsummary(spec5)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected ex-ante)  \n\nAnticipated sign & significance (based on prior literature):  \n• Specs 1–4: β3 ≈ 0.10 (s.e. ≈ 0.04) ⇒ t ≈ 2.5 → passes gate. β1, β2 individually ≈ 0.02 (s.e. 0.03) ⇒ not significant.  \n• Spec 5: γ1 ≈ –0.015 (–1.5 percentage-points; s.e. 0.006) ⇒ t ≈ –2.5 → passes gate.\n\nTherefore, under expected outcomes, both hypotheses H1 and H2 survive the falsification gate. If the actual estimates deviate such that the conditions in STEP 3 are violated, we will reject accordingly.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Cross-industry probit analysis of merger wave formation combined with event study of announcement returns for in-wave versus out-of-wave deals — the probit model uses industry-year panel data with industry economic shock indicators and aggregate capital liquidity as the key predictors of wave onset; the event study component examines whether in-wave deal CARs differ from comparable out-of-wave deals, using deal announcement dates as events",
+    "key_variables": {
+      "treatment": "interaction of industry-level economic shock indicator AND aggregate capital liquidity (credit conditions); binary indicator for in-wave vs. out-of-wave deal timing in the event study component",
+      "control": "industries with shocks but insufficient capital liquidity (no wave); industries with high liquidity but no shocks (no wave); out-of-wave deals in same industry for announcement return comparison",
+      "outcome": "binary industry merger wave indicator (probit model); acquirer 3-day announcement CAR [-1, +1] for in-wave vs. out-of-wave deals",
+      "time_period": "1981–2000, covering multiple wave cycles across Fama-French 48 industries"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Industry merger waves require BOTH an economic shock AND sufficient aggregate capital liquidity — the joint interaction is statistically significant and economically large; neither condition alone explains wave formation; in-wave acquirers earn approximately 0.7–0.9% lower announcement CAR than out-of-wave deals in the same industry, consistent with adverse selection in wave timing (lower-quality deals completed when capital is cheap)",
+    "main_effect": "Interaction of shock × liquidity increases industry merger wave probability by approximately 15–20 percentage points; in-wave acquirer CARs are 0.7–0.9% lower than out-of-wave deals controlling for deal and industry characteristics",
+    "key_robustness": [
+      "Alternative wave identification algorithms (varying simulation parameters and window lengths)",
+      "Using plausibly exogenous deregulation events as pure industry shock instruments",
+      "Alternative capital liquidity measures (Baa-Aaa spread, real fed funds rate, market-to-book ratio)",
+      "Sub-wave analysis (1980s LBO wave vs. 1990s strategic wave separately)",
+      "Industry fixed effects in announcement return regressions",
+      "Placebo test with randomly assigned wave timing"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-industry probit (wave formation determinants) + event study of announcement abnormal returns (in-wave vs. out-of-wave deal comparison)",
+      "treatment": "Industry merger wave indicator (constructed from SDC data via simulation test); economic shock indicators (industry asset sales, employment, ROA changes); aggregate credit spread (Federal Reserve data) as continuous liquidity measure",
+      "event_window": "[-1, +1] trading days around M&A announcement date for announcement CAR",
+      "estimation_window": "[-210, -11] trading days before announcement for market model parameters",
+      "sample_period": "1981–2000",
+      "unit_of_observation": "Industry-year (for probit wave formation model); individual acquisition deal (for announcement return analysis)",
+      "key_assumption": "Aggregate capital liquidity (credit spreads, interest rates) is exogenous to industry-specific merger opportunities — i.e., Federal Reserve monetary policy and aggregate credit conditions are not driven by any single industry's restructuring needs. Industry-level economic shocks are sufficiently idiosyncratic to identify industry-specific effects separately from aggregate time trends."
+    },
+    "key_magnitudes": {
+      "wave_formation_interaction": "Shock × liquidity interaction marginal effect: approximately +15–20 percentage point increase in industry wave probability when both conditions hold simultaneously",
+      "shock_only": "Industry economic shock alone does not reliably predict merger waves; marginal effect is small and often insignificant",
+      "liquidity_only": "High aggregate liquidity alone does not predict industry merger waves; effect insignificant in the absence of a shock",
+      "car_wave_discount": "In-wave acquirer 3-day CAR is approximately 0.7–0.9% lower than out-of-wave deals in the same industry (adverse selection in wave timing)"
+    },
+    "robustness_notes_detail": "Results hold across decade sub-samples (1980s vs. 1990s). Deregulation events (banking, utilities, telecommunications, transportation) used as plausibly exogenous industry shocks confirm the joint necessity result. The liquidity channel is specifically tied to aggregate credit conditions (debt market), not equity market overvaluation alone. Authors rule out a pure time-trend explanation by showing that cross-industry variation in shock incidence drives heterogeneity in wave formation even in the same aggregate liquidity environment."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_116",
+  "title": "The Elite Illusion: Achievement Effects at Boston and New York Exam Schools",
+  "authors": "Abdulkadiroglu, Angrist & Pathak",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3982/ecta10266",
+    "title": "The Elite Illusion: Achievement Effects at Boston and New York Exam Schools",
+    "year": 2014,
+    "journal": "Econometrica",
+    "citations": 332
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist",
+      "pathak"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "ecma",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 332,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

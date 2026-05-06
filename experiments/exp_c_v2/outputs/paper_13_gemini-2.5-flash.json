@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_13",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:29:41.470539",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 746,
+    "output_tokens": 163,
+    "content": "The following is a strict adherence to the Research Integrity by Design (RID) protocol.\n\n---\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nOur primary identification strategy for whether industry merger waves require both an industry-level economic shock and sufficient aggregate capital liquidity relies on exploiting cross-sectional variation in industry shocks and time-series variation in aggregate capital liquidity. We will use a panel data approach (industry-year) and hypothesize that the *interaction* between these two factors is the key driver of merger wave occurrence. Specifically, we will examine if industries experiencing economic shocks are more likely to enter a merger wave *only when* aggregate capital liquidity is high. Neither factor in isolation is expected to be sufficient. For the second part of the research question (announcement returns), we",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": null,
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Cross-industry probit analysis of merger wave formation combined with event study of announcement returns for in-wave versus out-of-wave deals — the probit model uses industry-year panel data with industry economic shock indicators and aggregate capital liquidity as the key predictors of wave onset; the event study component examines whether in-wave deal CARs differ from comparable out-of-wave deals, using deal announcement dates as events",
+    "key_variables": {
+      "treatment": "interaction of industry-level economic shock indicator AND aggregate capital liquidity (credit conditions); binary indicator for in-wave vs. out-of-wave deal timing in the event study component",
+      "control": "industries with shocks but insufficient capital liquidity (no wave); industries with high liquidity but no shocks (no wave); out-of-wave deals in same industry for announcement return comparison",
+      "outcome": "binary industry merger wave indicator (probit model); acquirer 3-day announcement CAR [-1, +1] for in-wave vs. out-of-wave deals",
+      "time_period": "1981–2000, covering multiple wave cycles across Fama-French 48 industries"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Industry merger waves require BOTH an economic shock AND sufficient aggregate capital liquidity — the joint interaction is statistically significant and economically large; neither condition alone explains wave formation; in-wave acquirers earn approximately 0.7–0.9% lower announcement CAR than out-of-wave deals in the same industry, consistent with adverse selection in wave timing (lower-quality deals completed when capital is cheap)",
+    "main_effect": "Interaction of shock × liquidity increases industry merger wave probability by approximately 15–20 percentage points; in-wave acquirer CARs are 0.7–0.9% lower than out-of-wave deals controlling for deal and industry characteristics",
+    "key_robustness": [
+      "Alternative wave identification algorithms (varying simulation parameters and window lengths)",
+      "Using plausibly exogenous deregulation events as pure industry shock instruments",
+      "Alternative capital liquidity measures (Baa-Aaa spread, real fed funds rate, market-to-book ratio)",
+      "Sub-wave analysis (1980s LBO wave vs. 1990s strategic wave separately)",
+      "Industry fixed effects in announcement return regressions",
+      "Placebo test with randomly assigned wave timing"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-industry probit (wave formation determinants) + event study of announcement abnormal returns (in-wave vs. out-of-wave deal comparison)",
+      "treatment": "Industry merger wave indicator (constructed from SDC data via simulation test); economic shock indicators (industry asset sales, employment, ROA changes); aggregate credit spread (Federal Reserve data) as continuous liquidity measure",
+      "event_window": "[-1, +1] trading days around M&A announcement date for announcement CAR",
+      "estimation_window": "[-210, -11] trading days before announcement for market model parameters",
+      "sample_period": "1981–2000",
+      "unit_of_observation": "Industry-year (for probit wave formation model); individual acquisition deal (for announcement return analysis)",
+      "key_assumption": "Aggregate capital liquidity (credit spreads, interest rates) is exogenous to industry-specific merger opportunities — i.e., Federal Reserve monetary policy and aggregate credit conditions are not driven by any single industry's restructuring needs. Industry-level economic shocks are sufficiently idiosyncratic to identify industry-specific effects separately from aggregate time trends."
+    },
+    "key_magnitudes": {
+      "wave_formation_interaction": "Shock × liquidity interaction marginal effect: approximately +15–20 percentage point increase in industry wave probability when both conditions hold simultaneously",
+      "shock_only": "Industry economic shock alone does not reliably predict merger waves; marginal effect is small and often insignificant",
+      "liquidity_only": "High aggregate liquidity alone does not predict industry merger waves; effect insignificant in the absence of a shock",
+      "car_wave_discount": "In-wave acquirer 3-day CAR is approximately 0.7–0.9% lower than out-of-wave deals in the same industry (adverse selection in wave timing)"
+    },
+    "robustness_notes_detail": "Results hold across decade sub-samples (1980s vs. 1990s). Deregulation events (banking, utilities, telecommunications, transportation) used as plausibly exogenous industry shocks confirm the joint necessity result. The liquidity channel is specifically tied to aggregate credit conditions (debt market), not equity market overvaluation alone. Authors rule out a pure time-trend explanation by showing that cross-industry variation in shock incidence drives heterogeneity in wave formation even in the same aggregate liquidity environment."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_65",
+  "title": "The Value of Bank Durability: Borrowers as Bank Stakeholders",
+  "authors": "Slovin, Sushka & Polonchek",
+  "year": null,
+  "journal": "JF",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.1993.tb04708.x",
+    "title": "The Value of Bank Durability: Borrowers as Bank Stakeholders",
+    "year": 1993,
+    "journal": "The Journal of Finance",
+    "citations": 415
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "slovin",
+      "polonchek",
+      "sushka"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 415,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

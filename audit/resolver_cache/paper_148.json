@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_148",
+  "title": "The Miracle of Microfinance? Evidence from a Randomized Evaluation",
+  "authors": "Banerjee, Duflo, Glennerster & Kinnan",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.20130533",
+    "title": "The Miracle of Microfinance? Evidence from a Randomized Evaluation",
+    "year": 2015,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 1442
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "duflo",
+      "glennerster",
+      "banerjee",
+      "kinnan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1442,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

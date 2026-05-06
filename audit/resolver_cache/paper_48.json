@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_48",
+  "title": "Estimates of the Economic Return to Schooling from a New Sample of Twins",
+  "authors": "Krueger & Ashenfelter",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w4143",
+    "title": "Estimates of the Economic Return to Schooling from a New Sample of Twins",
+    "year": 1992,
+    "journal": "National Bureau of Economic Research",
+    "citations": 625
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "krueger",
+      "ashenfelter"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 625,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

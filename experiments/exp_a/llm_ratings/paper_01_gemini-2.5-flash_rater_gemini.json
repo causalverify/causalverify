@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies Difference-in-Differences (DID) as the primary identification strategy, matching the ground truth. It accurately describes the key elements: the Lehman shock as exogenous, pre-crisis wholesale funding as the basis for treatment/control, and the use of panel data with fixed effects. Augmenting with an Event Study is also sound practice for DID. However, the provided text focuses solely on strategy and does not state the direction of the effect.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_01",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:13:40.367271+00:00"
+}

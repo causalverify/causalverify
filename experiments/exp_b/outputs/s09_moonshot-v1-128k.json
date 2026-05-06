@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s09",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Heterogeneous treatment effects by firm size in DID",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:24:47.443242",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 466,
+    "output_tokens": 574,
+    "content": "## 1. Identification Strategy\nWe will use a Difference-in-Differences (DID) approach to identify the causal effect of the corporate tax cut on investment for large vs. small firms. The DID method is appropriate here because we have a treatment group (large firms) and a control group (small firms), and we can observe their investment behavior before and after the tax cut. The key assumption in DID is that, in the absence of the treatment, the treatment and control groups would have followed the same trend.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s09_data.csv\")\n\n# Convert the data to a panel data frame\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Estimate the DID model with interaction term\nmodel <- plm(y ~ post * treated * size_group, data = pdata, model = \"within\")\n\n# Print the summary of the model\nsummary(model)\n\n# Calculate the robust standard errors\ncoeftest(model, vcovHC(model, type = \"HC1\"))\n\n# Plot the investment over time for large and small firms\nplot(pdata$period, pdata$y[pdata$treated == 1 & pdata$size_group == \"large\"], type = \"l\", col = \"blue\", xlab = \"Period\", ylab = \"Log Investment\", ylim = range(pdata$y), main = \"Investment Over Time\")\nlines(pdata$period, pdata$y[pdata$treated == 1 & pdata$size_group == \"small\"], type = \"l\", col = \"red\")\nlegend(\"topright\", legend = c(\"Large Firms\", \"Small Firms\"), col = c(\"blue\", \"red\"), lty = 1)\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the interaction term `post * treated * size_group` to be positive and statistically significant for large firms, indicating that the tax cut had a larger positive effect on investment for large firms compared to small firms. The magnitude of the effect will depend on the specific data, but we expect it to be larger for large firms due to the larger tax cut they received. The coefficients on the other interaction terms (e.g., `post * treated`, `post * size_group`, `treated * size_group`) will help us understand the differential effects of the tax cut on investment for large and small firms, as well as any pre-existing differences in investment trends between the two groups.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with heterogeneous effects — triple-diff or interaction terms for size groups",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Large firms increase investment more than small firms post tax cut",
+    "main_effect": "28% higher investment growth for large firms"
+  }
+}

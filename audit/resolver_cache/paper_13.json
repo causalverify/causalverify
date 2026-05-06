@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_13",
+  "title": "What Drives Merger Waves?",
+  "authors": "Harford",
+  "year": null,
+  "journal": "Journal of Financial Economics",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2004.05.004",
+    "title": "What drives merger waves?",
+    "year": 2005,
+    "journal": "Journal of Financial Economics",
+    "citations": 1556
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "harford"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1556,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

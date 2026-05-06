@@ -1,0 +1,61 @@
+{
+  "ts": "2026-04-27T09:41:55",
+  "total_cost_usd": 0.001589,
+  "results": [
+    {
+      "name": "anthropic_opus_47",
+      "provider": "Anthropic",
+      "model": "claude-opus-4-7",
+      "ok": true,
+      "input_tokens": 21,
+      "output_tokens": 6,
+      "cost_usd": 0.000765,
+      "latency_s": 1.81,
+      "reply": "ok"
+    },
+    {
+      "name": "openai_o3",
+      "provider": "OpenAI",
+      "model": "o3",
+      "ok": true,
+      "input_tokens": 13,
+      "output_tokens": 19,
+      "cost_usd": 0.000178,
+      "latency_s": 2.51,
+      "reply": "ok"
+    },
+    {
+      "name": "openai_gpt5",
+      "provider": "OpenAI",
+      "model": "gpt-5",
+      "ok": true,
+      "input_tokens": 13,
+      "output_tokens": 74,
+      "cost_usd": 0.000618,
+      "latency_s": 4.13,
+      "reply": "ok"
+    },
+    {
+      "name": "kimi",
+      "provider": "Moonshot",
+      "model": "moonshot-v1-128k",
+      "ok": true,
+      "input_tokens": 14,
+      "output_tokens": 2,
+      "cost_usd": 2.7e-05,
+      "latency_s": 1.59,
+      "reply": "Ok"
+    },
+    {
+      "name": "gemini",
+      "provider": "Google",
+      "model": "gemini-2.5-flash",
+      "ok": true,
+      "input_tokens": 8,
+      "output_tokens": 1,
+      "cost_usd": 1e-06,
+      "latency_s": 0.9,
+      "reply": "ok"
+    }
+  ]
+}

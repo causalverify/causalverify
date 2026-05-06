@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_112",
+  "title": "The Effects of School Spending on Educational and Economic Outcomes",
+  "authors": "Jackson, Johnson & Persico",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/qje/qjv036",
+    "title": "The Effects of School Spending on Educational and Economic Outcomes: Evidence from School Finance Reforms *",
+    "year": 2015,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 773
+  },
+  "checks": {
+    "title_jaccard": 0.7143,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "persico",
+      "jackson",
+      "johnson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 773,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_223",
+  "title": "The Fundamental Law of Road Congestion: Evidence from US Cities",
+  "authors": "Duranton & Turner",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.101.6.2616",
+    "title": "The Fundamental Law of Road Congestion: Evidence from US Cities",
+    "year": 2011,
+    "journal": "American Economic Review",
+    "citations": 7
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "turner",
+      "duranton"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 7,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

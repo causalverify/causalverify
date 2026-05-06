@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s75",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Upwind Pollution on Infant Mortality",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:00:15.999526",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 477,
+    "output_tokens": 922,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with wind direction (z) as an instrument for pollution exposure (x). The key assumptions are: (1) Relevance: wind direction affects pollution exposure, and (2) Exclusion restriction: wind direction only affects infant mortality through its effect on pollution exposure, not through other channels. This approach helps address endogeneity concerns where pollution exposure might be correlated with unobserved factors that also affect infant mortality.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s75_data.csv\")\n\n# Check data structure\nprint(\"Data summary:\")\nprint(summary(data))\n\n# First stage: Check instrument relevance\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"First Stage Results:\")\nprint(summary(first_stage))\n\n# Check F-statistic for weak instrument test\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"First-stage F-statistic:\", round(f_stat, 3)))\n\n# OLS estimation (potentially biased)\nols_model <- lm(y ~ x + controls, data = data)\nprint(\"OLS Results (potentially biased):\")\nprint(summary(ols_model))\n\n# IV estimation using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"IV (2SLS) Results:\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coefficient <- coef(iv_model)[\"x\"]\nols_coefficient <- coef(ols_model)[\"x\"]\n\nprint(\"=\" * 50)\nprint(\"KEY RESULTS:\")\nprint(paste(\"OLS coefficient on pollution:\", round(ols_coefficient, 4)))\nprint(paste(\"IV coefficient on pollution:\", round(iv_coefficient, 4)))\nprint(paste(\"Difference (IV - OLS):\", round(iv_coefficient - ols_coefficient, 4)))\n\n# Robustness checks\nprint(\"\\nROBUSTNESS CHECKS:\")\n\n# 1. Test for endogeneity (Hausman test)\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"Hausman test for endogeneity:\")\nprint(hausman_test$diagnostics)\n\n# 2. Reduced form estimation\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"Reduced Form Results:\")\nprint(summary(reduced_form))\n\n# 3. Check instrument strength\nif(f_stat > 10) {\n  print(\"Instrument appears strong (F > 10)\")\n} else {\n  print(\"WARNING: Weak instrument concern (F < 10)\")\n}\n\n# 4. Alternative specification without controls\niv_no_controls <- ivreg(y ~ x | z, data = data)\nprint(\"IV without controls:\")\nprint(paste(\"IV coefficient (no controls):\", round(coef(iv_no_controls)[\"x\"], 4)))\n\nprint(\"=\" * 50)\nprint(paste(\"FINAL CAUSAL ESTIMATE: \", round(iv_coefficient, 4)))\n```\n\n## 3. Expected Findings\nI expect a positive coefficient on pollution exposure (x), indicating that higher pollution levels increase infant mortality rates. The magnitude should be economically meaningful, likely in the range of 0.3-0.8, suggesting that a one-unit increase in pollution exposure increases infant mortality rates by this amount. The IV estimate may be larger than the OLS estimate if there's measurement error in pollution exposure or if areas with better healthcare (lower baseline mortality) tend to have higher measured pollution due to industrial activity, creating downward bias in OLS. The wind direction instrument should be relevant (first-stage F-stat > 10) since wind patterns directly affect pollution dispersion.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Wind direction is used as an instrument for pollution exposure.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Upwind pollution exposure is found to significantly increase infant mortality.",
+    "main_effect": "0.25"
+  }
+}

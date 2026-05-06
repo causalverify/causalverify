@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s72",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "The Impact of Education on Chronic Disease Risk",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:59:23.237526",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 491,
+    "output_tokens": 951,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with quarter-of-birth as an instrument for education. The key assumptions are: (1) Relevance: quarter-of-birth affects educational attainment (first stage), (2) Exclusion restriction: quarter-of-birth only affects chronic disease risk through education, not directly, and (3) Independence: quarter-of-birth is as-good-as-randomly assigned. This addresses endogeneity concerns where unobserved factors (ability, family background) might affect both education and health outcomes.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s72_data.csv\")\n\n# First Stage: Check instrument relevance\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"=== FIRST STAGE RESULTS ===\")\nprint(summary(first_stage))\nprint(paste(\"F-statistic for instrument:\", \n            round(summary(first_stage)$fstatistic[1], 3)))\n\n# Check if F-stat > 10 (weak instrument test)\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"Weak instrument test (F > 10):\", f_stat > 10))\n\n# Reduced Form: Direct effect of instrument on outcome\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\n=== REDUCED FORM RESULTS ===\")\nprint(summary(reduced_form))\n\n# IV Estimation using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\n=== IV (2SLS) RESULTS ===\")\nprint(summary(iv_model, diagnostics = TRUE))\n\n# Extract main coefficient\niv_coef <- coef(iv_model)[\"x\"]\nprint(paste(\"\\n=== MAIN RESULT ===\"))\nprint(paste(\"IV Estimate: One additional year of education reduces chronic disease risk by\", \n            round(abs(iv_coef), 4), \"units\"))\n\n# Robust standard errors\nrobust_se <- sqrt(diag(vcovHC(iv_model, type = \"HC1\")))\nprint(paste(\"Robust SE for education coefficient:\", round(robust_se[\"x\"], 4)))\n\n# Compare with OLS (biased estimate)\nols_model <- lm(y ~ x + controls, data = data)\nols_coef <- coef(ols_model)[\"x\"]\nprint(paste(\"OLS Estimate (for comparison):\", round(ols_coef, 4)))\nprint(paste(\"Difference (IV - OLS):\", round(iv_coef - ols_coef, 4)))\n\n# Robustness: Alternative specification without controls\niv_no_controls <- ivreg(y ~ x | z, data = data)\niv_coef_no_controls <- coef(iv_no_controls)[\"x\"]\nprint(paste(\"IV without controls:\", round(iv_coef_no_controls, 4)))\n\n# Test for endogeneity (Hausman test)\nhausman_test <- summary(iv_model, diagnostics = TRUE)$diagnostics\nprint(\"\\n=== ROBUSTNESS CHECKS ===\")\nprint(\"Hausman Test for Endogeneity:\")\nprint(hausman_test[\"Wu-Hausman\",])\n```\n\n## 3. Expected Findings\nI expect a negative coefficient (around -0.3 to -0.8), indicating that additional education reduces chronic disease risk. The IV estimate should be larger in magnitude than OLS if there's positive selection bias (healthier individuals getting more education). Education likely improves health through better health knowledge, lifestyle choices, access to healthcare, and higher income. The quarter-of-birth instrument exploits compulsory schooling laws and age cutoffs that create quasi-random variation in educational attainment.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Quarter-of-birth serves as an instrument for education.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher educational attainment significantly reduces the risk of chronic diseases.",
+    "main_effect": "-0.4"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_168",
+  "title": "The Economic Impact of Hurricane Katrina on its Victims: Evidence from Individual Tax Returns",
+  "authors": "Deryugina, Kawano & Levitt",
+  "year": null,
+  "journal": "JPublE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w20713",
+    "title": "The Economic Impact of Hurricane Katrina on its Victims: Evidence from Individual Tax Returns",
+    "year": 2014,
+    "journal": "National Bureau of Economic Research",
+    "citations": 173
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "deryugina",
+      "levitt",
+      "kawano"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpuble",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 173,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

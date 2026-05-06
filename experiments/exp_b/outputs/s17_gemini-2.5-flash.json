@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s17",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Surprise regulatory fine on bank reputation and stock value",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:19:46.783169",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 553,
+    "output_tokens": 162,
+    "content": "## 1. Identification Strategy\n\nThe research question, \"Does a surprise regulatory fine announcement generate negative abnormal returns beyond the direct financial cost?\", calls for an **Event Study**.\n\n**Why Event Study?**\nAn event study is the most appropriate causal method for analyzing the impact of a specific, clearly defined event (the surprise regulatory fine announcement) on financial asset prices (bank stock values). It allows us to isolate the market's reaction to the event by measuring abnormal returns around the announcement date. The goal is to determine if the stock price movement deviates from what would be expected in the absence of the event.\n\n**Key Assumptions:**\n1.  **Market Efficiency:** The market rapidly and unbiasedly incorporates new information into stock prices. This means any surprise information contained in the fine announcement should be",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with CAR decomposition: financial cost vs. reputational component",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "CAR exceeds fine/mktcap ratio, confirming reputational damage beyond monetary penalty",
+    "main_effect": "CAR ≈ −3.5%; reputational component ≈ −1.5% above direct cost"
+  }
+}

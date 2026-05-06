@@ -1,0 +1,86 @@
+{
+  "paper_id": "paper_56",
+  "source": "Quarterly Journal of Economics, 2004",
+  "authors": "Chattopadhyay & Duflo",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Women as Policy Makers: Evidence from a Randomized Policy Experiment in India",
+  "doi": "10.1162/0033553041502153",
+  "volume": 119,
+  "issue": 4,
+  "pages": "1409-1443",
+  "domain": "development",
+  "research_question": "Does the gender of local political leaders causally affect the types of public goods and policy decisions made by local governments? Specifically, do female leaders allocate public resources differently than male leaders, in ways that better reflect women's expressed preferences?",
+  "data_description": "The authors collected primary survey data on 265 Village Councils (Gram Panchayats, GPs) across two Indian districts: 161 GPs in Birbhum, West Bengal (surveyed in summer 2000) and 100 hamlets in Udaipur, Rajasthan (surveyed August–December 2002). In West Bengal, data were gathered through interviews with GP Pradhans (chiefs) about their backgrounds and GP activities since the May 1998 election, plus village-level surveys in three villages per GP including participatory resource mapping of infrastructure built or repaired since 1998. Data on formal complaints/requests filed by men and women in the prior six months, attendance at village meetings (Gram Samsad), and Pradhan characteristics (education, assets, political experience) were collected. Outcomes include investments in drinking water, roads, schools, irrigation, and welfare programs. 1991 Census data provide pre-policy village characteristics. Reference period for investments is approximately two years.",
+  "institutional_context": "India's 1992 73rd Constitutional Amendment devolved authority over local public goods provision to three-tiered Panchayats and mandated that one-third of Pradhan (council chief) positions be reserved for women. Pradhans control allocation of state funds across infrastructure (water, roads, buildings), welfare programs, and GP operations. Crucially, the assignment of GPs to female-reserved status follows a strict rotation rule: GPs within a district are ordered by their pre-existing serial legislative number, and every third GP starting from the first is reserved for a woman in a given election cycle, with rotation in subsequent elections. West Bengal implemented Pradhan-level reservation in 1998 within a long-established Panchayat system dating to 1978; Rajasthan implemented it from 1995 with a much shorter democratic local-government history. The rotation also creates exogenous variation in incumbency, re-election eligibility, and SC/ST reservation status.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.09,
+      "unit": "fractional increase in number of drinking water facilities in reserved GPs (West Bengal)",
+      "interpretation": "GPs randomly reserved for female heads have approximately 9% more drinking water facilities than unreserved GPs, indicating that female political representation directly affects public goods investment priorities"
+    },
+    "secondary_estimate": {
+      "value": 2.5,
+      "unit": "ratio of women's to men's complaints about water (mechanism evidence)",
+      "interpretation": "Women file 2.5 times more complaints about drinking water than men at GP meetings, and female leaders respond by investing more in water infrastructure — establishing the preference-responsiveness mechanism"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 4-6 in Chattopadhyay & Duflo (2004)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Replication data available from Esther Duflo's MIT website",
+      "J-PAL Dataverse (replication datasets — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Full replication data is publicly available. GP-level reservation data can also be obtained from state election commissions.",
+    "replicability": "high — replication data publicly available",
+    "public_proxy_available": true,
+    "replication_tier": "full (replication data and code available from author website and J-PAL — free)",
+    "data_limitations": "Cross-sectional survey limits causal claims about dynamics (how quickly investment patterns change). Two Indian states may not represent all of India. Reservation status changes each election cycle, so long-run cumulative effects are not captured. GP head may not have full budget authority (state government transfers are a major funding source).",
+    "public_data_sources_detail": [
+      "Esther Duflo's MIT website (replication data — free)",
+      "J-PAL Dataverse (datasets — free with registration)",
+      "Indian Election Commission (reservation status data — public records)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Randomized natural experiment with DID structure — random reservation of GP head positions for women (treatment) vs. unreserved GPs (control); comparison of public goods provision in reserved vs. unreserved villages, with pre-reservation characteristics as controls",
+    "key_variables": {
+      "treatment": "GP head position reserved for women (randomly assigned by state lottery for each election cycle)",
+      "control": "unreserved GPs (men and women can compete for head position; typically won by men)",
+      "outcome": "number of drinking water facilities, road quality, number of formal complaints about water vs. irrigation, investment priorities",
+      "time_period": "Post-reservation election cycle (late 1990s-early 2000s); public goods measured at survey date"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Female leaders invest significantly more in public goods that women value. In West Bengal, reserved GPs have 9% more drinking water facilities and better road infrastructure; in Rajasthan, reserved GPs have more drinking water projects. The pattern of investment aligns with the pattern of complaints: women complain more about drinking water (their traditional responsibility), and female leaders respond by investing more in water infrastructure. Female leaders do not invest more overall — they reallocate spending toward women's priorities.",
+    "main_effect": "Reserved (female-led) GPs invest significantly more in drinking water facilities (+9% in West Bengal) and roads; investment pattern matches gender-specific complaint patterns",
+    "key_robustness": [
+      "Balance tests: reserved and unreserved GPs are similar on pre-treatment characteristics",
+      "Separate analysis by state (West Bengal vs. Rajasthan)",
+      "Controlling for GP size, population, caste composition, distance to district headquarters",
+      "Using complaint data as mechanism evidence (female-led GPs respond to women's complaints)",
+      "Multiple public goods outcomes (water, roads, irrigation, education)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-sectional comparison of randomly reserved vs. unreserved GPs, equivalent to a DID with randomized treatment; OLS regression of public goods on reservation status with controls",
+      "treatment": "Random reservation of GP head position for women (binary, lottery-assigned)",
+      "event_window": "One election cycle (approximately 5 years of GP leadership)",
+      "estimation_window": "Cross-sectional survey of public goods at a single point during the reservation cycle",
+      "sample_period": "Late 1990s–early 2000s (post-73rd Amendment implementation)",
+      "unit_of_observation": "Gram Panchayat (village council) — 265 in West Bengal, 100 in Rajasthan",
+      "key_assumption": "Random lottery assignment of reservation ensures that reserved and unreserved GPs are comparable in all pre-treatment characteristics. The reservation affects public goods only through the gender of the elected leader (not through other channels such as changed voter behavior in reserved GPs)."
+    },
+    "key_magnitudes": {
+      "water_facilities_wb": "+9% more drinking water facilities in reserved GPs in West Bengal",
+      "water_complaints": "Women file 2-3x more complaints about water than men; female leaders invest correspondingly more in water",
+      "road_quality": "Significantly better road conditions in reserved GPs in West Bengal",
+      "no_total_increase": "Total GP investment is similar in reserved and unreserved GPs — the effect is reallocation, not expansion"
+    },
+    "robustness_notes_detail": "Balance tests confirm randomization is successful: reserved and unreserved GPs are statistically indistinguishable on population, caste composition, literacy, distance to nearest town, and prior public goods levels. The pattern differs between states (West Bengal: water and roads; Rajasthan: water only), reflecting different baseline provision levels and state-specific preferences. The complaint data provides a clean mechanism: women's complaints predict female leaders' investment priorities, establishing that female leaders are responsive to women constituents' expressed needs."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 95606,
+  "phase1_source_version": "v2primeprime_full_text"
+}

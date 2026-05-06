@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s89",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Credit Score Threshold on Loan Default Rates",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:55.655506",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 422,
+    "output_tokens": 553,
+    "content": "## 1. Identification Strategy\n\nFor this research scenario, a Regression Discontinuity Design (RDD) is the most appropriate causal method. The RDD exploits the fact that individuals with credit scores just above the threshold are treated (i.e., approved for loans), while those just below the threshold are not. The key assumption is that there are no systematic differences in the characteristics of individuals just above and just below the threshold, except for their treatment status. This assumption is known as the continuity assumption.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s89_data.csv\")\n\n# Run the RDD analysis\n# We will use the rdrobust package to estimate the causal effect of the credit score threshold on loan default rates\n# The running_var is the running variable, treated is the binary treatment variable, and y is the outcome variable\nrdd_result <- rdrobust(y ~ running_var | treated, data = data, c = 0.5, h = 0.05)\n\n# Print the estimated causal effect\nprint(rdd_result$estimate)\n\n# Basic robustness checks\n# We will check the sensitivity of the results to different bandwidths\nrdd_result_wide <- rdrobust(y ~ running_var | treated, data = data, c = 0.5, h = 0.1)\nrdd_result_narrow <- rdrobust(y ~ running_var | treated, data = data, c = 0.5, h = 0.01)\n\n# Print the results for different bandwidths\nprint(rdd_result_wide$estimate)\nprint(rdd_result_narrow$estimate)\n\n# Plot the data and the regression discontinuity\nggplot(data, aes(x = running_var, y = y, color = as.factor(treated))) +\n  geom_point() +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"Regression Discontinuity Plot\", x = \"Credit Score\", y = \"Loan Default Rate\")\n```\n\n## 3. Expected Findings\n\nI expect the estimated causal effect to be positive, indicating that individuals with credit scores above the threshold are more likely to default on their loans compared to those just below the threshold. The magnitude of the effect will depend on the specific data and the chosen bandwidth. The robustness checks should show that the results are not sensitive to small changes in the bandwidth, providing confidence in the estimated causal effect.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the discontinuity at the credit score threshold to identify the causal effect.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the credit score threshold increases the default rate.",
+    "main_effect": "Approximately 0.22 increase in default rate."
+  }
+}

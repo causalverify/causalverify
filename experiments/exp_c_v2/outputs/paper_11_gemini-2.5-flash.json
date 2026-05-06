@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:29:01.721873",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 765,
+    "output_tokens": 161,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nOur strategy is based on \"identification through observables\" within a cross-sectional framework. We hypothesize that variation in corporate governance quality, specifically the degree of managerial entrenchment as measured by antitakeover provisions (G-index and E-index), causally influences managerial decision-making in acquisitions, thereby affecting acquirer announcement-period abnormal returns. We will use multivariate OLS regression to control for a comprehensive set of observable acquirer firm characteristics, deal characteristics, and year fixed effects. This aims to isolate the effect of governance from other factors that might simultaneously determine firm value and acquisition outcomes. We assume that, conditional on these controls, the remaining variation in governance quality is quasi-exogenous with respect to the",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with cross-sectional OLS regression — events are M&A announcements; treatment is governance quality (G-index or E-index measured at the most recent IRRC publication date before the deal); outcome is acquirer 5-day cumulative abnormal return (CAR) over [-2, +2] window around announcement",
+    "key_variables": {
+      "treatment": "G-index (antitakeover provisions count, 0–24) or E-index (entrenchment index, 0–6), measured at the acquirer level using the last available IRRC snapshot before deal announcement",
+      "control": "acquirers with low G-index (strong governance, few antitakeover provisions) as the reference group",
+      "outcome": "acquirer 5-day CAR over [-2, +2] event window; also acquirer 3-day CAR [-1, +1] as robustness",
+      "time_period": "1990–2003 acquisition sample"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Acquirers with more antitakeover provisions (higher G-index or E-index) earn significantly lower announcement-period abnormal returns; one SD increase in G-index (~4 provisions) reduces acquirer CAR by approximately 0.44%; entrenched managers destroy acquirer value through agency-cost-driven acquisitions",
+    "main_effect": "Top-quartile G-index acquirers underperform bottom-quartile by approximately 1.5% in 5-day announcement CAR; E-index negative effect is larger on a per-provision basis",
+    "key_robustness": [
+      "Alternative event windows [-1, +1] and [-3, +3]",
+      "Controlling for deal and firm characteristics (size, leverage, Q, cash, payment method)",
+      "Sub-sample analysis by payment method (cash vs. stock deals)",
+      "Alternative governance measures (E-index, individual provision dummies)",
+      "Excluding financial crisis years and financial-industry acquirers"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with market model for abnormal returns + cross-sectional OLS regression of CARs on governance index and deal/firm controls",
+      "treatment": "Continuous governance index (G-index or E-index) measured at the acquirer before the deal, capturing degree of managerial entrenchment and insulation from market discipline",
+      "event_window": "[-2, +2] trading days around M&A announcement date (primary); [-1, +1] as robustness",
+      "estimation_window": "[-210, -11] trading days before announcement for market model parameter estimation",
+      "sample_period": "1990–2003",
+      "unit_of_observation": "Individual acquisition deal at the acquirer level",
+      "key_assumption": "Governance quality (G-index) is predetermined at the time of deal announcement and reflects agency costs rather than anticipatory endogeneity; firms do not adopt antitakeover provisions specifically in anticipation of making acquisitions"
+    },
+    "key_magnitudes": {
+      "per_provision_effect": "Each additional antitakeover provision (one unit increase in G-index) reduces acquirer 5-day CAR by approximately 0.11 percentage points",
+      "high_vs_low_quartile": "Top-quartile G-index acquirers underperform bottom-quartile by approximately 1.5% in 5-day CAR",
+      "entrenchment_index": "E-index has larger per-provision effect; each additional entrenchment provision reduces CAR by approximately 0.3%"
+    },
+    "robustness_notes_detail": "Results hold across deal types (tender offers, mergers, public vs. private targets), payment methods, and time sub-periods. Governance effect is not driven by outliers or financial firms. Authors control for Tobin's Q (overinvestment proxy), managerial ownership (alignment incentives), and board characteristics (independence). The effect persists after controlling for the post-SOX period."
+  }
+}

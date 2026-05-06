@@ -1,0 +1,90 @@
+{
+  "paper_id": "paper_11",
+  "source": "Journal of Finance, 2007",
+  "authors": "Masulis, Wang & Xie",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "research_question": "Do corporate governance mechanisms—particularly a firm's vulnerability to the market for corporate control via antitakeover provisions, along with product market competition and board leadership structure—affect the profitability of acquisitions undertaken by the firm? Specifically, does greater managerial insulation from disciplinary takeover threats lead managers to pursue acquisitions that destroy shareholder value?",
+  "data_description": "The sample comprises 3,333 completed U.S. acquisitions announced between January 1, 1990 and December 31, 2003, undertaken by 1,268 acquiring firms. Acquisitions are drawn from SDC's U.S. Mergers and Acquisitions database, with deal value exceeding $1 million and at least 1% of acquirer market equity, and where acquirers move from less than 50% to 100% target ownership. Acquirer financial data come from Compustat, stock returns from CRSP, antitakeover provision data from six IRRC volumes (1990, 1993, 1995, 1998, 2000, 2002) covering 24 provisions used to construct GIM, BCF, and staggered-board indices, executive compensation/ownership from ExecuComp, institutional ownership data (BLOCK, public pension fund holdings), and board characteristics (CEO/Chairman duality, size, independence) from IRRC (1996–2001). The unit of observation is an acquisition announcement.",
+  "institutional_context": "The setting is the U.S. market for corporate control during the 1990s and early 2000s, a period of intense merger activity culminating in post-scandal governance reforms such as Sarbanes-Oxley (2002). U.S. public firms vary widely in the antitakeover provisions embedded in their charters, bylaws, and state law (e.g., staggered boards, poison pills, supermajority requirements, golden parachutes). These provisions raise the cost and reduce the probability of hostile takeovers, weakening the disciplinary role of the takeover market in deterring value-destroying managerial behavior. Institutional investors became increasingly resistant to new defensive provisions during the 1990s, so most defenses in place during the sample were adopted earlier. Acquisitions—large, visible investment decisions where manager-shareholder conflicts are acute—offer a natural setting for assessing how variation across firms in takeover vulnerability, product market competition, CEO/Chairman duality, and board structure shapes managerial investment quality.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.11,
+      "unit": "percentage point per unit of G-index in 5-day CAR regression",
+      "interpretation": "Each additional antitakeover provision reduces acquirer 5-day announcement CAR by approximately 0.11 percentage points; at mean G-index SD of ~4 provisions, implies ~0.44% performance gap per SD"
+    },
+    "secondary_estimate": {
+      "value": -1.5,
+      "unit": "percentage points (5-day CAR difference between quartile extremes)",
+      "interpretation": "Top-quartile G-index acquirers earn approximately 1.5% lower 5-day CAR compared to bottom-quartile G-index acquirers"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Table 3 in Masulis, Wang & Xie (2007)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Bebchuk E-index data (publicly available on Bebchuk's Harvard Law School website — free)",
+      "SEC EDGAR 8-K filings (M&A announcements for public acquirers — free)"
+    ],
+    "proprietary_sources": [
+      "IRRC/ISS governance data for G-index construction (requires commercial license from MSCI/ISS)",
+      "SDC Platinum M&A database (Thomson Reuters/Refinitiv, proprietary)",
+      "CRSP for daily acquirer stock returns (WRDS subscription)"
+    ],
+    "proxy_strategy": "E-index is available free from Bebchuk's Harvard website and covers the same 1990-2003 period. G-index requires IRRC data. CRSP returns proxied with Yahoo Finance for large-cap acquirers. M&A data partially from EDGAR 8-K filings and Bloomberg. Partial replication focusing on E-index (free) is feasible.",
+    "replicability": "low — G-index requires proprietary IRRC data; E-index (free) provides partial governance measure covering ~6 of 24 provisions",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (E-index free from Bebchuk website; stock returns via Yahoo Finance; deal data via EDGAR — partial replication feasible with reduced governance measure)",
+    "data_limitations": "The G-index requires IRRC publications from 1990–2004, available only through MSCI/ISS under commercial license. The E-index (Bebchuk) is publicly available and captures ~70-80% of the conceptual content of G-index for research purposes. Main identification (governance → acquisition returns) is fully replicable with E-index proxy.",
+    "public_data_sources_detail": [
+      "Bebchuk E-index data (free, Harvard Law School website, covers 1990–2006)",
+      "SEC EDGAR 8-K filings (M&A deal announcements for public acquirers — free)",
+      "yfinance (daily stock returns around announcement dates — free)",
+      "Compustat via WRDS (requires subscription) or approximated from 10-K annual reports",
+      "FRED (macro controls including interest rates — free)"
+    ]
+  },
+  "title": "Corporate Governance and Acquirer Returns",
+  "doi": "10.1111/j.1540-6261.2007.01259.x",
+  "volume": 62,
+  "issue": 4,
+  "pages": "1851-1889",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study with cross-sectional OLS regression — events are M&A announcements; treatment is governance quality (G-index or E-index measured at the most recent IRRC publication date before the deal); outcome is acquirer 5-day cumulative abnormal return (CAR) over [-2, +2] window around announcement",
+    "key_variables": {
+      "treatment": "G-index (antitakeover provisions count, 0–24) or E-index (entrenchment index, 0–6), measured at the acquirer level using the last available IRRC snapshot before deal announcement",
+      "control": "acquirers with low G-index (strong governance, few antitakeover provisions) as the reference group",
+      "outcome": "acquirer 5-day CAR over [-2, +2] event window; also acquirer 3-day CAR [-1, +1] as robustness",
+      "time_period": "1990–2003 acquisition sample"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Acquirers with more antitakeover provisions (higher G-index or E-index) earn significantly lower announcement-period abnormal returns; one SD increase in G-index (~4 provisions) reduces acquirer CAR by approximately 0.44%; entrenched managers destroy acquirer value through agency-cost-driven acquisitions",
+    "main_effect": "Top-quartile G-index acquirers underperform bottom-quartile by approximately 1.5% in 5-day announcement CAR; E-index negative effect is larger on a per-provision basis",
+    "key_robustness": [
+      "Alternative event windows [-1, +1] and [-3, +3]",
+      "Controlling for deal and firm characteristics (size, leverage, Q, cash, payment method)",
+      "Sub-sample analysis by payment method (cash vs. stock deals)",
+      "Alternative governance measures (E-index, individual provision dummies)",
+      "Excluding financial crisis years and financial-industry acquirers"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with market model for abnormal returns + cross-sectional OLS regression of CARs on governance index and deal/firm controls",
+      "treatment": "Continuous governance index (G-index or E-index) measured at the acquirer before the deal, capturing degree of managerial entrenchment and insulation from market discipline",
+      "event_window": "[-2, +2] trading days around M&A announcement date (primary); [-1, +1] as robustness",
+      "estimation_window": "[-210, -11] trading days before announcement for market model parameter estimation",
+      "sample_period": "1990–2003",
+      "unit_of_observation": "Individual acquisition deal at the acquirer level",
+      "key_assumption": "Governance quality (G-index) is predetermined at the time of deal announcement and reflects agency costs rather than anticipatory endogeneity; firms do not adopt antitakeover provisions specifically in anticipation of making acquisitions"
+    },
+    "key_magnitudes": {
+      "per_provision_effect": "Each additional antitakeover provision (one unit increase in G-index) reduces acquirer 5-day CAR by approximately 0.11 percentage points",
+      "high_vs_low_quartile": "Top-quartile G-index acquirers underperform bottom-quartile by approximately 1.5% in 5-day CAR",
+      "entrenchment_index": "E-index has larger per-provision effect; each additional entrenchment provision reduces CAR by approximately 0.3%"
+    },
+    "robustness_notes_detail": "Results hold across deal types (tender offers, mergers, public vs. private targets), payment methods, and time sub-periods. Governance effect is not driven by outliers or financial firms. Authors control for Tobin's Q (overinvestment proxy), managerial ownership (alignment incentives), and board characteristics (independence). The effect persists after controlling for the post-SOX period."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 119339,
+  "phase1_source_version": "v2primeprime_full_text"
+}

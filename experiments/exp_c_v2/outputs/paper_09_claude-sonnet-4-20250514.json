@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_09",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "claude-sonnet-4-20250514",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:20:09.395659",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 728,
+    "output_tokens": 1660,
+    "content": "# RID PROTOCOL FOR SHAREHOLDER GOVERNANCE PROPOSALS\n\n## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:** Regression discontinuity design (RDD) using the 50% majority vote threshold as a cutoff. The running variable is vote share in favor of governance proposals. Treatment is defined as proposals passing (>50% votes).\n\n**Directional Hypothesis:** Shareholder governance proposals that narrowly pass (treatment) will cause POSITIVE effects on firm value compared to those that narrowly fail (control). Specifically:\n- Stock returns will be HIGHER for firms with passed proposals\n- Tobin's Q will be HIGHER for firms with passed proposals\n- Governance quality improvements will be GREATER for firms with passed proposals\n\n## STEP 2 — SPECIFICATION DISCIPLINE\n\nI commit to running EXACTLY these 5 specifications:\n\n1. **Main RDD - Stock Returns:** Local linear regression of cumulative abnormal returns (1-year post-vote) on treatment dummy, using triangular kernel, ±5pp bandwidth around 50% threshold\n\n2. **Main RDD - Tobin's Q:** Local linear regression of change in Tobin's Q (1-year post-vote) on treatment dummy, using triangular kernel, ±5pp bandwidth around 50% threshold  \n\n3. **Robustness - Alternative Bandwidth:** Specification 1 repeated with ±10pp bandwidth\n\n4. **Governance Mechanism:** Local linear regression of governance improvement index (combining board independence, poison pill removal, etc.) on treatment dummy, ±5pp bandwidth\n\n5. **Manipulation Test:** McCrary density test for discontinuity in vote share distribution at 50% threshold\n\n## STEP 3 — FALSIFICATION GATE\n\nI will REJECT my hypothesis if ANY of the following occur:\n- Main stock return effect is NEGATIVE with p < 0.10\n- Main Tobin's Q effect is NEGATIVE with p < 0.10  \n- McCrary density test shows significant manipulation (p < 0.05)\n- Main effects are statistically insignificant (p > 0.10) AND economically tiny (coefficient < 0.01 for returns, < 0.1 for Q)\n\n## STEP 4 — R CODE\n\n```r\nlibrary(rdrobust)\nlibrary(rddensity)\nlibrary(dplyr)\nlibrary(ggplot2)\n\n# Load and prepare data\n# Assuming data frame 'governance_data' with variables:\n# vote_share, stock_return_1yr, tobins_q_change_1yr, governance_index, \n# total_assets, roa, leverage, board_size\n\n# Create treatment variable and centered running variable\ngovernance_data <- governance_data %>%\n  mutate(\n    treatment = ifelse(vote_share > 50, 1, 0),\n    vote_margin = vote_share - 50,\n    # Restrict to main sample\n    main_sample = abs(vote_margin) <= 5\n  )\n\n# Filter main analysis sample\nmain_data <- governance_data %>% filter(main_sample)\n\n# SPECIFICATION 1: Main RDD - Stock Returns\nspec1 <- rdrobust(\n  y = main_data$stock_return_1yr,\n  x = main_data$vote_share,\n  c = 50,\n  kernel = \"triangular\",\n  h = 5,\n  bwselect = \"mserd\"\n)\n\n# SPECIFICATION 2: Main RDD - Tobin's Q  \nspec2 <- rdrobust(\n  y = main_data$tobins_q_change_1yr,\n  x = main_data$vote_share, \n  c = 50,\n  kernel = \"triangular\",\n  h = 5,\n  bwselect = \"mserd\"\n)\n\n# SPECIFICATION 3: Robustness - Alternative Bandwidth\nrobust_data <- governance_data %>% filter(abs(vote_margin) <= 10)\nspec3 <- rdrobust(\n  y = robust_data$stock_return_1yr,\n  x = robust_data$vote_share,\n  c = 50, \n  kernel = \"triangular\",\n  h = 10,\n  bwselect = \"mserd\"\n)\n\n# SPECIFICATION 4: Governance Mechanism\nspec4 <- rdrobust(\n  y = main_data$governance_index,\n  x = main_data$vote_share,\n  c = 50,\n  kernel = \"triangular\", \n  h = 5,\n  bwselect = \"mserd\"\n)\n\n# SPECIFICATION 5: Manipulation Test\nspec5 <- rddensity(\n  X = governance_data$vote_share,\n  c = 50,\n  bwselect = \"diff\"\n)\n\n# Extract and display results\nresults <- list(\n  stock_returns = summary(spec1),\n  tobins_q = summary(spec2), \n  robustness = summary(spec3),\n  governance = summary(spec4),\n  density_test = summary(spec5)\n)\n\n# Print key coefficients and p-values\nprint(\"SPECIFICATION RESULTS:\")\nprint(paste(\"Stock Returns Effect:\", round(spec1$coef[1], 4), \n            \"p-value:\", round(spec1$pv[1], 4)))\nprint(paste(\"Tobin's Q Effect:\", round(spec2$coef[1], 4),\n            \"p-value:\", round(spec2$pv[1], 4)))  \nprint(paste(\"Robustness Check:\", round(spec3$coef[1], 4),\n            \"p-value:\", round(spec3$pv[1], 4)))\nprint(paste(\"Governance Index:\", round(spec4$coef[1], 4), \n            \"p-value:\", round(spec4$pv[1], 4)))\nprint(paste(\"Density Test p-value:\", round(spec5$test$p_jk, 4)))\n```\n\n## STEP 5 — FINDINGS & GATE ASSESSMENT\n\n**Expected Numerical Results:**\n- Stock Returns Effect: +0.035 (3.5 percentage points), p = 0.08\n- Tobin's Q Effect: +0.15, p = 0.06  \n- Robustness Check: +0.028, p = 0.12\n- Governance Index: +0.22, p = 0.04\n- Density Test: p = 0.31 (no manipulation)\n\n**Gate Assessment:** These expected results would NOT trigger my falsification gate because:\n- Stock return effect is POSITIVE (not negative)\n- Tobin's Q effect is POSITIVE (not negative)  \n- Density test shows no significant manipulation (p > 0.05)\n- Main effects are marginally significant (p < 0.10) and economically meaningful\n\n**Conclusion:** The expected results support the hypothesis that narrowly passed shareholder governance proposals improve firm value, with the causal identification appearing valid based on the manipulation test.",
+    "stop_reason": "end_turn"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "RDD — running variable = vote share in favor of governance proposal; cutoff = 50% majority threshold; identification relies on proposals passing by a bare majority being as-good-as-random relative to those failing by a bare majority",
+    "key_variables": {
+      "running_variable": "percentage of votes cast in favor of shareholder governance proposal",
+      "cutoff": "50% (simple majority)",
+      "outcome": "cumulative abnormal stock return in the [0, +1] window around vote announcement; longer-term changes in governance measures",
+      "time_period": "1997–2007, annual meeting dates"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Governance proposals that pass by a narrow margin generate positive abnormal returns of ~1.3% in the announcement window; long-run effects depend on proposal type (binding vs. advisory)",
+    "main_effect": "~1.3% CAR for just-passing governance proposals vs. just-failing proposals",
+    "key_robustness": [
+      "McCrary density test (no sorting)",
+      "bandwidth sensitivity",
+      "placebo cutoffs",
+      "binding vs. advisory proposal heterogeneity"
+    ]
+  }
+}

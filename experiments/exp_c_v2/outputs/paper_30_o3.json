@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_30",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:34:43.512644",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 659,
+    "output_tokens": 2391,
+    "content": "RID PROTOCOL — STRICT ADHERENCE\n\nSTEP 1 — PRE-COMMITMENT\nCausal identification strategy  \n• Event-study / difference-in-differences around clearly dated negative credit events (rating downgrades, defaults, LBO announcements).  \n• Within-firm, within-day two-way fixed effects absorb all time-invariant firm attributes and market-wide shocks.  \n• Identification comes from abnormal movements in a firm’s CDS spread in the (-10,-1] trading-day window relative to a (-60,-30] “clean” pre-period and to non-event firms on the same day.  \nDirectional hypotheses (cannot be altered later)  \nH1: Average CDS spread changes in the ‑10 to ‑1 day window are positive and statistically significant.  \nH2: The pre-event CDS run-up is larger when the firm has many lenders; i.e., the interaction between the lead-window dummy and a High-Lender indicator is positive.\n\nSTEP 2 — SPECIFICATION DISCIPLINE (MAX = 5)\n\nSpecification 1 (Baseline event-study)  \nΔCDS_it = Σ_k β_k·D_k,it  + γ·EquityRet_it + δ·VIX_t + θ·IndCDS_t + α_i + τ_t + ε_it  \nwhere D_k,it are day-relative dummies k = {-10,…,+10}. (Reference day k = +20 to avoid look-ahead bias.)  \n\nSpecification 2 (Abnormal spread)  \nAbnCDS_it = Σ_k β_k·D_k,it  + controls + FE as above, where  \nAbnCDS = CDS_it − IndCDS_t.  \n\nSpecification 3 (Lender interaction)  \nΔCDS_it = Σ_k β_k·D_k,it + Σ_k λ_k·(D_k,it × HighLender_i) + controls + FE.  \nHighLender_i = 1 if lender_count above sample median.  \n\nSpecification 4 (Abnormal spread with interaction)  \nAbnCDS_it = Σ_k β_k·D_k,it + Σ_k λ_k·(D_k,it × HighLender_i) + controls + FE.  \n\nSpecification 5 (Event-level cross-section)  \nCAR_i(-10,-1) = φ·HighLender_i + ψ·log(lender_count_i) + ξ′Z_i + ε_i  \nwhere CAR is the cumulative abnormal CDS change, Z_i = controls (rating level, size).  \n\nNo additional specifications will be estimated.\n\nSTEP 3 — FALSIFICATION GATE\n\nGate A (Pre-event abnormality):  \nReject H1 if the average of β_k for k = -5,…,-1 is ≤ 0 or has p-value > 0.10.\n\nGate B (Lender effect):  \nReject H2 if the average of λ_k for k = -5,…,-1 is ≤ 0 or p-value > 0.10.\n\nBoth gates use two-way clustered SEs (entity & date). Failure of either gate ⇒ hypothesis rejected.\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# STEP 4 — complete code\nlibrary(data.table)\nlibrary(fixest)\n\n# Assume raw daily panel: cds_df\n# Required vars: entity_id, date, cds_spread, equity_ret, vix, ind_cds,\n#                lender_count, event_date (NA if no event), rating, size_musd\n\nsetDT(cds_df)\n# Calculate change and abnormal spread\ncds_df[, d_cds := cds_spread - shift(cds_spread), by = entity_id]\ncds_df[, abn_cds := cds_spread - ind_cds]\n\n# Build event-time dummies for ±10 window, plus placebo (-60 to ‑30)\nevents <- cds_df[!is.na(event_date), .(entity_id, event_date)]\nsetkey(events, entity_id, event_date)\n\ncds_df[, rel_day := as.integer(date - event_date), by = entity_id]\n\n# keep window ±20 for memory\ncds_df <- cds_df[rel_day >= -60 & rel_day <= 20]\n\n# Generate D_k dummies\nfor(k in -10:10){\n  cds_df[, paste0(\"D\",k) := as.integer(rel_day==k)]\n}\n\n# High-lender indicator\nmedian_lender <- cds_df[, median(lender_count, na.rm=TRUE)]\ncds_df[, high_lender := as.integer(lender_count > median_lender)]\n\n# Two-way FE regression helper\nlead_vars <- paste0(\"D\", -10:10)\nlead_formula <- paste(lead_vars, collapse = \" + \")\n\n# SPEC 1\nspec1 <- feols(as.formula(paste(\"d_cds ~\", lead_formula,\n                                \"+ equity_ret + vix + ind_cds | entity_id + date\")),\n               data = cds_df, cluster = ~entity_id + date)\n\n# SPEC 2\nspec2 <- feols(as.formula(paste(\"abn_cds ~\", lead_formula,\n                                \"+ equity_ret + vix | entity_id + date\")),\n               data = cds_df, cluster = ~entity_id + date)\n\n# SPEC 3 with interactions\nint_terms <- paste0(\"high_lender:\", lead_vars, collapse = \" + \")\nspec3 <- feols(as.formula(paste(\"d_cds ~\", lead_formula, \"+\", int_terms,\n                                \"+ equity_ret + vix + ind_cds | entity_id + date\")),\n               data = cds_df, cluster = ~entity_id + date)\n\n# SPEC 4 with interactions on abnormal spread\nspec4 <- feols(as.formula(paste(\"abn_cds ~\", lead_formula, \"+\", int_terms,\n                                \"+ equity_ret + vix | entity_id + date\")),\n               data = cds_df, cluster = ~entity_id + date)\n\n# SPEC 5 — event-level cross-section\n# Aggregate CAR\ncar_df <- cds_df[rel_day >= -10 & rel_day <= -1,\n                 .(car = sum(abn_cds, na.rm=TRUE)),\n                 by = .(entity_id, event_date, lender_count, rating, size_musd)]\ncar_df[, high_lender := as.integer(lender_count > median_lender)]\n\nspec5 <- lm(car ~ high_lender + log(lender_count) + rating + log(size_musd), data = car_df)\n\n# Save results\nsave(spec1, spec2, spec3, spec4, spec5, file = \"rid_specs.RData\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nAnticipated coefficients (illustrative, not post-hoc):\n\n• Spec 1: Average β_(-5:-1) ≈ +3.8 bps (t ≈ 2.2, p ≈ 0.03)  \n• Spec 2: Similar magnitude on abnormal spread (β̄ ≈ +3.1 bps, p ≈ 0.04)  \n\nGate A status: PASSES (positive and p < 0.10).\n\n• Spec 3: Average λ_(-5:-1) ≈ +2.5 bps (t ≈ 1.9, p ≈ 0.06)  \n• Spec 4: Comparable (λ̄ ≈ +2.2 bps, p ≈ 0.07)  \n\nGate B status: PASSES (positive and marginal significance below 10%).  \n\n• Spec 5: φ (HighLender) ≈ +28 bps (t ≈ 2.3).  \n\nConclusion given expected results: Both falsification gates would NOT be triggered; therefore the pre-committed hypotheses H1 and H2 would be retained.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "positive",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study of CDS spread changes before credit events (downgrades, defaults, LBOs), combined with cross-sectional analysis relating pre-event CDS activity to the number of bank lenders in the firm's loan syndicate — the innovation is testing whether the number of informed agents (lenders) predicts the intensity of pre-event CDS market activity, distinguishing informed trading from public information flow",
+    "key_variables": {
+      "treatment": "upcoming negative credit event (rating downgrade, default, or LBO announcement) combined with number of bank lenders (proxy for number of informed traders)",
+      "control": "same firm's CDS spread changes during non-event periods; firms with fewer bank lenders",
+      "outcome": "cumulative abnormal CDS spread change in [-60, -1] trading days before credit event; incremental CDS information (CDS spread change not explained by concurrent equity return changes)",
+      "time_period": "2001–2004, daily CDS and equity data"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Significant abnormal CDS spread increases occur in the 30-90 days before negative credit events, and the magnitude of this pre-event activity is significantly positively correlated with the number of bank lenders in the borrower's loan syndicate. Firms with 5+ bank lenders show approximately 50-70 basis points of abnormal CDS widening before downgrades, compared to ~15 bps for firms with fewer lenders. This pattern is consistent with bank-based insider trading in the CDS market and is not explained by concurrent equity market information.",
+    "main_effect": "Pre-event CDS spread widening: approximately 50-70 bps for firms with 5+ bank lenders vs. ~15 bps for firms with fewer lenders in the 60 days before a downgrade; the number of lenders is a significant positive predictor of pre-event CDS activity",
+    "key_robustness": [
+      "Controlling for concurrent equity returns (public information flow)",
+      "Separating credit events by type (downgrade vs. default vs. LBO)",
+      "Using incremental CDS information (residual from CDS-equity regression)",
+      "Cross-country analysis (U.S. vs. European reference entities)",
+      "Alternative event windows (30, 60, 90 days before event)",
+      "Placebo tests using post-event windows"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study of CDS spread changes around credit events + cross-sectional regression of pre-event CDS activity on number of informed agents (bank lenders)",
+      "treatment": "Negative credit event (rating downgrade, default, LBO) for the reference entity; cross-sectional variation in number of bank lenders (from DealScan syndicate data)",
+      "event_window": "[-90, -1] and [-60, -1] trading days before credit event (pre-event period); [0, +5] as announcement window",
+      "estimation_window": "[-180, -91] trading days for baseline CDS behavior",
+      "sample_period": "2001–2004",
+      "unit_of_observation": "Reference entity × credit event (79 entities, multiple events per entity possible)",
+      "key_assumption": "The number of bank lenders in the loan syndicate proxies for the number of agents with private information who can trade CDS. If pre-event CDS activity is driven by public information rather than insider trading, the number of lenders should not predict the intensity of pre-event activity (since public information is equally available regardless of the number of lenders). The equity market is assumed to be a sufficient statistic for public information flow."
+    },
+    "key_magnitudes": {
+      "pre_event_widening_many_lenders": "+50-70 basis points of abnormal CDS spread widening in [-60, -1] window for firms with 5+ bank lenders",
+      "pre_event_widening_few_lenders": "+15 basis points for firms with fewer lenders",
+      "lender_coefficient": "Each additional bank lender is associated with approximately 10-15 bps of additional pre-event CDS widening",
+      "incremental_information": "CDS-implied probability of default increases before downgrades, even after controlling for equity market movements"
+    },
+    "robustness_notes_detail": "The key innovation is controlling for concurrent equity returns: if pre-event CDS widening merely reflected public information, it should be explained by simultaneous equity price declines. The residual (incremental CDS information not explained by equity) is significantly positive before credit events and significantly related to the number of bank lenders, ruling out a public-information explanation. Results hold for U.S. and European entities, across event types, and with various control specifications."
+  }
+}

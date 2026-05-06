@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies a sharp regression discontinuity design with the 50% vote share cutoff as the running variable and proposal passage as treatment. The identification strategy, treatment/control setup, and methodological reasoning are all accurate and well-explained. However, the provided output is truncated and doesn't include the results or conclusion about the direction of the effect, so no direction score can be assigned.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_33",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:11:38.204025+00:00"
+}

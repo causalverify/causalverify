@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s27",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Income cutoff and subsidy program participation",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:27:46.490414",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 433,
+    "output_tokens": 502,
+    "content": "## 1. Identification Strategy\n\nFor this research question, we will use a Regression Discontinuity Design (RDD). The RDD is appropriate because we are interested in the effect of a binary treatment (eligibility for a housing subsidy) at a specific threshold (income below the threshold). The key assumption of RDD is that there are no discontinuities in the running variable (income/threshold ratio) around the cutoff, except for the treatment effect.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s27_data.csv\")\n\n# Check for income manipulation at the threshold using the McCrary test\n# This requires the 'rdrobust' package\nmccrary_test <- rddensityplot(data$running_var, data$treated, c=0.5, h=0.05)\nprint(mccrary_test)\n\n# Run the RDD analysis\n# We will use a local linear regression around the cutoff\nrdd_result <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.05)\n\n# Print the treatment effect estimate\nprint(rdd_result$beta[2])\n\n# Basic robustness checks\n# Check the sensitivity of the result to different bandwidths\nrdd_result_wide <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.1)\nrdd_result_narrow <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.01)\n\n# Print the treatment effect estimates for different bandwidths\nprint(rdd_result_wide$beta[2])\nprint(rdd_result_narrow$beta[2])\n```\n\n## 3. Expected Findings\n\nWe expect a positive coefficient for the treatment effect, as households eligible for the housing subsidy (income below the threshold) are likely to increase their housing expenditure. The magnitude of the effect will depend on the generosity of the subsidy and the income levels of the households. If the subsidy is substantial and the households have limited income, we might expect a larger effect. However, it is difficult to provide an exact magnitude without more information about the subsidy program and the income levels of the households.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — income cutoff; test for manipulation; local linear; optimal bandwidth (IK or CCT)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligible households increase housing expenditure share",
+    "main_effect": "~25pp increase in housing spend for eligible households"
+  }
+}

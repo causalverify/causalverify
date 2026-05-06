@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:44:43.831965",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 463,
+    "output_tokens": 410,
+    "content": "## 1. Identification Strategy\nFor this research question, an instrumental variable (IV) approach is appropriate. The variable `z` (roommate's ability) is used as an instrument for `x` (peer quality). The key assumption here is that `z` is correlated with `x` but not directly with `y` (GPA) except through its effect on `x`. This assumption is known as the exclusion restriction.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s81_data.csv\")\n\n# Run the first stage regression\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Run the second stage regression\nsecond_stage <- lm(y ~ x + controls, data = data)\n\n# Calculate the IV estimate\niv_estimate <- coeftest(second_stage, vcovHC(first_stage, type = \"HC1\"), se = TRUE)$estimate\n\n# Print the IV estimate\nprint(iv_estimate)\n\n# Robustness check: Check for over-identification using the Sargan test\noverid_test <- bptest(second_stage, vcovHC(first_stage, type = \"HC1\"), ~ z | controls, data = data)\nprint(overid_test)\n```\n\n## 3. Expected Findings\nWe expect a positive sign for the IV estimate, indicating that having a roommate with higher academic ability leads to an increase in a student's GPA. The magnitude of the effect is difficult to predict without prior studies or domain knowledge, but it is likely to be small to moderate given that academic performance is influenced by a multitude of factors. The Sargan test will help us assess whether the instrument is valid by checking if it is exogenous (i.e., not correlated with the error term in the second stage regression).",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

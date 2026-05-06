@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_161",
+  "title": "Intensive Math Instruction and Educational Attainment: Long-Run Impacts of Double-Dose Algebra",
+  "authors": "Cortes, Goodman & Nomi",
+  "year": null,
+  "journal": "AEJ:EP",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w20211",
+    "title": "Intensive Math Instruction and Educational Attainment: Long-Run Impacts of Double-Dose Algebra",
+    "year": 2014,
+    "journal": "National Bureau of Economic Research",
+    "citations": 95
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "goodman",
+      "cortes",
+      "nomi"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aej:ep",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 95,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

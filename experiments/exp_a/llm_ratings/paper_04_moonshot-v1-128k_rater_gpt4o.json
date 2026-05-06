@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI output correctly identifies an event study approach as the strategy, matching the ground truth in method family and key features, including the focus on surprise components of announcements. The direction of the effect is correctly noted as negative, matching the ground truth conclusion that stock returns decrease in response to surprise rate increases.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_04",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T10:40:58.101615+00:00"
+}

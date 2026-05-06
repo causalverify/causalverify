@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - correctly identifies Sharp RDD with Democratic vote share as running variable, 50% cutoff, incumbency as treatment, and future election performance as outcome. However, the excerpt cuts off before stating the expected direction of the effect, so direction cannot be assessed from the provided text.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_20",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:09:39.583800+00:00"
+}

@@ -1,0 +1,37 @@
+domain,method,difficulty,direction,authors,year,journal,title
+finance,DID,medium,positive,Campello & Graham,2012,JF,Do Stock Prices Influence Corporate Decisions? Evidence from the Technology Bubble
+health,DID,hard,negative,"Baicker, Finkelstein & Song",2013,QJE,The Impact of Medicaid on Labor Market Activity and Program Participation: Evidence from the Oregon Health Insurance Experiment
+public,DID,medium,positive,"Chetty, Looney & Kroft",2009,AER,Salience and Taxation: Theory and Evidence
+public,DID,medium,positive,"Meyer, Viscusi & Durbin",1995,AER,Workers' Compensation and Injury Duration: Evidence from a Natural Experiment
+trade,DID,medium,negative,McLaren & Hakobyan,2016,REStat,NAFTA and the Local Labor Market
+trade,DID,hard,positive,Faber,2014,JIE,"Trade Integration, Market Size, and Industrialization: Evidence from China's National Trunk Highway System"
+finance,ES,medium,negative,Campbell & Shiller,1998,Journal of Finance,Valuation Ratios and the Long-Run Stock Market Outlook
+finance,ES,medium,negative,Loughran & Ritter,1995,Journal of Finance,The New Issues Puzzle
+labor,ES,medium,negative,Neumark & Wascher,2000,JHR,Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Comment
+development,ES,medium,positive,Banerjee & Duflo,2014,QJE,Do Firms Want to Borrow More? Testing Credit Constraints Using a Directed Lending Program
+development,ES,hard,positive,Acemoglu & Robinson,2001,AER,Colonial Origins of Comparative Development: An Empirical Investigation
+health,ES,hard,negative,Anderson & Meyer,2000,JPubE,"The Effects of the Unemployment Insurance Payroll Tax on Wages, Employment, Claims and Denials"
+education,ES,medium,positive,Jackson & Mackevicius,2021,AEJ: Applied Economics,The Distribution of School Spending Impacts
+public,ES,medium,negative,Goolsbee & Syverson,2008,QJE,How Do Incumbents Respond to the Threat of Entry? Evidence from the Major Airlines
+agriculture,ES,medium,positive,Burke & Emerick,2016,JPE,Adaptation to Climate Change: Evidence from US Agriculture
+finance,IV,medium,positive,Bertrand & Schoar,2003,QJE,Managing with Style: The Effect of Managers on Firm Policies
+labor,IV,medium,positive,Bound & Turner,2002,Journal of Labor Economics,Going to War and Going to College: Did World War II and the G.I. Bill Increase Educational Attainment for Returning Veterans?
+development,IV,medium,positive,Acemoglu & Johnson,2007,Journal of Political Economy,Disease and Development: The Effect of Life Expectancy on Economic Growth
+health,IV,hard,negative,"Chay, Dobkin & Greenstone",2003,JPE,The Clean Air Act of 1970 and Adult Mortality
+education,IV,medium,positive,Kane & Staiger,2008,JHR,Estimating Teacher Impacts on Student Achievement: An Experimental Evaluation
+education,IV,medium,positive,Lavy,2002,QJE,Evaluating the Effect of Teachers' Group Performance Incentives on Pupil Achievement
+public,IV,medium,positive,Gruber & Saez,2002,JPublE,The Elasticity of Taxable Income: Evidence and Implications
+public,IV,hard,positive,Acemoglu & Angrist,2000,JPE,How Large Are Human-Capital Externalities? Evidence from Compulsory-Schooling Laws
+public,IV,medium,negative,Imbens & van der Klaauw,1995,REStat,Evaluating the Cost of Conscription in the Netherlands
+trade,IV,medium,positive,Amiti & Konings,2007,AER,"Trade Liberalization, Intermediate Inputs, and Productivity: Evidence from Indonesia"
+urban,IV,medium,positive,"Glaeser, Gyourko & Saks",2005,JUE,Why is Manhattan So Expensive? Regulation and the Rise in Housing Prices
+finance,RDD,hard,positive,Heider & Ljungqvist,2015,Journal of Finance,As certain as debt and taxes: Estimating the tax sensitivity of leverage from state tax changes
+labor,RDD,medium,negative,DiNardo & Lee,2004,Journal of Public Economics,Economic Impacts of New Unionization on Private Sector Employers: 1984–2001
+labor,RDD,hard,positive,"Hahn, Todd & Van der Klaauw",2001,Econometrica,Identification and Estimation of Treatment Effects with a Regression-Discontinuity Design
+health,RDD,medium,positive,"Card, Dobkin & Maestas",2009,AER,Does Medicare Save Lives?
+health,RDD,medium,negative,Anderson,2014,AER,"Subways, Strikes, and Slowdowns: The Impacts of Public Transit on Traffic Congestion"
+education,RDD,medium,positive,Jackson,2010,JHR,Do Students Benefit from Attending Better Schools? Evidence from Rule-based Student Assignments in Trinidad and Tobago
+education,RDD,medium,positive,Dobbie & Fryer,2013,AER,Getting Beneath the Veil of Effective Schools: Evidence from New York City
+education,RDD,medium,positive,Deming,2011,AER,"Better Schools, Less Crime?"
+environment,RDD,medium,positive,Deschênes & Greenstone,2011,AER,"Climate Change, Mortality, and Adaptation: Evidence from Annual Fluctuations in Weather in the US"
+environment,RDD,medium,negative,Grainger & Kolstad,2010,JEEM,Who Pays a Price on Carbon?

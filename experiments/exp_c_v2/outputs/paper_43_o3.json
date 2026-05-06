@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_43",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:41:00.908357",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 621,
+    "output_tokens": 2102,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy  \n• Use the Oregon Medicaid lottery as an exogenous instrument (Z) for actual Medicaid coverage (D).  \n• Estimate Local Average Treatment Effects (LATE) via two-stage least squares (2SLS) on a sample of adults who signed up for the lottery.  \n• Directional hypotheses (H1–H4) for the effect of gaining Medicaid coverage (D=1):  \n H1: increases outpatient visits (β₁ > 0).  \n H2: increases emergency-department (ED) visits (β₂ > 0).  \n H3: reduces incidence of medical debt in collections (β₃ < 0).  \n H4: improves self-reported overall health (β₄ > 0).  \n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five specifications will be run:\n\nSPEC 1  (First Stage)  \n medicaidᵢ = α₀ + π · lotteryᵢ + εᵢ  \n\nSPEC 2  (2SLS) — Outcome: annual outpatient visits  \n 1st stage: as in SPEC 1  \n 2nd stage: outpatientᵢ = β₁ · Ŝmedicaidᵢ + Xᵢ′γ + uᵢ  \n\nSPEC 3  (2SLS) — Outcome: annual ED visits  \n Same as SPEC 2 but dependent variable = ed_visitsᵢ  \n\nSPEC 4  (2SLS) — Outcome: indicator medical_debtᵢ (1 = any medical debt in collections)  \n\nSPEC 5  (2SLS) — Outcome: indicator good_healthᵢ (1 = report “excellent” or “very good” health)  \n\nControls Xᵢ (included in every 2SLS spec): gender, age (in years), county fixed effects, and pre-lottery household size. Robust standard errors clustered by lottery household ID. No additional specifications, subsamples, or alternative control sets will be estimated.\n\nSTEP 3 — FALSIFICATION GATE  \nThe hypothesis set (H1–H4) will be rejected if ANY of the following occurs:  \na) First-stage F-statistic < 10 (weak instrument).  \nb) Estimated β coefficient has the opposite sign from the hypothesised one.  \nc) |t-statistic| < 1.645 (two-sided p > 0.10) for the correctly-signed coefficient.  \nd) Pre-trend can’t be tested (single post period), so no gate related to pre-trends.  \n\nFailure on any of a–c for any outcome ⇒ reject the corresponding hypothesis; overall study judged falsified if two or more outcomes fail.\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# ---------- Load libraries ----------\nlibrary(AER)       # for ivreg\nlibrary(sandwich)  # robust vcov\nlibrary(lmtest)    # coeftest\n\n# ---------- Read data ----------\n# Assumed CSV with one row per individual who signed up for the lottery\n# Variables:\n# id, hh_id, lottery (0/1), medicaid (0/1), outpatient, ed_visits,\n# medical_debt (0/1), good_health (0/1),\n# gender (0/1 female), age, county, hh_size\nd <- read.csv(\"oregon_medicaid_experiment.csv\")\n\n# ---------- Factor & fixed effects ----------\nd$county <- factor(d$county)\n\n# ---------- Helper function for cluster-robust SE ----------\nclus_se <- function(model, cluster){\n  vc <- vcovCL(model, cluster = cluster, type = \"HC1\")\n  coeftest(model, vc)\n}\n\n# ---------- SPEC 1 : first stage ----------\nfs <- lm(medicaid ~ lottery + gender + age + county + hh_size, data = d)\ncat(\"\\nSPEC 1 — First stage:\\n\")\nprint(clus_se(fs, d$hh_id))\n\n# Store fitted values for 2SLS if needed\nd$medicaid_hat <- fitted(fs)\n\n# ---------- 2SLS function ----------\nrun_2sls <- function(outcome){\n  fmla <- as.formula(paste0(outcome,\n        \" ~ medicaid + gender + age + county + hh_size | \",\n        \"lottery + gender + age + county + hh_size\"))\n  m <- ivreg(fmla, data = d)\n  res <- clus_se(m, d$hh_id)\n  cat(\"\\nOutcome:\", outcome, \"\\n\")\n  print(res)\n  # Return F-stat of first stage\n  fstat <- summary(m, diagnostics = TRUE)$diagnostics[\"Weak instruments\",\"statistic\"]\n  return(fstat)\n}\n\n# ---------- SPEC 2–5 ----------\nf_outcomes <- c(\"outpatient\", \"ed_visits\", \"medical_debt\", \"good_health\")\nfstats <- sapply(f_outcomes, run_2sls)\nnames(fstats) <- f_outcomes\n\n# ---------- Report first-stage F for each 2SLS ----------\ncat(\"\\nFirst-stage F-statistics:\\n\")\nprint(fstats)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBased on prior literature, expected point estimates:\n\nSpec 1: π ≈ 0.25, SE ≈ 0.01 → F ≈ 600  (passes gate a)\n\nSpec 2: β₁ ≈ +2.0 outpatient visits/year, SE ≈ 0.7, t ≈ 2.9, p < 0.01  \n → correct sign, significant (passes gates b & c)\n\nSpec 3: β₂ ≈ +0.40 ED visits/year, SE ≈ 0.15, t ≈ 2.7, p ≈ 0.007  \n → correct sign, significant (passes)\n\nSpec 4: β₃ ≈ –0.08 (-8 pp) probability medical debt, SE ≈ 0.035, t ≈ –2.3, p ≈ 0.02  \n → correct sign, significant (passes)\n\nSpec 5: β₄ ≈ +0.06 ( +6 pp) probability good health, SE ≈ 0.025, t ≈ 2.4, p ≈ 0.018  \n → correct sign, significant (passes)\n\nGate assessment  \n• First-stage F > 10 for all specs.  \n• All estimated coefficients have hypothesised sign and p < 0.10.  \nTherefore none of the falsification criteria a–c are triggered; the directional hypotheses H1–H4 would NOT be rejected under these expected results.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables / lottery-based randomized experiment — lottery selection (intent-to-treat) as instrument for actual Medicaid enrollment; first stage: lottery win → Medicaid enrollment probability; reduced form: lottery win → outcomes (ITT); second stage: Medicaid enrollment (instrumented by lottery win) → outcomes (LATE/IV)",
+    "key_variables": {
+      "treatment": "Medicaid enrollment (endogenous — not all lottery winners enroll), instrumented by lottery win (random selection)",
+      "control": "lottery losers (who did not receive the option to apply for Medicaid through the lottery)",
+      "outcome": "health care utilization (outpatient visits, ER visits, hospitalizations, prescriptions); financial strain (medical debt in collections, out-of-pocket medical spending); self-reported health",
+      "time_period": "Lottery conducted February-March 2008; outcomes measured approximately 12 months later (2009)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Medicaid coverage increases health care utilization, reduces financial strain, and improves self-reported health. Lottery winners had approximately 25% more outpatient visits, 35% more prescriptions, higher preventive care use, and 30% less medical debt in collections. Self-reported health improved significantly. However, the study did not find significant improvements in clinical health measures (blood pressure, cholesterol, diabetes control) in the 2-year follow-up period (reported in the companion NEJM 2013 paper).",
+    "main_effect": "Medicaid coverage increases outpatient visits by ~25% (ITT: +8%), reduces probability of medical debt in collections by ~25% (ITT: -8pp), and increases probability of reporting good/excellent health by ~25% (ITT: +7pp)",
+    "key_robustness": [
+      "ITT (lottery win) vs. IV (Medicaid enrollment instrumented by lottery) comparisons",
+      "Survey vs. administrative data outcomes",
+      "Subgroup analysis by age, gender, prior health status",
+      "Attrition analysis (survey non-response)",
+      "Balance tests (lottery winners vs. losers on pre-lottery characteristics)",
+      "Lee bounds for survey-based outcomes (adjusting for differential response)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Lottery-based randomized experiment; analysis via IV (lottery selection instruments for Medicaid enrollment) and ITT (comparing all lottery winners to all lottery losers)",
+      "treatment": "Medicaid enrollment (endogenous), instrumented by winning the Oregon Health Plan lottery (binary, randomly assigned)",
+      "event_window": "Outcomes measured approximately 12 months after lottery (administrative data) and via mail survey (2009)",
+      "estimation_window": "N/A (randomized experiment — lottery provides the identifying variation)",
+      "sample_period": "Lottery: early 2008; outcomes: through 2009",
+      "unit_of_observation": "Individual lottery participant (approximately 75,000 in the analysis sample)",
+      "key_assumption": "Random assignment through the lottery ensures that lottery winners and losers are balanced on all pre-lottery characteristics. The exclusion restriction is that winning the lottery affects outcomes only through increased Medicaid enrollment (not through other channels such as lottery-win-induced optimism). Compliance: approximately 25% of lottery winners successfully enrolled in Medicaid."
+    },
+    "key_magnitudes": {
+      "first_stage": "Winning the lottery increases Medicaid enrollment by approximately 25 percentage points",
+      "utilization_itt": "+7.8 percentage points increase in probability of any outpatient visit (ITT, from ~58% to ~66%)",
+      "financial_itt": "-8.0 percentage points reduction in probability of any medical debt in collections (ITT)",
+      "health_itt": "+7.2 percentage points increase in probability of self-reported 'good' or better health (ITT)",
+      "iv_scaling": "IV (LATE) estimates are approximately 4× the ITT estimates (dividing by 0.25 first-stage compliance rate)"
+    },
+    "robustness_notes_detail": "Balance tests confirm that lottery winners and losers are statistically identical on pre-lottery demographics, health status, and prior health care utilization. Survey response rates are approximately 26%, raising concerns about non-response bias; Lee bounds are computed to address this. Administrative data outcomes (hospital visits, Medicaid enrollment) are available for the full sample and confirm survey-based findings. The 25% first-stage compliance rate is typical for Medicaid experiments (not everyone who gains eligibility successfully navigates the enrollment process)."
+  }
+}

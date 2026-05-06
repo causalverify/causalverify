@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_49",
+  "source": "Review of Economics and Statistics, 2004",
+  "authors": "Jacob & Lefgren",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Remedial Education and Student Achievement: A Regression-Discontinuity Analysis",
+  "doi": "10.1162/003465304323023778",
+  "volume": 86,
+  "issue": 1,
+  "pages": "226-244",
+  "domain": "education",
+  "research_question": "Do mandatory remedial summer instruction and grade retention, imposed on low-achieving elementary students who fail to meet minimum standardized test thresholds, causally improve subsequent academic achievement in reading and mathematics? How do these effects differ between younger (third grade) and older (sixth grade) students, and what are the separate impacts of summer instruction versus repeating a grade?",
+  "data_description": "The study uses administrative student-level records from the Chicago Public Schools (CPS), provided by the Consortium on Chicago School Research. The data include individual test scores on the Iowa Test of Basic Skills (ITBS) reading and mathematics sections (reported as grade equivalents and as Rasch-model logit scores derived from item-response modeling), demographic characteristics (race, gender, age, guardian status, free/reduced lunch eligibility), bilingual and special education status, residential and school mobility, and unique student identifiers permitting longitudinal tracking. School-level data provide racial and socioeconomic composition and resource information. The base sample covers cohorts of third- and sixth-grade students from school years 1993–94 through 1998–99 (402,924 observations), with the primary analytic sample focusing on 147,894 students subject to the accountability policy in 1997, 1998, and 1999. Outcomes are measured one and two years after the policy year.",
+  "institutional_context": "In 1996–97, the Chicago Public Schools instituted an accountability policy ending social promotion in elementary grades. Students in third, sixth, and eighth grade had to attain minimum grade-equivalent scores in both ITBS reading and mathematics (e.g., 2.8 for third grade, 5.3 for sixth grade in 1997, roughly the 20th national percentile) to advance. Students failing the June exams were required to attend a structured six-week summer program with small classes (often under 15 students), hand-picked teachers, and a district-mandated curriculum. They retook the exams in August; passers were promoted, while those failing again were required to repeat the grade, with additional resources provided to retained students. The policy affected large numbers: over 30,000 third graders and 21,000 sixth graders attended mandatory summer school between 1997 and 1999, and roughly 10–20 percent of eligible students were ultimately retained. Limited waivers were granted in both June and August.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.07,
+      "unit": "standard deviations improvement in math scores (RDD estimate at summer school cutoff)",
+      "interpretation": "Mandatory summer school assignment increases fall math test scores by approximately 0.07 SD for students at the proficiency cutoff, a modest but significant educational intervention effect"
+    },
+    "secondary_estimate": {
+      "value": 0.02,
+      "unit": "standard deviations improvement in reading scores (RDD estimate)",
+      "interpretation": "Reading score improvements are small (~0.02 SD) and statistically insignificant, suggesting summer school is more effective for math than reading remediation"
+    },
+    "significance": "p < 0.05 (math); p > 0.10 (reading)",
+    "table_ref": "Tables 3-5 in Jacob & Lefgren (2004)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Chicago Public Schools aggregate test score data (CPS website — public)",
+      "Illinois State Board of Education school report cards (public)"
+    ],
+    "proprietary_sources": [
+      "CPS individual student-level administrative records (restricted access through CPS research agreement)"
+    ],
+    "proxy_strategy": "Student-level CPS data requires a research agreement with Chicago Public Schools. Aggregate test score distributions are publicly available. Similar analyses can be conducted in other districts with summer school cutoff policies.",
+    "replicability": "medium — requires CPS research data agreement; methodology is straightforward RDD applicable to any district with similar policies",
+    "public_proxy_available": false,
+    "replication_tier": "restricted (CPS student-level data requires formal research agreement; methodology replicable in other districts)",
+    "data_limitations": "Single school district (Chicago), limiting external validity. ITBS is a specific test; results may not generalize to other assessments. Summer school curriculum varied somewhat across schools and years. Grade retention is confounded with summer school effects for students who fail the post-summer-school retest.",
+    "public_data_sources_detail": [
+      "CPS research data (student-level — requires formal agreement with CPS)",
+      "Illinois State Board of Education (school-level report cards — free)",
+      "NCES Common Core of Data (school characteristics — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is spring ITBS reading score; cutoff is the minimum proficiency threshold for summer school assignment; students below the cutoff are assigned to mandatory summer school; outcome is subsequent test scores",
+    "key_variables": {
+      "treatment": "mandatory summer school attendance (required for students scoring below the ITBS proficiency cutoff)",
+      "control": "students scoring just above the cutoff (not required to attend summer school)",
+      "outcome": "ITBS reading and math scores in the following fall; also tested in subsequent years for persistence",
+      "time_period": "1997–2000 (CPS academic years)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Remedial summer school has modest but significant positive effects on math achievement, but small and generally insignificant effects on reading achievement. Math scores improve by approximately 0.05-0.10 standard deviations for students assigned to summer school at the RDD cutoff. Reading effects are smaller (~0.02 SD) and not statistically significant. The effects are concentrated in the immediate post-summer-school test and fade somewhat over subsequent years.",
+    "main_effect": "Summer school increases math scores by approximately 0.05-0.10 SD at the cutoff; reading effects are smaller (~0.02 SD) and generally insignificant",
+    "key_robustness": [
+      "Varying bandwidth around the cutoff score",
+      "Separate estimates for 3rd, 6th, and 8th graders",
+      "Polynomial specifications in test score",
+      "McCrary density test for score manipulation",
+      "Persistence of effects in subsequent years (fade-out analysis)",
+      "Separating summer school effect from grade retention effect"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD at the ITBS proficiency cutoff for summer school assignment",
+      "treatment": "Mandatory assignment to 6-week summer school program (binary, determined by ITBS score relative to cutoff)",
+      "event_window": "Test scores measured in fall after summer school (approximately 3 months post-treatment)",
+      "estimation_window": "ITBS scores within bandwidth of cutoff (various bandwidths tested)",
+      "sample_period": "1997–2000",
+      "unit_of_observation": "Individual student in tested grades (3rd, 6th, 8th)",
+      "key_assumption": "Students cannot precisely manipulate their spring ITBS score to sort around the cutoff. Near the cutoff, assignment is as-if random. The test score is a continuous measure with sufficient variation to support local polynomial estimation."
+    },
+    "key_magnitudes": {
+      "math_effect": "+0.05 to +0.10 SD improvement in fall math scores for students at the cutoff (significant at 5%)",
+      "reading_effect": "+0.02 SD improvement in fall reading scores (not significant at conventional levels)",
+      "fade_out": "Math gains diminish by approximately 30-50% by the following year",
+      "compliance": "Approximately 90% of students below the cutoff attend summer school (high compliance = near-sharp RDD)"
+    },
+    "robustness_notes_detail": "McCrary density test shows no manipulation of test scores at the cutoff. The high compliance rate (~90%) means the RDD is effectively sharp. Math effects are robust across bandwidths and polynomial specifications. Reading effects are consistently small and noisy. The differential response across subjects (math vs. reading) is consistent with the structured nature of the summer school curriculum (which focuses on concrete math skills more easily taught in a short program). Grade retention effects (for students who fail summer school) are harder to separate from summer school effects."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 75139,
+  "phase1_source_version": "v2primeprime_full_text"
+}

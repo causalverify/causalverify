@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_153",
+  "title": "Monitoring Corruption: Evidence from a Field Experiment in Indonesia",
+  "authors": "Olken",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/517935",
+    "title": "Monitoring Corruption: Evidence from a Field Experiment in Indonesia",
+    "year": 2007,
+    "journal": "Journal of Political Economy",
+    "citations": 1541
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "olken"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1541,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

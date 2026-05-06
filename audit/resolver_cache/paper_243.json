@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_243",
+  "title": "Going to War and Going to College: Did World War II and the G.I. Bill Increase Educational Attainment for Returning Veterans?",
+  "authors": "Bound & Turner",
+  "year": null,
+  "journal": "Journal of Labor Economics",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/342012",
+    "title": "Going to War and Going to College: Did World War II and the G.I. Bill Increase Educational Attainment for Returning Veterans?",
+    "year": 2002,
+    "journal": "Journal of Labor Economics",
+    "citations": 1
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "turner",
+      "bound"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jol",
+    "journal_oa": "jol",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

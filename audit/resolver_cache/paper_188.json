@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_188",
+  "title": "Education and Health: Evaluating Theories and Evidence",
+  "authors": "Cutler & Lleras-Muney",
+  "year": null,
+  "journal": "JHE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w12352",
+    "title": "Education and Health: Evaluating Theories and Evidence",
+    "year": 2006,
+    "journal": "National Bureau of Economic Research",
+    "citations": 502
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "cutler"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhe",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 502,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

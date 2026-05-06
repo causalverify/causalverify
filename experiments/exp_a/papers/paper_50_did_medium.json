@@ -1,0 +1,91 @@
+{
+  "paper_id": "paper_50",
+  "source": "American Economic Review, 2011",
+  "authors": "Currie & Walker",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Traffic Congestion and Infant Health: Evidence from E-ZPass",
+  "doi": "10.1257/aer.101.1.65",
+  "volume": 101,
+  "issue": 1,
+  "pages": "65-92",
+  "domain": "health",
+  "research_question": "Does exposure to traffic congestion and the associated local vehicle emissions causally harm fetal health? Specifically, do reductions in traffic congestion near highway toll plazas lower the incidence of prematurity and low birth weight among infants born to nearby mothers?",
+  "data_description": "The primary data are confidential Vital Statistics Natality records covering all births in Pennsylvania (1997-2002) and New Jersey (1994-2003), including exact maternal residential addresses, infant health outcomes (gestation, birth weight), and maternal background characteristics (race, ethnicity, education, age, marital status, smoking during pregnancy, birth order, multiple births, child gender). Mothers can be linked across births using name, race, and date of birth, enabling within-mother analyses. Key outcomes are prematurity (gestation < 38 weeks) and low birth weight (< 2,500 g). The unit of observation is the birth (or housing transaction). Auxiliary data include New Jersey housing sales records (1989-2009) with sale price, address, square footage, structure age, condominium status, and assessed values; EPA air quality monitor readings of daily NO2 and SO2 concentrations; and information on 98 toll plazas where electronic tolling was adopted, plus their conversion dates.",
+  "institutional_context": "The setting is the staggered rollout of electronic toll collection (E-ZPass) at toll plazas on major highways in the densely populated U.S. Northeast, including the New Jersey Turnpike, Garden State Parkway, Pennsylvania Turnpike, Atlantic City Expressway, and the bridges and tunnels connecting New Jersey to New York City (George Washington Bridge, Lincoln Tunnel, Holland Tunnel). Adoption occurred at different plazas at different times between 1997 and 2001, and take-up was rapid. Before E-ZPass, vehicles queued, idled, decelerated, and accelerated at manned toll booths, generating localized concentrations of motor-vehicle emissions (CO, NO2, hydrocarbons, particulates). Engineering and traffic studies indicate that electronic tolling reduced total delay at toll plazas by roughly 85 percent and substantially cut local emissions, with congestion benefits spilling over to non-enrolled vehicles. Mothers residing near these plazas thus experienced sharp, plausibly exogenous reductions in localized traffic-related air pollution.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.007,
+      "unit": "percentage point reduction in prematurity rate (DID, near-plaza × post-EZPass)",
+      "interpretation": "E-ZPass adoption reduces the prematurity rate by approximately 0.7 percentage points (a 7% relative reduction from ~10% baseline) for mothers living within 2 km of toll plazas"
+    },
+    "secondary_estimate": {
+      "value": -0.15,
+      "unit": "fractional reduction in CO concentration near toll plazas (first-stage pollution reduction)",
+      "interpretation": "Carbon monoxide levels at air quality monitors near toll plazas decreased by approximately 15% after E-ZPass installation, confirming the pollution reduction mechanism"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 3-5 in Currie & Walker (2011)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "EPA Air Quality System (AQS) monitor data (free from EPA website)",
+      "E-ZPass adoption dates (available from NJ Turnpike Authority and PA Turnpike Commission)",
+      "CDC WONDER vital statistics (aggregate birth data — free)"
+    ],
+    "proprietary_sources": [
+      "New Jersey and Pennsylvania vital statistics birth records with geocoded addresses (restricted access through state health departments)"
+    ],
+    "proxy_strategy": "EPA air pollution data is free and can demonstrate the pollution reduction. Aggregate birth statistics from CDC WONDER can support descriptive analysis. Individual-level geocoded birth records require state health department DUAs.",
+    "replicability": "medium — EPA data and E-ZPass dates are public; geocoded birth records require state DUAs",
+    "public_proxy_available": true,
+    "replication_tier": "partial (EPA pollution data + E-ZPass dates free; birth records require state DUA)",
+    "data_limitations": "Geocoded birth addresses have some imprecision. Not all mothers near toll plazas are affected equally (some commute away during the day). The study is specific to NJ/PA toll plazas. Residential sorting (mothers moving in response to congestion) could bias results, though this is unlikely on a short time frame.",
+    "public_data_sources_detail": [
+      "EPA AQS (air pollution monitor data — free from EPA)",
+      "CDC WONDER (aggregate birth statistics by county — free)",
+      "NJ/PA Turnpike Authority (E-ZPass adoption dates — available on request)",
+      "Census Bureau (demographic controls — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences — mothers living near toll plazas (within 2 km, high exposure to congestion pollution) compared to mothers living farther away (2-10 km, lower exposure), before vs. after E-ZPass adoption at the nearest plaza; staggered E-ZPass adoption across plazas provides temporal variation",
+    "key_variables": {
+      "treatment": "proximity to toll plaza (near = within 2 km) × post-E-ZPass adoption (binary, staggered by plaza)",
+      "control": "mothers living 2-10 km from toll plazas (similar neighborhoods but less exposure to toll plaza congestion)",
+      "outcome": "birth weight, gestational age, prematurity rate (< 37 weeks), low birth weight (< 2,500g)",
+      "time_period": "1997–2002 (births spanning pre- and post-E-ZPass adoption)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "E-ZPass adoption significantly improved infant health for mothers living near toll plazas. Prematurity rates fell by approximately 6-9% among mothers within 2 km of toll plazas after E-ZPass, relative to mothers farther away. Low birth weight incidence also decreased. The effects are concentrated among mothers living closest to plazas (within 0.5 km), where the pollution reduction was greatest. Measured air pollution (CO, PM) near toll plazas declined substantially after E-ZPass adoption.",
+    "main_effect": "E-ZPass adoption reduces prematurity by approximately 6-9% (0.6-0.9 percentage points from a base of ~10%) and low birth weight by ~8-11% for mothers within 2 km of toll plazas",
+    "key_robustness": [
+      "Distance gradient: effects strongest within 0.5 km, diminishing with distance",
+      "Event-study specification showing no pre-trend before E-ZPass adoption",
+      "Controlling for maternal demographics, year effects, plaza fixed effects",
+      "Air pollution monitor data confirming pollution reduction near plazas",
+      "Placebo test using birth outcomes far from toll plazas",
+      "Subsample by season (congestion effects may vary by weather)"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID: proximity to toll plaza (near vs. far) × post-E-ZPass adoption; with staggered timing across plazas providing multiple treatment events",
+      "treatment": "Proximity to toll plaza (within 2 km) interacted with post-E-ZPass adoption dummy; staggered adoption across plazas 1998-2001",
+      "event_window": "Post-adoption period (all births after E-ZPass installation at the nearest plaza)",
+      "estimation_window": "Pre-E-ZPass births (1997 to adoption date) serve as baseline",
+      "sample_period": "1997–2002",
+      "unit_of_observation": "Individual birth, identified by mother's residential address distance to nearest toll plaza",
+      "key_assumption": "Parallel trends: absent E-ZPass adoption, birth outcomes for mothers near toll plazas would have evolved similarly to those for mothers farther from plazas. E-ZPass adoption timing is determined by transportation infrastructure decisions, not by anticipated changes in birth outcomes or residential sorting. Mothers do not move in response to E-ZPass adoption."
+    },
+    "key_magnitudes": {
+      "prematurity_reduction": "-6 to -9% reduction in prematurity rate for mothers within 2 km (approximately 0.7 pp from 10% base)",
+      "lbw_reduction": "-8 to -11% reduction in low birth weight for mothers within 2 km",
+      "pollution_reduction": "CO levels near toll plazas declined by approximately 15-20% after E-ZPass adoption",
+      "distance_gradient": "Effects are 2-3x larger within 0.5 km vs. 1-2 km from the plaza"
+    },
+    "robustness_notes_detail": "Event-study plots show no differential pre-trends in prematurity or birth weight for near vs. far mothers before E-ZPass adoption. The sharp distance gradient (strongest effects closest to plazas) rules out confounding from area-wide trends. Air pollution monitor data independently confirms that CO and PM levels declined near plazas after E-ZPass, providing a first-stage validation. Controlling for maternal smoking, education, and prenatal care does not affect the estimates, confirming that the effect operates through ambient air pollution rather than behavioral changes."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 72363,
+  "phase1_source_version": "v2primeprime_full_text"
+}

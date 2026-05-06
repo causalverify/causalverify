@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0.5,
+  "failure_types": [],
+  "reasoning": "The AI model correctly identifies the Difference-in-Differences (DID) strategy, which perfectly matches the ground truth. It accurately defines the treatment and control groups based on wholesale funding dependence and pinpoints the Lehman Brothers collapse as the event. The implied direction of the effect for treated banks ('more affected by the financial crisis') correctly suggests a negative impact on lending, aligning with the ground truth's 'negative' conclusion, but it is not explicitly stated as 'negative effect on lending,' making it slightly ambiguous.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_01",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:13:49.483566+00:00"
+}

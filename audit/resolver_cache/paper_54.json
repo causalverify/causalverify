@@ -1,0 +1,38 @@
+{
+  "paper_id": "paper_54",
+  "title": "A Multifaceted Program Causes Lasting Progress for the Very Poor: Evidence from Six Countries",
+  "authors": "Banerjee, Duflo, Goldberg, Karlan, Osei, Pariente, Shapiro, Stephens & Udry",
+  "year": null,
+  "journal": "Science",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1126/science.1260799",
+    "title": "A multifaceted program causes lasting progress for the very poor: Evidence from six countries",
+    "year": 2015,
+    "journal": "Science",
+    "citations": 1029
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "goldberg",
+      "osei",
+      "udry",
+      "karlan",
+      "shapiro",
+      "duflo",
+      "banerjee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "science",
+    "journal_oa": "science",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1029,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

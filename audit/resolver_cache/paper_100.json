@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_100",
+  "title": "Hospital Ownership and Public Medical Spending",
+  "authors": "Duggan",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/003355300555097",
+    "title": "Hospital Ownership and Public Medical Spending",
+    "year": 2000,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 367
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "duggan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "qje",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 367,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

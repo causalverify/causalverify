@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies DID as the primary strategy with the right treatment/control groups (high vs low wholesale funding banks) and timing (Lehman collapse). The identification of the exogenous shock, differential impact, and panel data structure all match the ground truth perfectly. However, no conclusion about the direction of the effect is stated in the provided excerpt, resulting in a 0 for direction score.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_01",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:03:42.951893+00:00"
+}

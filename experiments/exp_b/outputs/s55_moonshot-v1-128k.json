@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s55",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Stock Split Announcements on Cumulative Abnormal Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:40:57.947951",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 489,
+    "output_tokens": 450,
+    "content": "## 1. Identification Strategy\nFor this research question, an Event Study approach is appropriate. This method is suitable for analyzing the impact of a specific event (stock split announcement) on the stock returns of the firms involved. The key assumption is that the stock returns are influenced by the event and that the returns before the event can be used as a control to estimate the abnormal returns.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s55_data.csv\")\n\n# Calculate abnormal returns\ndata <- data %>%\n  group_by(stock_id) %>%\n  mutate(ret_adj = ret - beta * (mkt_ret - mean(mkt_ret, na.rm = TRUE)))\n\n# Define the event window\ndata <- data %>%\n  mutate(event_window = ifelse(event_day <= 0 & event_day >= -10, 1, 0))\n\n# Calculate cumulative abnormal returns (CAR)\ncar <- data %>%\n  filter(event_window == 1) %>%\n  group_by(stock_id) %>%\n  summarise(car = sum(ret_adj))\n\n# Run the event study regression\nevent_study <- lm(car ~ event_day, data = data %>% filter(event_day <= 0 & event_day >= -10))\n\n# Calculate robust standard errors\ncoeftest(event_study, vcovHC(event_study, type = \"HC1\"))\n\n# Print the coefficient for event day 0 (announcement day)\nsummary(event_study)$coefficients[2, 1]\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the event day 0 (announcement day) in the regression, indicating a positive impact of stock split announcements on the cumulative abnormal returns (CAR) of the announcing firms. The magnitude of the effect may vary, but a positive coefficient would suggest that the market reacts positively to stock split announcements, which is consistent with the literature suggesting that stock splits are seen as a positive signal by investors. The exact magnitude would depend on the specific dataset and the market conditions at the time of the announcements.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare CAR before and after the stock split announcement.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The announcement of a stock split is associated with a decrease in CAR.",
+    "main_effect": -0.028
+  }
+}

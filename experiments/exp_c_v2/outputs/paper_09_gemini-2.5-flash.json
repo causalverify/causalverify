@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_09",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:28:20.309833",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 683,
+    "output_tokens": 163,
+    "content": "The Research Integrity by Design (RID) protocol is followed step-by-step.\n\n## STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:** Sharp Regression Discontinuity Design (RDD). The treatment (shareholder proposal passage) is determined by whether the vote share in favor crosses a sharp, exogenously determined threshold of 50%. The running variable is the vote share in favor of the proposal, and the cutoff is 50%. The key identifying assumption is that proposals just above and just below the 50% threshold are comparable in unobservables, differing only in the outcome of the vote due to random noise.\n*   **Directional Hypothesis:** Shareholder governance proposals that pass by a narrow margin (i.e., just above the 50",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": null,
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "RDD — running variable = vote share in favor of governance proposal; cutoff = 50% majority threshold; identification relies on proposals passing by a bare majority being as-good-as-random relative to those failing by a bare majority",
+    "key_variables": {
+      "running_variable": "percentage of votes cast in favor of shareholder governance proposal",
+      "cutoff": "50% (simple majority)",
+      "outcome": "cumulative abnormal stock return in the [0, +1] window around vote announcement; longer-term changes in governance measures",
+      "time_period": "1997–2007, annual meeting dates"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Governance proposals that pass by a narrow margin generate positive abnormal returns of ~1.3% in the announcement window; long-run effects depend on proposal type (binding vs. advisory)",
+    "main_effect": "~1.3% CAR for just-passing governance proposals vs. just-failing proposals",
+    "key_robustness": [
+      "McCrary density test (no sorting)",
+      "bandwidth sensitivity",
+      "placebo cutoffs",
+      "binding vs. advisory proposal heterogeneity"
+    ],
+    "identification_strategy_detail": {
+      "method": "Regression discontinuity design",
+      "running_variable": "Vote share for the governance proposal (centered at 50% majority threshold)",
+      "cutoff": "50% (simple majority)",
+      "treatment": "Proposal passes (vote share > 50%)",
+      "control": "Proposal fails (vote share < 50%)",
+      "bandwidth": "Narrow window around 50% threshold (e.g., ±5-10 percentage points)",
+      "outcome": "Cumulative abnormal returns around the annual meeting date; subsequent governance changes",
+      "sample_period": "1994-2009 (ISS/RiskMetrics shareholder proposal data)",
+      "unit_of_observation": "Firm-proposal-meeting date",
+      "key_assumption": "No precise manipulation of vote outcomes around the 50% threshold (McCrary density test). Firms with proposals barely passing vs. barely failing are comparable on all relevant dimensions."
+    },
+    "key_magnitudes": {
+      "abnormal_return_at_cutoff": "~1.3% positive CAR on meeting day for proposals barely passing vs. barely failing",
+      "declassify_board_effect": "Largest effect among proposal types (~2.0%)",
+      "implementation_rate": "Proposals that pass are significantly more likely to be implemented by the board, despite being technically non-binding"
+    },
+    "robustness_notes_detail": "McCrary density test confirms no bunching at threshold. Robust to different bandwidth choices, polynomial orders, and controlling for proposal characteristics. Placebo tests at non-threshold vote levels show no discontinuity."
+  }
+}

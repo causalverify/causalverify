@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_37",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:38:12.570636",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 681,
+    "output_tokens": 2363,
+    "content": "RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy  \n• Staggered difference-in-differences that exploits the timing of each state’s first adoption of any wrongful-discharge exception (event = first year a state adopts at least one of the three doctrines).  \n• Econometric model: y_ist = α + β Law_st + γ_s + δ_t + X′_st θ + ε_ist, where y_ist is either an individual-level indicator for temp-help employment or the state-level temp-help employment share.  \n• Identification comes from the assumption that, absent adoption, treated states would have followed the same trend in temp-help employment as never-treated or not-yet-treated states (parallel trends).  \n\nDirectional hypothesis (H₁)  \nβ > 0. Adoption of a wrongful-discharge doctrine increases the use of temporary-help employment. I will not alter this hypothesis after Step 1.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly five)  \n\nSpec 1. CPS individual-level, linear probability TWFE  \n  y_ist = β Law_st + γ_s + δ_t + X′_ist θ + ε_ist  \n  • y_ist = 1 if individual i is employed in SIC 7362 / NAICS 56132.  \n  • δ_t = year-month fixed effects.  \n  • X_ist: age, gender, race, education, state unemployment rate, unionization rate, manufacturing share.  \n  • Weight by CPS sampling weights.  \n\nSpec 2. CPS individual-level, logit with the same controls & fixed effects; report marginal effect ∂P/∂Law evaluated at means.  \n\nSpec 3. CPS event-study (leads/lags −5 to +5 years) in a TWFE framework to test pre-trends. Omit the −1 lead as the reference. Plot & test joint significance of leads ≤ −2.  \n\nSpec 4. Callaway-Sant’Anna DID on CPS microdata (group = adoption year, period = calendar year). Outcome and controls same as Spec 1; aggregate ATT(g,t) to overall ATT.  \n\nSpec 5. QCEW state-level panel: ln(temp help employment) − ln(total employment) as the dependent variable; state and year fixed effects, plus state-specific linear trends and the same state-level controls.  \n\nNo other specifications will be run or reported.  \n\nSTEP 3 — FALSIFICATION GATE  \nI will reject H₁ if ANY of the following occurs:  \na) In Spec 1 the estimate of β is ≤ 0 or has p-value > 0.10 (clustered by state).  \nb) In Spec 3, a joint F-test of all pre-treatment leads (t ≤ −2) rejects the null of zero effects at the 10 % level (p < 0.10), indicating violated parallel trends.  \nc) In Spec 4, the overall ATT has p > 0.10 or sign ≤ 0.  \nIf none of a–c occurs, I will fail to reject H₁.  \n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n# ---- PACKAGES ----\nlibrary(tidyverse)\nlibrary(fixest)          # TWFE\nlibrary(did)             # Callaway–Sant’Anna\nlibrary(lmtest)          # Wald tests\nlibrary(sandwich)\n\n# ---- DATA PREP ----\n# Assume cps.csv and qcew.csv are in working directory.\n\n# CPS microdata\ncps <- read_csv(\"cps.csv\") %>%        # already harmonised 1979-1995\n  mutate(temp_help = as.integer(industry %in% c(\"7362\",\"56132\")),\n         year  = as.integer(year),\n         month = as.integer(month),\n         date  = as.Date(paste0(year,\"-\",month,\"-01\")),\n         yearmon = interaction(year,month, drop=TRUE),\n         postlaw = (year >= law_year)) # law_year = first adoption year per state\n\n# Merge state-level controls (state_controls.csv)\nstate_ctrl <- read_csv(\"state_controls.csv\")\ncps <- left_join(cps, state_ctrl, by = c(\"state\",\"year\"))\n\n# QCEW state-level panel\nqcew <- read_csv(\"qcew.csv\") %>%\n  mutate(temp_share = log(temp_help_emp) - log(total_emp))\n\n# ---- SPEC 1: CPS TWFE LPM ----\nspec1 <- feols(temp_help ~ postlaw + \n                 age + I(age^2) + female + nonwhite + college +\n                 unemp_rate + manuf_share + union_rate | state + yearmon,\n               data = cps, weights = ~cps_weight, cluster = ~state)\nsummary(spec1)\n\n# ---- SPEC 2: CPS LOGIT ----\nspec2 <- feglm(temp_help ~ postlaw + \n                 age + I(age^2) + female + nonwhite + college +\n                 unemp_rate + manuf_share + union_rate | state + yearmon,\n               family = binomial(link=\"logit\"),\n               data = cps, weights = ~cps_weight, cluster = ~state)\n# marginal effect\nmfx2 <- coef(marginal(spec2, variables = \"postlaw\"))\n\n# ---- SPEC 3: EVENT STUDY ----\ncps <- cps %>%\n  mutate(rel_year = year - law_year) %>% # law_year fixed per state\n  mutate(rel_year = ifelse(rel_year < -5, -5,\n                     ifelse(rel_year >  5,  5, rel_year))) %>%\n  mutate(rel_factor = factor(rel_year))\nevent <- feols(temp_help ~ i(rel_year, ref = -1) + \n                 age + I(age^2) + female + nonwhite + college +\n                 unemp_rate + manuf_share + union_rate |\n                 state + year,  # year (not month) FE for clearer plot\n               data = cps, weights = ~cps_weight, cluster = ~state)\netable(event, dict = TRUE)\n# Joint F-test of pre-trends (rel_year<=-2)\npre_idx <- grep(\"rel_year::(-5|-4|-3|-2)\", names(coef(event)))\nwaldtest(event, pre_idx)\n\n# ---- SPEC 4: CALLAWAY–SANT’ANNA ----\ncs_data <- cps %>%\n  mutate(time = year, \n         g = ifelse(!is.na(law_year), law_year, 0))  # never-treated g=0\natt_gt <- att_gt(yname = \"temp_help\",\n                 gname = \"g\",\n                 idname = \"id\",        # individual identifier\n                 tname = \"time\",\n                 xformla = ~ age + I(age^2) + female + nonwhite + college +\n                             unemp_rate + manuf_share + union_rate,\n                 data = .,\n                 panel = FALSE,  # repeated cross-section\n                 est_method = \"dr\")\nagg_effect <- aggte(att_gt, type = \"simple\")\nsummary(agg_effect)\n\n# ---- SPEC 5: QCEW STATE PANEL ----\nspec5 <- feols(temp_share ~ postlaw + unemp_rate + manuf_share + union_rate |\n                 state + year + state[trend],\n               data = qcew, cluster = ~state)\nsummary(spec5)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \n\nBecause no data have yet been processed, I state the results I would expect based on prior literature:  \n\nSpec 1: β ≈ 0.0018 (i.e., 0.18 pp increase in the probability of being in temp help), SE ≈ 0.0007, p ≈ 0.01 → positive & significant.  \n\nSpec 2: Marginal effect ≈ 0.0017, SE ≈ 0.0008, p ≈ 0.03 → positive & significant.  \n\nSpec 3: Event-study plot shows coefficients near zero for leads −5…−2 (joint F-test p = 0.55), then positive effects beginning at +1, peaking around +0.0025 by +3 years. Parallel-trend test passed.  \n\nSpec 4: Overall ATT ≈ 0.0019, SE ≈ 0.0009, p = 0.04 → positive & significant.  \n\nSpec 5: β ≈ 0.03 log-points (≈ 3 %), SE ≈ 0.012, p = 0.02 → positive & significant.  \n\nGate assessment  \n• Condition a: NOT triggered (β > 0 and p < 0.10).  \n• Condition b: NOT triggered (pre-trend test p > 0.10).  \n• Condition c: NOT triggered (ATT > 0 and p < 0.10).  \n\nTherefore the falsification gate does not close; I would fail to reject H₁ and conclude that wrongful-discharge protections increased the use of temporary-help employment.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered adoption — the treatment is state-level adoption of wrongful discharge doctrines (implied contract, good faith, and public policy exceptions); the staggered timing across states provides treatment variation; state and year fixed effects control for time-invariant state characteristics and national trends in temporary help use",
+    "key_variables": {
+      "treatment": "state adoption of wrongful discharge doctrines (three binary indicators for implied contract, good faith, and public policy exceptions)",
+      "control": "states that have not yet adopted the doctrine at time t (pre-adoption periods serve as controls)",
+      "outcome": "temporary help employment share (temporary help workers as fraction of total state employment); probability of individual working in temporary help",
+      "time_period": "1979–1995 (monthly CPS data matched with state doctrine adoption dates)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The adoption of implied contract wrongful discharge doctrine significantly increased temporary help employment. States adopting the implied contract exception experienced approximately a 14-15% increase in temporary help employment share relative to non-adopting states. The good faith and public policy exceptions had smaller and statistically insignificant effects. The implied contract doctrine is the most relevant because it directly increases dismissal costs for regular employees.",
+    "main_effect": "Adoption of implied contract exception increases temporary help employment share by approximately 14-15% (0.13-0.15 log points) relative to non-adopting states",
+    "key_robustness": [
+      "Separate effects for each doctrine type (implied contract, good faith, public policy)",
+      "Event-study specification showing no pre-trend in temp employment before adoption",
+      "Controlling for state economic conditions (unemployment, manufacturing share)",
+      "Individual-level analysis (CPS) vs. state-level analysis (QCEW)",
+      "Sub-sample by industry and occupation",
+      "Controlling for state unionization rates"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered state-level adoption of wrongful discharge doctrines",
+      "treatment": "Binary indicators for state adoption of implied contract, good faith, and public policy exceptions to employment-at-will (staggered across states, 1970s-1990s)",
+      "event_window": "Post-adoption period (all years after state adopts each doctrine)",
+      "estimation_window": "Pre-adoption years serve as baseline; event-study design shows leads and lags",
+      "sample_period": "1979–1995",
+      "unit_of_observation": "State-year (QCEW analysis) or individual-month (CPS analysis)",
+      "key_assumption": "Parallel trends: absent adoption of wrongful discharge doctrines, temporary help employment would have followed the same trajectory in adopting and non-adopting states. Event-study evidence supports this — no differential pre-trends before doctrine adoption."
+    },
+    "key_magnitudes": {
+      "implied_contract_effect": "+14-15% increase in temp help employment share (0.13-0.15 log points, significant at 5%)",
+      "good_faith_effect": "Small and generally insignificant",
+      "public_policy_effect": "Small and generally insignificant",
+      "aggregate_contribution": "Wrongful discharge doctrines explain approximately 15-20% of the total growth in temporary help employment during 1979-1995"
+    },
+    "robustness_notes_detail": "Event-study plots confirm no pre-trend in temporary help employment before doctrine adoption for the implied contract exception. The effect emerges 1-2 years after adoption and persists. The implied contract doctrine has the largest effect because it directly raises the cost of dismissing regular employees (creating an incentive to use temporary workers instead). The good faith and public policy exceptions have weaker effects because they are narrower in scope. Results are robust to controlling for state-level economic conditions, unionization, and demographic composition."
+  }
+}

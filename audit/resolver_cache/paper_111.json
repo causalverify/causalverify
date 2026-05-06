@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_111",
+  "title": "Knowledge, Tests, and Fadeout in Educational Interventions",
+  "authors": "Cascio & Staiger",
+  "year": null,
+  "journal": "AEJ:EP",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w18038",
+    "title": "Knowledge, Tests, and Fadeout in Educational Interventions",
+    "year": 2012,
+    "journal": "National Bureau of Economic Research",
+    "citations": 18
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "cascio",
+      "staiger"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aej:ep",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 18,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

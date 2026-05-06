@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies Instrumental Variables (IV) as the strategy. Furthermore, it accurately describes and constructs the specific shift-share instrument used in the ground truth paper, including the key components: pre-crisis bank real estate exposure, bank lending share in a county, and interaction with the crisis period. The justification for IV (disentangling supply from demand shocks) is also correct. The AI output does not state a conclusion direction, resulting in a 0 for direction score, but there are no identified failures in the strategy or its description.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_07",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:17:45.315327+00:00"
+}

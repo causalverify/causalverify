@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_67",
+  "title": "When Does the Market Matter? Stock Prices and the Investment of Equity-Dependent Firms",
+  "authors": "Baker, Stein & Wurgler",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/00335530360698478",
+    "title": "When Does the Market Matter? Stock Prices and the Investment of Equity-Dependent Firms",
+    "year": 2003,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1160
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "wurgler",
+      "baker",
+      "stein"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1160,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: IV — treatment = number of slaves exported, control = countries with fewer or no slaves exported; shock/instrument/cutoff = sailing distances to slave demand locations",
+  "key_variables": {
+    "treatment": "Number of slaves exported from each country",
+    "control": "Countries with fewer or no slaves exported",
+    "outcome": "Current economic performance",
+    "instrument_or_cutoff": "Sailing distances from each country to the nearest location of demand for slave labor",
+    "time_period": "1400 to 1900"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The slave trades have had an adverse effect on economic development.",
+  "main_effect": "The IV coefficients are negative and significant.",
+  "key_robustness": [
+    "Historical evidence on selection into slave trades",
+    "Use of instrumental variables",
+    "Examination of pre-slave trade population densities"
+  ],
+  "confidence": 0.9,
+  "notes": "The confidence is less than 1.0 due to potential unobserved country characteristics that may still bias the estimates."
+}

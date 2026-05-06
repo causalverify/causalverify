@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s79",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of New Seed Variety Adoption on Farm Income",
+  "model": "o3",
+  "run_at": "2026-04-14T19:52:10.789456",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 456,
+    "output_tokens": 1129,
+    "content": "## 1. Identification Strategy  \nCausal method: Two-Stage Least Squares (Instrumental-Variables).  \nWhy: Adoption of the new seed variety (`x`) may be endogenous (e.g., higher-ability farmers adopt more and also earn more). Agro-ecological suitability (`z`) predicts adoption but should affect income only through adoption and normal input choices, making it a plausible instrument.  \n\nKey assumptions  \n1. Relevance:  Cov(z, x) ≠ 0 – farms in more suitable areas are more likely to adopt.  \n2. Exclusion:  z affects income y only through its impact on adoption x, conditional on observed controls.  \n3. Independence:  z is as-good-as random with respect to unobserved determinants of income once controls are included.  \n4. Monotonicity (for LATE interpretation): Suitability does not decrease the probability of adoption for any farm.  \n\n## 2. R Code\n```r\n# Required packages\nrequired <- c(\"AER\", \"sandwich\", \"lmtest\")\nnew.packages <- required[!(required %in% installed.packages()[,\"Package\"])]\nif(length(new.packages)) install.packages(new.packages, repos = \"https://cloud.r-project.org\")\nlapply(required, require, character.only = TRUE)\n\n# 1. Read the data\ndata_path <- \"experiments/exp_b/data/s79_data.csv\"\ndf <- read.csv(data_path)\n\n# 2. Naïve OLS (possibly biased)\nols_formula <- y ~ x + controls\nols <- lm(ols_formula, data = df)\nols_robust <- coeftest(ols, vcov = vcovHC(ols, type = \"HC1\"))\n\ncat(\"Naïve OLS (robust s.e.):\\n\")\nprint(ols_robust)\n\n# 3. IV / 2SLS\niv_formula <- y ~ x + controls | z + controls   # x instrumented by z\niv <- ivreg(iv_formula, data = df)\n\n# Robust (HC1) standard errors\niv_robust <- coeftest(iv, vcov = vcovHC(iv, type = \"HC1\"))\n\ncat(\"\\nIV 2SLS (robust s.e.):\\n\")\nprint(iv_robust)\n\n# 4. First-stage diagnostics\nfirst_stage <- lm(x ~ z + controls, data = df)\nfirst_stage_robust <- coeftest(first_stage, vcov = vcovHC(first_stage, type = \"HC1\"))\nfs_fstat <- waldtest(first_stage, . ~ controls, vcov = vcovHC(first_stage, type = \"HC1\"))\ncat(\"\\nFirst-stage coefficient on z (robust s.e.):\\n\")\nprint(first_stage_robust[\"z\",])\ncat(\"\\nWeak-instrument robust F-statistic (H0: z has no effect on x):\\n\")\nprint(fs_fstat$F[2])\n\n# 5. Simple robustness check: add quadratic control\ndf$controls_sq <- df$controls^2\niv_formula_rb <- y ~ x + controls + controls_sq | z + controls + controls_sq\niv_rb <- ivreg(iv_formula_rb, data = df)\niv_rb_robust <- coeftest(iv_rb, vcov = vcovHC(iv_rb, type = \"HC1\"))\ncat(\"\\nIV with quadratic control (robust s.e.):\\n\")\nprint(iv_rb_robust[\"x\",])\n\n# 6. Clear numerical result\ncoef_iv <- iv_robust[\"x\",\"Estimate\"]\nse_iv  <- iv_robust[\"x\",\"Std. Error\"]\ncat(sprintf(\"\\n==== Main estimate: Effect of adoption on income ====\\nCoefficient = %.4f, Robust s.e. = %.4f\\n\", \n            coef_iv, se_iv))\n```\n\n## 3. Expected Findings  \nSign: Positive – adopting the higher-yield seed should raise farm income.  \nMagnitude: With a standardized income variable (mean≈0, sd≈1), a 1-unit increase in adoption (roughly moving from non-adopter to full adopter) might raise income by ≈0.4–0.8 standard deviations. The IV estimate will likely be larger in magnitude than the OLS estimate because OLS tends to under-estimate returns when better farmers self-select into adoption.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use agroecological suitability as an instrument for new seed variety adoption.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Adopting the new seed variety leads to a significant increase in farm income.",
+    "main_effect": "0.2"
+  }
+}

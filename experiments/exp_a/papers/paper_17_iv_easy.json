@@ -1,0 +1,94 @@
+{
+  "paper_id": "paper_17",
+  "source": "Journal of Political Economy, 2004",
+  "authors": "Miguel, Satyanath & Sergenti",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Economic Shocks and Civil Conflict: An Instrumental Variables Approach",
+  "doi": "10.1086/421174",
+  "volume": 112,
+  "issue": 4,
+  "pages": "725-753",
+  "domain": "development",
+  "research_question": "Do short-term economic downturns causally increase the likelihood of civil conflict in sub-Saharan Africa? Furthermore, does the effect of economic shocks on conflict vary systematically with countries' income levels, democratic institutions, ethnic diversity, or other political and social characteristics?",
+  "data_description": "The analysis uses an annual country-level panel of 41 sub-Saharan African countries over 1981–99. Civil conflict data come from the PRIO/Uppsala Armed Conflict Database, which codes conflicts at thresholds of 25 and 1,000 battle deaths per year; alternative conflict measures from Collier and Hoeffler, Doyle and Sambanis, and Fearon and Laitin are also used. Rainfall data come from the Global Precipitation Climatology Project (GPCP), which combines gauge and satellite measurements at 2.5-degree latitude/longitude grid nodes; NCEP and FAOCLIM rainfall series are used as robustness checks. Per capita GDP growth comes from World Bank and Penn World Tables sources. Country controls include ethnolinguistic and religious fractionalization, Polity IV democracy scores, log per capita income, percent mountainous terrain (Fearon-Laitin), log population, oil-exporter status, and terms-of-trade growth.",
+  "institutional_context": "Sub-Saharan Africa experienced exceptionally high civil conflict incidence during the 1980s and 1990s, with 29 of 43 countries affected and conflict present in roughly 27 percent of country-years. The region's economies are predominantly rain-fed agricultural: irrigation covers only about 1 percent of cropland in the median African country, and agriculture constitutes a large share of GDP and employment. Consequently, year-to-year rainfall variation drives substantial fluctuations in agricultural output and overall income. African states typically have weak repressive capacity, limited road infrastructure, and shallow formal labor markets, so negative income shocks sharply reduce the opportunity cost of joining armed militias for underemployed rural youth. National income statistics are widely regarded as poorly measured. Illustrative cases include Sierra Leone's RUF insurgency following droughts in the early 1990s and the Tuareg conflict in Niger amid repeated rainfall shortfalls.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.021,
+      "unit": "probability of conflict incidence per 1pp GDP growth (2SLS)",
+      "interpretation": "A 1 percentage point decline in GDP growth increases the probability of ongoing or new civil conflict by approximately 2.1 percentage points; a 5pp decline raises conflict probability by ~10.5pp"
+    },
+    "secondary_estimate": {
+      "value": 0.12,
+      "unit": "first-stage coefficient (rainfall growth → GDP growth)",
+      "interpretation": "A 1 percentage point increase in rainfall growth is associated with a 0.12 percentage point increase in GDP per capita growth (first stage of 2SLS)"
+    },
+    "significance": "p < 0.05 (2SLS); p < 0.01 (first stage)",
+    "table_ref": "Tables 3-4 in Miguel, Satyanath & Sergenti (2004)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "PRIO/Uppsala Armed Conflict Dataset (free, from PRIO website)",
+      "Penn World Tables (GDP per capita, free from Groningen Growth Centre)",
+      "GPCC gridded precipitation data (free from DWD/NOAA)",
+      "Polity IV (democracy index, free)",
+      "Alesina et al. ethnic fractionalization data (free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. Replication data has been posted by the authors.",
+    "replicability": "high — all data publicly available; replication files available",
+    "public_proxy_available": true,
+    "replication_tier": "full (all data sources public, replication code available)",
+    "data_limitations": "GDP data for sub-Saharan Africa is measured with substantial error (supporting the IV approach as measurement error attenuates OLS). Conflict datasets may undercount low-intensity conflicts. Rainfall data is interpolated from weather stations that are sparse in some African countries.",
+    "public_data_sources_detail": [
+      "PRIO/Uppsala Armed Conflict Dataset (conflict events — free)",
+      "Penn World Tables 10.0 (GDP per capita — free)",
+      "GPCC precipitation data (monthly gridded rainfall — free from NOAA/DWD)",
+      "Polity IV (democracy scores — free)",
+      "World Bank WDI (economic indicators — free)",
+      "FRED (commodity prices — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables — rainfall growth (current and lagged) as an instrument for economic growth (GDP per capita growth); first stage: rainfall → GDP growth; second stage: GDP growth (instrumented) → civil conflict onset/incidence",
+    "key_variables": {
+      "treatment": "economic growth (GDP per capita growth rate), instrumented by rainfall growth",
+      "control": "N/A (continuous treatment with IV identification)",
+      "outcome": "civil conflict onset (binary: new conflict starts) and conflict incidence (binary: ongoing or new conflict in year t)",
+      "time_period": "1981–1999, annual panel of 41 African countries"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Negative economic growth shocks significantly increase the likelihood of civil conflict; a 5 percentage point negative growth shock increases the probability of conflict in the following year by approximately 12.5 percentage points. The IV estimates are larger than OLS, consistent with attenuation bias from measurement error in GDP data.",
+    "main_effect": "A 5pp decline in economic growth increases the probability of civil conflict onset by approximately 12.5 percentage points; conflict incidence increases by roughly 9-11pp per 5pp growth decline",
+    "key_robustness": [
+      "Lagged rainfall as additional instrument (addresses timing)",
+      "Controlling for country fixed effects and country-specific trends",
+      "Alternative conflict datasets (Fearon & Laitin, Collier & Hoeffler)",
+      "Excluding oil exporters (where rainfall-agriculture link is weaker)",
+      "Separating conflict onset from incidence"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with country and year fixed effects",
+      "treatment": "GDP per capita growth rate (endogenous), instrumented by current-year and one-year lagged rainfall growth",
+      "event_window": "Annual",
+      "estimation_window": "Full panel 1981-1999",
+      "sample_period": "1981–1999",
+      "unit_of_observation": "Country-year (41 countries × ~19 years)",
+      "key_assumption": "Exclusion restriction: rainfall affects civil conflict only through its effect on economic growth (income), not through other channels. Supported by the agricultural dependence of African economies. Potential violations: direct effects of extreme weather on population displacement, disease, or water scarcity (though these are partially mediated by economic effects)."
+    },
+    "key_magnitudes": {
+      "first_stage": "Rainfall growth coefficient on GDP growth: approximately +0.10 to +0.15 (a 1pp increase in rainfall growth raises GDP growth by 0.10-0.15pp); F-statistic > 10",
+      "conflict_incidence_iv": "A 1pp decrease in instrumented GDP growth increases conflict incidence probability by approximately 2.1pp (coefficient ≈ -0.021)",
+      "conflict_onset_iv": "A 1pp decrease in instrumented GDP growth increases conflict onset probability by approximately 2.5pp"
+    },
+    "robustness_notes_detail": "Results hold with country fixed effects, year fixed effects, country-specific time trends, and various combinations of controls. Overidentification tests (using current and lagged rainfall as two instruments) do not reject the exclusion restriction. The first-stage F-statistic exceeds 10 in all specifications, ruling out weak instrument concerns. Results are robust to excluding Nigeria, South Africa, and oil exporters."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 76024,
+  "phase1_source_version": "v2primeprime_full_text_a4_deleak",
+  "v2primeprime_two_pass_deleak": true,
+  "v2primeprime_deleak_source": "audit/regen_strong_deleak_v2primeprime_6.json",
+  "v2primeprime_a4_action": "rewritten"
+}

@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "Strong strategy match: correctly identifies event study method using FOMC announcements, futures-implied surprises, and equity returns. However, fails on direction - uses sign convention where positive surprise means contractionary (rate higher than expected), but doesn't state the expected negative relationship between surprises and returns.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_04",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:05:05.386152+00:00"
+}

@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: IV — treatment = additional year of schooling, control = no additional year; shock/instrument/cutoff = change in compulsory schooling laws",
+  "key_variables": {
+    "treatment": "additional year of schooling",
+    "control": "no additional year of schooling",
+    "outcome": "log annual earnings",
+    "instrument_or_cutoff": "change in compulsory schooling laws",
+    "time_period": "1984 to 1998"
+  },
+  "conclusion_direction": "positive",
+  "conclusion_detail": "The study finds substantial returns to compulsory schooling, with estimates ranging from 8 to 15 percent.",
+  "main_effect": "returns to schooling estimates are lower – around 7 percent instead of 15 percent",
+  "key_robustness": [
+    "alternative sample specifications",
+    "adding more recent data",
+    "regression discontinuity approach"
+  ],
+  "confidence": 0.8,
+  "notes": "The confidence is less than 1.0 due to wide confidence intervals and the need for robustness checks."
+}

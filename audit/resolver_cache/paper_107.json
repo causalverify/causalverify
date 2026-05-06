@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_107",
+  "title": "Saving Babies? Revisiting the Effect of Very Low Birth Weight Classification on Mortality",
+  "authors": "Barreca, Guldi, Lindo & Waddell",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1056/nejmsa1202099",
+    "title": "Mortality and Access to Care among Adults after State Medicaid Expansions",
+    "year": 2012,
+    "journal": "New England Journal of Medicine",
+    "citations": 579
+  },
+  "checks": {
+    "title_jaccard": 0.0588,
+    "title_gate_pass": false,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "qje",
+    "journal_oa": "new england journal of medicine",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 579,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 0/3 gates pass",
+  "error_msg": ""
+}

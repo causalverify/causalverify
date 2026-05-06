@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_225",
+  "title": "When Do Better Schools Raise Housing Prices? Evidence from Paris Public and Private Schools",
+  "authors": "Fack & Grenet",
+  "year": null,
+  "journal": "JUE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jpubeco.2009.10.009",
+    "title": "When do better schools raise housing prices? Evidence from Paris public and private schools",
+    "year": 2009,
+    "journal": "Journal of Public Economics",
+    "citations": 294
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "fack",
+      "grenet"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jue",
+    "journal_oa": "jpube",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 294,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: IV — treatment = equity dependence, control = non-equity dependence; shock/instrument/cutoff = KZ index",
+  "key_variables": {
+    "treatment": "Equity dependence based on KZ index",
+    "control": "Firms with low equity dependence",
+    "outcome": "Investment sensitivity to stock prices",
+    "instrument_or_cutoff": "KZ index",
+    "time_period": "Not specified"
+  },
+  "conclusion_direction": "positive",
+  "conclusion_detail": "Firms with high equity dependence have investment that is almost three times as sensitive to stock prices as firms with low equity dependence.",
+  "main_effect": "Investment sensitivity is almost three times larger for high KZ index firms compared to low KZ index firms.",
+  "key_robustness": [
+    "Use of KZ index as a proxy",
+    "Comparison across quintiles",
+    "Verification of model predictions"
+  ],
+  "confidence": 0.9,
+  "notes": "The exact sample period is not specified, and the reliance on the KZ index as a proxy may introduce some measurement error."
+}

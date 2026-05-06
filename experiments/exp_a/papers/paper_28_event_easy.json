@@ -1,0 +1,91 @@
+{
+  "paper_id": "paper_28",
+  "source": "Journal of Finance, 2001",
+  "authors": "Huberman & Regev",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Contagious Speculation and a Cure for Cancer: A Nonevent That Made Stock Prices Soar",
+  "doi": "10.1111/0022-1082.00330",
+  "volume": 56,
+  "issue": 1,
+  "pages": "387-396",
+  "domain": "finance",
+  "research_question": "Do stock prices respond to widely publicized media coverage even when the underlying information is not genuinely new, and can such publicity-driven enthusiasm produce permanent price changes that spill over to related firms? More broadly, to what extent are share prices determined by fundamental information versus salient public attention?",
+  "data_description": "The study combines several data sources covering EntreMed (ENMD) and other biotechnology firms. Intraday trading data, prices, and quotes come from the NYSE Trade and Quotes (TAQ) database, while daily return data through December 1997 are from CRSP. Additional 1998–1999 price data are obtained from CSI, Inc., via the Money Central Investor website. Shares outstanding and ownership information are taken from SEC company filings around May 1998. Membership in the Nasdaq Combined Biotechnology Index (134 firms with at least $50 million market capitalization, engaged in biomedical research) and its membership criteria are drawn from Nasdaq's website. The analysis covers daily prices, returns, and trading volumes around three focal dates in 1997–1999, with a benchmark sample of 507 trading days across 1996–1997 (56,800 firm-days) used to characterize typical return and volume distributions.",
+  "institutional_context": "EntreMed is a small biotechnology company holding licensing rights to potentially cancer-curing angiogenesis-inhibiting proteins developed by Dr. Judah Folkman's Harvard-affiliated team. The scientific breakthrough was first reported on November 27, 1997, in a cover article in Nature, accompanied by coverage in the New York Times (page A28), Newsday, CNN, and CNBC. More than five months later, on Sunday, May 3, 1998, the New York Times ran a prominent front-page 'special report' by Gina Kolata describing essentially the same scientific findings, featuring an enthusiastic quote attributed to Nobel Laureate James Watson. EntreMed had a strategic partnership with Bristol-Myers Squibb, formed in December 1995, to develop Angiostatin. A subsequent Wall Street Journal front-page article on November 12, 1998, reported that other laboratories had failed to replicate Folkman's results, providing a third focal news event.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 3.3,
+      "unit": "fractional return (330% abnormal return on NYT article day)",
+      "interpretation": "EntreMed stock rose by 330% on the trading day following the NYT front-page article, despite no new scientific information, demonstrating that media salience alone can cause massive stock price movements"
+    },
+    "secondary_estimate": {
+      "value": 0.07,
+      "unit": "fractional return (7% abnormal return on Nature publication day)",
+      "interpretation": "The same scientific findings produced only a 7% return when first published in Nature — a 47x smaller reaction than the NYT article, isolating the media attention effect"
+    },
+    "significance": "p < 0.01 (NYT event); p < 0.10 (Nature event)",
+    "table_ref": "Tables 1-2 in Huberman & Regev (2001)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "CRSP daily returns and volume for EntreMed (ENMD) — available via WRDS or Yahoo Finance",
+      "New York Times article (May 3, 1998) — available via NYT archive",
+      "Nature article (November 27, 1997) — available via Nature journal",
+      "Lexis-Nexis media coverage (available at most academic libraries)"
+    ],
+    "proprietary_sources": [
+      "CRSP requires WRDS subscription for systematic access"
+    ],
+    "proxy_strategy": "EntreMed daily returns and volume can be obtained from Yahoo Finance (free). NYT and Nature articles are publicly accessible. This is one of the most replicable event studies in the literature.",
+    "replicability": "high — single-stock event study with public data",
+    "public_proxy_available": true,
+    "replication_tier": "full (single stock returns from Yahoo Finance + public article dates)",
+    "data_limitations": "Single-firm case study limits statistical generalization. EntreMed was a small biotech stock with low liquidity pre-event, potentially amplifying the price reaction.",
+    "public_data_sources_detail": [
+      "yfinance (ENMD daily returns and volume — free)",
+      "New York Times archive (article text — free with subscription or library)",
+      "Nature journal (original scientific article — free with academic access)",
+      "Ken French data library (biotech portfolio returns — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study around a media event (NYT article on May 3, 1998) that contained no new scientific information — the same findings had been published in Nature five months earlier; the event study compares EntreMed's stock return on May 4 to its expected return, and also compares the market reaction to the NYT article vs. the reaction to the original Nature publication",
+    "key_variables": {
+      "treatment": "New York Times front-page article about EntreMed's cancer research (May 3, 1998) — a media event with no new fundamental information",
+      "control": "expected return from market model (CRSP value-weighted index); also the Nature publication date (November 27, 1997) as a counterfactual",
+      "outcome": "EntreMed daily abnormal return and abnormal trading volume; also other biotech stock returns (contagion)",
+      "time_period": "Event dates: November 27, 1997 (Nature) and May 4, 1998 (NYT); sample: 1997-1998"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Media coverage, even without new information, caused a massive stock price increase. EntreMed's stock rose 330% on the NYT article date (May 4, 1998), compared to a modest ~7% increase when the same scientific findings were first published in Nature five months earlier. The price increase was only partially reversed in subsequent weeks, suggesting a lasting effect of media-driven attention on prices. Other biotech stocks also experienced significant positive abnormal returns (contagion effect).",
+    "main_effect": "EntreMed abnormal return: +330% on NYT article day (May 4); +7% on Nature publication day (Nov 27); biotech index also rose ~2% on NYT day",
+    "key_robustness": [
+      "Comparison of market reaction to NYT vs. Nature publication dates",
+      "Other biotech stocks as contagion measure",
+      "Trading volume analysis (confirming attention-driven trading)",
+      "Post-event return reversal analysis",
+      "Lexis-Nexis media coverage comparison between the two events"
+    ],
+    "identification_strategy_detail": {
+      "method": "Classic event study: market model abnormal returns around two event dates for the same firm and same information",
+      "treatment": "New York Times front-page article (May 3, 1998, Sunday — trading response on May 4, Monday)",
+      "event_window": "[-1, +5] trading days around each event date",
+      "estimation_window": "[-250, -11] trading days before each event for market model estimation",
+      "sample_period": "1997–1998",
+      "unit_of_observation": "EntreMed (ENMD) daily returns; also biotech sector portfolio",
+      "key_assumption": "The Nature publication (November 1997) and NYT article (May 1998) contained the same scientific information. Any differential market reaction is attributable to media salience, not information content. No other EntreMed-specific news was released between the two dates that would explain the differential reaction."
+    },
+    "key_magnitudes": {
+      "nyt_day_return": "+330% abnormal return on May 4, 1998 (EntreMed)",
+      "nature_day_return": "+7% abnormal return on November 28, 1997 (EntreMed)",
+      "volume_spike": "Trading volume on May 4 was approximately 23x normal daily volume",
+      "partial_reversal": "EntreMed stock settled at approximately $30-40 in the weeks following the spike (partial reversal from $52 close on May 4, but still well above $12 pre-event)"
+    },
+    "robustness_notes_detail": "The case study design limits statistical generalization but provides compelling evidence for the media-attention hypothesis. No confounding EntreMed-specific news was released between the Nature and NYT dates. The contagion effect on other biotech stocks rules out a purely idiosyncratic explanation. The episode is consistent with models of limited attention (Merton 1987) and media-driven investor sentiment."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 22774,
+  "phase1_source_version": "v2primeprime_full_text"
+}

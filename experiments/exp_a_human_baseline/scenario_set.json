@@ -1,0 +1,90 @@
+[
+  {
+    "scenario_id": "s01",
+    "method_family": "DID",
+    "difficulty": "easy",
+    "title": "COVID-19 lockdown effect on retail foot traffic",
+    "data_file": "experiments/exp_b/data/s01_data.csv",
+    "dgp_truth_effect": -0.3,
+    "dgp_truth_direction": "negative",
+    "canonical_estimated_effect": -0.238664,
+    "canonical_status": "FLAGGED"
+  },
+  {
+    "scenario_id": "s04",
+    "method_family": "DID",
+    "difficulty": "medium",
+    "title": "TARP capital injection on bank risk-taking",
+    "data_file": "experiments/exp_b/data/s04_data.csv",
+    "dgp_truth_effect": 0.2,
+    "dgp_truth_direction": "positive",
+    "canonical_estimated_effect": 0.105831,
+    "canonical_status": "FLAGGED"
+  },
+  {
+    "scenario_id": "s11",
+    "method_family": "EVENT_STUDY",
+    "difficulty": "easy",
+    "title": "Fed rate hike announcement on bank stock returns",
+    "data_file": "experiments/exp_b/data/s11_data.csv",
+    "dgp_truth_effect": -0.02,
+    "dgp_truth_direction": "negative",
+    "canonical_estimated_effect": -0.020114,
+    "canonical_status": "VERIFIED"
+  },
+  {
+    "scenario_id": "s13",
+    "method_family": "EVENT_STUDY",
+    "difficulty": "medium",
+    "title": "M&A announcement returns for acquirer firms",
+    "data_file": "experiments/exp_b/data/s13_data.csv",
+    "dgp_truth_effect": -0.018,
+    "dgp_truth_direction": "negative",
+    "canonical_estimated_effect": -0.017892,
+    "canonical_status": "VERIFIED"
+  },
+  {
+    "scenario_id": "s19",
+    "method_family": "IV",
+    "difficulty": "easy",
+    "title": "Rainfall as IV for agricultural loan demand",
+    "data_file": "experiments/exp_b/data/s19_data.csv",
+    "dgp_truth_effect": 0.4,
+    "dgp_truth_direction": "positive",
+    "canonical_estimated_effect": 0.217518,
+    "canonical_status": "FLAGGED"
+  },
+  {
+    "scenario_id": "s21",
+    "method_family": "IV",
+    "difficulty": "medium",
+    "title": "Vietnam draft lottery as IV for military service on earnings",
+    "data_file": "experiments/exp_b/data/s21_data.csv",
+    "dgp_truth_effect": -0.15,
+    "dgp_truth_direction": "negative",
+    "canonical_estimated_effect": -0.208976,
+    "canonical_status": "FLAGGED"
+  },
+  {
+    "scenario_id": "s25",
+    "method_family": "RDD",
+    "difficulty": "easy",
+    "title": "Vote share cutoff and policy adoption",
+    "data_file": "experiments/exp_b/data/s25_data.csv",
+    "dgp_truth_effect": 0.25,
+    "dgp_truth_direction": "positive",
+    "canonical_estimated_effect": 0.254304,
+    "canonical_status": "VERIFIED"
+  },
+  {
+    "scenario_id": "s27",
+    "method_family": "RDD",
+    "difficulty": "medium",
+    "title": "Income cutoff and subsidy program participation",
+    "data_file": "experiments/exp_b/data/s27_data.csv",
+    "dgp_truth_effect": 0.25,
+    "dgp_truth_direction": "positive",
+    "canonical_estimated_effect": 0.261718,
+    "canonical_status": "VERIFIED"
+  }
+]

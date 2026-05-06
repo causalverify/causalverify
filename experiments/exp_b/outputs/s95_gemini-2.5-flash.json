@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s95",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Minimum Drinking Age on Alcohol Consumption",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T20:00:08.481562",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 464,
+    "output_tokens": 410,
+    "content": "## 1. Identification Strategy\n\n*   **Method:** Sharp Regression Discontinuity Design (RDD).\n*   **Why:** The research question investigates the causal effect of reaching the legal drinking age of 21 on alcohol consumption. This policy creates a sharp, exogenous cutoff: individuals exactly 21 years old (or older) are legally allowed to drink, while those just under 21 are not. The `running_var` (age in months, centered at 0 for 21 years) serves as the continuous assignment variable, and the cutoff is sharply at `running_var = 0`. By comparing individuals just below and just above this age threshold, we can isolate the causal impact of legal drinking age, as all other factors (maturity, social environment, etc.) are assumed to vary smoothly around the cutoff.\n*   **Key Assumption:** The primary assumption of RDD is that, in the absence of the treatment (reaching legal drinking age), the average potential outcome (alcohol consumption) would be continuous at the cutoff. This implies that individuals cannot precisely manipulate their age to fall just above or below the 21-year threshold, ensuring that treatment assignment around the cutoff is \"as good as random.\" Therefore, any observed discontinuous jump in alcohol consumption at `running_var = 0` can be attributed causally to the change in legal drinking status.\n\n## 2. R Code\n\n```r\n# Install and load necessary libraries if not already installed\nif (!requireNamespace(\"readr\", quietly = TRUE)) install.packages(\"readr\")\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) install.packages(\"rdrobust\")\nif (!requireNamespace(\"ggplot2\", quietly = TRUE)) install.packages(\"ggplot2\") # For plotting in rdplot\n\nlibrary(readr)\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Set working directory if necessary, or provide full path\n# setwd(\"path/to/your/project\")\n\n",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the age-21 drinking age cutoff as a natural experiment.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Reaching the age of 21 leads to an increase in alcohol consumption.",
+    "main_effect": "Approximately 0.28 increase in alcohol consumption."
+  }
+}

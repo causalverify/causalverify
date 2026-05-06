@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_66",
+  "title": "Bank Governance, Regulation, and Risk Taking",
+  "authors": "Laeven & Levine",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2008.09.003",
+    "title": "Bank Governance, Regulation, and Risk Taking",
+    "year": 2008,
+    "journal": "Journal of Financial Economics",
+    "citations": 73
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "laeven",
+      "levine"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 73,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

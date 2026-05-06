@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_144",
+  "title": "Creating Abundance: Biological Innovation and American Agricultural Development",
+  "authors": "Olmstead & Rhode",
+  "year": null,
+  "journal": "JEP",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.5860/choice.46-3811",
+    "title": "Creating abundance: biological innovation and American agricultural development",
+    "year": 2009,
+    "journal": "Choice Reviews Online",
+    "citations": 235
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "jep",
+    "journal_oa": "choice reviews online",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 235,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 1/3 gates pass",
+  "error_msg": ""
+}

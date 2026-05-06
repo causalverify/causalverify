@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s14",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Positive earnings surprise on stock returns",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:18:36.364811",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 528,
+    "output_tokens": 162,
+    "content": "## 1. Identification Strategy\n\nThe research question asks about the abnormal stock returns around an earnings announcement, specifically for firms with positive earnings surprises. This type of analysis, which examines the impact of a specific event on asset prices, is best addressed using an **Event Study methodology**.\n\nThe core idea of an event study is to measure the market's reaction to an event by calculating \"abnormal returns\" (ARs), which are the actual returns minus the returns that would have been expected in the absence of the event. These abnormal returns are then aggregated across firms and over time to calculate average abnormal returns (AARs) and cumulative abnormal returns (CARs).\n\n**Key Assumption(s):**\n\n1.  **Market Efficiency:** The event study implicitly assumes that financial markets are at least",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; positive surprise sample; event window [0,+2]",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Firms with positive earnings surprises earn significantly positive CAR",
+    "main_effect": "CAR ≈ +2.2%"
+  }
+}

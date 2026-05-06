@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_129",
+  "title": "The Surprisingly Swift Decline of US Manufacturing Employment",
+  "authors": "Pierce & Schott",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.20131578",
+    "title": "The Surprisingly Swift Decline of US Manufacturing Employment",
+    "year": 2016,
+    "journal": "American Economic Review",
+    "citations": 1293
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "schott",
+      "pierce"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1293,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

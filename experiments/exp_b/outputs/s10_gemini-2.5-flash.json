@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s10",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Anticipation effects in DID: pre-announced policy",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:17:18.949812",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 508,
+    "output_tokens": 161,
+    "content": "## 1. Identification Strategy\n\nThe research question investigates whether banks pre-emptively raise capital ratios between the announcement of a new minimum capital requirement (period 3) and its effective date (period 5). This scenario is perfectly suited for an **Event Study** analysis, which is an extension of the Difference-in-Differences (DID) framework.\n\n**Methodology:**\nWe will implement an Event Study by estimating a panel regression model with bank-specific fixed effects ($\\alpha_i$) and time-specific fixed effects ($\\lambda_t$). The core of the model involves interacting a `treated` indicator (for banks below the capital threshold) with a set of time dummies, where time is measured relative to the policy's effective date.\n\nThe regression model is:\n$Y",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with anticipation — must account for pre-announcement window; use period ≤2 as clean pre-period",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Constrained banks raise capital ratios both after announcement and after effective date",
+    "main_effect": "35bp increase in tier-1 capital ratio"
+  }
+}

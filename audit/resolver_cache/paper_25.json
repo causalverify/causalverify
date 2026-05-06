@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_25",
+  "title": "The Real Effects of Financial Constraints: Evidence from a Financial Crisis",
+  "authors": "Campello, Graham & Harvey",
+  "year": null,
+  "journal": "Journal of Financial Economics",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2010.02.009",
+    "title": "The real effects of financial constraints: Evidence from a financial crisis",
+    "year": 2010,
+    "journal": "Journal of Financial Economics",
+    "citations": 2242
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "graham",
+      "campello",
+      "harvey"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2242,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

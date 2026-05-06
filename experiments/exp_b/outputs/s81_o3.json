@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "o3",
+  "run_at": "2026-04-14T19:52:30.346433",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 461,
+    "output_tokens": 1009,
+    "content": "## 1. Identification Strategy  \nMethod: Two-Stage Least Squares (Instrumental Variables).  \nWhy: Roommate ability (z) is randomly assigned and affects the peer-quality variable (x) but plausibly has no direct effect on the student’s GPA other than through x. This satisfies the conditions for a valid instrument.\n\nKey assumptions  \n1. Relevance: Cov(z, x) ≠ 0 – roommate ability must predict peer quality.  \n2. Exogeneity (exclusion): Cov(z, ε) = 0 – random assignment ensures z is uncorrelated with unobserved determinants of GPA.  \n3. Stable unit treatment value and linearity in the first and second stages.\n\n## 2. R Code\n```r\n# Required packages\nlibs <- c(\"readr\", \"AER\", \"sandwich\", \"lmtest\")\nsuppressPackageStartupMessages(lapply(libs, require, character.only = TRUE))\n\n# 1. Read data\ndf <- read_csv(\"experiments/exp_b/data/s81_data.csv\", show_col_types = FALSE)\n\n# 2. Naive OLS for comparison\nols <- lm(y ~ x + controls, data = df)\ncat(\"\\n--- Naive OLS ---\\n\")\ncoeftest(ols, vcov = vcovHC(ols, type = \"HC1\"))\n\n# 3. First-stage: x on z\nfs <- lm(x ~ z + controls, data = df)\ncat(\"\\n--- First Stage ---\\n\")\nfs_test <- coeftest(fs, vcov = vcovHC(fs, type = \"HC1\"))\nprint(fs_test)\nF_stat <- linearHypothesis(fs, \"z = 0\", white.adjust = \"hc1\")$F[2]\ncat(\"First-stage F-statistic on instrument (rule-of-thumb > 10):\", round(F_stat, 2), \"\\n\")\n\n# 4. 2SLS / IV\niv <- ivreg(y ~ x + controls | z + controls, data = df)\n\ncat(\"\\n--- 2SLS / IV Results ---\\n\")\niv_robust <- coeftest(iv, vcov = vcovHC(iv, type = \"HC1\"))\nprint(iv_robust)\n\n# 5. Reduced form (placebo / robustness)\nrf <- lm(y ~ z + controls, data = df)\ncat(\"\\n--- Reduced Form (y on z) ---\\n\")\ncoeftest(rf, vcov = vcovHC(rf, type = \"HC1\"))\n\n# 6. Sensitivity: drop controls\niv_nocontrol <- ivreg(y ~ x | z, data = df)\ncat(\"\\n--- 2SLS without Controls ---\\n\")\ncoeftest(iv_nocontrol, vcov = vcovHC(iv_nocontrol, type = \"HC1\"))\n```\n\nThe code:\n• reads the CSV,  \n• shows naïve OLS, first-stage strength, and IV estimates with robust (HC1) standard errors,  \n• provides reduced-form evidence, and  \n• checks robustness by omitting controls.\n\n## 3. Expected Findings  \nSign: Positive – being exposed to a higher-ability roommate should raise a student’s GPA.  \n\nMagnitude: Roughly 0.20–0.35 GPA points (≈0.2–0.3 standard deviations) per one-standard-deviation increase in peer ability. Random assignment and prior literature on peer effects suggest a modest but economically meaningful effect.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

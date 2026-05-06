@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:46:04.359328",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 431,
+    "output_tokens": 504,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of gaining admission to an elite high school on SAT scores. The key assumption in RDD is that there is a sharp cutoff in the running variable (admission test score) that determines treatment status (admission). We assume that students' SAT scores are continuous around the cutoff, except for the effect of the treatment itself.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s90_data.csv\")\n\n# RDD analysis\n# Estimate the local polynomial regression around the cutoff\nrdd_result <- rdrobust(data$running_var, data$y, data$treated, c=0.8074, h=0.05)\n\n# Print the estimated causal effect\nprint(rdd_result$beta0)\n\n# Basic robustness checks\n# Vary the bandwidth\nrdd_result_1 <- rdrobust(data$running_var, data$y, data$treated, c=0.8074, h=0.03)\nrdd_result_2 <- rdrobust(data$running_var, data$y, data$treated, c=0.8074, h=0.07)\n\n# Print the results for different bandwidths\nprint(rdd_result_1$beta0)\nprint(rdd_result_2$beta0)\n\n# Plot the regression discontinuity\nggplot(data, aes(x=running_var, y=y, color=as.factor(treated))) +\n  geom_point() +\n  geom_vline(xintercept=0.8074, linetype=\"dashed\") +\n  labs(title=\"Regression Discontinuity Plot\", x=\"Admission Test Score\", y=\"SAT Score\")\n```\n\n## 3. Expected Findings\nWe expect a positive effect of gaining admission to the elite high school on SAT scores. The magnitude of the effect will depend on the quality of the school and the difference in resources and opportunities it provides compared to other schools. A reasonable magnitude might be around 0.1 to 0.2 standard deviations in SAT scores. The sign of the effect is expected to be positive because attending a better school should provide more resources and opportunities, leading to higher academic performance.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  }
+}

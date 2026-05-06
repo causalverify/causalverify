@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s34",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of China's WTO Accession on Manufacturing Employment",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:38:05.853826",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 473,
+    "output_tokens": 418,
+    "content": "## 1. Identification Strategy\n\nWe will use a Difference-in-Differences (DID) approach to estimate the causal impact of China's accession to the World Trade Organization on manufacturing employment. The DID method is appropriate here because we have a treatment group (regions with high exposure to trade) and a control group (regions with low exposure to trade), and we can compare the changes in employment before and after the policy change (accession to the WTO) for both groups.\n\nThe key assumption in DID is that, in the absence of the treatment, the treatment and control groups would have followed the same trend. In other words, the parallel trends assumption must hold.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(plm)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s34_data.csv\")\n\n# Estimate the DID model\ndid_model <- plm(y ~ treat_x_post, data = data, model = \"within\")\n\n# Print the coefficient for the treatment effect\nsummary(did_model)$coefficients[\"treat_x_post\", \"Estimate\"]\n\n# Robustness check: Clustered standard errors\ncoeftest(did_model, vcovHC(did_model, type = \"HC1\"))\n\n# Plotting the parallel trends assumption\n# This requires a more complex implementation and is not included here\n```\n\n## 3. Expected Findings\n\nWe expect the coefficient on the `treat_x_post` variable to be positive, indicating that regions with high exposure to trade experienced an increase in manufacturing employment after China's accession to the WTO. The magnitude of the effect will depend on the data, but we expect it to be economically significant given the large-scale impact of trade liberalization on employment. The positive effect is expected because trade liberalization can lead to increased demand for labor in industries that are more exposed to trade, as they expand to meet the increased demand from international markets.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log manufacturing employment before and after 2001 between high and low trade exposure regions.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Regions with higher exposure to trade experienced a positive effect on manufacturing employment following China's WTO accession.",
+    "main_effect": "0.18"
+  }
+}

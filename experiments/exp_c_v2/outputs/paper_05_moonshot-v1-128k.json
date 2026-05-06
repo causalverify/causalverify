@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_05",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:02:02.946064",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 646,
+    "output_tokens": 1118,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a difference-in-differences (DiD) approach to estimate the causal effect of SEC enforcement actions on the total costs to firms that misrepresent their financial statements. We will compare the stock price performance, regulatory penalties, and reputational losses of target firms to those of matched control firms before and after the first public announcement of the misconduct.\n\nDirectional Hypothesis:\nWe hypothesize that the total costs to firms that misrepresent their financial statements are significantly higher after being targeted by SEC enforcement actions. Specifically, we expect:\n\n1. A significant decline in stock prices of target firms relative to control firms after the first public announcement of the misconduct.\n2. Higher regulatory penalties and class-action settlement amounts for target firms compared to control firms.\n3. A negative impact on the reputation of target firms, as measured by changes in leverage, ROA, and market-to-book ratios.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nList of specifications:\n\n1. Stock price performance (daily returns) of target firms relative to control firms, using a DiD model with event time fixed effects.\n2. Regulatory penalties (civil penalties paid) for target firms compared to control firms, using a DiD model with event time fixed effects.\n3. Class-action settlement amounts for target firms compared to control firms, using a DiD model with event time fixed effects.\n4. Changes in leverage for target firms relative to control firms, using a DiD model with event time fixed effects.\n5. Changes in ROA for target firms relative to control firms, using a DiD model with event time fixed effects.\n\n**STEP 3 — FALSIFICATION GATE**\n\nEmpirical results that would cause us to reject our hypothesis:\n\n1. No significant decline in stock prices of target firms relative to control firms after the first public announcement of the misconduct (p > 0.10).\n2. No significant difference in regulatory penalties between target and control firms (p > 0.10).\n3. No significant difference in class-action settlement amounts between target and control firms (p > 0.10).\n4. No significant change in leverage for target firms relative to control firms (p > 0.10).\n5. No significant change in ROA for target firms relative to control firms (p > 0.10).\n\n**STEP 4 — R CODE**\n\n```R\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"aaer_data.csv\")\n\n# Merge CRSP and Compustat data\ndata <- merge(data, crsp_data, by = c(\"permno\", \"date\"))\ndata <- merge(data, compustat_data, by = c(\"permno\", \"date\"))\n\n# Create event time variable\ndata$event_time <- data$date - data$announcement_date\n\n# Create treatment indicator\ndata$treatment <- ifelse(data$sec_enforcement == 1, 1, 0)\n\n# Specification 1: Stock price performance\nstock_price_model <- plm(return ~ treatment * event_time, data = data, index = c(\"permno\", \"date\"), model = \"within\")\n\n# Specification 2: Regulatory penalties\npenalty_model <- plm(civil_penalty ~ treatment * event_time, data = data, index = c(\"permno\", \"date\"), model = \"within\")\n\n# Specification 3: Class-action settlement amounts\nsettlement_model <- plm(settlement_amount ~ treatment * event_time, data = data, index = c(\"permno\", \"date\"), model = \"within\")\n\n# Specification 4: Changes in leverage\nleverage_model <- plm(leverage ~ treatment * event_time, data = data, index = c(\"permno\", \"date\"), model = \"within\")\n\n# Specification 5: Changes in ROA\nroa_model <- plm(roa ~ treatment * event_time, data = data, index = c(\"permno\", \"date\"), model = \"within\")\n\n# Display results\nsummary(stock_price_model)\nsummary(penalty_model)\nsummary(settlement_model)\nsummary(leverage_model)\nsummary(roa_model)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected numerical results:\n\n1. A negative and significant coefficient on the interaction term between treatment and event time in the stock price model, indicating a decline in stock prices for target firms relative to control firms after the first public announcement of the misconduct.\n2. A positive and significant coefficient on the interaction term between treatment and event time in the regulatory penalties model, indicating higher penalties for target firms compared to control firms.\n3. A positive and significant coefficient on the interaction term between treatment and event time in the class-action settlement amounts model, indicating higher settlement amounts for target firms compared to control firms.\n4. A negative and significant coefficient on the interaction term between treatment and event time in the leverage model, indicating a decline in leverage for target firms relative to control firms.\n5. A negative and significant coefficient on the interaction term between treatment and event time in the ROA model, indicating a decline in ROA for target firms relative to control firms.\n\nThese results would not trigger our falsification gate, as they are consistent with our directional hypothesis.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event dates are (1) first public announcement of potential misconduct and (2) final SEC enforcement action; outcome = cumulative abnormal return around each event date; benchmark = matched-firm adjusted returns",
+    "key_variables": {
+      "treatment": "SEC AAER enforcement action (misconduct revelation)",
+      "control": "matched firms on industry, size, book-to-market",
+      "outcome": "cumulative abnormal return (CAR) from CRSP daily returns adjusted for matched-firm returns",
+      "time_period": "event windows of [-1,0], [-1,+1], [-10,+10] around announcement dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms lose on average 38% of market value from the misconduct period through final resolution; direct penalties account for only a small fraction (~3%) of total costs — the majority is reputational loss",
+    "main_effect": "-38% total market value loss from misconduct revelation through resolution",
+    "key_robustness": [
+      "decomposition of loss into direct penalties vs. reputational",
+      "alternative event windows",
+      "cross-sectional drivers of penalty severity"
+    ]
+  }
+}

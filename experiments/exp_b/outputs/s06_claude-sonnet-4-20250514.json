@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s06",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Import tariff on domestic firm investment",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-03-27T13:25:48.163057",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 499,
+    "output_tokens": 846,
+    "content": "## 1. Identification Strategy\nDifference-in-differences (DID). We compare the change in capital investment for treated steel/metals firms before vs. after the 2018 tariff to the change for control non-metals firms over the same period. Key assumption: parallel trends - absent the tariff, treated and control firms would have had similar trends in capital investment.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(data.table)\nlibrary(fixest)\n\n# Read the data\ndata <- fread(\"experiments/exp_b/data/s06_data.csv\")\n\n# Basic summary statistics\nprint(\"Summary Statistics:\")\nprint(summary(data))\n\n# Check balance of treatment groups\nprint(\"Treatment group balance:\")\nprint(table(data$treated, data$period))\n\n# Main DID regression with firm and time fixed effects\ndid_model <- feols(y ~ treat_x_post | unit_id + period, data = data)\nprint(\"Main DID Results:\")\nprint(summary(did_model))\n\n# Extract and print the key coefficient\ndid_coefficient <- coef(did_model)[\"treat_x_post\"]\ndid_se <- se(did_model)[\"treat_x_post\"]\nprint(paste(\"DID Coefficient:\", round(did_coefficient, 4)))\nprint(paste(\"Standard Error:\", round(did_se, 4)))\nprint(paste(\"95% CI: [\", round(did_coefficient - 1.96*did_se, 4), \",\", \n            round(did_coefficient + 1.96*did_se, 4), \"]\"))\n\n# Robustness check 1: Test pre-trends (periods 1-3)\npre_data <- data[period <= 3]\npre_trends <- feols(y ~ treated:factor(period) | unit_id + period, \n                    data = pre_data)\nprint(\"Pre-trends test (should be insignificant for periods 2,3):\")\nprint(summary(pre_trends))\n\n# Robustness check 2: Event study specification\ndata$rel_period <- data$period - 4  # Period 4 is treatment\ndata$rel_period[data$treated == 0] <- 0  # Set to 0 for control group\n\n# Create event study dummies (excluding period -1 as reference)\nevent_formula <- paste0(\"y ~ \", \n                       paste0(\"I(treated * (rel_period == \", \n                             c(-3, -2, 0, 1, 2, 3, 4), \"))\", \n                             collapse = \" + \"),\n                       \" | unit_id + period\")\n\nevent_model <- feols(as.formula(event_formula), data = data)\nprint(\"Event Study Results:\")\nprint(summary(event_model))\n\n# Robustness check 3: Clustered standard errors\ndid_clustered <- feols(y ~ treat_x_post | unit_id + period, \n                       data = data, cluster = \"unit_id\")\nprint(\"DID with clustered SEs:\")\nprint(summary(did_clustered))\n\nprint(paste(\"Main Result: Steel tariff increased capital investment by\", \n            round(did_coefficient, 3), \"log points\"))\n```\n\n## 3. Expected Findings\nI expect a positive coefficient of approximately 0.10-0.25 log points. Steel tariffs should increase domestic steel producers' profitability by raising prices and reducing foreign competition, encouraging increased capital investment to expand capacity. The magnitude reflects that investment responds to improved profit expectations, but with some lag and uncertainty about tariff permanence.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=protected sector firms, control=unaffected manufacturers",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Tariff-protected firms increase capex relative to non-protected peers",
+    "main_effect": "22% higher investment in treated firms post-tariff"
+  }
+}

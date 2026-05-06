@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_124",
+  "title": "The Impact of Legalized Abortion on Crime",
+  "authors": "Donohue & Levitt",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/00335530151144050",
+    "title": "The Impact of Legalized Abortion on Crime",
+    "year": 2001,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 587
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "donohue",
+      "levitt"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 587,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

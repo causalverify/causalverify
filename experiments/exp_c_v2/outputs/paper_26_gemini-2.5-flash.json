@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_26",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:34:04.186878",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 653,
+    "output_tokens": 162,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n*   **Causal Identification Strategy:** Sharp Regression Discontinuity Design (RDD). The key is the \"mechanically triggered\" nature of covenant violations when a firm's financial ratio crosses a predetermined contractual threshold. This provides a sharp cutoff, allowing us to compare firms just above (no violation, control) and just below (violation, treatment) the threshold. The running variable will be the financial ratio relative to its threshold, with the cutoff at zero.\n*   **Directional Hypothesis:** An exogenous reduction in credit supply, caused by a financial covenant violation, will lead to a **decrease** in corporate investment and a **decrease** in corporate financing.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nLet `R_it",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences combined with a quasi-RDD at covenant violation thresholds — firms that violate financial covenants (treatment) experience an exogenous reduction in credit supply relative to firms that narrowly avoid violation (control); the DID compares pre- and post-violation financing and investment changes between violators and non-violators matched on pre-period characteristics",
+    "key_variables": {
+      "treatment": "financial covenant violation (binary: firm's actual financial ratio crosses the contractual threshold, triggering lender intervention)",
+      "control": "matched firms that did not violate covenants (matched on pre-violation characteristics: size, leverage, profitability, industry)",
+      "outcome": "net debt issuance, net equity issuance, capital expenditure, R&D spending (all scaled by lagged assets) in quarters following covenant violation",
+      "time_period": "1994–2008, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Covenant violations cause significant and persistent reductions in net debt issuance (-2.1% of assets per quarter), capital expenditure (-1.0% of assets), and overall firm investment. The credit supply contraction is not offset by increased equity issuance. Effects persist for 8+ quarters after violation, indicating that credit supply shocks have lasting real consequences.",
+    "main_effect": "Covenant violation reduces net debt issuance by ~2.1% of assets per quarter and capital expenditure by ~1.0% of assets per quarter relative to non-violating matched firms",
+    "key_robustness": [
+      "Propensity score matching on pre-violation firm characteristics",
+      "RDD-style analysis comparing firms just above vs. just below covenant thresholds",
+      "Controlling for firm-level investment opportunities (Tobin's Q)",
+      "Excluding firms in financial distress (to isolate the covenant mechanism from general distress)",
+      "Placebo tests using pseudo-violation dates"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID with matched control group + quasi-RDD at covenant violation threshold; event-time analysis around violation quarter",
+      "treatment": "Covenant violation (binary, triggered when firm's financial ratio crosses loan agreement threshold)",
+      "event_window": "8 quarters before and after covenant violation",
+      "estimation_window": "Pre-violation quarters (-8 to -1) establish baseline; post-violation quarters (+1 to +8) measure effects",
+      "sample_period": "1994–2008",
+      "unit_of_observation": "Firm-quarter, with firms matched on pre-violation characteristics",
+      "key_assumption": "Firms that narrowly violate covenants are comparable to firms that narrowly avoid violation, except for the credit supply shock triggered by the violation. The covenant threshold is contractually predetermined and cannot be easily manipulated by the firm. The credit supply reduction is the primary channel, not the information signal of financial deterioration."
+    },
+    "key_magnitudes": {
+      "net_debt_reduction": "-2.1% of assets per quarter reduction in net debt issuance post-violation",
+      "capex_reduction": "-1.0% of assets per quarter reduction in capital expenditure post-violation",
+      "persistence": "Effects persist for 8+ quarters, indicating lasting real consequences of credit supply shock",
+      "no_equity_offset": "Net equity issuance does not increase to offset debt reduction — firms do not substitute to equity markets"
+    },
+    "robustness_notes_detail": "Propensity score matching ensures that violating and non-violating firms are similar on observable pre-period characteristics. The quasi-RDD analysis at covenant thresholds shows a sharp discontinuity in credit outcomes at the violation point. Results are not driven by extreme financial distress (effects hold when excluding firms within 1 year of bankruptcy). Controlling for Tobin's Q does not eliminate the investment effect, confirming that the result is driven by credit supply rather than investment opportunities."
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "n_leaking_excluded": 21,
+  "leaking_scenario_ids": [
+    "s11",
+    "s12",
+    "s13",
+    "s14",
+    "s15",
+    "s16",
+    "s17",
+    "s18",
+    "s68",
+    "s69",
+    "s70",
+    "s71",
+    "s72",
+    "s73",
+    "s75",
+    "s76",
+    "s77",
+    "s78",
+    "s79",
+    "s80",
+    "s84"
+  ],
+  "by_model_all_100": {
+    "Opus": {
+      "rate": 0.99,
+      "total": 100,
+      "correct": 99
+    },
+    "GPT-4o": {
+      "rate": 1.0,
+      "total": 100,
+      "correct": 100
+    },
+    "Sonnet": {
+      "rate": 0.99,
+      "total": 100,
+      "correct": 99
+    },
+    "Gemini": {
+      "rate": 1.0,
+      "total": 100,
+      "correct": 100
+    },
+    "Kimi": {
+      "rate": 0.99,
+      "total": 100,
+      "correct": 99
+    },
+    "o3": {
+      "rate": 0.99,
+      "total": 100,
+      "correct": 99
+    }
+  },
+  "by_model_clean_79": {
+    "GPT-4o": {
+      "rate": 1.0,
+      "total": 79,
+      "correct": 79
+    },
+    "Sonnet": {
+      "rate": 0.9873,
+      "total": 79,
+      "correct": 78
+    },
+    "Gemini": {
+      "rate": 1.0,
+      "total": 79,
+      "correct": 79
+    },
+    "Kimi": {
+      "rate": 0.9873,
+      "total": 79,
+      "correct": 78
+    },
+    "Opus": {
+      "rate": 0.9873,
+      "total": 79,
+      "correct": 78
+    },
+    "o3": {
+      "rate": 0.9873,
+      "total": 79,
+      "correct": 78
+    }
+  },
+  "by_model_method_all": {
+    "Opus__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "GPT-4o__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Opus__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Sonnet__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Gemini__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Gemini__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Kimi__EVENT_STUDY": {
+      "rate": 0.9583,
+      "total": 24,
+      "correct": 23
+    },
+    "Opus__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "o3__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "Kimi__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Opus__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "o3__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Sonnet__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Sonnet__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Gemini__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "GPT-4o__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "o3__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "GPT-4o__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Kimi__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "GPT-4o__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    },
+    "Sonnet__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "o3__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Kimi__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Gemini__IV": {
+      "rate": 1.0,
+      "total": 24,
+      "correct": 24
+    }
+  },
+  "by_model_method_clean": {
+    "GPT-4o__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Sonnet__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Gemini__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Gemini__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Kimi__EVENT_STUDY": {
+      "rate": 0.9375,
+      "total": 16,
+      "correct": 15
+    },
+    "Opus__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "o3__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "Kimi__DID": {
+      "rate": 1.0,
+      "total": 30,
+      "correct": 30
+    },
+    "Opus__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "o3__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    },
+    "Gemini__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 16,
+      "correct": 16
+    },
+    "Sonnet__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 16,
+      "correct": 16
+    },
+    "GPT-4o__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "o3__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 16,
+      "correct": 16
+    },
+    "GPT-4o__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 16,
+      "correct": 16
+    },
+    "Sonnet__DID": {
+      "rate": 0.9667,
+      "total": 30,
+      "correct": 29
+    },
+    "Opus__EVENT_STUDY": {
+      "rate": 1.0,
+      "total": 16,
+      "correct": 16
+    },
+    "Sonnet__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    },
+    "o3__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Kimi__RDD": {
+      "rate": 1.0,
+      "total": 22,
+      "correct": 22
+    },
+    "Kimi__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    },
+    "Opus__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    },
+    "GPT-4o__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    },
+    "Gemini__IV": {
+      "rate": 1.0,
+      "total": 11,
+      "correct": 11
+    }
+  }
+}

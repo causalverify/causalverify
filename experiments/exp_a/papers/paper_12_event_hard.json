@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_12",
+  "source": "Journal of Financial Economics, 2004",
+  "authors": "Moeller, Schlingemann & Stulz",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "research_question": "How does the size of an acquiring firm relate to the shareholder wealth gains generated when that firm announces an acquisition? Specifically, do shareholders of small acquirers fare systematically better than shareholders of large acquirers, and if so, what underlying factors—such as managerial overpayment, overvaluation, signaling, or agency costs—account for this disparity across different types of targets and forms of payment?",
+  "data_description": "The sample is drawn from the Securities Data Company (SDC) U.S. Mergers and Acquisitions Database and consists of 12,023 completed domestic acquisitions announced between 1980 and 2001. Each observation is an acquisition deal in which a publicly traded U.S. acquirer (listed on CRSP and Compustat) gains 100% control of a public firm, private firm, or non-public subsidiary, with deal value above $1 million and at least 1% of acquirer market value. Variables include deal value, relative size, form of payment (cash, equity, mixed), target organizational form, hostility, tender-offer status, competition, premiums, days to completion, and acquirer characteristics such as market and book value of assets, leverage, Tobin's q, cash holdings, operating cash flow, and book-to-market. Stock returns over a three-day window around announcement are used to compute percentage and dollar wealth changes, with parameters estimated over (-205, -6).",
+  "institutional_context": "Acquisitions represent some of the largest discrete investment decisions firms undertake, and the period 1980–2001 spans two distinct merger waves with substantial variation in deal activity, payment structure, and target type. Acquirers in the sample range from small firms below the 25th NYSE size percentile to very large public corporations, and targets include public firms, privately held companies, and subsidiaries divested by other firms—each entailing different bargaining environments, information asymmetries, and free-rider considerations. Small-firm managers typically hold larger ownership stakes and face tighter alignment with shareholders, while large-firm managers may have greater discretion, more free cash flow, exhausted growth opportunities, or be more susceptible to overconfidence. These differences in governance, financing choices, and the liquidity of the market for corporate assets create a setting in which acquirer size may systematically influence the value created or destroyed by takeover transactions.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -3.3,
+      "unit": "percentage points (3-day CAR difference from small to large acquirers)",
+      "interpretation": "Moving from small acquirers (bottom 3 quintiles, average CAR +2.3%) to large acquirers (top 2 quintiles, average CAR -1.0%) represents a -3.3 percentage point acquirer size discount in 3-day announcement returns"
+    },
+    "secondary_estimate": {
+      "value": -0.005,
+      "unit": "CAR fraction per unit of log assets (OLS coefficient)",
+      "interpretation": "OLS coefficient on log acquirer assets in CAR regression; each doubling of firm size (log assets +0.69) is associated with approximately 0.35-0.5% lower announcement period CAR, holding deal and firm controls constant"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3–4 in Moeller, Schlingemann & Stulz (2004)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "SEC EDGAR 8-K filings (M&A deal announcements for public acquirers and public targets — free)",
+      "FRED (macro controls including interest rates and GDP — free)"
+    ],
+    "proprietary_sources": [
+      "SDC Platinum M&A database (Thomson Reuters/Refinitiv, proprietary) for comprehensive deal coverage",
+      "CRSP for daily stock returns (WRDS subscription required)",
+      "Compustat for firm fundamentals: assets, Q, leverage (WRDS subscription required)"
+    ],
+    "proxy_strategy": "M&A deals partially available from EDGAR 8-K filings (public-to-public deals). CRSP returns proxied with Yahoo Finance for large-cap acquirers (which is most of the top-quintile sample). Compustat proxied with annual 10-K reports or Macrotrends for large firms. A partial replication covering large publicly traded acquirers is feasible with free data, capturing most of the economically important top-quintile deals.",
+    "replicability": "low — SDC Platinum needed for comprehensive coverage including private-target deals which are ~60% of the sample; without it the sample is severely truncated",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (public acquirer-public target deals via EDGAR + Yahoo Finance — captures approximately 40% of deals but disproportionately the large-deal subsample which is the main focus)",
+    "data_limitations": "SDC Platinum (Refinitiv) is the standard M&A database and requires commercial license. Without it, private-target deals (which represent a large fraction of small acquirers' activity) cannot be identified, creating sample truncation that biases the size effect. CRSP is available via WRDS academic subscription. The large-acquirer sample (top quintile by total assets) is more replicable with public data since these are large-cap publicly traded firms.",
+    "public_data_sources_detail": [
+      "SEC EDGAR 8-K filings (M&A deal announcements for public-to-public deals — free)",
+      "yfinance (daily stock returns around announcement dates for large-cap acquirers — free)",
+      "Compustat via WRDS (requires subscription), or use 10-K annual reports for firm size",
+      "FRED (interest rates, recession indicators — free)",
+      "Bloomberg (partial M&A coverage with free tier)"
+    ]
+  },
+  "title": "Firm Size and the Gains from Acquisitions",
+  "doi": "10.1016/j.jfineco.2003.07.002",
+  "volume": 73,
+  "issue": 2,
+  "pages": "201-228",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study with cross-sectional OLS regression — events are M&A deal announcements; key cross-sectional variable is acquirer firm size (log of total assets or size quintile dummy); outcome is acquirer 3-day cumulative abnormal return (CAR) over [-1, +1] and dollar gain (CAR × market cap) around announcement",
+    "key_variables": {
+      "treatment": "acquirer firm size (log total assets, continuous; or large-firm binary indicator for top two size quintiles)",
+      "control": "small acquirers (bottom three size quintiles) as reference group in OLS regression",
+      "outcome": "acquirer 3-day CAR [-1, +1] as primary measure; also dollar gain (CAR × pre-announcement market cap) to separate size effect from mechanical scaling",
+      "time_period": "1980–2001 full sample; sub-periods 1980–1989 and 1990–2001 compared"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Large acquirers earn significantly lower announcement returns than small acquirers; small firms (bottom three quintiles) earn average 3-day CAR of +2.3% while large firms (top two quintiles) earn -1.0%; the size discount is robust to controls and explains the poor aggregate M&A performance of the 1990s; large acquirers in the 1990s destroyed approximately $240 billion in shareholder wealth",
+    "main_effect": "Acquirer size effect: approximately -3.3 percentage points from smallest to largest size quintile in 3-day announcement CAR; effect is robust to OLS controls for deal and firm characteristics",
+    "key_robustness": [
+      "Alternative size measures (market cap vs. book assets)",
+      "Controlling for deal size, payment method (cash vs. stock), target type (public/private/subsidiary)",
+      "Sub-period analysis (1980s vs. 1990s wave separately)",
+      "Dollar-gain analysis (removes mechanical size scaling)",
+      "Cross-industry robustness",
+      "Heckman selection correction for self-selection into acquisitions"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study (market model abnormal returns) + cross-sectional OLS regression of 3-day CARs on log acquirer assets plus deal and firm controls",
+      "treatment": "Acquirer size measured by log total assets (continuous) and size quintile dummies; large-firm indicator (top two quintiles) vs. small-firm reference group",
+      "event_window": "[-1, +1] trading days around M&A announcement date (3-day CAR, primary); [-2, +2] as robustness",
+      "estimation_window": "[-205, -6] trading days before announcement for market model parameter estimation (value-weighted CRSP index as market proxy)",
+      "sample_period": "1980–2001",
+      "unit_of_observation": "Individual acquisition deal at the acquirer level",
+      "key_assumption": "Acquirer firm size at announcement is predetermined and primarily reflects long-standing organizational characteristics rather than endogenous selection into acquisitions; the negative size-CAR relationship reflects agency costs (empire building, hubris) rather than reverse causation"
+    },
+    "key_magnitudes": {
+      "small_acquirer_car": "+2.3% average 3-day CAR for bottom three size quintile acquirers (approximately 9,000 deals)",
+      "large_acquirer_car": "-1.0% average 3-day CAR for top two size quintile acquirers (approximately 3,000 deals)",
+      "size_gradient": "-3.3 percentage point difference from smallest to largest size category",
+      "aggregate_wealth_destruction": "Large acquirers in the 1990s destroyed approximately $240 billion in total shareholder wealth (dollar gain measure)"
+    },
+    "robustness_notes_detail": "The size effect is not explained by differences in deal type, target type, payment method, Tobin's Q, leverage, or industry composition. The effect exists in both the 1980s and 1990s, but is larger in the 1990s wave period. Dollar-weighted analysis confirms small firms gain significantly in aggregate while large firms destroy value. Heckman correction does not eliminate the size effect. Results are robust to excluding financial firms and utilities."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 78940,
+  "phase1_source_version": "v2primeprime_full_text"
+}

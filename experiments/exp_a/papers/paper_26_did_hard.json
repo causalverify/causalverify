@@ -1,0 +1,95 @@
+{
+  "paper_id": "paper_26",
+  "source": "Journal of Finance, 2010",
+  "authors": "Lemmon & Roberts",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "The Response of Corporate Financing and Investment to Changes in the Supply of Credit",
+  "doi": "10.1111/j.1540-6261.2010.01572.x",
+  "volume": 65,
+  "issue": 5,
+  "pages": "1555-1592",
+  "domain": "finance",
+  "research_question": "How do contractions in the supply of credit to lower-rated borrowers affect corporate financing choices and real investment? Specifically, when access to speculative-grade debt is curtailed, do firms substitute toward alternative funding sources (bank loans, equity, trade credit, internal cash), and what are the consequences for leverage ratios, net investment, and firm performance?",
+  "data_description": "The sample is drawn from the annual Compustat database for nonfinancial firms over 1986-1993, providing a balanced four-year window before and after 1989. The unit of observation is the firm-year. Key variables include net long-term and short-term debt issuances, net equity issuances, capital expenditures, acquisitions, sales of property/plant/equipment, dividends, cash flow, market and book leverage, market-to-book ratio, sales, profitability, tangibility, Altman's Z-score, and indicators for S&P 500 and NYSE listing, firm age, and headquarters location. Firms are classified using S&P long-term issuer credit ratings into investment-grade, below-investment-grade (speculative/junk), and unrated groups. Auxiliary data include thrift junk-bond holdings from Brewer and Mondschean, life insurer commitment data from Carey et al., aggregate issuance data from SDC, and macroeconomic series (term spread, credit spread, equity market returns).",
+  "institutional_context": "The setting is the sharp collapse of the U.S. speculative-grade (junk) bond market around 1989-1990. Three near-concurrent events drastically curtailed funding to below-investment-grade borrowers: (i) the indictment of Michael Milken and the bankruptcy of Drexel Burnham Lambert, which had originated and made markets in roughly half of junk issuance; (ii) the 1989 Financial Institutions Reform, Recovery, and Enforcement Act (FIRREA), which forced savings and loans to divest junk holdings and barred future purchases, removing about $12 billion in annual capital flow; and (iii) NAIC rating reclassifications combined with weakening insurer balance sheets that caused life insurance companies—the dominant buyers of below-investment-grade private placements—to sharply curtail commitments. The shock coincided with the 1990-1991 recession and a regional banking capital crunch concentrated in the U.S. Northeast, where declining real estate prices eroded bank capital and constrained local lending.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.021,
+      "unit": "fraction of assets reduction in net debt issuance per quarter (DID estimate)",
+      "interpretation": "Firms that violate covenants reduce net debt issuance by 2.1 percentage points of assets per quarter relative to matched non-violating firms, representing a substantial credit supply contraction"
+    },
+    "secondary_estimate": {
+      "value": -0.01,
+      "unit": "fraction of assets reduction in capital expenditure per quarter (DID estimate)",
+      "interpretation": "Covenant violation causes a 1.0 percentage point of assets reduction in quarterly capital expenditure — the credit supply shock has direct real effects on firm investment"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Lemmon & Roberts (2010)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Compustat quarterly financials (firm-level, via WRDS subscription)",
+      "CRSP daily stock returns (via WRDS subscription)"
+    ],
+    "proprietary_sources": [
+      "DealScan (Thomson Reuters/Refinitiv) — loan-level covenant data (proprietary, requires subscription)",
+      "DealScan-Compustat linking file (Chava & Roberts, requires WRDS access)"
+    ],
+    "proxy_strategy": "Covenant violation events can be partially identified from Compustat data alone (financial ratios crossing common covenant thresholds like Debt/EBITDA > 3), but without loan-level covenant data, exact violation identification is imprecise.",
+    "replicability": "low — DealScan covenant-level data is central to identification and requires commercial license",
+    "public_proxy_available": false,
+    "replication_tier": "proxy (approximate covenant violations from Compustat ratios, but imprecise without actual covenant thresholds from DealScan)",
+    "data_limitations": "DealScan covers primarily syndicated loans (large firms), missing bilateral loans to smaller firms. Covenant thresholds are not always consistently reported in DealScan. The DealScan-Compustat linking file is maintained by Chava & Roberts and available through WRDS.",
+    "public_data_sources_detail": [
+      "Compustat via WRDS (quarterly firm financials — subscription required)",
+      "CRSP via WRDS (daily stock returns — subscription required)",
+      "DealScan via WRDS (loan-level data with covenants — subscription required)",
+      "SEC EDGAR 10-K/10-Q filings (loan agreement details — free but unstructured)"
+    ]
+  },
+  "method_family_accepted": [
+    "DID",
+    "RDD"
+  ],
+  "hybrid_method_note": "DID combined with quasi-RDD at covenant violation thresholds. Both labels are defensible.",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences combined with a quasi-RDD at covenant violation thresholds — firms that violate financial covenants (treatment) experience an exogenous reduction in credit supply relative to firms that narrowly avoid violation (control); the DID compares pre- and post-violation financing and investment changes between violators and non-violators matched on pre-period characteristics",
+    "key_variables": {
+      "treatment": "financial covenant violation (binary: firm's actual financial ratio crosses the contractual threshold, triggering lender intervention)",
+      "control": "matched firms that did not violate covenants (matched on pre-violation characteristics: size, leverage, profitability, industry)",
+      "outcome": "net debt issuance, net equity issuance, capital expenditure, R&D spending (all scaled by lagged assets) in quarters following covenant violation",
+      "time_period": "1994–2008, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Covenant violations cause significant and persistent reductions in net debt issuance (-2.1% of assets per quarter), capital expenditure (-1.0% of assets), and overall firm investment. The credit supply contraction is not offset by increased equity issuance. Effects persist for 8+ quarters after violation, indicating that credit supply shocks have lasting real consequences.",
+    "main_effect": "Covenant violation reduces net debt issuance by ~2.1% of assets per quarter and capital expenditure by ~1.0% of assets per quarter relative to non-violating matched firms",
+    "key_robustness": [
+      "Propensity score matching on pre-violation firm characteristics",
+      "RDD-style analysis comparing firms just above vs. just below covenant thresholds",
+      "Controlling for firm-level investment opportunities (Tobin's Q)",
+      "Excluding firms in financial distress (to isolate the covenant mechanism from general distress)",
+      "Placebo tests using pseudo-violation dates"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID with matched control group + quasi-RDD at covenant violation threshold; event-time analysis around violation quarter",
+      "treatment": "Covenant violation (binary, triggered when firm's financial ratio crosses loan agreement threshold)",
+      "event_window": "8 quarters before and after covenant violation",
+      "estimation_window": "Pre-violation quarters (-8 to -1) establish baseline; post-violation quarters (+1 to +8) measure effects",
+      "sample_period": "1994–2008",
+      "unit_of_observation": "Firm-quarter, with firms matched on pre-violation characteristics",
+      "key_assumption": "Firms that narrowly violate covenants are comparable to firms that narrowly avoid violation, except for the credit supply shock triggered by the violation. The covenant threshold is contractually predetermined and cannot be easily manipulated by the firm. The credit supply reduction is the primary channel, not the information signal of financial deterioration."
+    },
+    "key_magnitudes": {
+      "net_debt_reduction": "-2.1% of assets per quarter reduction in net debt issuance post-violation",
+      "capex_reduction": "-1.0% of assets per quarter reduction in capital expenditure post-violation",
+      "persistence": "Effects persist for 8+ quarters, indicating lasting real consequences of credit supply shock",
+      "no_equity_offset": "Net equity issuance does not increase to offset debt reduction — firms do not substitute to equity markets"
+    },
+    "robustness_notes_detail": "Propensity score matching ensures that violating and non-violating firms are similar on observable pre-period characteristics. The quasi-RDD analysis at covenant thresholds shows a sharp discontinuity in credit outcomes at the violation point. Results are not driven by extreme financial distress (effects hold when excluding firms within 1 year of bankruptcy). Controlling for Tobin's Q does not eliminate the investment effect, confirming that the result is driven by credit supply rather than investment opportunities."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 101853,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_198",
+  "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+  "authors": "Dube, Lester & Reich",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/rest_a_00039",
+    "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+    "year": 2010,
+    "journal": "The Review of Economics and Statistics",
+    "citations": 1203
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "reich",
+      "lester"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "restat",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1203,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

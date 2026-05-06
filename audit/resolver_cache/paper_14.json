@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_14",
+  "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania",
+  "authors": "Card & Krueger",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.90.5.1397",
+    "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Reply",
+    "year": 2000,
+    "journal": "American Economic Review",
+    "citations": 2235
+  },
+  "checks": {
+    "title_jaccard": 0.9167,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "krueger",
+      "card"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2235,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

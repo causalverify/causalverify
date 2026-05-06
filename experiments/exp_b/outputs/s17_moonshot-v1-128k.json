@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s17",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Surprise regulatory fine on bank reputation and stock value",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:17.420438",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 483,
+    "output_tokens": 588,
+    "content": "## 1. Identification Strategy\nWe will use an Event Study approach to analyze the impact of surprise regulatory fines on bank reputation and stock value. The Event Study method is suitable for this research question because it allows us to measure the abnormal returns around the event window, which captures the market's reaction to the surprise regulatory fine announcement. The key assumption is that the market was not aware of the fine before the announcement, and the abnormal returns during the event window are solely due to the fine.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s17_data.csv\")\n\n# Calculate abnormal returns (AR) using the market model\ndata <- data %>%\n  group_by(stock_id) %>%\n  mutate(est_ret = ret - (beta * mkt_ret)) %>%\n  ungroup()\n\n# Define the event window and estimation window\nevent_window <- c(-1, 1)\nestimation_window <- c(-10, -2)\n\n# Calculate cumulative abnormal returns (CAR) for the event window\ncar <- data %>%\n  filter(event_day >= event_window[1] & event_day <= event_window[2]) %>%\n  group_by(stock_id) %>%\n  summarise(car = sum(est_ret)) %>%\n  ungroup()\n\n# Calculate the fine ratio\nfine_ratio <- data %>%\n  filter(event_day == event_window[1]) %>%\n  group_by(stock_id) %>%\n  summarise(fine_ratio = fine_ratio) %>%\n  ungroup()\n\n# Calculate the difference between CAR and fine ratio\nreputational_loss <- car$car - fine_ratio$fine_ratio\n\n# Perform a t-test to check if the reputational loss is significantly different from zero\nt_test_result <- t.test(reputational_loss, alternative = \"less\")\n\n# Print the result\ncat(\"Cumulative Abnormal Returns (CAR):\", mean(car$car), \"\\n\")\ncat(\"Fine Ratio:\", mean(fine_ratio$fine_ratio), \"\\n\")\ncat(\"Reputational Loss (CAR - Fine Ratio):\", mean(reputational_loss), \"\\n\")\ncat(\"t-test result:\", t_test_result$p.value, \"\\n\")\n```\n\n## 3. Expected Findings\nWe expect the Cumulative Abnormal Returns (CAR) to be significantly less than the fine ratio, implying that the surprise regulatory fine announcement generates negative abnormal returns beyond the direct financial cost. This suggests that the fine has a reputational impact on the bank's stock value. The magnitude of the reputational loss is difficult to predict without more information, but we expect it to be negative and statistically significant.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with CAR decomposition: financial cost vs. reputational component",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "CAR exceeds fine/mktcap ratio, confirming reputational damage beyond monetary penalty",
+    "main_effect": "CAR ≈ −3.5%; reputational component ≈ −1.5% above direct cost"
+  }
+}

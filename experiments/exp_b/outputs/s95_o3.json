@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s95",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Minimum Drinking Age on Alcohol Consumption",
+  "model": "o3",
+  "run_at": "2026-04-14T19:55:32.729385",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 442,
+    "output_tokens": 1481,
+    "content": "## 1. Identification Strategy  \nMethod: Sharp Regression Discontinuity Design (RDD)\n\nRationale  \n• Treatment (legal permission to purchase alcohol) turns on deterministically the moment an individual reaches the 21-year threshold.  \n• Individuals just below and just above the cutoff are assumed to be comparable in every dimension other than treatment status, satisfying the local randomisation intuition of RDD.\n\nKey Assumptions  \n1. Continuity: In the absence of treatment, the conditional expectation of alcohol consumption is continuous in age at 21. Any jump at the cutoff is therefore attributed to treatment.  \n2. No precise manipulation: Individuals cannot precisely “choose” their exact age; hence the density of the running variable (age in months) is smooth at the cutoff.  \n3. Stable relationship: Functional form of age–outcome relationship is smooth within the chosen bandwidth around the cutoff.\n\n## 2. R Code\n```r\n# ============================== #\n# Impact of Minimum Drinking Age #\n# Sharp RDD implementation       #\n# ============================== #\n\n# Load packages\nrequired <- c(\"tidyverse\", \"rdrobust\", \"rddensity\")\ninvisible(lapply(required, function(p) if (!requireNamespace(p, quietly = TRUE)) install.packages(p)))\nlibrary(tidyverse)\nlibrary(rdrobust)\nlibrary(rddensity)\n\n# 1. Read data\npath <- \"experiments/exp_b/data/s95_data.csv\"\ndf   <- read_csv(path,\n                 col_types = cols(\n                   running_var = col_double(),\n                   treated     = col_integer(),\n                   y           = col_double(),\n                   near_cutoff = col_integer()\n                 ))\n\n# 2. Quick check\ncat(\"\\nSample size:\", nrow(df), \"\\n\")\nsummary(df$running_var)\n\n# 3. Density test for manipulation\ndens <- rddensity(X = df$running_var, c = 0)\ncat(\"\\nMcCrary density test p-value:\", dens$test$p_jkn, \"\\n\")\n\n# 4. Main RDD estimate (bias-corrected local linear, MSE-optimal bandwidth)\nrd_main <- rdrobust(y = df$y, x = df$running_var, c = 0, p = 1, kernel = \"triangular\")\ncat(\"\\n=== Main Sharp RDD Estimate ===\\n\")\nprint(rd_main)\n\n# 5. Robustness checks ---------------------------------------------\n## a) Different bandwidth (half the optimal)\nh_opt <- rd_main$bws[1,1]           # optimal bw on left\nh_alt <- h_opt * 0.5\nrd_half <- rdrobust(y = df$y, x = df$running_var, c = 0, h = c(h_alt, h_alt), p = 1)\ncat(\"\\nRDD with half-bandwidth\\n\")\nprint(rd_half)\n\n## b) Higher-order polynomial (quadratic)\nrd_quad <- rdrobust(y = df$y, x = df$running_var, c = 0, p = 2)\ncat(\"\\nRDD with quadratic control (p = 2)\\n\")\nprint(rd_quad)\n\n# 6. Display concise numerical result\nest  <- rd_main$coef[1]             # point estimate of the jump\nse   <- rd_main$se[1]\npval <- rd_main$pv[1]\ncat(sprintf(\"\\nEstimated causal jump at 21: %.3f (SE = %.3f, p = %.3f)\\n\",\n            est, se, pval))\n```\n\n## 3. Expected Findings  \nSign: Positive. Economic theory and previous evidence predict that legal access raises consumption.  \n\nMagnitude: Given the previewed scale (y roughly between –0.1 and 0.7), we expect a jump of around 0.25–0.35 units (≈ 35–50 % of the pre-21 mean). This reflects an immediate uptick in alcohol intake once the legal constraint is lifted.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the age-21 drinking age cutoff as a natural experiment.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Reaching the age of 21 leads to an increase in alcohol consumption.",
+    "main_effect": "Approximately 0.28 increase in alcohol consumption."
+  }
+}

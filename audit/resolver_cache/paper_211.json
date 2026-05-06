@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_211",
+  "title": "The Long and Short of the Canada-U.S. Free Trade Agreement",
+  "authors": "Trefler",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/0002828042002633",
+    "title": "The Long and Short of the Canada-U.S. Free Trade Agreement",
+    "year": 2004,
+    "journal": "American Economic Review",
+    "citations": 1037
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "trefler"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1037,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

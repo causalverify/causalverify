@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s04",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "TARP capital injection on bank risk-taking",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:24:03.180422",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 479,
+    "output_tokens": 394,
+    "content": "## 1. Identification Strategy\nWe will use a Difference-in-Differences (DID) approach to identify the causal effect of TARP capital injections on bank risk-taking. The key assumption in this approach is the parallel trends assumption, which states that in the absence of the treatment (TARP capital injections), the treated and control groups would have followed the same trend over time. This assumption allows us to compare the changes in the outcome variable (non-performing loan ratio) for treated and control banks before and after the treatment.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s04_data.csv\")\n\n# Convert the data to a panel data structure\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Run the DID regression\ndid_model <- plm(y ~ treat_x_post, data = pdata, model = \"within\")\n\n# Print the coefficient for the treatment effect\nsummary(did_model)$coefficients[\"treat_x_post\", \"Estimate\"]\n\n# Robustness check: Clustered standard errors\ncoeftest(did_model, vcovHC(did_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the `treat_x_post` variable to be positive, indicating that TARP recipients increased their risk-taking (non-performing loan ratio) compared to non-recipient banks after the capital injections. The magnitude of the effect will depend on the data, but it is reasonable to expect a small to moderate effect size, as banks may have taken on more risk due to the increased capital but also had incentives to manage risk carefully given the scrutiny and potential stigma associated with TARP recipients.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=TARP recipients, control=non-recipients; parallel pre-trends required",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP banks show higher NPL ratios post-injection, consistent with moral hazard",
+    "main_effect": "20bp increase in NPL ratio for TARP banks"
+  }
+}

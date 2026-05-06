@@ -1,0 +1,39 @@
+{
+  "paper_id": "paper_43",
+  "title": "The Oregon Health Insurance Experiment",
+  "authors": "Finkelstein, Taubman, Wright, Bernstein, Gruber, Newhouse, Allen & Baicker",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/qje/qjs020",
+    "title": "The Oregon Health Insurance Experiment: Evidence from the First Year*",
+    "year": 2012,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1630
+  },
+  "checks": {
+    "title_jaccard": 0.6667,
+    "title_gate_pass": false,
+    "author_overlap": [
+      "gruber",
+      "wright",
+      "finkelstein",
+      "bernstein",
+      "newhouse",
+      "allen",
+      "taubman",
+      "baicker"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1630,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

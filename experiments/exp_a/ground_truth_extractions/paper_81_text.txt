@@ -1,0 +1,589 @@
+Estimating Average and Local Average Treatment Effects of Education When 
+Compulsory Schooling Laws Really Matter: Corrigendum 
+ 
+August, 2008 
+ 
+Philip Oreopoulos 
+Department of Economics, University of British Columbia 
+philip.oreopoulos@ubc.ca 
+ 
+ 
+ 
+In the March 2006 edition of this journal, I published an article entitled 
+“Estimating Average and Local Average Treatment Effects of Education when 
+Compulsory School Laws Really Matter” (American Economic Review, Vol. 96, No. 1, 
+March 2006, pp. 152-175).  In the last year, some colleagues have informed me that they 
+have had difficulty replicating the UK results using the code I provided in a data 
+appendix.1  Through these discussions I learned that a few sampling restrictions that were 
+mentioned in the paper were not in the code, and that some datasets were not merged 
+correctly (for example, individuals were matched based on person and household 
+identifiers, but not family identifiers).  The British earnings measure for 1994 was also 
+accidentally dropped.  This corrigendum therefore updates the code for producing a 
+revised set of UK results which are qualitatively similar to the original results.  The 
+revised output does not affect the discussion or conclusions of the original article. 
+One of the primary ideas behind the original article is that the remarkably large 
+response from changes to compulsory schooling laws in the UK provides a rare 
+                                                 
+1 I thank Paul Devereux, Heather Royer, Joseph Shapiro, and Raymond Guiteras for pointing me to these 
+mistakes.  I am a strong supporter of making available code for replication purposes, and I am grateful that 
+these errors were identified using the paper’s data appendix.  Part of the difficulty reconciling the results 
+was due to keeping only an aggregated version of the data.  For the revised results here, I include the full 
+micro dataset.  
+ 
+1
+
+opportunity to measure average returns to schooling for a more general population than 
+compared to previous papers using instrumental variables methodology.  First stage 
+estimates suggest that raising the school leaving age from 14 to 15 in 1947 for Great 
+Britain and in 1957 for Northern Ireland affected between 40 to 50 percent of the general 
+cohort population.  The original article concluded that the similar UK returns to 
+compulsory schooling estimates compared to those from the U.S. and Canada (with 
+significantly less affected by the policy changes) suggests that the average treatment 
+effect of an additional year of high school is about as large as local average treatment 
+effect estimated for these countries (at least for the particular birth cohorts examined in 
+the study). 
+Table 1 shows the estimated first stage effects of the policy changes on the 
+number of years of schooling, the reduced form effects of the policy changes on log 
+earnings, and the instrumental variables estimates for the returns to compulsory schooling 
+for Great Britain and the UK.  The originally published results are reported in Panel A.  
+Panel B reports the revised results using the full sample of individuals from the 1984 to 
+1998 British and Northern Irish General Household Surveys, aged 28 to 64, born between 
+1921 and 1951 (the same sample restrictions reported in the original paper).2  The results 
+for Northern Ireland are almost identical.  The first stage effects for Great Britain are also 
+about the same, but the returns to schooling estimates are lower – around 7 percent 
+instead of 15 percent.  The 95 percent confidence region around these estimates are quite 
+wide, ranging from returns as low as 0 and as high as 15 percent.  The revised difference-
+                                                 
+2 While the published paper noted that the 1983 GHHS was included for the sample, income that year was 
+recorded as missing.  So, in effect, the sample included only the 1984 to 1998 GHHS. 
+ 
+2
+
+in-difference estimates from combining the Great Britain and Northern Ireland samples 
+are slightly lower, but still above 10 percent, with standard errors around 0.03.   
+Table 2 shows the same set of estimates but with three alternative sample 
+specifications that I believe are equally justifiable.  Panel A shows results after restricting 
+the sample to individuals that left full-time schooling by age 18 or less, with the logic that 
+since the first stage results suggest that the policy changes affected whether individuals 
+left full time schooling before age 15 but not before age 16 (these effects are shown in the 
+original article and revised set of tables and figures), this alternative restriction may 
+improve precision by dropping individuals not likely impacted by the policy shift.   Panel 
+B shows results from dropping individuals aged 61 to 64.  Earnings from older workers 
+close to retirement may be more volatile.  Panel C shows results from adding more data 
+using more recent years of the British and Northern Irish General Household Surveys that 
+were not available when I began the study (1999 to 2006).  
+The resulting first stage effects for Great Britain in Panel A from dropping 
+individuals that left school after age 18 are generally not different from the full sample in 
+Panel B of Table 1, except the first stage effects from the school leaving age change in 
+Northern Ireland are lower, and the instrumental variables estimates have larger standard 
+errors.  Dropping individuals over 60 years of age in Panel B generates higher point 
+estimates for the reduced form and returns to compulsory schooling British estimates.  
+The Northern Ireland estimates are generally unchanged.  Adding the additional survey 
+data in Panel C notably improves precision and leads to significant returns to education 
+estimates that range from 11 to 13 percent for Great Britain and 13 to 18 percent for 
+Northern Ireland.  Finally, Panel D combines all three alternative sample specifications, 
+ 
+3
+
+ 
+4
+which leads to similar point estimates compared to the original article, but large standard 
+errors for the Northern Ireland sample. 
+As mentioned in the original article, the regression discontinuity approach leads to 
+greater imprecision than the difference-in-difference approach, given that earnings are 
+tapering off for successively older birth cohorts at the time the discontinuity occurs.  
+Since the confidence intervals include values lower than the point estimates for Canada 
+and the U.S., the analysis requires considering the robustness and general patterns of the 
+results under alternative samples, methodologies, and conditions.  In my opinion, the 
+results presented here, the robustness checks presented in this article’s appendix, and the 
+results presented in Oreopoulos (2007) using the Eurobarometer Surveys, point to clear 
+evidence of substantial returns to compulsory schooling – between 8 and 15 percent — 
+for individuals affected by these policy changes.   
+I have created a new set of tables and figures from the specification above that 
+adds additional survey years from the General Household Survey, as shown in Table 2, 
+Panel C).  These can be found in the data appendix.  Code to replicate these results, along 
+with the full micro dataset, is also provided in the data appendix.  The results still support 
+the conclusions and discussion that I drew using tables of the published version. 
+ 
+References 
+Oreopoulos, Philip. “Do Dropouts Drop Out Too Soon? Wealth, Health, and Happiness 
+from  Compulsory Schooling,” Journal of Public Economics 2007, 91, (11-12), 2213-
+2229. 
+
+Table 1
+First Stage, Reduced Form, and IV Estimates for Returns to Compulsory Schooling
+Great Britain and Northern Ireland, Baseline Sample
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+(9)
+(First Stage)
+(Reduced Form)
+(IV Returns to Compulsory Schooling)
+Dependent Variable: Age Finished Full Time School
+Dependent Variable: Log Annual Earnings
+Dependent Variable: Log Annual Earnings
+Panel A: Published Results
+Great Britain
+0.440
+0.436
+0.453
+0.065
+0.064
+0.042
+0.147
+0.145
+0.149
+[n=57624]
+[0.065]***
+[0.071]***
+[0.076]***
+[0.025]**
+[0.026]**
+[0.043]
+[0.061]**
+[0.063]**
+[0.064]**
+Northern Ireland
+0.397
+0.391
+0.353
+0.054
+0.074
+0.074
+0.135
+0.187
+0.21
+[n=8921]
+[0.074]***
+[0.073]***
+[0.100]***
+[0.027]*
+[0.025]***
+[0.045]
+[0.071]*
+[0.070]**
+[0.135]
+G. Britain and N. Ireland
+0.418
+0.397
+0.401
+0.073
+0.058
+0.059
+0.174
+0.149
+0.148
+with N. Ireland Fixed Effect
+[0.040]***
+[0.043]***
+[0.045]***
+[0.016]***
+[0.016]***
+[0.018]***
+[0.042]***
+[0.044]***
+[0.046]***
+[n=66185]
+Panel B: Revised Results with Baseline Sample:  1921 - 1951 Birth Cohorts aged 28-64 in the 1984 - 1998 GHHS
+Great Britain
+0.408
+0.408
+0.435
+0.029
+0.025
+0.032
+0.069
+0.066
+0.067
+[n=55088]
+[0.063]***
+[0.064]***
+[0.073]***
+[0.016]*
+[0.020]
+[0.021]
+[0.040]*
+[0.050]
+[0.049]
+Northern Ireland
+0.456
+0.444
+0.413
+0.059
+0.081
+0.074
+0.129
+0.18
+0.179
+n=[8954]
+[0.104]***
+[0.105]***
+[0.082]***
+[0.040]
+[0.034]**
+[0.045]
+[0.076]*
+[0.062]***
+[0.096]*
+G. Britain and N. Ireland
+0.437
+0.44
+0.451
+0.058
+0.045
+0.044
+0.132
+0.105
+0.097
+with N. Ireland Fixed Effect
+[0.043]***
+[0.044]***
+[0.044]***
+[0.013]***
+[0.014]***
+[0.014]***
+[0.031]***
+[0.030]***
+[0.030]***
+[n=64042]
+Birth Cohort
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Polynomial Controls
+Age Polynomial Controls
+None
+Quartic
+None
+None
+Quartic
+None
+None
+Quartic
+None
+Age Dummies
+No
+No
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Notes: The dependent variables are age left full-time education and log annual earnings. Each regressions includes controls for a birth cohort quartic polynomial and and indicator whether a cohort faced a school leaving age of 15 at age 14. Columns
+(2), (3), (5), (6), (8) and (9) also include age controls: a quartic polynomial and fixed effects where indicated. Each regression includes the sample of 25 to 64 year olds from the 1984 through 1998 General Household Surveys, who were aged 14
+between 1935 and 1965.  Data are first aggregated into cell means and weighted by cell size.  Regressions are clustered by birth cohort and region (Britian or N. Ireland). [n = sample size]
+
+Table 2
+First Stage, Reduced Form, and IV Estimates for Returns to Compulsory Schooling
+Great Britain and Northern Ireland, Alternative Sample Conditions
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+(9)
+(First Stage)
+(Reduced Form)
+(IV Returns to Compulsory Schooling)
+Dependent Variable: Age Finished Full Time School
+Dependent Variable: Log Annual Earnings
+Dependent Variable: Log Annual Earnings
+Panel A: 1921 - 1951 Birth Cohorts aged 28-64 in the 1984 - 1998 GHHS, left full time schooling < 19
+Great Britain
+0.437
+0.438
+0.44
+0.032
+0.029
+0.037
+0.073
+0.062
+0.084
+[n=46760]
+[0.080]***
+[0.079]***
+[0.078]***
+[0.015]**
+[0.019]
+[0.020]*
+[0.042]*
+[0.050]
+[0.053]
+Northern Ireland
+0.24
+0.24
+0.274
+0.03
+0.054
+0.059
+0.123
+0.224
+0.203
+[n=7676]
+[0.068]***
+[0.068]***
+[0.072]***
+[0.046]
+[0.037]
+[0.048]
+[0.194]
+[0.155]
+[0.199]
+G. Britain and N. Ireland
+0.478
+0.477
+0.48
+0.058
+0.044
+0.043
+0.123
+0.091
+0.091
+with N. Ireland Fixed Effect
+[0.045]***
+[0.045]***
+[0.043]***
+[0.013]***
+[0.013]***
+[0.014]***
+[0.030]***
+[0.031]***
+[0.032]***
+[n=54436]
+Panel B:  1921 - 1951 Birth Cohorts aged 28-60 in the 1984 - 1998 GHHS
+Great Britain
+0.376
+0.376
+0.411
+0.047
+0.044
+0.052
+0.108
+0.144
+0.107
+[n=51643]
+[0.054]***
+[0.053]***
+[0.063]***
+[0.020]**
+[0.022]*
+[0.023]**
+[0.057]*
+[0.079]*
+[0.062]*
+Northern Ireland
+0.434
+0.436
+0.372
+0.051
+0.085
+0.083
+0.094
+0.179
+0.226
+[n=8311]
+[0.107]***
+[0.110]***
+[0.094]***
+[0.044]
+[0.036]**
+[0.046]*
+[0.097]
+[0.064]**
+[0.098]**
+G. Britain and N. Ireland
+0.411
+0.41
+0.425
+0.064
+0.046
+0.046
+0.159
+0.112
+0.11
+with N. Ireland Fixed Effect
+[0.043]***
+[0.042]***
+[0.042]***
+[0.014]***
+[0.014]***
+[0.014]***
+[0.038]***
+[0.037]***
+[0.037]***
+[n=59954]
+Panel C:  1921 - 1951 Birth Cohorts aged 28-64 in the 1984 - 2006 GHHS
+Great Britain
+0.495
+0.457
+0.472
+0.055
+0.052
+0.056
+0.112
+0.111
+0.125
+[n=73954]
+[0.074]***
+[0.065]***
+[0.069]***
+[0.015]***
+[0.014]***
+[0.017]***
+[0.034]***
+[0.033]***
+[0.040]***
+Northern Ireland
+0.456
+0.444
+0.413
+0.059
+0.081
+0.074
+0.129
+0.18
+0.179
+[n=8954]
+[0.104]***
+[0.105]***
+[0.082]***
+[0.040]
+[0.034]**
+[0.045]
+[0.076]*
+[0.062]***
+[0.096]*
+G. Britain and N. Ireland
+0.491
+0.475
+0.485
+0.02
+0.065
+0.065
+0.041
+0.133
+0.135
+with N. Ireland Fixed Effect
+[0.042]***
+[0.044]***
+[0.042]***
+[0.015]
+[0.013]***
+[0.013]***
+[0.032]
+[0.027]***
+[0.028]***
+[n=82908]
+Panel D:  1921 - 1951 Birth Cohorts aged 28-60 in the 1979 - 2006 GHHS, left full time schooling < 19
+Great Britain
+0.428
+0.428
+0.431
+0.063
+0.047
+0.052
+0.191
+0.118
+0.133
+[n=54982]
+[0.086]***
+[0.086]***
+[0.085]***
+[0.018]***
+[0.023]**
+[0.024]**
+[0.074]**
+[0.073]
+[0.076]*
+Northern Ireland
+0.199
+0.209
+0.227
+0.022
+0.057
+0.068
+0.168
+0.313
+0.311
+[n=7081]
+[0.054]***
+[0.056]***
+[0.055]***
+[0.048]
+[0.036]
+[0.048]
+[0.204]
+[0.127]**
+[0.184]
+G. Britain and N. Ireland
+0.474
+0.481
+0.483
+0.015
+0.062
+0.062
+0.035
+0.131
+0.127
+with N. Ireland Fixed Effect
+[0.047]***
+[0.048]***
+[0.046]***
+[0.018]
+[0.015]***
+[0.014]***
+[0.040]
+[0.036]***
+[0.035]***
+[n=62063]
+Birth Cohort
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Quartic
+Polynomial Controls
+Age Polynomial Controls
+None
+Quartic
+None
+None
+Quartic
+None
+None
+Quartic
+None
+Age Dummies
+No
+No
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Notes: The dependent variables are age left full-time education and log annual earnings. Each regressions includes controls for a birth cohort quartic polynomial and and indicator whether a cohort faced a school leaving age of 15 at age 14. Columns (2),
+(3), (5), (6), (8) and (9) also include age controls: a quartic polynomial and fixed effects where indicated. Each regression includes the sample from the 1984 through 1998 General Household Surveys, who were aged 14 between 1935 and 1965. Data are
+first aggregated into cell means and weighted by cell size.  Regressions are clustered by birth cohort and region (Britian or N. Ireland). [n = sample size]

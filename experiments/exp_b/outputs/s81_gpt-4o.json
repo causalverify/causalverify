@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:44:47.215676",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 462,
+    "output_tokens": 479,
+    "content": "## 1. Identification Strategy\nIn this scenario, we use an Instrumental Variables (IV) approach to determine the causal impact of peer ability on a student's academic performance. The instrument used here is the roommate's ability (z). The key assumptions for the validity of this IV approach are:\n\n1. **Relevance**: The instrument (roommate's ability) is correlated with the endogenous variable (peer quality).\n2. **Exclusion Restriction**: The instrument affects the outcome (student's GPA) only through its impact on peer quality, and not through any other channel.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\n\n# Read the dataset\ndata <- read.csv(\"experiments/exp_b/data/s81_data.csv\")\n\n# View the first few rows of the dataset\nhead(data)\n\n# Define the variables\ny <- data$y\nx <- data$x\nz <- data$z\ncontrols <- data$controls\n\n# Run the IV regression, using roommate's ability (z) as an instrument for peer ability (x)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Print the summary of the IV model to get the estimated coefficient\nsummary(iv_model)\n\n# Conduct a basic robustness check: check weak instrument by calculating first stage F-statistic\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Calculate the F-statistic\nf_statistic <- summary(first_stage)$fstatistic\n\n# Print the F-statistic result\ncat(\"First-stage F-statistic:\", f_statistic[1], \"\\n\")\n\n# Interpret the findings\ncoefficient_estimate <- summary(iv_model)$coefficients[2, 1]\ncat(\"Estimated effect of peer ability on GPA:\", coefficient_estimate, \"\\n\")\n```\n\n## 3. Expected Findings\nGiven that colleges often assortatively match roommates, students with higher ability roommates are likely to experience an upward influence on their own performance. Therefore, we expect a positive sign for the peer ability coefficient. The magnitude could be moderate if students learn significantly from their peers but not excessively due to limits on peer influence in controlled college environments. A plausible range might be a 0.1 to 0.3 increase in GPA for each one standard deviation increase in roommate ability.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

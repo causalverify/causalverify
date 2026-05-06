@@ -1,0 +1,40 @@
+{
+  "n_sampled": 20,
+  "seed": 20260505,
+  "scenario_ids_by_method": {
+    "DID": [
+      "s31",
+      "s39",
+      "s41",
+      "s42",
+      "s45"
+    ],
+    "EVENT_STUDY": [
+      "s17",
+      "s18",
+      "s51",
+      "s52",
+      "s60"
+    ],
+    "IV": [
+      "s20",
+      "s21",
+      "s73",
+      "s76",
+      "s77"
+    ],
+    "RDD": [
+      "s26",
+      "s86",
+      "s88",
+      "s96",
+      "s98"
+    ]
+  },
+  "blinding": {
+    "canonical_estimator_excluded": true,
+    "l2b_plus_label_excluded": true,
+    "dgp_truth_excluded": true,
+    "model_outputs_excluded": true
+  }
+}

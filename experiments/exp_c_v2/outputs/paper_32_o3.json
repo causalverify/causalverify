@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_32",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:35:41.297076",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 665,
+    "output_tokens": 2171,
+    "content": "RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy: 2-stage least squares (2SLS) in a filer-level panel that follows each firm for three fiscal years after its S-1 registration.  The endogenous treatment is IPO_Completed (1 = the IPO is successfully completed within 12 months of the S-1; 0 = the filing is withdrawn).  The instrument is Nasdaq_Return, the cumulative % return of the NASDAQ Composite over the 60 calendar days after the filing date.  Because the firm cannot influence this return once the S-1 is filed and because trading‐day shocks in this window are orthogonal to firm‐specific innovation plans, Nasdaq_Return satisfies relevance (market run-ups make completion more likely) and exclusion (only affects innovation through IPO completion).  \n\nDirectional hypothesis (H1): Conditional on filing, completing an IPO reduces subsequent innovation quality.  Formally, β<0 in  \nInnovation_Quality = α + β · IPO_Completed + γX + ε,  \nwhere Innovation_Quality is forward citations per patent averaged over the three post-filing years.  \n\nI will NOT change this identification strategy or hypothesis.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (maximum 5)  \nAll regressions use robust standard errors clustered by filing year.  \nControls X: log(1+pre-filing patent stock), industry fixed effects (FF48), and filing-year fixed effects.  \n\nSpec 1  (First stage):  \nIPO_Completed = π0 + π1 · Nasdaq_Return + γX + u  \n\nSpec 2  (Second stage / 2SLS):  \nCitations_per_patent_post = α + β · ŶIPO_Completed + γX + ε  \n\nSpec 3  (Reduced form):  \nCitations_per_patent_post = ρ0 + ρ1 · Nasdaq_Return + γX + ν  \n\nSpec 4  (2SLS quantity outcome):  \nlog(1+Patents_post) = α + βq · ŶIPO_Completed + γX + ε  \n\nSpec 5  (2SLS originality outcome):  \nOriginality_post = α + βo · ŶIPO_Completed + γX + ε  \n\nNo additional specifications will be estimated.  \n\nSTEP 3 — FALSIFICATION GATE  \nH1 will be rejected if ANY of the following hold:  \na) First-stage relevance fails: F-stat on π1 < 10 in Spec 1.  \nb) Sign reversal: 2SLS coefficient β in Spec 2 ≥ 0.  \nc) Insignificance: |t| on β < 1.64 (two-tailed p > 0.10).  \nd) Pre-trend concern: placebo test (not pre-committed here) impossible → gate relies only on a–c.  \n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n# Required packages\nlibrary(fixest)    # fast felm/ivreg functionality\nlibrary(data.table)\n\n# ------------------------------------------------------------------\n# 1. LOAD AND PREP DATA\n# ------------------------------------------------------------------\n# Assume CSV with one row per firm filing\n# Variables needed:\n# firm_id, filing_year, industry_ff48\n# IPO_Completed (0/1)\n# Nasdaq_Return (in % points, numeric)\n# patents_pre, citations_pre          # stock in 3 years before filing\n# patents_post, citations_post        # totals in 3 years after filing\n# originality_post                    # average originality score post\n\ndat <- fread(\"ipo_patent_sample.csv\")\n\n# Construct outcome variables\ndat[, log_patents_post := log1p(patents_post)]\ndat[, citations_per_patent_post := \n        fifelse(patents_post == 0, 0, citations_post / patents_post)]\ndat[, log_patent_stock_pre := log1p(patents_pre)]\n\n# Fixed-effects identifiers\ndat[, ind_fe := factor(industry_ff48)]\ndat[, yr_fe  := factor(filing_year)]\n\n# ------------------------------------------------------------------\n# 2. SPECIFICATIONS\n# ------------------------------------------------------------------\n\n# Spec 1: First stage\nfs <- feols(IPO_Completed ~ Nasdaq_Return + log_patent_stock_pre | \n              ind_fe + yr_fe,\n            data = dat, cluster = ~filing_year)\n\n# Spec 2: 2SLS citations quality\niv_cite <- feols(citations_per_patent_post ~ 1 | \n                   ind_fe + yr_fe | \n                   IPO_Completed ~ Nasdaq_Return + log_patent_stock_pre,\n                 data = dat, cluster = ~filing_year)\n\n# Spec 3: Reduced form\nrf <- feols(citations_per_patent_post ~ Nasdaq_Return + log_patent_stock_pre |\n              ind_fe + yr_fe,\n            data = dat, cluster = ~filing_year)\n\n# Spec 4: 2SLS patent quantity\niv_qty <- feols(log_patents_post ~ 1 | ind_fe + yr_fe |\n                  IPO_Completed ~ Nasdaq_Return + log_patent_stock_pre,\n                data = dat, cluster = ~filing_year)\n\n# Spec 5: 2SLS originality\niv_orig <- feols(originality_post ~ 1 | ind_fe + yr_fe |\n                   IPO_Completed ~ Nasdaq_Return + log_patent_stock_pre,\n                 data = dat, cluster = ~filing_year)\n\n# ------------------------------------------------------------------\n# 3. OUTPUT\n# ------------------------------------------------------------------\netable(fs, iv_cite, rf, iv_qty, iv_orig,\n       se = \"cluster\", cluster = \"filing_year\",\n       keep = c(\"Nasdaq_Return\", \"IPO_Completed\"),\n       dict = c(IPO_Completed = \"IPO completed\",\n                Nasdaq_Return = \"NASDAQ return\"),\n       tex = FALSE)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBased on prior literature my priors are:  \n\nSpec 1: π1 ≈ 0.35 (s.e. ≈ 0.07)  →  F-stat ≈ 25  (Gate a satisfied)  \n\nSpec 2: β ≈ -0.30  (s.e. ≈ 0.12) → t ≈ -2.5, p ≈ 0.013  \nInterpretation: completing an IPO lowers forward citations per patent by ~0.3 (≈20 % of the pre-IPO mean).  (Gates b & c satisfied)  \n\nSpec 3: ρ1 ≈ -0.10 (s.e. ≈ 0.04) — consistent reduced-form effect.  \n\nSpec 4: βq ≈ +0.20 (s.e. ≈ 0.09) — IPO increases number of patents (quantity rises).  \n\nSpec 5: βo ≈ -0.05 (s.e. ≈ 0.02) — IPO reduces patent originality.  \n\nSince first-stage is strong, β is negative and statistically significant, none of the falsification criteria are breached.  Therefore the evidence would SUPPORT H1 that going public diminishes innovation quality, despite possibly boosting patent quantity.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — NASDAQ index return in the 2-month window after S-1 filing as instrument for IPO completion (going public vs. remaining private); first stage: market conditions → IPO completion probability; second stage: IPO completion (instrumented) → innovation outcomes",
+    "key_variables": {
+      "treatment": "IPO completion (binary: firm went public vs. withdrew filing and remained private), instrumented by NASDAQ return after filing",
+      "control": "firms that filed for IPO but withdrew (remained private) due to poor market conditions",
+      "outcome": "patent counts, citations per patent, patent originality, patent generality, inventor turnover (post-IPO vs. post-withdrawal)",
+      "time_period": "1985–2003 (IPO filings); patent outcomes tracked for 5+ years post-filing"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Going public causes a significant decline in the novelty and quality of innovation, but not in its quantity. Firms that complete the IPO produce a similar number of patents as those that withdraw, but their patents receive fewer citations (-9%), are less original (-8%), and are less general. The composition of innovation shifts toward more incremental, exploitative projects. Key inventors leave at higher rates after going public.",
+    "main_effect": "IPO completion reduces patent quality: -9% fewer citations per patent, -8% lower originality score; patent quantity is not significantly affected; key inventor departure rate increases",
+    "key_robustness": [
+      "Comparing withdrawers who re-file later (eventually go public) vs. those who never re-file",
+      "Controlling for firm-level pre-filing innovation quality",
+      "Alternative patent quality measures (citation truncation adjustment)",
+      "Matched-sample analysis on pre-filing characteristics",
+      "Industry × filing-year fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with NASDAQ return as instrument for IPO completion; also ITT (intent-to-treat) comparison of all filers by market conditions",
+      "treatment": "IPO completion (endogenous), instrumented by NASDAQ composite index return in the [filing date, filing date + 60 days] window",
+      "event_window": "Post-filing innovation outcomes tracked for 3-5 years after filing date",
+      "estimation_window": "Pre-filing innovation (3 years before filing) used as control",
+      "sample_period": "1985–2003",
+      "unit_of_observation": "Firm that filed S-1 registration statement",
+      "key_assumption": "NASDAQ returns after S-1 filing affect innovation outcomes only through their effect on IPO completion probability (exclusion restriction). Market conditions during the quiet period are not correlated with unobserved firm-specific innovation trajectory changes."
+    },
+    "key_magnitudes": {
+      "citation_decline": "-9% reduction in citations per patent for firms that go public vs. comparable withdrawers",
+      "originality_decline": "-8% reduction in patent originality score",
+      "quantity_no_change": "Patent counts are not significantly different between completers and withdrawers",
+      "inventor_departure": "Key inventors are significantly more likely to leave after IPO completion"
+    },
+    "robustness_notes_detail": "First-stage F-statistic is strong (>10): NASDAQ returns significantly predict IPO completion. Results hold with industry × year fixed effects, controlling for pre-filing innovation quality, and using various citation truncation adjustments. The pattern is consistent with a shift from exploration (novel research) to exploitation (incremental development) after going public, driven by short-term market pressure on public firms."
+  }
+}

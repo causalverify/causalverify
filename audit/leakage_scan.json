@@ -1,0 +1,1784 @@
+{
+  "summary": {
+    "total_scenarios": 100,
+    "scenarios_with_critical_leak": 21,
+    "scenarios_with_any_leak": 47,
+    "per_method_critical": {
+      "EVENT_STUDY": 8,
+      "IV": 13
+    },
+    "per_method_any": {
+      "DID": 1,
+      "EVENT_STUDY": 20,
+      "IV": 23,
+      "RDD": 3
+    }
+  },
+  "findings": [
+    {
+      "scenario_id": "s01",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 612,
+      "research_question_len": 211,
+      "data_description_len": 350,
+      "notes": []
+    },
+    {
+      "scenario_id": "s02",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 456,
+      "research_question_len": 151,
+      "data_description_len": 255,
+      "notes": []
+    },
+    {
+      "scenario_id": "s03",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 424,
+      "research_question_len": 160,
+      "data_description_len": 215,
+      "notes": []
+    },
+    {
+      "scenario_id": "s04",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 497,
+      "research_question_len": 158,
+      "data_description_len": 293,
+      "notes": []
+    },
+    {
+      "scenario_id": "s05",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 485,
+      "research_question_len": 145,
+      "data_description_len": 288,
+      "notes": []
+    },
+    {
+      "scenario_id": "s06",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 458,
+      "research_question_len": 153,
+      "data_description_len": 260,
+      "notes": []
+    },
+    {
+      "scenario_id": "s07",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 479,
+      "research_question_len": 152,
+      "data_description_len": 268,
+      "notes": []
+    },
+    {
+      "scenario_id": "s08",
+      "method_family": "DID",
+      "leaked_methods": [
+        {
+          "method": "DID",
+          "severity": "strong",
+          "pattern": "\\bcallaway[- ]sant['\u2019]anna\\b",
+          "snippet": "real world this would require callaway-sant'anna or sun-abraham estimators for"
+        },
+        {
+          "method": "DID",
+          "severity": "strong",
+          "pattern": "\\bsun[- ]abraham\\b",
+          "snippet": "require callaway-sant'anna or sun-abraham estimators for staggered adop"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 540,
+      "research_question_len": 152,
+      "data_description_len": 336,
+      "notes": []
+    },
+    {
+      "scenario_id": "s09",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 501,
+      "research_question_len": 170,
+      "data_description_len": 276,
+      "notes": []
+    },
+    {
+      "scenario_id": "s10",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 560,
+      "research_question_len": 222,
+      "data_description_len": 285,
+      "notes": []
+    },
+    {
+      "scenario_id": "s11",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "tocks in the [-1,+1] window?\n\nevent study data for 80 bank stocks aroun"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": " return), beta (pre-estimated market model beta). use days \u221210 to \u22122 as "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "nouncements generate positive cumulative abnormal returns (car) for bank stocks in the "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": " generate positive cumulative abnormal returns (car) for bank stocks in the "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\bestimation\\s+window\\b",
+          "snippet": " beta). use days \u221210 to \u22122 as estimation window to compute expected returns; "
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 503,
+      "research_question_len": 153,
+      "data_description_len": 298,
+      "notes": []
+    },
+    {
+      "scenario_id": "s12",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": " in the [0,+1] event window?\n\nevent study data for 80 firms that experi"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": "stimation window [\u221210,\u22122] for market model. event window [0,+1]."
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "generate significant negative abnormal returns for the firm's stock in the ["
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\bestimation\\s+window\\b",
+          "snippet": "+10), ret, mkt_ret, beta. use estimation window [\u221210,\u22122] for market model. ev"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 373,
+      "research_question_len": 138,
+      "data_description_len": 200,
+      "notes": []
+    },
+    {
+      "scenario_id": "s13",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "acquirer's curse hypothesis?\n\nevent study data for 80 acquiring firms. "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": " to +10), ret, mkt_ret, beta. market model estimated on [\u221210,\u22122]. event "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "rer firms experience negative cumulative abnormal returns around m&a announcement dates"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "xperience negative cumulative abnormal returns around m&a announcement dates"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 423,
+      "research_question_len": 145,
+      "data_description_len": 231,
+      "notes": []
+    },
+    {
+      "scenario_id": "s14",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "ound earnings announcements?\n\nevent study data for 80 firms with positi"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": " to +10), ret, mkt_ret, beta. market model estimated on [\u221210,\u22122]. event "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "ensus forecast) earn positive abnormal returns in the [0,+2] window around e"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 390,
+      "research_question_len": 158,
+      "data_description_len": 185,
+      "notes": []
+    },
+    {
+      "scenario_id": "s15",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "[0,+3] post-election window?\n\nevent study data for 80 financial stocks."
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": " to +10), ret, mkt_ret, beta. market model estimated on [\u221210,\u22122]. event "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "ted election outcome generate abnormal returns for financial sector stocks i"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 442,
+      "research_question_len": 125,
+      "data_description_len": 263,
+      "notes": []
+    },
+    {
+      "scenario_id": "s16",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "rience larger negative cars?\n\nevent study data for 80 auto-related stoc"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": "r on chip-dependency measure. market model: [\u221210,\u22122]. event window [0,+5"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 482,
+      "research_question_len": 165,
+      "data_description_len": 262,
+      "notes": []
+    },
+    {
+      "scenario_id": "s17",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "gesting reputational damage?\n\nevent study data for 80 banks. variables:"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bmarket\\s+model\\b",
+          "snippet": " loss beyond the fine itself. market model: [\u221210,\u22122]. event window [\u22121,+"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "nnouncement generate negative abnormal returns beyond the direct financial c"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 484,
+      "research_question_len": 172,
+      "data_description_len": 249,
+      "notes": []
+    },
+    {
+      "scenario_id": "s18",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "critical",
+          "pattern": "\\bevent[- ]study\\b",
+          "snippet": "e confounding earnings news?\n\nevent study data for 80 firms with simult"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 520,
+      "research_question_len": 181,
+      "data_description_len": 272,
+      "notes": []
+    },
+    {
+      "scenario_id": "s19",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "strong",
+          "pattern": "\\bfirst[- ]stage\\b",
+          "snippet": "nd size, soil quality index). first stage: rainfall \u2192 credit demand. ex"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": ", using annual rainfall as an instrument for credit demand?\n\ncross-section"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "output, using annual rainfall as an instrument for credit demand?\n\ncross-sec"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 465,
+      "research_question_len": 127,
+      "data_description_len": 291,
+      "notes": []
+    },
+    {
+      "scenario_id": "s20",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "strong",
+          "pattern": "\\bfirst[- ]stage\\b",
+          "snippet": "controls (income, education). first stage: distance \u2192 account ownership"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "the nearest bank branch as an instrument for account ownership?\n\ncross-sec"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "ce to the nearest bank branch as an instrument for account ownership?\n\ncross"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 484,
+      "research_question_len": 136,
+      "data_description_len": 305,
+      "notes": []
+    },
+    {
+      "scenario_id": "s21",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "a draft lottery numbers as an instrument for veteran status?\n\ncross-sectio"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "mber \u2192 more likely to serve \u2192 instrument for veteran status."
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "nam-era draft lottery numbers as an instrument for veteran status?\n\ncross-se"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 488,
+      "research_question_len": 132,
+      "data_description_len": 292,
+      "notes": []
+    },
+    {
+      "scenario_id": "s22",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "h \u00d7 local industry shares) to instrument for local employment growth?\n\ncro"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 483,
+      "research_question_len": 184,
+      "data_description_len": 238,
+      "notes": []
+    },
+    {
+      "scenario_id": "s23",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": " to lenient vs. strict judges as an instrument?\n\ncross-sectional data on 500"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 521,
+      "research_question_len": 138,
+      "data_description_len": 327,
+      "notes": []
+    },
+    {
+      "scenario_id": "s24",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "strong",
+          "pattern": "\\bexclusion\\s+restriction\\b",
+          "snippet": "ent beyond inflation channel (exclusion restriction is debatable)."
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": " using oil price shocks as an instrument for inflation to address the endo"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "tment, using oil price shocks as an instrument for inflation to address the "
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bendogeneity\\b",
+          "snippet": " for inflation to address the endogeneity of inflation with economic ac"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 496,
+      "research_question_len": 161,
+      "data_description_len": 281,
+      "notes": []
+    },
+    {
+      "scenario_id": "s25",
+      "method_family": "RDD",
+      "leaked_methods": [
+        {
+          "method": "RDD",
+          "severity": "strong",
+          "pattern": "\\bsharp\\s+rdd?\\b",
+          "snippet": " (|running_var \u2212 0.5| \u2264 0.3). sharp rdd: all initiatives above 50% ar"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 413,
+      "research_question_len": 124,
+      "data_description_len": 248,
+      "notes": []
+    },
+    {
+      "scenario_id": "s26",
+      "method_family": "RDD",
+      "leaked_methods": [
+        {
+          "method": "RDD",
+          "severity": "strong",
+          "pattern": "\\bsharp\\s+rdd?\\b",
+          "snippet": "toff (within \u00b10.3 bandwidth). sharp rdd."
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 396,
+      "research_question_len": 102,
+      "data_description_len": 250,
+      "notes": []
+    },
+    {
+      "scenario_id": "s27",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 480,
+      "research_question_len": 156,
+      "data_description_len": 273,
+      "notes": []
+    },
+    {
+      "scenario_id": "s28",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 513,
+      "research_question_len": 167,
+      "data_description_len": 278,
+      "notes": []
+    },
+    {
+      "scenario_id": "s29",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 552,
+      "research_question_len": 162,
+      "data_description_len": 339,
+      "notes": []
+    },
+    {
+      "scenario_id": "s30",
+      "method_family": "RDD",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "y rdd: use cutoff crossing as instrument for actual scholarship receipt."
+        },
+        {
+          "method": "RDD",
+          "severity": "strong",
+          "pattern": "\\bfuzzy\\s+rdd?\\b",
+          "snippet": "fuzzy rdd: imperfect compliance with ad"
+        },
+        {
+          "method": "RDD",
+          "severity": "strong",
+          "pattern": "\\bfuzzy\\s+rdd?\\b",
+          "snippet": "bove-cutoff decline). using a fuzzy rdd, estimate the late of scholar"
+        },
+        {
+          "method": "RDD",
+          "severity": "strong",
+          "pattern": "\\bfuzzy\\s+rdd?\\b",
+          "snippet": "ntinuous proxy), near_cutoff. fuzzy rdd: use cutoff crossing as instr"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 666,
+      "research_question_len": 236,
+      "data_description_len": 373,
+      "notes": []
+    },
+    {
+      "scenario_id": "s31",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 605,
+      "research_question_len": 237,
+      "data_description_len": 317,
+      "notes": []
+    },
+    {
+      "scenario_id": "s32",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 610,
+      "research_question_len": 239,
+      "data_description_len": 313,
+      "notes": []
+    },
+    {
+      "scenario_id": "s33",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 592,
+      "research_question_len": 257,
+      "data_description_len": 270,
+      "notes": []
+    },
+    {
+      "scenario_id": "s34",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 630,
+      "research_question_len": 293,
+      "data_description_len": 274,
+      "notes": []
+    },
+    {
+      "scenario_id": "s35",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 616,
+      "research_question_len": 228,
+      "data_description_len": 333,
+      "notes": []
+    },
+    {
+      "scenario_id": "s36",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 633,
+      "research_question_len": 276,
+      "data_description_len": 303,
+      "notes": []
+    },
+    {
+      "scenario_id": "s37",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 605,
+      "research_question_len": 235,
+      "data_description_len": 316,
+      "notes": []
+    },
+    {
+      "scenario_id": "s38",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 545,
+      "research_question_len": 213,
+      "data_description_len": 273,
+      "notes": []
+    },
+    {
+      "scenario_id": "s39",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 652,
+      "research_question_len": 209,
+      "data_description_len": 379,
+      "notes": []
+    },
+    {
+      "scenario_id": "s40",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 622,
+      "research_question_len": 221,
+      "data_description_len": 333,
+      "notes": []
+    },
+    {
+      "scenario_id": "s41",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 619,
+      "research_question_len": 242,
+      "data_description_len": 319,
+      "notes": []
+    },
+    {
+      "scenario_id": "s42",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 601,
+      "research_question_len": 219,
+      "data_description_len": 314,
+      "notes": []
+    },
+    {
+      "scenario_id": "s43",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 634,
+      "research_question_len": 241,
+      "data_description_len": 335,
+      "notes": []
+    },
+    {
+      "scenario_id": "s44",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 578,
+      "research_question_len": 256,
+      "data_description_len": 263,
+      "notes": []
+    },
+    {
+      "scenario_id": "s45",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 698,
+      "research_question_len": 259,
+      "data_description_len": 386,
+      "notes": []
+    },
+    {
+      "scenario_id": "s46",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 612,
+      "research_question_len": 234,
+      "data_description_len": 331,
+      "notes": []
+    },
+    {
+      "scenario_id": "s47",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 608,
+      "research_question_len": 241,
+      "data_description_len": 309,
+      "notes": []
+    },
+    {
+      "scenario_id": "s48",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 597,
+      "research_question_len": 234,
+      "data_description_len": 314,
+      "notes": []
+    },
+    {
+      "scenario_id": "s49",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 743,
+      "research_question_len": 292,
+      "data_description_len": 402,
+      "notes": []
+    },
+    {
+      "scenario_id": "s50",
+      "method_family": "DID",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 591,
+      "research_question_len": 270,
+      "data_description_len": 259,
+      "notes": []
+    },
+    {
+      "scenario_id": "s51",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 654,
+      "research_question_len": 312,
+      "data_description_len": 289,
+      "notes": []
+    },
+    {
+      "scenario_id": "s52",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "tion announcements affect the cumulative abnormal returns of the involved companies? we"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "cements affect the cumulative abnormal returns of the involved companies? we"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 503,
+      "research_question_len": 194,
+      "data_description_len": 261,
+      "notes": []
+    },
+    {
+      "scenario_id": "s53",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "ividend initiation affect the cumulative abnormal returns (car) of a company's stock? s"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "tiation affect the cumulative abnormal returns (car) of a company's stock? s"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 662,
+      "research_question_len": 243,
+      "data_description_len": 369,
+      "notes": []
+    },
+    {
+      "scenario_id": "s54",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 521,
+      "research_question_len": 195,
+      "data_description_len": 270,
+      "notes": []
+    },
+    {
+      "scenario_id": "s55",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": " stock split announcements on cumulative abnormal returns\n\nhow do stock split announcem"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "plit announcements affect the cumulative abnormal returns (car) of the announcing firms"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "t announcements on cumulative abnormal returns\n\nhow do stock split announcem"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "cements affect the cumulative abnormal returns (car) of the announcing firms"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 635,
+      "research_question_len": 236,
+      "data_description_len": 329,
+      "notes": []
+    },
+    {
+      "scenario_id": "s56",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "t rating downgrade affect the cumulative abnormal returns (car) of a company's equity? "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "wngrade affect the cumulative abnormal returns (car) of a company's equity? "
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 514,
+      "research_question_len": 224,
+      "data_description_len": 248,
+      "notes": []
+    },
+    {
+      "scenario_id": "s57",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "ds to a significant change in cumulative abnormal returns (car) around the lockup expir"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "nificant change in cumulative abnormal returns (car) around the lockup expir"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 588,
+      "research_question_len": 247,
+      "data_description_len": 293,
+      "notes": []
+    },
+    {
+      "scenario_id": "s58",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "n negatively affect the 1-day cumulative abnormal return (car) of a stock? we aim to u"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "y affect the 1-day cumulative abnormal return (car) of a stock? we aim to u"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 539,
+      "research_question_len": 235,
+      "data_description_len": 246,
+      "notes": []
+    },
+    {
+      "scenario_id": "s59",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "sec investigations affect the cumulative abnormal returns (car) of publicly traded comp"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "gations affect the cumulative abnormal returns (car) of publicly traded comp"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 675,
+      "research_question_len": 261,
+      "data_description_len": 352,
+      "notes": []
+    },
+    {
+      "scenario_id": "s60",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "by the federal reserve affect cumulative abnormal returns (car) of bank stocks? this st"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "ral reserve affect cumulative abnormal returns (car) of bank stocks? this st"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 534,
+      "research_question_len": 213,
+      "data_description_len": 250,
+      "notes": []
+    },
+    {
+      "scenario_id": "s61",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "rmaceutical patent affect the cumulative abnormal returns (car) of the drug company? by"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": " patent affect the cumulative abnormal returns (car) of the drug company? by"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 598,
+      "research_question_len": 243,
+      "data_description_len": 292,
+      "notes": []
+    },
+    {
+      "scenario_id": "s62",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 533,
+      "research_question_len": 195,
+      "data_description_len": 287,
+      "notes": []
+    },
+    {
+      "scenario_id": "s63",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": " of fda drug approvals on the cumulative abnormal returns (car) of biotech companies? u"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "g approvals on the cumulative abnormal returns (car) of biotech companies? u"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 516,
+      "research_question_len": 229,
+      "data_description_len": 229,
+      "notes": []
+    },
+    {
+      "scenario_id": "s64",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "ected election results affect cumulative abnormal returns (car) in various industries? "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "lowing for the calculation of cumulative abnormal returns (car) relative to market retu"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "ion results affect cumulative abnormal returns (car) in various industries? "
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "the calculation of cumulative abnormal returns (car) relative to market retu"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 576,
+      "research_question_len": 227,
+      "data_description_len": 288,
+      "notes": []
+    },
+    {
+      "scenario_id": "s65",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 614,
+      "research_question_len": 272,
+      "data_description_len": 269,
+      "notes": []
+    },
+    {
+      "scenario_id": "s66",
+      "method_family": "EVENT_STUDY",
+      "leaked_methods": [
+        {
+          "method": "EVENT_STUDY",
+          "severity": "strong",
+          "pattern": "\\bcumulative\\s+abnormal\\s+returns?\\b",
+          "snippet": "riff announcements affect the cumulative abnormal returns (car) of industries exposed t"
+        },
+        {
+          "method": "EVENT_STUDY",
+          "severity": "weak",
+          "pattern": "\\babnormal\\s+returns?\\b",
+          "snippet": "cements affect the cumulative abnormal returns (car) of industries exposed t"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 556,
+      "research_question_len": 243,
+      "data_description_len": 250,
+      "notes": []
+    },
+    {
+      "scenario_id": "s67",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": ". the variable z serves as an instrument for x to explore its causal impac"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "tions). the variable z serves as an instrument for x to explore its causal i"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 515,
+      "research_question_len": 207,
+      "data_description_len": 257,
+      "notes": []
+    },
+    {
+      "scenario_id": "s68",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "y schooling year serves as an instrumental variable for education."
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 497,
+      "research_question_len": 217,
+      "data_description_len": 237,
+      "notes": []
+    },
+    {
+      "scenario_id": "s69",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "he draft lottery number as an instrumental variable for actual service.\n\nthe data"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "e draft lottery number serves as an instrument to account for the randomness"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 513,
+      "research_question_len": 219,
+      "data_description_len": 243,
+      "notes": []
+    },
+    {
+      "scenario_id": "s70",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "ions? by using rainfall as an instrumental variable, we aim to isolate the causal"
+        },
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "infall variation serves as an instrumental variable for income, allowing us to as"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 589,
+      "research_question_len": 247,
+      "data_description_len": 279,
+      "notes": []
+    },
+    {
+      "scenario_id": "s71",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "he broker merger serves as an instrumental variable for analyst coverage."
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 455,
+      "research_question_len": 167,
+      "data_description_len": 239,
+      "notes": []
+    },
+    {
+      "scenario_id": "s72",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": " using quarter-of-birth as an instrumental variable to address potential endogene"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "ation), 'z' (quarter-of-birth as an instrument), and 'controls' (demographic"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bendogeneity\\b",
+          "snippet": "variable to address potential endogeneity in educational attainment.\n\nt"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 588,
+      "research_question_len": 311,
+      "data_description_len": 226,
+      "notes": []
+    },
+    {
+      "scenario_id": "s73",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "cal settlement patterns as an instrumental variable to address potential endogene"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bendogeneity\\b",
+          "snippet": "variable to address potential endogeneity in immigrant distribution.\n\nt"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 556,
+      "research_question_len": 215,
+      "data_description_len": 300,
+      "notes": []
+    },
+    {
+      "scenario_id": "s74",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "sing close-election victories as an instrument, we aim to isolate the causal"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bendogeneity\\b",
+          "snippet": "used to account for potential endogeneity in x."
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 516,
+      "research_question_len": 210,
+      "data_description_len": 255,
+      "notes": []
+    },
+    {
+      "scenario_id": "s75",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "by using wind direction as an instrumental variable, we aim to isolate the causal"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 541,
+      "research_question_len": 217,
+      "data_description_len": 274,
+      "notes": []
+    },
+    {
+      "scenario_id": "s76",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "phic suitability serves as an instrumental variable for mobile adoption."
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 491,
+      "research_question_len": 188,
+      "data_description_len": 251,
+      "notes": []
+    },
+    {
+      "scenario_id": "s77",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "47 highway plan be used as an instrumental variable to assess the causal effect o"
+        },
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": ", the 1947 highway plan as an instrumental variable (z), and other control variab"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 599,
+      "research_question_len": 217,
+      "data_description_len": 329,
+      "notes": []
+    },
+    {
+      "scenario_id": "s78",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "ing geographic distance as an instrumental variable for trade volume.\n\nthe datase"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 523,
+      "research_question_len": 248,
+      "data_description_len": 229,
+      "notes": []
+    },
+    {
+      "scenario_id": "s79",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "l suitability can serve as an instrumental variable to isolate the causal effect "
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 601,
+      "research_question_len": 263,
+      "data_description_len": 284,
+      "notes": []
+    },
+    {
+      "scenario_id": "s80",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": ", using index inclusion as an instrumental variable.\n\nthe dataset includes 300 fi"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 569,
+      "research_question_len": 267,
+      "data_description_len": 251,
+      "notes": []
+    },
+    {
+      "scenario_id": "s81",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\binstrument\\s+for\\b",
+          "snippet": "mate's ability (z) used as an instrument for peer quality, and additional "
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": "d roommate's ability (z) used as an instrument for peer quality, and additio"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 628,
+      "research_question_len": 229,
+      "data_description_len": 349,
+      "notes": []
+    },
+    {
+      "scenario_id": "s82",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bas\\s+an\\s+instrument\\b",
+          "snippet": ". ambulance diversion is used as an instrument to study the impact of hospit"
+        }
+      ],
+      "has_critical_leak": false,
+      "has_any_leak": true,
+      "scanned_text_chars": 569,
+      "research_question_len": 248,
+      "data_description_len": 272,
+      "notes": []
+    },
+    {
+      "scenario_id": "s83",
+      "method_family": "IV",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 596,
+      "research_question_len": 260,
+      "data_description_len": 288,
+      "notes": []
+    },
+    {
+      "scenario_id": "s84",
+      "method_family": "IV",
+      "leaked_methods": [
+        {
+          "method": "IV",
+          "severity": "critical",
+          "pattern": "\\binstrumental\\s+variable\\b",
+          "snippet": "se a cops grant lottery as an instrumental variable for police staffing levels.\n\n"
+        },
+        {
+          "method": "IV",
+          "severity": "weak",
+          "pattern": "\\bendogeneity\\b",
+          "snippet": "tes? to address the potential endogeneity between police count and crim"
+        }
+      ],
+      "has_critical_leak": true,
+      "has_any_leak": true,
+      "scanned_text_chars": 510,
+      "research_question_len": 230,
+      "data_description_len": 236,
+      "notes": []
+    },
+    {
+      "scenario_id": "s85",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 518,
+      "research_question_len": 224,
+      "data_description_len": 240,
+      "notes": []
+    },
+    {
+      "scenario_id": "s86",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 520,
+      "research_question_len": 223,
+      "data_description_len": 244,
+      "notes": []
+    },
+    {
+      "scenario_id": "s87",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 583,
+      "research_question_len": 218,
+      "data_description_len": 300,
+      "notes": []
+    },
+    {
+      "scenario_id": "s88",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 629,
+      "research_question_len": 261,
+      "data_description_len": 303,
+      "notes": []
+    },
+    {
+      "scenario_id": "s89",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 521,
+      "research_question_len": 232,
+      "data_description_len": 231,
+      "notes": []
+    },
+    {
+      "scenario_id": "s90",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 549,
+      "research_question_len": 224,
+      "data_description_len": 270,
+      "notes": []
+    },
+    {
+      "scenario_id": "s91",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 534,
+      "research_question_len": 213,
+      "data_description_len": 249,
+      "notes": []
+    },
+    {
+      "scenario_id": "s92",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 522,
+      "research_question_len": 221,
+      "data_description_len": 252,
+      "notes": []
+    },
+    {
+      "scenario_id": "s93",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 588,
+      "research_question_len": 291,
+      "data_description_len": 244,
+      "notes": []
+    },
+    {
+      "scenario_id": "s94",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 479,
+      "research_question_len": 169,
+      "data_description_len": 248,
+      "notes": []
+    },
+    {
+      "scenario_id": "s95",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 527,
+      "research_question_len": 218,
+      "data_description_len": 252,
+      "notes": []
+    },
+    {
+      "scenario_id": "s96",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 564,
+      "research_question_len": 236,
+      "data_description_len": 276,
+      "notes": []
+    },
+    {
+      "scenario_id": "s97",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 504,
+      "research_question_len": 220,
+      "data_description_len": 224,
+      "notes": []
+    },
+    {
+      "scenario_id": "s98",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 666,
+      "research_question_len": 267,
+      "data_description_len": 343,
+      "notes": []
+    },
+    {
+      "scenario_id": "s99",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 616,
+      "research_question_len": 255,
+      "data_description_len": 303,
+      "notes": []
+    },
+    {
+      "scenario_id": "s100",
+      "method_family": "RDD",
+      "leaked_methods": [],
+      "has_critical_leak": false,
+      "has_any_leak": false,
+      "scanned_text_chars": 484,
+      "research_question_len": 208,
+      "data_description_len": 227,
+      "notes": []
+    }
+  ]
+}

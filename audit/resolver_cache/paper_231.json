@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_231",
+  "title": "NAFTA and the Local Labor Market",
+  "authors": "McLaren & Hakobyan",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/rest_a_00587",
+    "title": "Looking for Local Labor Market Effects of NAFTA",
+    "year": 2016,
+    "journal": "The Review of Economics and Statistics",
+    "citations": 248
+  },
+  "checks": {
+    "title_jaccard": 0.8,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "mclaren",
+      "hakobyan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "restat",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 248,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

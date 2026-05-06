@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_03",
+  "title": "Does Banking Competition Affect Innovation?",
+  "authors": "Cornaggia, Mao, Tian & Wolfe",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2014.09.001",
+    "title": "Does banking competition affect innovation?",
+    "year": 2014,
+    "journal": "Journal of Financial Economics",
+    "citations": 1018
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "wolfe",
+      "mao",
+      "cornaggia",
+      "tian"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jfe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1018,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

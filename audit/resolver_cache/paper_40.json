@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_40",
+  "title": "Pay, Reference Points, and Police Performance",
+  "authors": "Mas",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.121.3.783",
+    "title": "Pay, Reference Points, and Police Performance*",
+    "year": 2006,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 380
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "mas"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "qje",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 380,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

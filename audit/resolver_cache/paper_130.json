@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_130",
+  "title": "Factor Immobility and Regional Impacts of Trade Liberalization: Evidence on Poverty from India",
+  "authors": "Topalova",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.2.4.1",
+    "title": "Factor Immobility and Regional Impacts of Trade Liberalization: Evidence on Poverty from India",
+    "year": 2010,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 662
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "topalova"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 662,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

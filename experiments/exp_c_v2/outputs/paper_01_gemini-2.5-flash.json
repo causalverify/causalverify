@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_01",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:25:42.472675",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 619,
+    "output_tokens": 163,
+    "content": "The following steps adhere strictly to the Research Integrity by Design (RID) protocol.\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:**\n    I will employ a Difference-in-Differences (DiD) estimation strategy. The key identification assumption is that, in the absence of the financial crisis shock (Lehman's collapse and the subsequent wholesale funding market freeze), banks heavily reliant on short-term wholesale funding would have followed similar lending trends as banks primarily funded by retail deposits. The \"treatment\" is the sudden freeze in wholesale funding markets following Lehman's bankruptcy, which differentially impacted banks based on their pre-existing reliance on such funding. The \"treatment group\" consists of banks with a higher pre-crisis wholesale funding ratio, and the \"control group",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences",
+      "treatment": "Banks with high dependence on short-term wholesale funding (measured by deposits-to-assets ratio, with low deposit share = high wholesale dependence)",
+      "control": "Banks with high retail deposit funding",
+      "event": "Lehman Brothers bankruptcy, 2008-09-15",
+      "pre_period": "Pre-Lehman (2006-Q1 to 2008-Q3)",
+      "post_period": "Post-Lehman (2008-Q4 to 2009-Q1)",
+      "unit_of_observation": "Syndicated loan facility level",
+      "key_assumption": "Parallel trends in lending between wholesale-funded and deposit-funded banks absent the Lehman shock"
+    },
+    "key_magnitudes": {
+      "new_loans_decline_peak": "47% decline in new loans to large borrowers (Q4 2008 vs Q3 2008)",
+      "new_loans_decline_boom": "79% decline relative to credit boom peak (Q2 2007)",
+      "real_investment_lending_decline": "14% decline in lending for real investment (Q4 2008)"
+    },
+    "robustness_notes_detail": "Authors acknowledge they cannot fully prove supply shock is uncorrelated with loan demand. Results hold across multiple loan types."
+  }
+}

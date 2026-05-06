@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:58:17.829669",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 460,
+    "output_tokens": 162,
+    "content": "## 1. Identification Strategy\n\nThe research question investigates the causal impact of gaining admission to an elite high school on students' SAT scores, where admission is determined by a test score cutoff. This scenario perfectly aligns with a **Sharp Regression Discontinuity Design (RDD)**.\n\n**Method:** Sharp Regression Discontinuity Design (RDD)\n\n**Why:**\nA Sharp RDD is appropriate because:\n1.  **Continuous Running Variable:** Students' admission test scores (`running_var`) form a continuous variable.\n2.  **Sharp Cutoff:** Admission (`treated`) is determined by whether the `running_var` is above or below a specific, known cutoff point (which we found to be 0.5 from inspecting the data). This creates a sharp discontinuity in treatment assignment.\n3",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  }
+}

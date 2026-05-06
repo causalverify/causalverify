@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s22",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Bartik shift-share IV for local employment shock on wages",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:57.289520",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 439,
+    "output_tokens": 434,
+    "content": "## 1. Identification Strategy\nWe will use the Bartik shift-share instrument as an instrumental variable (IV) to estimate the causal effect of local industry employment shocks on wages. The key assumption is that the instrument (z) is correlated with the endogenous variable (x) and uncorrelated with the error term in the wage equation. This assumption is plausible because the Bartik instrument is based on national industry growth rates, which are unlikely to be directly related to local wage changes.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s22_data.csv\")\n\n# Run the first-stage regression (Bartik instrument on employment growth)\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Run the second-stage regression (wage change on predicted employment growth)\nsecond_stage <- lm(y ~ x + controls, data = data)\n\n# Calculate the IV estimate (2SLS)\niv_estimate <- coef(second_stage)[\"x\"]\n\n# Calculate the standard error using the heteroskedasticity-robust sandwich estimator\nse <- sqrt(as.numeric(coeftest(second_stage, vcovHC(first_stage, type = \"HC1\"), vcov = vcovHC(second_stage, type = \"HC1\"))))\n\n# Print the IV estimate and standard error\ncat(\"IV estimate:\", iv_estimate, \"\\n\")\ncat(\"Standard error:\", se, \"\\n\")\n```\n\n## 3. Expected Findings\nWe expect the IV estimate to be positive, as local industry employment shocks are likely to increase wages. The magnitude of the effect is difficult to predict without more information about the data and the underlying economic relationships. However, we can expect the effect to be smaller than the OLS estimate, as the IV estimate captures the causal effect of employment shocks on wages, while the OLS estimate may be biased due to omitted variable bias or reverse causality.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — Bartik shift-share instrument; identification from national (exogenous) shifts",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Employment growth driven by national shifts raises local wages",
+    "main_effect": "10% employment growth → 4% wage increase (IV estimate)"
+  }
+}

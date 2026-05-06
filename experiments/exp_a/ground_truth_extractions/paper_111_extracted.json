@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: DID — treatment = educational intervention in early grades, control = educational intervention in later grades; shock/instrument/cutoff = null",
+  "key_variables": {
+    "treatment": "educational intervention in early grades",
+    "control": "educational intervention in later grades",
+    "outcome": "test scores",
+    "instrument_or_cutoff": "null",
+    "time_period": "sample period not specified"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The effect of educational interventions on test scores tends to fade out over time.",
+  "main_effect": "The variance in accumulated knowledge increases by between 37 and 56 percent from the end of kindergarten to the end of high school.",
+  "key_robustness": [
+    "Use of both administrative and survey data",
+    "Estimates similar across data sets",
+    "Model accounts for test reliability"
+  ],
+  "confidence": 0.8,
+  "notes": "The paper discusses potential statistical artifacts affecting the results, and the sample period is not specified, which affects the confidence level."
+}

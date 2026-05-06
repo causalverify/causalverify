@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s85",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Merit Scholarships on College Enrollment",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:17.120678",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 429,
+    "output_tokens": 494,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of merit scholarships on college enrollment rates. The RDD method is appropriate here because we have a clear cutoff point (GPA threshold) that determines whether a student is eligible for the scholarship. The key assumption is that there are no other factors that affect college enrollment rates at the cutoff point, except for the scholarship itself.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s85_data.csv\")\n\n# RDD analysis\n# We will use the rdrobust package to perform the RDD analysis\n# The running_var is the GPA, treated is the binary variable indicating treatment (scholarship eligibility)\n# We will use a local polynomial regression with a triangular kernel\n\n# Perform RDD analysis\nrdd_result <- rdrobust(y ~ running_var | treated, data = data, kernel = \"triangular\", degree = 2, c = 0.5)\n\n# Print the coefficient estimate for the treatment effect\nprint(rdd_result$coefficients[2])\n\n# Basic robustness checks\n# We will check the robustness of the results by varying the bandwidth\nrdd_result_wide <- rdrobust(y ~ running_var | treated, data = data, kernel = \"triangular\", degree = 2, c = 1)\nrdd_result_narrow <- rdrobust(y ~ running_var | treated, data = data, kernel = \"triangular\", degree = 2, c = 0.1)\n\n# Print the coefficient estimates for the robustness checks\nprint(rdd_result_wide$coefficients[2])\nprint(rdd_result_narrow$coefficients[2])\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the treatment effect, indicating that students who meet the GPA threshold and are eligible for the merit scholarship are more likely to enroll in college. The magnitude of the effect will depend on the strength of the scholarship's influence on college enrollment decisions. Given the nature of the intervention, we expect a moderate effect size, as the scholarship may not be the only factor influencing college enrollment decisions. However, the exact magnitude will be determined by the empirical analysis.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the GPA threshold as a cutoff to compare students just above and below the threshold.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Meeting the GPA threshold for a merit scholarship significantly increases college enrollment rates.",
+    "main_effect": "0.25"
+  }
+}

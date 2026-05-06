@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model precisely identifies the RDD strategy, the Russell 1000/2000 cutoff at rank 1000, and the float-adjusted market capitalization rank as the running variable. It correctly explains why it's a fuzzy RDD with an IV approach (index membership affects liquidity, which then affects innovation), mirroring the ground truth's underlying mechanism. It also correctly suggests a reduced-form RDD. This is a strong match (3) for strategy. However, the model completely omits any mention of the direction of the effect, which was a core part of the ground truth conclusion, hence a direction score of 0 and a Narrative Fabrication (NF) failure.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_10",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:19:44.705822+00:00"
+}

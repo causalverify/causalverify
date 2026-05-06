@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_10",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:28:40.939818",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 795,
+    "output_tokens": 164,
+    "content": "The Research Integrity by Design (RID) protocol is followed below.\n\n---\n### **STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nThe causal identification strategy is a Regression Discontinuity (RD) design. This leverages the exogenous nature of Russell 1000/2000 index membership changes at the annual reconstitution. The running variable is the firm's float-adjusted market capitalization rank, centered at the cutoff of rank 1000. Firms with a rank of 1000 or less enter the Russell 1000, while firms with a rank greater than 1000 (up to 3000) enter the Russell 2000. The key assumption is that firms just above and just below the",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "RDD — running variable = float-adjusted market capitalization rank in Russell reconstitution; cutoff = rank 1000 (boundary between Russell 1000 and Russell 2000); stocks just below 1000 (in Russell 2000) have higher liquidity due to greater index fund tracking",
+    "key_variables": {
+      "running_variable": "float-adjusted market cap rank at annual Russell reconstitution (June)",
+      "cutoff": "rank 1000 (Russell 1000/2000 boundary)",
+      "outcome": "patent count and citation-weighted patents (3-year window after reconstitution); R&D expenditure; stock bid-ask spread (measure of liquidity)",
+      "time_period": "1990–2006, annual index reconstitutions"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher stock liquidity (from Russell 2000 membership) reduces firm innovation: stocks in Russell 2000 have lower patent counts and citation-weighted innovation than comparable stocks in Russell 1000",
+    "main_effect": "~8% fewer patents and ~12% fewer citations for Russell 2000 firms near the boundary vs. Russell 1000 firms",
+    "key_robustness": [
+      "McCrary density test",
+      "bandwidth sensitivity",
+      "placebo cutoffs at ranks 500/1500",
+      "stock-level liquidity as intermediate outcome",
+      "heterogeneity by institutional ownership"
+    ],
+    "identification_strategy_detail": {
+      "method": "Regression discontinuity design (fuzzy)",
+      "running_variable": "End-of-May market capitalization rank (centered at rank 1000, the Russell 1000/2000 cutoff)",
+      "cutoff": "Rank 1000 (firms ranked just above 1000 are in Russell 1000; just below are in Russell 2000)",
+      "treatment": "Assignment to Russell 2000 (which triggers higher index fund ownership → higher liquidity)",
+      "control": "Assignment to Russell 1000 bottom (lower index fund ownership → lower liquidity)",
+      "first_stage": "Russell 2000 inclusion causes a significant increase in institutional ownership and stock liquidity (bid-ask spreads, turnover)",
+      "outcome": "Patent counts, patent citations (innovation output, measured with lags)",
+      "sample_period": "1993-2006",
+      "unit_of_observation": "Firm-year",
+      "key_assumption": "Firms cannot precisely manipulate their market capitalization rank to land on a specific side of the cutoff. No other discontinuous treatment occurs at the rank-1000 threshold."
+    },
+    "key_magnitudes": {
+      "liquidity_effect_on_patents": "Significant positive effect on patent counts and citation-weighted patents",
+      "first_stage_liquidity_jump": "Russell 2000 inclusion increases institutional ownership by ~10 percentage points and significantly reduces bid-ask spreads",
+      "mechanism": "Effect operates through reduced threat of hostile takeover (liquidity enables more efficient monitoring by institutional investors, tolerating long-term innovation investments)"
+    },
+    "robustness_notes_detail": "Robust to different bandwidth choices around the cutoff, polynomial specifications, and placebo thresholds at non-1000 ranks. Results hold using alternative innovation measures (R&D spending, new product announcements). Addresses concern about banding (Russell's proprietary adjustment) using pre-banding sample."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_05",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:59.266405",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 657,
+    "output_tokens": 1610,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nOur primary identification strategy is an event study methodology for analyzing stock price reactions, complemented by direct measurement of observed penalties and a proxy for reputational damage.\nFor stock price effects, we will employ a difference-in-differences (DiD) approach implicitly by comparing the daily returns of firms targeted by SEC enforcement actions (treatment group) to their pre-selected matched control firms (control group) around the first public announcement of misconduct. This allows us to estimate the \"abnormal returns\" attributable to the revelation of misrepresentation. The key identifying assumption is the parallel trends assumption: in the absence of the SEC action and misconduct revelation, the target firms' stock returns would have followed a similar path to their matched control firms.\nFor regulatory penalties, the identification is direct, as these are observed, ex-post costs directly linked to the enforcement action.\nFor reputational losses, we will use changes in firm-level characteristics (market-to-book ratio) as a proxy, observing changes from a pre-event to a post-event period relative to the final SEC order. The causal link here is inferred by the timing of the change coinciding with the public information event and resolution.\n\n**Directional Hypothesis:**\nFirms targeted by SEC enforcement actions for financial misrepresentation will experience a statistically significant *negative* cumulative abnormal stock return around the first public announcement of misconduct. Additionally, these firms will incur substantial direct regulatory penalties (civil, class action, criminal fines) and suffer statistically significant *negative* changes in their market-to-book ratios, indicating reputational damage and a loss of intangible value. Combined, these costs will represent a significant total financial burden on the firms.\n\n---\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nWe commit to running the following five specifications, and no others:\n\n1.  **Event Study: Cumulative Abnormal Return (CAR) around Announcement:**\n    *   **Dependent Variable:** Cumulative Abnormal Return (CAR) for each firm-event pair. Abnormal return is defined as the target firm's daily return minus its matched control firm's daily return.\n    *   **Independent Variable:** None (we will compute the mean/median CAR directly).\n    *   **Window:** Event window `[-2, +2]` days relative to the first public announcement date (t=0).\n    *   **Analysis:** Calculate the mean and median CAR across all 585 firm-events, and test for statistical significance using a t-test (or non-parametric test for median) against zero.\n\n2.  **Total Regulatory Penalties:**\n    *   **Dependent Variable:** Log of Total Regulatory Penalties (sum of SEC civil penalties, class action settlement amounts, and criminal fines) for each firm. We will use `log(1 + penalty_amount)` to handle zero or very small penalties.\n    *   **Independent Variable:** None.\n    *   **Analysis:** Calculate the mean and median (in USD) of the total regulatory penalties across all 585 firms.\n\n3.  **Reputational Loss: Change in Market-to-Book Ratio:**\n    *   **Dependent Variable:** Change in market-to-book ratio (`ΔM/B`) for each firm. Calculated as the average market-to-book ratio in the one-year period *after* the final SEC enforcement order date minus the average market-to-book ratio in the one-year period *before* the first public announcement date.\n    *   **Independent Variable:** None.\n    *   **Analysis:** Calculate the mean and median `ΔM/B` across all 585 firms, and test for statistical significance against zero.\n\n4.  **Total Economic Cost (Market Value Loss + Penalties):**\n    *   **Dependent Variable:** Total economic cost for each firm, defined as: `(CAR[-2,+2] * Market Capitalization pre-announcement) + Total Regulatory Penalties`. Market capitalization pre-announcement will be measured at day t=-3 relative to the first public announcement.\n    *   **Independent Variable:** None.\n    *   **Analysis:** Calculate the mean and median of this combined total economic cost (in USD) across all 585 firms.\n\n5.  **Pre-Trend Test for Event Study Validity:**\n    *   **Dependent Variable:** Cumulative Abnormal Return (CAR) for each firm-event pair. Abnormal return is defined as the target firm's daily return minus its matched control firm's daily return.\n    *   **Independent Variable:** None (we will compute the mean/median CAR directly).\n    *   **Window:** Pre-event window `[-20, -3]` days relative to the first public announcement date (t=0).\n    *   **Analysis:** Calculate the mean and median CAR for this pre-event window across all 585 firm-events, and test for statistical significance using a t-test against zero. This serves as a robustness check for the parallel trends assumption.\n\n---\n\n**STEP 3 — FALSIFICATION GATE**\n\nOur hypothesis will be REJECTED if any of the following empirical results are observed:\n\n1.  **Stock Price Reaction (Specification 1):** The mean Cumulative Abnormal Return (CAR) for the `[-2, +2]` day event window around the first public announcement is *not statistically significantly negative* (i.e., the p-value for a one-tailed test that CAR < 0 is greater than 0.10, or the 90% confidence interval for the mean CAR includes zero or positive values).\n\n2.  **Pre-Trend Test (Specification 5):** The mean Cumulative Abnormal Return (CAR) for the `[-20, -3]` day pre-event window is *statistically significant* (i.e., the p-value for a two-tailed test that CAR = 0 is less than 0.10), indicating a violation of the parallel trends assumption.\n\n3.  **Regulatory Penalties (Specification 2):** The *median* total regulatory penalty (sum of SEC civil, class action, and criminal fines) across all 585 firms is *less than $1 million USD*.\n\n4.  **Reputational Loss (Specification 3):** The mean change in market-to-book ratio (`ΔM/B`) from pre-announcement to post-final order is *not statistically significantly negative* (i.e., the p-value for a one-tailed test that `ΔM/B < 0` is greater than 0.10, or the 90% confidence interval for the mean `ΔM/B` includes zero or positive values).\n\n---\n\n**STEP 4 — R CODE**\n\n```R\n# STEP 4 — R CODE\n# This code simulates data and then runs the pre-committed specifications.\n\n# Load necessary libraries\n# If not installed, run: install.packages(c(\"dplyr\", \"lubridate\", \"MASS\", \"sandwich\", \"lmtest\"))\nlibrary(dplyr)\nlibrary(lubridate)\nlibrary(MASS) # For mvrnorm, though not strictly needed for this simplified simulation\nlibrary(sandwich) # For robust standard errors\nlibrary(lmtest)   # For coeftest\n\n# --- Data Simulation ---\nset.seed(123) # For reproducibility\n\nn_firms <- 585\nevent_window_days <- 5 # [-2, +2]\npre_event_window_days <- 18 # [-20, -3]",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "positive",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event dates are (1) first public announcement of potential misconduct and (2) final SEC enforcement action; outcome = cumulative abnormal return around each event date; benchmark = matched-firm adjusted returns",
+    "key_variables": {
+      "treatment": "SEC AAER enforcement action (misconduct revelation)",
+      "control": "matched firms on industry, size, book-to-market",
+      "outcome": "cumulative abnormal return (CAR) from CRSP daily returns adjusted for matched-firm returns",
+      "time_period": "event windows of [-1,0], [-1,+1], [-10,+10] around announcement dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms lose on average 38% of market value from the misconduct period through final resolution; direct penalties account for only a small fraction (~3%) of total costs — the majority is reputational loss",
+    "main_effect": "-38% total market value loss from misconduct revelation through resolution",
+    "key_robustness": [
+      "decomposition of loss into direct penalties vs. reputational",
+      "alternative event windows",
+      "cross-sectional drivers of penalty severity"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study (multi-event)",
+      "treatment": "Disclosure of financial misrepresentation and subsequent enforcement milestones",
+      "event_window": "Multiple windows around key enforcement dates (initial disclosure, formal investigation, charges, settlement)",
+      "estimation_window": "Pre-event clean period for market model estimation",
+      "sample_period": "1978-2002 (788 enforcement actions)",
+      "unit_of_observation": "Firm-enforcement event",
+      "key_assumption": "Market efficiently impounds expected costs at each disclosure milestone. Abnormal returns around enforcement events reflect the firm-specific cost of misrepresentation, not confounding news."
+    },
+    "key_magnitudes": {
+      "total_market_value_loss": "Average 38% decline in market-adjusted equity value",
+      "legal_penalty_share": "~8.6% of total loss attributable to legal penalties",
+      "reputation_loss_share": "~66.6% of total loss attributed to reputation damage",
+      "expected_legal_penalty_share": "~24.8% of total loss from anticipated but not yet imposed penalties"
+    },
+    "robustness_notes_detail": "Decomposition is robust across subsamples (SEC-only vs DOJ, different time periods). Results hold after controlling for firm size, industry, and severity of misrepresentation."
+  }
+}

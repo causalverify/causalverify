@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s84",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Police Staffing on Crime Rates",
+  "model": "o3",
+  "run_at": "2026-04-14T19:53:03.460139",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 447,
+    "output_tokens": 1085,
+    "content": "## 1. Identification Strategy\nCausal method: Two-Stage Least Squares (Instrumental Variables).\n\nWhy IV? Police staffing (x) is likely endogenous: jurisdictions often hire more officers in reaction to rising crime, creating reverse causality and omitted-variable bias.  \nThe cops-grant lottery (z) randomly allocates additional funding for officers, supplying exogenous variation in police staffing that is unrelated to contemporaneous crime levels except through staffing.\n\nKey assumptions  \n1. Relevance: z is correlated with police staffing (Cov(z, x) ≠ 0).  \n2. Exclusion Restriction: z affects crime rates (y) only through its impact on staffing, not through any other channel.  \n3. Independence/Random Assignment: conditional on controls, z is as-good-as randomly assigned.\n\nUnder these assumptions, 2SLS identifies the causal effect of police staffing on crime.\n\n## 2. R Code\n```r\n# Load packages\nlibrary(tidyverse)\nlibrary(AER)        # for ivreg\nlibrary(sandwich)   # robust vcov\nlibrary(lmtest)     # coeftest\nlibrary(modelsummary)\n\n# 1. Read data -------------------------------------------------------------\ndf <- read_csv(\"experiments/exp_b/data/s84_data.csv\",\n               col_types = cols(\n                 y        = col_double(),\n                 x        = col_double(),\n                 z        = col_integer(),\n                 controls = col_double()\n               ))\n\n# 2. OLS benchmark ---------------------------------------------------------\nols_mod <- lm(y ~ x + controls, data = df)\nols_robust <- coeftest(ols_mod, vcov = vcovHC(ols_mod, type = \"HC1\"))\n\n# 3. IV (2SLS) -------------------------------------------------------------\niv_mod <- ivreg(y ~ x + controls | z + controls, data = df)\niv_robust <- coeftest(iv_mod, vcov = vcovHC(iv_mod, type = \"HC1\"))\n\n# 4. First-stage diagnostics ----------------------------------------------\nfirst_stage <- iv_mod$stage1\nfs_robust   <- coeftest(first_stage, vcov = vcovHC(first_stage, type = \"HC1\"))\nfs_fstat    <- linearHypothesis(first_stage, \"z = 0\", vcov = vcovHC(first_stage, type=\"HC1\"))$\"F\"[2]\n\n# 5. Weak-instrument rule-of-thumb ----------------------------------------\ncat(\"First-stage F-statistic on z (robust):\", round(fs_fstat,2), \"\\n\\n\")\n\n# 6. Print main results ----------------------------------------------------\nmodelsummary(\n  list(\"OLS\" = ols_mod, \"2SLS\" = iv_mod),\n  vcov = list(vcovHC(ols_mod, type=\"HC1\"), vcovHC(iv_mod, type=\"HC1\")),\n  statistic = \"({stat})\",\n  stars = TRUE\n)\n\n# 7. Sensitivity: drop controls -------------------------------------------\niv_nocontrol <- ivreg(y ~ x | z, data = df)\niv_nocontrol_robust <- coeftest(iv_nocontrol, vcov = vcovHC(iv_nocontrol, type = \"HC1\"))\n\ncat(\"\\nRobust IV estimate without controls:\\n\")\nprint(iv_nocontrol_robust[\"x\",])\n\n# 8. End\n```\n\nThe script:\n• Reads the CSV at the specified path.  \n• Shows an OLS estimate for comparison.  \n• Implements 2SLS with `z` as the instrument, reports robust (HC1) standard errors, and prints the first-stage F-statistic to assess instrument strength.  \n• Provides a robustness check by re-estimating the IV model without the socioeconomic controls.\n\n## 3. Expected Findings\nSign: Negative. More police officers should lower crime.  \n\nMagnitude: With standardized variables (mean ≈ 0, sd ≈ 1), a one-standard-deviation increase in police staffing is expected to cut crime by roughly 0.3–0.5 standard deviations. Thus the 2SLS coefficient on x should be around –0.30 to –0.50, larger in magnitude than the biased OLS estimate.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use the cops grant lottery as an instrument for police count.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased police staffing significantly reduces crime rates.",
+    "main_effect": "-0.35"
+  }
+}

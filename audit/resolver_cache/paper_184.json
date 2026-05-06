@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_184",
+  "title": "Anchoring on Credit Spreads",
+  "authors": "Dougal, Engelberg, Parsons & Van Wesep",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/jofi.12248",
+    "title": "Anchoring on Credit Spreads",
+    "year": 2015,
+    "journal": "The Journal of Finance",
+    "citations": 111
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "parsons",
+      "wesep",
+      "engelberg",
+      "dougal"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jf",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 111,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

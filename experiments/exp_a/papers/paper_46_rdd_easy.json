@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_46",
+  "source": "Quarterly Journal of Economics, 1999",
+  "authors": "Black",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Do Better Schools Matter? Parental Valuation of Elementary Education",
+  "doi": "10.1162/003355399556007",
+  "volume": 114,
+  "issue": 2,
+  "pages": "577-599",
+  "domain": "labor",
+  "research_question": "How much do parents value the quality of their children's elementary education, and to what extent does measured school quality get capitalized into residential housing prices once neighborhood and other locational characteristics are properly controlled for?",
+  "data_description": "The study uses housing transaction data for single-family homes in three suburban counties just north of Boston (Massachusetts) during the early 1990s. Key variables include house sale prices, detailed structural characteristics of the homes (e.g., square footage, lot size, number of rooms, age), the exact street addresses of properties, and elementary school attendance zone boundaries within school districts. School quality is measured using elementary-school-level test scores from statewide assessments. Demographic and neighborhood characteristics come from Census block-level data. The unit of observation is the individual housing transaction, and the analysis links each house to its assigned elementary school based on attendance zone maps obtained from local school districts.",
+  "institutional_context": "In Massachusetts, public elementary schools are organized into attendance zones within school districts: families living on one side of an attendance boundary send their children to one school, while neighbors across the boundary attend a different school in the same district. Although these households share the same district-level taxes, public services, and broader municipal amenities, they face different elementary schools with potentially different test-score performance. Houses on opposite sides of these school attendance boundaries tend to be very similar in terms of neighborhood characteristics, housing stock, and access to local public goods, but differ in their assigned elementary school. This setting allows narrow geographic comparisons of homes that are nearly identical except for the school their children would attend.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.021,
+      "unit": "fractional increase in house price per SD of elementary school test scores (boundary RDD)",
+      "interpretation": "A one standard deviation improvement in elementary school test scores raises house prices by approximately 2.1% for houses right at the attendance zone boundary, representing parents' willingness to pay for school quality"
+    },
+    "secondary_estimate": {
+      "value": 0.06,
+      "unit": "fractional increase in house price per SD of test scores (traditional hedonic regression without boundary FE)",
+      "interpretation": "Without boundary controls, the school quality premium appears to be ~6%, nearly 3x larger — demonstrating that the majority of the 'school premium' in naive regressions reflects omitted neighborhood quality"
+    },
+    "significance": "p < 0.05 (boundary RDD); p < 0.01 (hedonic)",
+    "table_ref": "Tables 3-5 in Black (1999)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Massachusetts school test scores (MA DESE — public)",
+      "Census tract demographics (Census Bureau — free)",
+      "School attendance zone boundaries (varies by district — often public via school district websites)"
+    ],
+    "proprietary_sources": [
+      "Massachusetts house sale transactions with geocoded addresses (from Warren Group or state registry of deeds)",
+      "GIS school attendance zone boundary files (some districts provide publicly, others require data requests)"
+    ],
+    "proxy_strategy": "School test scores and Census demographics are public. House transaction data is available from county registries of deeds (public records but require compilation). School attendance zone boundaries are increasingly available through education data platforms (SchoolDigger, GreatSchools).",
+    "replicability": "medium — school scores and demographics are public; house sales and boundary GIS require compilation from public records",
+    "public_proxy_available": true,
+    "replication_tier": "partial (school scores public; house sales require county records compilation; boundary GIS varies by district)",
+    "data_limitations": "Attendance zone boundaries change over time and may not be precisely archived for historical periods. Some boundaries coincide with natural features that independently affect house prices. The approach works best in areas with sharp boundaries and sufficient variation in school quality across boundaries.",
+    "public_data_sources_detail": [
+      "MA DESE (school test scores — free)",
+      "Census Bureau (tract demographics — free)",
+      "County registries of deeds (house transactions — public records, requires compilation)",
+      "School district websites (attendance zone maps — varies)",
+      "Zillow/Redfin (recent house prices — free, for more recent replication)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Boundary discontinuity design (spatial RDD) — running variable is distance from the school attendance zone boundary; houses on either side of the boundary are in the same neighborhood but assigned to different schools; the discontinuity in school quality at the boundary identifies the school quality premium in house prices",
+    "key_variables": {
+      "treatment": "assignment to the higher-quality school attendance zone (based on test scores)",
+      "control": "houses on the other side of the boundary, assigned to the lower-quality school",
+      "outcome": "log house sale price",
+      "time_period": "1993–1995 (Massachusetts house sales)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Parents value school quality significantly: a one standard deviation increase in test scores (school quality) increases house prices by approximately 2.1% at the attendance boundary, compared to 5-7% in traditional hedonic regressions. The boundary design reveals that roughly 50-70% of the naive school quality premium in hedonic regressions is actually attributable to omitted neighborhood quality rather than school quality. The true willingness to pay for school quality is positive and significant but smaller than previously believed.",
+    "main_effect": "A one SD increase in elementary school test scores raises house prices by approximately 2.1% at attendance boundaries (vs. 5-7% in traditional hedonic regressions without boundary FE)",
+    "key_robustness": [
+      "Varying distance bands from boundary (0.05 mile, 0.10 mile, 0.20 mile)",
+      "Including boundary fixed effects (comparing only houses on opposite sides of the same boundary)",
+      "Controlling for housing characteristics and census tract demographics",
+      "Different school quality measures (test scores, expenditures, teacher salaries)",
+      "Excluding boundaries that coincide with neighborhood changes (major roads, parks)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Boundary discontinuity design (spatial RDD with boundary fixed effects)",
+      "treatment": "School attendance zone assignment (binary: higher-quality vs. lower-quality school side of a boundary)",
+      "event_window": "N/A (cross-sectional property value comparison)",
+      "estimation_window": "Houses within 0.05-0.20 miles of attendance zone boundaries",
+      "sample_period": "1993–1995",
+      "unit_of_observation": "Individual house sale transaction, geocoded to school attendance zone",
+      "key_assumption": "Houses on either side of an attendance zone boundary are in the same neighborhood and differ only in school assignment. The boundary itself does not coincide with other discontinuities (socioeconomic, racial, geographic). Boundary fixed effects absorb any boundary-specific confounds."
+    },
+    "key_magnitudes": {
+      "boundary_premium": "+2.1% per SD of test score increase (boundary discontinuity estimate)",
+      "naive_premium": "+5-7% per SD of test score increase (traditional hedonic without boundary FE)",
+      "bias_share": "Approximately 50-70% of the naive premium is attributable to omitted neighborhood quality, not school quality",
+      "dollar_value": "Approximately $4,000-$8,000 premium per house per SD improvement in test scores (in 1990s dollars)"
+    },
+    "robustness_notes_detail": "Results are robust to distance band choice, boundary fixed effects, and extensive housing and demographic controls. The reduction from 5-7% (naive) to 2.1% (boundary RDD) demonstrates the severity of omitted variable bias in traditional hedonic price regressions. Some boundaries coincide with major roads or natural barriers, which are excluded in robustness checks without materially affecting the estimates."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 90,
+  "phase1_source_version": "v2primeprime_full_text"
+}

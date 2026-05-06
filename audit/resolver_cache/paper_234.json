@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_234",
+  "title": "The New Issues Puzzle",
+  "authors": "Loughran & Ritter",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.1995.tb05166.x",
+    "title": "The New Issues Puzzle",
+    "year": 1995,
+    "journal": "The Journal of Finance",
+    "citations": 3395
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ritter",
+      "loughran"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 3395,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

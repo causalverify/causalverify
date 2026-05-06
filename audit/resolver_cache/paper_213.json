@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_213",
+  "title": "Policy Uncertainty, Trade, and Welfare: Theory and Evidence for China and the United States",
+  "authors": "Handley & Lim\u00e3o",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.20141419",
+    "title": "Policy Uncertainty, Trade, and Welfare: Theory and Evidence for China and the United States",
+    "year": 2017,
+    "journal": "American Economic Review",
+    "citations": 842
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lim\u00e3o",
+      "handley"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 842,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

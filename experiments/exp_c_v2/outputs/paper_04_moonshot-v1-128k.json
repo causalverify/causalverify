@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_04",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:01:43.163676",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 634,
+    "output_tokens": 882,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a difference-in-differences approach to identify the causal effect of unanticipated changes in the federal funds rate on stock market returns. We will compare the stock returns on FOMC announcement days to non-announcement days, and further distinguish between anticipated and unanticipated changes by comparing the actual rate changes to the changes implied by the fed funds futures prices.\n\nDirectional Hypothesis:\nWe hypothesize that unanticipated changes in the federal funds rate will have a larger impact on stock market returns than anticipated changes. Specifically, we expect that positive (negative) unanticipated rate cuts will lead to positive (negative) stock returns, and vice versa for rate hikes.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. Stock returns on FOMC announcement days vs. non-announcement days.\n2. Stock returns on FOMC announcement days with unanticipated rate cuts vs. non-announcement days.\n3. Stock returns on FOMC announcement days with unanticipated rate hikes vs. non-announcement days.\n4. Stock returns on FOMC announcement days with anticipated rate cuts vs. non-announcement days.\n5. Stock returns on FOMC announcement days with anticipated rate hikes vs. non-announcement days.\n\n**STEP 3 — FALSIFICATION GATE**\n\nFalsification Gate:\nWe will reject our hypothesis if we find that unanticipated rate changes have no significant effect on stock returns, or if the effect is in the opposite direction of our hypothesis (e.g., positive unanticipated rate cuts lead to negative stock returns). We will also reject the hypothesis if the p-value for the difference-in-differences estimate is greater than 0.10.\n\n**STEP 4 — R CODE**\n\n```R\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Load data\nstock_returns <- read.csv(\"stock_returns.csv\")\nfomc_announcements <- read.csv(\"fomc_announcements.csv\")\nfed_funds_futures <- read.csv(\"fed_funds_futures.csv\")\n\n# Merge data\ndata <- merge(stock_returns, fomc_announcements, by = \"date\")\ndata <- merge(data, fed_funds_futures, by = \"date\")\n\n# Calculate surprise component\ndata$surprise <- data$actual_change - data$expected_change\n\n# Create dummy variables\ndata$announcement_day <- ifelse(data$fomc_announcement == 1, 1, 0)\ndata$unanticipated_rate_cut <- ifelse(data$surprise > 0 & data$actual_change < 0, 1, 0)\ndata$unanticipated_rate_hike <- ifelse(data$surprise > 0 & data$actual_change > 0, 1, 0)\ndata$anticipated_rate_cut <- ifelse(data$surprise == 0 & data$actual_change < 0, 1, 0)\ndata$anticipated_rate_hike <- ifelse(data$surprise == 0 & data$actual_change > 0, 1, 0)\n\n# Run regressions\nspec1 <- lm(stock_return ~ announcement_day, data = data)\nspec2 <- lm(stock_return ~ unanticipated_rate_cut, data = data)\nspec3 <- lm(stock_return ~ unanticipated_rate_hike, data = data)\nspec4 <- lm(stock_return ~ anticipated_rate_cut, data = data)\nspec5 <- lm(stock_return ~ anticipated_rate_hike, data = data)\n\n# Print results\nsummary(spec1)\nsummary(spec2)\nsummary(spec3)\nsummary(spec4)\nsummary(spec5)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected Findings:\nWe expect to find that stock returns are significantly different on FOMC announcement days compared to non-announcement days. We also expect to find that unanticipated rate cuts lead to positive stock returns, while unanticipated rate hikes lead to negative stock returns. Anticipated rate changes should have no significant effect on stock returns.\n\nGate Assessment:\nIf the p-values for the coefficients on unanticipated rate cuts and hikes are greater than 0.10, or if the signs of the coefficients are opposite to our hypothesis, we will reject our hypothesis.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event = FOMC target rate change announcements; surprise = actual rate change minus futures-implied expected change; outcome = same-day equity market return",
+    "key_variables": {
+      "treatment": "surprise component of fed funds rate change (continuous, in percentage points)",
+      "control": "anticipated component (expected rate change) — which should have no effect",
+      "outcome": "daily CRSP value-weighted return on FOMC announcement day",
+      "time_period": "1989–2002, FOMC meeting dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "A surprise 25bp rate cut increases stock market returns by approximately 1%; rate hikes reduce returns. Unanticipated changes have much larger effects than anticipated changes.",
+    "main_effect": "~1% stock market return per 25bp surprise rate cut",
+    "key_robustness": [
+      "separate anticipated vs unanticipated component",
+      "cross-sectional variation by sector",
+      "growth vs. value stocks"
+    ]
+  }
+}

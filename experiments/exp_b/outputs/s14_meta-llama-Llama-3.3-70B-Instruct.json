@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s14",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Positive earnings surprise on stock returns",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:32:46.605257",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 487,
+    "output_tokens": 608,
+    "content": "## 1. Identification Strategy\nTo answer the research question, we will use an Event Study approach, which is suitable for examining the impact of a specific event (in this case, a positive earnings surprise) on stock returns. The key assumption is that the event window [0,+2] is long enough to capture the market's reaction to the earnings surprise but short enough to minimize the influence of other factors. We also assume that the market model estimated on the [−10,−2] window provides a reasonable benchmark for expected returns.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(broom)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s14_data.csv\")\n\n# Estimate the market model for each stock\nmarket_models <- data %>%\n  filter(event_day <= -2) %>%\n  group_by(stock_id) %>%\n  do(model = lm(ret ~ mkt_ret + beta, data = .))\n\n# Calculate abnormal returns for each stock in the event window\nabnormal_returns <- data %>%\n  filter(event_day >= 0 & event_day <= 2) %>%\n  left_join(market_models, by = \"stock_id\") %>%\n  mutate(predicted_ret = predict(model, newdata = data.frame(mkt_ret = mkt_ret, beta = beta)),\n         abnormal_ret = ret - predicted_ret)\n\n# Calculate the average abnormal return (AAR) and cumulative abnormal return (CAR)\naars <- abnormal_returns %>%\n  group_by(event_day) %>%\n  summarise(aar = mean(abnormal_ret))\n\ncars <- aars %>%\n  mutate(car = cumsum(aar))\n\n# Print the CAR for the [0,+2] window\ncar_0_to_2 <- sum(aars$aar)\nprint(paste(\"The CAR for the [0,+2] window is:\", car_0_to_2))\n\n# Basic robustness check: plot the CAR over time\nlibrary(ggplot2)\ncars %>%\n  ggplot(aes(x = event_day, y = car)) +\n  geom_line() +\n  geom_point() +\n  labs(x = \"Event Day\", y = \"Cumulative Abnormal Return\") +\n  theme_classic()\n```\n\n## 3. Expected Findings\nWe expect the Cumulative Abnormal Return (CAR) for the [0,+2] window to be positive, indicating that firms with positive earnings surprises tend to earn positive abnormal returns around the earnings announcement. The magnitude of the CAR will depend on the size of the earnings surprise and the market's reaction to it. A larger CAR would suggest a stronger market reaction to the earnings surprise. We expect the CAR to be around 2-5%, but this is speculative and may vary depending on the actual data. The Event Study approach allows us to quantify the market's reaction to the earnings surprise and provide a more precise estimate of the CAR.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; positive surprise sample; event window [0,+2]",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Firms with positive earnings surprises earn significantly positive CAR",
+    "main_effect": "CAR ≈ +2.2%"
+  }
+}

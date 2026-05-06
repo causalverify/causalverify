@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:45:52.791206",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 439,
+    "output_tokens": 485,
+    "content": "## 1. Identification Strategy\nIn this scenario, the appropriate method is Regression Discontinuity Design (RDD). The RDD takes advantage of the cutoff point in the admission test score that designates whether a student is admitted or not, thus creating a 'natural experiment' for those near the cutoff. The key assumption here is that students on either side of the cutoff are comparable, meaning that any discontinuity in SAT scores at the cutoff can be attributed to the effect of attending the elite school.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(rdd)\n\n# Read the dataset\ndata <- read.csv('experiments/exp_b/data/s90_data.csv')\n\n# Perform Regression Discontinuity Design\nrdd_model <- RDestimate(y ~ running_var, cutpoint = 0.5, data = data)\n\n# Print the results\nsummary(rdd_model)\n\n# Visualization for RDD\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\") +\n  labs(title = \"RDD: Impact of Admission on SAT Scores\",\n       x = \"Running Variable (Admission Test Score)\",\n       y = \"SAT Score\") +\n  theme_minimal()\n\n# Basic robustness checks - Bandwidth sensitivity\nrdd_model_narrow <- RDestimate(y ~ running_var, cutpoint = 0.5, data = data, bw = 0.2)\nrdd_model_wide <- RDestimate(y ~ running_var, cutpoint = 0.5, data = data, bw = 0.4)\n\n# Print robustness checks\nsummary(rdd_model_narrow)\nsummary(rdd_model_wide)\n```\n\n## 3. Expected Findings\nI expect the sign of the treatment effect (i.e., gaining admission to an elite high school) to be positive, indicating that attending the elite school likely has beneficial effects on SAT scores compared to not attending. The approximate magnitude of this effect may vary, but we might expect a moderate positive effect due to improved educational resources and peer effects in elite schools. The results should show a significant discontinuity in SAT scores at the cutoff, affirming the causal impact of elite high school admission.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_06",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:27:18.207787",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 683,
+    "output_tokens": 164,
+    "content": "The Research Integrity by Design (RID) protocol is followed step-by-step.\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:** We will employ a panel fixed effects regression at the industry-year level. The identification strategy relies on observing how M&A activity in a focal industry `j` changes in response to merger wave activity in its *linked* industries (customers and suppliers), where the strength of the linkage is proxied by industry-pair trade flows from BEA input-output tables. By including industry fixed effects (`alpha_j`) and year fixed effects (`gamma_t`), we control for unobserved time-invariant industry characteristics and common macroeconomic shocks that affect all industries. The use of lagged merger wave indicators (`t-1`) in the linked",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": null,
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study combined with panel DID — events are industry merger waves; the cross-sectional variation is the strength of supply chain links (BEA input-output flows) between the wave industry and other industries; outcome = acquirer and target announcement returns and subsequent merger activity in linked industries",
+    "key_variables": {
+      "treatment": "exposure to a merger wave in economically linked industries (continuous, measured by BEA trade flow strength)",
+      "control": "industries with weak or no supply chain links to the wave industry",
+      "outcome": "acquirer/target cumulative abnormal return; subsequent M&A volume in linked industries",
+      "time_period": "1986–2010, within 24-month windows around merger waves"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Merger waves propagate through supply chains: a wave in an upstream industry increases M&A activity in downstream industries; deals that reduce supply chain holdup (vertical links) create more value",
+    "main_effect": "Strong supply chain links increase M&A probability by ~3–5% and target announcement returns by ~2%",
+    "key_robustness": [
+      "alternative wave definitions",
+      "placebo industries with no links",
+      "controlling for industry-level economic shocks",
+      "horizontal vs. vertical deal decomposition"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study + network propagation analysis",
+      "treatment": "Exogenous industry-level shocks (deregulation events, trade liberalization) that trigger merger waves in directly affected industries",
+      "event_window": "Industry-year level analysis of merger activity following shocks to linked industries",
+      "estimation_window": "Pre-shock merger activity levels for baseline",
+      "sample_period": "1986-2010",
+      "unit_of_observation": "Industry-pair-year (using BEA input-output tables for industry links)",
+      "key_assumption": "Exogenous shocks to one industry are not simultaneously caused by conditions in linked industries. Input-output relationships measured before the shock capture genuine economic links, not reverse causation."
+    },
+    "key_magnitudes": {
+      "cross_industry_propagation": "Statistically significant positive coefficient on trade-weighted merger activity of linked industries",
+      "network_multiplier": "Mergers in directly shocked industries predict 2-3x increase in merger probability in linked industries relative to unlinked industries",
+      "propagation_lag": "Effects appear within 1-2 years of the initial industry shock"
+    },
+    "robustness_notes_detail": "Robust to alternative industry classification, different measures of economic links, controlling for common industry-level shocks (GDP, credit conditions). Instrumental variable approach using exogenous deregulation events as shocks."
+  }
+}

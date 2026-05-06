@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s30",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Fuzzy RDD: imperfect compliance with admission cutoff",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:28:19.017481",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 491,
+    "output_tokens": 560,
+    "content": "## 1. Identification Strategy\nWe will use a Fuzzy Regression Discontinuity Design (RDD) to estimate the Local Average Treatment Effect (LATE) of scholarship receipt on graduation rates. The key assumption for this method is that the running variable (GPA) is a valid instrument for the treatment (scholarship receipt), and that there is a discontinuity in the probability of receiving the scholarship at the cutoff point. We also assume that the running variable is as good as randomly assigned around the cutoff, conditional on observable characteristics.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(plm)\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s30_data.csv\")\n\n# Convert treated and near_cutoff to factors\ndata$treated <- as.factor(data$treated)\ndata$near_cutoff <- as.factor(data$near_cutoff)\n\n# Estimate the LATE using fuzzy RDD\n# We will use the rdrobust package to perform the analysis\n# The running variable is 'running_var', the treatment variable is 'treated', and the outcome variable is 'y'\n# We will use a local linear regression with a triangular kernel\nresult <- rdrobust(data$running_var, data$treated, data$y, c=0.75, h=0.1, kernel=\"triangular\", degree=1, bias=TRUE, vce=\"unbiased\")\n\n# Print the coefficient estimate\nprint(result$beta)\n\n# Basic robustness checks\n# We will check the robustness of the results by varying the bandwidth\nbandwidths <- seq(0.05, 0.2, by = 0.01)\nresults <- sapply(bandwidths, function(b) {\n  rdrobust(data$running_var, data$treated, data$y, c=0.75, h=b, kernel=\"triangular\", degree=1, bias=TRUE, vce=\"unbiased\")\n})\n\n# Plot the results\nplot(bandwidths, sapply(results, function(x) x$beta), type = \"b\", xlab = \"Bandwidth\", ylab = \"Coefficient Estimate\")\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient estimate for the treatment effect, as receiving a scholarship is likely to increase the probability of graduating within 4 years. The magnitude of the effect will depend on the strength of the scholarship program and the characteristics of the students. Given the sample size of 600 students, we expect a reasonably precise estimate, but the exact magnitude will depend on the data.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Fuzzy RDD — eligibility cutoff as IV for scholarship receipt; LATE = ITT / first-stage jump",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scholarship receipt significantly improves graduation rates for compliers",
+    "main_effect": "~25pp graduation rate increase (LATE via fuzzy RDD)"
+  }
+}

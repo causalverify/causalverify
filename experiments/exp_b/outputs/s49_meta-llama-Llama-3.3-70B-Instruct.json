@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s49",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Impact of Mass Deworming on School Attendance",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:40:59.458577",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 545,
+    "output_tokens": 538,
+    "content": "## 1. Identification Strategy\nTo estimate the impact of the mass deworming program on school attendance, we will use the Difference-in-Differences (DID) method. This method is suitable for this research scenario because it allows us to compare the differences in school attendance rates between treated and control schools before and after the program rollout. The key assumption of the DID method is the parallel trends assumption, which states that the trends in the outcome variable (school attendance) would have been the same for treated and control schools in the absence of the treatment.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(broom)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s49_data.csv\")\n\n# Convert data to pdata.frame\ndata$p_unit_id <- as.factor(data$unit_id)\ndata$p_period <- as.factor(data$period)\n\n# Run Difference-in-Differences (DID) analysis\nmodel <- plm(y ~ treated * post, data = data, index = c(\"unit_id\", \"period\"), model = \"random\")\n\n# Print the model summary\nsummary(model)\n\n# Clean and extract the coefficient of interest (treat_x_post)\ntidy_model <- tidy(model)\ncoi <- tidy_model %>%\n  filter(term == \"treated:post\") %>%\n  pull(estimate)\n\n# Print the numerical result\nprint(paste(\"The estimated impact of the mass deworming program on school attendance is: \", coi))\n\n# Basic robustness checks\n# - Test for parallel trends assumption using a placebo test\nplacebo_model <- plm(y ~ treated * (period == 1), data = data, index = c(\"unit_id\", \"period\"), model = \"random\")\nplacebo_estimate <- tidy(placebo_model) %>%\n  filter(term == \"treated:period == 1TRUE\") %>%\n  pull(estimate)\nprint(paste(\"Placebo estimate: \", placebo_estimate))\n```\n\n## 3. Expected Findings\nWe expect the coefficient of the interaction term (treat_x_post) to be negative but close to zero, indicating that the mass deworming program has a negligible impact on school attendance rates. This expectation is based on the assumption that deworming programs generally improve health and educational outcomes. However, the actual impact may vary depending on factors such as program implementation, targeting, and external factors affecting school attendance. The magnitude of the coefficient is expected to be small (around -0.05 to 0.05) due to the potential positive effects of deworming on health and education outcomes.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in attendance rates over time between treated and untreated schools.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mass deworming program is associated with a decrease in school attendance rates.",
+    "main_effect": -0.15
+  }
+}

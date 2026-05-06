@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "Strong strategy match - correctly identifies RDD with Russell 1000/2000 reconstitution, proper running variable (float-adjusted market cap rank), correct cutoff (1000), and appropriate fuzzy RD framework. However, the AI doesn't state the expected direction of the effect (negative impact of liquidity on innovation), representing a narrative failure to predict the main conclusion.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_10",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:07:35.525948+00:00"
+}

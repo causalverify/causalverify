@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s26",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Test score cutoff and college enrollment",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-02T21:18:52.299804",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 462,
+    "output_tokens": 968,
+    "content": "## 1. Identification Strategy\nRegression Discontinuity Design (RDD) - specifically sharp RDD since treatment assignment is deterministic based on the cutoff. The key assumption is that potential outcomes are continuous at the cutoff, meaning students just below and just above the 0.5 threshold are comparable except for treatment status. This allows us to identify the causal effect of automatic admission eligibility on college enrollment.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s26_data.csv\")\n\n# Basic data inspection\nprint(\"Data summary:\")\nprint(summary(data))\nprint(paste(\"Total observations:\", nrow(data)))\nprint(paste(\"Observations near cutoff:\", sum(data$near_cutoff)))\n\n# Center the running variable at the cutoff\ndata$running_var_centered <- data$running_var - 0.5\n\n# Main RDD analysis using rdrobust\nrdd_result <- rdrobust(data$y, data$running_var, c = 0.5)\nprint(\"Main RDD Results:\")\nprint(summary(rdd_result))\n\n# Extract and print the key coefficient\ntreatment_effect <- rdd_result$coef[1]\nstd_error <- rdd_result$se[1]\np_value <- rdd_result$pv[1]\n\nprint(paste(\"Treatment Effect (RDD coefficient):\", round(treatment_effect, 4)))\nprint(paste(\"Standard Error:\", round(std_error, 4)))\nprint(paste(\"P-value:\", round(p_value, 4)))\n\n# Robustness check 1: Manual local linear regression with bandwidth ±0.3\nbandwidth_data <- data[data$near_cutoff == 1, ]\nmanual_rdd <- lm(y ~ treated + running_var_centered + treated:running_var_centered, \n                 data = bandwidth_data)\nprint(\"Robustness Check 1 - Manual RDD with ±0.3 bandwidth:\")\nprint(summary(manual_rdd)$coefficients[\"treated\", ])\n\n# Robustness check 2: Different bandwidth using rdrobust\nrdd_robust_bw <- rdrobust(data$y, data$running_var, c = 0.5, h = 0.2)\nprint(\"Robustness Check 2 - RDD with bandwidth ±0.2:\")\nprint(paste(\"Treatment Effect:\", round(rdd_robust_bw$coef[1], 4)))\n\n# Visualization\nplot_data <- data.frame(\n  running_var = data$running_var,\n  y = data$y,\n  treated = as.factor(data$treated)\n)\n\np <- ggplot(plot_data, aes(x = running_var, y = y, color = treated)) +\n  geom_point(alpha = 0.6) +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  geom_smooth(method = \"lm\", se = TRUE) +\n  labs(title = \"RDD: College Enrollment vs Test Score\",\n       x = \"Test Score (Running Variable)\",\n       y = \"College Enrollment\",\n       color = \"Above Cutoff\") +\n  theme_minimal()\n\nprint(p)\n\n# Final result\nprint(\"=== FINAL RESULT ===\")\nprint(paste(\"RDD Treatment Effect:\", round(treatment_effect, 4)))\nprint(paste(\"This represents the causal impact of crossing the test score threshold on college enrollment probability\"))\n```\n\n## 3. Expected Findings\nI expect a positive treatment effect with magnitude around 0.15-0.25. Students who cross the automatic admission threshold should have higher enrollment rates because: (1) guaranteed admission reduces uncertainty and application costs, (2) it may signal college readiness and boost confidence, and (3) it eliminates potential rejection risk. The effect should be economically significant but not enormous since other factors like financial constraints still matter for college attendance decisions.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — test score cutoff; continuity of running variable required; McCrary density test",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scoring above cutoff significantly increases college enrollment",
+    "main_effect": "~25pp enrollment increase at cutoff"
+  }
+}

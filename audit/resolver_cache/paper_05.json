@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_05",
+  "title": "The Cost to Firms of Cooking the Books",
+  "authors": "Karpoff, Lee & Martin",
+  "year": null,
+  "journal": "Journal of Financial Economics",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1017/s0022109000004221",
+    "title": "The Cost to Firms of Cooking the Books",
+    "year": 2008,
+    "journal": "Journal of Financial and Quantitative Analysis",
+    "citations": 1299
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "martin",
+      "karpoff",
+      "lee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "journal of financial and quantitative analysis",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1299,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

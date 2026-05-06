@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI model correctly identifies the event study methodology combined with a matched-firm benchmark approach, which matches the ground truth method and provides a detailed understanding of why this strategy is chosen. Additionally, the model output states the negative impact direction by discussing market value decline, aligning with the ground truth's conclusion of a -38% market value loss.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_05",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T10:41:02.662365+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_56",
+  "title": "Women as Policy Makers: Evidence from a Randomized Policy Experiment in India",
+  "authors": "Chattopadhyay & Duflo",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1468-0262.2004.00539.x",
+    "title": "Women as Policy Makers: Evidence from a Randomized Policy Experiment in India",
+    "year": 2004,
+    "journal": "Econometrica",
+    "citations": 2194
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "chattopadhyay",
+      "duflo"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "ecma",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 2194,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

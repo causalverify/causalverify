@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s69",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Vietnam Service on Long-Term Earnings",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:43:04.440896",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 444,
+    "output_tokens": 433,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal impact of Vietnam service on long-term earnings. The draft lottery number (z) will serve as an instrument for Vietnam service (x). The key assumption for this approach is that the draft lottery number is correlated with Vietnam service but not directly related to long-term earnings, except through its effect on Vietnam service. This is known as the exclusion restriction.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s69_data.csv\")\n\n# Run the first stage regression: Vietnam service (x) on draft lottery number (z) and controls\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Run the second stage regression: log earnings (y) on predicted Vietnam service (x) from first stage and controls\nsecond_stage <- lm(y ~ predict(first_stage) + controls, data = data)\n\n# Print the coefficient of the predicted Vietnam service in the second stage regression\nsummary(second_stage)$coefficients[2, 1]\n\n# Basic robustness check: test for overidentifying restrictions (Hansen J test)\noverid_test <- bptest(second_stage, ~ predict(first_stage) + controls, data = data)\noverid_test$statistic\noverid_test$p.value\n```\n\n## 3. Expected Findings\nThe sign and magnitude of the coefficient on the predicted Vietnam service in the second stage regression will give us an estimate of the causal impact of Vietnam service on long-term earnings. Given that military service can provide valuable skills and experiences, we might expect a positive coefficient, indicating that Vietnam service has a positive effect on long-term earnings. However, the exact magnitude is difficult to predict without more context and prior research on this topic. The robustness check (Hansen J test) should not reject the null hypothesis that the instrument is valid, suggesting that the draft lottery number is a valid instrument for Vietnam service.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use draft lottery number as an instrument for Vietnam service.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Military service during the Vietnam War positively affects long-term earnings.",
+    "main_effect": "0.3"
+  }
+}

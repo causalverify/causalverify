@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s25",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Vote share cutoff and policy adoption",
+  "model": "o3",
+  "run_at": "2026-03-27T20:22:46.588253",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 447,
+    "output_tokens": 1405,
+    "content": "## 1. Identification Strategy  \nMethod: Sharp Regression Discontinuity Design (RDD) exploiting the deterministic rule that an initiative is adopted if and only if its vote share is at least 50 %.  \n\nKey identifying assumption (continuity): In the absence of adoption, expected municipal‐spending changes would evolve smoothly with the vote share in a narrow window around the 0.50 threshold. Any discontinuous jump in y at the cutoff can therefore be causally attributed to adoption.\n\n## 2. R Code\n```r\n#################################################################\n#  Sharp RDD: ballot‐initiative adoption and municipal spending #\n#################################################################\n\n# 1. Packages ---------------------------------------------------\nneed  <- c(\"rdrobust\", \"readr\", \"dplyr\")\ninst  <- need[!(need %in% installed.packages()[,\"Package\"])]\nif(length(inst)) install.packages(inst, repos = \"https://cloud.r-project.org\")\nlapply(need, library, character.only = TRUE)\n\n# 2. Read data --------------------------------------------------\nfile_path <- \"experiments/exp_b/data/s25_data.csv\"\ndf <- read_csv(file_path, col_types = cols())\n\n# 3. Center running variable at the cutoff ---------------------\ndf <- df %>% mutate(x = running_var - 0.5)   # x = 0 at the 50 % line\n\n# 4. Main RDD estimate (local linear, MSE-optimal bandwidth) ---\nrd_main <- rdrobust(y = df$y, x = df$x, c = 0)\n\ncat(\"\\n===== Main RDD estimate (full sample, h* from rdrobust) =====\\n\")\nprint(summary(rd_main))\ncat(\"\\nPoint estimate (tau_hat):\", rd_main$coef[1], \n    \"\\nRobust SE:\", rd_main$se[1], \"\\n\")\n\n# 5. Robustness check 1: pre-specified bandwidth (|x| ≤ 0.30) --\ndf_nc  <- df %>% filter(abs(x) <= 0.30)\nrd_nc  <- rdrobust(y = df_nc$y, x = df_nc$x, c = 0, h = 0.30)\n\ncat(\"\\n===== Robustness: manual bandwidth 0.30 =====\\n\")\ncat(\"tau_hat:\", rd_nc$coef[1], \" | Robust SE:\", rd_nc$se[1], \"\\n\")\n\n# 6. Robustness check 2: half & double MSE bandwidths ----------\nh_opt  <- rd_main$bws[1,1]\nrd_h05 <- rdrobust(y = df$y, x = df$x, c = 0, h = 0.5*h_opt)\nrd_h20 <- rdrobust(y = df$y, x = df$x, c = 0, h = 2*h_opt)\n\ncat(\"\\n===== Robustness: half and double bandwidths =====\\n\")\ncat(\"Half h*:  tau_hat =\", rd_h05$coef[1], \" | SE =\", rd_h05$se[1], \"\\n\")\ncat(\"Double h*:tau_hat =\", rd_h20$coef[1], \" | SE =\", rd_h20$se[1], \"\\n\")\n\n# 7. Robustness check 3: quadratic control function ------------\nquad_lm <- lm(y ~ treated + poly(x, 2), data = df_nc)\ncat(\"\\n===== Robustness: quadratic control function (|x|≤0.30) =====\\n\")\nprint(summary(quad_lm)$coefficients[\"treated\",])\n\n# 8. Clean numerical output (for easy extraction) --------------\ncat(\"\\n**************** SUMMARY ****************\\n\")\ncat(\"Main RDD point estimate =\", rd_main$coef[1], \n    \"with robust SE =\", rd_main$se[1], \"\\n\")\n```\n\n## 3. Expected Findings  \nBecause adoption directs explicit resources to the policy area, we expect a positive discontinuity: municipalities whose initiatives barely pass should increase targeted spending relative to those that barely fail. Using log spending changes, a coefficient around +0.30 – 0.50 (≈ 35 %–65 % higher spending) would be economically plausible.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — cutoff = 50% vote share; local linear regression with optimal bandwidth",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Passing the initiative causes a discrete jump in targeted spending",
+    "main_effect": "Winning increases spending by ~25%"
+  }
+}

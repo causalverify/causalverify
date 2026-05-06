@@ -1,0 +1,37 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "research_question": "Does gaining admission to an elite high school through a test score cutoff impact students' SAT scores? Specifically, what is the effect of narrowly meeting the admission score requirement on subsequent academic performance?",
+  "data_description": "The dataset includes information on 500 students who took the admission test for an elite high school. Key columns are running_var (admission test score), treated (indicator for admission), and y (SAT score). The data focuses on students near the admission cutoff score.",
+  "ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  },
+  "dgp_truth": {
+    "type": "rdd",
+    "effect": 0.25,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s90_data.csv",
+  "_fix_notes": [
+    {
+      "fix_id": "issue_C1_rdd_sign_reversal",
+      "applied_at": "2026-04-21T15:32:00.095385+00:00",
+      "description": "Ground-truth effect and direction corrected to match actual data. Root cause: extend_exp_b_to_100.py:267 applied abs() before passing effect to make_rdd(), so the synthetic CSV has positive effect while the JSON recorded the original signed value. Data file unchanged; only JSON metadata updated.",
+      "before": {
+        "dgp_truth.effect": -0.25,
+        "dgp_truth.direction": "negative",
+        "ground_truth.conclusion_direction": "negative"
+      },
+      "after": {
+        "dgp_truth.effect": 0.25,
+        "dgp_truth.direction": "positive",
+        "ground_truth.conclusion_direction": "positive"
+      }
+    }
+  ]
+}

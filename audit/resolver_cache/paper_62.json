@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_62",
+  "title": "Hedge Fund Activism, Corporate Governance, and Firm Performance",
+  "authors": "Brav, Jiang, Partnoy & Thomas",
+  "year": null,
+  "journal": "JF",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2008.01373.x",
+    "title": "Hedge Fund Activism, Corporate Governance, and Firm Performance",
+    "year": 2008,
+    "journal": "The Journal of Finance",
+    "citations": 1545
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "partnoy",
+      "thomas",
+      "jiang",
+      "brav"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1545,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

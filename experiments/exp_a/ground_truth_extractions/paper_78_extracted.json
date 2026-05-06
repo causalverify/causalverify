@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: EVENT_STUDY — treatment = households experiencing a health shock in year τ, control = households experiencing the same shock but in year τ + Δ; shock/instrument/cutoff = severe health shocks (nonfatal heart attacks and strokes)",
+  "key_variables": {
+    "treatment": "households experiencing a health shock in year τ",
+    "control": "households experiencing the same shock but in year τ + Δ",
+    "outcome": "consumption of preventive care and health-related behaviors",
+    "instrument_or_cutoff": "severe health shocks (nonfatal heart attacks and strokes)",
+    "time_period": "1980–2011"
+  },
+  "conclusion_direction": "positive",
+  "conclusion_detail": "Spouses and adult children immediately improve their health behaviors in response to health shocks, with effects being significant and persistent.",
+  "main_effect": "15% increase among prime-age spouses, 37% and 16% increases among younger and older adult children respectively",
+  "key_robustness": [
+    "pre-shock trends validation",
+    "alternative control group matching on pre-shock risk factors",
+    "local perturbations to Δ"
+  ],
+  "confidence": 0.9,
+  "notes": "The study uses a quasi-experimental design with potential randomness in shock timing, but there may still be unobserved factors affecting the results."
+}

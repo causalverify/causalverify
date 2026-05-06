@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_98",
+  "title": "The Incidence of Mandated Maternity Benefits",
+  "authors": "Gruber",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": null,
+    "title": "The incidence of mandated maternity benefits.",
+    "year": 1994,
+    "journal": "PubMed",
+    "citations": 981
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "gruber"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "pubmed",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 981,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

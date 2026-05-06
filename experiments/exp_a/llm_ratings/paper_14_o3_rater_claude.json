@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - correctly identifies difference-in-differences with NJ as treatment group, PA as control, before/after April 1992 structure, and proper identifying assumptions including parallel trends. However, the output is truncated and doesn't state the conclusion direction (positive employment effect), so direction_score is 0 due to omission rather than incorrect statement.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_14",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:08:24.865628+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_91",
+  "title": "Child Penalties Across Countries: Evidence and Explanations",
+  "authors": "Kleven, Landais, Posch, Steinhauer & Zweimuller",
+  "year": null,
+  "journal": "AEJ:Applied",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/pandp.20191078",
+    "title": "Child Penalties across Countries: Evidence and Explanations",
+    "year": 2019,
+    "journal": "AEA Papers and Proceedings",
+    "citations": 614
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "steinhauer",
+      "kleven",
+      "landais",
+      "posch"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aej:applied",
+    "journal_oa": "aea papers and proceedings",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 614,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

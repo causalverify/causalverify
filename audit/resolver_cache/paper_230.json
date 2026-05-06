@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_230",
+  "title": "Workers' Compensation and Injury Duration: Evidence from a Natural Experiment",
+  "authors": "Meyer, Viscusi & Durbin",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": null,
+    "title": "Workers' Compensation and Injury Duration: Evidence from a Natural Experiment",
+    "year": 1995,
+    "journal": "Discover Archive (Vanderbilt University)",
+    "citations": 389
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "viscusi",
+      "durbin"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "discover archive vanderbilt university",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 389,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

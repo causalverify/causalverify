@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_222",
+  "title": "Creative Destruction: Barriers to Urban Growth and the Great Boston Fire of 1872",
+  "authors": "Hornbeck & Keniston",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.20141707",
+    "title": "Creative Destruction: Barriers to Urban Growth and the Great Boston Fire of 1872",
+    "year": 2017,
+    "journal": "American Economic Review",
+    "citations": 203
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "hornbeck",
+      "keniston"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 203,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_238",
+  "title": "The Effects of the Unemployment Insurance Payroll Tax on Wages, Employment, Claims and Denials",
+  "authors": "Anderson & Meyer",
+  "year": null,
+  "journal": "JPubE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/s0047-2727(99)00112-7",
+    "title": "The effects of the unemployment insurance payroll tax on wages, employment, claims and denials",
+    "year": 2000,
+    "journal": "Journal of Public Economics",
+    "citations": 227
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "meyer",
+      "anderson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpube",
+    "journal_oa": "jpube",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 227,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

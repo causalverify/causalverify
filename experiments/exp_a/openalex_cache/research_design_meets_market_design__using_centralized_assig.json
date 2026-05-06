@@ -1,0 +1,8 @@
+{
+  "doi": "10.3982/ecta13925",
+  "title": "Research Design Meets Market Design: Using Centralized Assignment for Impact Evaluation",
+  "year": 2017,
+  "abstract": "A growing number of school districts use centralized assignment mechanisms to allocate school seats in a manner that reflects student preferences and school priorities. Many of these assignment schemes use lotteries to ration seats when schools are oversubscribed. The resulting random assignment opens the door to credible quasi-experimental research designs for the evaluation of school effectiveness. Yet the question of how best to separate the lottery-generated randomization integral to such designs from non-random preferences and priorities remains open. This paper develops easily-implemented empirical strategies that fully exploit the random assignment embedded in a wide class of mechanisms, while also revealing why seats are randomized at one school but not another. We use these methods to evaluate charter schools in Denver, one of a growing number of districts that combine charter and traditional public schools in a unified assignment system. The resulting estimates show large achievement gains from charter school attendance. Our approach generates efficiency gains over ad hoc methods, such as those that focus on schools ranked first, while also identifying a more representative average causal effect. We also show how to use centralized assignment mechanisms to identify causal effects in models with multiple school sectors.",
+  "citation_count": 139,
+  "journal": "Econometrica"
+}

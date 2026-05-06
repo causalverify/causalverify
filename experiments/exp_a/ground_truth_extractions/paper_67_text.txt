@@ -1,0 +1,907 @@
+NBER WORKING PAPER SERIES
+WHEN DOES THE MARKET MATTER?
+STOCK PRICES AND THE INVESTMENT OF EQUITY-DEPENDENT FIRMS
+Malcolm Baker
+Jeremy C. Stein
+Jeffrey Wurgler
+Working Paper 8750
+http://www.nber.org/papers/w8750
+NATIONAL BUREAU OF ECONOMIC RESEARCH
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+February 2002
+We thank Eric Nierenberg for research assistance. Thanks also to Heitor Almeida, Steve Kaplan, Eli Ofek,
+Lasse Pedersen, David Scharfstein, Andrei Shleifer, Tuomo Vuolteenaho and seminar participants at
+Harvard, Dartmouth and NYU for helpful comments. Financial support from the Division of Research of the
+Harvard Graduate School of Business Administration (Baker and Wurgler) and from the National Science
+Foundation (Stein) is gratefully acknowledged. The views expressed herein are those of the authors and not
+necessarily those of the National Bureau of Economic Research.
+© 2002 by Malcolm Baker, Jeremy C. Stein and Jeffrey Wurgler.  All rights reserved.  Short sections of text,
+not to exceed two paragraphs, may be quoted without explicit permission provided that full credit, including
+© notice, is given to the source.
+
+When Does the Market Matter? Stock Prices and the Investment of
+Equity-Dependent Firms
+Malcolm Baker, Jeremy C. Stein and Jeffrey Wurgler
+NBER Working Paper No. 8750
+February 2002
+JEL No. E22, G31, G32
+ABSTRACT
+We use a simple model of corporate investment to determine when investment will be sensitive
+to non-fundamental movements in stock prices. The key cross-sectional prediction of the model is that
+stock prices will have a stronger impact on the investment of firms that are "equity dependent" - firms
+that need external equity to finance their marginal  investments. Using an index of equity dependence
+based on the work of Kaplan and Zingales (1997), we find strong support for this prediction. In
+particular, firms that rank in the top quintile of the KZ index have investment that is almost three times
+as sensitive to stock prices as firms in the bottom quintile. We also verify several other predictions of the
+model.
+Malcolm Baker
+Jeremy C. Stein
+Jeffrey Wurgler
+Harvard Business School
+Department of Economics
+NYU Stern School of Business
+mbaker@hbs.edu
+Harvard University
+jwurgler@stern.nyu.edu
+Littauer 209
+Cambridge, MA 02138
+and NBER
+jeremy_stein@harvard.edu
+
+1
+I. 
+Introduction
+Corporate investment and the stock market are positively correlated, both in the time
+series and in the cross-section. The traditional explanation for this relationship is that stock
+prices rationally reflect the marginal product of capital. This is the usual interpretation given to
+the relationship between investment and Tobin’s Q, for example, as in Tobin (1969) and von
+Furstenberg (1977).
+Keynes (1936) suggests a very different explanation. He argues that stock prices contain
+an important element of irrationality. As a result, the effective cost of external equity sometimes
+diverges from the cost of other forms of capital. This affects the pattern of equity issues and in
+turn corporate investment. This “equity financing channel” has been developed in work by
+Bosworth (1975), Fischer and Merton (1984), Morck, Shleifer and Vishny (1990), Blanchard,
+Rhee and Summers (1993) and Stein (1996).
+It has proven difficult to determine the relative merits of these explanations. This is partly
+because the equity financing channel has not been articulated in a form that can be empirically
+distinguished from the traditional view. Empirical tests have had to focus on indirect
+implications of the two views, or else have had to impose structural assumptions on the data. For
+example, researchers taking the former approach have examined whether the stock market
+forecasts investment over and above other measures of the marginal product of capital, such as
+profitability or cash flow. If it does not, they argue, then the stock market is probably connected
+to investment only insofar as it reflects fundamentals.
+This empirical strategy has yielded mixed results. Barro (1990, p. 130) attributes an
+important independent role to the stock market: “Even in the presence of cash flow variables,
+such as contemporaneous and lagged values of after-tax corporate profits, the stock market
+
+2
+variable retains significant predictive power for investment.” In contrast, Morck, Shleifer and
+Vishny (1990, p. 199) conclude from their analysis of firm-level data that “the market may not
+be a complete sideshow, but nor is it very central.” And Blanchard, Rhee and Summers (1993, p.
+132) summarize their study of the aggregate data by stating that “market valuation appears to
+play a limited role, given fundamentals, in the determination of investment decisions.”
+Another empirical strategy is to try to measure inefficiency directly as the difference
+between market prices and a structural model of efficient prices, and then test whether
+investment is sensitive to this measure of inefficiency. In a study of aggregate Japanese data,
+Chirinko and Schaller (2001) find evidence for an equity financing channel using this approach.
+As they point out, however, their conclusions depend on several structural assumptions.
+In this paper we take a new approach. We return to the theory to derive several cross-
+sectional predictions that are unique to a specific equity financing channel. In particular, the
+model in Stein (1996) implies that firms that are in need of external equity finance will have
+investment that is especially sensitive to the non-fundamental component of stock prices.
+Intuitively, a firm with no debt and a stockpile of cash can insulate its investment decisions from
+irrational gyrations in its stock price. But an “equity-dependent” firm that needs equity to fund its
+marginal investments will be less likely to proceed if it has to issue undervalued shares. The
+theory thus identifies a specific equity financing channel that suggests when the market matters
+in the cross-section and, at the same time, why it matters.
+We test several implications of this financing channel. To get started, we need a proxy for
+the concept of equity dependence. This concept requires some financing friction, or combination
+of frictions, which makes certain firms more reliant on outside equity at the margin. Standard
+corporate-finance considerations suggest that equity-dependent firms will tend to be young, and
+
+3
+to have high leverage, low cash balances and cash flows, high cash flow volatility (and hence
+low incremental debt capacity) and strong investment opportunities.1 One off-the-shelf measure
+which satisfies most of these criteria is an index based on the work of Kaplan and Zingales
+(1997). This “KZ index” has already been adapted for use in large-sample empirical work by
+Lamont, Polk and Saa-Requejo (2001), so we can follow their methodology. By taking this
+approach, as opposed to building our own measure of equity dependence from scratch, we hope
+to minimize any concerns about data mining.
+Next, we rank firms according to this proxy for equity dependence, and test in a variety
+of ways whether those that are classified as most likely to be equity dependent have the strongest
+correlation between stock prices and subsequent investment. We find strong support for this
+prediction. In our baseline specification, firms that rank in the top quintile of the sample in terms
+of the KZ index have a sensitivity of investment to stock prices that is almost three times as large
+as firms that rank in the bottom quintile.2 Put differently, our results suggest that the investment
+of equity-dependent firms is in some circumstances more sensitive to Q than to cash flow. This is
+noteworthy because it is generally believed that the cash flow effect uniformly dominates the Q
+effect in investment equations.
+We also examine whether these results for investment reflect the specific equity financing
+mechanism outlined in the model. This involves a test of whether the firms who are the most
+likely to be equity dependent also have the strongest correlation between stock prices and the
+                                                          
+1 Morck, Shleifer and Vishny (1990) look for a financing channel using firm size as their only proxy for equity
+dependence. They argue that the “hypothesis predicts that the influence of the stock market should be particularly
+great for smaller firms, which rely to a greater extent on external financing” (p. 182). However, they find little
+evidence that the investment of smaller firms is especially sensitive to stock prices, and conclude that there is little
+support for the hypothesis. As we show, the use of a more fully developed measure of equity dependence leads to
+quite different conclusions.
+2 The result that investment is more sensitive to Q for high-KZ firms actually shows up in Kaplan and Zingales’
+(1997) small 49-firm sample. However, their focus is on a different question – how investment-cash flow
+sensitivities vary with financial constraints – and they never discuss or interpret this particular finding.
+
+4
+volume of new equity issues. We find support for this hypothesis as well: Firms with high values
+of the KZ index also have equity issuance behavior that is more responsive to stock prices than
+their low-KZ counterparts.
+Our results offer support for a specific equity financing channel in corporate investment.
+They also complement other evidence that the cost of external equity has an important,
+independent effect on corporate financing and investment decisions. For example, Ritter (1991),
+Ikenberry, Lakonishok, and Vermaelen (1995), Loughran and Ritter (1995), Speiss and Affleck-
+Graves (1995), and Baker and Wurgler (2000) find evidence that equity financing patterns
+depend on the cost of equity, and Baker and Wurgler (2002) use these results to motivate an
+alternative view of capital structure. Shleifer and Vishny (2001) argue that the cost of equity is a
+strong determinant of merger activity, explaining the form of financing in mergers as well as
+merger waves themselves. Whereas the capital structure findings could be viewed as financial
+phenomena without significant real effects, however, our results point to a specific channel
+through which market inefficiency may affect the real economy.
+The remainder of the paper is organized as follows. In Section II, we develop several
+testable hypotheses in the context of a simple model. The model provides some guidance as to
+how to measure equity dependence in practice, and provides a framework for thinking about
+competing hypotheses. In Section III, we describe the data, and in Section IV, we present the
+empirical results. Section V concludes.
+
+5
+II. 
+Hypothesis development
+A. A simple model
+We use a simplified version of the model in Stein (1996) to develop several testable
+hypotheses about equity dependence and investment. For starters, consider a firm that can invest
+K at time 0, which yields a gross return of f(K) at time 1, where f(⋅) is an increasing, concave
+function. The efficient-market discount rate is r, so the net present value of this investment is
+( )
+K
+r
+K
+f
+−
++
+1
+. The first-best level of investment Kfb is therefore given by 
+(
+)
+1
+1
+=
++
+′
+r
+K
+f
+fb
+.
+The firm also has financing considerations. Its equity may be mispriced by a percentage δ
+relative to the efficient-market value, either overpriced (δ > 0) or underpriced (δ < 0), while its
+debt is fairly priced.3 The firm can issue equity e subject to the constraints that 0 ≤ e ≤ emax. In
+other words, it cannot repurchase equity, and there is an upper bound on how much it can issue.
+Financing and investment are linked by a leverage constraint, 
+0
+)
+1(
+≥
+−
+−
++
+D
+K
+W
+e
+, where W is
+the firm’s pre-existing wealth (such as cash on hand, or untapped debt capacity) and D  is the
+fractional debt capacity of the new assets. This constraint implies that the firm’s debt ratio can
+fall below D  but cannot exceed it.4
+                                                          
+3 The model interprets δ as an irrational variation in the cost of external equity, but one could also view it as a
+rational gap between the cost of external and internal equity that reflects adverse-selection problems (Myers and
+Majluf (1984)). Moreover, some authors have argued that adverse-selection problems are mitigated in good times,
+which are generally associated with high stock prices (Lucas and McDonald (1990), Choe, Masulis and Nanda
+(1993), Bayless and Chaplinsky (1996)). Such an interpretation of δ can lead to similar empirical predictions. Our
+own view is that the first story – based on market inefficiencies – is a more compelling way of thinking about the
+connection between equity issues and stock prices, and more consistent with the evidence from surveys and long-run
+stock returns following equity issues. However, we note that none of our tests seek to discriminate between these
+stories. In fact, both of them are based on the same idea: managers try to time the market by selling stock when they
+think it is overvalued, and by sitting out when they think it is undervalued. The only difference is whether investors
+fully account for this motive.
+4 These constraints simplify the exposition, but they can be dispensed with in a fuller model. For example, both
+repurchases and equity issues could be bounded endogenously by assuming that there are price-pressure effects that
+increase with the size of the repurchase or issue. The simple form of the leverage constraint can also be generalized
+by having costs of financial distress that increase continuously whenever the debt ratio exceeds D . These
+generalizations are considered in Stein (1996).
+
+6
+Putting all this together, the firm’s optimization problem is given by:
+( )
+e
+K
+r
+K
+f
+K
+e
+δ
++
+−
++
+1
+max
+,
+,
+(1)
+subject to
+0
+)
+1(
+≥
+−
+−
++
+D
+K
+W
+e
+ and
+(2)
+0 ≤ e ≤ emax.
+ (3)
+Proposition 1 summarizes the solution to this problem.
+Proposition 1: Assume that emax > Kfb(1- D ). Then the possible outcomes are as follows:
+i) 
+If δ > 0, then K = Kfb and e = emax: An overvalued firm invests at the first-best level and
+issues as much equity as possible.
+ii) 
+If δ < 0 and W – Kfb(1- D ) ≥ 0, then K = Kfb and e = 0: An undervalued firm with
+sufficient wealth W invests at the first-best level and avoids issuing equity.
+iii) 
+If δ < 0 and W – Kfb(1- D ) < 0, then K < Kfb: An undervalued firm with insufficient
+wealth underinvests. This case admits two subcases.
+a) Define Kec by 
+(
+)
+(
+)
+D
+r
+K
+f
+ec
+−
+−
+=
++
+′
+1
+1
+1
+δ
+. If W – Kec(1- D ) < 0, it follows that K = Kec and e
+= Kec(1- D ) – W > 0: The firm issues equity, and both investment and the size of the
+equity issue are functions of the degree of undervaluation δ and debt capacity D .
+b) If W – Kec(1- D ) ≥ 0, then 
+D
+W
+K
+−
+= 1
+ and e = 0: The firm does not issue equity and
+invests as much as it can subject to its wealth W and the leverage constraint.
+The proposition makes clear when investment depends on the non-fundamental
+component of stock prices. This happens only when two necessary conditions are satisfied: when
+
+7
+the stock is undervalued, and when available wealth is so low that the firm would have to issue
+undervalued equity to invest at the first-best level.5 We therefore define a firm as “equity
+dependent” if W < Kfb(1- D ). The basic message of Proposition 1 is that for equity-dependent
+firms, market inefficiency can act like a financial constraint, discouraging investment when stock
+prices are too low.
+B. Testable hypotheses
+We boil Proposition 1 down to three empirical hypotheses. In each case, the null
+hypothesis is the joint statement that stock prices reflect the net present value of investment and
+that financing is frictionless – i.e., the benchmark Tobin’s Q mechanism. The hypotheses that
+follow from the proposition, by contrast, maintain that stock prices have a non-fundamental
+component and that debt capacity can be a constraint.
+Hypothesis 1: Define a firm as equity dependent if W < Kfb(1- D ). Equity-dependent
+firms display a higher sensitivity of investment to stock price than non-equity-dependent firms.
+Hypothesis 1 is the primary focus of our empirical tests. As we state it, the hypothesis is
+not conditioned on whether firms are over- or undervalued. It effectively averages over region
+(i), where δ > 0, and where equity dependence does not affect investment, and regions (ii) and
+(iii), where δ  < 0, and where equity dependence does matter for investment. Observe also that
+                                                          
+5 The conclusion that investment is sensitive to stock prices only when δ < 0 is a result of the one-sided nature of the
+leverage constraint. One could also impose the constraint that an equity issue not cause leverage to fall below some
+critical value, in which case investment may vary with stock prices even when δ > 0. The model of Shleifer and
+Vishny (2001) implicitly embodies such a feature—they assume that overvalued firms wishing to issue equity
+cannot simply park the proceeds in T-bills, and must do something concrete, like acquiring another firm, to justify
+the issue. Hence overvaluation leads to more investment in the form of mergers.
+
+8
+for the undervalued, equity-dependent firms in (iii.a), the magnitude of the sensitivity of
+investment to δ is governed by (1– D ), so that for a given starting value of K, firms with less
+debt capacity have investment that reacts more strongly to stock prices. The intuition is simple.
+When a firm has little wealth relative to its investment opportunities, it is forced to issue
+undervalued equity at the margin to keep the leverage constraint satisfied. This tends to
+discourage investment. And the lower is D , the more equity must be issued for each marginal
+dollar of investment, hence the stronger is the negative effect on investment.
+Proposition 1 also suggests various hypotheses that condition on δ – which we outline
+next – but the unconditional statement in Hypothesis 1 is more straightforward to test
+empirically, so we make it the focus of our empirical efforts.
+Hypothesis 2: When δ < 0, Hypothesis 1 holds more strongly: Equity-dependent firms
+display a particularly high sensitivity of investment to stock price when δ < 0.
+Hypothesis 2 compares the undervalued, non-equity-dependent firms in (ii) to the
+undervalued, equity-dependent firms in (iii), especially (iii.a). It is a more direct implication of
+the idea that equity dependence matters for investment only when equity is undervalued – in the
+model, when equity is overvalued, all firms invest at the first-best level regardless of the degree
+of overvaluation. Therefore, conditioning on undervaluation should reveal a stronger effect of
+equity dependence.
+Hypothesis 2 is trickier to test than Hypothesis 1, however, because it requires us to
+proxy for the absolute level of over or undervaluation. This is further complicated by the fact that
+what really matters are managers’ perceptions of misvaluation. A variety of evidence suggests
+
+9
+that managers are not particularly objective when it comes to assessing whether their firms are
+fairly valued; indeed, they tend to be biased toward the view that their firms are chronically
+undervalued.6 Thus, while we take a stab at testing Hypothesis 2, we view it more in terms of an
+auxiliary test of the model.
+Hypothesis 3: When δ < 0, equity-dependent firms display a higher sensitivity of equity
+issuance to stock price than non-equity dependent firms.7
+Hypothesis 3 reflects the fact that in region (iii.a), the investment and equity issues of
+equity-dependent firms are tied together by the binding leverage constraint, and so both are
+sensitive to undervaluation. In contrast, the non-equity-dependent firms in region (ii) avoid
+issuing equity regardless of the degree of undervaluation. If this hypothesis can be confirmed in
+the data, it will provide additional evidence that our specific equity financing channel is driving
+any patterns in investment. Unfortunately, testing this hypothesis again requires a proxy for
+undervaluation, so again we view the results as somewhat provisional.
+Note that our hypotheses involve simple comparisons between firms that are equity
+dependent and those that are not – that is, comparisons across the regions in Proposition 1. We
+can also ask what happens within region (iii.a) as firms become “more” equity dependent, i.e. as
+W falls further and further below Kfb(1- D ). The answer to this question depends on the form of
+the production function. Define the “degree” of equity dependence as Φ = Kfb(1- D ) – W, and the
+                                                          
+6 Heaton’s (1998) model is built on just this sort of managerial overconfidence.
+7 Note that, unlike in Hypothesis 2, we cannot predict that the relationship between equity issues and stock prices
+will be stronger in the undervaluation region than in the overvaluation region. Unlike with investment, the model (or
+a reasonable variant on it) allows for equity issues to be sensitive to stock prices even when they are overvalued.
+
+10
+percentage sensitivity of investment to stock prices as 
+δ
+d
+dK
+K
+S
+⋅
+= 1
+. (This measure of the
+sensitivity matches our empirical implementation, where we scale investment by existing assets.)
+It is straightforward to show that a sufficient condition for 
+Φ
+d
+dS  to be positive in region (iii.a) –
+and hence for the sensitivity S to become ever greater as W declines relative to Kfb(1- D ) – is that
+( )
+( )
+0
+<
+′′
++
+′′′
+K
+f
+K
+f
+K
+.8
+When this condition is satisfied, there is a globally monotonic relationship between Φ
+and the sensitivity of investment and equity issuance to the non-fundamental component of stock
+prices. When it is not satisfied, we are left with the weaker prediction that S must increase as Φ
+moves from negative to positive values, but need not be monotonic in Φ beyond that point. To be
+clear, our three hypotheses are based on this weaker prediction. This situation is reminiscent of
+the discussion by Kaplan and Zingales (1997, 2000) and Fazzari, Hubbard, and Petersen (2000)
+as to whether the sensitivity of investment to cash flow is monotonic in the degree of a different
+kind of financial constraint. Nevertheless, even if the sufficient condition is not satisfied, the
+hypotheses show that the theory is testable as long as we can plausibly identify some firms that
+are not dependent on equity at all – i.e., firms for which Φ < 0 – since the theory unambiguously
+predicts that the sensitivity of investment and equity issuance to stock prices will rise over at
+least this first part of the range of measured equity dependence. Whether these sensitivities
+continue to increase over the whole range is an empirical question, however, and not one for
+which the theory leaves us with strong priors.
+                                                          
+8 Among the functions that satisfy this condition are the quadratic, and anything of the form f(K) = K/(K+A), where
+A > 2K.  Note that in our setup, S depends on Φ within region (iii.a) only through D and not through W, since
+dW
+dK
+is zero in this region.  Nevertheless, the sufficient condition stated in the text continues to apply even in a
+modified version of the model where 
+dW
+dK
+> 0 in the region of interest.
+
+11
+C. Determining equity dependence in practice
+Our theory defines an equity-dependent firm as one in which W < Kfb(1- D ). This
+definition indicates that a firm is more likely to be dependent on equity when W is low (which
+translates into low profitability, cash balances, or previously untapped debt capacity), when Kfb is
+high (growth opportunities are good), and when the incremental debt capacity of new assets D
+is low.9 Therefore, a sensible empirical measure of equity dependence should probably be:
+negatively related to operating cash flow; positively related to proxies for growth opportunities;
+positively related to actual leverage, net of cash on hand; and negatively related to the debt
+capacity of assets. Firm age may also be a factor, to the extent that young firms without
+established reputations may have a harder time raising bond-market finance (Diamond (1991)).
+These observations motivate our interest in the empirical work of Kaplan and Zingales
+(1997), who do an in-depth study of the financial constraints faced by a sample of 49
+manufacturing firms. Using both subjective and objective criteria, they rank these firms on an
+ordinal scale, from least- to most-obviously financially constrained. Most useful for our
+purposes, they then estimate an ordered logit regression which relates their ranking to five simple
+Compustat variables. The regression attaches positive weight to Q and leverage, and negative
+weight to operating cash flow, cash balances, and dividends. Thus, the parameters of this
+regression allow one to easily create a synthetic “KZ index” of financial constraints for a large
+sample of firms, as is done in Lamont, Polk and Saa-Requejo (2001).
+The KZ index has some very attractive features from our perspective. It is an objective,
+off-the-shelf index that has already gained substantial currency as an indicator of financial
+constraints. By using it, as opposed to building our own measure from scratch, we hope to avoid
+                                                          
+9 These first two factors closely parallel the notion of “financial dependence” in Rajan and Zingales (1998).
+
+12
+any criticism of data mining. Moreover, relative to what is suggested by our theory, the KZ index
+seems at first glance to load up on each of the five included variables in the “right” way.
+The index also has some disadvantages as a measure of equity dependence, however.
+Most importantly, our theoretical definition of equity dependence requires a measure of
+investment opportunities Kfb that is distinct from mispricing δ. Of the five variables in the KZ
+index, both low dividends and high values of Q can be thought of as proxies for strong
+investment opportunities. But in the case of Q, much research has argued that this ratio
+(effectively, the market-to-book ratio) reflects mispricing δ as much as it reflects investment
+opportunities Kfb. This dual role is particularly problematic from our perspective, since our
+model has opposite predictions for the effects of Kfb and δ.
+In light of this ambiguity, our baseline specifications use a modified four-variable version
+of the KZ index that omits Q. We stress here, though, that we do this more for conceptual
+cleanness than because it has any real effect on the empirical results. As we demonstrate in our
+robustness tests, we obtain very similar estimates if we work instead with the five-variable
+version of the KZ index that includes Q.
+Another disadvantage of the KZ index is that it does not include every characteristic that
+could identify equity dependence. Firm age is a noteworthy omission. And given the important
+role that available debt capacity plays in our model, we would have preferred to include leverage
+relative to the firm’s debt capacity, not simply the raw debt level. In some of our auxiliary tests,
+we supplement the KZ index with two more variables, firm age and the volatility of industry
+cash flow (a proxy for debt capacity), in an effort to further zero in on equity-dependent firms.
+The definitional shortcomings partly stem from the fact that Kaplan and Zingales (1997)
+set out to measure financial constraints generally, not equity dependence. Though related, these
+
+13
+concepts are not exactly the same. For example, one can imagine a high-KZ firm whose
+investment is sensitive to debt-market conditions, but that would not issue equity at any price.
+An important part of our empirical work is therefore to confirm that high-KZ firms actually do
+raise significantly more outside equity when stock prices go up.
+D. Competing hypotheses
+ Our null hypothesis throughout the empirical section is that the stock market is efficient
+and that financing is frictionless. This leads to the benchmark Q specification, in which the
+coefficient of investment on Q reflects technological adjustment costs.10 The full statement of
+our null hypothesis is therefore that any cross-sectional differences in the sensitivity of
+investment to Q reflect cross-sectional differences in technological adjustment costs. This theory
+is silent about the sensitivity of equity issuance to Q.
+Another competing hypothesis is that any patterns we may find in the investment-Q
+sensitivity are due to cross-sectional differences in measurement error. In particular, the effects
+predicted by our model would also show up if measurement error were more pronounced for
+firms that are less equity dependent. However, an important point to note is that such a pattern
+with respect to measurement error is precisely the reverse of that which has for many years been
+discussed in the large literature on liquidity constraints. For example, in his discussion of
+Fazzari, Hubbard, and Petersen (1988), Poterba (1988) argues that their results “could be
+explained on this view because Q is measured with more error for smaller firms, which tend to
+be lower-dividend firms” (p. 202). Erickson and Whited (2000) and Alti (2001) further develop
+this point; the latter builds a formal model to show why measurement error in Q is likely to be
+                                                          
+10 This model is treated in surveys of the investment literature by Chirinko (1993) and Hubbard (1998).
+
+14
+greater for young, faster-growing, low-dividend firms. Clearly, if these arguments are correct,
+our approach stands on safe ground. The KZ index scores low-dividend, high-growth firms as
+more likely to be equity dependent. If these attributes lead to more measurement error in Q, our
+tests will be biased toward being excessively conservative.
+Nevertheless, it is possible to concoct measurement-error stories that go in the opposite
+direction. One way to partially address such stories, as well as the adjustment-costs null
+hypothesis, is by “unpacking” the KZ index. The definition of equity dependence leads to
+specific predictions for how each of the four components of the modified KZ index should affect
+the sensitivity of investment to stock prices. If these predictions hold up in the data, advocates of
+the competing hypotheses would then have to explain why technological adjustment costs, or
+measurement error in Q, should be positively correlated with some of these variables and
+negatively correlated with others. Our further tests that look at how the sensitivity of investment
+to stock prices varies with firm age and debt capacity can be thought of in a similar spirit.
+III. 
+Data
+We study a large, unbalanced panel of Compustat firms that covers 1980 through 1999.
+The panel excludes financial firms (i.e., firms with a one-digit SIC of six), and firm-years with a
+book value under $10 million, but otherwise includes all observations with data on investment,
+financing, equity dependence, and other investment determinants, as described below. The full
+sample includes 51,982 observations, for an average of 2,599 observations per year.
+
+15
+A. Investment
+We consider four measures of investment. Our baseline measure is CAPXit/Ait-1, the ratio
+of capital expenditures in year t (Compustat Annual Item 128) to start-of-year book assets (Item
+6).11 In addition, we look at (CAPXit+RDit)/Ait-1, which includes research and development
+expenses (Item 46), and at (CAPXit+RDit+SGAit)/Ait-1, which further includes selling, general and
+administrative expenses (Item 189). Finally, we also examine the percentage change in book
+assets over the year, ∆Ait/Ait-1. To reduce the influence of outliers, we Winsorize each of these
+variables at the 1st and 99th percentile.12
+Panel A of Table 1 shows summary statistics for investment. The reported minimum and
+maximum values, like the other statistics, are post-Winsorization.
+B. Financing
+We consider two measures of external financing activity. To measure equity issuance we
+use eit/Ait-1, the ratio of external equity issues to start-of-year book assets. External equity issues
+are constructed as the change in book equity minus the change in retained earnings (∆Item
+60+∆Item 74-∆Item 36). Total external finance is measured as (eit+dit)/Ait-1, which includes both
+equity and debt issues. Debt issues are constructed as the total change in assets minus the change
+                                                          
+11 We scale our measures of investment and cash flow by book assets. This contrasts with some of the literature (e.g.
+Fazarri, Hubbard, and Petersen (1988) and Kaplan and Zingales (1997)), where the denominator is net plant,
+property, and equipment (PP&E). Our approach matches our sample, which includes smaller and non-manufacturing
+firms with modest fixed assets, and our measures of investment, which include intangible assets. Nevertheless, we
+show in our robustness tests below  that scaling by PP&E leads to very similar results.
+12 We have conducted a variety of tests to determine whether our particular treatment of outliers makes any
+difference.  As it turns out, all that matters is that we do something to tamp down the most extreme realizations of Q,
+which in the raw data attains a maximum value of 52.5.  An alternative to Winsorizing is to replace the book value
+of equity in Q with 0.9 times the book value plus 0.1 times the market value, thereby bounding the transformed
+value of Q below 10.  This procedure gives virtually identical results to those we report.  (We thank Tuomo
+Vuolteenaho for suggesting this procedure.)
+
+16
+in book equity (∆Item 6-∆Item 60-∆Item 74). These variables are also Winsorized at the 1st and
+99th percentile.
+Panel B of Table 1 shows summary statistics for financing. These mean values are
+sensitive to major financing events such as acquisitions and divestitures, despite the
+Winsorization and the restriction on minimum book assets. The medians look more familiar. The
+medians are also stable across the 1980s and 1990s (not reported).
+C. Equity dependence
+Following Lamont, Polk and Saa-Requejo (2001), we construct the five-variable KZ
+index for each firm-year as the following linear combination:
+it
+it
+it
+it
+it
+it
+it
+it
+it
+Q
+LEV
+A
+C
+A
+DIV
+A
+CF
+KZ
+283
+.0
+139
+.3
+315
+.1
+368
+.
+39
+002
+.1
+ variable)
+(five
+ 
+1
+1
+1
++
++
+−
+−
+−
+=
+−
+−
+−
+ (4)
+where CFit/Ait-1 is cash flow (Item 14+Item 18) over lagged assets; DIVit/Ait-1 is cash dividends
+(Item 21+Item 19) over assets; Cit/Ait-1 is cash balances (Item 1) over assets; LEVit is leverage
+((Item 9+Item 34)/(Item 9+Item 34+Item 216)); and Q is the market value of equity (price times
+shares outstanding from CRSP) plus assets minus the book value of equity (Item 60+Item 74) all
+over assets.13 We Winsorize the ingredients of the index before constructing it.
+For reasons discussed above, our baseline specifications use a four-variable version of
+this index which omits Q. Henceforth, when we refer to the “KZ index,” we mean this modified
+version, unless otherwise specified. We denote this version simply by KZit:
+it
+it
+it
+it
+it
+it
+it
+it
+LEV
+A
+C
+A
+DIV
+A
+CF
+KZ
+139
+.3
+315
+.1
+368
+.
+39
+002
+.1
+1
+1
+1
++
+−
+−
+−
+=
+−
+−
+−
+(5)
+                                                          
+13 As with investment, we scale the components of the KZ index by assets rather than net plant, property, and
+equipment (Item 8), because our sample includes small and non-manufacturing firms. Although assets produce
+fewer outliers in the raw KZ index, the results are similar with either denominator, as we show in robustness tests.
+
+17
+In some of our additional tests, we consider two other variables that may help to pinpoint
+equity-dependent firms. AGEit is the number of years since the firm’s IPO, defined as the current
+year minus the first year Compustat reports a non-missing market value of equity. As discussed
+above, this variable may be useful as a proxy for reputation and access to lending markets.
+Industryσ(CF/A)i is the industry average standard deviation of cash flows. We calculate the
+standard deviation of cash flows across the subset of firm-year observations for each industry
+using the industry definitions in Fama and French (1997). This measure may help to capture
+variation in debt capacity that is missed by the KZ index.
+Panel A of Table 2 shows summary statistics for the KZ index, its four ingredients, and
+the other two equity-dependence proxies. By multiplying the coefficients in equation (5) by the
+standard deviation of the components, one can see that the KZ index is especially sensitive to
+variation in dividends and leverage.
+D. Other investment determinants
+Following Fazzari, Hubbard, and Petersen (1988) and many others, our baseline
+investment equation includes year fixed effects, firm fixed effects, start-of-year Q, and
+contemporaneous cash flow. Q and cash flow are as defined above.
+IV. 
+Empirical results
+A. Hypothesis 1: Investment
+We begin with a simple test of Hypothesis 1, which predicts that the investment of
+equity-dependent firms is more sensitive to their stock prices than that of non-equity-dependent
+
+18
+firms. We assign each firm to a quintile according to its median value of KZit over the full sample
+period.14 For each KZ quintile, we then estimate the following investment equation:
+it
+it
+it
+it
+t
+i
+it
+it
+u
+A
+CF
+c
+bQ
+a
+a
+A
+CAPX
++
++
++
++
+=
+−
+−
+−
+1
+1
+1
+.
+(6)
+Hypothesis 1 predicts that the stock-price-sensitivity coefficient b will generally increase as KZ
+increases.
+Figure 1 and Panel A of Table 3 show that there is indeed a strong relationship between
+KZ and the effect of stock prices on investment. The coefficient b rises from 0.010 in the first
+quintile to 0.028 in the fifth quintile. Thus, the firms that are most likely to be equity dependent
+according to the KZ index have a sensitivity of investment to stock prices that is almost three
+times as large as firms that are unlikely to be equity dependent.
+The pattern of b coefficients is our main result, but as an aside it is also interesting to
+look at the pattern of c coefficients in Panel A of Table 3. Consistent with the small-sample
+results of Kaplan and Zingales (1997), we find no discernible pattern in this coefficient across
+the KZ quintiles. It is almost the same in quintile 1 (0.122) as in quintile 5 (0.154), and bounces
+around non-monotonically in between. This particular result, however, is sensitive to the nature
+of the specification. If we keep everything else the same and lag the cash-flow term one year (so
+that we are using CFit-1/Ait-2 instead of CFit/Ait-1) the cash-flow coefficient c now shows a
+pronounced increasing pattern, going from 0.044 in quintile 1 to 0.138 in quintile 5 (not
+                                                          
+14 Our results are not sensitive to the technique used to classify firm-year observations.  In our robustness checks
+below, we experiment with two alternatives. In the first, we allow a firm’s KZ quintile to vary from year to year, so,
+for example, if its leverage increases, it may move to a higher quintile. In the second, we assign firms to quintiles
+based on their median values of the index over five-year sub-periods, rather than over the full sample period.  Both
+of these alternatives lead to very similar results.
+
+19
+reported). The pattern of b coefficients, on the other hand, is essentially unaffected by this
+variation: it now goes from 0.012 to 0.030 across the five quintiles (not reported).15
+To get a better understanding of economic magnitudes, note from Table 2 that the
+standard deviation of Q in our sample is 0.91. Thus in the highest KZ quintile, the impact of a
+one-standard-deviation shock to Q is to alter the ratio of capital expenditures to assets by 0.025
+(0.028 x 0.91 = 0.025). When compared to either the median or the standard deviation of this
+investment ratio (0.0598 and 0.0780, respectively), this effect is clearly substantial. As another
+benchmark, note that the standard deviation of the cash-flow-to-assets ratio is 0.117, so that in
+the highest KZ quintile, a one-standard-deviation shock to cash flow moves the investment ratio
+by 0.018 (0.154 x 0.117 = 0.018). Thus among the firms most likely to be equity dependent,
+stock prices have a slightly larger effect on investment than does cash flow. This contrasts with a
+general belief that cash flow uniformly dominates Q in these sorts of investment equations.
+Turning to statistical, as opposed to economic significance, there are a couple of ways to
+evaluate the precision of our results. First, and most simply, we can do a t-test of the difference
+between our quintile-1 and quintile-5 b coefficients. Based on the standard errors from our
+regressions, (which are heteroskedasticity-robust, and clustered at the firm level in an effort to
+deal with potential serial correlation) the t-statistic is 4.43, which is highly significant.
+An alternative approach, in the spirit of Fama and MacBeth (1973), can be used if one is
+very concerned about serial correlation at the firm level and does not trust the cluster adjustment
+to deliver proper standard errors. This approach is illustrated in Figure 2. Using the same
+                                                          
+15 We use the specification with a contemporaneous cash-flow term as our baseline for two reasons.  First, this
+seems to be the convention in the literature.  Second, we are interested in having the cash-flow term be as good a
+control as possible for fundamentals, not in making structural inferences with respect to it.  This suggests that we
+should use the most recent cash-flow information available.  In contrast, if the goal were to test whether cash flow
+has a causal impact on investment controlling for investment prospects, this approach might be less palatable,
+precisely because of contemporaneous cash flow’s informativeness about future profitability.
+
+20
+methodology as before, we now divide the firms up into twenty KZ-index groups, instead of five.
+For each group, we estimate the b coefficient of investment on stock prices, just as we did
+previously. We then regress these twenty b estimates against their respective ordinal KZ-index
+rankings. In other words, we treat each b coefficient simply as a data point, without making any
+assumptions about the precision with which it is estimated. This twenty-data-point regression
+yields a point estimate of 0.0012 and a t-statistic of 6.44.16 This estimate is roughly consistent
+with the effect of KZ that we found in the quintile regressions.
+B. Robustness of Hypothesis 1 results
+In Table 4 and Panel A of Table 5, we explore the robustness of our basic findings for
+investment. In Table 4, we continue to focus on capital expenditures as our measure of
+investment, but modify several other aspects of the specification. In each case, we report results
+that can be directly compared with those in Panel A of Table 3 – i.e., we report the b coefficient
+for each of the five KZ quintiles. Recall that in our baseline specification, this coefficient rises
+from 0.010 to 0.028 as we move from the bottom to the top quintile.
+The first modification is to revert to the original five-variable KZ index used in Lamont,
+Polk and Saa-Requejo (2001), which includes Q. In this case, the b coefficient goes from 0.009
+in quintile 1 to 0.023 in quintile 5, which differs little from our baseline result. Second, going
+back to our baseline four-variable version of the index, we try classifying firms based on their 5-
+year median value of KZ, as opposed to their median over the entire sample period. This again
+leads to results almost identical to the base case. Next, we push this time-varying classification
+logic one step further, and re-classify firms every year — specifically, a firm is assigned to a KZ
+                                                          
+16 Intuitively, with this method we infer that the b coefficients are precisely estimated by virtue of the fact that most
+of them cluster very close to the fitted regression line in Figure 2.
+
+21
+quintile in any given year t based on its value of the index in year t-2. Again, the estimates here
+are similar to those in the base case.
+We consider two more variations. One is to scale everything by property, plant and
+equipment (PP&E), as opposed to by assets. This actually strengthens the results somewhat, with
+b more than quadrupling from 0.008 in the first quintile to 0.034 in the fifth quintile. Lastly, we
+add the lagged value of the capital-expenditure ratio to the right-hand-side. This brings down the
+b coefficients just slightly, but preserves their relative proportions.
+In Panel A of Table 5, we consider how our basic results carry over to the three other
+measures of investment. To do this in a compact fashion, we pool the observations and run a
+series of interactive specifications of the form:
+it
+it
+it
+i
+it
+it
+t
+i
+it
+it
+u
+A
+CF
+d
+KZ
+cQ
+bQ
+a
+a
+A
+I
++
++
+⋅
++
++
++
+=
+−
+−
+−
+−
+1
+1
+1
+1
+(7)
+where Iit denotes one of the four measures of investment, and KZi is the sample-median value of
+the KZ index for firm i. The coefficient of interest in this case is c, which is predicted to be
+positive. As can be seen, all four measures of investment yield qualitatively similar results.
+C. Hypothesis 2: Investment and valuation
+Hypothesis 2 predicts that the investment of undervalued equity-dependent firms is
+particularly sensitive to their stock prices. This is a more precise statement of the basic idea of
+the model, which is that undervaluation can induce a financial constraint on equity-dependent
+firms. This hypothesis is more difficult to test than Hypothesis 1, unfortunately, because it
+requires us to find some proxy for misvaluation (or, specifically, a proxy for perceived
+mispricing).
+
+22
+One useful proxy for misvaluation may be the level of Q itself. Several authors have
+interpreted the market-to-book ratio as a proxy for mispricing (Lakonishok, Shleifer, and Vishny
+(1994), La Porta (1996), and La Porta, Lakonishok, Shleifer, and Vishny (1997)). While this
+interpretation remains controversial, there is rather clear support for the use of market-to-book as
+a proxy for perceived mispricing. This is suggested by several empirical studies. First, managers
+state in surveys that mispricing is an important factor in the decision to issue equity (Graham and
+Harvey (2001)), and managers actually do tend to issue equity when the market-to-book ratio is
+high (Marsh (1982), Korajczyk, Lucas, and McDonald (1991), Pagano, Panetta, and Zingales
+(1998), and others). Also, managers tend to be net sellers in their personal account when their
+firm’s market-to-book ratio is high (Jenter (2001)). Put together, these results suggest that a
+sensible approach to testing Hypothesis 2 would use market-to-book, or Q, as a proxy for
+perceived mispricing.
+We therefore split the full sample into two subsamples, one containing low valuation
+firm-years (Q < 2.00) and another containing high valuation firm-years (Q > 2.00). The choice of
+2.00 is admittedly arbitrary, but it seems necessary to set the breakpoint above unity to reflect
+such facts as intangible assets, inflation, and the aforementioned tendency among managers to
+view their firms as chronically undervalued.
+Using our baseline specification, with capital expenditures as the investment measure, the
+coefficients in panels B and C of Table 3 (which are plotted in Figure 3) show the sensitivity of
+investment to stock prices in each of these subsamples. The results are generally consistent with
+Hypothesis 2. In the low valuation sample, the sensitivity of investment to stock prices is
+strongly increasing in the KZ index, whereas the effect is small or nonexistent in the high
+valuation sample. Thus it appears that our results for the full sample are almost entirely driven by
+
+23
+the low valuation firms, as predicted by the model. Panel C of Table 3 also shows that the
+sensitivity of investment to stock prices is lower in general in the high valuation sample. This is
+consistent with another feature of the model, that investment is a fixed constant when δ > 0 – or,
+said more realistically, that investment is sensitive to stock prices in this region only to the extent
+that they reflect investment opportunities as opposed to perceived mispricing.
+Panels B and C of Table 5 repeat the same sample-split exercise, but vary the measure of
+investment in the pooled interactive specification. The basic picture in Figure 3 emerges in every
+case: the sensitivity of investment to stock prices increases strongly with the KZ index among
+low valuation firms, but much less so among high valuation firms.
+Although the results of the valuation splits are consistent with Hypothesis 2, we are
+hesitant to make them our central focus. The reason is a twist on the Poterba (1988)
+measurement-error critique. It is possible that Q is a poorer proxy for investment opportunities
+when it is high, so measurement error could also lead to the sort of differences that we observe in
+the valuation splits. This is why we view Hypothesis 1 as the most straightforward test of the
+model, and Figure 1 (and the associated variations and robustness tests that we have presented)
+as the most compelling empirical result. Nevertheless, it is reassuring that the results are at least
+consistent with Hypothesis 2.
+D. Decomposing KZ and the effect of other equity-dependence indicators
+One hypothesis that we have maintained, not derived, is that the KZ index is a useful
+measure of equity dependence. One way to examine this hypothesis is by decomposing our
+previous results, checking how each of the four components of our KZ index is affecting the
+stock-price sensitivity. If each component works in the way suggested by our model, we can be
+
+24
+more confident that the index is measuring equity dependence, as opposed to a confounding
+pattern of measurement errors or technological adjustment costs.
+To perform the KZ index decomposition, we again pool all observations, and run the
+following interactive specification, which is analogous to that in Table

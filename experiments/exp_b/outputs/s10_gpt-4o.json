@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s10",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Anticipation effects in DID: pre-announced policy",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:07:50.063645",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 502,
+    "output_tokens": 543,
+    "content": "## 1. Identification Strategy\nIn this scenario, a Differences-in-Differences (DID) approach will be utilized to identify the causal impact of a pre-announced minimum capital requirement policy on banks' tier-1 capital ratios. The critical concern here is the potential anticipation effect: banks might adjust their behavior upon announcement (in period 3) before the policy is enforced (in period 5), which can violate typical DID assumptions of \"no anticipation.\" The key assumption for DID is the parallel trends assumption, which states that in the absence of treatment, the treatment and control groups would have followed parallel paths over time. We'll also include an interaction term for the announcement to capture any anticipation effects.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load dataset\ndata <- read_csv(\"experiments/exp_b/data/s10_data.csv\")\n\n# Create interaction terms\ndata <- data %>%\n  mutate(treat_x_announce = treated * (period >= 3))\n\n# DID with anticipation model\nmodel <- lm(y ~ treated + post + treat_x_post + treat_x_announce + factor(unit_id) + factor(period), data = data)\n\n# View the coefficients\nsummary(model)\n\n# Robust standard errors\ncoeftest(model, vcov = vcovHC(model, type = \"HC1\"))\n\n# Print important coefficients\ncat(\"Coefficient for treat_x_post (post-policy impact):\", coef(model)['treat_x_post'], \"\\n\")\ncat(\"Coefficient for treat_x_announce (anticipation effect):\", coef(model)['treat_x_announce'], \"\\n\")\n\n# Basic robustness check: exclude the anticipation period\nmodel_no_announce <- lm(y ~ treated + post + treat_x_post + factor(unit_id) + factor(period), \n                        data = filter(data, period < 3 | period >= 5))\n\n# View the coefficients\nsummary(model_no_announce)\n\n# Robust standard errors\ncoeftest(model_no_announce, vcov = vcovHC(model_no_announce, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nI expect the coefficient on `treat_x_announce` to be positive, indicating that treated banks increased their capital ratios in anticipation of the policy. The magnitude might be smaller compared to the immediate post-period impact, captured by `treat_x_post`, as banks may have partially adjusted in anticipation but not as completely as when the policy officially takes effect. The `treat_x_post` coefficient should also be positive and potentially larger, indicating a further increase once the policy is enforced.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with anticipation — must account for pre-announcement window; use period ≤2 as clean pre-period",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Constrained banks raise capital ratios both after announcement and after effective date",
+    "main_effect": "35bp increase in tier-1 capital ratio"
+  }
+}

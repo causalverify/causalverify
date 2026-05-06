@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI output correctly identifies the strategy as a Difference-in-Differences using cross-border county pairs, consistent with the ground truth. It also acknowledges the positive effect of minimum wage changes, aligned with the ground truth conclusion.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_15",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:01:04.369866+00:00"
+}

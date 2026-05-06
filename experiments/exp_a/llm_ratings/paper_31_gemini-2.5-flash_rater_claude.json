@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies an event study approach using exogenous health shocks and cross-sectional variation in firm connections, which matches the ground truth methodology. However, the response frames this as 'Difference-in-Differences' which is somewhat imprecise - it's more accurately a cross-sectional event study. The AI doesn't clearly state the expected direction of the effect (that connected firms should decline more on bad health news), constituting narrative fabrication since the direction is central to the causal inference.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_31",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:11:21.613445+00:00"
+}

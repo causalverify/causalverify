@@ -1,0 +1,93 @@
+{
+  "paper_id": "paper_30",
+  "source": "Journal of Finance, 2007",
+  "authors": "Acharya & Johnson",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Insider Trading in Credit Derivatives",
+  "doi": "10.1111/j.1540-6261.2007.01253.x",
+  "volume": 62,
+  "issue": 5,
+  "pages": "1995-2037",
+  "domain": "finance",
+  "research_question": "Do creditors with privileged, non-public information about borrowing firms exploit that information when trading credit default swaps, and does the resulting informed trading harm the pricing and liquidity of credit and equity markets for those firms?",
+  "data_description": "The primary dataset consists of daily closing bid and ask quotes for credit default swaps (CDS) on 79 North American benchmark corporate reference entities from January 1, 2001 through October 20, 2004, obtained from CreditTrade, an online trading platform. CDS quotes are for five-year, $10 million notional contracts on senior unsecured debt. These are matched with daily stock returns and trading volume from CRSP, balance-sheet data from Compustat, credit ratings, and corporate bond data from Schaefer and Strebulaev (covering Merrill Lynch Corporate Master and High Yield indices). Bank lending relationships are constructed from Loan Pricing Corporation's DealScan database, counting unique lead and participant banks among the top 100 syndicated lenders with active facilities back to 1996, with adjustments for bank and corporate mergers. The unit of observation is firm-day. The median firm has a CDS level of 81 bps, 16 lead-bank relationships, and $15.8 billion equity market capitalization.",
+  "institutional_context": "Credit default swaps are insurance-like contracts that allow creditors to transfer default risk on a reference firm to a counterparty, and the market grew rapidly during the early 2000s, becoming a key risk-management tool for banks. Commercial banks with lending relationships to a borrower routinely receive material, price-sensitive private information (revenue updates, M&A plans) through monitoring and syndicate participation, while their trading desks also act as CDS market makers and end-users. In the absence of effective internal information barriers, this creates strong opportunities and incentives for banks to hedge or profit from non-public credit information by buying CDS protection, particularly on firms approaching distress. The sample period (2001-2004) coincides with prominent credit deterioration episodes including Enron, WorldCom, Sprint, and Tyco, and with growing public concern—voiced by PIMCO, ISDA, regulators, and the financial press—about insider trading by relationship banks in this opaque, lightly regulated over-the-counter market.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.5,
+      "unit": "percentage points (50 bps) of abnormal CDS widening in 60-day pre-event window for high-lender firms",
+      "interpretation": "Firms with many bank lenders experience approximately 50 basis points of abnormal CDS spread widening in the 60 trading days before a credit downgrade, consistent with bank-based informed trading"
+    },
+    "secondary_estimate": {
+      "value": 12,
+      "unit": "basis points of additional pre-event widening per bank lender",
+      "interpretation": "Each additional bank lender in the borrower's loan syndicate is associated with approximately 12 basis points more pre-event CDS widening, supporting the informed-trading mechanism"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 3-5 in Acharya & Johnson (2007)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Moody's and S&P rating change announcements (partially public, historical archives)",
+      "DealScan (syndicated loan data, available via WRDS with subscription)"
+    ],
+    "proprietary_sources": [
+      "CreditTrade / GFI CDS spread data (proprietary OTC market data)",
+      "Markit CDS data (proprietary, available via academic license)",
+      "Datastream (international equity returns, proprietary)"
+    ],
+    "proxy_strategy": "CDS spread data has become more available through Markit (academic pricing programs). DealScan is available via WRDS. Rating changes are partially available from Moody's and S&P websites.",
+    "replicability": "low — CDS spread data from 2001-2004 is difficult to access; Markit data for recent periods is more available",
+    "public_proxy_available": false,
+    "replication_tier": "proxy (conceptual replication with more recent Markit CDS data + WRDS DealScan is feasible; exact 2001-2004 data is hard to obtain)",
+    "data_limitations": "CDS data in the early 2000s was sparse and quotes were indicative (not transaction prices). OTC market structure means no centralized record of actual trades. The sample of 79 entities is relatively small for cross-sectional analysis.",
+    "public_data_sources_detail": [
+      "WRDS DealScan (syndicate composition — subscription required)",
+      "Markit CDS data (available through academic programs — varying cost)",
+      "CRSP (U.S. equity returns — subscription via WRDS)",
+      "Moody's/S&P rating histories (partially public)",
+      "SEC EDGAR (firm financial filings — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study of CDS spread changes before credit events (downgrades, defaults, LBOs), combined with cross-sectional analysis relating pre-event CDS activity to the number of bank lenders in the firm's loan syndicate — the innovation is testing whether the number of informed agents (lenders) predicts the intensity of pre-event CDS market activity, distinguishing informed trading from public information flow",
+    "key_variables": {
+      "treatment": "upcoming negative credit event (rating downgrade, default, or LBO announcement) combined with number of bank lenders (proxy for number of informed traders)",
+      "control": "same firm's CDS spread changes during non-event periods; firms with fewer bank lenders",
+      "outcome": "cumulative abnormal CDS spread change in [-60, -1] trading days before credit event; incremental CDS information (CDS spread change not explained by concurrent equity return changes)",
+      "time_period": "2001–2004, daily CDS and equity data"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Significant abnormal CDS spread increases occur in the 30-90 days before negative credit events, and the magnitude of this pre-event activity is significantly positively correlated with the number of bank lenders in the borrower's loan syndicate. Firms with 5+ bank lenders show approximately 50-70 basis points of abnormal CDS widening before downgrades, compared to ~15 bps for firms with fewer lenders. This pattern is consistent with bank-based insider trading in the CDS market and is not explained by concurrent equity market information.",
+    "main_effect": "Pre-event CDS spread widening: approximately 50-70 bps for firms with 5+ bank lenders vs. ~15 bps for firms with fewer lenders in the 60 days before a downgrade; the number of lenders is a significant positive predictor of pre-event CDS activity",
+    "key_robustness": [
+      "Controlling for concurrent equity returns (public information flow)",
+      "Separating credit events by type (downgrade vs. default vs. LBO)",
+      "Using incremental CDS information (residual from CDS-equity regression)",
+      "Cross-country analysis (U.S. vs. European reference entities)",
+      "Alternative event windows (30, 60, 90 days before event)",
+      "Placebo tests using post-event windows"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study of CDS spread changes around credit events + cross-sectional regression of pre-event CDS activity on number of informed agents (bank lenders)",
+      "treatment": "Negative credit event (rating downgrade, default, LBO) for the reference entity; cross-sectional variation in number of bank lenders (from DealScan syndicate data)",
+      "event_window": "[-90, -1] and [-60, -1] trading days before credit event (pre-event period); [0, +5] as announcement window",
+      "estimation_window": "[-180, -91] trading days for baseline CDS behavior",
+      "sample_period": "2001–2004",
+      "unit_of_observation": "Reference entity × credit event (79 entities, multiple events per entity possible)",
+      "key_assumption": "The number of bank lenders in the loan syndicate proxies for the number of agents with private information who can trade CDS. If pre-event CDS activity is driven by public information rather than insider trading, the number of lenders should not predict the intensity of pre-event activity (since public information is equally available regardless of the number of lenders). The equity market is assumed to be a sufficient statistic for public information flow."
+    },
+    "key_magnitudes": {
+      "pre_event_widening_many_lenders": "+50-70 basis points of abnormal CDS spread widening in [-60, -1] window for firms with 5+ bank lenders",
+      "pre_event_widening_few_lenders": "+15 basis points for firms with fewer lenders",
+      "lender_coefficient": "Each additional bank lender is associated with approximately 10-15 bps of additional pre-event CDS widening",
+      "incremental_information": "CDS-implied probability of default increases before downgrades, even after controlling for equity market movements"
+    },
+    "robustness_notes_detail": "The key innovation is controlling for concurrent equity returns: if pre-event CDS widening merely reflected public information, it should be explained by simultaneous equity price declines. The residual (incremental CDS information not explained by equity) is significantly positive before credit events and significantly related to the number of bank lenders, ruling out a public-information explanation. Results hold for U.S. and European entities, across event types, and with various control specifications."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 100850,
+  "phase1_source_version": "v2primeprime_full_text"
+}

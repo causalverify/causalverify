@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s98",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Covenant Violations on Capital Expenditure",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:08:00.451735",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 491,
+    "output_tokens": 1018,
+    "content": "## 1. Identification Strategy\nRegression Discontinuity Design (RDD). The debt-to-asset ratio serves as the running variable with a threshold determining covenant violation status. The key assumption is that firms just above and below the covenant threshold are similar in all unobservable characteristics except for the treatment (covenant violation), creating quasi-random assignment around the cutoff.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s98_data.csv\")\n\n# Determine the cutoff point (where treatment changes)\ncutoff <- min(data$running_var[data$treated == 1])\nprint(paste(\"Cutoff point:\", cutoff))\n\n# Center the running variable around the cutoff\ndata$running_var_centered <- data$running_var - cutoff\n\n# Main RDD analysis using rdrobust\nrdd_result <- rdrobust(data$y, data$running_var_centered, c = 0)\nprint(\"=== MAIN RDD RESULTS ===\")\nprint(summary(rdd_result))\n\n# Extract and print key coefficient\ntreatment_effect <- rdd_result$coef[1]\nprint(paste(\"Treatment Effect (Covenant Violation Impact):\", round(treatment_effect, 4)))\nprint(paste(\"Standard Error:\", round(rdd_result$se[1], 4)))\nprint(paste(\"P-value:\", round(rdd_result$pv[1], 4)))\n\n# Robustness check 1: Different bandwidth\nrdd_robust1 <- rdrobust(data$y, data$running_var_centered, c = 0, h = rdd_result$bws[1,1] * 0.8)\nprint(\"=== ROBUSTNESS CHECK 1 (80% bandwidth) ===\")\nprint(paste(\"Treatment Effect:\", round(rdd_robust1$coef[1], 4)))\n\n# Robustness check 2: Different polynomial order\nrdd_robust2 <- rdrobust(data$y, data$running_var_centered, c = 0, p = 2)\nprint(\"=== ROBUSTNESS CHECK 2 (Quadratic) ===\")\nprint(paste(\"Treatment Effect:\", round(rdd_robust2$coef[1], 4)))\n\n# Density test (McCrary test)\ndensity_test <- rddensity(data$running_var_centered, c = 0)\nprint(\"=== DENSITY TEST (McCrary) ===\")\nprint(paste(\"Test statistic:\", round(density_test$test$t_jk, 4)))\nprint(paste(\"P-value:\", round(density_test$test$p_jk, 4)))\n\n# Visual inspection\nplot_data <- data[abs(data$running_var_centered) <= 0.3, ]\nrdplot(plot_data$y, plot_data$running_var_centered, c = 0,\n       title = \"RDD Plot: Covenant Violation Impact on Log CapEx\",\n       x.label = \"Debt-to-Asset Ratio (Centered)\",\n       y.label = \"Log Capital Expenditure\")\n\n# Summary statistics by treatment status\nprint(\"=== SUMMARY STATISTICS ===\")\ntreated_stats <- data[data$treated == 1, ]\ncontrol_stats <- data[data$treated == 0, ]\nprint(paste(\"Mean Log CapEx (Treated):\", round(mean(treated_stats$y), 4)))\nprint(paste(\"Mean Log CapEx (Control):\", round(mean(control_stats$y), 4)))\nprint(paste(\"Sample size (Treated):\", nrow(treated_stats)))\nprint(paste(\"Sample size (Control):\", nrow(control_stats)))\n```\n\n## 3. Expected Findings\nI expect a negative treatment effect (coefficient around -0.2 to -0.4) indicating that firms crossing the covenant violation threshold reduce their capital expenditures. This is consistent with financial constraints theory - when firms violate debt covenants, they face increased monitoring, higher borrowing costs, and potentially reduced access to capital, leading them to cut investment spending. The magnitude should be economically significant given that the outcome is in logs, representing a substantial percentage reduction in capital expenditure.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the covenant threshold to identify causal effects.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the covenant threshold leads to a significant increase in capital expenditure.",
+    "main_effect": "Approximately 0.12 increase in log capex."
+  }
+}

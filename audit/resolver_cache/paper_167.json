@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_167",
+  "title": "What Do Emissions Markets Deliver and to Whom? Evidence from Southern California's NOx Trading Program",
+  "authors": "Fowlie, Holland & Mansur",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.2139/ssrn.1416787",
+    "title": "What Do Emissions Markets Deliver and to Whom? Evidence from Southern California's NOx Trading Program",
+    "year": 2009,
+    "journal": "SSRN Electronic Journal",
+    "citations": 53
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "fowlie",
+      "mansur",
+      "holland"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "ssrn electronic journal",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 53,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

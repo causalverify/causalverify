@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_160",
+  "title": "Why the Apple Doesn't Fall Far: Understanding Intergenerational Transmission of Human Capital",
+  "authors": "Black, Devereux & Salvanes",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.2139/ssrn.605783",
+    "title": "Why the Apple Doesn't Fall Far: Understanding Intergenerational Transmission of Human Capital",
+    "year": 2004,
+    "journal": "SSRN Electronic Journal",
+    "citations": 175
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "devereux",
+      "salvanes",
+      "black"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "ssrn electronic journal",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 175,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

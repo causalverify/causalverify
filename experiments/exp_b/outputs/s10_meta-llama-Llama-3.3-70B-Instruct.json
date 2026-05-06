@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s10",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Anticipation effects in DID: pre-announced policy",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:31:36.168218",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 525,
+    "output_tokens": 567,
+    "content": "## 1. Identification Strategy\nThe research question seeks to understand whether banks pre-emptively raise their capital ratios before the effective date of a minimum capital requirement policy, potentially creating anticipation effects that violate the standard Difference-in-Differences (DID) assumptions. To address this, we will use a variation of the DID approach that accounts for the pre-announcement and post-implementation periods separately. This involves comparing the changes in capital ratios between treated and control groups before the announcement, between the announcement and the effective date, and after the effective date. The key assumption is that, in the absence of the policy announcement and implementation, the trends in capital ratios would have been parallel between the treated and control groups.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(broom)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s10_data.csv\")\n\n# Convert data to plm format\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# DID model with anticipation effects\nmodel_did <- plm(y ~ treated * post + treated * announce, data = pdata, model = \"fd\")\n\n# Summary of the model\nsummary(model_did)\n\n# Tidy the model output\ntidy_model_did <- tidy(model_did)\n\n# Print coefficients of interest\nprint(tidy_model_did)\n\n# Robustness checks: comparing trends before announcement\npre_announcement_data <- pdata[pdata$period < 3, ]\nmodel_pre_announce <- plm(y ~ treated, data = pre_announcement_data, model = \"fd\")\nsummary(model_pre_announce)\n\n# Checking parallel trends assumption using a placebo test\nplacebo_model <- plm(y ~ treated * post, data = pdata, model = \"fd\", subset = period < 5)\nsummary(placebo_model)\n```\n\n## 3. Expected Findings\nWe expect that if banks are pre-emptively raising their capital ratios after the policy announcement but before its effective date, the coefficient on the interaction term between `treated` and `announce` will be positive and significant. This indicates that treated banks (those below the capital threshold) increase their capital ratios more than control banks between the announcement and the effective date, suggesting an anticipation effect. The magnitude of this effect will depend on the scale of the capital ratio changes. A coefficient of around 0.05 to 0.10 would suggest a moderate increase in capital ratios among treated banks relative to control banks during the anticipation period. The significance and magnitude of the coefficients on the `treated * post` and `treated * announce` interactions will provide insights into whether the policy announcement itself triggers changes in bank behavior before the policy's effective date.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with anticipation — must account for pre-announcement window; use period ≤2 as clean pre-period",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Constrained banks raise capital ratios both after announcement and after effective date",
+    "main_effect": "35bp increase in tier-1 capital ratio"
+  }
+}

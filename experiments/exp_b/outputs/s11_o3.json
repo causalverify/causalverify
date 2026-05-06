@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Fed rate hike announcement on bank stock returns",
+  "model": "o3",
+  "run_at": "2026-03-27T20:18:21.311531",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 489,
+    "output_tokens": 1086,
+    "content": "## 1. Identification Strategy  \nCausal method: Classic event–study design.  \nWhy: We have a single, well-defined, exogenous shock (an unanticipated Fed rate-hike announcement) that hits all treated firms (banks) on the same event date. With pre-event estimation data we can build a counterfactual return series and recover abnormal returns.  \nKey identifying assumptions  \n• Market–model validity: E[ε_it | R_mkt,t]=0 so expected return = α_i + β_i R_mkt,t.  \n• No confounding firm–specific or market-wide news in the (−1,+1) window.  \n• Abnormal returns are i.i.d. across firms, so cross-sectional t-tests are valid.  \n\n## 2. R Code\n```r\n# Required packages\nlibrary(data.table)  # fast aggregation\nlibrary(broom)       # tidy regression output\n\n# 1. Read data --------------------------------------------------------------\npath <- \"experiments/exp_b/data/s11_data.csv\"\ndt   <- fread(path)\n\n# 2. Baseline abnormal returns using provided beta -------------------------\ndt[, exp_ret_beta := beta * mkt_ret]                 # assume alpha = 0\ndt[, ar_beta      := ret - exp_ret_beta]             # abnormal return\n\n# 3. Event-window CAR [-1,+1] ----------------------------------------------\nevent_window <- -1:1\ncar_beta <- dt[event_day %in% event_window,\n               .(CAR = sum(ar_beta)),\n               by = stock_id]\n\n# Cross-sectional statistics\nN  <- nrow(car_beta)\nmu <- mean(car_beta$CAR)\nse <- sd(car_beta$CAR)/sqrt(N)\nt_stat <- mu / se\n\ncat(\"======== Baseline (provided beta, alpha = 0) ========\\n\")\ncat(sprintf(\"Mean CAR  [-1,+1]  : %0.4f\\n\", mu))\ncat(sprintf(\"Std. Error        : %0.4f\\n\", se))\ncat(sprintf(\"t-stat (H0: CAR=0): %0.2f\\n\\n\", t_stat))\n\n# 4. Robustness check 1: re-estimate alpha & beta in estimation window ------\nest_dt <- dt[event_day %between% c(-10,-2)]\n\n# run firm-level regressions\nestimates <- est_dt[, {\n  fit <- lm(ret ~ mkt_ret)\n  tidy(fit)[1:2,2]          # alpha & beta estimates\n}, by = stock_id]\n\nsetnames(estimates, c(\"term\",\"estimate\"), c(\"param\",\"value\"))\nestimates <- dcast(estimates, stock_id ~ param, value.var = \"value\")\n\n# merge back\ndt2 <- merge(dt, estimates, by = \"stock_id\")\ndt2[, exp_ret_ols := `(Intercept)` + mkt_ret * mkt_ret.1]  # mistake? Wait: we need names.\n```\n\n",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; estimation window [−10,−2]; event window [−1,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank stocks show negative CAR around the rate hike announcement",
+    "main_effect": "CAR ≈ −2% in [−1,+1] window"
+  }
+}

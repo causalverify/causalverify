@@ -1,0 +1,1762 @@
+NBER WORKING PAPER SERIES
+KNOWLEDGE, TESTS, AND FADEOUT IN EDUCATIONAL INTERVENTIONS
+Elizabeth U. Cascio
+Douglas O. Staiger
+Working Paper 18038
+http://www.nber.org/papers/w18038
+NATIONAL BUREAU OF ECONOMIC RESEARCH
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+May 2012
+We thank Kevin Lang and Thomas Lemieux for the conversations that motivated this research, and
+Raj Chetty, Caroline Hoxby, Kevin Lang, Larry Katz, Jesse Rothstein, and seminar participants at
+the NBER Education Program meetings for helpful comments.  We are also grateful for the outstanding
+research assistance of Sarah Cohodes.  This work was supported by the Institute of Education Sciences,
+U.S. Department of Education grant [R305C090023] to the President and Fellows of Harvard College.
+Cascio also gratefully acknowledges funding from the National Academy of Education and the National
+Academy of Education/Spencer Postdoctoral Fellowship Program and a Rockefeller-Haney Fellowship
+from Dartmouth College. The views expressed herein are those of the authors and do not necessarily
+reflect the views of the National Bureau of Economic Research.
+NBER working papers are circulated for discussion and comment purposes. They have not been peer-
+reviewed or been subject to the review by the NBER Board of Directors that accompanies official
+NBER publications.
+© 2012 by Elizabeth U. Cascio and Douglas O. Staiger. All rights reserved. Short sections of text,
+not to exceed two paragraphs, may be quoted without explicit permission provided that full credit,
+including © notice, is given to the source.
+
+Knowledge, Tests, and Fadeout in Educational Interventions
+Elizabeth U. Cascio and Douglas O. Staiger
+NBER Working Paper No. 18038
+May 2012
+JEL No. I20,I21,I28,J24
+ABSTRACT
+Educational interventions are often evaluated and compared on the basis of their impacts on test scores.
+ Decades of research have produced two empirical regularities:  interventions in later grades tend to
+have smaller effects than the same interventions in earlier grades, and the test score impacts of early
+educational interventions almost universally “fade out” over time. This paper explores whether these
+empirical regularities are an artifact of the common practice of rescaling test scores in terms of a student’s
+position in a widening distribution of knowledge.  If a standard deviation in test scores in later grades
+translates into a larger difference in knowledge, an intervention’s effect on normalized test scores may
+fall even as its effect on knowledge does not.  We evaluate this hypothesis by fitting a model of education
+production to correlations in test scores across grades and with college-going using both administrative
+and survey data.  Our results imply that the variance in knowledge does indeed rise as children progress
+through school, but not enough for test score normalization to fully explain these empirical regularities.
+Elizabeth U. Cascio
+Department of Economics
+Dartmouth College
+6106 Rockefeller Hall
+Hanover, NH 03755
+and NBER
+elizabeth.u.cascio@dartmouth.edu
+Douglas O. Staiger
+Dartmouth College
+Department of Economics
+HB6106, 301 Rockefeller Hall
+Hanover, NH 03755-3514
+and NBER
+douglas.staiger@dartmouth.edu
+
+1 
+ 
+I. 
+Introduction 
+Educational interventions are often evaluated and compared on the basis of their impacts on 
+test scores.  Decades of research in this vein have produced two seemingly contradictory empirical 
+regularities.  An intervention in a later grade frequently has a smaller impact on test scores than the 
+same intervention in an earlier grade.1  At the same time, the test score impacts of early educational 
+interventions almost universally “fade out” as participants progress through school.2  On one hand, 
+the scope for education to increase knowledge would appear to be greater when children are young; 
+on the other, the effects of early intervention on knowledge do not appear to last.    
+In this paper, we investigate the extent to which these regularities are an artifact of the 
+common practice of rescaling test scores in terms of a student’s position in a widening distribution 
+of knowledge. If the variance in knowledge rises as children progress through school, a standard 
+deviation in test scores in a higher grade will correspond to a greater difference in knowledge than a 
+standard deviation in test scores in a lower grade.3  Conversely, an educational intervention that has 
+the same impact on knowledge will appear to have a smaller impact on normalized test scores when 
+the intervention occurs in a later grade.  Likewise, an early intervention’s effect on normalized test 
+scores may decline in magnitude over time even if its impact on knowledge persists in full.   
+Though this hypothesis is intuitive, evaluating it is difficult, since knowledge has no natural 
+scale.  Indeed, the near universal practice of re-expressing achievement in distributional terms is a 
+practical response to this fact, as tests (and thereby test scales) often change as children in a target 
+population age.  Given this, our empirical approach works off of several patterns that we might 
+                                                 
+1 Such interventions include test-based accountability (e.g., Dee and Jacob, 2011), charter schools (Dobbie and Fryer, 
+2011), and teachers (Kane, Rockoff, and Staiger, 2008), among others.   
+2 Such early interventions include compensatory preschool education (see Almond and Currie (2011) for a review), class 
+size reduction (Krueger and Whitmore, 2001, Chetty, et al., 2011), and teacher assignment (Kane and Staiger, 2008; 
+Jacob, Lefgren, and Sims, 2008; Rothstein, 2010, Chetty, Friedman, and Rockoff, 2011). 
+3 The same intuition holds if we were to consider rescaling test scores in percentiles rather than in standard deviation 
+units.  We focus on standard deviation units here because the linearity of the underlying transformation considerably 
+simplifies the analysis. 
+
+2 
+ 
+expect to see in data if the variance of knowledge were increasing across grades.  In particular, we 
+expect test scores in consecutive grades to be more correlated with one another at higher grades 
+than at lower grades, since at higher grades, dramatic shifts in the accumulated knowledge 
+distribution should be less likely.  Similarly, test scores in later grades should be more strongly 
+correlated with long-term, non-test outcomes, like educational attainment, than test scores in earlier 
+grades.4   
+More formally, we lay out a simple model of education production, motivated by 
+econometric specifications frequently employed in the empirical literature, in which test scores are 
+noisy measures of knowledge and the stock of knowledge accumulates over time as new knowledge 
+is added each year and past knowledge potentially depreciates. The variance of accumulated 
+knowledge in each grade is a function of model parameters. The correlations in test scores across 
+grades and with long-term outcomes are as well, allowing us to estimate the model parameters using 
+minimum distance methods.  We use these parameter estimates to predict how the variance in 
+knowledge evolves across grades, and in turn, the extent to which rising variance in the distribution 
+of knowledge contributes to relatively weak contemporaneous impacts of educational interventions 
+in later grades and to fadeout in early interventions. We fit the model using student-level 
+administrative data on test scores and college-going from Charlotte-Mecklenburg Schools and 
+survey data from the 1979 National Longitudinal Survey of Youth.  Neither data source is ideal for 
+our analysis, but they are complementary and offer independent estimates.   
+Our estimates are similar across data sets, and imply that the variance in accumulated 
+knowledge increases by between 37 and 56 percent from the end of kindergarten to the end of high 
+school. Due to this widening distribution of knowledge, we find that a modest amount of the 
+apparent decline in the impact of interventions in later grades is an artifact of normalizing test 
+                                                 
+4 Increasing test reliability across grades could create similar patterns.  Our empirical approach allows us to estimate test 
+reliability in a flexible way to account for this possibility.  
+
+3 
+ 
+scores. For example, the impact of attending a small class in kindergarten on normalized test scores 
+would be 12 to 17 percent lower by eighth grade even if the effect of a small kindergarten class on 
+knowledge persisted in full. Similarly, the impact of an effective teacher on students’ normalized test 
+scores would be 6 to 10 percent less if she were assigned to teach eighth grade rather than third 
+grade. While the statistical artifact by itself cannot explain why over half of the impact of early 
+educational interventions or having an effective teacher fades in a few years, it is still substantial, 
+particularly from the perspective of policymakers seeking to compare interventions across grades. 
+Much of the evaluation research cited above does not directly acknowledge the 
+comparability of tests across grades.  In the economics literature, the issue of test scaling has 
+received most attention in the context of understanding teacher impacts on student achievement 
+(Cawley et al., 1999; Ballou, 2009; Lang, 2010; Barlevy and Neal, 2011). Lang (2010), in particular, 
+proposes that the apparent fadeout of teacher effects in later grades may be a statistical artifact of 
+using normalized test scores. Our paper formalizes and empirically tests Lang’s idea. In the 
+education literature, the issue of test scaling has received most attention in the context of 
+understanding achievement gaps between groups (Selzer et al., 1994; Reardon, 2007; Reardon and 
+Robinson, 2007; Bond and Lang, 2011). Our results suggest that estimates based on standardized 
+tests will understate racial gaps in knowledge for later grades, and therefore understate growth in 
+racial gaps as children age (see, for example, Fryer (2011)). Finally, in the psychometric literature, the 
+issue of test scaling has been addressed using Item Response Theory (IRT) (Hambleton, 
+Swaminathan and Rogers, 1991). The IRT model has been used to align test scores across grades 
+and over time, but often yields implausible scales in practice (Ballou, 2009) and is not anchored to 
+adult outcomes (Cunha and Heckman, 2008). We provide an alternative approach to IRT, based on 
+commonly accepted scales with well documented relationships to adult outcomes (Chetty et al. 2011; 
+Chetty, Friedman, and Rockoff, 2011). 
+
+4 
+ 
+II. 
+Education Production 
+Our objective is to estimate how the variance in knowledge changes as children progress 
+through school.  The challenge for our analysis is that knowledge is unobservable and has no natural 
+scale.  To overcome this obstacle, we model the data-generating process for correlations between 
+test scores across grades and with a longer-term, non-test outcome, which can be observed.  The 
+parameters of this model imply how the variance of knowledge evolves across grades and can be 
+estimated using minimum distance methods, as we discuss in Section III. 
+A. 
+Model 
+We begin by modeling the accumulation of knowledge.  We assume that each child starts 
+school with some knowledge stock, and that education augments knowledge in ways that could be 
+transitory or persistent (as in Jacob, Lefgren, and Sims, 2008).  For example, rote memorization or 
+“teaching to the test” might increase knowledge temporarily,5 while deeper learning will have more 
+persistent effects.   
+More formally, suppose that the knowledge of child i in grade t,
+itg , can be decomposed into 
+long-term (L) and short-term (S) components: 6 
+(1) 
+S
+it
+L
+it
+it
+g
+g
+g
+
+
+, 
+We model the short-term component,
+S
+itg , as a shock to knowledge in t that does not carry over to 
+later grades, 
+it
+: 
+(2) 
+it
+S
+itg
+
+
+,   
+                                                 
+5 There are other reasons that an intervention might have appear to have transitory effects on knowledge.  For example, 
+if an intervention primarily affects understanding of material that is not tested in subsequent years, it would manifest as a 
+transitory increase in test performance, even though this understanding might persist in full.  Alternatively, interventions 
+may have true effects on knowledge that fade rapidly.  For example, mixing of treatment and control students in the 
+same classrooms after a classroom-level intervention has ended may promote rapid reversion toward the mean in 
+student performance on material that students learn in school, while student-level test performance may fade less slowly 
+as it also includes more persistent student-level factors. 
+6 For exposition, we consider one cohort of students which progresses through school one grade per year, so period is 
+synonymous with grade.  We discuss our approach to handling grade repetition in the data section below. 
+
+5 
+ 
+and the long-term component,
+L
+itg , as comprised of an individual’s endowment,
+i, and knowledge 
+accumulated since starting school, 
+it
+: 
+(3) 
+it
+i
+L
+itg
+
+
+
+. 
+We model the latter as an AR(1) process: 
+(4) 
+it
+it
+it
+v
+
+
+1
+
+
+
+, 
+where 
+itv represents the innovation to long-term knowledge in grade t, and the parameter captures 
+the degree of persistence of innovations from previous grades.  Beyond constraining to be 
+positive, we place no restrictions on its value in our estimation:  innovations to long-term knowledge 
+can decay (
+1
+0
+
+
+) or grow (
+1
+
+
+) as a child ages.  In the special case where 
+1
+
+
+ (a random 
+walk), 
+it
+is simply the sum of all innovations vit from school entry through grade t.   
+We assume that the 
+it
+ and the 
+itv are drawn independently over time, independently of 
+i, 
+and independently of one other.  These assumptions have several implications for interpretation of 
+model parameters.7  First, equation (4) should be thought of as a linear projection, where the 
+innovation to long-term knowledge is uncorrelated with accumulated knowledge by definition.  
+Thus, any factors that may make innovations to long-term knowledge positively correlated over time 
+for a given individual, like ability tracking, are subsumed in .  That is, if students are tracked on the 
+basis of early innovations, knowledge differences will appear more persistent, or the value of  will 
+rise.   
+Second, the assumption that 
+it
+ and 
+itv are independent of 
+i affects interpretation of the 
+endowment variance, 
+2
+
+.  To see this, it is useful to rewrite equation (1) as: 
+                                                 
+7 Note that equations (1) through (4) imply that
+itg is composed of a student fixed effect plus an AR(1) plus white noise. 
+It is well known (Granger and Morris, 1976) that any AR(1) + white noise process can be equivalently represented by an 
+ARMA(1,1). Thus, we could equivalently capture the persistent and transitory shocks by modeling
+itg as the sum of a 
+student fixed effect and an ARMA(1,1), where the MA term captures the transitory component of each shock.  
+
+6 
+ 
+(1΄) 
+it
+it
+it
+i
+it
+v
+g
+
+
+
+
+
+
+
+1
+, 
+substituting for 
+S
+itg and 
+L
+itg  based on equations (2) through (4).  For the sake of argument, suppose 
+that
+irepresents i’s knowledge at the start of school.  If children with a higher stock of knowledge 
+at school entry have a firmer foundation for learning – and thus learn more in the early grades – it 
+would then be the case that
+iis positively correlated with 
+itv (and 
+it
+).  By assuming that learning is 
+orthogonal to the endowment, we thus subsume in 
+i some of the systematic differences across 
+children in the rate of learning once they enter school.  If education accentuates pre-existing 
+differences in knowledge across children, as hypothesized above, 
+2
+
+will exceed the variance in 
+knowledge at the start of school. 
+The variances of the innovations may change across grades.  In practice, we cannot easily 
+statistically distinguish 
+it
+ from testing noise, so we model the variance of 
+it
+jointly with the 
+variance of testing error (see below).  As for 
+itv , we begin with a specification where 
+
+
+itv
+var
+ is 
+fixed, then allow the variance of 
+itv to change smoothly across grades according to: 
+(5) 
+
+
+
+1
+var
+var
+
+
+it
+v
+it
+v
+v
+
+,   
+where 
+0
+
+v
+
+, and 
+
+1
+1
+
+
+v
+v
+
+
+ implies higher (lower) innovation variance in later grades.   
+ 
+Test scores, yit, are assumed to be noisy measures of knowledge at a given point in time:  
+(6) 
+it
+it
+it
+g
+y
+
+
+
+, 
+where
+itis a mean zero measurement error drawn independently of 
+itg and independently over time. 
+it
+represents idiosyncratic features of the test environment that contribute to an individual scoring 
+unusually well or unusually poorly (e.g., a “barking dog”).  It is useful to parameterize the error 
+variance,
+
+
+it
+
+var
+, alongside the variance in short-term knowledge, 
+
+
+it
+
+var
+, using a reliability ratio, 
+ty
+
+:    
+
+7 
+ 
+(7) 
+
+
+
+
+
+
+
+
+it
+it
+L
+it
+L
+it
+y
+g
+g
+t
+
+
+
+var
+var
+var
+var
+
+
+
+. 
+ty
+
+is distinct from what is usually meant by reliability of a test, e.g., test-retest reliability.  Instead, 
+ty
+
+is the share of total variance in test scores accounted for by the variance in long-term 
+knowledge.  Thus, while 
+ty
+
+will be lower for tests with lower test-retest reliability, it will also be 
+lower when a higher share of knowledge is short-term.  Because this share might change, we 
+allow
+ty
+
+to vary across grades in our estimation.8  Reported test reliabilities, where available, should 
+provide an upper bound on these parameters.   
+Finally, we assume that some longer-term non-test outcome, wi – in our case, college going – 
+is a noisy measure of the long-term knowledge at the end of secondary school, period T, 
+L
+iT
+g
+.   
+Without loss of generality, we normalize wi so that the coefficient on 
+L
+iT
+g
+is equal to one:  
+(8) 
+i
+L
+iT
+i
+u
+g
+w
+
+
+. 
+iu is a mean zero independent error term that represents all factors orthogonal to 
+L
+iT
+g
+that contribute 
+to variation in w.  Again, it is convenient to parameterize the error variance with a reliability ratio:  
+(9) 
+
+
+
+
+
+i
+L
+iT
+L
+iT
+w
+u
+g
+g
+var
+var
+var
+
+
+
+ 
+We expect estimates of 
+w
+ to be lower than estimates of 
+ty
+
+.  Long-term outcomes like college-
+going – while a function of the knowledge that tests are designed to measure – almost certainly 
+depend on much more (“non-cognitive skills,” for example).  
+                                                 
+8 In our data, we observe multiple cohorts in the same grade.  We therefore also allow 
+ty
+
+to vary over time to account 
+for changes in test-retest reliability stemming from changes in the test. 
+
+8 
+ 
+ 
+The model of education production represented in equations (1) through (9) is consistent 
+with standard econometric specifications commonly employed in the empirical literature. For 
+example, our model implies the following value-added specification for normalized test scores, 
+ity~ :  
+
+
+
+
+
+
+1
+1
+1
+1
+1
+1
+1
+~
+1
+~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+it
+it
+it
+it
+t
+it
+t
+it
+t
+t
+i
+t
+t
+t
+t
+it
+b
+v
+b
+y
+b
+b
+b
+b
+a
+a
+y
+
+
+
+
+
+
+
+
+
+ 
+ 
+where at and bt represent the mean and standard deviation in period t test scores, respectively.  Thus, 
+our model implies that period t normalized test scores are a linear function of fixed student 
+characteristics (captured in µi), last period’s test score (the coefficient on which captures both true 
+knowledge decay and changes in the variance of knowledge), the current period innovation (which 
+might include teacher and peer effects), and a serially correlated measurement error.  The 
+coefficients on these variables are time-varying if the standard deviation of test scores changes over 
+time. This specification is similar to standard teacher value-added specifications, such as those that 
+have recently been validated using both experimental and observational data (Kane and Staiger, 
+2008; Chetty, Friedman, and Rockoff, 2011). In addition, we follow Jacob, Lefgren, and Sims (2008) 
+in the way our model specifies short-term shocks to knowledge (
+it
+). This specification allows for 
+rapid fadeout of interventions (e.g., of teacher effects) as found by the previously cited papers and 
+others (Rothstein, 2008; McCafferty et al., 2004; Lockwood et al., 2007).  
+B. 
+Implications  
+What are the implications of the model for measurement and interpretation of the impacts 
+of educational intervention?  Let a randomly-assigned intervention in period t on test performance 
+in period t+k (k ≥ 0) be represented by 
+t
+k
+t 
+
+ standard deviations.  That is,   
+
+
+
+
+0
+1
+,
+,
+~
+~
+t
+k
+it
+t
+k
+it
+t
+k
+t
+y
+E
+y
+E
+
+
+
+
+
+
+, 
+
+9 
+ 
+where the subscripts t1 and t0 represent the treatment and control groups in the period t intervention, 
+respectively, and 
+k
+ity 
+~
+represents test scores in standard deviation units, i.e., 
+
+
+
+
+k
+it
+k
+it
+k
+it
+k
+it
+y
+y
+E
+y
+y
+
+
+
+
+
+
+var
+~
+. 
+As described above, a number of early interventions have found that 
+t
+t
+t
+k
+t
+
+
+
+
+, or that effects on 
+test scores fade out over time.  Fadeout is widely interpreted as showing that the effects of 
+educational intervention on knowledge rapidly decay. Our model implies that fadeout can also be a 
+statistical artifact that arises from the practice of re-expressing student test scores in distributional 
+terms.  The same statistical artifact can generate the finding that 
+t
+t
+k
+t
+k
+t
+
+
+
+
+
+  – that educational 
+interventions have larger contemporaneous effects on test scores when they take place in earlier 
+grades – even when they have identical effects on knowledge.  
+To see the first result, note that under the statistical properties of the model and the 
+assumption of random assignment, the contemporaneous effect of a period t intervention, 
+t
+t, and 
+its effect k grades later, 
+t
+k
+t 
+
+, are related by the following expression: 
+(10) 
+
+
+
+
+
+
+
+
+
+
+L
+k
+it
+y
+L
+it
+y
+k
+t
+t
+t
+k
+t
+g
+g
+k
+t
+t
+
+
+
+
+
+
+
+var
+1
+var
+1
+1
+
+
+
+
+
+
+,  
+where represents the share of the intervention’s contemporaneous effect that does not carry over 
+to later grades:   
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0,
+1,
+0,
+1,
+0,
+1,
+it
+it
+it
+it
+it
+it
+E
+E
+v
+E
+v
+E
+E
+E
+
+
+
+
+
+
+
+
+
+
+. 
+The last term in (10) represents the change between t and t +k in the variance in test scores, which 
+depends upon changes in the variance of long-term knowledge and changes in test reliability.  This 
+last part arises from the practice of normalizing test scores, and so is a statistical artifact.  The 
+
+10 
+ 
+common interpretation of fadeout implicitly assumes that this term is equal to one for all t and k. 
+Under this assumption, fadeout only arises when an intervention’s effect on knowledge decays, and 
+fadeout is more rapid the higher is and the lower is . Equation (10) implies, however, that there 
+are scenarios (as when
+1
+
+
+ and 
+0
+
+
+) where fadeout could be observed without any knowledge 
+decay.  The statistical artifact may also be present when an intervention’s effect on knowledge does 
+indeed decay (
+1
+
+
+ and/or 
+0
+
+
+). 
+ 
+This same statistical artifact will also drive a wedge between the contemporaneous test score 
+impacts of two interventions that have the same impacts on knowledge in different grades.  Let 
+t
+t~  
+and 
+k
+t
+k
+t
+
+
+~
+represent the contemporaneous test score impacts of interventions in t and t + k that have 
+identical impacts on knowledge.9  Then 
+t
+t~  and 
+k
+t
+k
+t
+
+
+~
+ are related by the following expression: 
+(11) 
+
+
+
+
+
+
+
+
+L
+k
+it
+y
+L
+it
+y
+t
+t
+k
+t
+k
+t
+g
+g
+k
+t
+t
+
+
+
+
+
+var
+1
+var
+1
+~
+~
+
+
+
+
+. 
+If the variance in knowledge is increasing more quickly than test reliability, 
+t
+t
+k
+t
+k
+t
+
+
+~
+~
+
+
+
+:  the 
+contemporaneous impact of the period t +k intervention on test scores will be less than that of the 
+intervention in period t, despite the interventions’ identical impacts on knowledge.   
+ 
+The goal of our empirical analysis is to estimate the statistical artifact.  To do so, we must 
+make several assumptions.  The first assumption concerns test reliability.  Equations (10) and (11) 
+show that the statistical artifact is a function not only of the variance in accumulated knowledge, but 
+also of test reliability, which varies across grades, over time, and across datasets, as shown below.  
+Because changes in test reliability across grades for any given cohort will also be unique to any given 
+intervention, we take as our starting point the assumption of unchanging test reliability (
+k
+t
+t
+y
+y
+
+
+
+ 
+for all t and k).  If test reliability is in fact (weakly) increasing across grades – which generally appears 
+                                                 
+9 That is, 
+
+
+
+
+
+
+
+0
+1
+0
+1
+,
+,
+,
+,
+k
+t
+k
+it
+k
+t
+k
+it
+t
+it
+t
+it
+g
+E
+g
+E
+g
+E
+g
+E
+
+
+
+
+
+
+
+. 
+
+11 
+ 
+to be the case – this assumption yields an upper bound on the magnitude of the statistical artifact.  
+We show this below by re-estimating the statistical artifact using our estimates of test reliability for 
+the grades represented in our data. 
+ 
+Under the assumption of constant test reliability, the statistical artifact reduces to  
+
+
+
+
+L
+k
+it
+L
+it
+g
+g
+
+var
+var
+.  As noted, estimation of this quantity would generally be impossible since the 
+variance of knowledge cannot be observed.  However, the model yields an expression for it: 
+(12)  
+
+
+
+
+it
+L
+itg
+
+
+var
+var
+2 
+
+, 
+where the variance in cumulative “value-added” is:  
+(13)  
+
+
+
+
+
+
+
+
+1
+0
+2
+1
+2
+1
+var
+t
+j
+j
+v
+j
+t
+v
+v
+it
+
+
+
+
+
+, 
+where 
+2
+1v
+ represents the variance of the first period innovation to knowledge, and recall that 
+v 
+characterizes how 
+
+
+itv
+var
+changes over time (equation (5)).  
+
+
+it
+
+var
+will be larger and grow faster 
+across grades the larger is  – or the less knowledge decays over time – and the larger is 
+v– or 
+with persistence or expansion of the innovation variance.   
+Together, equations (12) and (13) show that only ratios in the variance of long-term 
+knowledge can be interpreted.  For example, we could set the value of either 
+2
+
+ or 
+2
+1v
+
+, and the 
+values undertaken by 
+
+
+
+
+L
+k
+it
+L
+it
+g
+g
+
+var
+var
+ would be unchanged.  In practice, we set 
+1
+2
+1 
+v
+
+, and 
+2
+
+ is measured in multiples thereof.  The next section discusses our approach to estimating these 
+model parameters. 
+III. 
+Estimation and Identification 
+ 
+Estimation of the statistical artifact requires estimation of model parameters.  Our estimation 
+strategy takes advantage of the fact that the model characterizes the data generating process for 
+
+12 
+ 
+correlations between test scores across grades and between test scores and the non-test outcome.  
+We choose model parameters to minimize the distance between model predictions and actual 
+correlations observed in the data.   
+ 
+Under the model, the correlation between test scores in periods t and t+k is given by:10 
+(14)  
+
+
+
+
+
+
+
+
+
+
+k
+it
+it
+it
+k
+y
+y
+y
+y
+k
+t
+t
+k
+t
+t
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var
+var
+var
+2
+2
+2
+, 
+where 
+
+
+it
+
+var
+ is given in equation (13) and all other parameters have been previously defined.   
+Analogously, the correlation between test scores in t and college-going is: 
+(15)  
+
+
+
+
+
+
+
+
+
+
+iT
+it
+it
+t
+T
+w
+y
+w
+y
+t
+t
+
+
+
+
+
+
+
+
+
+
+
+
+
+var
+var
+var
+2
+2
+2
+
+
+
+
+
+
+ 
+Comparison of equation (15) to equation (14) shows that the correlation between period t test scores 
+and the long-run outcome will be less than the correlation between test scores in period t and at the 
+end of secondary school, period T, if the long-term outcome is a lower reliability measure of period 
+T knowledge.  
+It is useful to consider several special cases for intuition as to how the model parameters are 
+identified.  When 
+0
+
+
+, so that there is no long-term component to knowledge (
+
+
+0
+var
+
+it
+
+) and 
+value-added through education decays immediately, 
+k
+t
+t
+k
+t
+t
+y
+y
+y
+y
+
+
+
+
+
+ and 
+w
+y
+w
+yt
+
+
+
+
+:  the 
+correlations depend only on reliability ratios, and knowledge itself is determined only by child 
+endowments. Under the assumption that all tests are equally reliable, moreover, the correlations 
+between test scores are exactly the same for all t and k, and the correlations between test scores and 
+long-term outcomes do not vary with t.   
+                                                 
+10 In some specifications, we allow test reliability to vary across both grades and years, not just across grades as shown 
+here.  We also allow the endowment variance to vary across cohorts.  Rationales are given in Section IV (Data). 
+
+13 
+ 
+Continuing with the assumption of constant reliability, consider the case where 
+1
+
+
+ and 
+1
+
+v
+
+, or where knowledge accumulation is a random walk and the innovation variance is constant.  
+Because the variance in knowledge is rising across grades, both 
+k
+t
+t y
+y
+
+
+and 
+w
+yt
+
+ fall below the values 
+that would be predicted by reliability alone.  The correlations also have gradients in t, the grade in 
+which the (first) test is administered.  In particular, for any given k, 
+k
+t
+t y
+y
+
+
+is rising in t:  intuitively, 
+test scores are more correlated in higher grades, when more knowledge has been accumulated.  
+k
+t
+t y
+y
+
+
+is also falling in k:  the correlations between test scores are weaker the further apart the tests 
+are taken.  Similarly, 
+w
+yt
+
+ is greater the later in the school career the test is administered.   
+To clarify, Figures I and II plot simulated correlations from these special cases.  Figure I 
+plots the 
+k
+t
+t y
+y
+
+
+. The x-axis gives the grade that the first test was administered (t).  The number of 
+grades ahead the second test is administered (k) is represented by the number adjacent to each line; 
+the correlations themselves are represented with solid dots.  Thus, the correlation between third and 
+fourth grade test scores is the point on the line labeled with a one (k=1) corresponding to grade 3 
+(t=3) on the x-axis.  Figure II plots the 
+w
+yt
+
+ and is arranged in a similar fashion, with the grade of 
+the test on the x-axis.  We set the reliability ratios and the variance of the endowment to be roughly 
+comparable to what we estimate in the CMS data.11  The figures illustrate the predictions described 
+above:  the correlations are unchanging when 
+0
+
+
+ (Panel A), and increasing in t and falling in k 
+when 
+1
+
+
+ and 
+1
+
+v
+
+ (Panel B).   
+Figures like these also provide a useful vehicle for understanding the implications of further 
+variation in these model parameters.  For example, consider a case where 
+1
+
+
+ and 
+9.0
+
+v
+
+, as 
+shown in Panel C.  Here, knowledge continues to be a random walk, but the innovations to 
+                                                 
+11 As in our estimation, we also assume that t=1 represents kindergarten and T=13.  We are also setting 
+1
+2
+1 
+v
+
+in these 
+simulations, as we do in our estimation, with 
+2
+
+ rescaled accordingly.   
+
+14 
+ 
+knowledge are higher variance earlier in a child’s school career.  In this case, the correlations 
+between test scores strengthen, particularly in higher grades: that is, the 
+k
+t
+t y
+y
+
+
+ are much more 
+similar regardless of k, particularly at high values of t (Figure I). For example, the correlations 
+between test scores in grades 3 and 4, grades 3 and 5, grades 3 and 6, etc. are all stronger and more 
+similar to each other than was the case in Panel B.  Similarly, there is less of a gradient in t in the 
+correlation between test scores and the long-term outcome (Figure II).  These predictions are 
+intuitive, since more knowledge is accumulated relatively early.  When 
+1
+
+v
+
+, or when knowledge is 
+accumulated relatively late, the opposite happens:  the correlations weaken, and the gradients of the 
+k
+t
+t y
+y
+
+
+in k and the 
+w
+yt
+
+ in t steepen. 
+Finally, Panel D of each figure shows what happens when 
+9.0
+
+
+ and 
+1
+
+v
+
+.  Here, the 
+variance in the long-term innovation remains the same throughout the school career, as was the case 
+in Panel B, but not all of this innovation persists.  The primary consequence of knowledge decay is 
+to reduce the gradient of 
+k
+t
+t y
+y
+
+
+in t for any k.  For example, the correlations between test scores in 
+grades 3 and 4, between grades 4 and 5, between grades 5 and 6, etc. are more similar now than they 
+were in the baseline case.  Related, the correlations between test scores and long-term outcome do 
+not rise as quickly in t.  Again, this is intuitive, since differences in knowledge accumulated between 
+any two grades will be less than if all knowledge were to persist. Further, variation in  appears to 
+add more curvature to these relationships:  for example, the correlation between test scores and 
+long-run outcomes – either w or much later test scores – can fall across early grades, if knowledge 
+fades more rapidly than it is accumulating.    
+Thus, both 
+v
+ and  affect the speed through which knowledge is accumulated – albeit 
+through different mechanisms – and these differences manifest in different ways in the data.  For 
+example, variation in 
+v
+ is manifested more in the drop off in the test score correlations in k, while 
+
+15 
+ 
+variation in is manifested more in how the 
+k
+t
+t y
+y
+
+
+change with t for any given k.  Data on w are 
+thus not needed to estimate the model, but long-term outcomes are quite useful for identification 
+purposes, since 
+v
+ and  are in practice identified through fairly subtle differences in the patterns 
+of these correlations. The correlation of test scores from any grade with long term outcomes is 
+proportional to the correlation with knowledge in the final grade, and therefore is similar to 
+observing test scores in 12th grade for all students (e.g., the lower envelope of the lines plotted in 
+Figure I).   In practice, identification of these parameters is complicated further by changing test 
+reliability across grades, which adds noise to the relationships plotted in Figures I and II.   
+IV. 
+Data 
+ 
+Given the discussion above, the ideal data set for estimating the model offers frequent 
+observations over a wide span of grades on a large number of individuals, allowing each correlation 
+to be estimated precisely.  Neither of our data sources meet both of these criteria, but the two are 
+complementary and provide independent estimates.  This section describes samples and key 
+variables from each and discusses their relative strengths and limitations. In both samples, we focus 
+on math test scores. 
+A. 
+Data from Charlotte-Mecklenburg Schools 
+ 
+Our administrative data are from Charlotte-Mecklenburg Schools (CMS), a large school 
+district in North Carolina.  CMS is one of the few school districts in the country with data sufficient 
+for our analysis:  similar tests (the North Carolina end of grade (EOG) exams in math) were 
+administered in many consecutive years (1999 to 2009) and consecutive grades (grades 3 to 8), and 
+far enough in the past that we can observe correlations between standardized test scores with a 
+longer-term outcome – whether an individual enrolled in a four-year college in his first year out of 
+high school, collected through the National Student Clearinghouse (NSC) – for several cohorts of 
+students (those in third grade between spring of 1994 and spring of 1998).  Another benefit of the 
+
+16 
+ 
+CMS data is that the size of the district makes the correlations quite precise, which helps to reduce 
+noise in our estimates.  The correlations are estimated on average using about 5400 students per 
+cohort (grade-year). 
+One drawback of the CMS data, however, is that for no one cohort can we observe all 
+possible correlations.  Appendix Table I provides a description of the available data by cohort, 
+where cohorts are defined on the basis of the year (spring) in which an individual should have been 
+in third grade.  The table shows that the 1998 cohort is the most recent one for which we are able to 
+observe correlations between test scores and college-going.  However, the 1998 cohort lacks third 
+grade test score data.  Earlier cohorts (1994 to 1997) have tests available in few grades, and later 
+cohorts (1999 to 2008) lack college-going information altogether.  In the present analysis, we use all 
+available data, and allow the variance of the endowment (
+2
+
+) to vary across cohorts in our preferred 
+specifications.  
+The CMS data present two additional challenges for our analysis.  First, the EOG math 
+exams experienced some changes in content and in testing process over the 1999 to 2009 period.12  
+In our model, such changes should affect the correlation between test scores administered in 
+separate testing regimes through a change in the test’s reliability ratio.  Similarly, there were some 
+changes in district demographics over the period, arising both from Hispanic immigration and white 
+return to the district after the end of court-ordered school desegregation in 2001.  If test reliability 
+depends on the underlying variance in achievement, these changes could also affect the reliability 
+ratio.  To account for all of these factors, we ultimately allow the reliability ratio (
+y
+) to vary year-
+by-year (not just when the tests themselves change), in addition to varying across grades.   
+                                                 
+12 In particular, the math test was changed in 2001, then again in 2006.  Changes in the math test editions affected the 
+weights given to different topics. The main change in the testing process over the period was the addition of more time 
+with each edition; the current edition is untimed.   
+
+17 
+ 
+Second, our model assumes that year and grade move in lockstep, one-for-one.  However, 
+some children repeat grades, while others (albeit a much smaller fraction) skip ahead.  We would like 
+to use these children’s scores, but we are uncomfortable assuming, for example, that a child 
+repeating fifth grade and thus administered the fifth grade EOG math exam would occupy the same 
+place in the distribution of sixth grade EOG math scores.  To confront this complication, we 
+estimated our model using the subset of students who never repeated (or skipped) a grade. This uses 
+a consistent sample to calculate all correlations.  
+The first column of Table I presents demographic characteristics and college-going rates of 
+the CMS students used to create these correlations.13  CMS students are more likely to be minorities 
+and have lower college attendance rates than we see in a random sample of U.S. twenty year olds in 
+2007, as shown in the third column based on the American Communities Survey (ACS).14  This is 
+not surprising, since CMS is an urban school district.  The CMS students in our sample are also 
+slightly more likely to be female than the population at large.  This finding is expected, since we have 
+restricted calculation of the correlations to individuals who have not repeated grades, and boys have 
+higher grade repetition rates. 
+B. 
+Data from the National Longitudinal Survey of Youth 
+ 
+The National Longitudinal Survey of Youth 1979 (NLSY79) is a widely-used, nationally 
+representative longitudinal survey of roughly 12,000 individuals who were between the ages of 14 
+and 21 in 1979.  In 1986, the survey incorporated data on the children born to female respondents, 
+and the children have been surveyed every two years ever since, with most recent data from 2008.  
+The resulting data set – the NLSY79 Child and Young Adult survey – includes biannual scores on 
+                                                 
+13 The unit of observation is a correlation.  For each correlation, we first calculate the demographic characteristics of the 
+underlying sample.  We then take the unweighted average of these means to arrive at the figures presented in the table.  
+The figures are very similar if we weight by the number of observations used to create each correlation. 
+14 Twenty-year-olds in 2007 would have been born in 1987 and should have entered third grade in 1995 and 1996.  The 
+sample therefore includes individuals from a cohort that is represented in both the CMS and NLSY79 Child-Mother 
+data.  The NLSY79 sample is described in the next section. 
+
+18 
+ 
+Peabody Individual Achievement Tests (PIAT) of math while a child is between the ages of 5 and 
+14, and information on whether he or she attended college after high school.  For the latter, we rely 
+on questions on educational attainment fielded in the young adult questionnaire, which began in 
+1994, in the survey years when an individual would have turned 20 or 21, depending on the cohort.  
+ 
+One benefit of these data over the CMS data is that test scores are available over a longer 
+span.  It is also the case that we can observe all possible correlations between test scores in different 
+grades and between test scores and college going for a number of cohorts.  We show available data 
+by cohort in Appendix Table II; cohort now corresponds to birth year.  We restrict our analysis 
+sample to individuals born between 1982 and 1987, for which we have the complete span of test 
+scores and the information on college-going after high school described above.   Although 
+individuals born in 1981 and prior satisfy these same criteria, we exclude them because they are born 
+to increasingly younger mothers given the survey design. As is the case in our analysis of the CMS 
+data, we take account of cohort differences in knowledge by allowing the endowment variance (
+2
+
+) 
+to vary across cohorts.   
+The second column of Table I shows demographic characteristics and college-going rates of 
+individuals in our sample from the NLSY79 Child and Young Adult survey.15  Despite excluding the 
+oldest children surveyed, our estimation sample – like that for CMS – is high minority and has low 
+college attendance relative to the national average figures from the ACS.  Our estimates may 
+therefore not necessarily reflect what we would see had we access to nationally representative data.  
+This is not necessarily a drawback of our analysis, however, as most educational interventions target 
+more disadvantaged populations.   
+ 
+The NLSY79 has several other features that are useful for our analysis.  Compared to the 
+EOG math tests in CMS, test content and scoring were consistent over the period relevant for the 
+                                                 
+15 The correlations are calculated in the same way they were for the CMS data. 
+
+19 
+ 
+cohorts in our sample (1986 to 2002), though there were some changes in test administration and 
+the tested population over this span.16  Again, we account for the effects of these changes by 
+allowing test reliability to change over time in addition to across grades in some specifications.  
+Further, children of the same age are administered the same test regardless of their grade of 
+enrollment.  There is therefore no need to restrict attention to non-repeaters.   
+  
+ 
+The main drawbacks of the NLSY79 data are that the samples used to calculate any given 
+correlation are quite small relative to those available for CMS,17 and data are collected only every two 
+years, not annually.  This added noise to our estimates could potentially outweigh any increases in 
+precision from having a wider grade span represented in the data.   
+V. 
+Estimates of the Model Parameters 
+ 
+Table II presents equal-weighted minimum distance estimates of the model parameters 
+based on the correlation data derived from CMS and the NLSY79, respectively.  Panel A of the table 
+pertains to the estimates based on CMS data, while Panel B corresponds to estimates based on the 
+NLSY79.18   To establish a benchmark, we begin with a parsimonious specification.  In column (1), 
+we force the innovation variance to be unchanging across grades, or 
+1
+
+v
+
+, and assume that the 
+reliability ratio for the test is unchanging across grades and years.  The estimates of from this 
+specification are above one in both datasets, though not significantly so in the CMS data.  Allowing 
+estimates of 
+2
+
+to vary across cohorts (column (2)) improves model fit (in the case of the CMS data) 
+and reduces estimates of , though these estimates remain above one in both datasets.  The 
+specifications in the remaining columns of the table examine whether this finding continues to hold 
+when we place fewer restrictions on the model estimated.   
+                                                 
+16 Most notably, there was a shift to computer aided test administration in 1994.  This apparently increased the 
+proportion of children with valid scores by reducing interviewer error in test administration.  There was also a move to 
+testing in the English language only in 2002, and the minority oversample of the NLSY79 was also excluded from the 
+2000 wave (Center for Human Resource Research, 2009). 
+17 On average around 350 observations are used to calculate each correlation – 15 times less than in the CMS data.     
+18 Heteroskedasticity-robust standard errors are in parentheses.  
+
+20 
+ 
+Before turning to discussion of these next specifications, it is useful to note that estimates of 
+the reliability ratios, 
+y
+and 
+w
+, are very precisely estimated and have magnitudes that line up with 
+expectations.  In the models estimated on the correlations for CMS, for instance, the value of 
+y
+=0.883 to 0.885 is consistent with reported reliabilities on the North Carolina EOG math test of 
+0.85 to 0.90. The estimate of 
+y
+=0.704 in the NLSY79 data is at the low end of the range of 
+reliability estimates reported for the PIAT math test, but this may reflect noise that arises from other 
+sources unique to the NLSY79, such as inconsistent child effort in a non-school testing 
+environment.19 In both samples, the estimates of 
+w
+are also much lower than estimates of 
+y
+, 
+implying that accumulated knowledge contributes considerably less power in explaining the variation 
+in college-going than the variation in test scores. Our estimates of 
+w
+ in the NLSY79 are consistent 
+with Neal and Johnson’s (1996) findings that performance on the Armed Forces Qualifying Test as 
+an adolescent explains roughly 15 percent of variation in earnings.  Estimates of 
+w
+ maybe be lower 
+in the NLSY79 because self-reports of college-going are noisier than the administrative data on 
+college-going available for CMS students.  In any event, the finding of a relatively low reliability ratio 
+for college-going reminds us that college-going is determined by much more than the notion of 
+achievement that is central to student assessment.   
+Moving forward, we next (column (3)) allow the reliability ratio for the test to vary across 
+grades.  Recall that we are able to do this because test scores in a given grade are correlated against 
+test scores in multiple other grades; our estimates attempt to pick up whether all correlations with 
+                                                 
+19 In our model, 
+y
+ is not directly comparable to the usual test-retest reliability because short-term shocks to knowledge 
+(
+it
+) are counted as noise for the purpose of estimating 
+y
+ (see equation (7)).  If we assume that the variance in the 
+short-run shocks is roughly equal to the variance in the long-run shocks (consistent with about half of value added to 
+knowledge fading by the next year) then our estimates of 
+y
+are consistent with test-retest reliability rates of just over .9 
+for the CMS data and around .75 for the NLSY79 data, which are still consistent with reported reliabilities. 
+ 
+
+21 
+ 
+test scores in, say, kindergarten are systematically low.  Estimates of 
+y
+are now estimates of the 
+reliability of the third grade test; the other coefficients presented are the predicted differences in test 
+reliability between the grade specified and grade three. This specification improves model fit in both 
+data sets, as reflected in the fall in the root mean squared error (RMSE) between columns (2) and 
+(3).  In Panels A and B alike, the estimates of test reliability are also roughly consistent with 
+expectations:  test reliability tends to improve across grades.  The improvement in test reliability 
+between kindergarten and third grade in the NLSY79 Child-Young Adult data is particularly striking:  
+our estimates imply that kindergarten and first grade test scores are highly unreliable, with reliability 
+ratios of 0.371 and 0.481, respectively.  Increases in test reliability across grades will tend to make the 
+statistical artifact less important; we show this empirically below.  Allowing baseline (third grade) test 
+reliability then to vary across years (column (4)) does not alter this pattern of findings and only 
+moderately improves model fit (more so in the CMS data, where the test changed across years, than 
+in the NLSY, where the same test was used in all years) .   
+Estimates of in the specifications with changing reliability are lower than those in columns 
+(1) and (2) for both data sets, suggesting that changes in test reliability were previously loading onto 
+this parameter.  Allowing only for changes in test reliability across grades, in column (3), has the 
+largest impact on estimates of .  This is intuitive, since increases in test reliability across grades will 
+strengthen the correlation between test scores in higher grades, creating the illusion of more 
+knowledge accumulation as a child ages.  For the specification in column (4), the estimates of  
+from the two datasets are nearly identical, and imply decay in long-term knowledge of 6 to 7 percent 
+per year.  Nevertheless, estimates of  remain statistically indistinguishable from one in both data 
+sets.   
+ 
+To provide a sense of model fit, Figure III and Figure IV plot average values of the 
+correlations in our data, as well as average predicted correlations based on 

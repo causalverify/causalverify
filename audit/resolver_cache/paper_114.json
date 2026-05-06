@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_114",
+  "title": "Estimating the Payoff to Attending a More Selective College",
+  "authors": "Dale & Krueger",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/003355302320935089",
+    "title": "Estimating the Payoff to Attending a More Selective College: An Application of Selection on Observables and Unobservables",
+    "year": 2002,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1016
+  },
+  "checks": {
+    "title_jaccard": 0.6,
+    "title_gate_pass": false,
+    "author_overlap": [
+      "krueger",
+      "dale"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1016,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s96",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Irrigation Eligibility on Crop Revenue",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T20:27:57.176199",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 459,
+    "output_tokens": 694,
+    "content": "## 1. Identification Strategy\n\nThe most appropriate causal method for this research question is a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nThe treatment, eligibility for irrigation, is determined by a sharp cutoff in a continuous \"running variable\" (land slope). Farmers whose land slope is just below the threshold are ineligible (control group), while those just above are eligible (treatment group). This creates an exogenous assignment to treatment for observations close to the cutoff, mimicking a randomized experiment in a narrow window around the threshold. The core idea is that farmers with a land slope just below the cutoff are very similar to those just above the cutoff in all unobservable characteristics, except for their irrigation eligibility.\n\n**Key Assumption:**\nThe critical assumption for a valid RDD is that, in the absence of the treatment, the average potential outcome (crop revenue) would be continuous at the cutoff point. Any observed discontinuity in crop revenue at the threshold can then be causally attributed to the irrigation eligibility. This implies that there is no other factor discontinuously changing at the same exact cutoff that could also affect crop revenue, and that individuals cannot precisely manipulate their land slope to fall just on one side of the cutoff.\n\n## 2. R Code\n\n```r\n# Install and load necessary packages\nif (!requireNamespace(\"readr\", quietly = TRUE)) install.packages(\"readr\")\nif (!requireNamespace(\"dplyr\", quietly = TRUE)) install.packages(\"dplyr\")\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) install.packages(\"rdrobust\")\nif (!requireNamespace(\"rddensity\", quietly = TRUE)) install.packages(\"rddensity\")\nif (!requireNamespace(\"ggplot2\", quietly = TRUE)) install.packages(\"ggplot2\")\n\nlibrary(readr)\nlibrary(dplyr)\nlibrary(rdrobust)\nlibrary(rddensity)\nlibrary(ggplot2)\n\n# --- 1. Load Data ---\ndf <- read_csv(\"experiments/exp_b/data/s96_data.csv\")\n\n# --- 2. Determine Cutoff ---\n# Based on the data preview and typical RDD setups, the cutoff for 'running_var'\n# where 'treated' switches from 0 to 1 appears to be 0.5.\n# Let's programmatically verify this assumption.\ncutoff <- 0.5\nif (all(df$running_var[df$treated == 1] >= cutoff) && all(df$running_var[df$treated == 0] < cutoff)) {\n  message(paste(\"Confirmed: Cutoff for irrigation eligibility is\", cutoff))\n} else {\n  message(paste(\"Warning: Cutoff might not be exactly\", cutoff, \". Proceeding with\", cutoff, \"as assumed.\"))\n}\n\n# --- 3. Main RDD Analysis ---\n# Using the 'rdrobust' package for robust RDD estimation.\n# Default settings: local linear regression (p=1) and optimal bandwidth selection (MSE-optimal).\ncat(\"\\n--- Main RDD Analysis Result (Local Linear, MSE-Optimal Bandwidth) ---\\n\")\nrdd_main_result <- rdrobust(y = df$y, x = df$running_var, c = cutoff)\nprint(rdd",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare crop revenue for farms just above and below the slope threshold.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligibility for irrigation increases crop revenue.",
+    "main_effect": "0.15"
+  }
+}

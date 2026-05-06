@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s18",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Contaminated event window: confounding news during event period",
+  "research_question": "A firm announced both an acquisition AND an earnings beat on the same day. Can we decompose the market reaction to isolate the acquisition effect from the confounding earnings news?",
+  "data_description": "Event study data for 80 firms with simultaneous announcements. Variables: stock_id, event_day (−10 to +10), ret, mkt_ret, beta, eps_surprise. Challenge: earnings surprise on day 0 confounds acquisition announcement. Approach: partial out eps_surprise in the AR regression.",
+  "ground_truth": {
+    "identification_strategy": "Event study with confound adjustment — regress AR on eps_surprise + acquisition dummy",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "After controlling for earnings surprise, acquisition announcement generates negative AR",
+    "main_effect": "Acquisition CAR ≈ −1.5% after earnings adjustment"
+  },
+  "data_file": "experiments/exp_b/data/s18_data.csv",
+  "design_note": "Prior override test: Acquisition announcements typically yield positive target CAR, but this scenario includes contaminated event windows (concurrent earnings news) that flip the sign. Models must detect and adjust for the confound rather than applying the default prior.",
+  "dgp_truth": {
+    "type": "event",
+    "effect": -0.015,
+    "direction": "negative"
+  }
+}

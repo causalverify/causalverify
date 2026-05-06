@@ -1,0 +1,112 @@
+# Data (too large for git)
+data/raw/
+data/processed/*.csv
+data/processed/*.parquet
+
+# Raw PDFs (215MB; download separately, do not commit)
+audit/pdfs/
+
+# API keys
+.env
+config/api_keys.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# R
+.Rhistory
+.RData
+*.Rproj.user/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/*.log
+
+# LaTeX build
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.out
+paper/latex/*.toc
+paper/latex/*.synctex.gz
+paper/latex/_ci_build/
+
+# Large local reference dumps
+reference/Sentiment_Reproducibility /
+Rplots.pdf
+ceo_departure_event_study.png
+dividend_trends.png
+event_study_plot.png
+rd_plot.pdf
+rdd_plot.pdf
+
+# --- pre-submission cleanup: never re-track these
+SESSION_HANDOFF_*.md
+PAPER2_ROADMAP.md
+V11_DIVERGENCE_NOTE.md
+CLAUDE.md
+AGENTS.md
+deep_review_v*.md
+review_v*.md
+Icon
+Icon?
+.claude/
+experiments_log/
+logs/
+human_rating/
+experiments/exp_a/human_ratings/
+src/agents/uam_*.py
+src/agents/primo_*.py
+src/agents/ezproxy_*.py
+src/agents/fetcher.py
+src/agents/pdf_fetching_agent.py
+src/agents/pdf_scavenger.py
+src/agents/direct_doi_fetcher.py
+annotation_task.csv
+
+# round 2: residual internal notes + old drafts
+audit/RESTRUCTURE_PLAN.md
+audit/STAGE0_AUDIT_REPORT.md
+audit/direct_doi_summary.md
+audit/missing_pdfs.md
+audit/uam_auto_summary.md
+audit/primo_fetch_summary.md
+experiments/exp_a/rater2_email_template.md
+paper/draft.md
+paper/research_proposal.md
+paper/latex/neurips_v10.*
+audit/full_audit_draft/
+
+# round 4: build artifact + orphan/stray local files
+paper/latex/*.blg
+/rd_plot.png
+/rdd_plot.png
+paper/figures/ca usa l*.png
+paper/figures/calibration_gap_scatter.svg
+paper/latex/figures/
+pdfs-corpus/
+audit/PDFS_CORPUS_INTEGRATION_PLAN.md
+experiments/exp_b/data/caar_plot.png
+experiments/exp_b/data/event_study_results.png
+
+# round 4: Tier 2 sensitivity audits — local-only audit material
+scripts/tier2_*.py
+experiments/exp_b/python_subset/
+experiments/exp_b/temperature_variance/
+paper/tables/exp_b_python_subset.*
+paper/tables/exp_b_temperature_variance.*
+paper/tables/exp_b_tolerance_sweep.*
+
+# round 3: anon-zip helpers + anonymized-institution fetcher impl
+scripts/make_anon_zip*.sh
+src/agents/fetcher_impl.py
+src/agents/pull_real_abstracts.py
+src/labnotebook/backfill_today.py
+src/pipeline/extract_ground_truth_agent.py
+src/pipeline/validate_papers_openalex.py
+paper/latex/sections/ingestion_pipeline_draft.tex

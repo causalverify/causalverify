@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s85",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Merit Scholarships on College Enrollment",
+  "model": "o3",
+  "run_at": "2026-04-14T19:53:14.063918",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 437,
+    "output_tokens": 1561,
+    "content": "## 1. Identification Strategy  \nCausal method: Sharp Regression Discontinuity Design (RDD).  \nWhy: The merit scholarship is assigned mechanically once a student’s GPA crosses a known cutoff. Treatment probability jumps from 0 to 1 at that point, fitting the classic sharp‐RDD set-up.  \nKey assumptions:  \n• Continuity – In the absence of the scholarship, the conditional expectation of college enrollment would be smooth in GPA at the cutoff (no other forces create a discrete jump).  \n• No precise manipulation – Students cannot perfectly manipulate their GPA right around the threshold (validated with a density/McCrary test).  \n\n## 2. R Code\n```r\n# --------------------------------------------\n# Impact of Merit Scholarship on College Enrollment\n# --------------------------------------------\n# Load packages\nsuppressPackageStartupMessages({\n  library(readr)\n  library(rdrobust)   # main RDD estimator\n  library(rddensity)  # McCrary density test\n})\n\n# 1. Read the data\ndata_path <- \"experiments/exp_b/data/s85_data.csv\"\ndf <- read_csv(data_path, show_col_types = FALSE)\n\n# 2. Define the cutoff: 0.5 GPA (verified from treated indicator pattern)\ncutoff <- 0.5\n\n# 3. Main RDD estimate (local linear, MSE-optimal bandwidth)\nrd_main <- rdrobust(y = df$y, x = df$running_var, c = cutoff)\n\ncat(\"\\n--- Main RDD estimate (local linear) ---\\n\")\ncat(\"Treatment effect (taû) =\", round(rd_main$coef[1], 4), \n    \" | SE =\", round(rd_main$se[1], 4), \n    \" | p-value =\", round(rd_main$pval[1], 4), \"\\n\")\n\n# 4. Robustness checks --------------------------------------------\n\n## 4a. Bandwidth sensitivity (half & double the MSE-optimal bandwidth)\nh_opt <- rd_main$bws[1,1]   # optimal bandwidth on left; use it symmetrically\nrd_half <- rdrobust(df$y, df$running_var, c = cutoff, h = h_opt/2)\nrd_double <- rdrobust(df$y, df$running_var, c = cutoff, h = h_opt*2)\n\ncat(\"\\n--- Bandwidth sensitivity ---\\n\")\ncat(\"Half-bandwidth  taû =\", round(rd_half$coef[1],4), \n    \" | p =\", round(rd_half$pval[1],4),\"\\n\")\ncat(\"Double-bandwidth taû =\", round(rd_double$coef[1],4), \n    \" | p =\", round(rd_double$pval[1],4),\"\\n\")\n\n## 4b. Higher-order polynomial (quadratic)\nrd_quad <- rdrobust(df$y, df$running_var, c = cutoff, p = 2)\ncat(\"\\n--- Polynomial order robustness (quadratic) ---\\n\")\ncat(\"Quadratic taû =\", round(rd_quad$coef[1],4), \n    \" | p =\", round(rd_quad$pval[1],4),\"\\n\")\n\n## 4c. Manipulation test (McCrary density)\ndens_test <- rddensity(df$running_var, c = cutoff)\ncat(\"\\n--- McCrary density test ---\\n\")\ncat(\"Log-density discontinuity =\", round(dens_test$test$statistic,4), \n    \" | p =\", round(dens_test$test$p.value,4),\"\\n\")\n```\n\n## 3. Expected Findings  \nBecause a merit scholarship reduces the net cost of college, students just above the GPA cutoff should enroll at higher rates than those just below. I expect:  \n• Sign: positive (τ > 0).  \n• Magnitude: roughly +0.15 to +0.25 in enrollment probability (i.e., a 15–25 pp jump) given typical scholarship effects in the literature and the previewed spread in y values.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the GPA threshold as a cutoff to compare students just above and below the threshold.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Meeting the GPA threshold for a merit scholarship significantly increases college enrollment rates.",
+    "main_effect": "0.25"
+  }
+}

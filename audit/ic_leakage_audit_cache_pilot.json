@@ -1,0 +1,70 @@
+[
+  {
+    "paper_id": "paper_01",
+    "ground_truth": "DID",
+    "guess": "DID",
+    "correct": true,
+    "confidence": 0.7,
+    "rationale": "The context suggests a comparison of outcomes before and after the financial crisis across banks with different vulnerabilities, which is typical for DID.",
+    "source_type": "pdf_full_text_up_to_50pg_250000c",
+    "source_chars": 82692,
+    "ic_excerpt": "The setting is the U.S. corporate loan market during the 2007–2008 financial crisis, particularly the acute banking panic following the September 2008 failure of Lehman Brothers and the near-failures and government interventions involving Washington Mutual, Fannie Mae, Freddie Mac, and AIG. Syndicated lending—originated by lead banks and shared wit",
+    "model": "gpt-4o",
+    "raw": "```json\n{\n  \"method\": \"DID\",\n  \"confidence\": 0.7,\n  \"rationale\": \"The context suggests a comparison of outcomes before and after the financial crisis across banks with different vulnerabilities, which is typical for DID.\"\n}\n```",
+    "usage": {
+      "input_tokens": 320,
+      "output_tokens": 54
+    }
+  },
+  {
+    "paper_id": "paper_02",
+    "ground_truth": "DID",
+    "guess": "DID",
+    "correct": true,
+    "confidence": 0.7,
+    "rationale": "The context involves a policy intervention (CPP) and its impact on bank behavior, suggesting a difference-in-differences approach to compare treated and untreated groups over time.",
+    "source_type": "pdf_full_text_up_to_50pg_250000c",
+    "source_chars": 150213,
+    "ic_excerpt": "The setting is the 2008–2009 U.S. financial crisis and the Troubled Asset Relief Program's Capital Purchase Program (CPP), launched October 14, 2008, which invested $204.9 billion in 707 financial institutions in exchange for preferred stock paying 5% dividends (rising to 9% after five years) and warrants. Qualifying institutions submitted two-page",
+    "model": "gpt-4o",
+    "raw": "```json\n{\n  \"method\": \"DID\",\n  \"confidence\": 0.7,\n  \"rationale\": \"The context involves a policy intervention (CPP) and its impact on bank behavior, suggesting a difference-in-differences approach to compare treated and untreated groups over time.\"\n}\n```",
+    "usage": {
+      "input_tokens": 334,
+      "output_tokens": 62
+    }
+  },
+  {
+    "paper_id": "paper_03",
+    "ground_truth": "DID",
+    "guess": "DID",
+    "correct": true,
+    "confidence": 0.9,
+    "rationale": "The staggered, state-level variation in policy adoption suggests a difference-in-differences approach.",
+    "source_type": "pdf_full_text_up_to_50pg_250000c",
+    "source_chars": 106566,
+    "ic_excerpt": "The setting is the U.S. Interstate Banking and Branching Efficiency Act (IBBEA) of 1994, which legalized interstate bank branching beginning in 1997. While IBBEA permitted interstate branching nationally, individual states retained discretion over four specific provisions that could erect entry barriers: a minimum age requirement for target institu",
+    "model": "gpt-4o",
+    "raw": "```json\n{\n  \"method\": \"DID\",\n  \"confidence\": 0.9,\n  \"rationale\": \"The staggered, state-level variation in policy adoption suggests a difference-in-differences approach.\"\n}\n```",
+    "usage": {
+      "input_tokens": 307,
+      "output_tokens": 48
+    }
+  },
+  {
+    "paper_id": "paper_04",
+    "ground_truth": "EVENT_STUDY",
+    "guess": "EVENT_STUDY",
+    "correct": true,
+    "confidence": 0.8,
+    "rationale": "The context involves analyzing the impact of specific policy announcements and changes, which is typical for event studies.",
+    "source_type": "pdf_full_text_up_to_50pg_250000c",
+    "source_chars": 106223,
+    "ic_excerpt": "The setting is U.S. monetary policy implementation by the Federal Open Market Committee (FOMC), which adjusts its target for the Federal funds rate to influence financial conditions and ultimately macroeconomic outcomes. A key institutional shift occurred in February 1994, when the FOMC began explicitly announcing target rate changes on the day of ",
+    "model": "gpt-4o",
+    "raw": "```json\n{\n  \"method\": \"EVENT_STUDY\",\n  \"confidence\": 0.8,\n  \"rationale\": \"The context involves analyzing the impact of specific policy announcements and changes, which is typical for event studies.\"\n}\n```",
+    "usage": {
+      "input_tokens": 305,
+      "output_tokens": 51
+    }
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_50",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:42:32.285096",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 674,
+    "output_tokens": 164,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe primary causal identification strategy is a Difference-in-Differences (DID) design, exploiting the staggered adoption of E-ZPass at highway toll plazas.\n1.  **Treatment Group:** Mothers residing within 2 km of a toll plaza.\n2.  **Control Group:** Mothers residing farther from the same toll plazas (e.g., 2-5 km). This aims to capture local comparison groups exposed to similar unobserved community trends but not directly affected by the plaza-specific congestion changes.\n3.  **Treatment Event:** The adoption of E-ZPass at a specific toll plaza, which dramatically reduces localized traffic congestion and air pollution.\n4.  **Identification:** The causal effect is identified by",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences — mothers living near toll plazas (within 2 km, high exposure to congestion pollution) compared to mothers living farther away (2-10 km, lower exposure), before vs. after E-ZPass adoption at the nearest plaza; staggered E-ZPass adoption across plazas provides temporal variation",
+    "key_variables": {
+      "treatment": "proximity to toll plaza (near = within 2 km) × post-E-ZPass adoption (binary, staggered by plaza)",
+      "control": "mothers living 2-10 km from toll plazas (similar neighborhoods but less exposure to toll plaza congestion)",
+      "outcome": "birth weight, gestational age, prematurity rate (< 37 weeks), low birth weight (< 2,500g)",
+      "time_period": "1997–2002 (births spanning pre- and post-E-ZPass adoption)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "E-ZPass adoption significantly improved infant health for mothers living near toll plazas. Prematurity rates fell by approximately 6-9% among mothers within 2 km of toll plazas after E-ZPass, relative to mothers farther away. Low birth weight incidence also decreased. The effects are concentrated among mothers living closest to plazas (within 0.5 km), where the pollution reduction was greatest. Measured air pollution (CO, PM) near toll plazas declined substantially after E-ZPass adoption.",
+    "main_effect": "E-ZPass adoption reduces prematurity by approximately 6-9% (0.6-0.9 percentage points from a base of ~10%) and low birth weight by ~8-11% for mothers within 2 km of toll plazas",
+    "key_robustness": [
+      "Distance gradient: effects strongest within 0.5 km, diminishing with distance",
+      "Event-study specification showing no pre-trend before E-ZPass adoption",
+      "Controlling for maternal demographics, year effects, plaza fixed effects",
+      "Air pollution monitor data confirming pollution reduction near plazas",
+      "Placebo test using birth outcomes far from toll plazas",
+      "Subsample by season (congestion effects may vary by weather)"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID: proximity to toll plaza (near vs. far) × post-E-ZPass adoption; with staggered timing across plazas providing multiple treatment events",
+      "treatment": "Proximity to toll plaza (within 2 km) interacted with post-E-ZPass adoption dummy; staggered adoption across plazas 1998-2001",
+      "event_window": "Post-adoption period (all births after E-ZPass installation at the nearest plaza)",
+      "estimation_window": "Pre-E-ZPass births (1997 to adoption date) serve as baseline",
+      "sample_period": "1997–2002",
+      "unit_of_observation": "Individual birth, identified by mother's residential address distance to nearest toll plaza",
+      "key_assumption": "Parallel trends: absent E-ZPass adoption, birth outcomes for mothers near toll plazas would have evolved similarly to those for mothers farther from plazas. E-ZPass adoption timing is determined by transportation infrastructure decisions, not by anticipated changes in birth outcomes or residential sorting. Mothers do not move in response to E-ZPass adoption."
+    },
+    "key_magnitudes": {
+      "prematurity_reduction": "-6 to -9% reduction in prematurity rate for mothers within 2 km (approximately 0.7 pp from 10% base)",
+      "lbw_reduction": "-8 to -11% reduction in low birth weight for mothers within 2 km",
+      "pollution_reduction": "CO levels near toll plazas declined by approximately 15-20% after E-ZPass adoption",
+      "distance_gradient": "Effects are 2-3x larger within 0.5 km vs. 1-2 km from the plaza"
+    },
+    "robustness_notes_detail": "Event-study plots show no differential pre-trends in prematurity or birth weight for near vs. far mothers before E-ZPass adoption. The sharp distance gradient (strongest effects closest to plazas) rules out confounding from area-wide trends. Air pollution monitor data independently confirms that CO and PM levels declined near plazas after E-ZPass, providing a first-stage validation. Controlling for maternal smoking, education, and prenatal care does not affect the estimates, confirming that the effect operates through ambient air pollution rather than behavioral changes."
+  }
+}

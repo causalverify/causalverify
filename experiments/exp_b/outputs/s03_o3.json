@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s03",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "School voucher program on student test scores",
+  "model": "o3",
+  "run_at": "2026-03-27T20:15:22.529412",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 458,
+    "output_tokens": 1455,
+    "content": "## 1. Identification Strategy  \n• Method: Two-way-fixed-effects Difference-in-Differences (DID) with an event-study robustness check.  \n• Why: The voucher program is adopted at one known date (period 4) only in the treated districts, giving a classic stagger-free treatment/control panel structure. We compare the change in test scores for treated districts before vs. after the program to the simultaneous change in control districts.  \n• Key assumption: Parallel trends – in the absence of the voucher, the treated and control districts would have evolved similarly over time. (Event-study pre-treatment coefficients are used to probe this assumption.)\n\n## 2. R Code\n```r\n############################################################\n# School voucher program – Difference-in-Differences\n# Data path: experiments/exp_b/data/s03_data.csv\n############################################################\nlibrary(data.table)\nlibrary(fixest)\nlibrary(ggplot2)\n\n# 1. Read data\ndt <- fread(\"experiments/exp_b/data/s03_data.csv\")\n\n# 2. Baseline DID with two-way fixed effects\ndid_mod <- feols(y ~ treat_x_post | unit_id + period,\n                 data = dt, cluster = ~unit_id)\n\ncat(\"\\n=== Baseline DID result ===\\n\")\nprint(summary(did_mod)$coefficients)\n\n# 3. Event-study (lead/lag) – reference year = −1 (period 3)\ndt[, rel_year := period - 4]                 # years relative to adoption\nes_mod <- feols(y ~ i(rel_year, treated, ref = -1) | unit_id + period,\n                data = dt, cluster = ~unit_id)\n\ncat(\"\\n=== Pre-trend test (event-study leads) ===\\n\")\nprint(etable(es_mod, keep = \"rel_year::[-3:-1]\", se = \"cluster\"))\n\n# Optional plot\nggplot(data = broom::tidy(es_mod),\n       aes(x = as.numeric(gsub(\".*::\", \"\", term)),\n           y = estimate,\n           ymin = estimate - 1.96*std.error,\n           ymax = estimate + 1.96*std.error)) +\n    geom_hline(yintercept = 0, linetype = \"dashed\") +\n    geom_pointrange() +\n    labs(x = \"Years relative to voucher start\",\n         y = \"Coefficient (std. dev. of scores)\",\n         title = \"Event-study for voucher impact\") +\n    theme_minimal()\n\n# 4. Robustness 1: district-specific linear trends\ndt[, t := period]\ntrend_mod <- feols(y ~ treat_x_post + i(t, unit_id) | unit_id + period,\n                   data = dt, cluster = ~unit_id)\n\ncat(\"\\n=== DID with district-specific trends ===\\n\")\nprint(summary(trend_mod)$coefficients[\"treat_x_post\", ])\n\n# 5. Robustness 2: placebo – pretend the program started in period 2\ndt[, placebo_post := as.integer(period >= 2)]\ndt[, placebo := treated * placebo_post]\nplacebo_mod <- feols(y ~ placebo | unit_id + period,\n                     data = dt[period < 4], cluster = ~unit_id)\n\ncat(\"\\n=== Placebo test (pre-periods only) ===\\n\")\nprint(summary(placebo_mod)$coefficients)\n\n############################################################\n# Key numeric result (baseline DID coefficient)\n############################################################\ncat(\"\\n=== Main estimate: Voucher effect on test scores ===\\n\")\ncat(\"beta_hat =\", coef(did_mod)[\"treat_x_post\"],\n    \"\\nCluster-robust SE =\", se(did_mod, \"cluster\")[\"treat_x_post\"], \"\\n\")\n```\n\n## 3. Expected Findings  \n• Sign: Positive – vouchers should raise average standardized scores in participating districts.  \n• Magnitude: Because `y` is mean-centered (≈ standard-deviation units), an effect of ≈ 0.08 – 0.12 is plausible (roughly one-tenth of a standard deviation, in line with typical educational interventions).",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=voucher districts, control=non-voucher; shock=program introduction",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Test scores increase significantly in voucher districts after program launch",
+    "main_effect": "0.25 SD improvement in test scores"
+  }
+}

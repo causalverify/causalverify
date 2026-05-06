@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s98",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Covenant Violations on Capital Expenditure",
+  "model": "o3",
+  "run_at": "2026-04-14T19:56:10.734332",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 460,
+    "output_tokens": 1959,
+    "content": "## 1. Identification Strategy  \nRegression Discontinuity Design (sharp RDD)\n\n• Treatment assignment (covenant “violation”) switches discretely when the debt-to-asset ratio crosses a fixed cutoff.  \n• Key identifying assumptions  \n 1. Continuity: in the absence of the covenant, firms’ expected log-capex would vary smoothly with the debt-to-asset ratio at the cutoff.  \n 2. No precise manipulation: firms cannot perfectly sort their debt-to-asset ratios around the threshold.  \n\nUnder these conditions, the jump in log-capex at the cutoff identifies the causal effect of crossing the covenant threshold.\n\n## 2. R Code\n```r\n# ------------------------------------------------------------\n# Impact of covenant violations on capital expenditures (RDD)\n# ------------------------------------------------------------\n# Required packages\nlibs <- c(\"tidyverse\", \"rdrobust\", \"rddensity\")\ninvisible(lapply(libs, require, character.only = TRUE))\n\n# 1. Read data ------------------------------------------------\npath <- \"experiments/exp_b/data/s98_data.csv\"\ndf   <- read_csv(path, show_col_types = FALSE)\n\n# 2. Locate the empirical cutoff -----------------------------\n#    The lowest running_var that is classified as treated is\n#    the point where treatment status changes.\ncutoff <- min(df$running_var[df$treated == 1])\n\ncat(\"Estimated cutoff (debt-to-asset ratio) :\", round(cutoff, 4), \"\\n\\n\")\n\n# 3. Main RDD estimate ---------------------------------------\nrd_main <- rdrobust(y = df$y,\n                    x = df$running_var,\n                    c = cutoff,          # threshold\n                    kernel = \"triangular\")  # default local-linear\n\nprint(rd_main)\n\n# Extract point estimate (robust bias-corrected)\ntau_hat <- rd_main$coef[1]\ncat(\"\\nRDD point estimate (log-capex jump at cutoff) :\", round(tau_hat, 4), \"\\n\")\n\n# 4. Manipulation / sorting test -----------------------------\ndens <- rddensity(X = df$running_var, c = cutoff)\ncat(\"\\nMcCrary density test p-value :\", round(dens$test$p_jkn, 4), \"\\n\")\n\n# 5. Bandwidth robustness ------------------------------------\n#   a) 75% of MSE-optimal bandwidth\nbw_low  <- 0.75 * rd_main$bws[1,1]\nrd_low  <- rdrobust(df$y, df$running_var, c = cutoff, h = bw_low)\n\n#   b) 125% of MSE-optimal bandwidth\nbw_high <- 1.25 * rd_main$bws[1,1]\nrd_high <- rdrobust(df$y, df$running_var, c = cutoff, h = bw_high)\n\ncat(\"\\nBandwidth-sensitivity (tau hats):\",\n    \"\\n  0.75*h  :\", round(rd_low$coef[1],  4),\n    \"\\n  1.00*h  :\", round(rd_main$coef[1], 4),\n    \"\\n  1.25*h  :\", round(rd_high$coef[1], 4), \"\\n\")\n\n# 6. Placebo cutoff ------------------------------------------\nplacebo_c <- cutoff + 0.20         # arbitrary nearby point\nrd_place  <- rdrobust(df$y, df$running_var, c = placebo_c)\ncat(\"\\nPlacebo cutoff estimate :\", round(rd_place$coef[1], 4),\n    \"  (should be ~0 if design is valid)\\n\")\n```\n\n## 3. Expected Findings  \nEconomic intuition and prior literature (e.g., Chava & Roberts 2008) suggest that breaching financial covenants tightens lender control and reduces firms’ discretionary spending. Therefore:\n\n• Sign: the jump in log-capex at the cutoff should be negative.  \n• Magnitude: around −0.05 to −0.10 log points (≈ 5–10 % reduction in capex) for firms just above versus just below the threshold.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the covenant threshold to identify causal effects.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the covenant threshold leads to a significant increase in capital expenditure.",
+    "main_effect": "Approximately 0.12 increase in log capex."
+  }
+}

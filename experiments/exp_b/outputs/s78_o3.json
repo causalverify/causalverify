@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s78",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "The Impact of Trade on Economic Prosperity",
+  "model": "o3",
+  "run_at": "2026-04-14T19:52:03.445375",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 440,
+    "output_tokens": 1495,
+    "content": "## 1. Identification Strategy  \nCausal method: Two-Stage Least Squares (Instrumental Variables).  \n\nRationale  \n• Endogeneity: Trade volume (x) is likely correlated with unobserved determinants of GDP per capita (y) such as institutions or productivity shocks.  \n• Instrument: Geographic distance to trading partners (z) affects trade costs and therefore trade volume but, conditional on controls, should not affect GDP per capita except through trade.\n\nKey assumptions  \n1. Relevance (Cov(z, x) ≠ 0): Greater distance lowers trade; first-stage F-statistic should be > 10.  \n2. Exclusion/Exogeneity: Geographic distance influences GDP per capita only via its effect on trade volume, not through any other channel once controls are included.  \n3. Monotonicity/No defiers: Distance does not increase trade for some countries while decreasing it for others.\n\n## 2. R Code\n```r\n###############################################\n#  Trade and Prosperity: IV Analysis in R\n###############################################\n\n# Load packages\nrequired <- c(\"AER\", \"sandwich\", \"lmtest\", \"dplyr\")\nlapply(required, require, character.only = TRUE)\n\n# 1. Read data\ndf <- read.csv(\"experiments/exp_b/data/s78_data.csv\")\n\n# Quick data check\nprint(head(df)); print(summary(df))\n\n# 2. OLS benchmark\nols <- lm(y ~ x + controls, data = df)\ncat(\"\\nOLS results (baseline):\\n\")\nprint(coeftest(ols, vcov = vcovHC(ols, type = \"HC1\")))\n\n# 3. Two–Stage Least Squares (2SLS)\niv  <- ivreg(y ~ x + controls | z + controls, data = df)\n\ncat(\"\\n2SLS results (robust HC1 SEs):\\n\")\nprint(coeftest(iv, vcov = vcovHC(iv, type = \"HC1\")))\n\n# 4. First–stage diagnostics\nfs <- summary(iv, diagnostics = TRUE)\ncat(\"\\nFirst-stage F-statistic on instrument (relevance):\\n\")\nprint(fs$diagnostics[\"weak\", ])  # Cragg-Donald / first-stage F\n\n# 5. Robustness checks -----------------------------------------\n\n## 5a. Add quadratic control\ndf <- df %>% mutate(controls_sq = controls^2)\niv_quad <- ivreg(y ~ x + controls + controls_sq | z + controls + controls_sq, data = df)\ncat(\"\\n2SLS with quadratic control (robust SEs):\\n\")\nprint(coeftest(iv_quad, vcov = vcovHC(iv_quad, type = \"HC1\")))\n\n## 5b. Winsorise extreme trade values (1st–99th pct) and re-estimate\np01 <- quantile(df$x, .01); p99 <- quantile(df$x, .99)\ndf_w <- df %>% filter(x >= p01 & x <= p99)\niv_w <- ivreg(y ~ x + controls | z + controls, data = df_w)\ncat(\"\\n2SLS after winsorising trade volume (robust SEs):\\n\")\nprint(coeftest(iv_w, vcov = vcovHC(iv_w, type = \"HC1\")))\n\n## 5c. Hausman test: OLS vs IV\nhaus <- lmtest::hausman.test(ols, iv)\ncat(\"\\nHausman endogeneity test (p-value < 0.05 favors IV):\\n\")\nprint(haus)\n\n# 6. Key numerical output\nbeta_iv   <- coef(iv)[\"x\"]\nse_iv     <- sqrt(diag(vcovHC(iv, type = \"HC1\"))[\"x\"])\ncat(\"\\n==============================\\n\")\ncat(\"Estimated causal elasticity of GDP per capita w.r.t. trade volume (2SLS):\\n\")\ncat(sprintf(\"Coefficient = %.3f, Robust SE = %.3f\\n\", beta_iv, se_iv))\ncat(\"==============================\\n\")\n```\n\n## 3. Expected Findings  \n• Sign: Positive. Greater trade volume is expected to raise GDP per capita (more market access, technology diffusion, scale effects).  \n• Magnitude: An elasticity in the 0.3 – 0.7 range is plausible; i.e., a 10 % increase in trade volume raises GDP per capita by roughly 3 – 7 %.  \n• Diagnostics: First-stage F should comfortably exceed 10, supporting instrument relevance. Robustness checks should yield similar positive coefficients, reinforcing the causal interpretation.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use geographic distance as an instrument for trade volume to isolate its impact on GDP per capita.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased trade volume has a significant negative effect on log GDP per capita.",
+    "main_effect": "-0.45"
+  }
+}

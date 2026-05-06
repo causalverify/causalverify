@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_08",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:27:59.924232",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 659,
+    "output_tokens": 164,
+    "content": "Okay, I will now follow the RID protocol precisely.\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe core identification strategy is to isolate exogenous bank credit *supply* shocks from endogenous loan *demand* shocks, particularly during business cycles. We leverage the unique setting of firms with access to multiple external financing sources (bank loans and public bonds). The key insight is that for firms capable of accessing public bond markets, a shift from bank loans towards public bonds during economic downturns, *controlling for firm-specific demand for external capital*, provides evidence of a tightening in bank credit supply rather than a mere decline in overall demand for capital. This strategy relies on within-firm variation over time, where firm fixed effects absorb time-invariant borrower demand characteristics and time fixed effects absorb aggregate demand",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": null,
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV using within-firm substitution between bank loans and public bonds — instrument = firm's ability to access public bond markets (investment-grade rating, bond market history); first stage: firms with bond market access substitute into bonds when credit conditions tighten; identifies bank credit supply cycle independent of demand",
+    "key_variables": {
+      "instrument": "firm's public bond market access (rated firm with prior bond issuance)",
+      "treatment": "bank credit supply tightness (constructed from SLOOS + bank balance sheet measures)",
+      "outcome": "firm bank borrowing (loan volume, spreads, covenants)",
+      "time_period": "1987–2010, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank credit supply is strongly procyclical: banks contract lending during recessions by more than justified by borrower risk. Supply-driven contractions reduce loan growth by ~3–5 percentage points per quarter at the trough.",
+    "main_effect": "~3–5pp procyclical credit supply contraction per recession quarter, independent of borrower quality",
+    "key_robustness": [
+      "borrower fixed effects to control for demand",
+      "SLOOS as external supply measure",
+      "cross-sectional: more bank-dependent firms suffer more",
+      "alternative bond-access instruments"
+    ],
+    "identification_strategy_detail": {
+      "method": "Instrumental variables / revealed-preference approach",
+      "treatment": "Periods of tight bank credit supply",
+      "instrument": "The share of firm borrowing from bonds (vs. bank loans) as a revealed-preference measure of bank loan supply. When the bank loan share falls and bond share rises for firms with access to both markets, this reveals a supply contraction (not a demand shift, since total borrowing need not change).",
+      "endogenous_variable": "Bank credit supply conditions",
+      "outcome": "Total firm investment and economic activity",
+      "first_stage": "During economic downturns, the bond-to-loan substitution ratio increases for firms with bond market access",
+      "exclusion_restriction": "The shift from loans to bonds among dual-access firms reflects supply conditions, not differential demand, because these firms can substitute freely between the two sources",
+      "sample_period": "1990-2010",
+      "unit_of_observation": "Firm-quarter"
+    },
+    "key_magnitudes": {
+      "bond_substitution_increase": "Bond share increases significantly during tight credit conditions",
+      "supply_vs_demand_decomposition": "A meaningful fraction of lending decline during recessions is attributable to supply contraction",
+      "real_effects": "Credit supply tightening is associated with reduced firm investment"
+    },
+    "robustness_notes_detail": "Key challenge is that bond issuance might also respond to demand. Authors address this by focusing on firms with pre-existing bond market access and by controlling for firm-level demand proxies (Tobin's Q, cash flow). Robust to alternative measures of credit conditions."
+  }
+}

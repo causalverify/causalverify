@@ -1,0 +1,88 @@
+{
+  "paper_id": "paper_06",
+  "source": "Journal of Finance, 2014",
+  "authors": "Ahern & Harford",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "research_question": "How do inter-industry customer-supplier relationships shape the incidence, timing, and propagation of mergers across the economy? Specifically, do stronger product market links between industries lead to more cross-industry mergers, do mergers spread across industries through trade linkages, and does the structure of inter-industry connections explain the formation of economy-wide merger waves?",
+  "data_description": "The study combines three main data sources at the industry-pair level over 1986–2010. Inter-industry trade flows come from the U.S. Bureau of Economic Analysis Input-Output (IO) Make and Use tables (1982, 1987, 1992, 1997, 2002 reports), yielding 471 detail-level industries (and 124 summary-level industries) covering all U.S. sectors. Merger data are from SDC Thomson Platinum: 51,002 completed U.S. mergers (≥$1M, ≥20% acquired, ≥51% post-deal stake) with announcement dates between 1986 and 2010, of which 31,040 are inter-industry. Industries are mapped from NAICS/SIC to BEA IO codes. Additional industry-level variables include median market-to-book, returns and volatility, R&D/assets (Compustat), 8-firm concentration ratios (Economic Census), establishment counts (County Business Patterns), Hoberg-Phillips text-based product similarity, and Harford-style economic shock indices. Observations are directed and undirected industry-pair-years, yielding up to 221,841 pairs.",
+  "institutional_context": "The U.S. economy is conceptualized as a network of 471 industries linked by customer-supplier trade flows recorded in the BEA Input-Output accounts. These trade relationships are sparse and highly skewed: more than 95% of industry-pairs have negligible trade, while a small set of central 'hub' industries (e.g., wholesale/retail trade, construction, motor vehicle parts, administrative services) channel most flows, producing small-world properties where industries are typically two to three steps from any other. The 1986–2010 period encompasses several merger waves (late 1980s, late 1990s, mid-2000s) and major industry reorganizations, including a vivid example in the timber sector following the 1990 Northern Spotted Owl listing and 1994 Northwest Forest Plan, which protected 24.4 million acres and triggered sequential restructuring across sawmills, forest nurseries, logging, and pulp mills. This setting allows examination of how shocks transmit upstream and downstream through fundamental production relationships rather than ownership ties, since IO coefficients reflect production technology and are largely exogenous to firm boundaries.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.035,
+      "unit": "percentage point increase in M&A probability",
+      "interpretation": "Panel probit marginal effect: one SD increase in supply-chain link strength raises M&A probability by ~3.5pp"
+    },
+    "secondary_estimate": {
+      "value": 0.02,
+      "unit": "CAR (fraction)",
+      "interpretation": "Target announcement abnormal return gain from supply-chain deal vs. unlinked deal"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Table 4–5 in Ahern & Harford (2014)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "BEA input-output use tables (BEA.gov, public, annual)",
+      "SIC industry crosswalks (Census, public)"
+    ],
+    "proprietary_sources": [
+      "SDC Platinum M&A database (Thomson Reuters/Refinitiv, proprietary)",
+      "CRSP for daily stock returns (WRDS)"
+    ],
+    "proxy_strategy": "BEA I-O tables are public; M&A data can be partially sourced from Bloomberg or manually from SEC 8-K filings; CRSP can be proxied with Yahoo Finance for large-cap acquirers/targets",
+    "replicability": "low — SDC Platinum is central to identifying deals; no free equivalent",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (industry-level merger counts: partial via EDGAR; network structure: full via BEA I-O tables)",
+    "data_limitations": "SDC Platinum (Refinitiv) is the standard M&A database and requires commercial license. Public alternatives (EDGAR 8-K filings) cover only public acquirers and miss private deals, which significantly reduces sample size. The network propagation analysis is conceptually straightforward but data-intensive. This is the most data-constrained paper in the benchmark set.",
+    "public_data_sources_detail": [
+      "BEA Input-Output Tables (free, annual, detailed industry-by-industry trade flows)",
+      "SEC EDGAR 8-K filings (M&A announcements for public firms — free)",
+      "yfinance (stock returns around M&A announcements — free)",
+      "FRED (macro controls — free)",
+      "Academic literature on deregulation event dates (published, free)"
+    ]
+  },
+  "title": "The Importance of Industry Links in Merger Waves",
+  "doi": "10.1111/jofi.12122",
+  "volume": 69,
+  "issue": 2,
+  "pages": "527-576",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study combined with panel DID — events are industry merger waves; the cross-sectional variation is the strength of supply chain links (BEA input-output flows) between the wave industry and other industries; outcome = acquirer and target announcement returns and subsequent merger activity in linked industries",
+    "key_variables": {
+      "treatment": "exposure to a merger wave in economically linked industries (continuous, measured by BEA trade flow strength)",
+      "control": "industries with weak or no supply chain links to the wave industry",
+      "outcome": "acquirer/target cumulative abnormal return; subsequent M&A volume in linked industries",
+      "time_period": "1986–2010, within 24-month windows around merger waves"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Merger waves propagate through supply chains: a wave in an upstream industry increases M&A activity in downstream industries; deals that reduce supply chain holdup (vertical links) create more value",
+    "main_effect": "Strong supply chain links increase M&A probability by ~3–5% and target announcement returns by ~2%",
+    "key_robustness": [
+      "alternative wave definitions",
+      "placebo industries with no links",
+      "controlling for industry-level economic shocks",
+      "horizontal vs. vertical deal decomposition"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study + network propagation analysis",
+      "treatment": "Exogenous industry-level shocks (deregulation events, trade liberalization) that trigger merger waves in directly affected industries",
+      "event_window": "Industry-year level analysis of merger activity following shocks to linked industries",
+      "estimation_window": "Pre-shock merger activity levels for baseline",
+      "sample_period": "1986-2010",
+      "unit_of_observation": "Industry-pair-year (using BEA input-output tables for industry links)",
+      "key_assumption": "Exogenous shocks to one industry are not simultaneously caused by conditions in linked industries. Input-output relationships measured before the shock capture genuine economic links, not reverse causation."
+    },
+    "key_magnitudes": {
+      "cross_industry_propagation": "Statistically significant positive coefficient on trade-weighted merger activity of linked industries",
+      "network_multiplier": "Mergers in directly shocked industries predict 2-3x increase in merger probability in linked industries relative to unlinked industries",
+      "propagation_lag": "Effects appear within 1-2 years of the initial industry shock"
+    },
+    "robustness_notes_detail": "Robust to alternative industry classification, different measures of economic links, controlling for common industry-level shocks (GDP, credit conditions). Instrumental variable approach using exogenous deregulation events as shocks."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 119101,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_240",
+  "title": "How Do Incumbents Respond to the Threat of Entry? Evidence from the Major Airlines",
+  "authors": "Goolsbee & Syverson",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2008.123.4.1611",
+    "title": "How do Incumbents Respond to the Threat of Entry? Evidence from the Major Airlines<sup>*</sup>",
+    "year": 2008,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 484
+  },
+  "checks": {
+    "title_jaccard": 0.8889,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "goolsbee",
+      "syverson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 484,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

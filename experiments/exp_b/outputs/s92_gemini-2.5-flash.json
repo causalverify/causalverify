@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s92",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Welfare Eligibility on Labor Supply",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:59:03.610121",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 452,
+    "output_tokens": 161,
+    "content": "## 1. Identification Strategy\n\nThe research scenario describes a situation where eligibility for welfare benefits is determined by an income threshold. This setup is a classic example of a **Regression Discontinuity Design (RDD)**.\n\nThe core idea of RDD is to exploit the sharp cutoff rule that assigns individuals to either a \"treated\" or \"control\" group based on whether their `running_var` (income) is above or below a specific threshold. In this context, individuals just above and just below the threshold are assumed to be comparable in all unobservable characteristics that might affect labor supply, except for their welfare eligibility status. This allows for a causal interpretation of any discontinuity in the outcome variable (hours worked) at the cutoff point.\n\nFrom the data preview, the `running_var` (income",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Examine changes in labor supply around the income threshold for welfare eligibility.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Crossing the income threshold for welfare eligibility results in a reduction in labor supply.",
+    "main_effect": "-0.3"
+  }
+}

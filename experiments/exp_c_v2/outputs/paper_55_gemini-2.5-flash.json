@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_55",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:44:31.176977",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 674,
+    "output_tokens": 164,
+    "content": "The research question is: Does placing children in foster care improve or worsen their long-run outcomes?\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe identification strategy is Instrumental Variables (IV), specifically Two-Stage Least Squares (2SLS). We exploit the quasi-random assignment of child abuse and neglect cases to investigators who vary in their historical propensity to place children in foster care.\n1.  **First Stage:** The investigator's historical foster care placement propensity (the instrument) is used to predict actual foster care placement.\n2.  **Second Stage:** The predicted foster care placement (from the first stage) is then used to estimate the causal effect on long-run outcomes.\nThe core assumptions for valid IV are:\n*   **Relevance",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables using investigator leniency — the tendency of the quasi-randomly assigned investigator to place children in foster care (leave-one-out mean of investigator's other placement decisions) as instrument for the focal child's foster care placement; first stage: aggressive investigator → higher placement probability; second stage: placement (instrumented) → long-run outcomes",
+    "key_variables": {
+      "treatment": "placement in foster care (binary, endogenous), instrumented by investigator propensity to place (continuous, leave-one-out mean)",
+      "control": "children whose cases were investigated but who remained in the home",
+      "outcome": "juvenile delinquency (arrest by age 17), teen motherhood (birth by age 17 for females), employment (any UI earnings by age 18)",
+      "time_period": "investigations 1990–2001; outcomes tracked through 2005"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Foster care placement worsens long-run outcomes for marginal children (those whose placement depends on investigator tendencies). Children placed in foster care by more aggressive investigators have higher rates of juvenile delinquency, higher teen motherhood rates, and lower employment rates than comparable children left in their homes by more lenient investigators. The IV estimates imply that foster care placement increases the probability of juvenile arrest by approximately 10-15 percentage points.",
+    "main_effect": "Foster care placement increases juvenile delinquency by approximately 10-15 percentage points (IV) and reduces employment by ~15-20 percentage points; effects are negative across all measured outcomes",
+    "key_robustness": [
+      "Balance tests: case characteristics are uncorrelated with investigator propensity (confirming quasi-random assignment)",
+      "First-stage F-statistic well above 10",
+      "Controlling for case severity, child demographics, office × year fixed effects",
+      "Subsample by case severity (effect strongest for marginal cases)",
+      "Alternative investigator propensity measures (different leave-out windows)",
+      "Overidentification test using investigator fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Judge-leniency IV design: investigator's historical placement rate as instrument for the focal child's foster care placement; 2SLS with office × year fixed effects",
+      "treatment": "Foster care placement (binary, endogenous), instrumented by quasi-randomly assigned investigator's propensity to place",
+      "event_window": "Outcomes tracked from investigation date through adolescence/early adulthood",
+      "estimation_window": "Investigator propensity estimated from all other cases within a window (leave-one-out mean)",
+      "sample_period": "1990–2001 (investigations); outcomes through 2005",
+      "unit_of_observation": "Individual child involved in an investigated abuse/neglect case",
+      "key_assumption": "Investigator assignment is quasi-random (conditional on investigation office and time period). The investigator's propensity to place affects child outcomes only through the placement decision itself (exclusion restriction). The LATE identifies the effect of foster care for 'marginal' children whose placement depends on which investigator they get."
+    },
+    "key_magnitudes": {
+      "first_stage": "A one SD increase in investigator propensity increases placement probability by approximately 10-15 percentage points; F > 10",
+      "delinquency_iv": "+10-15 pp increase in juvenile arrest probability for placed children (IV)",
+      "teen_motherhood_iv": "+10-12 pp increase in teen birth probability for placed girls (IV)",
+      "employment_iv": "-15-20 pp decrease in employment probability by age 18 (IV)"
+    },
+    "robustness_notes_detail": "Balance tests confirm that investigator propensity is uncorrelated with case severity indicators (type of abuse, child age, prior reports), supporting quasi-random assignment. The LATE interpretation means results apply to marginal cases — children who would be placed by aggressive investigators but not by lenient ones — not to clear-cut cases of severe abuse where virtually all investigators would remove the child. Office × year fixed effects ensure identification comes from within-office variation in investigator propensity. The negative finding is consistent with foster care instability (multiple placements), separation trauma, and poor foster care quality in the Illinois system."
+  }
+}

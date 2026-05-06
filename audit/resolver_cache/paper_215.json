@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_215",
+  "title": "Institutions Rule: The Primacy of Institutions over Geography and Integration in Economic Development",
+  "authors": "Rodrik, Subramanian & Trebbi",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w9305",
+    "title": "Institutions Rule: The Primacy of Institutions over Geography and Integration in Economic Development",
+    "year": 2002,
+    "journal": "National Bureau of Economic Research",
+    "citations": 1711
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "subramanian",
+      "rodrik",
+      "trebbi"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1711,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

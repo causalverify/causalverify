@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s34",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of China's WTO Accession on Manufacturing Employment",
+  "model": "o3",
+  "run_at": "2026-04-14T19:39:41.854233",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 484,
+    "output_tokens": 1306,
+    "content": "## 1. Identification Strategy  \nCausal method: Two–way-fixed-effects Difference-in-Differences (DID).\n\nWhy:  \n• “Treated” identifies regions with high pre-existing trade exposure.  \n• “Post” turns on after 2001, the moment of China’s WTO entry.  \n• The interaction treated × post isolates the differential change in employment for highly exposed regions relative to less-exposed regions, netting out common time shocks (year FE) and time-invariant regional factors (region FE).\n\nKey assumption: Parallel trends – absent China’s WTO accession, manufacturing employment in high- and low-exposure regions would have followed the same trend. We will partially probe this with a placebo test (randomly permuting treatment) and an alternative specification that drops the most exposed regions.\n\n## 2. R Code\n```r\n# Load packages\nlibrary(data.table)   # fast import / manipulation\nlibrary(fixest)       # TWFE estimation with clustered SEs\nlibrary(dplyr)\nlibrary(broom)        # tidy output\n\n# 1. Read data ---------------------------------------------------------------\npath <- \"experiments/exp_b/data/s34_data.csv\"\ndat  <- fread(path)\n\n# 2. Basic inspection --------------------------------------------------------\nprint(head(dat, 3))\ncat(\"\\nUnique periods in the sample:\", sort(unique(dat$period)), \"\\n\")\n\n# 3. Baseline TWFE DID -------------------------------------------------------\ndid_base <- feols(\n  y ~ treated*post | unit_id + period, \n  data = dat, \n  cluster = \"unit_id\"      # cluster at regional level\n)\n\ncat(\"\\n=== Baseline DID result ===\\n\")\nprint(coeftable(did_base)[\"treated:post\", , drop = FALSE])\n\n# 4. Simple DID without FE (sanity check) ------------------------------------\ndid_simple <- lm(y ~ treated*post, data = dat)\ncat(\"\\n=== Simple DID (no FE) ===\\n\")\nprint(tidy(did_simple)[4, ])\n\n# 5. Placebo test: randomly reshuffle treatment ------------------------------\nset.seed(2024)\ndat_placebo <- dat %>% \n  group_by(unit_id) %>% \n  mutate(treated_placebo = sample(treated)) %>% \n  ungroup()\n\nplacebo_mod <- feols(\n  y ~ treated_placebo*post | unit_id + period, \n  data = dat_placebo, \n  cluster = \"unit_id\"\n)\n\ncat(\"\\n=== Placebo DID (random treatment) ===\\n\")\nprint(coeftable(placebo_mod)[\"treated_placebo:post\", , drop = FALSE])\n\n# 6. Robustness: drop top-decile exposure regions ----------------------------\nexposure_rank <- dat %>% \n  group_by(unit_id) %>% \n  summarise(exp = mean(treated)) %>% \n  mutate(decile = ntile(exp, 10))\n\ndrop_units <- exposure_rank %>% filter(decile == 10) %>% pull(unit_id)\n\ndat_rb <- dat %>% filter(!(unit_id %in% drop_units))\n\ndid_rb <- feols(\n  y ~ treated*post | unit_id + period, \n  data = dat_rb, \n  cluster = \"unit_id\"\n)\n\ncat(\"\\n=== Robustness DID (dropping most-exposed decile) ===\\n\")\nprint(coeftable(did_rb)[\"treated:post\", , drop = FALSE])\n```\n\n## 3. Expected Findings  \nSign: Negative. Regions more exposed to trade should have faced intensified import competition (particularly from China) after WTO accession, lowering manufacturing employment relative to less-exposed regions.\n\nMagnitude: Prior studies find 5–15 % employment reductions in highly exposed U.S. regions; for China the home-country effect is likely smaller but still material. Hence, I expect the coefficient on treated × post (in logs) to be around –0.05 to –0.10, implying a 5–10 % employment decline in high-exposure regions after 2001.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log manufacturing employment before and after 2001 between high and low trade exposure regions.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Regions with higher exposure to trade experienced a positive effect on manufacturing employment following China's WTO accession.",
+    "main_effect": "0.18"
+  }
+}

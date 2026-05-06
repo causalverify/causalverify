@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_31",
+  "source": "American Economic Review, 2001",
+  "authors": "Fisman",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Estimating the Value of Political Connections",
+  "doi": "10.1257/aer.91.4.1095",
+  "volume": 91,
+  "issue": 4,
+  "pages": "1095-1102",
+  "domain": "finance",
+  "research_question": "How much of a firm's market value is derived from its political connections to a ruling regime? Specifically, to what extent did firms in Indonesia rely on ties to President Suharto for their profitability and valuation?",
+  "data_description": "The study combines four data sources on Indonesian firms listed on the Jakarta Stock Exchange (JSX). Accounting data (total assets, debt, taxes, net income, ISIC industry codes) for 1995 come from the Financial Times' Extel Financials Database. Daily share price data come from Extel Securities and the Investamatic Database. Group affiliation data come from Kompass Indonesia's Top Companies and Big Groups in Indonesia (1996), the Indonesian Capital Markets Directory 1997, and an AsiaMoney article, verified by Jakarta investment analysts in December 1997. The key measure of political connectedness is the Suharto Dependency Index (1995) from the Castle Group, which rates Indonesia's 25 largest industrial groups on a 1–5 scale. The final sample contains 79 firms across six episodes during 1995–1997 involving rumors about Suharto's health.",
+  "institutional_context": "Indonesia under President Suharto featured a highly centralized and stable political structure in which a small number of large, family-controlled diversified business groups dominated the private sector. Many of these conglomerates—including those run by Suharto's children (Bimantara, Citra Lamtoro) and longtime allies such as Bob Hasan, Liem Sioe Liong, and Prajogo Pangestu—were widely believed to derive substantial value from their ties to the regime, while others (e.g., the Bakrie brothers, Julius Tahija) were considered relatively independent. During 1995–1997, as Suharto aged, the Jakarta financial markets were periodically rocked by rumors about his deteriorating health, raising the prospect that his eventual departure could erode the value of regime-linked privileges. These episodes provided variation in perceived threats to the durability of political ties across firms with differing degrees of dependence on Suharto.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.045,
+      "unit": "abnormal return per unit of Suharto dependence index on negative health news days",
+      "interpretation": "Each one-unit increase in Suharto political dependence is associated with an additional 4.5% stock price decline when negative news about Suharto's health emerges, demonstrating the capitalized value of political connections"
+    },
+    "secondary_estimate": {
+      "value": 0.43,
+      "unit": "cross-sectional correlation (Suharto dependence × health-event abnormal returns)",
+      "interpretation": "The correlation between political connection intensity and stock price sensitivity to health news is 0.43, indicating that nearly 20% of the cross-sectional variation in event-period returns is explained by political dependence"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 1-2 in Fisman (2001)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Jakarta Stock Exchange historical returns (available from JSE or Datastream)",
+      "Suharto health event dates (identified in the paper)",
+      "Castle Group Suharto dependence index (published in the paper's appendix)"
+    ],
+    "proprietary_sources": [
+      "Datastream / Reuters for JSE daily returns (proprietary but widely available in academic finance)"
+    ],
+    "proxy_strategy": "The Suharto dependence index and event dates are published in the paper. Indonesian stock returns are available from Datastream (WRDS) or Bloomberg. A simplified replication using the published data is feasible.",
+    "replicability": "medium — key variable (dependence index) is published; Indonesian stock returns require Datastream",
+    "public_proxy_available": true,
+    "replication_tier": "partial (dependence index published in paper; stock returns require Datastream or Bloomberg)",
+    "data_limitations": "Small sample size (~80-100 firms). The Suharto dependence index is a subjective assessment by a single intelligence firm. Indonesian stock market in the 1990s had limited liquidity and potential price manipulation. The political context (Suharto's Indonesia) limits external validity.",
+    "public_data_sources_detail": [
+      "Fisman (2001) paper appendix (Suharto dependence index and event dates — free)",
+      "Datastream via WRDS (Indonesian stock returns — subscription)",
+      "Bloomberg (alternative source for JSE returns — subscription)",
+      "Indonesian financial press archives (health event verification — varies)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study / instrumental variable approach — Suharto health rumors as exogenous shocks to the expected value of political connections; the cross-sectional regression of firm-level returns on the Suharto dependence index during health events identifies the value of connections; health events serve as instruments because they are plausibly exogenous to firm fundamentals",
+    "key_variables": {
+      "treatment": "Suharto dependence index (1-5, continuous, constructed by independent business intelligence firm) × negative health news",
+      "control": "firms with low Suharto dependence (index = 1) serve as the reference group",
+      "outcome": "firm-level abnormal stock returns during Suharto health events (negative health news days and positive health news days)",
+      "time_period": "1995–1997, six health event episodes"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Political connections to Suharto are highly valuable. A one-unit increase in the Suharto dependence index is associated with a 4-5% larger stock price decline on days of negative health news and a comparable increase on positive health news days. The most Suharto-dependent firms lost approximately 15-20% of their value during negative health episodes, compared to minimal effects on independent firms. The correlation between Suharto dependence and health-event returns is approximately 0.43, highly significant.",
+    "main_effect": "One-unit increase in Suharto dependence index → approximately 4-5% additional stock price decline on negative health news days; most-connected firms (index=5) lost ~20% during worst health episode",
+    "key_robustness": [
+      "Positive health events (recovery rumors) show the mirror-image effect (connected firms gain more)",
+      "Controlling for firm size, industry, and government ownership share",
+      "Using alternative dependence indices",
+      "Excluding largest firms (Suharto family firms)",
+      "Event-by-event analysis across the six health episodes"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-sectional regression of abnormal returns during health events on the Suharto dependence index (can be interpreted as event study with cross-sectional heterogeneity or as IV where health shocks instrument for expected political connection value)",
+      "treatment": "Suharto dependence index (1-5) interacted with negative health news (binary event indicator)",
+      "event_window": "1-2 day returns during each health news episode",
+      "estimation_window": "Pre-event returns for normal return estimation",
+      "sample_period": "1995–1997 (six health event episodes)",
+      "unit_of_observation": "Firm × health event (approximately 80-100 firms × 6 events)",
+      "key_assumption": "Suharto health shocks are exogenous to individual firm fundamentals. The dependence index accurately captures variation in political connection intensity. No other systematic factor correlated with the dependence index affects returns specifically during health events."
+    },
+    "key_magnitudes": {
+      "dependence_coefficient": "-0.045 per unit of Suharto dependence on negative health news days (4.5% additional decline per dependence unit)",
+      "cross_section_correlation": "Correlation between dependence index and health-event returns ≈ -0.43",
+      "most_vs_least": "Most dependent firms (index=5) decline approximately 15-20% during negative health events vs. ~2-3% for least dependent (index=1)"
+    },
+    "robustness_notes_detail": "Results are consistent across all six health episodes (negative and positive). The symmetry of effects (connected firms fall on bad health news, rise on good health news) rules out a general market-wide explanation. Controlling for firm size, industry, and explicit government ownership does not eliminate the effect, confirming that the dependence index captures informal connections beyond formal government ownership."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 28472,
+  "phase1_source_version": "v2primeprime_full_text"
+}

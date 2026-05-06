@@ -1,0 +1,12 @@
+{
+  "strategy_score": 0,
+  "direction_score": 0,
+  "failure_types": [
+    "IH"
+  ],
+  "reasoning": "The AI proposes a fuzzy RDD using Russell 1000/2000 index assignment as an instrument for firm size, which is completely different from the ground truth event study with cross-sectional OLS regression. This is an identification hallucination - inventing a complex IV strategy when the paper uses straightforward cross-sectional analysis of announcement returns. The direction is not clearly stated in the available text.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_12",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:07:58.750309+00:00"
+}

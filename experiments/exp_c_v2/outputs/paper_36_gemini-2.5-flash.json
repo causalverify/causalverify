@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_36",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:37:25.825930",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 604,
+    "output_tokens": 336,
+    "content": "**BEGIN RID PROTOCOL**\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy relies on the randomized controlled trial (RCT) design of the correspondence audit study. Resumes are randomly assigned either a distinctively African-American-sounding name (treatment group) or a distinctively White-sounding name (control group), while all other resume characteristics are held constant or varied independently. This random assignment ensures that, on average, the two groups are identical in all unobserved and observed characteristics except for the perceived race signaled by the name. Therefore, any statistically significant difference in callback rates between the two groups can be causally attributed to racial discrimination in the hiring process.\n\n**Directional Hypothesis:**\nI hypothesize that resumes assigned distinctively African-American-sounding names will receive a significantly lower rate of callbacks for interviews compared to otherwise identical resumes assigned distinctively White-sounding names. This implies a negative average treatment effect (ATE) of being perceived as African-American on callback probability.\n\n---\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nI will run the following five specifications:\n\n1.  **Main Effect of Race (Linear Probability Model - LPM):**\n    `callback ~ AfricanAmericanName`\n    *(A simple regression of callback on the binary indicator for African-American name.)*\n\n2.  **Main Effect of Race with Controls (LPM):**\n    `callback ~ AfricanAmericanName + ResumeQuality + factor(AdID)`\n    *(Adds controls for resume quality and job advertisement fixed effects to improve precision.)*\n\n3.  **Interaction of Race",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Randomized field experiment with DID-like structure — within each job ad, resumes are randomly assigned African-American vs. White names (treatment) while holding resume quality constant; the 'difference' is between treatment (Black name) and control (White name) callbacks, with a second difference by resume quality level",
+    "key_variables": {
+      "treatment": "African-American-sounding name on the resume (randomly assigned)",
+      "control": "White-sounding name on the resume (randomly assigned)",
+      "outcome": "callback rate (binary: whether employer contacts applicant for interview)",
+      "time_period": "July 2001 – January 2002 (resume submissions to Boston and Chicago employers)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Significant racial discrimination exists in callback rates. Resumes with White-sounding names receive approximately 50% more callbacks than identical resumes with African-American-sounding names (9.65% vs. 6.45% callback rate, a 3.2 percentage point gap). Higher resume quality increases callbacks for White names substantially more than for African-American names, suggesting that discrimination does not diminish with applicant quality.",
+    "main_effect": "White names receive 9.65% callback rate vs. 6.45% for African-American names — a 3.2 percentage point gap (approximately 50% more callbacks for White names)",
+    "key_robustness": [
+      "Separate analysis by city (Boston vs. Chicago)",
+      "Male vs. female names separately",
+      "High-quality vs. low-quality resumes",
+      "By employer characteristics (industry, size, equal opportunity status)",
+      "Alternative name sets (within racial category)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Randomized field experiment (correspondence study); analyzed as difference in means between randomly assigned treatment and control groups, equivalent to a simple DID where the 'treatment' is the name assignment",
+      "treatment": "Randomly assigned African-American-sounding name (e.g., Lakisha Washington, Jamal Jones)",
+      "event_window": "Callbacks tracked for 30 days after resume submission",
+      "estimation_window": "N/A (randomized experiment)",
+      "sample_period": "July 2001 – January 2002",
+      "unit_of_observation": "Individual resume sent to a specific job ad (4,870 resume-job pairs)",
+      "key_assumption": "Random assignment of names ensures that treatment and control groups are balanced on all observable and unobservable characteristics. The only systematic difference is perceived race signaled by the name. Names were validated through a survey to confirm racial perceptions."
+    },
+    "key_magnitudes": {
+      "white_callback": "9.65% callback rate for White-sounding names",
+      "black_callback": "6.45% callback rate for African-American-sounding names",
+      "gap": "3.2 percentage points (50% more callbacks for White names)",
+      "quality_interaction": "Higher resume quality increases White callbacks by 30% but African-American callbacks by only 9% — discrimination increases with quality"
+    },
+    "robustness_notes_detail": "Results are consistent across Boston and Chicago, male and female names, and all major industries. The finding that higher resume quality widens the racial gap (rather than narrowing it) is inconsistent with statistical discrimination theory (which predicts discrimination decreases with more information) and more consistent with taste-based discrimination. Equal opportunity employers discriminate as much as non-equal-opportunity employers."
+  }
+}

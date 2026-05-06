@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s23",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Judge leniency as IV for incarceration on recidivism",
+  "model": "o3",
+  "run_at": "2026-03-27T20:22:20.001114",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 460,
+    "output_tokens": 1087,
+    "content": "## 1. Identification Strategy  \n• Method: Two-Stage Least Squares (Instrumental Variables).  \n• Instrument: “Judge leniency” (leave-one-out incarceration rate of the assigned judge).  \n• Why IV? Assignment of cases to judges is as-good-as random, giving an exogenous source of variation in incarceration that is plausibly unrelated to defendants’ unobserved risk of re-offending.  \n• Key assumptions  \n 1. Relevance – judge leniency strongly predicts the incarceration decision (first-stage F > 10).  \n 2. Exclusion – judge leniency affects recidivism only through its impact on incarceration, not through any other channel.  \n 3. Independence – conditional on controls (offense type, priors, age) the instrument is independent of potential outcomes.  \n 4. Monotonicity – no defendant would be less likely to be incarcerated when facing a stricter judge (no “defiers”).  \n\n## 2. R Code\n```r\n#############################################\n# Judge Leniency IV: Incarceration → Recidivism\n#############################################\n\n# Load packages ------------------------------------------------------------\npkgs <- c(\"AER\", \"sandwich\", \"lmtest\", \"ivreg\")\nsuppressPackageStartupMessages(invisible(lapply(pkgs, require, character.only = TRUE)))\n\n# 1. Read data -------------------------------------------------------------\nfile_path <- \"experiments/exp_b/data/s23_data.csv\"\ndf <- read.csv(file_path)\n\n# Ensure correct types -----------------------------------------------------\ndf$y <- as.numeric(df$y)        # recidivism (0/1 or z-score)\ndf$x <- as.numeric(df$x)        # incarceration (0/1)\ndf$z <- as.numeric(df$z)        # judge leniency\ndf$controls <- as.numeric(df$controls)\n\n# 2. First-stage regression -----------------------------------------------\nfs <- lm(x ~ z + controls, data = df)\nfs_summary <- coeftest(fs, vcov = vcovHC(fs, type = \"HC1\"))\nfirst_stage_F <- waldtest(fs, . ~ controls, vcov = vcovHC(fs, type = \"HC1\"))$F[2]\n\n# 3. 2SLS / IV estimation --------------------------------------------------\niv_mod <- ivreg(y ~ x + controls | z + controls, data = df)\niv_robust <- coeftest(iv_mod, vcov = vcovHC(iv_mod, type = \"HC1\"))\n\n# 4. Reduced form (for robustness) ----------------------------------------\nrf <- lm(y ~ z + controls, data = df)\nrf_robust <- coeftest(rf, vcov = vcovHC(rf, type = \"HC1\"))\n\n# 5. Alternative spec: no controls ----------------------------------------\niv_noc <- ivreg(y ~ x | z, data = df)\niv_noc_robust <- coeftest(iv_noc, vcov = vcovHC(iv_noc, type = \"HC1\"))\n\n# 6. Print key numerical results ------------------------------------------\ncat(\"\\n================ First Stage =================\\n\")\nprint(fs_summary)\ncat(sprintf(\"First-stage F-stat on instrument: %.2f\\n\", first_stage_F))\n\ncat(\"\\n================ 2SLS Main ====================\\n\")\nprint(iv_robust)\n\ncat(\"\\n============ Reduced Form (y~z) ===============\\n\")\nprint(rf_robust)\n\ncat(\"\\n========== 2SLS (No Controls) =================\\n\")\nprint(iv_noc_robust)\n```\n\n## 3. Expected Findings  \nTheory and prior empirical work (e.g., “criminogenic” prison effects) suggest that incarceration is likely to *increase* the probability of subsequent offending. Accordingly, we expect:  \n• Sign: positive IV coefficient on “x” (incarceration) in the second stage.  \n• Magnitude: roughly 0.05–0.15 in probability terms (i.e., incarceration raises 3-year recidivism by 5–15 percentage points).  \n• First-stage: instrument should be strong (F ≈ 30–100) given judges’ sizable variation in sentencing rates.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — judge leniency instrument; LATE for marginal defendants; test exclusion restriction carefully",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Incarceration increases recidivism for marginal defendants (criminogenic effect)",
+    "main_effect": "Incarceration raises 3-year recidivism probability by ~15pp for compliers"
+  }
+}

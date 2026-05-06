@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strong strategy match - correctly identifies within-firm substitution between bank loans and bonds as the core identification approach, with firm fixed effects to control for borrower quality and time-invariant characteristics. Also mentions using firm's differential access to bond markets as IV component. However, no clear directional prediction is stated about whether bank credit supply is procyclical or countercyclical.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_08",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:06:26.367611+00:00"
+}

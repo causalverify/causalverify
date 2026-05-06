@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_29",
+  "source": "Journal of Financial Economics, 2011",
+  "authors": "Edmans",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Does the Stock Market Fully Value Intangibles? Employee Satisfaction and Equity Prices",
+  "doi": "10.1016/j.jfineco.2011.03.016",
+  "volume": 101,
+  "issue": 3,
+  "pages": "621-640",
+  "domain": "finance",
+  "research_question": "Does higher employee satisfaction translate into higher shareholder value, and is the value of this intangible asset reflected in equity prices in a timely manner? Relatedly, can screening investments on the basis of employee welfare yield superior portfolio performance?",
+  "data_description": "The primary data source is the annual list of the '100 Best Companies to Work For in America,' first published in book form in 1984, updated in 1993, and appearing in Fortune magazine each January from 1998 onward. The list is compiled by the Great Place to Work Institute, drawing two-thirds of its score from a 57-question survey of roughly 250 randomly selected employees per firm and one-third from an institutional evaluation of pay, benefits, demographics, and culture. Stock returns come from CRSP, accounting data from Compustat, analyst forecasts from I/B/E/S, and fund holdings from CDA/Spectrum, with SRI fund classifications from the Social Investment Forum and SocialFunds. The sample spans April 1984 through December 2009, with 244 distinct public firms and 1,616 firm-year observations. Firms are large (median market value of $5bn in 1998), with portfolios constructed at the firm-month level.",
+  "institutional_context": "Employee satisfaction is an intangible asset whose value to shareholders is theoretically ambiguous: traditional views treat worker-friendly policies as costly slack, while human-relations and human-capital theories argue that satisfied workers improve motivation, retention, and recruitment in modern knowledge-intensive firms. The 'Best Companies to Work For' list provides an unusually visible, externally verified, output-based measure of satisfaction. Firms apply by the prior May, surveys are returned by June, and the list is published the following January (or March/April for the 1984 and 1993 editions), reaching newsstands one week before publication. Beginning in 1998, Fortune magazine's wide dissemination ensured high salience to investors. Roughly one-third of listed firms turn over annually, reflecting genuine variation in workplace conditions. Employee welfare is also a screen used by a subset of socially responsible investing funds, making the list directly relevant to SRI portfolio construction.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.035,
+      "unit": "annual abnormal return (four-factor alpha, equal-weighted)",
+      "interpretation": "Companies on the '100 Best' list earn approximately 3.5% annual abnormal return relative to matched firms with similar size, value, and momentum characteristics, indicating the market undervalues employee satisfaction"
+    },
+    "secondary_estimate": {
+      "value": 0.021,
+      "unit": "annual abnormal return (four-factor alpha, value-weighted)",
+      "interpretation": "Value-weighted portfolio alpha of 2.1% per year confirms the result is not driven by small firms on the list"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 2-3 in Edmans (2011)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Fortune '100 Best Companies to Work For' annual lists (available from Fortune magazine archives and Great Place to Work Institute)",
+      "CRSP monthly stock returns (via WRDS subscription)",
+      "Ken French data library (Fama-French-Carhart factors — free)",
+      "Compustat annual financials (via WRDS)"
+    ],
+    "proprietary_sources": [
+      "CRSP/Compustat require WRDS subscription"
+    ],
+    "proxy_strategy": "Fortune list is publicly available from magazine archives. Factor returns are free from Ken French's website. Individual stock returns can be proxied with Yahoo Finance. A simplified replication is feasible using the public list + free factor data.",
+    "replicability": "high — Fortune list is public; factor returns are free; only individual stock returns require WRDS",
+    "public_proxy_available": true,
+    "replication_tier": "full (Fortune list + Ken French factors + Yahoo Finance returns for individual firms)",
+    "data_limitations": "The Fortune list methodology changed over time (different survey instruments, different eligibility criteria). Not all list companies are publicly traded. Survivorship bias could affect results if firms that exit the list are disproportionately poor performers. The list captures a specific dimension of employee satisfaction (workplace culture) rather than compensation or career development.",
+    "public_data_sources_detail": [
+      "Fortune '100 Best Companies' lists (Fortune magazine archives — free with library access)",
+      "Ken French data library (daily/monthly factor returns — free)",
+      "yfinance (individual stock returns — free)",
+      "Compustat via WRDS (firm characteristics — subscription required)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Calendar-time portfolio event study — form portfolios of Fortune '100 Best Companies' at each annual list publication, hold for one year, and measure abnormal returns relative to the Fama-French-Carhart four-factor model; the 'event' is the annual list publication and the portfolio is rebalanced each year",
+    "key_variables": {
+      "treatment": "inclusion on Fortune's '100 Best Companies to Work For' list (published annually, based on employee satisfaction surveys)",
+      "control": "firms not on the list (captured through factor model: market, size, value, momentum exposures)",
+      "outcome": "monthly four-factor alpha (abnormal return relative to Fama-French-Carhart model)",
+      "time_period": "1984–2009 (annual portfolios, monthly returns)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Companies on the '100 Best' list earn statistically significant positive abnormal returns of approximately 2.1-3.5% per year (depending on the weighting scheme). The market does not fully incorporate employee satisfaction into stock prices — intangible assets are systematically undervalued.",
+    "main_effect": "Equal-weighted portfolio of Best Companies earns approximately 3.5% annual four-factor alpha (0.29% per month); value-weighted earns approximately 2.1% annual alpha",
+    "key_robustness": [
+      "Value-weighted vs. equal-weighted portfolios",
+      "Fama-French three-factor vs. four-factor (adding momentum) model",
+      "Industry-adjusted returns",
+      "Controlling for firm characteristics (size, B/M, profitability)",
+      "Subsample analysis by decade (1984-1996, 1997-2009)",
+      "Excluding firms that appear on the list in consecutive years"
+    ],
+    "identification_strategy_detail": {
+      "method": "Calendar-time portfolio approach with monthly factor model regressions (Fama-French-Carhart four-factor model)",
+      "treatment": "Annual inclusion on Fortune's '100 Best Companies to Work For' list (binary, determined by employee satisfaction surveys)",
+      "event_window": "12 months following list publication (January to December)",
+      "estimation_window": "Full sample regression of monthly portfolio returns on four factors (1984-2009)",
+      "sample_period": "1984–2009",
+      "unit_of_observation": "Monthly portfolio return of list companies (rebalanced annually)",
+      "key_assumption": "The four-factor model (market, SMB, HML, momentum) adequately controls for known risk factors and style tilts. Any residual alpha represents genuine mispricing of employee satisfaction information. The list publication date is predetermined and publicly available."
+    },
+    "key_magnitudes": {
+      "equal_weighted_alpha": "0.29% per month (3.5% per year) four-factor alpha for equal-weighted portfolio",
+      "value_weighted_alpha": "0.18% per month (2.1% per year) four-factor alpha for value-weighted portfolio",
+      "t_statistic": "t = 2.35 for equal-weighted monthly alpha (statistically significant at 5%)",
+      "sharpe_improvement": "Adding the Best Companies portfolio to a factor-tilted benchmark improves the annual Sharpe ratio"
+    },
+    "robustness_notes_detail": "Results are robust to factor model specification (three-factor vs. four-factor vs. five-factor), portfolio weighting (EW and VW), and time period. The alpha is not explained by industry concentration, firm size, or book-to-market tilts. The effect is stronger in the earlier period (1984-1996) when the list was less well-known, consistent with gradual market learning. The paper also shows that the alpha is not driven by the announcement effect of list publication (no short-term jump at announcement), but rather by long-run outperformance consistent with the market slowly incorporating intangible information."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 118550,
+  "phase1_source_version": "v2primeprime_full_text"
+}

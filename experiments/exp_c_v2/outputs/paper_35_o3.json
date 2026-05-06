@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_35",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:37:14.414668",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 696,
+    "output_tokens": 2292,
+    "content": "STEP 1 — PRE-COMMITMENT  \n\nIdentification strategy  \n•  Fuzzy Regression-Discontinuity Design (RDD) at FICO = 620.  \n•  Running variable: borrower’s FICO score at origination, centered at 620.  \n•  Treatment jump: indicator Above620 (= 1 if FICO ≥ 620, 0 otherwise).  \n•  First stage: Above620 → probability of securitization.  \n•  Second stage: securitization → subsequent loan default.  \nDirectional hypothesis H₁  \nLoans just above the 620 cutoff (which are much more likely to be securitized) will default more frequently than otherwise-similar loans just below 620. Formally, the local average treatment effect of securitization on “Default24” (ever 90+ days delinquent within 24 months of origination) is positive.\n\n\n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly 5 specifications, nothing else)\n\nSpec 1  First-stage: Securitized ~ Above620 (local–linear RD, triangular kernel, ±25-point bandwidth: 595–645, no additional covariates).  \n\nSpec 2  Reduced form: Default24 ~ Above620 (same RD set-up as Spec 1).  \n\nSpec 3  2SLS fuzzy RD:  \n Stage 1 : Securitized ~ Above620 (as in Spec 1)  \n Stage 2 : Default24 ~ Ŝecuritized (instrumented by Above620).  \n Bandwidth 595–645, triangular kernel, no covariates.  \n\nSpec 4  Bandwidth robustness: repeat Spec 3 with a narrower ±15-point window (605–635).  \n\nSpec 5  Placebo continuity check: InterestRate ~ Above620 (local–linear RD, ±25-point bandwidth, triangular kernel, no covariates). Expect no discontinuity.\n\n\n\nSTEP 3 — FALSIFICATION GATE  \n\nI will REJECT H₁ if ANY of the following occur:  \na) First-stage coefficient ≤ 0 or Kleibergen-Paap F-stat < 10 (weak instrument).  \nb) 2SLS point estimate of securitization effect on Default24 ≤ 0 OR its p-value > 0.10 in both Spec 3 and Spec 4.  \nc) Placebo (Spec 5) shows a statistically significant jump (|t| > 1.64, p < 0.10).\n\n\n\nSTEP 4 — R CODE (self-contained, implements ONLY the 5 specs)\n\n```r\n############################################################\n# Required packages\n############################################################\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) {\n  install.packages(\"rdrobust\")\n}\nlibrary(rdrobust)\n\n############################################################\n# Assume dataframe `lp` already in workspace with variables:\n# fico              numeric, 300–850\n# securitized       0/1\n# default24         0/1   (90+ day delinquency within 24 months)\n# int_rate          numeric, initial contract rate (in %)\n############################################################\n\n# Center running variable at 620\nlp$fico_c <- lp$fico - 620\ncutoff <- 0                # at fico_c == 0\n\n############################################################\n# Helper function: run rdrobust and print results\n############################################################\nrun_rd <- function(y, data, bw, covs = NULL, fuzzy = FALSE) {\n  if(!fuzzy){\n    rdrobust(y = data[[y]], x = data$fico_c,\n             c = cutoff, kernel = \"triangular\",\n             h = bw, covs = covs)\n  } else {\n    rdrobust(y = data[[y]], x = data$fico_c,\n             c = cutoff, kernel = \"triangular\",\n             h = bw, fuzzy = data$securitized, covs = covs)\n  }\n}\n\n############################################################\n# Spec 1: First stage (securitization jump)\n############################################################\nspec1 <- rdrobust(y = lp$securitized, x = lp$fico_c,\n                  c = cutoff, kernel = \"triangular\", h = 25)\nprint(spec1)\n\n############################################################\n# Spec 2: Reduced form – default24 on Above620\n############################################################\nspec2 <- rdrobust(y = lp$default24, x = lp$fico_c,\n                  c = cutoff, kernel = \"triangular\", h = 25)\nprint(spec2)\n\n############################################################\n# Spec 3: Fuzzy RD 2SLS – bandwidth 25\n############################################################\nspec3 <- rdrobust(y = lp$default24, x = lp$fico_c,\n                  c = cutoff, kernel = \"triangular\", h = 25,\n                  fuzzy = lp$securitized)\nprint(spec3)\n\n############################################################\n# Spec 4: Fuzzy RD 2SLS – bandwidth 15\n############################################################\nspec4 <- rdrobust(y = lp$default24, x = lp$fico_c,\n                  c = cutoff, kernel = \"triangular\", h = 15,\n                  fuzzy = lp$securitized)\nprint(spec4)\n\n############################################################\n# Spec 5: Placebo – interest rate continuity\n############################################################\nspec5 <- rdrobust(y = lp$int_rate, x = lp$fico_c,\n                  c = cutoff, kernel = \"triangular\", h = 25)\nprint(spec5)\n```\n\nAll five specifications are estimated with local-linear regressions and triangular kernel, as committed.\n\n\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBecause the real data are not at hand, I project plausible magnitudes based on the literature:\n\nSpec 1 (first stage, bw 25):  \n• Jump in securitization ≈ +28 percentage points (SE ≈ 3 pp).  \n• Kleibergen-Paap F-stat ≈ 90 ≫ 10 → passes weak-instrument threshold.\n\nSpec 2 (reduced form):  \n• Jump in Default24 ≈ +1.2 pp (SE ≈ 0.5 pp), t ≈ 2.4, p ≈ 0.016.\n\nSpec 3 (2SLS, bw 25):  \n• LATE of securitization on Default24 ≈ +4.3 pp (SE ≈ 1.9 pp), t ≈ 2.2, p ≈ 0.028.\n\nSpec 4 (2SLS, bw 15):  \n• LATE ≈ +5.0 pp (SE ≈ 2.5 pp), t ≈ 2.0, p ≈ 0.045.\n\nSpec 5 (placebo):  \n• Jump in interest rate ≈ –1 bp (SE ≈ 3 bp), t ≈ 0.3, p ≈ 0.76 (insignificant).\n\nGate assessment  \n• First-stage strong and positive – passes (a).  \n• 2SLS estimates positive and significant at < 10% in both bandwidths – passes (b).  \n• No significant discontinuity in interest rates – passes (c).\n\nTherefore, the falsification gate would NOT be triggered; the evidence would support H₁ that easier securitization increased default risk, consistent with reduced lender screening around the 620 FICO cutoff.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Fuzzy regression discontinuity design — running variable is borrower FICO score; cutoff at 620; the discontinuity in securitization rates at 620 (first stage) is used to identify the causal effect of securitization on default rates (second stage / reduced form); loans above 620 are more easily securitized, creating a discontinuity in lender screening incentives",
+    "key_variables": {
+      "treatment": "higher securitization probability for loans with FICO ≥ 620 (fuzzy treatment — not all loans above 620 are securitized, but the rate jumps discontinuously)",
+      "control": "loans with FICO just below 620 (harder to securitize, lender retains more screening incentive)",
+      "outcome": "probability of default (90+ day delinquency or foreclosure within 2 years of origination)",
+      "time_period": "originations 2001–2006; performance tracked through 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Securitization leads to lax screening: loans just above the 620 FICO threshold (more easily securitized) have approximately 10-25% higher default rates than loans just below the threshold, despite having marginally better credit scores. The effect is concentrated in low-documentation loans, where screening effort matters most. This provides direct evidence that securitization created moral hazard in mortgage lending.",
+    "main_effect": "Default rate discontinuously increases by approximately 10-25% at the 620 FICO threshold; the securitization rate jumps by ~15-20 percentage points at the same threshold (first stage)",
+    "key_robustness": [
+      "Bandwidth variation around 620 (FICO 600-640, 610-630, 615-625)",
+      "Controlling for loan characteristics (LTV, documentation, loan amount)",
+      "Low-doc vs. full-doc subsamples (effect concentrated in low-doc)",
+      "Year-by-year analysis (effect strengthens from 2003 to 2006)",
+      "Placebo tests at other FICO scores (580, 600, 640, 660)",
+      "McCrary density test for FICO manipulation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Fuzzy RDD (securitization rate discontinuity at FICO 620) / reduced-form sharp RDD (default rate discontinuity at 620)",
+      "treatment": "Securitization probability (endogenous, jumps at FICO 620); reduced form directly tests default rate discontinuity",
+      "event_window": "Default tracked for 24 months after origination",
+      "estimation_window": "FICO bandwidth around 620 (various widths: ±5, ±10, ±20 points)",
+      "sample_period": "Originations 2001–2006",
+      "unit_of_observation": "Individual mortgage loan",
+      "key_assumption": "Borrowers cannot precisely manipulate their FICO score to sort around 620. The 620 threshold is set by the securitization market (investors and rating agencies), not by individual lenders or borrowers. Potential outcomes (default risk without the securitization incentive effect) are continuous at 620."
+    },
+    "key_magnitudes": {
+      "securitization_jump": "+15-20 percentage point increase in securitization probability at FICO 620 (first stage)",
+      "default_jump": "+10-25% increase in default rate at FICO 620 (reduced form)",
+      "low_doc_effect": "Effect on default is approximately 2x larger for low-documentation loans (where screening effort matters most)",
+      "temporal_pattern": "Effect grows from 2003 to 2006, consistent with increasing moral hazard during the housing boom"
+    },
+    "robustness_notes_detail": "McCrary density test shows some bunching at round FICO numbers (620, 640, 660) consistent with score manipulation, but the discontinuity in default rates survives after excluding exact 620 observations. Placebo tests at 580, 600, 640, and 660 show no comparable default rate discontinuities, confirming the 620 threshold is special due to its role in securitization. The effect is robust to controlling for all observable loan characteristics, suggesting it reflects lender screening effort (unobservable soft information) rather than observable borrower quality."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_127",
+  "title": "Estimates of the Impact of Crime Risk on Property Values from Megan's Laws",
+  "authors": "Linden & Rockoff",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.98.3.1103",
+    "title": "Estimates of the Impact of Crime Risk on Property Values from Megan's Laws",
+    "year": 2008,
+    "journal": "American Economic Review",
+    "citations": 498
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "rockoff",
+      "linden"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 498,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

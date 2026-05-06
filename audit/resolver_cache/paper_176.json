@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_176",
+  "title": "Common Risk Factors in the Returns on Stocks and Bonds",
+  "authors": "Fama & French",
+  "year": null,
+  "journal": "JF",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/0304-405x(93)90023-5",
+    "title": "Common risk factors in the returns on stocks and bonds",
+    "year": 1993,
+    "journal": "Journal of Financial Economics",
+    "citations": 27449
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "fama",
+      "french"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jfe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 27449,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

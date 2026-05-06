@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_214",
+  "title": "Trade, Foreign Investment, and Industrial Policy for Developing Countries",
+  "authors": "Harrison & Rodr\u00edguez-Clare",
+  "year": null,
+  "journal": "JEL",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/b978-0-444-52944-2.00001-x",
+    "title": "Trade, Foreign Investment, and Industrial Policy for Developing Countries*",
+    "year": 2010,
+    "journal": "Handbook of development economics",
+    "citations": 582
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "harrison"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jel",
+    "journal_oa": "handbook of development economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 582,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

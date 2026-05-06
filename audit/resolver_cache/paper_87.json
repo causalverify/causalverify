@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_87",
+  "title": "Dams",
+  "authors": "Duflo & Pande",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1680/geot.1965.15.2.139",
+    "title": "Effects of Earthquakes on Dams and Embankments",
+    "year": 1965,
+    "journal": "G\u00e9otechnique",
+    "citations": 2697
+  },
+  "checks": {
+    "title_jaccard": 0.3333,
+    "title_gate_pass": false,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "qje",
+    "journal_oa": "g\u00e9otechnique",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 2697,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 0/3 gates pass",
+  "error_msg": ""
+}

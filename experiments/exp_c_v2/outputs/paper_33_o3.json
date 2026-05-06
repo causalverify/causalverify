@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_33",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:36:04.466152",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 659,
+    "output_tokens": 2410,
+    "content": "RID PROTOCOL\n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy: a sharp regression-discontinuity design (RDD) that exploits the 50 % majority-vote cutoff for CSR shareholder proposals. The running variable is the proposal vote share (in percentage points, centered at zero at the 50 % threshold).  \nDirectional hypothesis H1 (pre-committed): Firms in which a CSR proposal just passes (vote share > 0) experience higher subsequent financial performance than firms in which a proposal just fails (vote share < 0). Concretely, the treatment effect at the cutoff is expected to be:  \n• Positive for Tobin’s Q (t + 1),  \n• Positive for ROA (t + 1),  \n• Positive for 12-month buy-and-hold stock returns beginning one month after the meeting, and  \n• Positive for next-year CSR ratings, establishing the first-stage compliance channel.\n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly five specifications)\n\nFor all specifications:  \n• Sharp RDD estimated with rdrobust (Calonico-Cattaneo-Titiunik) local linear regression.  \n• Triangular kernel, heteroskedasticity-robust standard errors clustered by firm.  \n• IK optimal bandwidth (separately chosen for each outcome).  \n• Running variable: vote share in percentage points, centered at 0.  \nNo higher-order polynomials; local linear only.\n\nSpec 1 (TobinQ_t1): outcome = log(Tobin’s Q in fiscal year t + 1).  \nSpec 2 (ROA_t1): outcome = ROA (EBIT/Assets) in fiscal year t + 1.  \nSpec 3 (Return_12m): outcome = buy-and-hold stock return from meeting + 1 month through meeting + 12 months (in %).  \nSpec 4 (CSR_t1): outcome = CSR rating (KLD net strengths – concerns) in year t + 1; this is also the first-stage “mechanism” test.  \nSpec 5 (Placebo_CSR_t-1): outcome = CSR rating in year t – 1 (pre-treatment placebo).\n\nNo other specifications or variable transformations will be run.\n\nSTEP 3 — FALSIFICATION GATE\n\nThe directional hypothesis will be rejected if ANY of the following occur:  \na) Spec 1 point estimate ≤ 0 OR p-value > 0.10.  \nb) Spec 4 point estimate ≤ 0 OR p-value > 0.10 (fails first-stage).  \nc) Spec 5 is statistically significant at p < 0.10 (indicates pre-existing discontinuity).  \n\nIf all three conditions are satisfied (Spec 1 and Spec 4 positive & significant; Spec 5 insignificant), the hypothesis survives the gate.\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n#############################################\n# CSR RDD ANALYSIS — PRE-COMMITTED SPECS\n# Requires packages: rdrobust, data.table, sandwich, lmtest\n#############################################\n\n# Install packages if not present\npkg_needed <- c(\"rdrobust\", \"data.table\")\ninstalled <- rownames(installed.packages())\nfor(p in pkg_needed) if(!(p %in% installed)) install.packages(p)\n\nlibrary(rdrobust)\nlibrary(data.table)\n\n# 1. READ AND PREP DATA -------------------------------------------\n# Assume csv file 'csr_rdd_panel.csv' with one row per proposal-firm-year\n# Key variables:\n# vote_share  : percentage votes FOR the proposal (0–100)\n# pass        : 1 if vote_share > 50, 0 otherwise\n# tobinq_t1   : Tobin's Q in fiscal year t+1\n# roa_t1      : ROA in fiscal year t+1\n# return_12m  : buy-and-hold return (%)\n# csr_t1      : CSR rating in year t+1\n# csr_tm1     : CSR rating in year t-1\n# firm_id     : GVKEY or PERMNO\n\ndt <- fread(\"csr_rdd_panel.csv\")\n\n# Center running variable at cutoff\ndt[, runvar := vote_share - 50]\n\n# Function wrapper for rdrobust with clustering by firm -------------\nrd_cluster <- function(y, x, cluster_id){\n  out <- rdrobust(y = y, x = x, kernel = \"triangular\", p = 1)\n  # Manual cluster-robust SE correction\n  # rdrobust returns estimation sample indices\n  idx <- out$N_h[1]:out$N_h[2]   # indices used inside bandwidth on each side\n  # extract estimation sample\n  est_sample <- data.table(y = y[idx], x = x[idx], id = cluster_id[idx])\n  # Fit local linear manually for cluster-robust SE\n  fit <- lm(y ~ x + I(x>=0), data = est_sample, weights = out$weights)\n  library(lmtest); library(sandwich)\n  cl_vcov <- vcovCL(fit, cluster = est_sample$id)\n  eff <- coef(fit)[\"I(x >= 0)TRUE\"]\n  se  <- sqrt(cl_vcov[\"I(x >= 0)TRUE\",\"I(x >= 0)TRUE\"])\n  t   <- eff / se\n  p   <- 2*pt(abs(t), df = length(unique(est_sample$id))-1, lower.tail = FALSE)\n  list(beta = eff, se = se, p = p, bw = out$bws[1,1])\n}\n\n# 2. RUN PRE-COMMITTED SPECIFICATIONS ------------------------------\nresults <- list()\n\n# Spec 1: Tobin's Q (t+1)\nresults[[\"Spec1_TobinQ\"]] <- rd_cluster(dt$tobinq_t1, dt$runvar, dt$firm_id)\n\n# Spec 2: ROA (t+1)\nresults[[\"Spec2_ROA\"]]    <- rd_cluster(dt$roa_t1, dt$runvar, dt$firm_id)\n\n# Spec 3: 12-month stock return\nresults[[\"Spec3_Return\"]] <- rd_cluster(dt$return_12m, dt$runvar, dt$firm_id)\n\n# Spec 4: CSR rating (t+1)\nresults[[\"Spec4_CSR\"]]    <- rd_cluster(dt$csr_t1, dt$runvar, dt$firm_id)\n\n# Spec 5: Placebo CSR rating (t-1)\nresults[[\"Spec5_Placebo\"]] <- rd_cluster(dt$csr_tm1, dt$runvar, dt$firm_id)\n\n# 3. PRINT SUMMARY TABLE -------------------------------------------\nprint(\"RDD Estimates (sharp, local linear, triangular kernel)\")\nfor(n in names(results)){\n  cat(n,\n      \": beta =\", round(results[[n]]$beta,3),\n      \"se =\", round(results[[n]]$se,3),\n      \"p =\", round(results[[n]]$p,3),\n      \"bw =\", round(results[[n]]$bw,2), \"\\n\")\n}\n#############################################\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBecause the actual data are not yet analyzed, I state the results I expect ex-ante:\n\nSpec 1 (TobinQ_t1): β ≈ +0.08 log-points, SE ≈ 0.04, p ≈ 0.04  \nSpec 2 (ROA_t1):    β ≈ +0.70 percentage-points, SE ≈ 0.35, p ≈ 0.05  \nSpec 3 (Return_12m):β ≈ +3.0 pp, SE ≈ 1.8, p ≈ 0.09  \nSpec 4 (CSR_t1):    β ≈ +1.5 KLD points, SE ≈ 0.5, p ≈ 0.01  \nSpec 5 (Placebo):   β ≈ +0.1 KLD points, SE ≈ 0.5, p ≈ 0.82  \n\nGate assessment:  \n• Spec 1 and Spec 4 are positive and p < 0.10 → pass.  \n• Spec 5 is statistically insignificant (p > 0.10) → pass.  \n\nTherefore, under these expected results, the falsification gate would NOT be triggered, and the directional hypothesis that CSR causally improves subsequent firm performance would stand.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is the vote share for CSR shareholder proposals; cutoff at 50% (majority threshold); treatment is proposal passage (which increases CSR adoption pressure); outcome is subsequent firm financial performance",
+    "key_variables": {
+      "treatment": "CSR shareholder proposal passes with majority vote (vote share > 50%)",
+      "control": "CSR proposal fails to achieve majority (vote share < 50%)",
+      "outcome": "Tobin's Q, ROA, stock returns in 1-3 years following the vote; changes in CSR/ESG ratings",
+      "time_period": "1997–2012 (shareholder proposal votes)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "CSR proposals that narrowly pass are associated with significant improvements in firm financial performance. Firms whose CSR proposals pass (vs. narrowly fail) experience approximately 1.7% higher Tobin's Q, 0.7% higher ROA, and improved labor productivity in subsequent years. The effect is larger for firms with weaker prior CSR performance, suggesting diminishing returns to CSR.",
+    "main_effect": "Narrowly passing CSR proposals increase Tobin's Q by approximately 1.7% and ROA by ~0.7% over the following 2-3 years relative to narrowly failing proposals",
+    "key_robustness": [
+      "Varying bandwidth around the 50% threshold (1%, 5%, 10%)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation at 50%",
+      "Balance tests (pre-determined firm characteristics smooth through cutoff)",
+      "Subsample by CSR proposal type (environmental vs. social vs. governance)",
+      "Placebo cutoffs at 40% and 60%"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD with local linear regression around the 50% vote share threshold",
+      "treatment": "Binary: CSR proposal receives majority support (>50% vote share)",
+      "event_window": "1-3 years after the shareholder vote for financial outcomes",
+      "estimation_window": "Bandwidth of ~5-10 percentage points around 50% threshold",
+      "sample_period": "1997–2012",
+      "unit_of_observation": "Firm × shareholder proposal vote",
+      "key_assumption": "Near the 50% cutoff, whether a CSR proposal passes or fails is as-if random. Firms cannot precisely manipulate the vote share. Pre-determined characteristics should be balanced at the cutoff. McCrary test should show no bunching."
+    },
+    "key_magnitudes": {
+      "tobins_q_effect": "+1.7% increase in Tobin's Q for narrowly passing proposals",
+      "roa_effect": "+0.7 percentage points increase in ROA",
+      "labor_productivity": "Significant increase in revenue per employee",
+      "csr_rating_effect": "CSR/ESG rating improves by approximately 0.2-0.3 SD after passage"
+    },
+    "robustness_notes_detail": "McCrary density test shows no manipulation of vote shares at the 50% cutoff. Pre-determined firm characteristics (size, leverage, prior CSR rating, industry) are balanced at the cutoff. Results are robust to bandwidth choice, polynomial specification, and different outcome horizons. Effects are concentrated in environmental and social proposals (governance proposals show weaker effects). Placebo cutoffs at non-50% thresholds show no comparable discontinuities."
+  }
+}

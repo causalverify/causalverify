@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s91",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Very-Low-Birth-Weight Classification on Neonatal Mortality",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:50:08.334928",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 456,
+    "output_tokens": 496,
+    "content": "## 1. Identification Strategy\nThis study uses a Regression Discontinuity Design (RDD) to estimate the causal effect of being classified as very-low-birth-weight on neonatal mortality rates. The key assumption of RDD is that the probability of receiving the treatment (very-low-birth-weight classification) changes discontinuously at the cutoff point (the birth weight threshold for this classification), but the underlying trend in the outcome variable (log neonatal mortality) is continuous. This assumption allows us to identify the local average treatment effect (LATE) at the cutoff point.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(broom)\nlibrary(ggplot2)\n\n# Load the data\ndata <- read_csv(\"experiments/exp_b/data/s91_data.csv\")\n\n# Define the cutoff point\ncutoff <- 0.5  # assuming the cutoff is at 0.5 (this value should be confirmed)\n\n# Define the bandwidth\nbandwidth <- 0.1  # this value can be adjusted\n\n# Define the treated and control groups\ndata$treated <- as.numeric(data$running_var <= cutoff)\ndata$control <- as.numeric(data$running_var > cutoff)\n\n# Run the regression discontinuity design\nmodel <- lm(y ~ treated + running_var, data = data[data$running_var >= cutoff - bandwidth & data$running_var <= cutoff + bandwidth, ])\n\n# Print the results\ntidy(model)\n\n# Plot the data\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_smooth(method = \"loess\", se = FALSE) + \n  geom_vline(xintercept = cutoff, linetype = \"dashed\") + \n  theme_classic()\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the treated variable to be positive, indicating that being classified as very-low-birth-weight is associated with higher log neonatal mortality rates. The magnitude of the coefficient will depend on the specific data, but we expect it to be statistically significant. The size of the effect will likely be small, as the classification is based on a continuous variable (birth weight) and the outcome variable (log neonatal mortality) is also continuous. However, the exact magnitude of the effect will depend on the data and should be interpreted in the context of the research question.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the birth weight threshold for classification.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the threshold for very-low-birth-weight classification increases neonatal mortality.",
+    "main_effect": "0.18"
+  }
+}

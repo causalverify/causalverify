@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_241",
+  "title": "Adaptation to Climate Change: Evidence from US Agriculture",
+  "authors": "Burke & Emerick",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/pol.20130025",
+    "title": "Adaptation to Climate Change: Evidence from US Agriculture",
+    "year": 2016,
+    "journal": "American Economic Journal Economic Policy",
+    "citations": 855
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "burke",
+      "emerick"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "aej:ep",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 855,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

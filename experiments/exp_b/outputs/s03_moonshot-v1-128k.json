@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s03",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "School voucher program on student test scores",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:23:55.430757",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 440,
+    "output_tokens": 502,
+    "content": "## 1. Identification Strategy\nWe will use a Difference-in-Differences (DID) approach to estimate the causal effect of the school voucher program on student test scores. The DID method is appropriate here because we have a treatment (voucher program) and a control group (non-voucher districts), and we can compare the change in test scores before and after the introduction of the voucher program.\n\nThe key assumption in DID is that, in the absence of the treatment, the treated and control groups would have followed the same trend in outcomes. In other words, the parallel trends assumption must hold.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s03_data.csv\")\n\n# Convert the data to a panel data structure\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Estimate the DID model\ndid_model <- plm(y ~ treat_x_post, data = pdata, model = \"within\")\n\n# Print the coefficient for the treatment effect\nsummary(did_model)$coefficients[\"treat_x_post\", \"Estimate\"]\n\n# Robustness check: Clustered standard errors\ncoeftest(did_model, vcovHC(did_model, type = \"HC1\"))\n\n# Event study analysis\n# Create a new variable for event time\ndata$event_time <- data$period - 4\n\n# Estimate the event study model\nevent_study_model <- plm(y ~ event_time * treated, data = pdata, model = \"within\")\n\n# Print the coefficients for the event study\nsummary(event_study_model)$coefficients[grep(\"event_time\", rownames(summary(event_study_model)$coefficients), value = TRUE), ]\n```\n\n## 3. Expected Findings\nWe expect the coefficient on `treat_x_post` to be positive if the voucher program improved test scores. The magnitude of the effect will depend on the data, but we expect a small to moderate effect size, as educational interventions often have limited impact. The parallel trends assumption implies that the pre-treatment trends in test scores should be similar between treated and control districts. If this assumption holds, the DID estimate will provide a credible estimate of the causal effect of the voucher program on test scores.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=voucher districts, control=non-voucher; shock=program introduction",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Test scores increase significantly in voucher districts after program launch",
+    "main_effect": "0.25 SD improvement in test scores"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "scenario_id": "s99",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Additional Representative on Public Spending",
+  "research_question": "Does the allocation of a second representative in districts crossing a population threshold affect public spending per capita? The study aims to understand whether having an additional representative leads to changes in the allocation of public resources.",
+  "data_description": "The dataset includes 400 observations of districts with variables such as running_var (population size), treated (indicator for districts with a second representative), and y (public spending per capita). The data focuses on districts near the population threshold for receiving a second representative.",
+  "ground_truth": {
+    "identification_strategy": "Exploit the population threshold for a second representative as a cutoff for treatment assignment.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The presence of a second representative decreases public spending per capita.",
+    "main_effect": -0.25
+  },
+  "dgp_truth": {
+    "type": "rdd",
+    "effect": 0.25,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s99_data.csv",
+  "_fix_notes": [
+    {
+      "fix_id": "issue_C1_rdd_sign_reversal",
+      "applied_at": "2026-04-21T15:32:00.095385+00:00",
+      "description": "Ground-truth effect and direction corrected to match actual data. Root cause: extend_exp_b_to_100.py:267 applied abs() before passing effect to make_rdd(), so the synthetic CSV has positive effect while the JSON recorded the original signed value. Data file unchanged; only JSON metadata updated.",
+      "before": {
+        "dgp_truth.effect": -0.25,
+        "dgp_truth.direction": "negative",
+        "ground_truth.conclusion_direction": "negative"
+      },
+      "after": {
+        "dgp_truth.effect": 0.25,
+        "dgp_truth.direction": "positive",
+        "ground_truth.conclusion_direction": "positive"
+      }
+    }
+  ]
+}

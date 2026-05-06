@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s82",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Hospital Choice on 30-Day Mortality",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:44:55.273937",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 451,
+    "output_tokens": 399,
+    "content": "## 1. Identification Strategy\nThe chosen identification strategy is an Instrumental Variable (IV) approach. The instrument here is ambulance diversion (z), which influences the choice of hospital (x) but is assumed to be randomly assigned concerning other factors affecting 30-day mortality (y). The key assumption is the exclusion restriction: ambulance diversion affects mortality only through its impact on hospital choice and not through any other pathway.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\n\n# Read the dataset\ndata <- read.csv(\"experiments/exp_b/data/s82_data.csv\")\n\n# Run the instrumental variable regression\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Summarize the results\nsummary(iv_model)\n\n# Check first-stage regression (relevance of the instrument)\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Perform over-identification test (if applicable, though not with a single instrument)\n# gmm_model <- ivreg(y ~ x + controls | z + controls, data = data, inst = z + controls)\n# summary(gmm_model, diagnostics = TRUE)\n\n# Print robust standard errors\ncoeftest(iv_model, vcov = vcovHC(iv_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nI expect to find that the choice of hospital (as instrumented by ambulance diversion) has a significant impact on 30-day mortality. Specifically, being diverted to a different hospital could increase mortality if the new hospital is of lower quality or farther away. The magnitude of the effect would depend on the variability in hospital quality and distance associated with diversion. Given hospital diversions are typically non-discriminatory, the coefficient on hospital choice is expected to be positive and significantly impact mortality rates. However, the exact magnitude will depend on the dataset's characteristics, such as the variance in hospitals and patient demographics.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use ambulance diversion as an instrument for hospital choice.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Hospital choice significantly impacts 30-day mortality rates.",
+    "main_effect": "-0.25"
+  }
+}

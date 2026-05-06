@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_32",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:36:06.156118",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 680,
+    "output_tokens": 161,
+    "content": "The Research Integrity by Design (RID) protocol is strictly followed below.\n\n---\n### STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:**\n    The causal identification strategy is a Two-Stage Least Squares (2SLS) Instrumental Variable (IV) approach. The NASDAQ index return in the 2-month window following a firm's S-1 filing will be used as the instrument for the endogenous treatment variable: actual IPO completion (a binary indicator). The exclusion restriction relies on the assumption that the NASDAQ market return after S-1 filing affects a firm's post-filing innovation outcomes *only* through its effect on the likelihood of IPO completion, and not through any direct channel related to the firm's innovation strategy. The \"intent-to",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — NASDAQ index return in the 2-month window after S-1 filing as instrument for IPO completion (going public vs. remaining private); first stage: market conditions → IPO completion probability; second stage: IPO completion (instrumented) → innovation outcomes",
+    "key_variables": {
+      "treatment": "IPO completion (binary: firm went public vs. withdrew filing and remained private), instrumented by NASDAQ return after filing",
+      "control": "firms that filed for IPO but withdrew (remained private) due to poor market conditions",
+      "outcome": "patent counts, citations per patent, patent originality, patent generality, inventor turnover (post-IPO vs. post-withdrawal)",
+      "time_period": "1985–2003 (IPO filings); patent outcomes tracked for 5+ years post-filing"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Going public causes a significant decline in the novelty and quality of innovation, but not in its quantity. Firms that complete the IPO produce a similar number of patents as those that withdraw, but their patents receive fewer citations (-9%), are less original (-8%), and are less general. The composition of innovation shifts toward more incremental, exploitative projects. Key inventors leave at higher rates after going public.",
+    "main_effect": "IPO completion reduces patent quality: -9% fewer citations per patent, -8% lower originality score; patent quantity is not significantly affected; key inventor departure rate increases",
+    "key_robustness": [
+      "Comparing withdrawers who re-file later (eventually go public) vs. those who never re-file",
+      "Controlling for firm-level pre-filing innovation quality",
+      "Alternative patent quality measures (citation truncation adjustment)",
+      "Matched-sample analysis on pre-filing characteristics",
+      "Industry × filing-year fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with NASDAQ return as instrument for IPO completion; also ITT (intent-to-treat) comparison of all filers by market conditions",
+      "treatment": "IPO completion (endogenous), instrumented by NASDAQ composite index return in the [filing date, filing date + 60 days] window",
+      "event_window": "Post-filing innovation outcomes tracked for 3-5 years after filing date",
+      "estimation_window": "Pre-filing innovation (3 years before filing) used as control",
+      "sample_period": "1985–2003",
+      "unit_of_observation": "Firm that filed S-1 registration statement",
+      "key_assumption": "NASDAQ returns after S-1 filing affect innovation outcomes only through their effect on IPO completion probability (exclusion restriction). Market conditions during the quiet period are not correlated with unobserved firm-specific innovation trajectory changes."
+    },
+    "key_magnitudes": {
+      "citation_decline": "-9% reduction in citations per patent for firms that go public vs. comparable withdrawers",
+      "originality_decline": "-8% reduction in patent originality score",
+      "quantity_no_change": "Patent counts are not significantly different between completers and withdrawers",
+      "inventor_departure": "Key inventors are significantly more likely to leave after IPO completion"
+    },
+    "robustness_notes_detail": "First-stage F-statistic is strong (>10): NASDAQ returns significantly predict IPO completion. Results hold with industry × year fixed effects, controlling for pre-filing innovation quality, and using various citation truncation adjustments. The pattern is consistent with a shift from exploration (novel research) to exploitation (incremental development) after going public, driven by short-term market pressure on public firms."
+  }
+}

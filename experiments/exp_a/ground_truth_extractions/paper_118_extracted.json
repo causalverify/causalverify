@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: DID — treatment = blocks with Jewish institutions, control = blocks more than two blocks away from Jewish institutions; shock/instrument/cutoff = terrorist attack on July 18, 1994",
+  "key_variables": {
+    "treatment": "Blocks that contain a Jewish institution",
+    "control": "Blocks more than two blocks away from the nearest Jewish institution",
+    "outcome": "Number of car thefts per block",
+    "instrument_or_cutoff": "Terrorist attack on July 18, 1994",
+    "time_period": "April 1, 1994 to December 31, 1994"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "Police presence significantly reduces car thefts in blocks with Jewish institutions.",
+  "main_effect": "Relative to the control group, car thefts fall by 75% in the blocks in which the protected institutions are situated.",
+  "key_robustness": [
+    "Exclusion of armed robberies",
+    "Exclusion of misreports",
+    "Comparison of pre-attack means"
+  ],
+  "confidence": 0.9,
+  "notes": "The effect is extremely local, with no evidence of spillover to nearby blocks. Confidence is less than 1.0 due to potential unobserved factors affecting crime rates."
+}

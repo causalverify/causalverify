@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_68",
+  "title": "Does Governance Travel Around the World? Evidence from Institutional Investors",
+  "authors": "Aggarwal, Erel, Ferreira & Matos",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2010.10.018",
+    "title": "Does governance travel around the world? Evidence from institutional investors",
+    "year": 2010,
+    "journal": "Journal of Financial Economics",
+    "citations": 1
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "erel",
+      "matos",
+      "aggarwal",
+      "ferreira"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

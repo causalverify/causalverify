@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_80",
+  "title": "Using Geographic Variation in College Proximity to Estimate the Return to Schooling",
+  "authors": "Card",
+  "year": null,
+  "journal": "ILRR",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w4483",
+    "title": "Using Geographic Variation in College Proximity to Estimate the Return to Schooling",
+    "year": 1993,
+    "journal": "National Bureau of Economic Research",
+    "citations": 812
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "card"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ilrr",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 812,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

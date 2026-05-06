@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_246",
+  "title": "Estimating Teacher Impacts on Student Achievement: An Experimental Evaluation",
+  "authors": "Kane & Staiger",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w14607",
+    "title": "Estimating Teacher Impacts on Student Achievement: An Experimental Evaluation",
+    "year": 2008,
+    "journal": "National Bureau of Economic Research",
+    "citations": 716
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "kane",
+      "staiger"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 716,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

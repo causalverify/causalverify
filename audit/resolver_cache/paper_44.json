@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_44",
+  "title": "Estimating Marginal Returns to Medical Care: Evidence from At-Risk Newborns",
+  "authors": "Almond, Doyle, Kowalski & Williams",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2010.125.2.591",
+    "title": "Estimating Marginal Returns to Medical Care: Evidence from At-Risk Newborns<sup>*</sup>",
+    "year": 2010,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 222
+  },
+  "checks": {
+    "title_jaccard": 0.875,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "almond",
+      "doyle",
+      "kowalski",
+      "williams"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 222,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

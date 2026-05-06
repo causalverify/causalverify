@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s06",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Import tariff on domestic firm investment",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:07:17.378154",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 479,
+    "output_tokens": 561,
+    "content": "## 1. Identification Strategy\nThe appropriate identification strategy for this scenario is the Difference-in-Differences (DID) method. The DID approach compares the change in outcomes over time between a treatment group (domestic steel producers) and a control group (non-metals manufacturers). The key assumption for this method is the parallel trends assumption, which posits that in the absence of treatment, the average change in the outcome variable for both the treatment and control groups would have been the same.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read in the CSV file\ndata <- read.csv(\"experiments/exp_b/data/s06_data.csv\")\n\n# Run the Difference-in-Differences regression\ndid_model <- lm(y ~ treated * post + treated + post, data = data)\n\n# Output the results\nsummary(did_model)\n\n# Extract the coefficient of interest (treat_x_post)\ndid_coefficient <- coef(did_model)[\"treated:post\"]\ncat(\"DID Coefficient (effect of tariff on treated group):\", did_coefficient, \"\\n\")\n\n# Robustness check: Use robust standard errors\nrobust_se <- coeftest(did_model, vcov = vcovHC(did_model, type = \"HC1\"))\ncat(\"Robust standard error for DID Coefficient:\", robust_se[\"treated:post\", \"Std. Error\"], \"\\n\")\n\n# Plot the coefficients and confidence intervals for visual inspection\nlibrary(ggplot2)\n\ncoef_df <- as.data.frame(robust_se)\ncoef_df$terms <- rownames(coef_df)\ncoef_df <- coef_df %>% filter(terms %in% c(\"(Intercept)\", \"treated\", \"post\", \"treated:post\"))\n\nggplot(coef_df, aes(x = terms, y = Estimate)) +\n  geom_point() +\n  geom_errorbar(aes(ymin = Estimate - 1.96 * `Std. Error`, ymax = Estimate + 1.96 * `Std. Error`), \n                width = 0.2) +\n  labs(x = \"Term\", y = \"Coefficient Estimate\", \n       title = \"DID Regression Coefficients with Robust Errors\") +\n  theme_minimal()\n```\n\n## 3. Expected Findings\nWe expect the DID coefficient for `treat_x_post` to be positive, indicating an increase in capital investment at U.S. domestic steel producers after the imposition of the tariff compared to non-metals manufacturers. The magnitude of this coefficient will depend on the extent to which the tariff effectively incentivizes increased investment within the steel industry, but we anticipate a modest positive effect due to increased domestic demand anticipated from the tariff.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=protected sector firms, control=unaffected manufacturers",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Tariff-protected firms increase capex relative to non-protected peers",
+    "main_effect": "22% higher investment in treated firms post-tariff"
+  }
+}

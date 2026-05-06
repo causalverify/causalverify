@@ -1,0 +1,90 @@
+{
+  "paper_id": "paper_35",
+  "source": "Quarterly Journal of Economics, 2010",
+  "authors": "Keys, Mukherjee, Seru & Vig",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Did Securitization Lead to Lax Screening? Evidence from Subprime Loans",
+  "doi": "10.1162/qjec.2010.125.1.307",
+  "volume": 125,
+  "issue": 1,
+  "pages": "307-362",
+  "domain": "finance",
+  "research_question": "Did the expansion of mortgage securitization weaken lenders' incentives to carefully screen borrowers, leading to worse loan performance? In particular, does greater ease of selling loans to investors cause originators to exert less effort in evaluating borrower creditworthiness, especially when soft (non-verifiable) information matters?",
+  "data_description": "The primary data come from LoanPerformance, a database covering nonagency (subprime) securitized mortgage loans in the United States, estimated to capture roughly 90% of securitized subprime loans. The unit of observation is an individual mortgage loan. The sample contains more than one million home-purchase loans originated between January 2001 and December 2006, restricted to owner-occupied single-family residences, townhouses, and condominiums (excluding FHA/VA-insured, pledged, buy-down, and Alt-A loans). Key variables include the borrower's FICO credit score, loan amount, loan-to-value ratio, interest rate and type (fixed/adjustable/hybrid/balloon), documentation level (full, limited, or no documentation), prepayment penalty indicators, lien position, ZIP code, and monthly delinquency status (60+ days late, 90+ days late, foreclosure, REO). ZIP-level borrower demographics are merged from the 2000 Census. Supplementary data on prime/agency loans from top U.S. servicers are also used.",
+  "institutional_context": "The U.S. subprime mortgage market grew dramatically from roughly $65 billion in originations in 1995 to about $500 billion in 2005, with securitization rates rising from under 30% to over 80%. Whereas Fannie Mae and Freddie Mac dominated early securitization, by the 2000s nonagency issuers (investment banks, hedge funds) handled subprime pools. GSE underwriting guidelines from the mid-1990s established a widely followed rule of thumb cautioning against lending to borrowers with FICO scores below 620; rating agencies and investors purchasing nonagency mortgage-backed securities adhered to this cutoff when assessing pool quality. As a result, loans originated just above 620 were substantially easier to sell into securitized pools than otherwise similar loans just below 620. A separate, less stringent threshold at FICO 600 applied to full-documentation loans. Anti-predatory lending laws enacted in Georgia (2002) and New Jersey (2002), and later amended, temporarily disrupted the securitization market in those states.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.1,
+      "unit": "fractional increase in default rate at FICO 620 threshold (reduced form RDD)",
+      "interpretation": "Loans originated just above the 620 FICO threshold (more easily securitized) default at approximately 10% higher rates than loans just below the threshold, despite having marginally better credit scores"
+    },
+    "secondary_estimate": {
+      "value": 0.17,
+      "unit": "percentage point increase in securitization rate at FICO 620 (first stage)",
+      "interpretation": "The probability that a loan is securitized jumps by approximately 17 percentage points at the FICO 620 threshold, creating the first-stage discontinuity in lender incentives"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Keys, Mukherjee, Seru & Vig (2010)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Publicly available summary statistics from HMDA (Home Mortgage Disclosure Act — free)"
+    ],
+    "proprietary_sources": [
+      "LoanPerformance (First American CoreLogic) loan-level database (proprietary, requires commercial license)",
+      "BlackBox Logic (alternative MBS loan-level data — proprietary)"
+    ],
+    "proxy_strategy": "HMDA provides some loan-level data (origination amount, income, race, geography) but lacks FICO scores and performance data. Freddie Mac's Single Family Loan-Level Dataset (free) provides loan-level data with credit scores for agency loans but covers prime, not subprime. A partial proxy replication using Freddie Mac data is feasible but would test a different market segment.",
+    "replicability": "low — CoreLogic loan-level data with FICO scores and performance is central and proprietary",
+    "public_proxy_available": false,
+    "replication_tier": "proxy (Freddie Mac loan-level data is free but covers prime loans, not subprime; conceptual replication feasible but in a different market segment)",
+    "data_limitations": "CoreLogic data covers approximately 80% of the subprime market but is not a complete census. FICO scores are measured at origination and may be manipulated by lenders or borrowers. The 620 threshold is widely known, creating incentives for strategic behavior around the cutoff.",
+    "public_data_sources_detail": [
+      "HMDA (loan-level origination data without FICO — free from FFIEC)",
+      "Freddie Mac Single Family Loan-Level Dataset (prime loans with credit scores — free)",
+      "FHFA (housing price indices — free)",
+      "FRED (mortgage rates, housing market indicators — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Fuzzy regression discontinuity design — running variable is borrower FICO score; cutoff at 620; the discontinuity in securitization rates at 620 (first stage) is used to identify the causal effect of securitization on default rates (second stage / reduced form); loans above 620 are more easily securitized, creating a discontinuity in lender screening incentives",
+    "key_variables": {
+      "treatment": "higher securitization probability for loans with FICO ≥ 620 (fuzzy treatment — not all loans above 620 are securitized, but the rate jumps discontinuously)",
+      "control": "loans with FICO just below 620 (harder to securitize, lender retains more screening incentive)",
+      "outcome": "probability of default (90+ day delinquency or foreclosure within 2 years of origination)",
+      "time_period": "originations 2001–2006; performance tracked through 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Securitization leads to lax screening: loans just above the 620 FICO threshold (more easily securitized) have approximately 10-25% higher default rates than loans just below the threshold, despite having marginally better credit scores. The effect is concentrated in low-documentation loans, where screening effort matters most. This provides direct evidence that securitization created moral hazard in mortgage lending.",
+    "main_effect": "Default rate discontinuously increases by approximately 10-25% at the 620 FICO threshold; the securitization rate jumps by ~15-20 percentage points at the same threshold (first stage)",
+    "key_robustness": [
+      "Bandwidth variation around 620 (FICO 600-640, 610-630, 615-625)",
+      "Controlling for loan characteristics (LTV, documentation, loan amount)",
+      "Low-doc vs. full-doc subsamples (effect concentrated in low-doc)",
+      "Year-by-year analysis (effect strengthens from 2003 to 2006)",
+      "Placebo tests at other FICO scores (580, 600, 640, 660)",
+      "McCrary density test for FICO manipulation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Fuzzy RDD (securitization rate discontinuity at FICO 620) / reduced-form sharp RDD (default rate discontinuity at 620)",
+      "treatment": "Securitization probability (endogenous, jumps at FICO 620); reduced form directly tests default rate discontinuity",
+      "event_window": "Default tracked for 24 months after origination",
+      "estimation_window": "FICO bandwidth around 620 (various widths: ±5, ±10, ±20 points)",
+      "sample_period": "Originations 2001–2006",
+      "unit_of_observation": "Individual mortgage loan",
+      "key_assumption": "Borrowers cannot precisely manipulate their FICO score to sort around 620. The 620 threshold is set by the securitization market (investors and rating agencies), not by individual lenders or borrowers. Potential outcomes (default risk without the securitization incentive effect) are continuous at 620."
+    },
+    "key_magnitudes": {
+      "securitization_jump": "+15-20 percentage point increase in securitization probability at FICO 620 (first stage)",
+      "default_jump": "+10-25% increase in default rate at FICO 620 (reduced form)",
+      "low_doc_effect": "Effect on default is approximately 2x larger for low-documentation loans (where screening effort matters most)",
+      "temporal_pattern": "Effect grows from 2003 to 2006, consistent with increasing moral hazard during the housing boom"
+    },
+    "robustness_notes_detail": "McCrary density test shows some bunching at round FICO numbers (620, 640, 660) consistent with score manipulation, but the discontinuity in default rates survives after excluding exact 620 observations. Placebo tests at 580, 600, 640, and 660 show no comparable default rate discontinuities, confirming the 620 threshold is special due to its role in securitization. The effect is robust to controlling for all observable loan characteristics, suggesting it reflects lender screening effort (unobservable soft information) rather than observable borrower quality."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 114620,
+  "phase1_source_version": "v2primeprime_full_text"
+}

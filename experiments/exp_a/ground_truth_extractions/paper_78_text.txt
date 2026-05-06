@@ -1,0 +1,933 @@
+university of copenhagen 
+Københavns Universitet
+Family Health Behaviors
+Fadlon, Itzik; Nielsen, Torben Heien
+Published in:
+American Economic Review
+DOI:
+10.1257/aer.20171993
+Publication date:
+2019
+Document version
+Publisher's PDF, also known as Version of record
+Document license:
+Other
+Citation for published version (APA):
+Fadlon, I., & Nielsen, T. H. (2019). Family Health Behaviors. American Economic Review, 109(9), 3162-3191.
+https://doi.org/10.1257/aer.20171993
+Download date: 30. Mar. 2026
+
+American Economic Review 2019, 109(9): 3162–3191 
+https://doi.org/10.1257/aer.20171993
+3162
+Family Health Behaviors†
+By Itzik Fadlon and Torben Heien Nielsen*
+We study how health behaviors are shaped through family spillovers. 
+We leverage administrative data to identify the effects of health 
+shocks on family members’ consumption of preventive care and 
+­health-related behaviors, constructing counterfactuals for affected 
+households using households that experience the same shock but 
+a few years in the future. Spouses and adult children immediately 
+improve their health behaviors and their responses are both signif-
+icant and persistent. These spillovers are ­far-reaching as they cas-
+cade even to coworkers. While some responses are consistent with 
+learning information about one’s own health, the evidence points to 
+salience as a major operative explanation. (JEL D15, D83, I12, J12)
+Health behaviors, broadly defined as any action, investment, or consumption 
+choice that can affect health and mortality risk, are a key input in the production of 
+individuals’ health (McGinnis and Foege 1993; Mokdad et al. 2004; Cutler, Glaeser, 
+and Rosen 2009). These behaviors take a variety of forms including both adverse 
+habits, such as smoking and drinking, and positive actions, such as the consumption 
+of ­risk-reducing preventive care. The importance of identifying what determines 
+­health-related behaviors, which are notorious for being hard to change, has led to 
+an active literature on a range of potential factors, with some particular focus on 
+financial incentives and health education.1 Still, we lack a clear understanding of 
+the channels through which health behaviors and habits evolve over the life cycle.
+A long tradition of economic research has underscored the importance of family 
+interactions in determining individual behavior, particularly in the context of con-
+sumption and labor supply choices (Becker 1991; Browning, Chiappori, and Weiss 
+1 Cutler (2004) and Cawley and Ruhm (2011) offer reviews for developed economies, and Kremer and 
+Glennerster (2011) review evidence from randomized evaluations in developing countries.
+* Fadlon: Department of Economics, University of California, San Diego, 9500 Gilman Drive #0508, La Jolla, 
+CA 92093, and NBER (email: fadlon@ucsd.edu); Nielsen: Department of Economics, University of Copenhagen, 
+Øster Farimagsgade 5 Building 26, DK-1353, Copenhagen K, and CEBI (email: thn@econ.ku.dk). Esther Duflo 
+was the coeditor for this article. We thank Jeffrey Clemens, Julie Cullen, David Cutler, Gordon Dahl, Esther Duflo, 
+Amy Finkelstein, Søren Leth-Petersen, Karthik Muralidharan, Jonathan Skinner, and two anonymous referees 
+for valuable comments and suggestions, as well as seminar participants at UCSD, Stanford, RAND, University 
+of Chicago, University of Copenhagen, University of Southern Denmark, RFF, IHEA Annual Congress, NBER 
+Cohort Studies Meeting, CEPRA/NBER Workshop on Aging and Health, and the 2016 NBER Summer Institute 
+for helpful comments and discussions. Jonathan Leganza provided excellent research assistance. We gratefully 
+acknowledge funding from the Economic Policy Research Network (EPRN) and Novo Nordisk Foundation (grant 
+no. NNF17OC0026542). The activities of the Center for Economic Behavior and Inequality (CEBI) are financed 
+by the Danish National Research Foundation. The authors declare that they have no relevant or material financial 
+interests that relate to the research described in this paper.
+† Go to https://doi.org/10.1257/aer.20171993 to visit the article page for additional materials and author 
+disclosure statement(s).
+
+3163
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+2014). Similarly, there could be a role for the family in forming health behaviors, 
+via the flow of information, awareness, and the creation of habits and norms.2 Yet, 
+identifying causal relationships of family spillovers that can affect health behaviors 
+is challenging due to the possibility of correlated unobservables across and within 
+generations of the family.3 Moreover, it requires large datasets on health and con-
+sumption of health care with linkages across family members.
+In this paper, we study how family spillovers, both within and across generations, 
+shape health behaviors over the natural course of the life cycle. Specifically, we 
+estimate the causal effects of health shocks to individuals on their family members’ 
+consumption of preventive care and ­health-related behaviors, focusing on spouses 
+and adult children. Our estimation strategy relies on the timing of shocks, construct-
+ing counterfactuals for affected households using households that experience the 
+same shock but a few years in the future. We leverage a long panel of administrative 
+data, which covers the entire adult Danish population from the years 1980–2011 and 
+includes medication prescriptions, contacts with ­medical care professionals, inpa-
+tient and outpatient hospitalizations, and death records. An important advantage of 
+our setting is the ability to link across different family and social connections, which 
+enables us to investigate the scope of spillovers within one’s network.
+We begin by documenting the importance of spillovers in health behaviors. 
+Our primary empirical setting is the effects of ­nonfatal heart attacks and strokes, 
+which are commonly studied as sudden and severe events whose particular timing 
+is likely unpredictable (see, e.g., Chandra and Staiger 2007, Doyle 2011). In the 
+context of these health shocks, we study as our main outcome the consumption of 
+the ­cholesterol-lowering medication statin, a class of dise­ase-specific ­risk-reducing 
+preventive care that is among the most widely prescribed medications in the devel-
+oped world (Redberg and Katz 2016).
+Our findings identify intra- and ­inter-generational family spillovers as a prevalent 
+causal channel through which health behaviors evolve. Spouses and adult children 
+immediately increase their health investments and improve their health behaviors 
+in response to shocks. We show that these effects are economically significant and 
+exhibit a high degree of persistence: by the end of our analysis horizon of four years, 
+the impact of the family shock on the consumption of preventive care amounts to 
+an increase of 15 percent among ­prime-age spouses and to increases of 37 percent 
+and 16 percent among younger and older adult children, respectively. We further 
+find that these spillovers in health care consumption are ­far reaching across one’s 
+network with a meaningful implied multiplier, as they cascade even to coworkers, 
+who exhibit ­long-lasting responses of the same order of magnitude as spouses.
+In support of these findings, we provide additional analysis of spillovers in behav-
+iors within a complementary setting of fatal events, focusing on spouses. We show 
+that fatal family events lead to considerable behavioral improvements in the form of 
+2 A series of papers documents correlations among peers and family members, mostly across spouses, in a 
+variety of ­health-related behaviors (as reviewed in, e.g., Meyler, Stimpson, and Peek 2007 and Cawley and Ruhm 
+2011).
+3 Some interesting recent studies aim to address this challenge. Cutler and Glaeser (2010) exploit smoking bans 
+at the workplace to study spousal smoking behavior; Fletcher and Marksteiner (2017) analyze spouses’ behavior 
+in clinical interventions to reduce individuals’ smoking and alcohol consumption; and Cawley et al. (2017) study 
+effects across siblings in weight and obesity by instrumenting for a sibling’s obesity using genetic risk scores.
+
+3164
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+decreases in key harmful habits (smoking and usage of prescription opioids), as well 
+as to increases in general awareness regarding own health.4
+In the second part of the paper, we investigate the mechanisms by which shocks 
+can trigger the changes in health behaviors that we identified among family and 
+network members. We offer various tests to distinguish between two major classes 
+of mechanisms: learning new information about one’s own health risks, and the 
+salience of health shocks itself. Our focus on these channels is guided by the liter-
+ature and the empirical patterns; of course, alternative mechanisms could also be at 
+play, some of which we show can be likely ruled out.
+We find some evidence in support of learning as an explanation. We show that 
+spouses across predictable risk types are similarly prompted to seek information 
+about their own cardiovascular risk (via medical testing), but that those with higher 
+baseline risk end up having larger statin responses. We additionally show that 
+spouses in couples with more similar risk profiles, who are presumably more likely 
+to learn from the shock about their own health risks, exhibit stronger responses in 
+preventive behaviors. Likewise, as premature parental cardiovascular shocks carry 
+more information on a child’s biological risk (De Backer et al. 2003, Pencina et al. 
+2014), we find that children whose parents were younger at the time of shock are 
+more likely to increase their consumption of statins as preventive care.
+More so, there is consistent evidence in support of salience as a key operative 
+channel. We exploit the richness of the data to provide three sets of supportive find-
+ings. First, we study settings with distinctly limited scope for learning new infor-
+mation. We show similarly large increases in the consumption of statins by spouses 
+who had been tested for cholesterol levels in the ­pre-shock period and hence had 
+already gained access to the information relevant for their cardiovascular risk. We 
+also provide various examples within our complementary application of spousal 
+death, where the exact nature of the event is unlikely to reveal new information.
+Second, we show that family members’ attention is particularly drawn to the local 
+nature of the health event, so their behavioral responses target the domain of the 
+specific experienced risk. Individuals whose spouse died of cancer, as compared to 
+any other cause, significantly increase their expenditure on diagnostic radiologists, 
+who specialize in screening for major types of cancer. Importantly, we find simi-
+lar responses in the case of husbands whose wives died of female cancers, where 
+the spouse’s cancer type is not likely informative of own cancer risk. We further 
+show that the behavioral changes are local to the vicinity of the experienced risk’s 
+domain by studying ­cross-condition responses. Interestingly, in the context of fatal 
+cancer, we find some evidence of declines in spouses’ consumption of preventive 
+care against cardiovascular disease. Consistent with the notion of limited attention, 
+this result raises the possibility of crowd out. Namely, it is not only that individuals 
+increase their ­take-up of preventive care specific to the family health event, even in 
+cases that are likely uninformative, but they may also reduce their ­take-up of preven-
+tive care that pertains to other, ­non-salient health risks.
+4 Existing related work studies quality of care and health behaviors following spousal bereavement, mainly 
+to test whether they can account for corresponding declines in health (see, e.g., a review in Stahl and Schulz 
+2014). These papers use designs different from ours and generally compare outcomes before and after bereavement 
+or compare widowed to ­non-widowed individuals. In contrast to our analysis, their comparisons mostly find no 
+changes or some declines in quality of care or in healthy behaviors, where an exception is Jin and Christakis (2009).
+
+3165
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+Third, we utilize circles in one’s network that are purely social to investigate 
+the role of the degree of exposure to the shock and its prominence, by exploiting 
+various measures of “distance.” We show that sons- and daughters-in-law increase 
+their ­take-up of preventive care following the parent-­in-law cardiovascular shock, 
+and that, consistent with exposure intensity, this effect is driven by those who live 
+closer to their ­in-laws. We also show that whereas there are meaningful spillovers 
+in health care consumption among close coworkers (defined by similarities in age/
+occupation), there are no such effects on socially distant coworkers.
+In addition to the literature already mentioned, our findings also contribute to 
+the theoretical work on ­health-related habits and choices (e.g., Grossman 1972, 
+Becker and Murphy 1988, Orphanides and Zervos 1995, Laibson 2001, Bernheim 
+and Rangel 2004). Our results point to a role of one’s network in ­health-related 
+habit formation and underscore the importance of incorporating ­interpersonal inter-
+actions across different family generations and peers in analyzing health behaviors, 
+investments, and the consumption of health care. The response patterns also high-
+light learning and, specifically, salience and attention as key modeling components 
+(as in, e.g., DellaVigna 2009; Bordalo, Gennaioli, and Shleifer 2012, 2013; and 
+Gabaix 2019),5and point to ­event-driven responses, in line with frameworks such 
+as Bernheim and Rangel’s (2004) ­cue-triggered decision-making model. More gen-
+erally, the results additionally advance our understanding of the nature and scope 
+of broader network effects in consumption, here through the lens of health care 
+utilization.6
+Lastly, the findings could also have implications for policies that aim to pro-
+mote population health. They emphasize that health behaviors are not immutable 
+and suggest the leveraging of family events as a window of opportunity for inter-
+vention, involving the required intrinsic motives for persistent behavioral changes. 
+One could exploit these events to provide family members with ­individual-specific 
+information on risks; or to introduce policies that leverage salience of health to 
+actively offer preventive care. However, the evidence also suggests more broadly 
+that salience should be used with caution as a policy tool. Agents’ attention can be 
+drawn to specific risks even in the absence of relevant information, which could end 
+in excessive health care consumption; and, at the same time, their attention may be 
+diverted away from conditions of which they might be at higher risk.
+The remainder of the paper is organized as follows. In Section I we describe our 
+empirical strategy. Section II outlines the data sources we use, the empirical setting, 
+and the analysis sample. The evidence on spillovers in health behaviors is presented 
+in Section III, and Section IV investigates their underlying mechanisms. Section V 
+discusses the implications of our findings and concludes.
+5 Our work is consistent with recent findings from interventions in developing economies. In their review of 
+randomized evaluations that involve peer influences on health behaviors, Kremer and Glennerster (2011) argue 
+that while some of the findings are potentially driven by learning, others likely reflect alternative channels such as 
+salience, as in the case of the work by Zwane et al. (2011) who find that the act of being surveyed affects behavior. 
+Our work is also related to the growing evidence on how limited attention and salience affect economic behavior in 
+a variety of settings; see DellaVigna (2009) and Gabaix (2019) for reviews.
+6 De Giorgi, Frederiksen, and Pistaferri (forthcoming) provide a brief review of the work on consumption within 
+the network and study consumption network effects (analyzing total spending) by exploiting interactions between 
+one’s household and coworker networks.
+
+3166
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+I.  Research Design
+The goal of our analysis is to identify the dynamic causal effects of severe health 
+shocks on family members’ consumption of preventive care and ­health-related 
+behaviors. In this section, we describe the empirical strategy that we use to over-
+come the selection challenges inherent in the identification of these effects and state 
+our estimating equation. We also outline the specifications we employ to analyze 
+heterogeneity in treatment effects to shed light on the nature of spillovers and under-
+lying mechanisms.
+A. Primary ­Quasi-Experiment
+The ideal experiment for identifying behavioral responses to family health shocks 
+would randomly assign shocks to families and track responses in health behaviors 
+over time. Such an experiment would compare the ­ex post responses to shocks 
+by affected households to a counterfactual behavior of ­ex ante similar unaffected 
+households. To approximate this ideal experiment, we utilize a ­quasi-experimental 
+research design that exploits the potential randomness of the timing of a severe 
+health shock within a short period of time. Specifically, we construct counterfactuals 
+for affected households using households that experience the same shock but a few 
+years in the future.
+As such, our two experimental groups consist of a treatment group, composed 
+of family members in households that experience a shock in year ​τ​, and a matched 
+control group, composed of family members from the same cohorts in households 
+that experience the same shock but in year ​τ + Δ​. We then recover the treatment 
+effect by performing traditional event studies for these two experimental groups 
+and combining them into a straightforward dynamic ­difference-in-differences esti-
+mator. That is, we identify the treatment effect purely from the change in the dif-
+ferences in outcomes across the two groups over time. The ­trade-off in the choice 
+of ​Δ​ weighs households’ comparability (which is greater when ​Δ​ is smaller) 
+against analysis horizon (which is greater when ​Δ​ is larger).7 Our choice of ​Δ​ is 
+five years, such that we can identify effects up to four years after the shock (since 
+the control group becomes “treated” in period ​Δ​). We assess the robustness of 
+our analysis to this choice and find that local perturbations to ​Δ​ provide similar 
+results.8
+The identifying assumption is that, absent the realization of the shock, the out-
+comes of the treatment and control groups would run parallel. The plausibility of 
+this assumption relies on the notion that within the window of time of length ​Δ​, the 
+particular year at which the shock occurs may be as good as random. To test the 
+validity of our assumption, we accompany our empirical analysis with the treat-
+ment and control groups’ behavior in the four years prior to the (actual or assigned) 
+shock year (period 0) in order to assess their ­comovement in the ­pre-shock peri-
+ods. We consistently show throughout the analysis that there are virtually no dif-
+ferential changes in the trends of the treatment and control groups before period 0. 
+7 For more details on the research design and its underlying ­trade-offs, see Fadlon and Nielsen (2017).
+8 This is reported in online Appendix Table 8.
+
+3167
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+This ­validates the design and alleviates concerns that the groups may differ by, for 
+example, their expectations over the particular year of the shock within our chosen 
+window.
+The way the control group is defined means that family members in the control 
+group experience the same shock as those in the treatment group, but at a later age, 
+which generates a systematic difference between the treatment and control groups. 
+To address this issue, we construct as a robustness check an alternative control group 
+that matches households on observable ­pre-shock risk factors. This approach expands 
+the control group to a broader set of comparable households, which includes those 
+who never experience the health shock despite having similar underlying risk, as 
+well as those who experience the shock but within other ​Δ​ bandwidths. A detailed 
+description of the matching procedure that we use is provided in online Appendix 
+B. This alternative design leads to similar findings, which are reported in online 
+Appendix Table 9. The remainder of this subsection formalizes the main research 
+design and describes our estimator.
+Formal Description of the Main Design and Estimating Equation.­—Fix a group 
+of cohorts, denoted by ​Ω​, and consider estimating the treatment effect of a shock 
+experienced at some point in the time interval ​[​τ​1​, ​τ​2​]​ by individuals whose fam-
+ily members belong to group ​Ω​. We refer to these individuals’ family members as 
+the treatment group and divide them into ­subgroups indexed by the year in which 
+the shock was experienced, ​τ  ∈  ​[​τ​1​, ​τ​2​]​. We normalize the time of observation 
+such that the time period, ​t​, is measured with respect to the year of the shock: that 
+is, ​t  =  year − τ​, where ​year​ is the calendar year of the observation. As a control 
+group, using only timing, we match to each treated group ​τ​ the family members 
+(from the same cohort group ​Ω​) of individuals who experienced the same shock but 
+at ​τ + Δ​, for a given choice of ​Δ​. For these households we assign a “placebo” shock 
+at ​t  =  0​ by normalizing time in the same way that we do for the treatment group, 
+i.e., ​t  =  year − τ​ (where, by construction, their actual shock occurs at ​t  =  Δ​).
+Our estimating equation is a dynamic ­difference-in-differences specification of 
+the following form:
+(1) ​y​i,t​  =  α + β trea​t​i​ + ​ 
+∑ 
+r≠−1;r=−4
+​ 
+4
+ 
+​ ​γ​r​ × ​I​r​ + ​ 
+∑ 
+r≠−1;r=−4
+​ 
+4
+ 
+​ ​δ​r​ × ​I​r​ × trea​t​i​ + λ​X​i,t​ + ​ε​i,t​.​
+In this regression, ​y​i,t​ denotes an outcome for household ​i​ at time ​t​; ​trea​t​i​ denotes 
+an indicator for whether a household belongs to the treatment group; ​I​r​ are indi-
+cators for time relative to the assigned shock year (actual shock for treatment and 
+placebo shock for control); and ​X​i,t​ denotes a vector of potential controls. The key 
+parameters of interest are ​δ​r​, which estimate the period ​r​ treatment effect (​r  >  0​) 
+relative to the ­pre-period ​− 1​. Validation of the parallel trends assumption requires 
+that ​δ​r​  =  0​ for all ​r  <  0​. Unless otherwise indicated, we include in ​X​i,t​ age fixed 
+effects, calendar year fixed effects, gender, and education, and we report robust stan-
+dard errors clustered at the household level.
+To quantify mean treatment effects or for increased precision in the anal-
+ysis of distant circles and smaller ­subsamples, we estimate the standard 
+
+3168
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+­difference-in-differences equation of the following form, which averages over years 
+before and after the shock:
+(2)	
+​y​i,t​  =  α + βtrea​t​i​ + γpos​t​i,t​ + δtrea​t​i​ × pos​t​i,t​ + λ ​X​i,t​ + ​ε​i,t​.​
+In this regression, ​pos​t​i,t​ denotes an indicator for whether the observation belongs 
+to ­post-shock periods. The parameter ​δ​ represents the average effect of shocks on 
+family members’ outcomes.
+B. Response Heterogeneity
+There are two related specifications that we employ when analyzing heterogene-
+ity in treatment effects to shed light on mechanisms.
+Heterogeneity Specification 1.—We use the first specification when we are inter-
+ested in estimating a mean baseline effect and how it varies by some dimension 
+or household characteristic of interest, ​z​i​ (which can be a vector). This regression 
+simply augments the baseline ­difference-in-differences model of equation (2) in the 
+following way:
+(3)	
+​y​i,t​  =  α + βtrea​t​i​ + γpos​t​i,t​ + ​δ​i​ trea​t​i​ × pos​t​i,t​ + λ ​X​i,t​ + ​ε​i,t​,​
+where
+	
+​δ​i​  =  ​δ​0​ + ​δ​1​ ​z​i​.​
+We adjust the basic ­difference-in-differences design by allowing the treatment 
+effect, ​δ​i​, to vary across households and model it as a function of the household’s 
+characteristic ​z​i​. Our parameter of interest is ​δ​1​, which captures the extent to which 
+the family member’s response correlates with ​z​i​.9
+Heterogeneity Specification 2.—We use the second specification when we are 
+interested in directly studying how responses vary by some dimension or house-
+hold characteristic, ​z​i​, among treated households only. Exploiting variation within 
+the treatment group, the regression that follows the dynamics of the heterogeneous 
+responses around the event is of the following form:
+(4)    ​y​i,t​ = α + β ​z​i​ + ​ 
+∑ 
+r≠−1;r=−4
+​ 
+4
+ 
+​ ​γ​r​ × ​I​r​ + ​ 
+∑ 
+r≠−1;r=−4
+​ 
+4
+ 
+​ ​δ​r​ × ​I​r​ × ​z​i​ + λ ​X​i,t​ + ​ε​i,t​.​
+Equation (4) is similar to equation (1) but where ​trea​t​i​ is replaced with ​z​i​, such that 
+the treatment and control groups are now defined as households with different val-
+ues of ​z​i​ within the group of treated households. The key parameters of interest are ​δ​r​ 
+for ​r  >  0​, which estimate how the outcomes for treated households with varying 
+9 In the estimation of (3) we always include in the vector ​X​i,t​ the variables in ​z​i​ as well as their interaction 
+with ​trea​t​i​ and ​pos​t​i,t​.
+
+3169
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+levels of ​z​i​ differentially evolve around the event (relative to the baseline period ​− 1​). 
+The same identifying assumption is required in the analysis of these experimental 
+groups, i.e., that absent the event, the outcomes of households with different values 
+of ​z​i​ would run parallel. As before, an implied necessary condition is that ​δ​r​  =  0​ 
+for ​r  <  0​. Lastly, the corresponding equation that estimates how responses vary on 
+average across treated households with different levels of ​z​i​ takes the form
+(5)	
+​y​i,t​  =  α + β ​z​i​ + γpos​t​i,t​ + δ × ​z​i​ × pos​t​i,t​ + λ ​X​i,t​ + ​ε​i,t ​,​
+where ​δ​ is the parameter of interest.
+II.  Data, Setting, and Analysis Sample
+We use administrative data on all Danish households from several registers that span 
+the years 1980 to 2011. The Danish setting is a ­well-suited environment for identifying 
+family spillovers in health behaviors in the context of developed economies. First, it 
+provides us with the required long panel of detailed administrative health care records 
+for linked family members (and other network circles). Moreover, the exact utiliza-
+tion codes included in the data allow us to identify health investments and behavior 
+proxies, and the large scale provides sufficient statistical power for studying different 
+utilization outcomes. Second, a key institutional feature of the Danish health care sys-
+tem is the provision of ­near-complete and universal health care coverage. Importantly, 
+this enables us to identify effects that are not confounded by the availability of health 
+insurance. Detailed institutional background is provided in online Appendix A. Below, 
+we describe our data sources, empirical setting, and analysis sample.
+A. Data Sources
+For utilization outcomes that measure health behaviors, we use three databases 
+that encompass both primary and secondary health care utilization records with 
+exact dates and codes. These include (i) the Prescription Drug Database, cover-
+ing all prescribed drugs that were purchased from ­1995–2011, with detailed infor-
+mation on classification of medicine (using the Anatomical Therapeutic Chemical 
+(ATC) classification system); (ii) the Health Insurance Registry, covering all indi-
+vidual contacts with ­primary care physicians and ­medical care specialists outside 
+of hospitals from ­1985–2011; and (iii) the National Patient Registry, covering all 
+inpatient hospitalizations (from ­1980–2011) and outpatient hospitalizations (from 
+­1994–2011), in both private and public hospitals, with detailed diagnoses (using 
+the International Statistical Classification of Diseases and Related Health Problems 
+(ICD) system).
+For identifying family health events and their timing, we use hospitalization dates 
+and diagnoses from the National Patient Registry, as well as the Cause of Death 
+Registry which includes exact death dates and specific causes from 1980 onward. 
+Lastly, we extract demographic variables such as gender, age, and level of education 
+from the Integrated Database for Labor Market Research. This dataset also includes 
+­register-based matches across employers and employees, from which we construct 
+coworker linkages.
+
+3170
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+All monetary values of health care expenditure are reported in nominal Danish 
+kroner (DKK) deflated to 2000 prices using the consumer price index. In that year 
+the exchange rate was approximately DKK 8 per US$1.
+B. Empirical Setting and Analysis Sample
+In our primary setting of ­nonfatal health shocks, the sample is comprised of all 
+households in which an individual experienced a heart attack or a stroke for the first 
+time and survived for the ­four-year analysis horizon (that corresponds to ​Δ  =  5​). 
+We focus on heart attacks and strokes as our leading health events since they are 
+commonly studied as sudden and severe events whose particular timing is likely 
+unpredictable, and are therefore ­well suited for our empirical strategy (see, e.g., 
+Chandra and Staiger 2007, Doyle 2011). These cardiovascular shocks also naturally 
+fit our research question as they are directly tied to ­disease-specific ­risk-reducing 
+preventive care, i.e., the ­cholesterol-lowering medication statin, the consumption 
+of which we study as our main outcome. Moreover, the prevalence of these health 
+shocks and of statin consumption as preventive care render this application directly 
+relevant for a large share of the population.10 The main close family circles that we 
+study are spouses (based on matches of all married and cohabiting couples prior to 
+the shock) and their adult children (based on matches available for individuals born 
+after 1960).
+Our focus on ­nonfatal shocks stems from the opportunity to study a setting in 
+which behavioral responses take the form of health investments; that is, of preven-
+tive actions against existing underlying risks. This is because some preventive care 
+can be also consumed for managing own severe health conditions and we want to 
+analyze a setting in which shocks do not induce such conditions. The literature (see, 
+e.g., Stroebe, Schut, and Stroebe 2007 for a review) and our own investigation show 
+that death events can lead to severe health conditions, specifically among spouses. 
+This is in contrast to ­nonfatal cardiovascular shocks, where we find no evidence for 
+such effects on family members. We verify that family members’ statin consumption 
+responses are preventive health investments by showing there is no increase in the 
+incidence of own cardiovascular shocks (or of hospital contacts of any type) among 
+spouses or children following the ­nonfatal cardiovascular shocks that we analyze. 
+See online Appendix Table 7 for details on these analyses. We note, however, that 
+all the shocks we study can certainly have various health effects, e.g., on the mental 
+health of family members due to stress induced by the adverse family health event.
+We additionally study two distant circles of family members and peers. The 
+first is the sample of sons- and daughters-­in-law (to whom we collectively refer 
+as “children-­in-law”). The second is the sample of coworkers based on matched 
+­employer-employee register data, where we define workplaces using physical estab-
+lishment units. To approximate peers with whom individuals are more likely to 
+10 Cardiovascular shocks are among the leading causes of morbidity and mortality in the developed world 
+(WHO 2014). They account for 1 in every 3 deaths among adults in the United States (with similar rates across 
+the developed world), and every year more than 1.5 million Americans experience either a heart attack or a stroke. 
+Statins are among the most widely prescribed and ­best-selling medications, with the global market for statins esti-
+mated to be $20 billion annually in the last decade (Redberg and Katz 2016).
+
+3171
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+interact, we focus on close coworkers in the following way.11 From our sample 
+of individuals who experience a health shock, we identify those who, during the 
+­pre-shock periods from ​t  =  − 4​ to ​t  =  − 1​, have worked in smaller workplaces 
+where the number of employees was equal to or lower than the sample’s twenty-fifth 
+percentile (of approximately 20). We then identify their coworkers who have been 
+employed in a similar occupation class,12 and who are close to these individuals in 
+terms of age (with an age gap of 5 years or less).13 We exclude from this sample any 
+coworker who is also a family member.
+In our secondary setting of death events the sample includes all families in which 
+a member died between 1985 and 2011. For these events we study spouses and chil-
+dren, whose respective samples are constructed in the same way as before. Online 
+Appendix Table 1 summarizes the various analysis samples that we analyze and 
+reports summary statistics.
+III.  Spillovers in Health Behaviors
+We now turn to our analysis of how health behaviors are shaped through family 
+spillovers by studying ­intra-generational effects on spouses and ­inter-generational 
+effects on adult children. To further investigate the breadth of spillovers, we also 
+analyze whether and to what degree the effects cascade to peers. In the core part 
+of our analysis, we study the effects of ­nonfatal heart attacks and strokes on family 
+members’ consumption of preventive care that is specific to these cardiovascular 
+conditions. In complementary analysis, we study the effects of general fatal events 
+on family members’ behaviors by analyzing overall changes in consumption of 
+health care that is indicative of health behaviors and awareness. We focus on report-
+ing and assessing the estimated effects in relative terms compared to counterfactual 
+or baseline levels, in order to account for the underlying prevalence of the health 
+care utilization outcomes we analyze within each ­subpopulation.
+A. Effects of Severe ­Nonfatal Health Shocks
+Cardiovascular shocks are directly tied to a ­disease-specific ­risk-reducing med-
+ication, statin, so we focus on its consumption as a main behavioral outcome. This 
+class of medication is composed of prescription drugs taken to lower cholesterol that 
+are pervasively used to prevent cardiovascular disease. We therefore proceed with 
+analyzing how individuals’ cardiovascular shocks affect the consumption of statins 
+by members of their network.
+­Intra-Generational Effects on Spouses.—We begin with studying spouses to 
+identify family spillovers that cannot be attributed to biological channels. To visu-
+alize the estimation strategy, we provide figures that plot the raw data for the main 
+11 This is in the spirit of definitions used in De Giorgi, Frederiksen, and Pistaferri (forthcoming).
+12 For occupation classes we follow the official classification method of Statistics Denmark that is constructed 
+based on the International Standard Classification of Occupations (ISCO). This method classifies employees into 
+managers and ­non-managers and, among ­non-managers, it further classifies employees into occupations by their 
+required skill level (low/medium/high).
+13 Estimations that perturb the thresholds of workplace size and age gap are provided in online Appendix Table 5.
+
+3172
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+circles of spouses and children where ties are strongest and samples are largest, and 
+we then turn to regression estimations for the remainder of the analysis. Panel A of 
+Figure 1 plots the average responses in statin consumption by ­prime-age spouses of 
+ages ­25–55. The structure of this and subsequent figures is as follows. The ­x-axis 
+denotes time with respect to the shock, normalized to period 0. For the treatment 
+group, period 0 is when the actual shock occurs; for the control group, period 0 is 
+when a “placebo” shock occurs (while their actual shock occurs in period 5). The 
+dashed gray line plots the behavior of the control group. To ease the comparison of 
+trends, from which the treatment effect is identified, we normalize the level of the 
+control group’s outcome to the ­pre-shock level of the treatment group’s outcome (in 
+period ​t  =  − 1​). This normalized counterfactual is displayed by the blue line and 
+squares. The red line and circles plot the behavior of the treatment group.
+Panel A of Figure 1 first provides a visual verification of parallel trends across 
+the treatment and control groups prior to period 0, as required by the design. Then, 
+analyzing the effect of the shock, the figure reveals that ­prime-age individuals 
+immediately increase their consumption of statins in response to their spouse’s car-
+diovascular shock, and that this increased ­take-up persists for at least four years after 
+the shock. Note that, once taken, this medication should be consumed indefinitely 
+for the purpose of reducing the risk of experiencing a heart attack or stroke, so the 
+displayed degree of adherence is a key element of the response pattern. Column 1 
+of Table 1 estimates the corresponding regression using equation (1) and shows that 
+the treatment effect grows over time, so that by the fourth year after the shock the 
+increase in spouses’ statin consumption amounts to about 15 percent, an increase of 
+1.17 percentage points (pp) on a base of 7.86 pp.
+Panel A. Statin consumption by prime-age spouses
+Panel B. Cholesterol blood tests
+0
+0.025
+0.05
+0.075
+0.1
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+4
+Time to shock
+Consumption of statins
+Cholesterol blood test
+0.05
+0.1
+0.15
+0.2
+0.25
+0
+1
+2
+3
+4
+Time to shock
+Treatment
+Control
+Counterfactual
+−4
+−3
+−2
+−1
+Figure 1. Effects of Cardiovascular Shocks on Spousal Consumption of Preventive Care
+Notes: These figures display changes in spouses’ consumption of preventive care in response to family cardiovas-
+cular shocks by plotting means of the raw data. The x-axis denotes time with respect to the shock, normalized to 
+period 0. For the treatment group, period 0 is when the actual shock occurs; for the control group, period 0 is when 
+a “placebo” shock occurs (while their actual shock occurs in period 5). The dashed gray line plots the behavior of 
+the control group (along with the corresponding 95 percent confidence intervals). To ease the comparison of trends, 
+from which the treatment effect is identified, we normalize the level of the control group’s outcome to the pre-shock 
+level of the treatment group’s outcome (in period t = −1). This normalized counterfactual is displayed by the blue 
+line and squares. The red line and circles plot the behavior of the treatment group (along with the corresponding 
+95 percent confidence intervals).
+
+3173
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+Older spouses have much more frequent interactions with the medical system 
+(see online Appendix Figure 1), which include routine checkups that are more com-
+mon as individuals age. As the main risk factors for cardiovascular disease (beyond 
+age and gender) are commonly screened for by individuals’ ­primary care providers 
+(including hypertension, cholesterol levels, and diabetes) older spouses are presum-
+ably more informed of their personal risk. Still, even for spouses between the ages 
+of 55 and 85 we find that ­similar-magnitude spillovers are present, albeit on a larger 
+baseline as statin consumption rates are higher for this group due to their older age; 
+see column 2 of Table 1 (and online Appendix Figure 2).
+For a subset of our sample, specifically those who reside in Greater Copenhagen, 
+the data also include indicators for blood tests of cholesterol levels. As these tests are 
+Table 1—Dynamic Family Effects of Cardiovascular Shocks
+Spouses’ statin consumption
+Spouses’ 
+cholesterol testing
+Adult children’s statin 
+consumption
+Prime age
+Older
+Younger
+Older
+(Ages 25–55)
+(Ages 55–85)
+(Ages 25–40)
+(Ages 40–65)
+(1)
+(2)
+(3)
+(4)
+(5)
+Time to shock:
+−4
+0.00052
+−0.00072
+−0.00138
+0.00012
+−0.00000
+(0.00104)
+(0.00158)
+(0.00441)
+(0.00024)
+(0.00065)
+−3
+0.00026
+−0.00063
+−0.00114
+0.00008
+−0.00014
+(0.00096)
+(0.00141)
+(0.00456)
+(0.00023)
+(0.00060)
+−2
+0.00102
+−0.00072
+−0.00056
+0.00015
+0.00071
+(0.00079)
+(0.00113)
+(0.00447)
+(0.00020)
+(0.00049)
+−1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0.00386
+0.00234
+0.03033
+0.00067
+  0.00150
+(0.00095)
+(0.00128)
+(0.00498)
+(0.00023)
+(0.00061)
+1
+0.00511
+0.00930
+0.02052
+0.00173
+0.00429
+(0.00134)
+(0.00179)
+(0.00516)
+(0.00033)
+(0.00089)
+2
+0.00702
+0.01093
+0.01100
+0.00245
+0.00433
+(0.00169)
+(0.00219)
+(0.00545)
+(0.00043)
+(0.00113)
+3
+0.01012
+0.01036
+0.01572
+0.00279
+0.00765
+(0.00203)
+(0.00255)
+(0.00570)
+(0.00053)
+(0.00135)
+4
+0.01166
+0.01230
+0.01720
+0.00433
+0.00799
+(0.00234)
+(0.00284)
+(0.00624)
+(0.00063)
+(0.00159)
+Treat
+−0.00120
+−0.00115
+−0.00043
+−0.00030
+0.00005
+(0.00119)
+(0.00187)
+(0.00393)
+(0.00025)
+(0.00075)
+Counterfactual at t = 4
+0.07863
+0.22842
+0.01180
+0.04933
+Percent change
+14.83
+5.38
+36.69
+16.20
+Counterfactual at t = 0
+0.12998
+Percent change
+23.33
+Observations
+441,720
+667,980
+214,793
+1,179,387
+647,667
+Number of clusters
+44,302
+65,661
+20,997
+67,460
+40,690
+Notes: This table reports dynamic difference-in-differences estimates for the evolution of household responses to 
+cardiovascular shocks using specification (1). It displays estimates for the δr parameter vector of the interaction 
+between the treatment indicator and the indicators for time with respect to the shock from −4 to +4, where the 
+baseline period is −1. We also report the estimate for the coefficient β on the variable treati. Counterfactual levels, 
+calculated using specification (1), are reported for assessing response magnitudes relative to underlying levels. We 
+include as controls age fixed effects, calendar year fixed effects, gender, and education, and we report in parenthe-
+ses robust standard errors clustered at the household level.
+
+3174
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+used to determine cardiovascular risk and precede statin consumption, their patterns 
+can shed additional light on the dynamics of spousal responses. Panel B of Figure 1 
+and column 3 of Table 1 report the effects of cardiovascular shocks on spousal cho-
+lesterol testing. Promptly at the year of the shock, spouses respond with a large 
+increase in their rate of cholesterol testing which amounts to about 23 percent. This 
+response is consistent with the corresponding increase in their statin ­take-up within 
+the immediate years following the shock. Compared to the counterfactual, choles-
+terol testing remains higher also in the following years. This is in line with contin-
+uous monitoring tests that are common in medication maintenance for those who 
+have started consuming statins, and also mirrors the growing ­post-shock share of 
+spouses who take up statins, as manifested by the gradual growth in the estimated 
+statin consumption effect.
+­Inter-Generational Effects on Adult Children.—We next turn to analyze house-
+holds in which adult children are present at the time of the shock, to study how 
+parental shocks spill over to health behaviors in the next generation. Specifically, 
+we analyze adult children’s statin consumption responses to parental heart attacks 
+or strokes at different stages of the life cycle. Panel A of Figure 2 plots the average 
+response in statin consumption by the younger adult children in our sample, who 
+were between ages 25 and 40 at the time of their parent’s health shock. As before, 
+the figure provides a visual verification of parallel ­pre-trends across our treatment 
+and control groups, in validation of the estimation strategy. Studying the effect of 
+the shock, the plot reveals an immediate response by children which grows stronger 
+0
+0.005
+0.01
+0.015
+0.02
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+4
+Time to shock
+Panel A. Statin consumption by younger
+adult children (ages 25–40)
+Panel B. Statin consumption by
+older children (ages 40–65)
+0
+0.015
+0.03
+0.045
+0.06
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+4
+Time to shock
+Consumption of statins
+Consumption of statins
+Treatment
+Control
+Counterfactual
+Figure 2. Effects of Cardiovascular Shocks on Adult Children’s Consumption of Preventive Care
+Notes: These figures display changes in adult children’s consumption of preventive care in response to family car-
+diovascular shocks by plotting means of the raw data. The x-axis denotes time with respect to the shock, normal-
+ized to period 0. For the treatment group, period 0 is when the actual shock occurs; for the control group, period 0 is 
+when a “placebo” shock occurs (while their actual shock occurs in period 5). The dashed gray line plots the behav-
+ior of the control group (along with the corresponding 95 percent confidence intervals). To ease the comparison of 
+trends, from which the treatment effect is identified, we normalize the level of the control group’s outcome to the 
+pre-shock level of the treatment group’s outcome (in period t = −1). This normalized counterfactual is displayed 
+by the blue line and squares. The red line and circles plot the behavior of the treatment group (along with the cor-
+responding 95 percent confidence intervals).
+
+3175
+FADLON AND NIELSEN: FAMILY HEALTH BEHAVIORS
+VOL. 109 NO. 9
+over time. Estimating equation (1), column 4 of Table 1 shows that by the fourth 
+year after their parent experiences a heart attack or stroke, adult children increase 
+their ­take-up of statins by 37 percent. Analogously, panel B of Figure 2 plots the 
+spillovers to the older children in our sample, who were between ages 40 and 65 at 
+the time of the parental shock. This group reveals a similar pattern of an immediate 
+increase in statin consumption that amounts to 16 percent by the fourth year after 
+the shock (see column 5 of Table 1).
+Effects on Peers.—To study how far the spillovers of health shocks to improved 
+health behaviors can reach, we analyze the effects on coworkers. We approximate 
+peers with whom individuals are more likely to interact and focus the analysis on 
+close coworkers (as defined in Section IIB). Column 1 of Table 2 displays the aver-
+age treatment effect of health shocks on close coworkers’ consumption of preven-
+tive care. The results indicate an increase of 1.35 pp, which amounts to an effect of 
+16 percent. As this effect is economically considerable, it is also meaningful to esti-
+mate the dynamic regression despite the small sample. Column 1 of online Appendix 
+Table 10 indicates that with no differential trends in the ­pre-period, coworkers’ 
+­take-up of statins exhibits a prompt increase in the years following a peer’s cardio-
+vascular shock, which persists for the full analysis period. This evidence highlights 
+a meaningful spillover that is transmitted through ties which are purely social, and 
+is on the same order of magnitude as the estimated spillovers to ­prime-age spouses.
+B. Effects of Fatal Health Events
+Lastly, we investigate family spillovers in health behaviors in the extreme con-
+text of death. We focus on spouses to identify spillovers that cannot be attributed to 
+biological channels. Additionally, spouses in our sample are older and hence have 
+higher baseline levels of health care utilization compared to children, which allows 
+clear estimation of spillover dynamics for any given level of relative response. Still, 
+Table 2—Effects of Cardiovascular Shocks on Statin Consumption by Coworkers
+Distant coworkers
+Close coworkers
+Larger workplaces
+Large age gap
+Different occupation
+(1)
+(2)
+(3)
+(4)
+Treat × post
+0.01349
+0.00143
+0.00297
+0.00350
+(0.00559)
+(0.00330)
+(0.00335)
+(0.00524)
+Counterfactual
+0.08442
+0.08249
+0.06040
+0.08871
+Percent change
+15.98
+Observations
+49,336
+131,488
+87,704
+53,312
+Number of clusters
+3,498
+4,057
+4,744
+4,071
+Notes: This table reports difference-in-differences estimates for coworkers’ statin consumption responses to car-
+diovascular shocks using specification (2). Counterfactual levels in the periods following the shock are calculated 
+using this estimation. Close coworkers are defined as coworkers within the same occupation class and age range 
+(with an age gap of 5 years or less) in smaller workplaces (in which the number of employees was equal to or lower 
+than the sample’s 25th percentile). Distant coworkers are defined as workers within the same workplace who are 
+more “distant” along at least one of these dimensions (as indicated at the top of columns 2–4). We include as con-
+trols age fixed effects, calendar year fixed effects, gender, and education, and we report in parentheses robust stan-
+dard errors clustered at the workplace level.  
+
+3176
+THE AMERICAN ECONOMIC REVIEW
+SEPTEMBER 2019
+we replicate the main findings for the average spillover impact on the next genera-
+tion of adult children (in online Appendix Table 6).
+Increased Awareness of Health.—We begin by analyzing the effects of death 
+events on family members’ general awareness of health, using two proxies for the 
+degree to which individuals may pay attention to health issues. The first outcome 
+that we study is an indicator for whether spouses are hospitalized for visits that end 
+up being classified as encounters for medical observation of suspected conditions 
+that are ruled out ­ex post. These hospital contacts can be indicative of greater vig-
+ilance to symptoms that are retrospectively realized as “false alarms.” For visual 
+clarity of the dynamic patterns that we find in this subsection, we report our findings 
+by plotting the ​δ​r​ coefficients from specification (1) along with their ­95 percent con-
+fidence inter

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_90",
+  "title": "Why Are Indian Children So Short? The Role of Birth Order and Son Preference",
+  "authors": "Jayachandran & Pande",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.20151282",
+    "title": "Why Are Indian Children So Short? The Role of Birth Order and Son Preference",
+    "year": 2017,
+    "journal": "American Economic Review",
+    "citations": 382
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jayachandran",
+      "pande"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 382,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

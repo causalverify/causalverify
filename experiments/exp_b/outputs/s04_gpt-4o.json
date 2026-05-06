@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s04",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "TARP capital injection on bank risk-taking",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:07:04.500322",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 488,
+    "output_tokens": 521,
+    "content": "## 1. Identification Strategy\nThe causal method appropriate for this analysis is Difference-in-Differences (DID). This method is suitable because it allows us to compare changes in outcomes over time between a treatment group (TARP recipient banks) and a control group (non-recipient banks). The key assumption for DID is the parallel trends assumption, which implies that in the absence of treatment, the difference in outcomes between the treated and control groups would have remained constant over time. We will visually inspect the pre-treatment trends to assess the plausibility of this assumption.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\nlibrary(ggplot2)\n\n# Read the dataset\nfile_path <- \"experiments/exp_b/data/s04_data.csv\"\ndata <- read_csv(file_path)\n\n# Convert to factor variables as needed\ndata <- data %>%\n  mutate(unit_id = as.factor(unit_id),\n         period = as.factor(period))\n\n# Run the Difference-in-Differences regression\ndid_model <- lm(y ~ treated * post, data = data)\n\n# Summary with robust standard errors\ncoeftest(did_model, vcov = vcovHC(did_model, type = \"HC1\"))\n\n# Basic robustness check: Inspect pre-treatment trends\npre_trend_check <- data %>%\n  filter(post == 0) %>%\n  group_by(period, treated) %>%\n  summarise(mean_y = mean(y)) %>%\n  ggplot(aes(x = period, y = mean_y, color = factor(treated))) +\n  geom_line() +\n  labs(title = \"Pre-treatment Trends\", x = \"Period\", y = \"Mean Non-performing Loan Ratio\", color = \"Treated\") +\n  theme_minimal()\n\nprint(pre_trend_check)\n\n# Extract and print the DID effect\ndid_effect <- summary(did_model)$coefficients[\"treated:post\", \"Estimate\"]\ncat(\"The estimated DID effect of TARP on risk-taking is:\", did_effect, \"\\n\")\n```\n\n## 3. Expected Findings\nWe expect the sign of the DID coefficient to be positive, indicating that TARP capital injections increased risk-taking among recipient banks. The magnitude will depend on the specific effects of TARP funding on bank behavior, but we anticipate a modest increase in the non-performing loan ratio given that capital injections could encourage riskier lending practices due to a safety net effect. However, the exact magnitude needs to be determined through empirical analysis.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=TARP recipients, control=non-recipients; parallel pre-trends required",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP banks show higher NPL ratios post-injection, consistent with moral hazard",
+    "main_effect": "20bp increase in NPL ratio for TARP banks"
+  }
+}

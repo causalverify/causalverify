@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s71",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Analyst Coverage on Firm Investment",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:43:20.769140",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 431,
+    "output_tokens": 406,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal effect of analyst coverage on firm investment. The broker merger serves as an instrument for analyst coverage. The key assumption for this approach is that the broker merger affects firm investment only through its effect on analyst coverage (exogeneity). Additionally, we assume that the broker merger is a valid instrument, meaning it is correlated with analyst coverage and does not directly affect firm investment.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s71_data.csv\")\n\n# Run the first stage regression (analyst coverage on broker merger)\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Run the second stage regression (firm investment on predicted analyst coverage)\nsecond_stage <- lm(y ~ predict(first_stage) + controls, data = data)\n\n# Print the coefficient of the predicted analyst coverage\nsummary(second_stage)$coefficients[2, 1]\n\n# Robustness check: Test for overidentifying restrictions (Sargan test)\noverid_test <- bptest(second_stage, ~ predict(first_stage) + controls, data = data, ~z + controls, data = data)\noverid_test$p.value\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the predicted analyst coverage in the second stage regression, indicating that higher analyst coverage is associated with higher firm investment. The magnitude of the effect will depend on the strength of the relationship between analyst coverage and firm investment. The sign and magnitude of the effect are expected based on the idea that analyst coverage provides valuable information to firms, which can help them make better investment decisions. The robustness check (Sargan test) should not reject the null hypothesis of valid instruments, suggesting that the broker merger is a valid instrument for analyst coverage.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use broker mergers as an instrument for analyst coverage.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Increased analyst coverage significantly boosts firm investment.",
+    "main_effect": "0.45"
+  }
+}

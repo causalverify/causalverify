@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s20",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Distance to bank as IV for savings rate",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-03-27T13:30:47.230602",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 466,
+    "output_tokens": 1021,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with distance to nearest bank branch as an instrument for bank account ownership. The key assumptions are: (1) Relevance: distance negatively affects account ownership probability (first stage), (2) Exclusion restriction: distance affects savings only through its impact on account ownership, not directly, and (3) Exogeneity: distance is uncorrelated with unobserved determinants of savings behavior after controlling for observables.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s20_data.csv\")\n\n# Check data structure\nprint(\"Data summary:\")\nprint(summary(data))\nprint(paste(\"Sample size:\", nrow(data)))\n\n# First stage regression (relevance check)\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"\\n=== FIRST STAGE RESULTS ===\")\nprint(summary(first_stage))\n\n# Check instrument strength\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"First stage F-statistic:\", round(f_stat, 3)))\nif(f_stat > 10) {\n  print(\"Instrument appears strong (F > 10)\")\n} else {\n  print(\"Warning: Weak instrument (F < 10)\")\n}\n\n# OLS regression (biased benchmark)\nols <- lm(y ~ x + controls, data = data)\nprint(\"\\n=== OLS RESULTS (potentially biased) ===\")\nprint(summary(ols))\nols_coef <- coef(ols)[\"x\"]\n\n# Two-Stage Least Squares (2SLS)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\n=== IV/2SLS RESULTS ===\")\nprint(summary(iv_model, diagnostics = TRUE))\n\n# Extract key coefficient\niv_coef <- coef(iv_model)[\"x\"]\niv_se <- summary(iv_model)$coefficients[\"x\", \"Std. Error\"]\n\nprint(\"\\n=== MAIN RESULTS COMPARISON ===\")\nprint(paste(\"OLS coefficient:\", round(ols_coef, 4)))\nprint(paste(\"IV coefficient:\", round(iv_coef, 4)))\nprint(paste(\"IV standard error:\", round(iv_se, 4)))\n\n# Test for endogeneity (Hausman test)\nhausman_test <- summary(iv_model, diagnostics = TRUE)$diagnostics\nprint(\"\\n=== ENDOGENEITY TEST ===\")\nprint(\"Wu-Hausman test for endogeneity:\")\nprint(hausman_test[\"Wu-Hausman\",])\n\n# Robustness: Check reduced form\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\n=== REDUCED FORM ===\")\nprint(summary(reduced_form))\nrf_coef <- coef(reduced_form)[\"z\"]\n\n# Manual IV calculation check (Wald estimator)\nmanual_iv <- rf_coef / coef(first_stage)[\"z\"]\nprint(paste(\"Manual IV estimate (reduced form / first stage):\", round(manual_iv, 4)))\n\n# Final result\nprint(\"\\n=== FINAL RESULT ===\")\nprint(paste(\"IV Estimate: Having a bank account increases monthly savings by\", \n            round(iv_coef, 2), \"USD\"))\nprint(paste(\"95% Confidence Interval: [\", \n            round(iv_coef - 1.96*iv_se, 2), \",\", \n            round(iv_coef + 1.96*iv_se, 2), \"]\"))\n```\n\n## 3. Expected Findings\nI expect a positive coefficient of approximately 0.3-0.8, indicating that having a bank account increases monthly savings by $0.30-$0.80. The IV estimate should be larger than the OLS estimate due to measurement error or reverse causality bias in OLS (people with higher savings propensity may be more likely to open accounts). The magnitude reflects that formal banking provides commitment devices, reduces transaction costs for saving, and potentially offers interest earnings that encourage household savings accumulation.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: branch distance; first stage: distance → account ownership (negative)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank account ownership significantly increases savings",
+    "main_effect": "Having an account increases monthly savings by ~40% (IV estimate)"
+  }
+}

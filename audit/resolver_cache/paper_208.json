@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_208",
+  "title": "Do Political Parties Matter? Evidence from U.S. Cities",
+  "authors": "Ferreira & Gyourko",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2009.124.1.399",
+    "title": "Do Political Parties Matter? Evidence from U.S. Cities<sup>*</sup>",
+    "year": 2009,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 432
+  },
+  "checks": {
+    "title_jaccard": 0.8333,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ferreira",
+      "gyourko"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 432,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

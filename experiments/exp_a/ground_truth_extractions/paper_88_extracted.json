@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: DID — treatment = states with lower initial financial development, control = states with higher initial financial development; shock/instrument/cutoff = 1:4 license rule from 1977 to 1990",
+  "key_variables": {
+    "treatment": "States with lower initial financial development (measured by the number of bank branches per capita in 1961)",
+    "control": "States with higher initial financial development",
+    "outcome": "Rural poverty and total output",
+    "instrument_or_cutoff": "1:4 license rule from 1977 to 1990",
+    "time_period": "1961-2000"
+  },
+  "conclusion_direction": "positive",
+  "conclusion_detail": "The Indian rural branch expansion program significantly lowered rural poverty and increased non-agricultural output.",
+  "main_effect": "A one percent increase in the number of rural banked locations reduced rural poverty by 0.36 percent and increased total output by 0.55 percent.",
+  "key_robustness": [
+    "Use of agricultural wages as an alternative dependent variable",
+    "Comparison with district-level data findings",
+    "Consistency with simulations based on Thai data"
+  ],
+  "confidence": 0.9,
+  "notes": "The confidence is slightly less than 1.0 due to potential unobserved factors affecting both branch placement and poverty reduction, despite the use of instrumental variables."
+}

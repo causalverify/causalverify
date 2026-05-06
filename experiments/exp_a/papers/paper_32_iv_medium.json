@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_32",
+  "source": "Journal of Finance, 2015",
+  "authors": "Bernstein",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Does Going Public Affect Innovation?",
+  "doi": "10.1111/jofi.12275",
+  "volume": 70,
+  "issue": 4,
+  "pages": "1365-1403",
+  "domain": "finance",
+  "research_question": "Does a firm's transition from private to public ownership causally affect the quantity, quality, and organization of its innovation activities? Specifically, how does becoming publicly listed influence internal inventor productivity, retention of skilled human capital, and the firm's reliance on externally acquired innovation?",
+  "data_description": "The analysis uses U.S. firms that filed for an initial public offering (IPO), distinguishing between those that completed the IPO and those that withdrew their filing and remained private. Innovation outcomes are measured using patent-based metrics, including patent counts, citation-weighted measures of patent quality, inventor-level productivity, and inventor mobility (entry and exit of skilled inventors). The dataset also captures externally acquired innovation, such as patents obtained through acquisitions. Firm-level IPO filing information is matched to patenting records at the inventor and firm level. NASDAQ index fluctuations during each firm's IPO book-building phase are recorded as a source of variation in IPO completion. The unit of observation is the firm (with inventor-level data underlying productivity and mobility measures), tracked before and after the IPO filing decision.",
+  "institutional_context": "Going public is a pivotal corporate event that alters firms' ownership structure, governance, disclosure obligations, managerial incentives, access to capital, and exposure to short-term market pressures. These changes may reshape how firms pursue innovation: public listing can ease financing of risky R&D and enable acquisitions, but heightened scrutiny, stock-based compensation, and liquidity for inventors' equity holdings may also drive talented inventors to leave and discourage long-horizon internal research. A natural comparison group is provided by firms that begin the IPO process by filing but ultimately withdraw and remain private, often because market conditions deteriorate during the book-building window. Aggregate stock market movements (NASDAQ fluctuations) during this narrow filing window plausibly shift the likelihood of completing an IPO without being driven by the firm's own innovation prospects, motivating a comparison between completed and withdrawn IPO filers.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.09,
+      "unit": "fractional decline in citations per patent (2SLS)",
+      "interpretation": "Going public causes approximately 9% fewer forward citations per patent relative to remaining private, indicating a decline in innovation quality but not quantity"
+    },
+    "secondary_estimate": {
+      "value": -0.08,
+      "unit": "fractional decline in patent originality score (2SLS)",
+      "interpretation": "Patent originality (breadth of citations across technology classes) declines by 8% after going public, indicating a shift toward more incremental innovation"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 4-6 in Bernstein (2015)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "USPTO patent data (PatentsView, free)",
+      "SEC EDGAR S-1 filings (IPO registration statements, free)",
+      "NASDAQ composite index (FRED/Yahoo Finance, free)",
+      "NBER patent citation data (free)"
+    ],
+    "proprietary_sources": [
+      "SDC Platinum or Jay Ritter's IPO database (for systematic IPO filing and withdrawal data)"
+    ],
+    "proxy_strategy": "Patent data is fully public (PatentsView). IPO filing/withdrawal data can be manually collected from SEC EDGAR or approximated using Jay Ritter's IPO database (freely available from his website). NASDAQ index is free from FRED.",
+    "replicability": "high — patent data and market indices are public; IPO filing data available from Ritter's website or EDGAR",
+    "public_proxy_available": true,
+    "replication_tier": "full (PatentsView patents + Ritter IPO data + FRED NASDAQ — all free or low cost)",
+    "data_limitations": "Patent data only captures patented innovations, missing trade secrets and non-patentable innovations. Citation truncation (recent patents have fewer citations mechanically) requires adjustment. IPO withdrawal data from SDC may miss some filings.",
+    "public_data_sources_detail": [
+      "PatentsView (USPTO patent data — free)",
+      "NBER patent citation database (free)",
+      "SEC EDGAR (S-1 filings — free)",
+      "Jay Ritter's IPO data (University of Florida website — free)",
+      "FRED (NASDAQ composite index — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables — NASDAQ index return in the 2-month window after S-1 filing as instrument for IPO completion (going public vs. remaining private); first stage: market conditions → IPO completion probability; second stage: IPO completion (instrumented) → innovation outcomes",
+    "key_variables": {
+      "treatment": "IPO completion (binary: firm went public vs. withdrew filing and remained private), instrumented by NASDAQ return after filing",
+      "control": "firms that filed for IPO but withdrew (remained private) due to poor market conditions",
+      "outcome": "patent counts, citations per patent, patent originality, patent generality, inventor turnover (post-IPO vs. post-withdrawal)",
+      "time_period": "1985–2003 (IPO filings); patent outcomes tracked for 5+ years post-filing"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Going public causes a significant decline in the novelty and quality of innovation, but not in its quantity. Firms that complete the IPO produce a similar number of patents as those that withdraw, but their patents receive fewer citations (-9%), are less original (-8%), and are less general. The composition of innovation shifts toward more incremental, exploitative projects. Key inventors leave at higher rates after going public.",
+    "main_effect": "IPO completion reduces patent quality: -9% fewer citations per patent, -8% lower originality score; patent quantity is not significantly affected; key inventor departure rate increases",
+    "key_robustness": [
+      "Comparing withdrawers who re-file later (eventually go public) vs. those who never re-file",
+      "Controlling for firm-level pre-filing innovation quality",
+      "Alternative patent quality measures (citation truncation adjustment)",
+      "Matched-sample analysis on pre-filing characteristics",
+      "Industry × filing-year fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with NASDAQ return as instrument for IPO completion; also ITT (intent-to-treat) comparison of all filers by market conditions",
+      "treatment": "IPO completion (endogenous), instrumented by NASDAQ composite index return in the [filing date, filing date + 60 days] window",
+      "event_window": "Post-filing innovation outcomes tracked for 3-5 years after filing date",
+      "estimation_window": "Pre-filing innovation (3 years before filing) used as control",
+      "sample_period": "1985–2003",
+      "unit_of_observation": "Firm that filed S-1 registration statement",
+      "key_assumption": "NASDAQ returns after S-1 filing affect innovation outcomes only through their effect on IPO completion probability (exclusion restriction). Market conditions during the quiet period are not correlated with unobserved firm-specific innovation trajectory changes."
+    },
+    "key_magnitudes": {
+      "citation_decline": "-9% reduction in citations per patent for firms that go public vs. comparable withdrawers",
+      "originality_decline": "-8% reduction in patent originality score",
+      "quantity_no_change": "Patent counts are not significantly different between completers and withdrawers",
+      "inventor_departure": "Key inventors are significantly more likely to leave after IPO completion"
+    },
+    "robustness_notes_detail": "First-stage F-statistic is strong (>10): NASDAQ returns significantly predict IPO completion. Results hold with industry × year fixed effects, controlling for pre-filing innovation quality, and using various citation truncation adjustments. The pattern is consistent with a shift from exploration (novel research) to exploitation (incremental development) after going public, driven by short-term market pressure on public firms."
+  },
+  "v2primeprime_source_type": "openalex_abstract",
+  "v2primeprime_source_chars": 712,
+  "phase1_source_version": "v2primeprime_full_text"
+}

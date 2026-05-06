@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_38",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:38:26.412416",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 691,
+    "output_tokens": 163,
+    "content": "--- RID PROTOCOL ---\n\n**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nWe will employ a Two-Stage Least Squares (2SLS) Instrumental Variable (IV) approach. The endogenous variable is `number_of_children`. The primary instrument is `same_sex`, a binary indicator for whether the first two children are of the same sex (both boys or both girls). This instrument leverages the quasi-random variation in the sex composition of the first two children, which exogenously influences the probability of having a third child due to parental preferences for mixed-sex offspring. This variation is plausibly uncorrelated with unobserved determinants of labor supply, satisfying the exogeneity assumption.\n\n**Directional Hypothesis:**\nHaving more children will causally reduce mothers' labor",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — same-sex composition of the first two children as instrument for having a third (or more) child; first stage: same-sex → probability of having ≥3 children; second stage: number of children (instrumented) → maternal labor supply",
+    "key_variables": {
+      "treatment": "number of children (endogenous, specifically having a third or higher-order child), instrumented by same-sex composition of first two children",
+      "control": "N/A (continuous/binary treatment with IV; comparison is between families with same-sex vs. mixed-sex first two children)",
+      "outcome": "maternal labor force participation, weeks worked per year, hours worked per week, labor income",
+      "time_period": "1980 and 1990 U.S. Census cross-sections"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Having more than two children significantly reduces maternal labor supply. The IV estimates show that a third child reduces maternal labor force participation by approximately 10-12 percentage points, weeks worked by approximately 4-6 weeks per year, and labor income by approximately 15-20%. The effect is larger than OLS estimates, suggesting that OLS is biased toward zero by selection (women who have more children would have worked less anyway). Effects on fathers' labor supply are small and statistically insignificant.",
+    "main_effect": "Having a third child reduces maternal labor force participation by approximately 10-12 percentage points (2SLS) and weeks worked by approximately 4-6 weeks per year; father's labor supply is essentially unaffected",
+    "key_robustness": [
+      "Twins at second birth as alternative instrument",
+      "Separate 1980 and 1990 Census analyses",
+      "By race and education subgroups",
+      "Comparing same-sex boys (BB) vs. same-sex girls (GG) — both generate similar first stages",
+      "Overidentification test using both instruments simultaneously",
+      "Controlling for age at first birth and spacing between children"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with same-sex first two children as instrument for having ≥3 children",
+      "treatment": "Having three or more children (binary, endogenous), instrumented by same-sex indicator for first two children",
+      "event_window": "N/A (cross-sectional)",
+      "estimation_window": "N/A",
+      "sample_period": "1980 and 1990 Census cross-sections",
+      "unit_of_observation": "Married woman aged 21-35 with at least two children",
+      "key_assumption": "Exclusion restriction: the sex composition of children affects parents' labor supply only through its effect on the number of children (family size), not through direct effects. Potential violations: sex-specific childrearing costs, gender preferences in different cultural groups. The sex of a child is approximately random (50/50), so the instrument satisfies relevance and exogeneity conditions."
+    },
+    "key_magnitudes": {
+      "first_stage": "Same-sex first two children increases probability of having ≥3 children by approximately 6 percentage points (F-statistic well above 10)",
+      "lfp_effect": "-10 to -12 percentage points reduction in maternal labor force participation per additional child (2SLS)",
+      "weeks_effect": "-4 to -6 weeks reduction in annual weeks worked",
+      "income_effect": "-15 to -20% reduction in maternal labor income",
+      "father_effect": "Small, positive, and generally insignificant effects on fathers' labor supply"
+    },
+    "robustness_notes_detail": "The same-sex instrument and twins instrument yield similar 2SLS estimates, supporting the exclusion restriction. Overidentification test does not reject. Results are consistent across 1980 and 1990 Census data. Effects are larger for less-educated mothers, consistent with higher opportunity costs of childcare for lower-wage workers. The BB (two boys) and GG (two girls) indicators have similar first-stage effects, ruling out sex-specific alternative channels."
+  }
+}

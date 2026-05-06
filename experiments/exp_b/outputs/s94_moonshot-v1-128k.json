@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s94",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of School District Boundaries on Urban House Prices",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:46:38.112760",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 415,
+    "output_tokens": 436,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of school district boundaries on house prices. The key assumption is that there is a sharp discontinuity in the probability of being in the less desirable school district at the boundary, and that there are no other confounding factors that change at the boundary.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s94_data.csv\")\n\n# Run the RDD analysis\n# We will use the rdrobust package to estimate the causal effect\n# We will use a local linear regression with a bandwidth of 0.1\nresult <- rdrobust(y ~ running_var | treated, data = data, c = 0.1, h = 0.1)\n\n# Print the estimated causal effect\nprint(result$beta.hat)\n\n# Basic robustness checks\n# We will check the sensitivity of the results to different bandwidths\nbandwidths <- seq(0.05, 0.2, by = 0.05)\nsens_results <- sapply(bandwidths, function(b) {\n  result <- rdrobust(y ~ running_var | treated, data = data, c = 0, h = b)\n  return(result$beta.hat)\n})\n\n# Plot the sensitivity results\nplot(bandwidths, sens_results, type = \"b\", xlab = \"Bandwidth\", ylab = \"Estimated Causal Effect\")\n```\n\n## 3. Expected Findings\nWe expect the estimated causal effect to be negative, as houses in the less desirable school district are likely to have lower prices. The magnitude of the effect will depend on the strength of the school district boundary as a determinant of house prices. If the boundary is a strong determinant, we expect a larger negative effect. The exact magnitude is difficult to predict without more information about the specific context and the relative quality of the school districts.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the discontinuity at the school district boundary.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Houses in the less desirable school district exhibit lower log prices.",
+    "main_effect": "-0.22"
+  }
+}

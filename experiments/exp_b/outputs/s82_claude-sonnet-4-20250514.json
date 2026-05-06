@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s82",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Hospital Choice on 30-Day Mortality",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:02:29.153489",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 482,
+    "output_tokens": 1042,
+    "content": "## 1. Identification Strategy\nInstrumental Variables (IV) approach using ambulance diversion (z) as an instrument for hospital choice (x) to estimate the causal effect on 30-day mortality (y). The key assumptions are: (1) Relevance: ambulance diversion affects hospital choice, (2) Exclusion restriction: ambulance diversion only affects mortality through its effect on hospital choice, and (3) Exogeneity: ambulance diversion is as-good-as-random conditional on controls.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s82_data.csv\")\n\n# Check data structure\nprint(\"Data summary:\")\nprint(summary(data))\n\n# First stage: Check instrument relevance\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"\\nFirst Stage Results:\")\nprint(summary(first_stage))\n\n# F-statistic for weak instruments test\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"\\nFirst Stage F-statistic:\", round(f_stat, 3)))\nprint(paste(\"Weak instrument concern if F < 10:\", f_stat < 10))\n\n# Reduced form: Direct effect of instrument on outcome\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\nReduced Form Results:\")\nprint(summary(reduced_form))\n\n# Two-Stage Least Squares (2SLS)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\nIV (2SLS) Results:\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coeff <- coef(iv_model)[\"x\"]\niv_se <- sqrt(diag(vcov(iv_model)))[\"x\"]\nprint(paste(\"\\nKey Result - Hospital Choice Effect on 30-day Mortality:\"))\nprint(paste(\"Coefficient:\", round(iv_coeff, 4)))\nprint(paste(\"Standard Error:\", round(iv_se, 4)))\nprint(paste(\"95% CI: [\", round(iv_coeff - 1.96*iv_se, 4), \",\", round(iv_coeff + 1.96*iv_se, 4), \"]\"))\n\n# OLS comparison (biased but useful for comparison)\nols_model <- lm(y ~ x + controls, data = data)\nols_coeff <- coef(ols_model)[\"x\"]\nprint(paste(\"\\nOLS Coefficient (for comparison):\", round(ols_coeff, 4)))\n\n# Robustness checks\n\n# 1. Heteroskedasticity-robust standard errors\nrobust_se <- sqrt(diag(vcovHC(iv_model, type = \"HC1\")))[\"x\"]\nprint(paste(\"\\nRobust Standard Error:\", round(robust_se, 4)))\n\n# 2. Test for endogeneity (Hausman test)\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"\\nDiagnostic Tests:\")\nprint(hausman_test$diagnostics)\n\n# 3. Overidentification test (would need more instruments)\nprint(\"\\nNote: Overidentification test requires multiple instruments (not applicable here)\")\n\n# 4. Different control specifications\niv_no_controls <- ivreg(y ~ x | z, data = data)\nno_controls_coeff <- coef(iv_no_controls)[\"x\"]\nprint(paste(\"\\nSensitivity - IV without controls:\", round(no_controls_coeff, 4)))\n\nprint(\"\\nInterpretation: The coefficient represents the change in 30-day mortality\")\nprint(\"probability associated with a one-unit change in hospital choice.\")\n```\n\n## 3. Expected Findings\nI expect a negative coefficient (around -0.3 to -0.5), indicating that better hospital choice (higher x values) reduces 30-day mortality rates. This makes economic sense as ambulance diversion likely redirects patients from overcrowded/lower-quality facilities to better-performing hospitals. The IV estimate should be larger in magnitude than OLS due to measurement error attenuation bias in the endogenous regressor. The first-stage should show a strong positive relationship between ambulance diversion and hospital choice.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use ambulance diversion as an instrument for hospital choice.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Hospital choice significantly impacts 30-day mortality rates.",
+    "main_effect": "-0.25"
+  }
+}

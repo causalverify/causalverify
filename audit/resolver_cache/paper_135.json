@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_135",
+  "title": "Regional Effects of Trade Reform: What Is the Correct Measure of Liberalization?",
+  "authors": "Kovak",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.103.5.1960",
+    "title": "Regional Effects of Trade Reform: What is the Correct Measure of Liberalization?",
+    "year": 2013,
+    "journal": "American Economic Review",
+    "citations": 539
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "kovak"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 539,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

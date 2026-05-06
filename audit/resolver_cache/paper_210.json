@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_210",
+  "title": "Elections and the Regression Discontinuity Design: Lessons from Close U.S. House Races, 1942\u20132008",
+  "authors": "Caughey & Sekhon",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/pan/mpr032",
+    "title": "Elections and the Regression Discontinuity Design: Lessons from Close U.S. House Races, 1942\u20132008",
+    "year": 2011,
+    "journal": "Political Analysis",
+    "citations": 343
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "sekhon",
+      "caughey"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "political analysis",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 343,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

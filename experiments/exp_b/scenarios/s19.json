@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s19",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Rainfall as IV for agricultural loan demand",
+  "research_question": "Does access to credit (loans per capita) improve agricultural output, using annual rainfall as an instrument for credit demand?",
+  "data_description": "Cross-sectional data on 500 farm households. Variables: y (log crop yield), x (log loans per capita), z (annual rainfall deviation from mean — instrument), controls (land size, soil quality index). First stage: rainfall → credit demand. Exclusion: rainfall affects yield only through credit.",
+  "ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: rainfall; first stage: rainfall → loans; exclusion restriction: rainfall ⊥ yield | credit",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Credit access significantly increases crop yields",
+    "main_effect": "10% increase in credit → 4% yield increase (IV estimate)"
+  },
+  "data_file": "experiments/exp_b/data/s19_data.csv",
+  "dgp_truth": {
+    "type": "iv",
+    "effect": 0.4,
+    "direction": "positive"
+  }
+}

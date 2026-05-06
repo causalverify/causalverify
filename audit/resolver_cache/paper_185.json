@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_185",
+  "title": "Growing Out of Trouble? Corporate Responses to Liability Risk",
+  "authors": "Gormley & Matsa",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/rfs/hhr011",
+    "title": "Growing Out of Trouble? Corporate Responses to Liability Risk",
+    "year": 2011,
+    "journal": "Review of Financial Studies",
+    "citations": 271
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "matsa",
+      "gormley"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "rfs",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 271,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

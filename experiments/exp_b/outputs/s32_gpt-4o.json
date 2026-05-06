@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s32",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of Overtime Eligibility Expansion on Work Hours",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:37:46.667414",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 491,
+    "output_tokens": 452,
+    "content": "## 1. Identification Strategy\nThe causal method used here is Difference-in-Differences (DID). This method is suitable because we have observational data that includes a clear treatment group (those affected by the policy change) and a control group, as well as observations both before and after the treatment in terms of policy change. The key assumption for DID is the parallel trends assumption, which states that in the absence of treatment, the average change in the outcome variable (log of hours worked) would have been the same for both the treated and control groups.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(broom)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s32_data.csv\")\n\n# Perform the Difference-in-Differences analysis\ndid_model <- lm(y ~ treated * post, data = data)\n\n# Printing the summary of the model to obtain coefficients\nsummary(did_model) \n\n# Extract the coefficient for the interaction term (treat_x_post)\ndid_result <- tidy(did_model) %>% filter(term == \"treated:post\")\n\n# Print the coefficient for treat_x_post, which is the DID estimate\nprint(paste(\"Difference-in-differences Estimate (treated * post):\", did_result$estimate))\n\n# Basic robustness check: Check for parallel trends with a pre-trend test\n# Subset the data for only the pre-treatment period\npre_treatment_data <- data %>% filter(post == 0)\n\n# Run a model to check parallel trends\npt_model <- lm(y ~ treated, data = pre_treatment_data)\n\n# Summary of pre-trend model\nsummary(pt_model)\n```\n\n## 3. Expected Findings\nWe expect the sign of the coefficient for `treat_x_post` (our DID estimate) to be positive, indicating that the expansion of overtime pay eligibility increased the number of hours worked for those employees. The magnitude will depend on the actual effect of the policy, but typically such expansions tend not to have overly large effects. Thus, a modest increase in the log of hours worked is expected, reflecting a practical increase in work hours due to the incentive of overtime pay.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log hours worked before and after the policy change between treated and untreated groups.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The expansion of overtime eligibility significantly increased the log hours worked.",
+    "main_effect": "0.25"
+  }
+}

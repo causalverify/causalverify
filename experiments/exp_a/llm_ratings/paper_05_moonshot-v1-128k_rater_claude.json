@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "ME"
+  ],
+  "reasoning": "The AI correctly identifies event study as the primary method, which matches the ground truth. However, it incorrectly frames this as a difference-in-differences design and discusses parallel trends assumptions that don't apply to standard event studies. The ground truth uses abnormal returns methodology, not DID. The AI doesn't state the direction of the effect (negative impact), earning 0 for direction. This is a mechanical execution failure - right broad approach but wrong implementation details.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_05",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T13:05:25.152043+00:00"
+}

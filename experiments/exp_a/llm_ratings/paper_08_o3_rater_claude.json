@@ -1,0 +1,12 @@
+{
+  "strategy_score": 1,
+  "direction_score": 0,
+  "failure_types": [
+    "IH"
+  ],
+  "reasoning": "AI proposes difference-in-differences with bank balance sheet strength as treatment, which is conceptually related to credit supply identification but fundamentally different from the ground truth IV strategy using firm-level bond market access as instrument. The AI's approach cannot isolate demand from supply effects as effectively. No clear direction stated in the provided excerpt.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_08",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:06:46.796814+00:00"
+}

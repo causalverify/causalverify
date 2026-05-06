@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: DID — treatment = Tiebout choice index, control = non-choice areas; shock/instrument/cutoff = number of larger and smaller streams",
+  "key_variables": {
+    "treatment": "Tiebout choice index",
+    "control": "non-choice areas",
+    "outcome": "student test scores",
+    "instrument_or_cutoff": "number of larger and smaller streams",
+    "time_period": "not specified"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The evidence does not support claims of a large or significant effect of interdistrict competition on student achievement.",
+  "main_effect": "choice effect near zero",
+  "key_robustness": [
+    "sensitivity to coding of larger streams",
+    "sample selection bias due to exclusion of private school students",
+    "comparison of IV and OLS estimates"
+  ],
+  "confidence": 0.6,
+  "notes": "The analysis is sensitive to the coding of key variables and the exclusion of private school students, leading to uncertainty in the robustness of the findings."
+}

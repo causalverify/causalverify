@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s26",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Test score cutoff and college enrollment",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:35:50.650600",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 449,
+    "output_tokens": 614,
+    "content": "## 1. Identification Strategy\nTo estimate the causal effect of crossing the test score threshold for automatic college admission on actual enrollment rates, we will use a Sharp Regression Discontinuity Design (RDD). This method is chosen because the treatment (automatic college admission) is assigned based on a clear cutoff (test score ≥ 0.5), and there is a discontinuity in the probability of treatment at this cutoff. The key assumption is that the potential outcomes are continuous functions of the running variable (test score) around the cutoff. Additionally, we assume that there are no other factors that change discontinuously at the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(rdd)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s26_data.csv\")\n\n# Convert treated to factor for regression\ndata$treated <- as.factor(data$treated)\n\n# Implement Sharp RDD with polynomial regression\n# We will use a quadratic polynomial for the running variable\nsharp_rdd <- rdd(data = data, \n                  outcome = \"y\", \n                  running_var = \"running_var\", \n                  cutoff = 0.5, \n                  kernel = \"uniform\", \n                  bandwidth = 0.3, \n                  poly_degree = 2)\n\n# Print the result\nsummary(sharp_rdd)\n\n# Basic robustness check: Test for discontinuity in the density of the running variable\n# A non-significant test statistic suggests that there is no discontinuity in the density\nrdplot(data$running_var, \n       data$treated, \n       cutoff = 0.5, \n       kernel = \"uniform\", \n       bandwidth = 0.3, \n       plot = FALSE)\n\n# Run a McCrary density test\nmccrary_test <- mccrary(data$running_var, \n                        data$treated, \n                        cutoff = 0.5, \n                        kernel = \"uniform\", \n                        bandwidth = 0.3)\n\n# Print the p-value of the McCrary test\nprint(mccrary_test$p.value)\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient (treatment effect) from the RDD analysis, indicating that crossing the test score threshold increases college enrollment rates. The magnitude of this effect will depend on the change in enrollment rates at the cutoff, but we anticipate it to be reasonably sized given the context of the policy. The exact magnitude is harder to predict without more information on the distribution of test scores and enrollment rates, but a positive effect in the range of 5-15% increase in enrollment rates at the threshold seems plausible. The significance of the findings will depend on the statistical precision of the estimates, which in turn depends on the sample size, the density of observations near the cutoff, and the model specification. If the McCrary density test indicates no discontinuity in the density of the running variable at the cutoff (non-significant test statistic), this would further support the validity of our RDD estimates.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — test score cutoff; continuity of running variable required; McCrary density test",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scoring above cutoff significantly increases college enrollment",
+    "main_effect": "~25pp enrollment increase at cutoff"
+  }
+}

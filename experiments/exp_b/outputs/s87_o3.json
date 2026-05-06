@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s87",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Unemployment Benefit Eligibility on Future Earnings",
+  "model": "o3",
+  "run_at": "2026-04-14T19:53:40.881796",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 441,
+    "output_tokens": 1542,
+    "content": "## 1. Identification Strategy  \nMethod: Sharp Regression Discontinuity Design (RDD)\n\nWhy RDD?  \nEligibility for unemployment benefits switches deterministically at an age cutoff. Individuals just below and just above that cutoff are assumed to be comparable in all respects except for treatment status, allowing us to identify the causal effect of eligibility on future earnings.\n\nKey Assumption (Continuity):  \nAbsent the policy, the conditional expectation of potential earnings is smooth in age at the cutoff. Hence any discontinuity in earnings at the threshold can be attributed to benefit eligibility.\n\n## 2. R Code\n```r\n##############################################\n# Impact of Unemployment-Benefit Eligibility #\n# on Log Earnings Two Years Later            #\n##############################################\n\n# 0. Packages -----------------------------------------------------------------\nneed <- c(\"rdrobust\", \"ggplot2\")\nfor(p in need){\n  if(!requireNamespace(p, quietly = TRUE)) install.packages(p)\n  library(p, character.only = TRUE)\n}\n\n# 1. Read data ----------------------------------------------------------------\ndf <- read.csv(\"experiments/exp_b/data/s87_data.csv\")\n\n# 2. Main RD estimate (triangular kernel, linear fits) ------------------------\nrd_main <- rdrobust(y = df$y, x = df$running_var, c = 0,\n                    p = 1, kernel = \"triangular\")\n\ncat(\"=== Main RD estimate (local treatment effect) ===\\n\")\ncat(\"Tau (log points):\", round(rd_main$tau.cl, 4), \n    \"|  SE:\", round(rd_main$se.cl, 4), \"\\n\\n\")\n\n# 3. Simple RD plot -----------------------------------------------------------\nggplot(df, aes(x = running_var, y = y)) +\n  geom_point(alpha = .4) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  labs(title = \"RDD: Log Earnings vs. Age (running_var)\",\n       x = \"Age relative to cutoff (running_var)\",\n       y = \"Log earnings two years later\")\n\n# 4. Robustness checks --------------------------------------------------------\n\n## 4.1. Smaller bandwidth (half the default)\nh_half <- rdrobust(y = df$y, x = df$running_var, c = 0,\n                   p = 1, kernel = \"triangular\",\n                   h = rd_main$h/2)\n\ncat(\"Bandwidth = h/2  | Tau:\", round(h_half$tau.cl, 4),\n    \"| SE:\", round(h_half$se.cl, 4), \"\\n\")\n\n## 4.2. Quadratic polynomial\nrd_quad <- rdrobust(y = df$y, x = df$running_var, c = 0,\n                    p = 2, kernel = \"triangular\")\n\ncat(\"Quadratic fits  | Tau:\", round(rd_quad$tau.cl, 4),\n    \"| SE:\", round(rd_quad$se.cl, 4), \"\\n\")\n\n## 4.3. Donut RDD (drop ±0.02 around cutoff)\ndonut_df <- subset(df, abs(running_var) > 0.02)\nrd_donut <- rdrobust(y = donut_df$y, x = donut_df$running_var, c = 0,\n                     p = 1, kernel = \"triangular\")\n\ncat(\"Donut (|rv|>0.02)| Tau:\", round(rd_donut$tau.cl, 4),\n    \"| SE:\", round(rd_donut$se.cl, 4), \"\\n\")\n```\n\n## 3. Expected Findings  \nEconomic intuition suggests that easier access to unemployment benefits can reduce job-search intensity or labor-market attachment, leading to slightly lower future earnings. Consequently, I expect a negative discontinuity: roughly −0.05 to −0.10 log points (a 5–10 % decline) in earnings two years after crossing the eligibility age threshold. The robustness checks should yield similar negative estimates, reinforcing the validity of the result.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The cutoff age for benefit eligibility provides a natural experiment to assess causal impacts.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligibility for unemployment benefits at the cutoff age increases log earnings two years later.",
+    "main_effect": "0.3"
+  }
+}

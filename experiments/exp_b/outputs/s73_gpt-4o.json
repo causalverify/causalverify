@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s73",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Immigration on Native Wages",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:43:38.962753",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 449,
+    "output_tokens": 497,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this research scenario is the Instrumental Variable (IV) approach. The main reason for choosing IV is to address the potential endogeneity in the immigrant distribution; that is, immigrant inflow ('x') might be correlated with unobserved factors that also affect native wages ('y'). By leveraging historical settlement patterns ('z') as an instrument, we can isolate the exogenous variation in immigrant inflow that is not correlated with the error term in the wage equation. The key assumption here is that the historical settlement patterns ('z') are correlated with current immigrant inflow ('x') but do not directly affect native wages ('y') other than through their effect on immigrant inflow.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(AER)\n\n# Load the dataset\ndata <- read_csv(\"experiments/exp_b/data/s73_data.csv\")\n\n# Run the Instrumental Variable regression\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Summary of the IV regression model\niv_summary <- summary(iv_model)\n\n# Print out the key result\nprint(iv_summary)\n\n# Obtain the coefficient of interest\ncoef_x <- coef(iv_model)[\"x\"]\n\n# Perform a robustness check: First stage regression\nfirst_stage <- lm(x ~ z + controls, data = data)\nfirst_stage_summary <- summary(first_stage)\n\n# Check the relevancy of the instrument\nprint(first_stage_summary$coefficients)\nprint(paste(\"F-statistic:\", first_stage_summary$fstatistic[1]))\n\n# Weak instrument test (rule of thumb: F-statistic > 10)\nif (first_stage_summary$fstatistic[1] > 10) {\n  print(\"The instrument is relevant based on the F-statistic.\")\n} else {\n  print(\"The instrument might be weak based on the F-statistic.\")\n}\n```\n\n## 3. Expected Findings\nWe expect a negative sign for the coefficient of interest, suggesting that an increase in immigrant inflow could potentially lead to a decrease in native wages. The magnitude will depend on the strength of the correlation between historical settlement patterns and current immigrant inflow, as well as the impact of this inflow on labor market conditions. However, the exact size is uncertain and will be revealed by the empirical analysis, but it should reflect the indirect effect of immigrants on native wages via increased supply of labor.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use historical settlement patterns as an instrument for immigrant inflow.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals that increased immigrant inflow positively affects native wages.",
+    "main_effect": 0.35
+  }
+}

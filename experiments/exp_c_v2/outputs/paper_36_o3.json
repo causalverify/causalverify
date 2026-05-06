@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_36",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:37:35.755634",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 588,
+    "output_tokens": 2013,
+    "content": "RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy: Random assignment of racially distinctive names to otherwise identical résumés constitutes a clean randomized controlled experiment. Because treatment (African-American-sounding name) is randomly assigned, the average difference in callback rates identifies the causal effect of perceived race on employer response.\n\nDirectional hypothesis (H₁): Résumés with African-American-sounding names receive a lower probability of callback than résumés with White-sounding names (β < 0).\n\nI irrevocably commit to this strategy and hypothesis now.\n\n------------------------------------------------------------  \nSTEP 2 — SPECIFICATION DISCIPLINE (MAX = 5)\n\nLet  \nCallbackᵢ = 1 if résumé i received a callback, 0 otherwise  \nBlackNameᵢ = 1 if résumé i carries an African-American-sounding name, 0 otherwise  \nHighQualᵢ = 1 if résumé i is high-quality, 0 otherwise  \nCityᵢ ∈ {Boston, Chicago} (Boston baseline)  \nOcc_k = occupation-category dummies (k = 1,…,K)  \nEEOᵢ = 1 if the ad claims Equal-Opportunity-Employer status, 0 otherwise  \n\nCluster all standard errors by job-advertisement ID.\n\nSpecification 1 (baseline diff-in-means):  \nCallbackᵢ = α + β BlackNameᵢ + εᵢ\n\nSpecification 2 (add résumé quality):  \nCallbackᵢ = α + β BlackNameᵢ + γ HighQualᵢ + εᵢ\n\nSpecification 3 (test interaction):  \nCallbackᵢ = α + β BlackNameᵢ + γ HighQualᵢ + δ (BlackNameᵢ × HighQualᵢ) + εᵢ\n\nSpecification 4 (rich controls):  \nCallbackᵢ = α + β BlackNameᵢ + γ HighQualᵢ + δ (BlackNameᵢ × HighQualᵢ)  \n                    + θ₁ Chicagoᵢ + θ₂′ Occ_k + θ₃ EEOᵢ + εᵢ\n\nSpecification 5 (logit, same RHS as Spec 3):  \nlogit[Pr(Callbackᵢ=1)] = α + β BlackNameᵢ + γ HighQualᵢ + δ (BlackNameᵢ × HighQualᵢ)\n\nNo other specifications will be run.\n\n------------------------------------------------------------  \nSTEP 3 — FALSIFICATION GATE  \n\nThe directional hypothesis is supported only if β < 0 and statistically significant at the 10 percent level (two-sided) in Specifications 1 through 4, and the marginal effect of BlackNameᵢ is negative and significant (p < 0.10) in Specification 5.  \n\nGate for rejection: If in Specification 1 β ≥ 0 or p > 0.10, I will reject H₁ outright and cease further causal claims. Similarly, if Specification 3 shows δ ≥ 0 and significant (p < 0.10), indicating no reduction in discrimination for high-quality résumés, that will falsify any claim that higher skills mitigate discrimination.\n\n------------------------------------------------------------  \nSTEP 4 — R CODE (self-contained)\n\n```r\n# STEP 4 – R implementation of pre-committed specifications ------------------\n\n# Load libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\nlibrary(fixest)\n\n# Assume the data are in a CSV called \"resumes.csv\"\n# Key variables:\n#   callback   : 0/1\n#   black      : 0/1 (African-American name)\n#   highqual   : 0/1\n#   city       : \"Boston\" or \"Chicago\"\n#   occ        : occupation category string\n#   eeo        : 0/1\n#   jobid      : identifier for job advertisement\n\ndat <- read.csv(\"resumes.csv\")\n\n# Helper: cluster-robust SE function for lm\ncl_se <- function(model, cluster){\n  vcovCL <- vcovCL(model, cluster = cluster)\n  coeftest(model, vcovCL)\n}\n\n# SPECIFICATION 1 ------------------------------------------------------------\nspec1 <- lm(callback ~ black, data = dat)\nspec1_res <- cl_se(spec1, dat$jobid)\n\n# SPECIFICATION 2 ------------------------------------------------------------\nspec2 <- lm(callback ~ black + highqual, data = dat)\nspec2_res <- cl_se(spec2, dat$jobid)\n\n# SPECIFICATION 3 ------------------------------------------------------------\nspec3 <- lm(callback ~ black * highqual, data = dat)\nspec3_res <- cl_se(spec3, dat$jobid)\n\n# SPECIFICATION 4 ------------------------------------------------------------\nspec4 <- lm(callback ~ black * highqual + I(city == \"Chicago\") +\n              occ + eeo, data = dat)\nspec4_res <- cl_se(spec4, dat$jobid)\n\n# SPECIFICATION 5 (logit) ----------------------------------------------------\nspec5 <- feglm(callback ~ black * highqual | 0, \n               family = binomial(\"logit\"), data = dat, \n               cluster = ~jobid)\n# Marginal effect of black name (average partial effect)\nlibrary(margins)\nspec5_marg <- margins(spec5, variables = \"black\")\n\n# Output results -------------------------------------------------------------\nprint(\"SPECIFICATION 1\")\nprint(spec1_res)\n\nprint(\"SPECIFICATION 2\")\nprint(spec2_res)\n\nprint(\"SPECIFICATION 3\")\nprint(spec3_res)\n\nprint(\"SPECIFICATION 4\")\nprint(spec4_res)\n\nprint(\"SPECIFICATION 5 - Average Partial Effect of black\")\nprint(summary(spec5_marg))\n```\n\n------------------------------------------------------------  \nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBased on prior literature, I expect:\n\nSpec 1: β ≈ –0.09 (SE ≈ 0.015, p < 0.001)  \nSpec 2: β ≈ –0.09 (SE ≈ 0.015, p < 0.001); γ ≈ +0.03  \nSpec 3: β ≈ –0.085 (SE ≈ 0.016); δ ≈ –0.005 (insignificant)  \nSpec 4: β ≈ –0.085 (SE ≈ 0.017); δ ≈ –0.005  \nSpec 5: Average partial effect of BlackName ≈ –0.09 (p < 0.001)\n\nGate assessment: Expected β is negative and highly significant in all linear models, and the marginal effect is likewise negative in the logit. Therefore the falsification gate would NOT be triggered; the evidence would support the hypothesis of hiring discrimination against applicants with African-American-sounding names.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": null,
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Randomized field experiment with DID-like structure — within each job ad, resumes are randomly assigned African-American vs. White names (treatment) while holding resume quality constant; the 'difference' is between treatment (Black name) and control (White name) callbacks, with a second difference by resume quality level",
+    "key_variables": {
+      "treatment": "African-American-sounding name on the resume (randomly assigned)",
+      "control": "White-sounding name on the resume (randomly assigned)",
+      "outcome": "callback rate (binary: whether employer contacts applicant for interview)",
+      "time_period": "July 2001 – January 2002 (resume submissions to Boston and Chicago employers)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Significant racial discrimination exists in callback rates. Resumes with White-sounding names receive approximately 50% more callbacks than identical resumes with African-American-sounding names (9.65% vs. 6.45% callback rate, a 3.2 percentage point gap). Higher resume quality increases callbacks for White names substantially more than for African-American names, suggesting that discrimination does not diminish with applicant quality.",
+    "main_effect": "White names receive 9.65% callback rate vs. 6.45% for African-American names — a 3.2 percentage point gap (approximately 50% more callbacks for White names)",
+    "key_robustness": [
+      "Separate analysis by city (Boston vs. Chicago)",
+      "Male vs. female names separately",
+      "High-quality vs. low-quality resumes",
+      "By employer characteristics (industry, size, equal opportunity status)",
+      "Alternative name sets (within racial category)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Randomized field experiment (correspondence study); analyzed as difference in means between randomly assigned treatment and control groups, equivalent to a simple DID where the 'treatment' is the name assignment",
+      "treatment": "Randomly assigned African-American-sounding name (e.g., Lakisha Washington, Jamal Jones)",
+      "event_window": "Callbacks tracked for 30 days after resume submission",
+      "estimation_window": "N/A (randomized experiment)",
+      "sample_period": "July 2001 – January 2002",
+      "unit_of_observation": "Individual resume sent to a specific job ad (4,870 resume-job pairs)",
+      "key_assumption": "Random assignment of names ensures that treatment and control groups are balanced on all observable and unobservable characteristics. The only systematic difference is perceived race signaled by the name. Names were validated through a survey to confirm racial perceptions."
+    },
+    "key_magnitudes": {
+      "white_callback": "9.65% callback rate for White-sounding names",
+      "black_callback": "6.45% callback rate for African-American-sounding names",
+      "gap": "3.2 percentage points (50% more callbacks for White names)",
+      "quality_interaction": "Higher resume quality increases White callbacks by 30% but African-American callbacks by only 9% — discrimination increases with quality"
+    },
+    "robustness_notes_detail": "Results are consistent across Boston and Chicago, male and female names, and all major industries. The finding that higher resume quality widens the racial gap (rather than narrowing it) is inconsistent with statistical discrimination theory (which predicts discrimination decreases with more information) and more consistent with taste-based discrimination. Equal opportunity employers discriminate as much as non-equal-opportunity employers."
+  }
+}

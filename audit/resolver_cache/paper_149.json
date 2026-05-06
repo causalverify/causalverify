@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_149",
+  "title": "History, Institutions, and Economic Performance: The Legacy of Colonial Land Tenure Systems in India",
+  "authors": "Banerjee & Iyer",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/0002828054825574",
+    "title": "History, Institutions, and Economic Performance: The Legacy of Colonial Land Tenure Systems in India",
+    "year": 2005,
+    "journal": "American Economic Review",
+    "citations": 1268
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "iyer",
+      "banerjee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1268,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

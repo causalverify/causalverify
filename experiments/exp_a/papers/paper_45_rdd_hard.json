@@ -1,0 +1,91 @@
+{
+  "paper_id": "paper_45",
+  "source": "Econometrica, 2010",
+  "authors": "Dell",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "The Persistent Effects of Peru's Mining Mita",
+  "doi": "10.3982/ECTA8121",
+  "volume": 78,
+  "issue": 6,
+  "pages": "1863-1903",
+  "domain": "development",
+  "research_question": "Did Peru's colonial-era forced labor system for silver and mercury mining produce lasting negative effects on long-run economic well-being, as measured by household consumption and child stunting in affected districts? How does the magnitude of this legacy vary across geographic and socioeconomic characteristics of districts?",
+  "data_description": "The analysis uses Melissa Dell's original dataset on Peruvian districts, combining historical geographic information with contemporary socioeconomic indicators. The unit of observation is the household, with the primary outcome being log equivalised household consumption in 2001; additional outcomes include child growth stunting rates, infrastructure access, and reliance on subsistence agriculture. The key treatment variable is a binary indicator for whether a district fell within the historical Mita boundary. Geographic running variables include latitude and longitude coordinates, distance to the city of Potosí, and direct distance to the Mita boundary. The dataset also contains demographic controls and boundary fixed effects. Districts both inside and just outside the historical Mita boundary are included to enable comparison between treated and untreated regions near the boundary.",
+  "institutional_context": "From 1573 to 1812, Spanish colonial authorities in Peru and Bolivia imposed the Mita, a forced labor system requiring indigenous communities within a specifically demarcated geographic boundary to send a fixed share of their adult male population to work in silver and mercury mines, with labor primarily directed to the city of Potosí. Communities outside this boundary were exempt from the labor draft, even when otherwise similar in geography, ethnicity, and pre-colonial conditions. The sharp, administratively defined boundary created two adjacent sets of districts that faced very different colonial labor obligations for over two centuries. Districts closer to Potosí within the boundary bore more intense labor demands. This historical setting allows researchers to examine how a long-abolished colonial institution may have shaped persistent regional inequalities in modern living standards.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.27,
+      "unit": "log points reduction in household consumption per capita (geographic RDD at mita boundary)",
+      "interpretation": "Districts inside the historical mita boundary have approximately 25% lower household consumption per capita than adjacent districts outside the boundary, four centuries after the forced labor system was abolished"
+    },
+    "secondary_estimate": {
+      "value": 0.06,
+      "unit": "percentage point increase in stunting rate inside mita boundary",
+      "interpretation": "Child stunting (low height-for-age) is 6 percentage points higher inside the mita zone, indicating persistent effects on human development"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 2-4 in Dell (2010)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "ENAHO Peruvian household surveys (free from INEI Peru website)",
+      "Mita boundary GIS data (published in the paper and available from author)",
+      "1572 tribute records (digitized and available from the author)",
+      "DHS (child anthropometry data — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. ENAHO surveys are free from Peru's national statistics agency. Mita boundary coordinates are published in the paper.",
+    "replicability": "high — all data publicly available; replication code available from the author",
+    "public_proxy_available": true,
+    "replication_tier": "full (ENAHO free; mita boundary published; replication data available from Melissa Dell's website)",
+    "data_limitations": "District-level analysis has limited sample size (~500 districts). The mita boundary partly follows natural features that might independently affect development. ENAHO survey data has sampling error at the district level. Historical tribute records from 1572 are incomplete.",
+    "public_data_sources_detail": [
+      "INEI Peru ENAHO household surveys (free download)",
+      "Melissa Dell's website (replication data and GIS boundary files — free)",
+      "DHS Peru (child anthropometry — free with registration)",
+      "NASA SRTM (elevation data — free)",
+      "GADM (Peru administrative boundary shapefiles — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Geographic regression discontinuity design — running variable is distance to the historical mita boundary (continuous, positive = outside mita, negative = inside mita); cutoff at the boundary (distance = 0); treatment is being inside the mita catchment area where forced labor was imposed 1573-1812; outcome is present-day economic development",
+    "key_variables": {
+      "treatment": "district located inside the historical mita catchment area (forced labor zone, 1573-1812)",
+      "control": "district located just outside the mita boundary (exempt from forced labor)",
+      "outcome": "log household consumption per capita; child height-for-age z-score (stunting); road density; access to health posts and schools",
+      "time_period": "Colonial mita: 1573-1812; outcomes measured 2001-2007"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mining mita has persistent negative effects on economic development four centuries after its abolition. Districts inside the mita boundary have approximately 25% lower household consumption, significantly higher stunting rates, and worse public goods provision (fewer roads, fewer health posts) than districts just outside the boundary. The mechanism operates through institutional channels: the mita prevented hacienda (large landholding) formation, which would have provided public goods and political connections, leaving mita districts with weaker property rights and less political integration.",
+    "main_effect": "Mita districts have approximately 25% lower household consumption (0.27 log points) and 6 percentage points higher stunting rates than adjacent non-mita districts across the boundary",
+    "key_robustness": [
+      "Varying bandwidth around the mita boundary (25km, 50km, 75km, 100km)",
+      "Polynomial specifications in distance to boundary",
+      "Controlling for elevation, latitude, longitude, slope, and distance to Cusco/Potosí",
+      "Pre-colonial balance tests (1572 tribute records, ethnic composition)",
+      "Placebo boundaries within and outside the mita zone",
+      "IV using mita assignment as instrument for hacienda formation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Geographic/spatial RDD with distance to the historical mita boundary as the running variable",
+      "treatment": "Located inside the mita catchment area (binary, determined by 1573 Viceroy Toledo's decree based on geographic proximity to mines)",
+      "event_window": "N/A (cross-sectional RDD comparing present-day outcomes across the historical boundary)",
+      "estimation_window": "Districts within various bandwidths (25-100km) of the mita boundary",
+      "sample_period": "Outcomes measured 2001-2007; treatment imposed 1573-1812",
+      "unit_of_observation": "District (approximately 500 districts near the boundary)",
+      "key_assumption": "The mita boundary was drawn along geographic features and is not correlated with unobserved pre-colonial differences in development potential. Districts just inside and just outside the boundary are comparable in terms of geography, elevation, pre-colonial population, and ethnic composition. Supported by pre-colonial balance tests using 1572 tribute records."
+    },
+    "key_magnitudes": {
+      "consumption_effect": "-0.27 log points (~25% lower) household consumption per capita in mita districts",
+      "stunting_effect": "+6 percentage points higher stunting rate in mita districts",
+      "roads": "Significantly fewer roads (lower road density) inside mita boundary",
+      "public_goods": "Fewer health posts and schools per capita inside mita boundary"
+    },
+    "robustness_notes_detail": "Pre-colonial balance tests using 1572 tribute records (collected one year before the mita was established) show no differences in indigenous population density, ethnic composition, or tribute levels across the boundary, supporting the identifying assumption. The mita boundary follows some natural features (rivers, ridges) but these geographic features do not independently predict present-day outcomes after controlling for elevation and slope. Placebo boundaries (shifted 25km inside or outside the mita zone) show no comparable discontinuities, confirming that the effect is specific to the actual mita boundary."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 30264,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_79",
+  "title": "Lifetime Earnings and the Vietnam Era Draft Lottery: Evidence from Social Security Administrative Records",
+  "authors": "Angrist",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": null,
+    "title": "Lifetime Earnings and the Vietnam Era Draft Lottery: Evidence from Social Security Administrative Records: Errata",
+    "year": 1990,
+    "journal": "American Economic Review",
+    "citations": 559
+  },
+  "checks": {
+    "title_jaccard": 0.9091,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 559,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

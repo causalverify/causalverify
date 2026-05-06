@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s97",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Grade Retention on Future Academic Performance",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:47:10.627631",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 422,
+    "output_tokens": 564,
+    "content": "## 1. Identification Strategy\nFor this research scenario, a Regression Discontinuity Design (RDD) is the most appropriate causal method. The key assumption of RDD is that there is a sharp cutoff in the running variable (end-of-year test scores) that determines whether a student is retained or not. This assumption allows us to compare students who are just below and just above the cutoff, assuming that they are similar in all other respects except for the treatment (grade retention). The causal effect of grade retention can be estimated by comparing the difference in future test scores (y) between students who were retained and those who were not, but were very close to the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s97_data.csv\")\n\n# Perform RDD analysis\n# We will use the rdrobust package to estimate the causal effect of grade retention\n# We will use a local linear regression with a triangular kernel\nrdd_result <- rdrobust(data$running_var, data$treated, data$y, c=0.4949, h=0.05, kernel=\"triangular\", degree=1)\n\n# Print the estimated causal effect\nprint(rdd_result$beta)\n\n# Basic robustness checks\n# We will check the sensitivity of the results to different bandwidths\nbandwidths <- seq(0.01, 0.1, by=0.01)\nrdd_results <- sapply(bandwidths, function(b) {\n  rdrobust(data$running_var, data$treated, data$y, c=0.4949, h=b, kernel=\"triangular\", degree=1)$beta\n})\n\n# Plot the results\nplot(bandwidths, rdd_results, type=\"b\", xlab=\"Bandwidth\", ylab=\"Estimated Causal Effect\", main=\"Robustness Checks\")\n```\n\n## 3. Expected Findings\nThe expected sign and magnitude of the causal effect of grade retention on future academic performance are uncertain. On one hand, grade retention may have a negative impact on students' future performance by causing them to lose motivation or confidence. On the other hand, it may have a positive impact by providing them with additional time to improve their skills and knowledge. The magnitude of the effect will depend on the specific context and the quality of the educational interventions provided to retained students. The analysis will provide an estimate of the causal effect based on the available data, but it is important to interpret the results in light of the specific context and potential confounding factors.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the cutoff in test scores to identify the causal effect.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Students retained due to scoring below the cutoff perform worse on future tests.",
+    "main_effect": "-0.18"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "summary": {
+    "n_audited": 30,
+    "diagnosis_counts": {
+      "EXTRACTED_WRONG": 20,
+      "MODEL_FAIL": 8,
+      "EXTRACTION_FAIL": 2
+    },
+    "extraction_fail_rate": 0.7333333333333333,
+    "by_model": {
+      "GPT-4o": {
+        "EXTRACTED_WRONG": 3,
+        "MODEL_FAIL": 2
+      },
+      "Kimi": {
+        "MODEL_FAIL": 4,
+        "EXTRACTED_WRONG": 1
+      },
+      "Opus": {
+        "EXTRACTED_WRONG": 5
+      },
+      "Sonnet": {
+        "EXTRACTED_WRONG": 4,
+        "MODEL_FAIL": 1
+      },
+      "Gemini": {
+        "EXTRACTED_WRONG": 4,
+        "EXTRACTION_FAIL": 1
+      },
+      "o3": {
+        "MODEL_FAIL": 1,
+        "EXTRACTION_FAIL": 1,
+        "EXTRACTED_WRONG": 3
+      }
+    }
+  },
+  "cases": [
+    {
+      "scenario_id": "s05",
+      "model": "GPT-4o",
+      "method": "DID",
+      "canonical_beta": 0.263036,
+      "regex_extracted": 0.420672,
+      "near_canonical_in_stdout": 0.2122,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "\nt test of coefficients:\n\n                Estimate Std. Error t value Pr(>|t|)    \n(Intercept)     0.009924   0.046770  0.2122   0.8320    \ntreated         0.420672   0.049256  8.5406   <2e-16 ***\nfactor(period)2 0.014526   0.060073  0.2418   0.8090    \nfactor(period)3 0.096497   0.059504  1.6217   0.1054    \n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s37",
+      "model": "GPT-4o",
+      "method": "DID",
+      "canonical_beta": -0.180967,
+      "regex_extracted": 0.44924,
+      "near_canonical_in_stdout": -0.18097,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "18186 -1.2712 0.2038855    \nfactor(period)2    -0.0931405  0.0386555 -2.4095 0.0161033 *  \nfactor(period)3     0.0156910  0.0400504  0.3918 0.6952798    \nfactor(period)4     0.3540481  0.0436142  8.1177 1.035e-15 ***\nfactor(period)5     0.3993981  0.0442930  9.0172 < 2.2e-16 ***\nfactor(period)6     0.3572071  0.0432499  8.2591 3.375e-16 ***\nfactor(period)7     0.3715136  0.0419184  8.8628 < 2.2e-16 ***\nfactor(period)8     0.4084756  0.0424632  9.6195 < 2.2e-16 ***\ntreat_x_post       -0.1809672  0.0406190 -4.4552 9.051e-06 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s13",
+      "model": "GPT-4o",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.017892,
+      "regex_extracted": -0.0328808284675,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "[1] \"Mean CAR: -0.0328808284675\"\n\n\tOne Sample t-test\n\ndata:  car_results$CAR\nt = -11.764, df = 79, p-value < 2.2e-16\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -0.03844441 -0.02731725\nsample estimates:\n  mean of x \n-0.03288083 \n\n[1] \"Robust Mean CAR: -0.05195387078625\"\n\n\tOne Sample t-test\n\ndata:  car_robustness$CAR_robust\nt = -13.759, df = 79, p-value < 2.2e-16\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -0.05946955 -0.04443819\nsample estimates:\n  mean of x \n-0.05195387 \n\n"
+    },
+    {
+      "scenario_id": "s83",
+      "model": "GPT-4o",
+      "method": "IV",
+      "canonical_beta": 0.212884,
+      "regex_extracted": 0.08307,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "     Res.Df            Df         Chisq         Pr(>Chisq)     \n Min.   :297.0   Min.   :-2   Min.   :4.976   Min.   :0.08307  \n 1st Qu.:297.5   1st Qu.:-2   1st Qu.:4.976   1st Qu.:0.08307  \n Median :298.0   Median :-2   Median :4.976   Median :0.08307  \n Mean   :298.0   Mean   :-2   Mean   :4.976   Mean   :0.08307  \n 3rd Qu.:298.5   3rd Qu.:-2   3rd Qu.:4.976   3rd Qu.:0.08307  \n Max.   :299.0   Max.   :-2   Max.   :4.976   Max.   :0.08307  \n                 NA's   :1    NA's   :1       NA's   :1        \n"
+    },
+    {
+      "scenario_id": "s50",
+      "model": "GPT-4o",
+      "method": "DID",
+      "canonical_beta": 0.406195,
+      "regex_extracted": 0.848954,
+      "near_canonical_in_stdout": 0.4061947,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "Estimated impact of fertilizer subsidy on log crop yield: 0.4061947 \nStandard error: 0.106468 \n\nt test of coefficients:\n\n             Estimate Std. Error t value  Pr(>|t|)    \n(Intercept)  0.238924   0.045725  5.2252 2.118e-07 ***\npost         0.075996   0.061466  1.2364    0.2166    \ntreat_x_post 0.848954   0.058630 14.4799 < 2.2e-16 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s88",
+      "model": "Kimi",
+      "method": "RDD",
+      "canonical_beta": 0.127651,
+      "regex_extracted": null,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "NULL\nNULL\n"
+    },
+    {
+      "scenario_id": "s02",
+      "model": "Kimi",
+      "method": "DID",
+      "canonical_beta": -0.187556,
+      "regex_extracted": 0.244583,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "\nt test of coefficients:\n\n             Estimate Std. Error t value  Pr(>|t|)    \ntreat_x_post 0.244583   0.045365  5.3914 8.195e-08 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s98",
+      "model": "Kimi",
+      "method": "RDD",
+      "canonical_beta": 0.05694,
+      "regex_extracted": null,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "NULL\nNULL\nNULL\n"
+    },
+    {
+      "scenario_id": "s58",
+      "model": "Kimi",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.024748,
+      "regex_extracted": null,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "\nt test of coefficients:\n\n          Estimate Std. Error t value  Pr(>|t|)    \nevent   -0.0121294  0.0016504 -7.3495 3.161e-13 ***\nmkt_ret  1.0578277  0.0555692 19.0362 < 2.2e-16 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s34",
+      "model": "Kimi",
+      "method": "DID",
+      "canonical_beta": 0.153932,
+      "regex_extracted": 0.564224,
+      "near_canonical_in_stdout": 0.1,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "\nt test of coefficients:\n\n             Estimate Std. Error t value  Pr(>|t|)    \ntreat_x_post 0.564224   0.026562  21.242 < 2.2e-16 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n"
+    },
+    {
+      "scenario_id": "s16",
+      "model": "Opus",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.026697,
+      "regex_extracted": -0.161988,
+      "near_canonical_in_stdout": -0.039426,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "    \n(Intercept) -0.175431   0.019816 -8.8532 2.08e-13 ***\nbeta_given   0.010562   0.019314  0.5469    0.586    \n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n\nPlacebo (pre-event CAR[-10,-2]): Mean=0.000000, t=1.748, p=0.0843\n\n============================================\n=== FINAL SUMMARY ===\n============================================\nAverage CAR[0,+5]:  -0.1620 (-16.20%)\nt-statistic:        -30.220\np-value:            0.0000\n\nCross-sectional (CAR ~ beta):\n  Intercept:        -0.17486 (t=-5.712)\n  Beta coefficient: 0.01222 (t=0.427, p=0.6705)\n  R-squared:        0.0023\n"
+    },
+    {
+      "scenario_id": "s98",
+      "model": "Opus",
+      "method": "RDD",
+      "canonical_beta": 0.05694,
+      "regex_extracted": 0.5003,
+      "near_canonical_in_stdout": 0.074,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "============\n                    SUMMARY OF FINDINGS                      \n============================================================\nCutoff (covenant threshold): 0.5 \nMain RD estimate (conventional): 0.2167 \nMain RD estimate (bias-corrected): 0.2578 \nRobust standard error: 0.0939 \nRobust p-value: 0.006024 \nRobust 95% CI: [ 0.0738 , 0.4418 ]\nOptimal bandwidth: 0.1345 \nCONCLUSION: Statistically significant discontinuity at the covenant threshold.\nCrossing the covenant threshold is associated with HIGHER log capex by ~ 0.217  units.\n============================================================\n"
+    },
+    {
+      "scenario_id": "s12",
+      "model": "Opus",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.02601,
+      "regex_extracted": -0.1947,
+      "near_canonical_in_stdout": -0.02378,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "87 -11.35039\n18:         7 -2.579e-02 0.001824 -14.14239\n19:         8 -2.423e-02 0.002220 -10.91466\n20:         9 -2.778e-02 0.001887 -14.72435\n21:        10 -2.625e-02 0.002028 -12.94292\n    event_day        AAR       se    t_stat\n        <int>      <num>    <num>     <num>\n\n=== BMP Standardized Test (Boehmer et al.) ===\nMean SCAR = -2.6198, t = -13.7855, p = 0.000000\n\n============================================\nCONCLUSION: Sudden CEO death generates a\nstatistically significant mean CAR of -4.8533%\nin the [0,+1] window (t = -17.876, p = 0.0000).\n============================================\n"
+    },
+    {
+      "scenario_id": "s36",
+      "model": "Opus",
+      "method": "DID",
+      "canonical_beta": 0.207083,
+      "regex_extracted": 0.550747,
+      "near_canonical_in_stdout": 0.2071,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "ck 2: Unit Fixed Effects ===\nDID coefficient (unit FE): 0.2071 \nSE (robust): 0.0427 \nt-value: 4.849 \np-value: 1e-06 \n\n=== Robustness Check 3: Pre-treatment balance ===\nPre-treatment mean difference (treated - control): -0.5507 \np-value: 0 \n\n========================================\n=== MAIN RESULT: DID ESTIMATE ===\n========================================\nDID Coefficient (treat_x_post): 0.2071 \nInterpretation: The indoor smoking ban is associated with a\n0.2071 change in log hospital admissions for respiratory illness.\nThis implies an INCREASE of approximately 23.01 % in respiratory admissions.\n"
+    },
+    {
+      "scenario_id": "s54",
+      "model": "Opus",
+      "method": "EVENT_STUDY",
+      "canonical_beta": 0.01811,
+      "regex_extracted": 0.0367,
+      "near_canonical_in_stdout": 0.0178706,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": " \nDay   0: +||||||||||||||||||||||||||||||||||||  **\nDay   1: +|||||||||||||||||||||||||||||||||||||||||  **\nDay   2: +||||||||||||||||||||||||||||||  **\nDay   3: +||||||||||||||||||||||||||||||||||  **\nDay   4: +|||||||||||||||||||||||||||||||||||||  **\nDay   5: +||||||||||||||||||||||||||||||||||||||||  **\nDay   6: +||||||||||||||||||||||||||||||||||||||  **\nDay   7: +||||||||||||||||||||||||||||||||  **\nDay   8: +|||||||||||||||||||||||||||||||||  **\nDay   9: +||||||||||||||||||||||||||||||||||||  **\nDay  10: +||||||||||||||||||||||||||||||||||||  **\n(Each '|' ≈ 0.05%; ** p<0.05, * p<0.10)\n"
+    },
+    {
+      "scenario_id": "s14",
+      "model": "Sonnet",
+      "method": "EVENT_STUDY",
+      "canonical_beta": 0.022646,
+      "regex_extracted": 0.0665,
+      "near_canonical_in_stdout": 0.0225,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "=== EVENT STUDY RESULTS ===\nEvent Window: [0, +2]\nNumber of firms: 80 \nMean CAR [0,+2]: 0.0665 \nStandard Error: 0.0038 \nt-statistic: 17.57 \np-value: 0 \nSignificant at 5% level: YES \n\n=== DAILY ABNORMAL RETURNS ===\nDay 0 : AR = 0.0225 , t-stat = 11.575 \nDay 1 : AR = 0.0226 , t-stat = 12.545 \nDay 2 : AR = 0.0214 , t-stat = 11.83 \n\n=== ROBUSTNESS CHECK (Using Provided Beta) ===\nRobust Mean CAR [0,+2]: 0.0674 \nRobust t-statistic: 19.466 \n"
+    },
+    {
+      "scenario_id": "s49",
+      "model": "Sonnet",
+      "method": "DID",
+      "canonical_beta": -0.030578,
+      "regex_extracted": 0.380923,
+      "near_canonical_in_stdout": -0.030578,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n\nTreatment Effect (DID coefficient): -0.03057752 \n\n=== ROBUSTNESS: FIXED EFFECTS MODEL ===\nTreatment Effect with FE: -0.03057752 \n\n=== PARALLEL TRENDS CHECK ===\nPre-treatment trend difference (treated*period): 0.101483 \nP-value for trend difference: 0.3710125 \n\n=== SUMMARY STATISTICS ===\n# A tibble: 4 × 4\n  treated  post mean_attendance n_obs\n    <dbl> <dbl>           <dbl> <int>\n1       0     0          0.0653   150\n2       0     1          0.463    350\n3       1     0          0.446    150\n4       1     1          0.813    350\n\nManual DID calculation: -0.03057752 \n"
+    },
+    {
+      "scenario_id": "s51",
+      "model": "Sonnet",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.019207,
+      "regex_extracted": -0.0536,
+      "near_canonical_in_stdout": -0.0178,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "      0 -0.0178       100 0.00139 -12.8   0     \n3         1 -0.0194       100 0.00122 -15.9   0     \n[1] \"\\nCumulative Abnormal Returns (CAR) for Event Window [-1, +1]:\"\n# A tibble: 1 × 5\n  Mean_CAR n_stocks  se_CAR t_stat_CAR p_value_CAR\n     <dbl>    <int>   <dbl>      <dbl>       <dbl>\n1  -0.0354      100 0.00203      -17.4           0\n\nMAIN RESULT: Mean CAR around earnings announcements = -0.0354 (-3.54%)\n[1] \"Robustness Check 1 - Extended window [-2,+2] CAR: -0.0536\"\n[1] \"Robustness Check 2 - Day 0 AAR: -0.0178 (t-stat: -12.84)\"\n[1] \"Robustness Check 3 - Portfolio approach CAR: -0.0354\"\n"
+    },
+    {
+      "scenario_id": "s64",
+      "model": "Sonnet",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.023212,
+      "regex_extracted": -0.0918,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "tistic: -15.55 \np-value: 0 \n\n=== ROBUSTNESS CHECK: BY BETA QUARTILES ===\n# A tibble: 4 × 5\n  beta_quartile mean_car t_stat      p_value     n\n          <int>    <dbl>  <dbl>        <dbl> <int>\n1             1  -0.0991 -11.2  0.0000000238    15\n2             2  -0.0946  -8.27 0.000000925     15\n3             3  -0.0735  -6.31 0.0000191       15\n4             4  -0.1000  -8.00 0.00000137      15\n\n=== ROBUSTNESS CHECK: ALTERNATIVE WINDOW [-2, +2] ===\nMean CAR: -0.063 \nt-statistic: -9.88 \np-value: 0 \n\n=== SUMMARY STATISTICS ===\nStandard deviation of CAR: 0.0436 \nPercentage of positive CARs: 1.7 %\n"
+    },
+    {
+      "scenario_id": "s13",
+      "model": "Sonnet",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.017892,
+      "regex_extracted": -0.051197,
+      "near_canonical_in_stdout": -0.0237214,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "-2]\n\nAverage Cumulative Abnormal Return (CAR): -0.03232 \nStandard Error: 0.003703 \nT-statistic: -8.728 \nP-value (two-tailed): 0 \nResult: CAR is statistically significant at 5% level\nFinding: Negative CAR supports the acquirer's curse hypothesis\n\nRobustness Checks:\n==================\nAlternative window [-2,+2] - Mean CAR: -0.051197 , T-stat: -10.993 \nSign test - Firms with negative CAR: 69 out of 80 , Z-stat: 6.485 \nDaily abnormal returns summary (event window):\n      Min.    1st Qu.     Median       Mean    3rd Qu.       Max. \n-0.0623348 -0.0237214 -0.0100985 -0.0107735  0.0004946  0.0417025 \n"
+    },
+    {
+      "scenario_id": "s37",
+      "model": "Gemini",
+      "method": "DID",
+      "canonical_beta": -0.180967,
+      "regex_extracted": 0.449236,
+      "near_canonical_in_stdout": -0.180967,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "ation, Dep. Var.: y\nObservations: 1,600\nStandard-errors: Clustered (unit_id) \n              Estimate Std. Error   t value   Pr(>|t|)    \n(Intercept)   0.030256   0.038003  0.796138 4.2690e-01    \ntreated       0.449236   0.052977  8.479766 5.0648e-15 ***\npost          0.403945   0.027362 14.763154  < 2.2e-16 ***\ntreat_x_post -0.180967   0.040968 -4.417279 1.6398e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.498543   Adj. R2: 0.174744\n\n--- Comparison of treat_x_post coefficient ---\nTWFE Model: -0.1810 (SE: 0.0410)\nOLS Model (robust SE): -0.1810 (SE: 0.0410)\n"
+    },
+    {
+      "scenario_id": "s38",
+      "model": "Gemini",
+      "method": "DID",
+      "canonical_beta": -0.161211,
+      "regex_extracted": 0.44001,
+      "near_canonical_in_stdout": -0.161211,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "Non-Clustered Standard Errors ---\nOLS estimation, Dep. Var.: y\nObservations: 1,200\nFixed-effects: unit_id: 150,  period: 8\nStandard-errors: IID \n              Estimate Std. Error  t value  Pr(>|t|)    \ntreat_x_post -0.161211   0.060508 -2.66428 0.0078345 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.472798     Adj. R2: 0.370044\n                 Within R2: 0.006766\nDID Coefficient (Non-Clustered SE): -0.1612\nStandard Error (Non-Clustered): 0.0605\n\n--- Comparison of Standard Errors for 'treat_x_post' ---\nClustered SE (by unit_id): 0.0649\nNon-Clustered SE: 0.0605\n"
+    },
+    {
+      "scenario_id": "s82",
+      "model": "Gemini",
+      "method": "IV",
+      "canonical_beta": 0.003635,
+      "regex_extracted": 0.4672,
+      "near_canonical_in_stdout": 0.0036,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "--- OLS Regression Results ---\n\n--- Instrumental Variables (IV) Regression Results ---\n\n--- First-Stage Regression Results (Checking Relevance) ---\n\nFirst-stage F-statistic for instrument 'z': 105.7\nFirst-stage F-statistic is strong, supporting the relevance assumption.\n\n--- Comparison of OLS and IV Coefficients for 'x' ---\nOLS Coefficient for 'x': 0.4672\nIV Coefficient for 'x':  0.0036\n\n--- Final Causal Estimate from IV Regression ---\nThe estimated causal effect of Hospital Choice (x) on 30-Day Mortality (y) is: 0.0036 (Std. Error: 0.1062)\n"
+    },
+    {
+      "scenario_id": "s46",
+      "model": "Gemini",
+      "method": "DID",
+      "canonical_beta": -0.178946,
+      "regex_extracted": null,
+      "near_canonical_in_stdout": -0.1789,
+      "diagnosis": "EXTRACTION_FAIL",
+      "stdout_tail": "--- Regression Results ---\n\n--- Key Finding: DID Coefficient (treat_x_post) ---\nCoefficient: -0.1789\nStandard Error: 0.0847\nP-value: 0.0371\n95% Confidence Interval: [-0.3470, -0.0109]\n\nInterpretation: The COPS grant is associated with an average -16.38% change in violent crime rates in treated municipalities, relative to control municipalities, after controlling for municipality and period fixed effects.\nThis effect is statistically significant at the 5%% level.\n"
+    },
+    {
+      "scenario_id": "s24",
+      "model": "Gemini",
+      "method": "IV",
+      "canonical_beta": -0.233107,
+      "regex_extracted": 0.38367,
+      "near_canonical_in_stdout": -0.2394,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": " type:  HC2 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|) CI Lower CI Upper  DF\n(Intercept) -0.02851    0.03860 -0.7386 0.460498  -0.1043  0.04733 498\nx           -0.23283    0.08488 -2.7431 0.006306  -0.3996 -0.06606 498\n\nMultiple R-squared:  -0.355 ,\tAdjusted R-squared:  -0.3577 \nF-statistic: 7.524 on 1 and 498 DF,  p-value: 0.006306\n\n--- Summary of Key Coefficients ---\nOLS Coefficient for Inflation (x): 0.3837 (Std. Error: 0.0305 )\nIV Coefficient for Inflation (x): -0.2331 (Std. Error: 0.085 )\nFirst Stage Coefficient for Oil Price Change (z): 0.6727 (Std. Error: 0.0527 )\n"
+    },
+    {
+      "scenario_id": "s13",
+      "model": "o3",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.017892,
+      "regex_extracted": -1.0,
+      "near_canonical_in_stdout": null,
+      "diagnosis": "MODEL_FAIL",
+      "stdout_tail": "-------------------------------------------------------------\nMain result: CAR [-1,+1]\nMean CAR     : -3.23 %\nt-statistic  : -8.728 \np-value      : 0 \n-------------------------------------------------------------\n\nRobustness check 1: Constant-mean model\nMean CAR [-1,+1]: -3.21 %   p-value: 0 \n\nRobustness check 2: Wider window [-3,+3]\nMean CAR [-3,+3]: -6.79 %   p-value: 0 \n"
+    },
+    {
+      "scenario_id": "s62",
+      "model": "o3",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.017795,
+      "regex_extracted": null,
+      "near_canonical_in_stdout": -0.0211,
+      "diagnosis": "EXTRACTION_FAIL",
+      "stdout_tail": "ess window (-3:+3):\n# A tibble: 1 × 3\n      CAR     t     n\n    <dbl> <dbl> <int>\n1 -0.0755 -2.25     7\n\n=== Difference-in-Differences Robustness ===\n                        did_mod\nDependent Var.:             ret\n                               \ntreat x post    0.0017 (0.0012)\nFixed-Effects:  ---------------\nstock_id                    Yes\nevent_day                   Yes\n_______________ _______________\nS.E.: Clustered    by: stock_id\nObservations              1,260\nR2                      0.17407\nWithin R2               2.49e-5\n---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n"
+    },
+    {
+      "scenario_id": "s79",
+      "model": "o3",
+      "method": "IV",
+      "canonical_beta": 0.229228,
+      "regex_extracted": 1.024525,
+      "near_canonical_in_stdout": 0.229228,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "t) -0.026662   0.066789 -0.3992    0.690\nx            0.229228   0.166641  1.3756    0.170\ncontrols    -0.046637   0.043904 -1.0623    0.289\n\n\nFirst-stage coefficient on z (robust s.e.):\n    Estimate   Std. Error      t value     Pr(>|t|) \n5.055572e-01 6.773122e-02 7.464167e+00 9.345449e-13 \n\nWeak-instrument robust F-statistic (H0: z has no effect on x):\n[1] 55.71379\n\nIV with quadratic control (robust s.e.):\n  Estimate Std. Error    t value   Pr(>|t|) \n 0.2292053  0.1669378  1.3729979  0.1707922 \n\n==== Main estimate: Effect of adoption on income ====\nCoefficient = 0.2292, Robust s.e. = 0.1666\n"
+    },
+    {
+      "scenario_id": "s57",
+      "model": "o3",
+      "method": "EVENT_STUDY",
+      "canonical_beta": -0.015384,
+      "regex_extracted": -1.0,
+      "near_canonical_in_stdout": -0.016,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "indow)\n# A tibble: 3 × 5\n  term         estimate std.error statistic  p.value\n  <chr>           <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept) -0.000460  0.000739    -0.623 5.33e- 1\n2 Post        -0.0152    0.00100    -15.2   1.39e-46\n3 mkt_ret      0.0230    0.0491       0.469 6.39e- 1\n\nRobustness CAR (-3,+3) across 80 IPOs\n# A tibble: 1 × 4\n  mean_CAR sd_CAR     n t_stat\n     <dbl>  <dbl> <int>  <dbl>\n1  -0.0674 0.0427    80  -14.1\n\nRobustness CAR using naïve AR (beta=1), (-1,+1)\n# A tibble: 1 × 4\n  mean_CAR sd_CAR     n t_stat\n     <dbl>  <dbl> <int>  <dbl>\n1  -0.0337 0.0290    80  -10.4\n"
+    },
+    {
+      "scenario_id": "s91",
+      "model": "o3",
+      "method": "RDD",
+      "canonical_beta": 0.146146,
+      "regex_extracted": 0.0542,
+      "near_canonical_in_stdout": 0.142,
+      "diagnosis": "EXTRACTED_WRONG",
+      "stdout_tail": "N\n\nNumber of Obs.                  252          248\nEff. Number of Obs.              76           66\nOrder est. (p)                    1            1\nOrder bias  (q)                   2            2\nBW est. (h)                   0.142        0.142\nBW bias (b)                   0.211        0.211\nrho (h/b)                     0.675        0.675\nUnique Obs.                     248          242\n\n\nMain RDD estimate (bias-corrected): 0.0542 with SE = 0.0505 \n\nNarrower bandwidth estimate: 0.0581 SE = 0.0545 \nUniform-kernel estimate : 0.056 SE = 0.0462 \nPlacebo-cutoff estimate : -0.0701 SE = 0.0632 \n"
+    }
+  ]
+}

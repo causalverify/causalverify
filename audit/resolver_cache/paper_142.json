@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_142",
+  "title": "Selling Labor Low: Wage Responses to Productivity Shocks in Developing Countries",
+  "authors": "Jayachandran",
+  "year": null,
+  "journal": "JDE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/503579",
+    "title": "Selling Labor Low: Wage Responses to Productivity Shocks in Developing Countries",
+    "year": 2006,
+    "journal": "Journal of Political Economy",
+    "citations": 462
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jayachandran"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jde",
+    "journal_oa": "jpe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 462,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

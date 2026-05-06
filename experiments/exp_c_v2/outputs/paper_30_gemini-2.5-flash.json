@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_30",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:35:23.489885",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 671,
+    "output_tokens": 163,
+    "content": "## Research Integrity by Design (RID) Protocol\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe identification strategy relies on an event study approach, comparing CDS spread behavior in specific pre-event windows to a non-event baseline, while controlling for publicly available information (equity returns, market-wide risk, industry trends) and unobserved entity-specific and time-specific factors through fixed effects. The causal inference for \"insider trading\" will be drawn by observing abnormal CDS spread increases specifically *before* credit events, and crucially, by demonstrating that the magnitude of these increases is positively correlated with a proxy for the *ex-ante* availability of private information – the number of bank lenders. This differential effect across entities with varying levels of potential informed traders (bank lenders)",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "positive",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study of CDS spread changes before credit events (downgrades, defaults, LBOs), combined with cross-sectional analysis relating pre-event CDS activity to the number of bank lenders in the firm's loan syndicate — the innovation is testing whether the number of informed agents (lenders) predicts the intensity of pre-event CDS market activity, distinguishing informed trading from public information flow",
+    "key_variables": {
+      "treatment": "upcoming negative credit event (rating downgrade, default, or LBO announcement) combined with number of bank lenders (proxy for number of informed traders)",
+      "control": "same firm's CDS spread changes during non-event periods; firms with fewer bank lenders",
+      "outcome": "cumulative abnormal CDS spread change in [-60, -1] trading days before credit event; incremental CDS information (CDS spread change not explained by concurrent equity return changes)",
+      "time_period": "2001–2004, daily CDS and equity data"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Significant abnormal CDS spread increases occur in the 30-90 days before negative credit events, and the magnitude of this pre-event activity is significantly positively correlated with the number of bank lenders in the borrower's loan syndicate. Firms with 5+ bank lenders show approximately 50-70 basis points of abnormal CDS widening before downgrades, compared to ~15 bps for firms with fewer lenders. This pattern is consistent with bank-based insider trading in the CDS market and is not explained by concurrent equity market information.",
+    "main_effect": "Pre-event CDS spread widening: approximately 50-70 bps for firms with 5+ bank lenders vs. ~15 bps for firms with fewer lenders in the 60 days before a downgrade; the number of lenders is a significant positive predictor of pre-event CDS activity",
+    "key_robustness": [
+      "Controlling for concurrent equity returns (public information flow)",
+      "Separating credit events by type (downgrade vs. default vs. LBO)",
+      "Using incremental CDS information (residual from CDS-equity regression)",
+      "Cross-country analysis (U.S. vs. European reference entities)",
+      "Alternative event windows (30, 60, 90 days before event)",
+      "Placebo tests using post-event windows"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study of CDS spread changes around credit events + cross-sectional regression of pre-event CDS activity on number of informed agents (bank lenders)",
+      "treatment": "Negative credit event (rating downgrade, default, LBO) for the reference entity; cross-sectional variation in number of bank lenders (from DealScan syndicate data)",
+      "event_window": "[-90, -1] and [-60, -1] trading days before credit event (pre-event period); [0, +5] as announcement window",
+      "estimation_window": "[-180, -91] trading days for baseline CDS behavior",
+      "sample_period": "2001–2004",
+      "unit_of_observation": "Reference entity × credit event (79 entities, multiple events per entity possible)",
+      "key_assumption": "The number of bank lenders in the loan syndicate proxies for the number of agents with private information who can trade CDS. If pre-event CDS activity is driven by public information rather than insider trading, the number of lenders should not predict the intensity of pre-event activity (since public information is equally available regardless of the number of lenders). The equity market is assumed to be a sufficient statistic for public information flow."
+    },
+    "key_magnitudes": {
+      "pre_event_widening_many_lenders": "+50-70 basis points of abnormal CDS spread widening in [-60, -1] window for firms with 5+ bank lenders",
+      "pre_event_widening_few_lenders": "+15 basis points for firms with fewer lenders",
+      "lender_coefficient": "Each additional bank lender is associated with approximately 10-15 bps of additional pre-event CDS widening",
+      "incremental_information": "CDS-implied probability of default increases before downgrades, even after controlling for equity market movements"
+    },
+    "robustness_notes_detail": "The key innovation is controlling for concurrent equity returns: if pre-event CDS widening merely reflected public information, it should be explained by simultaneous equity price declines. The residual (incremental CDS information not explained by equity) is significantly positive before credit events and significantly related to the number of bank lenders, ruling out a public-information explanation. Results hold for U.S. and European entities, across event types, and with various control specifications."
+  }
+}

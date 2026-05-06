@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_133",
+  "title": "Trade and Income -- Exploiting Time Series in Geography",
+  "authors": "Feyrer",
+  "year": null,
+  "journal": "AEJ:Applied",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.20170616",
+    "title": "Trade and Income\u2014Exploiting Time Series in Geography",
+    "year": 2019,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 223
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "feyrer"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aej:applied",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 223,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

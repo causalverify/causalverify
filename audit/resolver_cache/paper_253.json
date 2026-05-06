@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_253",
+  "title": "As certain as debt and taxes: Estimating the tax sensitivity of leverage from state tax changes",
+  "authors": "Heider & Ljungqvist",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2015.01.004",
+    "title": "As certain as debt and taxes: Estimating the tax sensitivity of leverage from state tax changes",
+    "year": 2015,
+    "journal": "Journal of Financial Economics",
+    "citations": 556
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ljungqvist",
+      "heider"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jfe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 556,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

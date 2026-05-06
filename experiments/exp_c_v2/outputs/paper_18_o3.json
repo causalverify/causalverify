@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_18",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:29:14.780536",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 707,
+    "output_tokens": 2005,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy: two-stage least squares (2SLS) in a cross-section of 64 former European colonies.  Instrument = log European settler mortality (SM); endogenous regressor = institutional quality (IQ); outcome = log GDP per capita 1995 (Y).  Identification relies on:  \n(i) relevance (E[IQ|SM] ≠ 0) because higher settler mortality discouraged settlement and led to weaker institutions;  \n(ii) exclusion (SM affects Y only through IQ, conditional on geography controls).  \n\nDirectional hypothesis H₁ (pre-committed): A one-unit increase in institutional quality raises current income – i.e., β₂SLS > 0.  Equivalent predictions:  \n• First stage: γ < 0 (higher mortality → worse institutions).  \n• Reduced form: ρ < 0 (higher mortality → lower income).  \nThese signs are locked in and will not be revised.\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five specifications will be estimated:\n\nSpec 1 (OLS):  \nY = α₁ + β₁ IQ + X′δ₁ + ε₁\n\nSpec 2 (First stage of 2SLS):  \nIQ = α₂ + γ SM + X′δ₂ + υ\n\nSpec 3 (Second stage of 2SLS):  \nY = α₃ + β₂SLS IQ̂ + X′δ₃ + η\n\nSpec 4 (Reduced form):  \nY = α₄ + ρ SM + X′δ₄ + ξ\n\nSpec 5 (Robustness 2SLS – parsimonious controls):  \nUse only continent dummies, omit latitude, distance, and legal origin.  \nY = α₅ + β₂SLS,par IQ̂ + C′π + ω\n\nCommon elements:  \n• Y = log GDP per capita 1995  \n• IQ = avg. protection against expropriation, 1985-95 (0–10 scale)  \n• SM = log settler mortality  \n• X = latitude (abs.), continent dummies (Africa, Asia, Americas), distance from coast (km), British & French legal-origin dummies  \n• All specifications use heteroskedasticity-robust (HC1) standard errors.  \nNo other regressions, samples, or variable transforms will be run.\n\nSTEP 3 — FALSIFICATION GATE  \nThe hypothesis H₁ will be rejected – gate closes – if ANY of the following obtain in Spec 3:  \na) β₂SLS ≤ 0, OR  \nb) p-value(β₂SLS) > 0.10 (two-sided), OR  \nc) First-stage F-statistic on SM in Spec 2 < 10.  \nFailing these criteria → falsification; otherwise H₁ survives.\n\nSTEP 4 — R CODE\n```r\n# ----- Load data -----\n# File should be named \"colonies_settlermortality.csv\"\n# Variables: country, ln_gdp95, inst_quality, ln_settler_mort,\n#            abs_latitude, africa, asia, americas,\n#            dist_coast_km, british_legal, french_legal\ndat <- read.csv(\"colonies_settlermortality.csv\")\n\n# Convenience matrices\ncontrols <- cbind(dat$abs_latitude,\n                  dat$africa, dat$asia, dat$americas,\n                  dat$dist_coast_km,\n                  dat$british_legal, dat$french_legal)\ncolnames(controls) <- c(\"abs_latitude\",\"africa\",\"asia\",\"americas\",\n                        \"dist_coast_km\",\"british_legal\",\"french_legal\")\n\n# Libraries\nlibrary(sandwich); library(lmtest); library(AER)\n\n# ---------- Spec 1: OLS ----------\nspec1 <- lm(ln_gdp95 ~ inst_quality + controls)\ncoeftest(spec1, vcov = vcovHC(spec1, type = \"HC1\"))\n\n# ---------- Spec 2: 1st Stage ----------\nspec2 <- lm(inst_quality ~ ln_settler_mort + controls)\nfs_sum <- coeftest(spec2, vcov = vcovHC(spec2, type = \"HC1\"))\nfs_F   <- linearHypothesis(spec2, \"ln_settler_mort = 0\",\n                           vcov = vcovHC(spec2, type = \"HC1\"))$F[2]\n\n# ---------- Spec 3: 2SLS ----------\niv_formula <- ln_gdp95 ~ inst_quality + controls | \n              ln_settler_mort + controls\nspec3 <- ivreg(iv_formula, data = dat)\ncoeftest(spec3, vcov = vcovHC(spec3, type = \"HC1\"))\n\n# ---------- Spec 4: Reduced Form ----------\nspec4 <- lm(ln_gdp95 ~ ln_settler_mort + controls)\ncoeftest(spec4, vcov = vcovHC(spec4, type = \"HC1\"))\n\n# ---------- Spec 5: Parsimonious 2SLS ----------\niv_pars <- ln_gdp95 ~ inst_quality + africa + asia + americas |\n           ln_settler_mort + africa + asia + americas\nspec5 <- ivreg(iv_pars, data = dat)\ncoeftest(spec5, vcov = vcovHC(spec5, type = \"HC1\"))\n\n# ---------- Falsification Gate ----------\nbeta_2sls  <- coef(spec3)[\"inst_quality\"]\npval_2sls  <- coeftest(spec3, vcov = vcovHC(spec3, type = \"HC1\"))[\n                 \"inst_quality\",\"Pr(>|z|)\"]\ngate_pass <- (beta_2sls > 0) & (pval_2sls <= 0.10) & (fs_F >= 10)\nprint(list(beta_2sls = beta_2sls, pval = pval_2sls, F_first = fs_F,\n           gate_pass = gate_pass))\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT  \n(Because we do not yet observe the data, numbers are expected values based on the literature.)\n\nExpected core estimates:  \n• First stage (Spec 2): γ ≈ –0.60, s.e. ≈ 0.12 ⇒ t ≈ –5.0, F ≈ 25 (>10).  \n• 2SLS (Spec 3): β₂SLS ≈ 0.95, s.e. ≈ 0.16 ⇒ t ≈ 6.0, p ≈ 0.000.  \n• Reduced form (Spec 4): ρ ≈ –0.57, s.e. ≈ 0.14 ⇒ t ≈ –4.1.  \n• Parsimonious 2SLS (Spec 5): β₂SLS,par ≈ 0.90, s.e. ≈ 0.18.\n\nGate assessment: all criteria (β₂SLS > 0, p ≤ 0.10, F ≥ 10) are expected to be satisfied, so falsification gate would remain OPEN; hypothesis H₁ would NOT be rejected.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — log European settler mortality as instrument for current institutional quality (expropriation risk); first stage: settler mortality → institutions; second stage: institutions (instrumented) → log GDP per capita",
+    "key_variables": {
+      "treatment": "institutional quality (average protection against expropriation risk, 0-10 scale from ICRG/PRS), instrumented by log settler mortality",
+      "control": "N/A (cross-sectional IV, no explicit control group; variation is across 64 former colonies)",
+      "outcome": "log GDP per capita in 1995 (PPP)",
+      "time_period": "cross-section: institutions measured 1985-1995; settler mortality from 17th-19th century"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Institutions have a large and statistically significant positive effect on income. A one-unit improvement in institutional quality (on the 0-10 expropriation risk scale) increases log GDP per capita by approximately 0.94 (implying that improving institutions from Nigerian to Chilean levels — roughly a 2-point increase — would increase income by approximately 7-fold). IV estimates are larger than OLS, consistent with attenuation bias from measurement error in institutional quality.",
+    "main_effect": "IV coefficient: 0.94 log points of GDP per capita per unit of institutional quality (expropriation risk). Moving from the 25th to 75th percentile of institutions raises income by approximately 7-fold.",
+    "key_robustness": [
+      "Controlling for latitude, continental dummies, British/French legal origin",
+      "Alternative institutional quality measures (constraint on executive, democracy, rule of law)",
+      "Alternative settler mortality sources and samples",
+      "Overidentification tests using multiple instruments",
+      "Excluding neo-Europes (USA, Canada, Australia, New Zealand)",
+      "Controlling for malaria prevalence and current disease burden"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS), cross-sectional",
+      "treatment": "Institutional quality (expropriation risk index from PRS/ICRG), treated as endogenous",
+      "event_window": "N/A (cross-section)",
+      "estimation_window": "N/A",
+      "sample_period": "Cross-section of 64 former colonies; institutions measured 1985-1995; settler mortality from 17th-19th century historical records",
+      "unit_of_observation": "Country (64 former European colonies)",
+      "key_assumption": "Exclusion restriction: historical settler mortality affects current GDP only through its influence on institutional development (through the colonial settlement strategy → institutional path dependence channel), not through any direct channel from historical disease environment to current economic conditions. This is the most debated assumption in the literature."
+    },
+    "key_magnitudes": {
+      "iv_coefficient": "0.94 log GDP per capita per unit of institutional quality (Table 4, panel B, column 1)",
+      "ols_coefficient": "0.52 log GDP per capita per unit of institutional quality (smaller than IV, consistent with measurement error attenuation)",
+      "first_stage": "Coefficient of settler mortality on institutions: -0.61 (higher mortality → worse institutions); F-statistic > 10",
+      "implied_income_gap": "Moving Nigeria's institutions to Chile's level (a ~2-point improvement) would increase Nigerian GDP per capita approximately 7-fold"
+    },
+    "robustness_notes_detail": "Results survive a wide battery of controls including geography (latitude, landlocked, continental dummies), current disease environment (malaria risk), colonial identity (British vs. French), and legal origin. The first-stage relationship is strong (F > 10) and has a clear historical narrative. The most important threat is the exclusion restriction: current disease burden or geographic factors correlated with settler mortality might directly affect GDP. The authors address this by controlling for malaria prevalence and showing that the IV estimate survives. However, this exclusion restriction remains actively debated in the literature (Albouy 2012 challenges the settler mortality data)."
+  }
+}

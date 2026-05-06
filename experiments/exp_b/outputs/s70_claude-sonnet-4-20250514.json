@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s70",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Income on Civil Conflict Using Rainfall Variation",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:58:46.677647",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 486,
+    "output_tokens": 1015,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with rainfall variation (z) as an instrument for income (x). The key assumptions are: (1) Relevance: rainfall affects income (agricultural productivity), (2) Exclusion restriction: rainfall only affects conflict through its impact on income, not directly, and (3) Monotonicity: rainfall has a consistent directional effect on income across observations. This strategy helps address endogeneity concerns where conflict might simultaneously affect income.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s70_data.csv\")\n\n# First stage: Check instrument relevance\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"=== FIRST STAGE RESULTS ===\")\nprint(summary(first_stage))\ncat(\"\\nF-statistic for instrument relevance:\", summary(first_stage)$fstatistic[1], \"\\n\")\n\n# Reduced form: Direct effect of instrument on outcome\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\n=== REDUCED FORM RESULTS ===\")\nprint(summary(reduced_form))\n\n# IV estimation using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\n=== IV (2SLS) RESULTS ===\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coefficient <- coef(iv_model)[\"x\"]\ncat(\"\\n=== KEY FINDING ===\")\ncat(\"\\nIV Coefficient (Income → Conflict):\", round(iv_coefficient, 4))\ncat(\"\\nStandard Error:\", round(summary(iv_model)$coefficients[\"x\", \"Std. Error\"], 4))\ncat(\"\\nP-value:\", round(summary(iv_model)$coefficients[\"x\", \"Pr(>|t|)\"], 4), \"\\n\")\n\n# OLS for comparison (biased estimate)\nols_model <- lm(y ~ x + controls, data = data)\nprint(\"\\n=== OLS COMPARISON (potentially biased) ===\")\nprint(summary(ols_model))\nols_coefficient <- coef(ols_model)[\"x\"]\ncat(\"\\nOLS Coefficient:\", round(ols_coefficient, 4))\ncat(\"\\nIV Coefficient:\", round(iv_coefficient, 4))\ncat(\"\\nDifference (IV - OLS):\", round(iv_coefficient - ols_coefficient, 4), \"\\n\")\n\n# Robustness checks\nprint(\"\\n=== ROBUSTNESS CHECKS ===\")\n\n# Test for weak instruments\nif(summary(first_stage)$fstatistic[1] > 10) {\n  cat(\"✓ Instrument passes weak instrument test (F > 10)\\n\")\n} else {\n  cat(\"⚠ Potential weak instrument issue (F < 10)\\n\")\n}\n\n# Hausman test for endogeneity\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"Hausman test for endogeneity:\")\nprint(hausman_test$diagnostics)\n\n# Sargan test (not applicable with single instrument, but check overidentification if needed)\ncat(\"\\nNote: With single instrument, model is exactly identified\\n\")\n\nprint(\"\\n=== INTERPRETATION ===\")\nif(iv_coefficient < 0) {\n  cat(\"Higher income (due to better rainfall) is associated with LOWER conflict probability\\n\")\n} else {\n  cat(\"Higher income (due to better rainfall) is associated with HIGHER conflict probability\\n\")\n}\n```\n\n## 3. Expected Findings\nI expect a negative coefficient (approximately -0.3 to -0.6), indicating that higher income reduces the likelihood of civil conflict. This aligns with the \"opportunity cost\" theory where better economic conditions provide alternatives to conflict participation and reduce grievances. The IV estimate should be larger in absolute magnitude than OLS if there's simultaneity bias (conflict reduces income), making OLS estimates biased toward zero. The effect size should be economically meaningful, suggesting that rainfall-driven income changes of one standard deviation could alter conflict probability by 10-20 percentage points.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use rainfall variation as an instrument for income.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased income, driven by higher rainfall, reduces the likelihood of civil conflict.",
+    "main_effect": "-0.25"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0.5,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies Difference-in-Differences (DID) as the primary identification strategy, which is a strong match to the ground truth. It provides excellent justification for DID and proposes sophisticated extensions like propensity score matching (PSM) for control group selection and dynamic DID (event study) for robustness, indicating a deep understanding of causal inference best practices. For direction, the AI correctly frames the core research question as whether TARP recipients 'shifted to riskier lending.' This aligns perfectly with the ground truth's finding that TARP banks increased risk (LTI ratio). While it doesn't state the *conclusion direction* as a result (which is appropriate for a research plan), it correctly specifies the *direction of the phenomenon* being investigated.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_02",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:14:23.079649+00:00"
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s88",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Close-Election Incumbency on Reelection Probability",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:49:26.147848",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 480,
+    "output_tokens": 683,
+    "content": "## 1. Identification Strategy\nTo analyze the impact of close-election incumbency on reelection probability, we will employ a Regression Discontinuity Design (RDD) approach. The key assumption in RDD is that the running variable (vote-share margin) is continuous at the cutoff point, and the probability of being treated (winning the close election) changes discontinuously at this point. The identification strategy relies on the idea that incumbents who barely won an election (just above the cutoff) are comparable to those who barely lost (just below the cutoff), except for the fact that they were treated (won) or not treated (lost). By comparing the outcomes (reelection probability) for these two groups, we can estimate the causal effect of close-election incumbency on reelection probability.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(broom)\nlibrary(ggplot2)\n\n# Load the data\ndata <- read_csv(\"experiments/exp_b/data/s88_data.csv\")\n\n# Run the RDD analysis\n# We will use a simple linear regression model with a slope change at the cutoff\n# The cutoff is assumed to be at running_var = 0.5, where the incumbent has a 50% vote share\n# We include an interaction term between treated and running_var to allow for a slope change\nmodel <- lm(y ~ treated * (running_var - 0.5), data = data)\n\n# Print the model summary\nsummary(model)\n\n# Print the coefficient of the treated variable, which represents the causal effect\n# We are interested in the coefficient of the treated variable, which represents the effect of winning a close election\ncoef(model)[2]\n\n# Basic robustness checks\n# Check the sensitivity of the results to different bandwidths around the cutoff\n# We will use a bandwidth of 0.1, 0.2, and 0.3\nbandwidths <- c(0.1, 0.2, 0.3)\nresults <- rep(NA, length(bandwidths))\nfor (i in 1:length(bandwidths)) {\n  subset_data <- data[abs(data$running_var - 0.5) <= bandwidths[i], ]\n  model <- lm(y ~ treated * (running_var - 0.5), data = subset_data)\n  results[i] <- coef(model)[2]\n}\nprint(results)\n\n# Plot the data and the regression line\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n```\n\n## 3. Expected Findings\nWe expect the coefficient of the treated variable to be positive, indicating that winning a close election increases the probability of being reelected. The magnitude of the effect will depend on the specific context and data, but we expect it to be relatively small, likely in the range of 0.05 to 0.15. This is because winning a close election may provide an incumbent with an advantage in terms of name recognition, fundraising, and voter momentum, but it is unlikely to completely determine their chances of reelection. The effect may be smaller if the election is highly competitive or if the incumbent's performance is closely tied to external factors such as economic conditions.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze the discontinuity at the vote-share cutoff to isolate the effect of incumbency.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Winning a close election reduces the probability of reelection.",
+    "main_effect": "-0.15"
+  }
+}

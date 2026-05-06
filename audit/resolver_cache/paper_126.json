@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_126",
+  "title": "Do Consumers Respond to Marginal or Average Price? Evidence from Nonlinear Electricity Pricing",
+  "authors": "Ito",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.104.2.537",
+    "title": "Do Consumers Respond to Marginal or Average Price? Evidence from Nonlinear Electricity Pricing",
+    "year": 2014,
+    "journal": "American Economic Review",
+    "citations": 811
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ito"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 811,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_217",
+  "title": "Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs",
+  "authors": "Calonico, Cattaneo & Titiunik",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3982/ecta11757",
+    "title": "Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs",
+    "year": 2014,
+    "journal": "Econometrica",
+    "citations": 2954
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "cattaneo",
+      "titiunik"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2954,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

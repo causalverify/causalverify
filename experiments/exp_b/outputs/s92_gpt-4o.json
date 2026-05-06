@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s92",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Welfare Eligibility on Labor Supply",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:46:10.902599",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 434,
+    "output_tokens": 548,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is Regression Discontinuity Design (RDD). Since welfare eligibility is determined by crossing an income threshold, we can compare individuals just below and just above this threshold to identify the causal effect of eligibility on labor supply. The key assumption is that near the cutoff, individuals are similar in all respects other than their treatment status, thus allowing us to attribute differences in labor supply to the treatment (eligibility).\n\n## 2. R Code\n```r\n# Load necessary packages\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(rdd)\n\n# Read the CSV file\ndata <- read.csv(\"experiments/exp_b/data/s92_data.csv\")\n\n# Fit a local linear regression for the RDD\nrdd_model <- RDestimate(y ~ running_var, cutpoint = 0.5, data = data)\n\n# Print the summary for RDD model\nsummary(rdd_model)\n\n# Plot RDD results\nplot(rdd_model)\n\n# Conduct robustness checks with different bandwidths\nbandwidths <- c(0.1, 0.15, 0.2)\n\nfor (bw in bandwidths) {\n  cat(\"\\nBandwidth:\", bw, \"\\n\")\n  rdd_model_bw <- RDestimate(y ~ running_var, cutpoint = 0.5, data = data, bw = bw)\n  print(summary(rdd_model_bw))\n}\n\n# Check continuity of the running variable at the cutoff\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = 'lm', formula = y ~ running_var, data = data[data$running_var < 0.5, ], se = FALSE, color = \"red\") +\n  geom_smooth(method = 'lm', formula = y ~ running_var, data = data[data$running_var >= 0.5, ], se = FALSE, color = \"blue\") +\n  theme_minimal() +\n  labs(title = \"RDD Plot: Welfare Eligibility Impact on Labor Supply\",\n       x = \"Income (Running Variable)\",\n       y = \"Hours Worked\",\n       color = \"Eligibility\")\n```\n\n## 3. Expected Findings\nI expect the sign of the RDD coefficient to be negative, indicating that eligibility for welfare benefits leads to a reduction in hours worked among those who qualify. The magnitude of the effect might be moderate, as public assistance can provide a sufficient income replacement effect that reduces the hours an individual needs to work. However, the exact magnitude will depend on the stringency of the welfare eligibility criteria and individual economic circumstances.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Examine changes in labor supply around the income threshold for welfare eligibility.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Crossing the income threshold for welfare eligibility results in a reduction in labor supply.",
+    "main_effect": "-0.3"
+  }
+}

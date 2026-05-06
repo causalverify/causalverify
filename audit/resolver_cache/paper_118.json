@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_118",
+  "title": "Do Police Reduce Crime? Estimates Using the Allocation of Police Forces After a Terrorist Attack",
+  "authors": "Di Tella & Schargrodsky",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282804322970733",
+    "title": "Do Police Reduce Crime? Estimates Using the Allocation of Police Forces After a Terrorist Attack",
+    "year": 2004,
+    "journal": "American Economic Review",
+    "citations": 797
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "tella",
+      "schargrodsky"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 797,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

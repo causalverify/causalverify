@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_192",
+  "title": "The Causal Effect of Education on Earnings",
+  "authors": "Card",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/s1573-4463(99)03011-4",
+    "title": "The Causal Effect of Education on Earnings",
+    "year": 1999,
+    "journal": "Handbook of labour economics",
+    "citations": 2181
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "card"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "handbook of labour economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 2181,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

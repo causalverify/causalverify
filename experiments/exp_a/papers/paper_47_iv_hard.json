@@ -1,0 +1,88 @@
+{
+  "paper_id": "paper_47",
+  "source": "American Economic Review, 2001",
+  "authors": "Acemoglu & Angrist",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "How Large Are Human-Capital Externalities? Evidence from Compulsory Schooling Laws",
+  "doi": "10.1257/aer.91.1.15",
+  "volume": 91,
+  "issue": 1,
+  "pages": "15-38",
+  "domain": "labor",
+  "research_question": "How large are the external returns to schooling at the local labor market level — that is, the increase in individual earnings caused by an increase in the average level of education in the surrounding area, over and above the private return to one's own schooling? Are such externalities large enough to account for the steep cross-country and cross-state association between average education and income per worker?",
+  "data_description": "The analysis uses U.S. Census micro data from the 1950, 1960, 1970, 1980, and 1990 Public Use Microdata Samples (IPUMS), with the baseline sample restricted to U.S.-born white men aged 40-49 (with auxiliary samples of men aged 30-39). Key individual variables include highest grade completed (capped at 17 to harmonize across censuses), log weekly wages (annual wage and salary income divided by weeks worked, with topcodes harmonized), age, quarter and year of birth, state of birth, and state of residence. The unit of observation is an individual worker. State-year average schooling is computed from the working-age (16-64) population, weighted by weeks worked. State-level compulsory attendance and child labor law variables (maximum enrollment age, minimum dropout age, required schooling for dropout, minimum work-permit age, required schooling for a work permit) were coded from federal education and labor bulletins covering 1914-1965, then matched to individuals based on the laws in effect in their state of birth (or state of residence) when they were age 14. Cross-country output-per-worker and schooling data (Summers-Heston, Barro-Lee) are used for motivating evidence.",
+  "institutional_context": "Between roughly 1910 and 1960, U.S. states substantially tightened compulsory school attendance laws and child labor laws, raising minimum dropout ages, lowering maximum school enrollment ages, increasing required years of schooling before leaving school, and raising the minimum age and schooling required to obtain a work permit. These rules — collectively the 'compulsory schooling laws' — varied considerably across states and changed at different times within states, and were a central component of the early-twentieth-century 'high school movement' that drove much of U.S. human-capital accumulation. The laws bound primarily on schooling decisions in the 8th-12th grade range, the margin where most workers historically left school to enter the labor force, and child labor laws appear to have mattered as much as attendance laws because work was the main reason for leaving school. Because the laws applicable to a given cohort were set roughly 30 years before that cohort's adult earnings were observed, they generate cohort- and state-level variation in schooling that is plausibly unrelated to later state-specific economic shocks affecting wages.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.015,
+      "unit": "log wage per year of average education in the state-cohort cell (2SLS, externality estimate)",
+      "interpretation": "A one-year increase in the average education of workers in a state-cohort cell raises individual wages by approximately 1.5% (not statistically significant), suggesting human capital externalities are small or zero"
+    },
+    "secondary_estimate": {
+      "value": 0.08,
+      "unit": "log wage per year of own education (2SLS, private return estimate)",
+      "interpretation": "The private return to an individual's own education is approximately 8% per year (significant), consistent with the standard IV literature — much larger than the estimated externality"
+    },
+    "significance": "p > 0.10 (externality); p < 0.01 (private return)",
+    "table_ref": "Tables 4-7 in Acemoglu & Angrist (2001)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "IPUMS USA (Census PUMS 1960, 1970, 1980 — free)",
+      "Compulsory schooling law data (published in appendix, available from Angrist's website)",
+      "FRED (state economic data — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. Census microdata from IPUMS is free. Compulsory schooling law variation dates are published.",
+    "replicability": "high — all data publicly available from IPUMS and published law compilations",
+    "public_proxy_available": true,
+    "replication_tier": "full (IPUMS Census + published compulsory schooling laws — all free)",
+    "data_limitations": "Census data is decennial (only 3 cross-sections). Education is self-reported in the Census. Compulsory schooling laws were not always enforced uniformly. The instrument primarily affects the margin of high school completion vs. dropout, so externalities from higher education are not identified. State-of-birth is a noisy proxy for state-of-schooling (interstate migration).",
+    "public_data_sources_detail": [
+      "IPUMS USA (Census PUMS 1960, 1970, 1980 — free with registration)",
+      "Acemoglu & Angrist / Angrist & Krueger compulsory schooling data (published — free)",
+      "FRED (state economic indicators — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables — state-specific compulsory schooling laws (and child labor laws) as instruments for both individual education and average education in the state-cohort cell; the key test is whether average education (instrumented) affects individual wages beyond individual education, indicating externalities",
+    "key_variables": {
+      "treatment": "average years of schooling in the state-of-birth × Census-year cell (endogenous), instrumented by state compulsory schooling and child labor law variation",
+      "control": "N/A (continuous treatment with IV; within-cell variation identifies externalities)",
+      "outcome": "individual log weekly wages (controlling for own education)",
+      "time_period": "1960, 1970, 1980 Census cross-sections"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Human capital externalities are small or zero. After instrumenting for average education using compulsory schooling laws, the estimated externality (effect of average education on individual wages, controlling for own education) is small and statistically insignificant — approximately 1-2% per year of average education, compared to the 7-10% private return. OLS estimates of the externality are larger (~7%) but are biased upward by omitted variables (productive states have both higher education and higher wages). The IV approach eliminates this bias and finds no evidence of economically significant externalities.",
+    "main_effect": "IV estimate of human capital externality: approximately 1-2% per year of average education (not statistically significant); private return to own education: 7-10% (significant); OLS externality estimate: ~7% (biased upward)",
+    "key_robustness": [
+      "First-stage F-test for instrument strength (compulsory schooling laws → average education)",
+      "Controlling for individual education (own-education IV using quarter of birth à la Angrist & Krueger 1991)",
+      "State fixed effects and birth-year cohort effects",
+      "Alternative average education measures (state-of-residence vs. state-of-birth)",
+      "Subsample by race and education level",
+      "Specification without externality term (pure individual IV for comparison)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares with compulsory schooling law variation as instruments for both individual and average education; individual wage regression includes both own education (endogenous) and average education in the cell (endogenous), each instrumented separately",
+      "treatment": "Average years of education in the state-of-birth × Census-year cell, instrumented by compulsory schooling and child labor laws applicable to that cohort in that state",
+      "event_window": "N/A (cross-sectional)",
+      "estimation_window": "N/A",
+      "sample_period": "1960, 1970, 1980 Census",
+      "unit_of_observation": "Individual male aged 40-49, identified by state of birth and Census year",
+      "key_assumption": "Compulsory schooling laws affect wages only through their effect on education (exclusion restriction). States that changed laws earlier do not have different wage trends for other reasons. The instrument affects average education, allowing separate identification of externalities (average education effect on wages) from private returns (own education effect on wages)."
+    },
+    "key_magnitudes": {
+      "private_return_iv": "7-10% per year of own education (consistent with prior IV literature)",
+      "externality_iv": "1-2% per year of average education in the state-cohort cell (not significant at 5%)",
+      "externality_ols": "~7% per year of average education (significant but biased by omitted variables)",
+      "bias_magnitude": "OLS externality is approximately 4-5x larger than IV externality, indicating severe upward bias from endogeneity"
+    },
+    "robustness_notes_detail": "First-stage F-statistics exceed 10 for both individual and average education instruments. Results are robust to state fixed effects, cohort effects, and controls for state-of-birth economic conditions. The conclusion of small/zero externalities contrasts with larger OLS estimates in the literature (Rauch 1993, Moretti 2004), which the authors attribute to omitted variable bias. The paper acknowledges that compulsory schooling laws generate variation primarily at the lower end of the education distribution (high school vs. dropout), so externalities from college education are not identified."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 106134,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,87 @@
+{
+  "paper_id": "paper_20",
+  "source": "Journal of Econometrics, 2008",
+  "authors": "Lee",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Randomized Experiments from Non-random Selection in U.S. House Elections",
+  "doi": "10.1016/j.jeconom.2007.05.004",
+  "volume": 142,
+  "issue": 2,
+  "pages": "675-697",
+  "domain": "labor",
+  "research_question": "What is the causal effect of a political party holding a legislative seat on its subsequent electoral success in that district? Specifically, how much does being the incumbent party in a U.S. Congressional district increase the probability of winning the next election, the party's vote share, and the probability that its candidate runs again and wins?",
+  "data_description": "The analysis uses candidate-level returns from U.S. House of Representatives elections covering 1946–1998, drawn from ICPSR study 7757 ('Candidate and Constituency Statistics of Elections in the United States, 1788-1990'), with 1992–1998 returns appended from the U.S. House Office of the Clerk and corrections from Congressional Quarterly. The unit of observation is the Congressional district-election. Key variables include the Democratic candidate's vote share, the Democratic vote share margin of victory (Democratic share minus strongest opponent's share), an indicator for Democratic victory, indicators and shares for the subsequent (t+1) and prior (t-1) elections, candidate identifiers constructed via a name-matching algorithm, and accumulated political/electoral experience (past victories and nominations) for both Democratic and opposition candidates. Redistricting years (ending in 0 or 2) are excluded, yielding 6,558 district-level observations; standard errors are clustered at the district-decade level.",
+  "institutional_context": "Elections to the U.S. House of Representatives feature a deterministic rule whereby the candidate (and party) receiving the largest vote share wins the seat and becomes the incumbent for the next cycle. Incumbents in the House have historically enjoyed strikingly high re-election rates—roughly 90 percent for the incumbent party—and vote shares around 60–70 percent, prompting longstanding debate about whether this reflects a genuine advantage from holding office or merely persistent underlying district and candidate strengths. Final vote tallies, while shaped by candidate quality, party resources, district partisanship, and campaign effort, also contain unpredictable elements such as weather-driven turnout, idiosyncratic voter behavior, and counting uncertainty. Closely contested races—where the margin of victory is narrow—provide a setting in which which party ends up holding the seat is plausibly subject to chance beyond any actor's precise control, motivating comparisons of districts narrowly won versus narrowly lost by Democrats.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.08,
+      "unit": "vote share in election t+1 (RDD estimate of incumbency advantage)",
+      "interpretation": "Barely winning election t (vs. barely losing) increases the Democratic candidate's vote share in election t+1 by approximately 8 percentage points, representing the personal incumbency advantage"
+    },
+    "secondary_estimate": {
+      "value": 0.4,
+      "unit": "probability of winning election t+1 (RDD estimate)",
+      "interpretation": "Barely winning the current election increases the probability of winning the next election by approximately 40 percentage points — a large and statistically significant incumbency effect"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 1-3 in Lee (2008)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "MIT Election Data + Science Lab (U.S. House election results — free)",
+      "ICPSR (historical Congressional election data — free for academic users)",
+      "David Lee's replication data (available on journal website)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. U.S. House election results are public record.",
+    "replicability": "high — election data is public record; replication data available",
+    "public_proxy_available": true,
+    "replication_tier": "full (all data publicly available; election results are public record)",
+    "data_limitations": "Some redistricting between elections complicates cross-election district matching. Uncontested elections (only one major party candidate) are excluded, which may introduce selection. The RDD is limited to close elections, limiting external validity to the full population of elections.",
+    "public_data_sources_detail": [
+      "MIT Election Data + Science Lab (House election results 1976-present — free)",
+      "ICPSR Study 7757 (House elections 1946-1998 — free for academics)",
+      "David Lee's replication files (journal supplementary materials — free)",
+      "Census Bureau (district demographics — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is the Democratic candidate's vote share in election t (continuous); cutoff at 50% (majority threshold); treatment is winning the current election (incumbency status); outcome is performance in the next election",
+    "key_variables": {
+      "treatment": "winning the current election (Democratic vote share > 50% in election t)",
+      "control": "losing the current election (Democratic vote share < 50% in election t)",
+      "outcome": "Democratic vote share in election t+1; probability of winning election t+1",
+      "time_period": "U.S. House elections, 1946–1998"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Winning a close election provides a large and statistically significant personal incumbency advantage. A candidate who barely wins (vs. barely loses) gains approximately 7-8 percentage points higher vote share in the next election and a substantially higher probability of winning. This is a true causal effect of incumbency, not selection.",
+    "main_effect": "RDD estimate of the incumbency advantage: approximately +7-8 percentage points in next-election vote share at the 50% threshold; probability of winning the next election jumps by approximately 35-45 percentage points",
+    "key_robustness": [
+      "Varying bandwidth around the 50% cutoff (narrow: 2%, wide: 10%)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation of the running variable",
+      "Balance tests: pre-determined covariates should be continuous at the cutoff",
+      "Placebo cutoffs at other vote shares (40%, 45%, 55%, 60%)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp regression discontinuity design with local polynomial regression",
+      "treatment": "Binary: winning the current House election (vote share > 50%)",
+      "event_window": "N/A (cross-election RDD)",
+      "estimation_window": "Vote shares within bandwidth of the 50% threshold (e.g., 48%-52% for narrow bandwidth)",
+      "sample_period": "1946–1998",
+      "unit_of_observation": "Congressional district-election pair (district in election t → outcome in election t+1)",
+      "key_assumption": "Near the 50% cutoff, potential outcomes are continuous — candidates who barely win and barely lose are comparable in all pre-determined characteristics. No precise manipulation of the vote share is possible (election outcomes near 50% are effectively random). McCrary (2008) density test should show no bunching at 50%."
+    },
+    "key_magnitudes": {
+      "vote_share_advantage": "+7-8 percentage points in next-election vote share for barely-winning vs. barely-losing candidates",
+      "win_probability_advantage": "+35-45 percentage points in probability of winning the next election",
+      "covariate_balance": "Pre-determined covariates (lagged vote share, candidate characteristics) show no discontinuity at 50%"
+    },
+    "robustness_notes_detail": "Results are robust to bandwidth choice, polynomial order, and various sample restrictions. McCrary density test shows no evidence of manipulation of vote shares at the 50% cutoff. Balance tests confirm that pre-determined characteristics (previous election vote share, district demographics) are smooth through the cutoff, supporting the as-if-random assumption. Placebo tests at non-50% cutoffs show no comparable discontinuities."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 89986,
+  "phase1_source_version": "v2primeprime_full_text"
+}

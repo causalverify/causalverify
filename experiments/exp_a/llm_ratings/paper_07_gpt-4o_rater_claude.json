@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strong strategy match - correctly identifies IV approach using pre-crisis bank real estate exposure as instrument, properly describes exclusion restriction and relevance conditions, and accurately captures the identification logic of isolating supply-driven credit changes. However, the output doesn't state the direction of the expected effect (positive elasticity of employment to credit supply), only describing the identification without concluding on the sign of the relationship.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_07",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:06:12.443134+00:00"
+}

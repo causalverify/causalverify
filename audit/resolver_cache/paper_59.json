@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_59",
+  "title": "Frictions in Shadow Banking: Evidence from the Lending Behavior of Money Market Funds",
+  "authors": "Chernenko & Sunderam",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/rfs/hhu025",
+    "title": "Frictions in Shadow Banking: Evidence from the Lending Behavior of Money Market Mutual Funds",
+    "year": 2014,
+    "journal": "Review of Financial Studies",
+    "citations": 206
+  },
+  "checks": {
+    "title_jaccard": 0.8889,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "sunderam",
+      "chernenko"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "rfs",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 206,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

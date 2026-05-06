@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_93",
+  "title": "The Long-Term Effects of Africa's Slave Trades",
+  "authors": "Nunn",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2008.123.1.139",
+    "title": "The Long-Term Effects of Africa's Slave Trades<sup>*</sup>",
+    "year": 2008,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1122
+  },
+  "checks": {
+    "title_jaccard": 0.8333,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "nunn"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1122,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_150",
+  "title": "Colonialism and Modern Income: Islands as Natural Experiments",
+  "authors": "Feyrer & Sacerdote",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/rest.91.2.245",
+    "title": "Colonialism and Modern Income: Islands as Natural Experiments",
+    "year": 2009,
+    "journal": "The Review of Economics and Statistics",
+    "citations": 205
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "feyrer",
+      "sacerdote"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "restat",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 205,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

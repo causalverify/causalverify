@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_104",
+  "title": "Can Higher Cigarette Taxes Improve Birth Outcomes?",
+  "authors": "Evans & Ringel",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w5998",
+    "title": "Can Higher Cigarette Taxes Improve Birth Outcomes?",
+    "year": 1997,
+    "journal": "National Bureau of Economic Research",
+    "citations": 26
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "evans",
+      "ringel"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 26,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

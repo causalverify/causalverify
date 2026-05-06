@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s12",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Sudden CEO death and firm value",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:25:25.028522",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 465,
+    "output_tokens": 547,
+    "content": "## 1. Identification Strategy\n\nFor this research question, an Event Study methodology is appropriate. The Event Study methodology is used to measure the impact of a specific event on the stock returns of a firm. In this case, the event is the sudden, unexpected death of a CEO. The key assumption is that the market model accurately captures the expected returns of the stock in the absence of the event.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s12_data.csv\")\n\n# Calculate abnormal returns using the market model\ndata <- data %>%\n  group_by(stock_id) %>%\n  mutate(ret_model = ret - (beta * mkt_ret)) %>%\n  ungroup()\n\n# Filter the data to the estimation window [-10, -2] and the event window [0, 1]\nestimation_data <- data %>%\n  filter(event_day >= -10 & event_day <= -2)\nevent_data <- data %>%\n  filter(event_day >= 0 & event_day <= 1)\n\n# Calculate the average abnormal returns for the event window\ncar <- mean(event_data$ret_model)\n\n# Perform a t-test to check if the average abnormal return is significantly different from zero\nt_test <- t.test(event_data$ret_model, mu = 0)\n\n# Print the results\ncat(\"Average Abnormal Return (CAR):\", car, \"\\n\")\ncat(\"t-test p-value:\", t_test$p.value, \"\\n\")\n\n# Robustness check: Check if the CAR is significantly different from zero using Newey-West standard errors\nnw_car <- coeftest(event_data$ret_model ~ 1, vcov = NeweyWest(event_data$ret_model ~ 1, lag = 1, prewhite = FALSE))\n\n# Print the robustness check result\ncat(\"Newey-West p-value:\", nw_car$p.value, \"\\n\")\n```\n\n## 3. Expected Findings\n\nWe expect the average abnormal return (CAR) to be negative and significantly different from zero. This is because the sudden, unexpected death of a CEO is likely to be a negative shock to the firm, leading to a decrease in the firm's stock value. The magnitude of the CAR will depend on the specific circumstances of each CEO's death and the market's perception of the CEO's importance to the firm. However, given the significant impact that a CEO's death can have on a firm, we expect the CAR to be relatively large in magnitude.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model AR; estimation [−10,−2]; event window [0,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms experience significant negative CAR on CEO death announcement",
+    "main_effect": "CAR ≈ −2.5% in [0,+1]"
+  }
+}

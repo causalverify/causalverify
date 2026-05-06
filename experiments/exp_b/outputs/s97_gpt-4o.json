@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s97",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Grade Retention on Future Academic Performance",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:46:49.889195",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 434,
+    "output_tokens": 448,
+    "content": "## 1. Identification Strategy\nFor this analysis, the Regression Discontinuity Design (RDD) is the appropriate causal method. This approach exploits the cutoff in the running variable (end-of-year test scores) to identify the causal effect of grade retention on future academic performance. The key assumption is the continuity assumption, which postulates that, absent the treatment, the outcomes would have evolved smoothly around the cutoff. This means that the students just below and just above the cutoff (and hence those who do and do not get retained) are similar in all respects other than the retention decision.\n\n## 2. R Code\n```r\n# Load necessary packages\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s97_data.csv\")\n\n# Implement RDD\n# Assume cutoff is at zero since normally running variables are centered around zero for RD\nrdd_results <- rdrobust(y = data$y, x = data$running_var, c = 0)\n\n# Print the main result\nprint(rdd_results$coef)\nprint(rdd_results$se)\nprint(rdd_results$pv)\n\n# Basic robustness checks\n# 1. Vary the bandwidth\nrdd_results_bw_robust <- rdrobust(y = data$y, x = data$running_var, c = 0, h = 0.1)\nsummary(rdd_results_bw_robust)\n\n# 2. Placebo test (shift the cutoff)\nrdd_placebo_test <- rdrobust(y = data$y, x = data$running_var, c = 0.05)\nprint(rdd_placebo_test$coef)\n\n# Check for robustness to bandwidth and placebo cutoff\n```\n\n## 3. Expected Findings\nI expect the sign of the effect of grade retention on future academic performance to be negative, based on previous literature suggesting adverse impacts on future performance due to psychological effects and loss of peer group consistency. The magnitude might be modestly negative, possibly reflecting a reduction in future test scores by a small percentage relative to students not retained. Exact magnitude will depend on the closeness of the students' running variable to the cutoff, among other contextual factors.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the cutoff in test scores to identify the causal effect.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Students retained due to scoring below the cutoff perform worse on future tests.",
+    "main_effect": "-0.18"
+  }
+}

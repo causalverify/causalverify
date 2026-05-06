@@ -1,0 +1,37 @@
+{
+  "scenario_id": "s94",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of School District Boundaries on Urban House Prices",
+  "research_question": "How do school district boundaries affect house prices in urban areas? Specifically, does proximity to a less desirable school district negatively impact property values?",
+  "data_description": "The dataset includes 500 observations of houses located near the boundary of two urban school districts. Key columns are running_var (distance to the boundary), treated (indicator for being in the less desirable district), and y (log house prices).",
+  "ground_truth": {
+    "identification_strategy": "The identification strategy leverages the discontinuity at the school district boundary.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Houses in the less desirable school district exhibit lower log prices.",
+    "main_effect": "-0.22"
+  },
+  "dgp_truth": {
+    "type": "rdd",
+    "effect": 0.22,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s94_data.csv",
+  "_fix_notes": [
+    {
+      "fix_id": "issue_C1_rdd_sign_reversal",
+      "applied_at": "2026-04-21T15:32:00.095385+00:00",
+      "description": "Ground-truth effect and direction corrected to match actual data. Root cause: extend_exp_b_to_100.py:267 applied abs() before passing effect to make_rdd(), so the synthetic CSV has positive effect while the JSON recorded the original signed value. Data file unchanged; only JSON metadata updated.",
+      "before": {
+        "dgp_truth.effect": -0.22,
+        "dgp_truth.direction": "negative",
+        "ground_truth.conclusion_direction": "negative"
+      },
+      "after": {
+        "dgp_truth.effect": 0.22,
+        "dgp_truth.direction": "positive",
+        "ground_truth.conclusion_direction": "positive"
+      }
+    }
+  ]
+}

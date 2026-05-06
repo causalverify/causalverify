@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_121",
+  "title": "Bones, Bombs, and Break Points: The Geography of Economic Activity",
+  "authors": "Davis & Weinstein",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282802762024502",
+    "title": "Bones, Bombs, and Break Points: The Geography of Economic Activity",
+    "year": 2002,
+    "journal": "American Economic Review",
+    "citations": 3
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "davis",
+      "weinstein"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 3,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

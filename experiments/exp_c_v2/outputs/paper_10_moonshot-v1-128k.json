@@ -1,0 +1,42 @@
+{
+  "paper_id": "paper_10",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:03:24.085721",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 746,
+    "output_tokens": 971,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a regression discontinuity design (RDD) to exploit the exogenous variation in stock liquidity caused by the Russell 1000/2000 index membership changes. We hypothesize that firms just below the cutoff (in the Russell 2000) will experience an increase in stock liquidity, which may either enhance or impede innovation. We will compare changes in innovation metrics (patents granted, forward citations) for firms just below and just above the cutoff.\n\nDirectional Hypothesis:\nH0: Stock market liquidity has no effect on firm innovation.\nH1: Stock market liquidity enhances firm innovation (positive effect).\nH2: Stock market liquidity impedes firm innovation (negative effect).\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. OLS regression of patents granted on a dummy for being below the Russell 1000/2000 cutoff, controlling for firm fixed effects.\n2. OLS regression of forward citations on a dummy for being below the Russell 1000/2000 cutoff, controlling for firm fixed effects.\n3. OLS regression of patents granted on a dummy for being below the Russell 1000/2000 cutoff, controlling for year fixed effects.\n4. OLS regression of forward citations on a dummy for being below the Russell 1000/2000 cutoff, controlling for year fixed effects.\n5. OLS regression of patents granted on a dummy for being below the Russell 1000/2000 cutoff, controlling for both firm and year fixed effects.\n\n**STEP 3 — FALSIFICATION GATE**\n\nFalsification criteria:\n- If the coefficient on the dummy for being below the Russell 1000/2000 cutoff is not statistically significant (p > 0.10) in any of the specifications, we will reject the hypothesis that stock market liquidity affects firm innovation.\n- If the coefficient is positive and significant in specifications 1 and 2, but not in specifications 3 and 4, we will reject the hypothesis that stock market liquidity enhances firm innovation.\n- If the coefficient is negative and significant in specifications 1 and 2, but not in specifications 3 and 4, we will reject the hypothesis that stock market liquidity impedes firm innovation.\n\n**STEP 4 — R CODE**\n\n```R\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"russell_data.csv\")\n\n# Create dummy variable for being below Russell 1000/2000 cutoff\ndata$below_cutoff <- ifelse(data$rank <= 1000, 0, 1)\n\n# Specification 1: Firm fixed effects\nfe_model1 <- plm(patents ~ below_cutoff, data = data, index = c(\"firm\", \"year\"), model = \"within\")\nsummary(fe_model1)\n\n# Specification 2: Firm fixed effects\nfe_model2 <- plm(citations ~ below_cutoff, data = data, index = c(\"firm\", \"year\"), model = \"within\")\nsummary(fe_model2)\n\n# Specification 3: Year fixed effects\nfe_model3 <- plm(patents ~ below_cutoff, data = data, index = \"year\", model = \"within\")\nsummary(fe_model3)\n\n# Specification 4: Year fixed effects\nfe_model4 <- plm(citations ~ below_cutoff, data = data, index = \"year\", model = \"within\")\nsummary(fe_model4)\n\n# Specification 5: Firm and year fixed effects\nfe_model5 <- plm(patents ~ below_cutoff, data = data, index = c(\"firm\", \"year\"), model = \"within\")\nsummary(fe_model5)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected results:\n- We expect the coefficient on the dummy for being below the Russell 1000/2000 cutoff to be positive and statistically significant in specifications 1 and 2, indicating that stock market liquidity enhances firm innovation.\n- The coefficient should also be positive and significant in specifications 3 and 4, controlling for year fixed effects.\n- The coefficient should remain positive and significant in specification 5, controlling for both firm and year fixed effects.\n\nIf the coefficient is not statistically significant in any of the specifications, or if it is positive in specifications 1 and 2 but not in 3 and 4, we will reject the hypothesis that stock market liquidity affects firm innovation. If the coefficient is negative and significant in specifications 1 and 2 but not in 3 and 4, we will reject the hypothesis that stock market liquidity impedes firm innovation.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "RDD — running variable = float-adjusted market capitalization rank in Russell reconstitution; cutoff = rank 1000 (boundary between Russell 1000 and Russell 2000); stocks just below 1000 (in Russell 2000) have higher liquidity due to greater index fund tracking",
+    "key_variables": {
+      "running_variable": "float-adjusted market cap rank at annual Russell reconstitution (June)",
+      "cutoff": "rank 1000 (Russell 1000/2000 boundary)",
+      "outcome": "patent count and citation-weighted patents (3-year window after reconstitution); R&D expenditure; stock bid-ask spread (measure of liquidity)",
+      "time_period": "1990–2006, annual index reconstitutions"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher stock liquidity (from Russell 2000 membership) reduces firm innovation: stocks in Russell 2000 have lower patent counts and citation-weighted innovation than comparable stocks in Russell 1000",
+    "main_effect": "~8% fewer patents and ~12% fewer citations for Russell 2000 firms near the boundary vs. Russell 1000 firms",
+    "key_robustness": [
+      "McCrary density test",
+      "bandwidth sensitivity",
+      "placebo cutoffs at ranks 500/1500",
+      "stock-level liquidity as intermediate outcome",
+      "heterogeneity by institutional ownership"
+    ]
+  }
+}

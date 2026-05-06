@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_97",
+  "title": "Government Transfers and Political Support",
+  "authors": "Manacorda, Miguel & Vigorito",
+  "year": null,
+  "journal": "AEJ:Applied",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.3.3.1",
+    "title": "Government Transfers and Political Support",
+    "year": 2009,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 23
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "manacorda",
+      "vigorito",
+      "miguel"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aej:applied",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 23,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

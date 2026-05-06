@@ -1,0 +1,1623 @@
+NBER WORKING PAPER SERIES
+THE LONG-TERM EFFECTS OF AFRICA'S SLAVE TRADES
+Nathan Nunn
+Working Paper 13367
+http://www.nber.org/papers/w13367
+NATIONAL BUREAU OF ECONOMIC RESEARCH
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+September 2007
+A previous version of this paper was circulated under the title "Slavery, Institutional Development,
+and Long-Run Growth in Africa".  I thank Daron Acemoglu, Robert Bates, Albert Berry, Loren Brandt,
+Jon Cohen, Bill Easterly, Stanley Engerman, Azim Essaji, Joseph Inikori, Martin Klein, Pat Manning,
+Ted Miguel, Jim Robinson, Aloysius Siow, Ken Sokoloff, Dan Trefler, Chris Udry, Jeffrey Williamson,
+and seminar participants at the University of British Columbia, University of California Los Angeles,
+University of California San Diego, Harvard University, University of Michigan, New York University,
+Pennsylvania State University, University of Rochester, University of Southern California, University
+of Toronto, York University, the CIFAR, SED Conference, CEA Meetings, SSHA Meetings, ITAM
+Summer Camp in Macroeconomics, IEHC, NBER, and WGAPE meetings for valuable comments
+and suggestions.  I thank Maira Avila and Ken Jackson for excellent research assistance. The views
+expressed herein are those of the author(s) and do not necessarily reflect the views of the National
+Bureau of Economic Research.
+© 2007 by Nathan Nunn. All rights reserved. Short sections of text, not to exceed two paragraphs,
+may be quoted without explicit permission provided that full credit, including © notice, is given to
+the source.
+
+The Long-Term Effects of Africa's Slave Trades
+Nathan Nunn
+NBER Working Paper No. 13367
+September 2007
+JEL No. F1,F15,N0,O1
+ABSTRACT
+Can part of Africa's current underdevelopment be explained by its slave trades? To explore this question,
+I use data from shipping records and historical documents reporting slave ethnicities to construct estimates
+of the number of slaves exported from each country during Africa's slave trades. I find a robust negative
+relationship between the number of slaves exported from a country and current economic performance.
+To better understand if the relationship is causal, I examine the historical evidence on selection into
+the slave trades, and use instrumental variables. Together the evidence suggests that the slave trades
+have had an adverse effect on economic development.
+Nathan Nunn
+Department of Economics
+Harvard University
+and NBER 
+1805 Cambridge Street
+Cambridge, MA 02138
+nnunn@fas.harvard.edu
+
+THE LONG-TERM EFFECTS OF
+AFRICA’S SLAVE TRADES∗
+Nathan Nunn
+Can part of Africa’s current underdevelopment be explained by its slave trades? To
+explore this question, I use data from shipping records and historical documents report-
+ing slave ethnicities to construct estimates of the number of slaves exported from each
+country during Africa’s slave trades. I ﬁnd a robust negative relationship between the
+number of slaves exported from a country and current economic performance. To better
+understand if the relationship is causal, I examine the historical evidence on selection into
+the slave trades, and use instrumental variables. Together the evidence suggests that the
+slave trades have had an adverse eﬀect on economic development.
+I. Introduction
+Africa’s economic performance in the second half of the twentieth cen-
+tury has been poor. One, often informal, explanation for Africa’s under-
+development is its history of extraction, characterized by two events: the
+slave trades and colonialism. Bairoch [1993, p. 8] writes that “there is no
+doubt that a large number of negative structural features of the process of
+economic underdevelopment have historical roots going back to European
+∗A previous version of this paper was circulated under the title “Slavery, Institutional
+Development, and Long-Run Growth in Africa”.
+I am grateful to the editor Edward
+Glaeser and three anonymous referees for comments that substantially improved this pa-
+per. I also thank Daron Acemoglu, Robert Bates, Albert Berry, Loren Brandt, Jon Cohen,
+Bill Easterly, Stanley Engerman, Azim Essaji, Joseph Inikori, Martin Klein, Pat Manning,
+Ted Miguel, Jim Robinson, Aloysius Siow, Ken Sokoloﬀ, Dan Treﬂer, Chris Udry, Jeﬀrey
+Williamson, and seminar participants at the University of British Columbia, University of
+California Los Angeles, University of California San Diego, Harvard University, University
+of Michigan, New York University, Pennsylvania State University, University of Rochester,
+University of Southern California, University of Toronto, York University, the CIFAR, SED
+Conference, CEA Meetings, SSHA Meetings, ITAM Summer Camp in Macroeconomics,
+IEHC, NBER, and WGAPE meetings for valuable comments and suggestions. I thank
+Maira Avila and Ken Jackson for excellent research assistance.
+1
+
+colonization.” Manning [1990, p. 124] echoes Bairoch, but focuses on the
+slave trades, writing: “Slavery was corruption: it involved theft, bribery,
+and exercise of brute force as well as ruses. Slavery thus may be seen as one
+source of precolonial origins for modern corruption.”
+Recent empirical studies suggest that Africa’s history can explain part
+of its current underdevelopment. These studies focus on the link between
+countries’ colonial experience and current economic development [Bertocchi
+and Canova, 2002; Englebert, 2000a,b; Grier, 1999; Lange, 2004; Acemoglu
+et al., 2001, 2002]. However, the other important event in Africa’s history,
+its slave trades, has yet to be examined empirically. There are reasons to
+expect that the slave trades may be at least as important as oﬃcial colonial
+rule for Africa’s development. For a period of nearly 500 years, from 1400
+to 1900, the African continent simultaneously experienced four slave trades.
+By comparison, oﬃcial colonial rule lasted from 1885 to about 1960, a total
+of approximately 75 years.
+This paper provides the ﬁrst empirical examination of the importance of
+Africa’s slave trades in shaping subsequent economic development. In doing
+this, I construct measures of the number of slaves exported from each coun-
+try in Africa, in each century between 1400 and 1900. The estimates are
+constructed by combining data from ship records on the number of slaves
+shipped from each African port or region with data from a variety of histor-
+ical documents that report the ethnic identities of slaves that were shipped
+from Africa. I ﬁnd a robust negative relationship between the number of
+slaves exported from each country and subsequent economic performance.
+The African countries that are the poorest today are the ones from which
+the most slaves were taken.
+This ﬁnding cannot be taken as conclusive evidence that the slave trades
+caused diﬀerences in subsequent economic development. An alternative ex-
+planation that is just as plausible is that countries that were initially the
+most economically and socially underdeveloped selected into the slave trades,
+and these countries continue to be the most underdeveloped today. In other
+words, the slave trades may be correlated with unobserved country char-
+acteristics, resulting in biased estimates of the eﬀect of the slave trades on
+economic development.
+I pursue a number of strategies to better understand the reason behind
+the relationship between slave exports and current economic performance.
+First, I review the evidence from African historians on the nature of selection
+into the slave trades. I also use historic data on pre-slave trade population
+densities to examine whether it was the less developed parts of Africa that
+selected into the slave trades. Both sources of evidence show that it was
+2
+
+actually the most developed areas of Africa that tended to select into the
+slave trades. I discuss the reason behind this seemingly paradoxical rela-
+tionship in detail. Second, I use instruments to estimate the causal eﬀect of
+the slave trades on subsequent economic development. The instruments are
+the sailing distances from each country to the nearest location of demand for
+slave labor in each of the four slave trades. Like the OLS coeﬃcients, the IV
+coeﬃcients are negative and signiﬁcant, suggesting that increased extraction
+during the slave trades caused worse subsequent economic performance.
+I then explore the precise channel of causality underlying the relationship
+between slave exports and economic development. Using historical evidence
+as a guide, I examine whether the procurement of slaves through internal
+warfare, raiding, and kidnapping resulted in subsequent state collapse and
+ethnic fractionalization. I ﬁnd that the data are consistent with these chan-
+nels.
+These ﬁndings complement the research of Engerman and Sokoloﬀ[1997,
+2002], which shows that slavery in the New World resulted in the evolution
+of institutions that were not conducive for economic growth.1 My results
+show that not only was the use of slaves detrimental for a society, but the
+production of slaves, which occurred through domestic warfare, raiding, and
+kidnapping, also had negative impacts on subsequent development.
+The paper is structured as follows. In the following section, I provide an
+description of Africa’s slave trades, providing a detailed historical overview of
+the manner in which slaves were procured, and the resulting adverse eﬀects.
+In Section III, I describe the construction of the slave export ﬁgures. Section
+IV documents the correlations that exist in the data, and Section V turns
+to the issue of causality. In Section VI, guided by the historical evidence, I
+examine the potential channels of causality. Section VII concludes.
+II. Historical Background
+Between 1400 and 1900, the African continent experienced four simulta-
+neous slave trades. The largest and most well-known is the trans-Atlantic
+slave trade where, beginning in the 15th century, slaves were shipped from
+West Africa, West Central Africa and Eastern Africa to the European colonies
+in the New World. The three other slave trades – the trans-Saharan, Red
+Sea, and Indian Ocean slave trades – are much older and predate the trans-
+Atlantic slave trade. During the trans-Saharan slave trade, slaves were taken
+from south of the Saharan desert to Northern Africa. In the Red Sea slave
+1Also see Lagerl¨of [2005] and Mitchener and McLean [2003] for related evidence.
+3
+
+trade, slaves were taken from inland of the Red Sea and shipped to the
+Middle East and India. In the Indian Ocean slave trade, slaves were taken
+from Eastern Africa and shipped either to the Middle East and India or to
+plantation islands in the Indian Ocean.
+A number of characteristics of Africa’s slave trades make them distinct
+from previous slave trades.
+First, the total volume of slaves traded was
+unprecedented. During the trans-Atlantic slave trade alone, approximately
+12 million slaves were exported from Africa. Another 6 million were exported
+in the other three slave trades. These ﬁgures do not include those who were
+killed during the raids or those who died on their journey to the coast. The
+total eﬀect of the slave trades, according to calculations by Patrick Manning
+[1990, p. 171], was that by 1850 Africa’s population was only half of what
+it would have been had the slave trades not taken place.
+Africa’s slave trades were also unique because, unlike previous slave
+trades, individuals of the same or similar ethnicities enslaved one another.
+This had particularly detrimental consequences, including social and eth-
+nic fragmentation, political instability and a weakening of states, and the
+corruption of judicial institutions.
+The most common manner in which slaves were taken was through vil-
+lages or states raiding one another [Lovejoy, 1994; Northrup, 1978]. Where
+groups of villages had previously developed into larger scale village feder-
+ations, relations between the villages tended to turn hostile [e.g., Inikori,
+2000; Hubbell, 2001; Azevedo, 1982]. As a result, ties between villages were
+weakened, which in turn impeded the formation of larger communities and
+broader ethnic identities. Kusimba [2004, p. 66] writes that “insecurity con-
+ﬁned people within ethnic boundaries constructing spheres of interaction”.
+Because of this process, the slave trades may be an important factor explain-
+ing Africa’s high level of ethnic fractionalization today. This is signiﬁcant
+for economic development given the established relationship between eth-
+nic fractionalization and long-term economic growth [Easterly and Levine,
+1997].
+Because of the environment of uncertainty and insecurity at the time,
+individuals required weapons, such as iron knives, spears, swords or ﬁrearms,
+to defend themselves. These weapons could be obtained from Europeans in
+exchange for slaves, which were often obtained through local kidnappings.
+This further perpetuated the slave trade and the insecurity that it caused,
+which in turn further increased the need to enslave others to protect oneself
+[Mahadi, 1992; Hawthorne, 1999, pp. 108–109]. Historians have named this
+vicious cycle the ‘gun-slave cycle’ [e.g., Lovejoy, 2000] or the ‘iron-slave
+cycle’ [e.g., Hawthorne, 2003].
+The result of this vicious cycle was that
+4
+
+communities not only raided other communities for slaves, but also members
+of a community raided and kidnapped others within the community. Well-
+documented examples come from the Balanta of modern day Guinea-Bissau,
+the Minyanka of modern day Mali [Klein, 2001], and the Makua, Chikunda,
+and Yao of East Central Africa [Isaacman, 1989, p. 191–192, 196; Alpers,
+1969, pp. 413–414; Alpers, 1975, p. 225].
+Generally, the consequence of internal conﬂict was increased political
+instability and in many cases the collapse of pre-existing forms of govern-
+ment [Lovejoy, 2000, pp. 68–70].
+In 16th century Northern Senegambia,
+the Portuguese slave trade was a key factor leading to the eventual dis-
+integration of the JoloﬀConfederation, which was replaced by the much
+smaller kingdoms of Waalo, Kajoor, Baol, Siin and Saalum. Further south,
+in Southern Senegambia, the same pattern is observed. Prior to the slave
+trades, complex state systems were in the process of evolving.
+However,
+this evolution stagnated soon after the arrival of the Portuguese in the 15th
+century [Barry, 1998, pp. 36–59]. Similar patterns of instability have also
+been documented in Eastern Africa [e.g., Isaacman, 1989; Mbajedwe, 2000].
+In the late 19th century, the slave trades resulted in the disintegration of
+the Shambaa kingdom, Gweno kingdom, and Pare states in East Africa’s
+Pangani valley [Kimambo, 1989, p. 247; Mbajedwe, 2000, p. 341–342].
+The most dramatic example may be the Kongo Kingdom of West Central
+Africa. As early as 1514, the kidnapping of local Kongo citizens for sale to
+the Portuguese had become rampant, threatening social order and the King’s
+authority. In 1526, Aﬀonso, King of Kongo, wrote to Portugal complaining
+that “there are many traders in all corners of the country. They bring ruin
+to the country. Every day people are enslaved and kidnapped, even nobles,
+even members of the king’s own family.” [Vansina, 1966, p. 52]. This break-
+down of law and order was partly responsible for the weakening and eventual
+fall of the once powerful state [Inikori, 2003]. For many of the other Bantu
+speaking ethnicities, stable states also existed in earlier periods, but by the
+time the slave trades were brought to an end few ancient states remained
+[Colson, 1969, pp. 36–37].
+Pre-existing governance structures were generally replaced by small bands
+of slave raiders, controlled by an established ruler or warlord.
+However,
+these bands were generally unable to develop into large, stable states. Col-
+son [1969, p. 35] writes that “both the bands and the new states they created
+retained an air of improvisation. Few band leaders were able to hand power
+to a legitimate successor. Even where a band leader had become the ruler
+of a state, succession remained a problem. Leadership was a personal role,
+rather than an established oﬃce.”
+5
+
+The slave trades also contributed to political instability by causing the
+corruption of previous established legal structures. In many cases, it be-
+came common to obtain slaves by falsely accusing others of witchcraft or
+other crimes [Lovejoy, 2000; Northrup, 1978; Koelle, 1854]. Klein [2001, p.
+59] writes that “communities began enslaving their own. Judicial penalties
+that formerly had taken the form of beatings, payment of compensation
+or exile, for example, were now converted to enslavement.” Often, leaders
+themselves supported or even instigated this abuse of the judicial system
+[Mahadi, 1992; Klein, 2001; Hawthorne, 1999, 2003]. To protect themselves
+and their community from being raided, leaders often chose to pay slaves as
+tribute, which were often obtained through the judicial system. Hawthorne
+[1999, 2003] provides detailed studies of this process among the Cassanga of
+modern day Guinea Bissau. The chief of the Cassanga used the ‘red water
+ordeal’ to procure slaves and their possessions. Those accused of a crime
+were forced to drink a poisonous red liquid. If they vomited, then they were
+judged to be guilty. If they did not vomit, they were deemed not guilty.
+However, for those that did not vomit this usually brought death by poison-
+ing. Their possessions were then seized and their family members were sold
+into slavery.
+Evidence from research showing a relationship between a country’s his-
+tory of state development and subsequent economic performance, suggests
+that these eﬀects of the slave trades may be important for current economic
+development [Bockstette et al., 2002; Chanda and Putterman, 2005]. Oth-
+ers have argued that Africa’s underdevelopment is a direct result of state
+failure, which stems from Africa’s weak and unstable pre-colonial political
+structures [Herbst, 1997, 2000]. Because Africa’s slaves trades were an im-
+portant factor aﬀecting political underdevelopment, they may be a central
+reason behind Africa’s weak states today.
+III. Slave Export Data
+Because I am interested in examining the eﬀects of the slave trades that
+resulted because of the procurement of slaves, my measure of interest is the
+total number of slaves taken from each country during the four slave trades
+between 1400 and 1900.2
+I use two types of data to construct the slave export estimates. The ﬁrst
+are data that report the total number of slaves exported from each port or re-
+gion in Africa. I refer to these as shipping data. For the trans-Atlantic slave
+2Ideally, I would also like to include people that entered into local domestic slavery.
+However, the necessary data to construct these estimates do not exist.
+6
+
+trade, the data are from the updated version of the Trans-Atlantic Slave
+Trade Database constructed by Eltis et al. [1999].
+The database records
+information for 34,584 voyages from 1514 to 1866. The shipping data are
+originally from various documents and records located around the world.
+Because in most European ports, merchants were required to register their
+ships and declare the volume and value of goods transported, for each ship
+and voyage, typically, there exists a number of diﬀerent registers and docu-
+ments. In the database, 77% of the trans-Atlantic slave voyages after 1700
+have shipping information from more than one source, while the average
+number of sources for each voyage is six. It is estimated that the database
+contains 82% of all trans-Atlantic slaving voyages ever attempted [Eltis and
+Richardson, forthcoming].
+Data for the early period of the Atlantic slave trade not covered by the
+Trans-Atlantic Slave Trade Database are from Elbl [1997]. For the Indian
+Ocean, Red Sea, and trans-Saharan slave trades, data are from Austen [1979,
+1988, 1992]. The data are based on estimates from all available documents,
+records and accounts by observers and government oﬃcials on the location
+and volume of slaves exports.
+With the shipping data one can calculate the number of slaves that were
+shipped from each coastal country. However, this does not give an accurate
+indication of where slaves were originally captured. Slaves shipped from the
+ports of a coastal country may have come from a country located further
+inland. To estimate the number of slaves shipped from the coast that came
+from inland countries, I also use a second source of data that reports the
+ethnic identity of slaves shipped from Africa. This information comes from
+a variety of sources such as records of sale, slave registers, slave runaway
+notices, court records, church records, and notarial documents.
+There were a number of ways of identifying the ethnicity or ‘nation’
+of a slave.
+The easiest was often by a slaves name.
+Slaves were often
+given a Christian ﬁrst name and a surname that identiﬁed their ethnicity
+[e.g., Tardieu, 2001]. As well, a slave’s ethnicity could often be determined
+from ethnic markings, such as cuts, scars, hairstyles, or the ﬁling of teeth
+[Karasch, 1987, pp. 4–9]. Oldendorp [1777, p. 169] writes that “the people of
+all Negro nations are marked with certain cuts on the skin. As far as I have
+been able to learn from the Negroes themselves, these serve to distinguish
+one nation from another.”
+Because slaves were legally deﬁned as property, those engaged in the
+buying and selling of slaves had a strong incentive to correctly identify the
+birthplace or ‘nation’ of slaves [Wax, 1973].
+Moreno Fraginals [1977, p.
+190] writes that “the slave trade was the business that involved the greatest
+7
+
+amount of capital investment in the world during the eighteenth and nine-
+teenth centuries. And a business of this size would never have kept up a
+classiﬁcatory scheme had it not been meaningful (in overall general terms,
+in keeping with reality) in designating in a very precise way the merchandise
+that was being traded.”
+Information on the ethnicities of slaves shipped during the trans-Atlantic
+slave trade come from 54 diﬀerent samples, totalling 80,656 slaves, with 229
+distinct ethnic designations reported. Table I summarizes information about
+the samples used in the trans-Atlantic slave trade. The table reports the
+location, years covered, number of slaves, and the number of ethnicities that
+could be identiﬁed for each sample. Similar tables for the other three slave
+trades are reported in Nunn [2007].
+The ethnicity data for the Indian Ocean slave trade come from six sam-
+ples, with a total of 21,048 slaves and 80 diﬀerent ethnicities reported. The
+data for the Red Sea slave trade are from two samples: one from Jedda,
+Saudi Arabia and the other from Bombay, India. The samples provide in-
+formation for 67 slaves, with 32 diﬀerent reported ethnicities. For the trans-
+Saharan slave trade two samples are available: one from Central Sudan and
+the other from Western Sudan. The samples provide information on the
+origins of 5,385 slaves, with 23 diﬀerent ethnicities recorded. The shipping
+data from Austen [1992] also provides additional information on which car-
+avan slaves were shipped on, the city or town that the caravan originated
+in, the destination of the caravan, and in some cases the ethnic identity of
+the slaves being shipped.
+To illustrate how I combine the ethnicity data with the shipping data to
+construct my estimates I use an example, which is shown in Figure I. The
+ﬁgure is a hypothetical map of the western coast of Africa with each square
+representing a country.
+From the shipping data, I ﬁrst calculate the number of slaves shipped
+from each coastal country in Africa. In this example 100,000 slaves were
+shipped from Country A and 150,000 were shipped from Country B. The
+problem with relying on the shipping data alone is that many of slaves
+shipped from Country A may have come from Country B, which lies land-
+locked behind Country A. Then, using the ethnicity data, I calculate the
+ratio of slaves from each coastal country relative to any landlocked countries
+located inland of the coastal country, which requires that I map ethnicities
+to countries and aggregate up to the country level. In practice, this step re-
+lied on a great amount of past research by African historians, linguists, and
+ethnographers. The sources most heavily used are Koelle [1854], Murdock
+[1959], Curtin [1969], Higman [1984], and Hall [2005].
+8
+
+TABLE I
+Slave Ethnicity Data for the Trans-Atlantic Slave Trade
+Num.
+Num.
+Location
+Years
+Ethnic.
+Obs.
+Record Type
+Valencia, Spain
+1482–1516
+77
+2,675
+Crown Records
+Puebla, Mexico
+1540–1556
+14
+115
+Notarial Records
+Dominican Republic
+1547–1591
+26
+22
+Records of Sale
+Peru
+1548–1560
+16
+202
+Records of Sale
+Mexico
+1549
+12
+80
+Plantation Accounts
+Peru
+1560–1650
+30
+6,754
+Notarial Records
+Lima, Peru
+1583–1589
+15
+288
+Baptism Records
+Colombia
+1589–1607
+9
+19
+Various Records
+Mexico
+1600–1699
+28
+102
+Records of Sale
+Dominican Republic
+1610–1696
+33
+55
+Government Records
+Chile
+1615
+6
+141
+Sales Records
+Lima, Peru
+1630–1702
+33
+409
+Parish Records
+Peru (Rural)
+1632
+25
+307
+Parish Records
+Lima, Peru
+1640–1680
+33
+936
+Marriage Records
+Colombia
+1635–1695
+6
+17
+Slave Inventories
+Guyane (French Guiana)
+1690
+12
+69
+Plantation Records
+Colombia
+1716–1725
+33
+59
+Government Records
+French Louisiana
+1717–1769
+23
+223
+Notarial Records
+Dominican Republic
+1717–1827
+11
+15
+Government Records
+South Carolina
+1732–1775
+35
+681
+Runaway Notices
+Colombia
+1738–1778
+11
+100
+Various Records
+Spanish Louisiana
+1770–1803
+79
+6,615
+Notarial Records
+St. Dominique (Haiti)
+1771–1791
+25
+5,413
+Sugar Plantations
+Bahia, Brazil
+1775–1815
+14
+581
+Slave Lists
+St. Dominique (Haiti)
+1778–1791
+36
+1,280
+Coﬀee Plantations
+Guadeloupe
+1788
+8
+45
+Newspaper Reports
+St. Dominique (Haiti)
+1788–1790
+21
+1,297
+Fugitive Slave Lists
+Cuba
+1791–1840
+59
+3,093
+Slave Registers
+St. Dominique (Haiti)
+1796–1797
+56
+5,632
+Plantation Inventories
+American Louisiana
+1804–1820
+62
+223
+Notarial Records
+Salvador, Brazil
+1808–1842
+6
+456
+Records of Manumission
+Trinidad
+1813
+100
+12,460
+Slave Registers
+St. Lucia
+1815
+62
+2,333
+Slave Registers
+Bahia, Brazil
+1816–1850
+27
+2,666
+Slave Lists
+St. Kitts
+1817
+48
+2,887
+Slave Registers
+Senegal
+1818
+17
+80
+Captured Slave Ship
+Berbice (Guyana)
+1819
+66
+1,127
+Slave Registers
+Salvador, Brazil
+1819–1836
+12
+871
+Manumission Certiﬁcates
+Salvador, Brazil
+1820–1835
+11
+1,106
+Probate Records
+Sierra Leone
+1821–1824
+68
+605
+Child Registers
+Rio de Janeiro, Brazil
+1826–1837
+31
+772
+Prison Records
+Anguilla
+1827
+7
+51
+Slave Registers
+Rio de Janeiro, Brazil
+1830–1852
+190
+2,921
+Free Africans’ Records
+Rio de Janeiro, Brazil
+1833–1849
+35
+476
+Death Certiﬁcates
+Salvador, Brazil
+1835
+13
+275
+Court Records
+Salvador, Brazil
+1838–1848
+7
+202
+Slave Registers
+St. Louis/Goree, Senegal
+1843–1848
+21
+189
+Emancipated Slaves
+Bakel, Senegal
+1846
+16
+73
+Sales Records
+d’Agou´e, Benin
+1846–1885
+11
+70
+Church Records
+Sierra Leone
+1848
+132
+12,425
+Linguistic and British Census
+Salvador, Brazil
+1851–1884
+8
+363
+Records of Manumission
+Salvador, Brazil
+1852–1888
+7
+269
+Slave Registers
+Cape Verde
+1856
+32
+314
+Slave Census
+Kikoneh Island, Sierra Leone
+1896–1897
+11
+185
+Fugitive Slave Records
+9
+
+AFRICA
+Atlantic
+Ocean
+Country A
+Country B
+Country C
+Country D
+Country E
+100, 000 ⇐
+250, 000 ⇐
+↑
+N
+FIGURE I
+An artiﬁcial map of the west coast of Africa
+Because ethnicities tended to be much smaller than countries, the map-
+ping of ethnicities into countries generally is not problematic. This is il-
+lustrated in Figure II, which shows African ethnicities based on Murdock’s
+[1959] classiﬁcation, as well as modern political boundaries. From the ﬁgure
+it is apparent that ethnicities are much smaller than modern boundaries,
+and therefore ethnicities generally map cleanly into one country.3
+Assume that the ratio of slaves from Country A relative to Country B
+is 4 to 1. This ratio suggests that 20% of the slaves shipped from Country
+A were actually from Country B. Therefore, the estimated number of slaves
+from Country B is 20,000 and from Country A is 80,000. Assume that the
+ratio of slaves from Country C to D to E is 3 to 1 to 1. The same proce-
+dure then yields an estimate of 150,000 slaves from Country C and 50,000
+each from Countries D and E. In practice, these calculation are performed
+separately for each slave trade. As well, because slaves were increasingly
+taken from further inland as each slave trade progressed, the calculations
+are also performed separately for each of the following time periods: 1400-
+3In instances where an ethnicity is located in more than one country, I map the ethnicity
+into the multiple countries using land area as weights. This is explained in detail in Nunn
+[2007].
+10
+
+FIGURE II
+Ethnic boundaries deﬁned by Murdock [1959] and modern political boundaries
+1599, 1600-1699, 1700-1799, 1800-1900.4
+An important assumption in this procedure is that slaves shipped from a
+port within a country are either from that country or from countries directly
+to the interior. However, in reality, some slaves shipped from a country’s
+coast may have originated from a neighboring coastal country.
+In Nunn
+[2007], using three samples of slaves for which we know both the ethnicity
+of the slaves and the port that they were shipped from, I test the validity
+of this assumption and the overall accuracy of the estimation procedure. I
+ﬁnd that for each of the three samples my procedure correctly identiﬁes the
+origins of between 83 and 98% of the slaves in the samples.
+A second source of measurement error arises because slaves from the
+interior will tend to be under-represented in the ethnicity samples. This is
+4See Nunn [2007] for all of the ﬁner details of the construction procedure.
+11
+
+because only slaves that survived the voyage outside of Africa are in the
+ethnicity samples. All else equal, the further inland a slave originated, the
+longer the journey was, and the more likely it was that he or she died along
+the way. Because the rates of mortality during the slave trades were ex-
+tremely high, this form of measurement error may be signiﬁcant.5 However,
+as I show formally in the Appendix, the under-sampling of slaves from the
+interior results in OLS estimates that are biased towards zero. As well, one
+can use instruments that are uncorrelated with the measurement error to
+derive consistent estimates. I do this in Section V.B.
+After the data have been constructed, I have estimates of the number
+of slaves shipped from each country in Africa during each of the four slave
+trades during four diﬀerent time periods: 1400-1599, 1600-1699, 1700-1799,
+1800-1900. Table II reports the estimated total number of slaves exported
+from each country, as well as the total disaggregated by slave trade. Overall,
+the estimates are consistent with the general view among African historians
+of where the primary slaving areas were. During the trans-Atlantic slave
+trade, slaves were taken in greatest numbers from the ‘Slave Coast’ (Benin
+and Nigeria), West Central Africa (Zaire, Congo, and Angola), and the ‘Gold
+Coast’ (Ghana).
+All of these countries appear among the top exporting
+countries on the list. Ethiopia and Sudan are also among the top exporting
+countries because they were the primary suppliers of slaves shipped during
+the Red Sea and Saharan slave trades. The low number of slave exports from
+South Africa and Namibia conﬁrms the view of African historians that these
+areas exported “virtually no slaves” [Manning, 1983, p. 839]. The relative
+magnitudes of exports from geographically close countries are also consistent
+with the qualitative evidence from the African history literature. Manning
+[1983, p. 839] writes that “some adjoining regions were quite dissimilar:
+Togo exported few slaves and the Gold Coast many; Gabon exported few
+slaves, and the Congo exported many.” The estimates are consistent with
+Manning’s observation. Exports from Togo are far less than from Ghana,
+and exports from Gabon are less than from the Republic of Congo.
+IV. Basic Correlations: OLS Estimates
+I begin by examining the relationship between past slave exports and
+current economic performance. I normalize the total number of slaves taken
+5Estimates of cross-Atlantic mortality rates ranged from 7 to 20% depending on the
+time period and the length of the voyage [Curtin, 1969, pp. 275–286; Lovejoy, 2000, p.
+63]. Death rates during the trek to the coast are known with less certainty, but estimates
+range from 10 to 50% [Lovejoy, 2000, pp. 63–64; Vansina, 1990, p. 218].
+12
+
+TABLE II
+Estimated total slave exports between 1400 and 1900 by country
+Trans-
+Indian
+Trans-
+Red
+All slave
+Isocode
+Country name
+Atlantic
+Ocean
+Saharan
+Sea
+trades
+AGO
+Angola
+3,607,020
+0
+0
+0
+3,607,020
+NGA
+Nigeria
+1,406,728
+0
+555,796
+59,337
+2,021,859
+GHA
+Ghana
+1,614,793
+0
+0
+0
+1,614,793
+ETH
+Ethiopia
+0
+200
+813,899
+633,357
+1,447,455
+SDN
+Sudan
+615
+174
+408,261
+454,913
+863,962
+MLI
+Mali
+331,748
+0
+509,950
+0
+841,697
+ZAR
+Dem Rep of Congo
+759,468
+7,047
+0
+0
+766,515
+MOZ
+Mozambique
+382,378
+243,484
+0
+0
+625,862
+TZA
+Tanzania
+10,834
+523,992
+0
+0
+534,826
+TCD
+Chad
+823
+0
+409,368
+118,673
+528,862
+BEN
+Benin
+456,583
+0
+0
+0
+456,583
+SEN
+Senegal
+278,195
+0
+98,731
+0
+376,926
+GIN
+Guinea
+350,149
+0
+0
+0
+350,149
+TGO
+Togo
+289,634
+0
+0
+0
+289,634
+GNB
+Guinea-Bissau
+180,752
+0
+0
+0
+180,752
+BFA
+Burkina Faso
+167,201
+0
+0
+0
+167,201
+MRT
+Mauritania
+417
+0
+164,017
+0
+164,434
+MWI
+Malawi
+88,061
+37,370
+0
+0
+125,431
+MDG
+Madagascar
+36,349
+88,927
+0
+0
+125,275
+COG
+Congo
+94,663
+0
+0
+0
+94,663
+KEN
+Kenya
+303
+12,306
+60,351
+13,490
+86,448
+SLE
+Sierra Leone
+69,607
+0
+0
+0
+69,607
+CMR
+Cameroon
+66,719
+0
+0
+0
+66,719
+DZA
+Algeria
+0
+0
+61,835
+0
+61,835
+CIV
+Ivory Coast
+52,646
+0
+0
+0
+52,646
+SOM
+Somalia
+0
+229
+26,194
+5,855
+32,277
+ZMB
+Zambia
+6,552
+21,406
+0
+0
+27,958
+GAB
+Gabon
+27,403
+0
+0
+0
+27,403
+GMB
+Gambia
+16,039
+0
+5,693
+0
+21,731
+NER
+Niger
+133
+0
+0
+19,779
+19,912
+LBY
+Libya
+0
+0
+8,848
+0
+8,848
+LBR
+Liberia
+6,790
+0
+0
+0
+6,790
+UGA
+Uganda
+900
+3,654
+0
+0
+4,554
+ZAF
+South Africa
+1,944
+87
+0
+0
+2,031
+CAF
+Cen African Republic
+2,010
+0
+0
+0
+2,010
+EGY
+Egypt
+0
+0
+1,492
+0
+1,492
+ZWE
+Zimbabwe
+554
+536
+0
+0
+1,089
+NAM
+Namibia
+191
+0
+0
+0
+191
+BDI
+Burundi
+0
+87
+0
+0
+87
+GNQ
+Equatorial Guinea
+11
+0
+0
+0
+11
+DJI
+Djibouti
+0
+5
+0
+0
+5
+BWA
+Botswana
+0
+0
+0
+0
+0
+CPV
+Cape Verde Islands
+0
+0
+0
+0
+0
+COM
+Comoros
+0
+0
+0
+0
+0
+LSO
+Lesotho
+0
+0
+0
+0
+0
+MUS
+Mauritius
+0
+0
+0
+0
+0
+MAR
+Morocco
+0
+0
+0
+0
+0
+RWA
+Rwanda
+0
+0
+0
+0
+0
+STP
+Sao Tome & Principe
+0
+0
+0
+0
+0
+SWZ
+Swaziland
+0
+0
+0
+0
+0
+SYC
+Seychelles
+0
+0
+0
+0
+0
+TUN
+Tunisia
+0
+0
+0
+0
+0
+13
+
+AGO
+BDI
+BEN
+BFA
+BWA
+CAF
+CIV
+CMR
+COG
+COM
+CPV
+DJI
+DZA
+EGY
+ETH
+GAB
+GHA
+GIN
+GMB
+GNB
+GNQ
+KEN
+LBR
+LBY
+LSO
+MAR
+MDG
+MLI
+MOZ
+MRT
+MUS
+MWI
+NAM
+NER
+NGA
+RWA
+SDN
+SEN
+SLE
+SOM
+STP
+SWZ
+SYC
+TCD
+TGO
+TUN
+TZA
+UGA
+ZAF
+ZAR
+ZMB
+ZWE
+4.5
+7.5
+10
+Log real per capita GDP in 2000, ln y
+−4
+0
+5
+11
+ln(exports/area)
+(coef = −.118, s.e. = .025, N = 52, R2 = .31)
+FIGURE III
+Relationship between log slave exports normalized by land area,
+ln(exports/area), and log real per capita GDP in 2000, ln y
+from each country by its size, measured by land area.6 Figure III shows the
+relationship between the natural log of the number of slaves exported in all
+four slave trades between 1400 and 1900 normalized by land area, and the
+natural log of per capita GDP in 2000.7 As shown in the ﬁgure, a negative
+relationship between income and slave exports is apparent in the raw data.
+I further examine this relationship by controlling for other country char-
+acteristics that are also potentially important for current income. My base-
+line estimating equation is:
+(1)
+ln yi = β0 + β1 ln(exportsi/areai) + C′
+iδ + X′
+iγ + εi,
+where ln yi is the natural log of real per capita GDP in country i in 2000, and
+ln(exportsi/areai) is the natural log of the total number of slaves exported
+6Alternative measures of country size are also possible.
+As I show in Table VI in
+the appendix, using the average population of a country between 1400 and 1900 yields
+nearly identical results. Similarly, using arable land area rather than land area also yields
+essentially identical results.
+7Because the natural log of zero is undeﬁned, I take the natural log of .1. As I show in
+the appendix, the results are robust to the omission of these zero export countries.
+14
+
+between 1400 and 1900 normalized by land area. Per capita GDP data are
+for the year 2000 and are from Maddison [2003]. Ci is a vector of dummy
+variables that indicate the origin of the colonizer prior to independence.
+These are included to control for the other signiﬁcant event in Africa’s past,
+colonial rule. Xi is a vector of control variables that are meant to capture
+diﬀerences in countries’ geography and climate.
+OLS estimates of (1) are reported in Table III. The ﬁrst column reports
+estimates of (1) with colonizer ﬁxed eﬀects only. In the second column, I also
+include controls that capture the potential importance of geography for long
+term economic development: distance from the equator, longitude, minimum
+monthly rainfall, average maximum humidity, average minimum tempera-
+ture, and proximity to the ocean measured by the natural log of coastline
+divided by land area. All factors, except longitude, inﬂuence whether a coun-
+try has a tropical climate, which aﬀects the prevalence of infectious disease
+and agricultural productivity [Kamarck, 1976; Sachs et al., 2001]. Longitude
+is also included to capture diﬀerences between the Eastern and Western parts
+of the African continent.8 In both speciﬁcations, the estimated relationship
+between slave exports and per capita income are negative and statistically
+signiﬁcant.
+One concern with the estimates in columns 1 and 2 is that they may be
+biased because of the inclusion of small islands and North African countries
+in the sample.
+In column 3, I omit island and North African countries,
+dropping Morocco, Algeria, Tunisia, Libya, Egypt, Seychelles, Mauritius,
+Comoros, Sao Tome and Principe, and the Cape Verde Islands. As shown,
+dropping these countries makes little diﬀerence. The estimated coeﬃcient
+for slave exports remains negative and signiﬁcant, and the magnitude of the
+estimated coeﬃcient actually increases.9
+In column 4, I include additional control variables to account for poten-
+tial diﬀerences between islands or North African countries and the rest of
+Africa. Two core diﬀerences between North Africa and the rest of Africa is
+that North African countries are predominantly Islamic and that they all
+have legal systems based on French civil law. To capture these diﬀerences,
+8A related concern is that the slave exports variable may simply capture a West Africa
+ﬁxed eﬀect. I show in the appendix that the results are robust to also controlling for
+region ﬁxed eﬀects.
+9One may also be concerned that the inclusion of the countries in Southern Africa
+– namely South Africa, Swaziland, and Lesotho – may also be biasing the results. As I
+report in the appendix, the results are robust to also omitting this group of countries. The
+table also shows that the estimates are robust to the omission of potentially inﬂuential
+observations.
+15
+
+TABLE III
+Relationship between slave exports and income
+Dependent variable is log real per capita GDP in 2000, ln y
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+ln(exports/area)
+−.112∗∗∗
+−.076∗∗∗
+−.108∗∗∗
+−.085∗∗
+−.103∗∗∗
+−.128∗∗∗
+(.024)
+(.029)
+(.037)
+(.035)
+(.034)
+(.034)
+Distance from equator
+.016
+−.005
+.019
+.023
+.006
+(.017)
+(.020)
+(.018)
+(.017)
+(.017)
+Longitude
+.001
+−.007
+−.004
+−.004
+−.009
+(.005)
+(.006)
+(.006)
+(.005)
+(.006)
+Lowest monthly rainfall
+−.001
+.008
+.0001
+−.001
+−.002
+(.007)
+(.008)
+(.007)
+(.006)
+(.008)
+Avg max humidity
+.009
+.008
+.009
+.015
+.013
+(.012)
+(.012)
+(.012)
+(.011)
+(.010)
+Avg min temperature
+−.019
+−.039
+−.005
+−.015
+−.037
+(.028)
+(.028)
+(.027)
+(.026)
+(.025)
+ln(coastline/area)
+.085∗∗
+.092∗∗
+.095∗∗
+.082∗∗
+.083∗∗
+(.039)
+(.042)
+(.042)
+(.040)
+(.037)
+Island indicator
+−.398
+−.150
+(.529)
+(.516)
+Percent Islamic
+−.008∗∗∗
+−.006∗
+−.003
+(.003)
+(.003)
+(.003)
+French legal origin
+.755
+.643
+−.141
+(.503)
+(.470)
+(.734)
+North Africa indicator
+.382
+−.304
+(.484)
+(.517)
+ln(gold prod/pop)
+.011
+.014
+(.017)
+(.015)
+ln(oil prod/pop)
+.078∗∗∗
+.088∗∗∗
+(.027)
+(.025)
+ln(diamond prod/pop)
+−.039
+−.048
+(.043)
+(.041)
+Colonizer ﬁxed eﬀects
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Number obs.
+52
+52
+42
+52
+52
+42
+R2
+.51
+.60
+.63
+.71
+.77
+.80
+OLS estimates of (1) are reported. The dependent variable is the natural log of real per
+capita GDP in 2000, ln y. The slave export variable ln(exports/area) is the natural log of the
+total number of slaves exported from each country between 1400 and 1900 in the four slave trades
+normalized by land area. The colonizer ﬁxed eﬀects are indicator variables for the identity of the
+colonizer at the time of independence. Coeﬃcients are reported with standard errors in brackets.
+∗∗∗, ∗∗, and ∗indicate signiﬁcance at the 1, 5, and 10 percent levels.
+16
+
+I also include a measure of the percent of the population that is islamic
+and a French legal origin indicator variable. I also include a North Africa
+ﬁxed eﬀect and an island ﬁxed eﬀect. As shown, including these additional
+control variables does not aﬀect the slave exports coeﬃcient, which remains
+negative and statistically signiﬁcant.
+The ﬁnal factor that I control for are diﬀerences in countries endowments
+of natural resources.
+In column 5, I also control for the natural log of
+annual average per capita production between 1970 and 2000 of gold, oil,
+and diamonds.
+As shown, controlling for countries’ production of these
+natural resources does not alter the results.10 In column 6, I simultaneously
+include all control variables and drop islands and North African countries
+from the sample. Again the results remain robust.11
+The estimated magnitudes of the relationship between slave exports and
+income are not only statistically signiﬁcant but also economically mean-
+ingful. Calculating the standardized beta coeﬃcients of the estimates, one
+ﬁnds that a one standard deviation increase in ln(exports/area) is associ-
+ated with between .36 to .62 standard deviation decrease in log income. If
+for purely illustrative purposes one interprets the OLS estimates as causal,
+then according to the estimate from column 5, for a country initially with
+the mean level of income of $1,249, a one standard deviation decrease in the
+slave export variable will raise income to $1,864, which is a 50% increase in
+income.
+V. Econometric Issues: Causality and Measurement Error
+Although the OLS estimates show that there is a relationship between
+slave exports and current economic performance, it remains unclear whether
+the slave trades have a causal impact on current income. An alternative
+explanation for the relationship is that societies that were initially under-
+developed selected into the slave trades, and these societies continue to be
+underdeveloped today.
+Therefore, we observe a negative relationship be-
+tween slave exports and current income, even though the slave trades did
+not have any eﬀect on subsequent economic development. In this section, I
+pursue two strategies to evaluate whether there is causal eﬀect of the slave
+10Looking at Figure III one can see that Equatorial Guinea (GNQ), which has a low
+value of slave exports and has recently witness extremely rapid economic growth because of
+the discovery of large oﬀshore oil reserves, is a potential outlier. As I show in the appendix,
+the results are also robust to the omission of Equatorial Guinea from the sample.
+11The island and North Africa indicator variables drop out of the equation when island
+and North African countries are omitted from the sample.
+17
+
+trades on income. First, using historic data and qualitative evidence from
+African historians, I evaluate the importance and characteristics of selection
+into the slave trades. As I will show, the evidence suggests that selection was
+important, but it was usually the societies that were the most prosperous,
+not the most underdeveloped, that selected into the slave trades. Given this
+evidence, it is unlikely that the strong relationship between slave exports
+and current income is driven by selection. Instead, selection will tend to
+bias the OLS estimates towards zero. Second, I use the distance from each
+country to the location of the demand for slaves as instruments for slave
+exports. The IV results conﬁrm the OLS estimates.
+V.A. Historical Evidence on Selection during the Slave Trades
+A large proportion of the early trade between Africans and Europeans
+was in commodities other than slaves. During this time, only societies with
+institutions that were suﬃciently developed were able to facilitate trade
+with the Europeans. Between 1472 and 1483, the Portuguese sailed south
+along the West coast of Africa, testing various points of entry looking for
+trading partners. They were unable to ﬁnd any societies north of the Zaire
+river that could support trade.
+Vansina [1990, p. 200] writes that “the
+local coastal societies were just too small in terms of people and territory;
+their economic and social institutions were too undiﬀerentiated to facilitate
+foreign trade.” Sustained trade did not occur until the Portuguese found
+the Kongo Kingdom, located just south of the Zaire river.
+Because the
+Kongo Kingdom had a centralized government, national currency, and well-
+developed markets and trading networks, it was able to support trade with
+the Europeans.
+When European demand turned almost exclusively to slaves, the prefer-
+ence to trade with the most developed parts of Africa continued. Because
+the more prosperous areas were also the most densely populated, large num-
+bers of slaves could be eﬃciently obtained if civil wars or conﬂicts could be
+instigated [Barry, 1992; Inikori, 2003]. As well, societies that were the most
+violent and hostile, and therefore least developed, were often best able to
+resist European eﬀorts to purchase slaves. For example, the slave trade in
+Gabon was limited because of the deﬁance and violence of its inhabitants
+towards the Portuguese. This resistance continued for centuries, and as a
+result the Portuguese were forced to concentrate their eﬀorts along the coast
+further south [Hall, 2005, pp. 60–64].
+Using data on initial population densities, I check whether it was the
+more prosperous or less prosperous areas that selected into the slave trades.
+18
+
+AGO
+BDI
+BEN
+BFA
+BWA
+CAF
+CIV
+CMR
+COG
+COM
+CPV
+DJI
+DZA
+EGY
+ETH
+GAB
+GHA
+GIN
+GMB
+GNB
+GNQ
+KEN
+LBR
+LBY
+LSO
+MAR
+MDG
+MLIMOZ
+MRT
+MUS
+MWI
+NAM
+NER
+NGA
+RWA
+SDN
+SEN
+SLE
+SOM
+STP
+SWZ
+SYC
+TCD
+TGO
+TUN
+TZA
+UGA
+ZAF
+ZAR
+ZMB
+ZWE
+−2
+0
+5
+10
+Slave exports, ln(exports/area)
+−2.5
+0
+3.5
+Log population density in 1400
+(beta coef = .42, t−stat = 3.30, N = 52, R2 = .18)
+FIGURE IV
+Relationship between initial population density and slave exports
+Acemoglu et al. [2002] have shown that population density is a reasonable
+indicator of economic prosperity. Figure IV shows the relationship between
+the natural log of population density in 1400 and ln(exports/area).
+The
+data conﬁrm the historical evidence on selection during the slave trades.12
+The ﬁgure shows that the parts of Africa that were the most prosperous in
+1400, measured by population density, tend to also be the areas that were
+most impacted by the slave trades.
+A second potential source of selection may be that societies that ini-
+tially had domestic slavery may have selected into the slave trades. If this
+is the case, then the estimates may be biased by a negative relationship
+between domestic slavery and subsequent economic development, similar to
+that documented by Engerman and Sokoloﬀ[1997, 2002] in the Americas.
+The historic evidence indicates that in the areas of Africa that were part
+of the older Islamic slave trades there was domestic slavery, but it is unclear
+whether domestic slavery was a cause or a consequence of the external slave
+trades. Whether the parts of Africa that were untouched by the Islamic
+12The relationship is similar if one excludes island and North African countries, or if
+one normalizes slave exports by population rather than land area.
+19
+
+trades had chattel slavery prior to European contact has been the subject
+of an old debate among African historians [e.g., Fage, 1962; Rodney, 1970].
+Since this debate evidence has been brought forth suggesting that domestic
+slavery may not have existed prior to the trans-Atlantic slave trade. Hilton
+[1985] provides evidence showing that in the sixteenth century, words that
+originally meant ‘servant’ or ‘prisoner’ were altered to take on the meaning
+of a ‘traded slave’. Historian and Anthropologist Jan Vansina [1989], using
+more detailed linguistic data, conﬁrms Hilton’s ﬁnding, showing that in West
+Central Africa there was no word for slave. Vansina maps the origin of the
+word ‘pika’ which originally meant servant, but took on the meaning of a
+‘traded slave’. The word originated at the coastal ports engaged in the slave
+trade and spread to the inland communities that were also involved in the
+trade [Vansina, 1989, 1990]. Recent studies of other regions also suggest
+that prior to the external slave trade domestic slavery did not exist [e.g.,
+Harms, 1981; Inikori, 2000; Hall, 2005, p. 16].
+V.B. Instrumental Variables
+The second strategy that I pursue is to use instruments that are corre-
+lated with slave exports, but are uncorrelated with other country character-
+istics. This strategy has the added beneﬁt of yielding potentially consistent
+estimates even though slave exports are measured with error. If the instru-
+ments are also uncorrelated with the measurement error in slave exports
+that arises from the under-sampling of slaves from the interior, then unlike
+OLS, IV yields consistent estimates.
+As instruments for slave exports, I use the distances from each African
+country to the locations of where slaves were demanded. The validity of the
+instruments relies on the presumption that although the location of demand
+inﬂuenced the location of supply, the location of supply did not inﬂuence
+the location of demand. If sugar plantations were established in the West
+Indies because the West Indies were close to the western coast of Africa,
+then the instruments are not valid. However, if instead many slaves were
+taken from Western Africa because it is relatively close to the plantation
+economies in the West Indies, then the instruments are potentially valid.
+According to the known history the slave trades, it was the location of
+demand that inﬂuenced the location of

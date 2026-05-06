@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies the Difference-in-Differences (DID) strategy and accurately defines the treatment group, control group, and event date, all matching the ground truth. It also correctly lists key identifying assumptions for DID. However, the output is incomplete and does not state the conclusion direction, hence a 0 for direction match but no 'Narrative Fabrication' since no incorrect direction was stated.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_01",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T13:13:55.382237+00:00"
+}

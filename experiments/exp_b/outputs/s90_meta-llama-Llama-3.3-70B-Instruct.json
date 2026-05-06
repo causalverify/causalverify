@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:49:49.300632",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 460,
+    "output_tokens": 499,
+    "content": "## 1. Identification Strategy\nTo estimate the impact of gaining admission to an elite high school on SAT scores, we will use a Regression Discontinuity Design (RDD). The key assumption in RDD is that the probability of receiving the treatment (admission to the elite high school) changes discontinuously at the cutoff point, but other factors that affect the outcome (SAT score) do not. In this case, the cutoff is the admission test score, and we focus on students near this cutoff. The main identifying assumption is that the admission decision is the only factor that changes discontinuously at the cutoff, allowing us to isolate the effect of admission on SAT scores.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(ggplot2)\n\n# Read the CSV file\ndata <- read.csv(\"experiments/exp_b/data/s90_data.csv\")\n\n# Filter data to include only students near the cutoff\ncutoff <- mean(data$running_var[data$near_cutoff == 1])\ndata_near_cutoff <- data %>% \n  filter(running_var > cutoff - 0.1 & running_var < cutoff + 0.1)\n\n# Perform RDD analysis using a linear model\nmodel <- lm(y ~ treated, data = data_near_cutoff)\n\n# Print the coefficient of the treated variable, which represents the effect of admission on SAT scores\nprint(model$coefficients[\"treated\"])\n\n# For robustness, let's also check the result with a polynomial regression\nmodel_poly <- lm(y ~ poly(running_var, 2) + treated + poly(running_var, 2):treated, data = data_near_cutoff)\nprint(model_poly$coefficients[\"treated\"])\n```\n\n## 3. Expected Findings\nWe expect a positive effect of gaining admission to the elite high school on SAT scores, as the elite environment and resources may enhance students' academic abilities. However, the magnitude of the effect is difficult to predict without knowing more about the specific characteristics of the elite high school and the students. A positive and statistically significant coefficient for the `treated` variable would suggest that admission to the elite high school has a positive impact on SAT scores for students who narrowly meet the admission requirements. The expected magnitude could be in the range of 0.05 to 0.20, considering the scale of the outcome variable `y`. This range is speculative and may vary based on the actual data and analysis results.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  }
+}

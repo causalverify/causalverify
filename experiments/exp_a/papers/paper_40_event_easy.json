@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_40",
+  "source": "American Economic Review, 2006",
+  "authors": "Mas",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Pay, Reference Points, and Police Performance",
+  "doi": "10.1257/aer.96.4.1183",
+  "volume": 96,
+  "issue": 4,
+  "pages": "1183-1213",
+  "domain": "labor",
+  "research_question": "How do pay raises that fall short of workers' expectations or demands affect on-the-job performance? Specifically, when police officers receive a wage increase that is below what their union sought, does their productivity—measured by arrests, clearances, sentencing outcomes, and crime rates—decline relative to when they receive their requested wage, and does the magnitude of the shortfall relative to a reference point matter?",
+  "data_description": "The study combines three data sources covering New Jersey municipalities. First, records from the New Jersey Public Employment Relations Commission (PERC) provide information on 383 compensation-dispute arbitration cases between police bargaining units and municipalities from 1978 to 1995, including each side's wage offer (as percent changes from the prior contract) and the ruling. Second, monthly municipality-level data on crimes reported and crimes cleared by arrest (overall, violent, property, and by specific offense) come from the FBI Uniform Crime Reporting System for 1976–1996, supplemented by 197 non-arbitrating municipalities as a comparison group. Third, the Offender Based Transaction Statistics (OBTS) for 1989–1990 track felony arrestees through conviction, incarceration, and sentence length. The unit of observation is municipality-month for crime/clearance analyses and individual arrestee for sentencing analyses.",
+  "institutional_context": "Beginning in 1968, New Jersey public-sector employees could bargain collectively but were prohibited from striking. To resolve resulting impasses, the 1977 New Jersey Fire and Police Arbitration Act made final-offer arbitration the default procedure for police wage disputes from 1978 to 1996. Bargaining had to commence 120 days before contract expiration, and unresolved disputes entered arbitration 60 days before expiration. Each party submits a single wage offer expressed as a percent raise over the previous contract, and a neutral arbitrator must select one offer in full as a binding settlement. Roughly 9 percent of police contract expirations went to arbitration. The setting produces clear winners and losers, with the awarded raise often differing substantially from what the union demanded, creating salient reference points tied to the unsuccessful counteroffer.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.06,
+      "unit": "percentage point decline in crime clearance rate (DID estimate, first year after union loss)",
+      "interpretation": "Police departments whose unions lost final-offer arbitration experienced approximately 6 percentage point lower crime clearance rates (12% relative decline from a 50% base) compared to departments where unions won"
+    },
+    "secondary_estimate": {
+      "value": -0.1,
+      "unit": "fractional decline in arrests per officer",
+      "interpretation": "Arrests per officer decline by approximately 10% following an unfavorable arbitration outcome, consistent with reduced discretionary effort"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 2-4 in Mas (2006)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "FBI Uniform Crime Reports (UCR) — crime and clearance data by police department (free from ICPSR)",
+      "New Jersey PERC arbitration decisions (public records)",
+      "Census of Law Enforcement (public, ICPSR)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. UCR data is free from ICPSR. PERC arbitration decisions are public records in New Jersey.",
+    "replicability": "high — all data publicly available from federal and state sources",
+    "public_proxy_available": true,
+    "replication_tier": "full (UCR from ICPSR + PERC public records — free)",
+    "data_limitations": "UCR data has known issues with reporting consistency across agencies. Crime clearance rates can be influenced by factors beyond police effort (prosecutor behavior, victim cooperation). Final-offer arbitration is specific to New Jersey's institutional setting.",
+    "public_data_sources_detail": [
+      "FBI UCR via ICPSR (crime and clearance data by agency — free)",
+      "NJ PERC (arbitration decision records — public records request)",
+      "Census of Law Enforcement via ICPSR (police department characteristics — free)",
+      "Alexandre Mas's replication files (Princeton website — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study around final-offer arbitration decisions — comparing police department performance (crime clearance rates) in the years before and after arbitration, for departments whose unions lost (unfavorable outcome) vs. won (favorable outcome); the quasi-random nature of close arbitration decisions provides plausible exogeneity",
+    "key_variables": {
+      "treatment": "union loss in final-offer arbitration (unfavorable wage outcome — officers receive management's lower offer)",
+      "control": "union win in final-offer arbitration (favorable wage outcome — officers receive their full demand)",
+      "outcome": "crime clearance rate (fraction of crimes cleared by arrest); total arrests per officer; incidence of crime (to check for reporting effects)",
+      "time_period": "1978–1996, with performance measured 3 years before and after each arbitration decision"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Police performance declines significantly after an unfavorable arbitration outcome. Crime clearance rates fall by approximately 12% (6 percentage points from a base of ~50%) in the year after the union loses, relative to departments where the union won. The effect is concentrated in crimes that require discretionary police effort (property crimes) rather than crimes that are self-reported (violent crimes). Effects persist for approximately 2-3 years before dissipating.",
+    "main_effect": "Union loss in arbitration reduces crime clearance rate by approximately 12% (6 percentage points) in the first year post-decision; arrests per officer also decline",
+    "key_robustness": [
+      "Controlling for pre-arbitration performance trends",
+      "Separating property crimes (discretionary effort) from violent crimes (less discretionary)",
+      "Event-study specification showing no pre-trend in performance differences",
+      "Controlling for department size, county demographics, and crime rates",
+      "Checking whether crime incidence changes (to rule out reporting effects)",
+      "Duration analysis: effect persistence over 1-4 years post-decision"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with DID-like structure: comparing performance trajectories of departments where unions lost vs. won in final-offer arbitration, before and after the arbitration decision",
+      "treatment": "Union loss in final-offer arbitration (binary — quasi-randomly assigned among close cases)",
+      "event_window": "[-3, +4] years around arbitration decision date",
+      "estimation_window": "Pre-arbitration years [-3, -1] establish baseline performance trends",
+      "sample_period": "1978–1996",
+      "unit_of_observation": "Police department × year, centered on arbitration decision year",
+      "key_assumption": "Among cases that go to final-offer arbitration, the arbitrator's decision (union win vs. loss) is quasi-random and uncorrelated with the police department's underlying performance trajectory. This is supported by the institutional design of FOA (arbitrator chooses one of two offers) and by pre-trend analysis showing no differential performance trends before the arbitration."
+    },
+    "key_magnitudes": {
+      "clearance_rate_decline": "-6 percentage points (from ~50% base = 12% relative decline) in the first year after union loss",
+      "arrest_decline": "Approximately 8-10% fewer arrests per officer in the year after unfavorable outcome",
+      "persistence": "Effects persist for 2-3 years before gradually dissipating",
+      "crime_type_heterogeneity": "Effect is 2-3x larger for property crimes (burglary, larceny) than for violent crimes (homicide, assault)"
+    },
+    "robustness_notes_detail": "Event-study plots confirm no differential pre-trends in clearance rates between departments that will win vs. lose arbitration. The effect is immediate (appears in the first year post-decision) and gradually fades over 2-3 years, consistent with adaptation to the new reference point. Controlling for total reported crime (crime incidence) rules out the possibility that the clearance rate decline is mechanical (driven by more crime rather than less effort). The heterogeneity by crime type supports the effort mechanism: property crime clearance (which depends heavily on police initiative — canvassing, investigation) declines more than violent crime clearance (which is often self-reported by victims)."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 95332,
+  "phase1_source_version": "v2primeprime_full_text"
+}

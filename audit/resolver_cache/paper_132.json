@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_132",
+  "title": "Trade Liberalization and Labor Market Dynamics",
+  "authors": "Dix-Carneiro",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.3982/ecta10457",
+    "title": "Trade Liberalization and Labor Market Dynamics",
+    "year": 2014,
+    "journal": "Econometrica",
+    "citations": 512
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 512,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

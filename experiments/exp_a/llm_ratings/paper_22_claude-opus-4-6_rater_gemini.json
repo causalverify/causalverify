@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI model perfectly matches the ground truth identification strategy, correctly identifying difference-in-differences, specifying the two dimensions of variation (cohort and program intensity/district), and detailing the interaction term as the core identifier. The provided regression equation structure also aligns perfectly. However, the output ends before stating any conclusions about the direction or magnitude of the effect.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_22",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:24:20.378796+00:00"
+}

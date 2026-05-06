@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s50",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Evaluating the Impact of Fertilizer Subsidy on Crop Yields",
+  "research_question": "This study investigates whether an input subsidy program for fertilizers leads to an increase in crop yields among smallholder farmers. The challenge lies in isolating the effect of the subsidy from other factors that might influence agricultural productivity over time.",
+  "data_description": "The dataset comprises 100 observations with columns: unit_id, period, treated, post, treat_x_post, and y. Each observation represents a farming unit, with 'treated' indicating whether the unit received the subsidy, and 'y' representing the log of crop yields.",
+  "ground_truth": {
+    "identification_strategy": "Compare changes in log crop yields over time between treated and untreated units.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The subsidy program significantly increased crop yields.",
+    "main_effect": "0.25"
+  },
+  "dgp_truth": {
+    "type": "did",
+    "effect": 0.25,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s50_data.csv"
+}

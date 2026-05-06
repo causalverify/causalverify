@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s08",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Staggered fintech adoption on loan default rates",
+  "model": "o3",
+  "run_at": "2026-03-27T20:17:10.181866",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 488,
+    "output_tokens": 1542,
+    "content": "## 1. Identification Strategy  \nCausal method: Difference-in-Differences (with staggered adoption). Because every bank either never adopts or adopts the algorithmic‐scoring technology only once, the policy is irreversible and timing varies. A two-way fixed-effects (TWFE) DiD recovers the average treatment effect when treatment timing is homogeneous; but with staggered timing we also report the Callaway-Sant’Anna (2021) estimator that is robust to treatment-cohort heterogeneity.\n\nKey identifying assumptions  \n• Parallel trends: in the absence of fintech adoption, treated and never-treated banks’ default rates would have evolved in parallel.  \n• No anticipatory effects: outcomes are not affected before actual adoption.  \n• Stable unit treatment value (no spill-overs across banks).  \n\n## 2. R Code\n```r\n###############################################\n#  Fintech adoption and loan default rates   ##\n###############################################\n# Packages\nlibrary(data.table)     # fast read / manipulation\nlibrary(fixest)         # TWFE DiD\nlibrary(did)            # Callaway-Sant’Anna\nlibrary(broom)          # tidy output\n\n# 1. Read data --------------------------------------------------------------\npath <- \"experiments/exp_b/data/s08_data.csv\"\ndf   <- fread(path)\n\n# 2. Basic TWFE DiD  --------------------------------------------------------\n# y = beta * Treat x Post  + unit FE + time FE\ndid_twfe <- feols(y ~ treat_x_post | unit_id + period,\n                  data = df, cluster = \"unit_id\")\n\ntwfe_res <- tidy(did_twfe, conf.int = TRUE)\ncat(\"=== TWFE Difference-in-Differences ===\\n\")\nprint(twfe_res[, c(\"term\",\"estimate\",\"conf.low\",\"conf.high\",\"p.value\")])\n\n# 3. Staggered-timing robust ATT (Callaway-Sant’Anna) ----------------------\n# define first-treatment cohort g (0 = never treated)\ndf[, g := ifelse(treated==1, 4, 0)]   # all adopters switch in q4 in this toy data\natt_gt <- att_gt(yname  = \"y\",\n                 tname  = \"period\",\n                 idname = \"unit_id\",\n                 gname  = \"g\",\n                 data   = df)\n\n# Aggregate ATT across post-treatment periods (“simple” = equal weights)\nagg_simple <- aggte(att_gt, type = \"simple\")\ncat(\"\\n=== Callaway-Sant’Anna ATT (simple average) ===\\n\")\nprint(round(agg_simple$att, 4))\n\n# 4. Event-study / dynamic effects (robustness) ----------------------------\n# leads/lags relative to adoption\nevent_twfe <- feols(y ~ sunab(unit_id, period, ref = 3) | unit_id + period,\n                    data = df, cluster = \"unit_id\")\ncat(\"\\n=== Event-study leads/lags (Sun & Abraham) ===\\n\")\nprint(coeftable(event_twfe)[1:6, ])   # show first few leads/lags\n\n# 5. Placebo pre-trend test (periods 1-3 only) -----------------------------\npre_df <- df[period <= 3]\nplacebo <- feols(y ~ treated:factor(period) | unit_id + period,\n                 data = pre_df, cluster = \"unit_id\")\ncat(\"\\n=== Placebo test (pre-adoption periods only) ===\\n\")\nprint(coeftable(placebo))\n```\n\n## 3. Expected Findings  \nSign: negative. Algorithmic credit scoring should improve screening, hence reduce default rates.\n\nMagnitude: roughly −0.03 to −0.05 (i.e. 3–5 percentage-point reduction) on a mean default rate near 20–25 %. The TWFE coefficient and the Callaway-Sant’Anna average ATT are therefore expected around −0.04.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Staggered DID (Callaway-Sant'Anna or Sun-Abraham) — cohort-specific ATTs; treatment=fintech adoption",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Fintech-adopting banks reduce default rates relative to non-adopters",
+    "main_effect": "25bp reduction in default rate"
+  }
+}

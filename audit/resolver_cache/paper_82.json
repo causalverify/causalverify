@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_82",
+  "title": "Zero Returns to Compulsory Schooling in Germany: Evidence and Interpretation",
+  "authors": "Pischke & von Wachter",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w11414",
+    "title": "Zero Returns to Compulsory Schooling In Germany: Evidence and Interpretation",
+    "year": 2005,
+    "journal": "National Bureau of Economic Research",
+    "citations": 82
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "pischke",
+      "wachter"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 82,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

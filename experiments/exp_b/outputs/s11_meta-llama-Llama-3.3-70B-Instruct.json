@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Fed rate hike announcement on bank stock returns",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:32:03.202071",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 513,
+    "output_tokens": 757,
+    "content": "## 1. Identification Strategy\nTo analyze the impact of unexpected Federal Reserve interest rate hike announcements on bank stock returns, we will employ an event study methodology. This approach involves estimating the abnormal returns of bank stocks around the event date (the day of the announcement) and calculating the cumulative abnormal returns (CAR) over a specified event window. The key assumption of this method is that the event (the rate hike announcement) is exogenous and that any observed change in bank stock returns during the event window is due to the event itself, rather than other factors.\n\nWe will use the market model to estimate the expected returns of bank stocks, which assumes that returns are a linear function of the market returns. The market model is given by: $R_{it} = \\alpha_i + \\beta_iR_{mt} + \\epsilon_{it}$, where $R_{it}$ is the return of stock $i$ at time $t$, $\\alpha_i$ is the intercept or the expected return if the market return is zero, $\\beta_i$ is the market beta of stock $i$, $R_{mt}$ is the market return at time $t$, and $\\epsilon_{it}$ is the error term or the abnormal return.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(tidyr)\n\n# Load the data\ndata <- read_csv(\"experiments/exp_b/data/s11_data.csv\")\n\n# Estimate the market model and calculate abnormal returns\ndata_estimation <- data %>%\n  filter(event_day >= -10 & event_day <= -2) %>%\n  group_by(stock_id) %>%\n  do(model = lm(ret ~ mkt_ret, data = .))\n\n# Create a coefficients data frame\ncoefficients <- data_estimation %>%\n  rowwise() %>%\n  mutate(intercept = coef(model)[1],\n         beta = coef(model)[2]) %>%\n  select(stock_id, intercept, beta)\n\n# Merge coefficients with original data\ndata <- data %>%\n  left_join(coefficients, by = \"stock_id\")\n\n# Calculate expected returns\ndata <- data %>%\n  mutate(expected_ret = intercept + beta * mkt_ret)\n\n# Calculate abnormal returns\ndata <- data %>%\n  mutate(abnormal_ret = ret - expected_ret)\n\n# Calculate cumulative abnormal returns (CAR) for the event window [-1, +1]\ndata_event_window <- data %>%\n  filter(event_day >= -1 & event_day <= 1)\n\nCAR <- data_event_window %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abnormal_ret))\n\n# Print the average CAR across all stocks\naverage_CAR <- mean(CAR$CAR, na.rm = TRUE)\nprint(paste(\"The average CAR is:\", average_CAR))\n\n# Basic robustness check: test if average CAR is significantly different from zero\nt_test_result <- t.test(CAR$CAR, mu = 0)\nprint(t_test_result)\n```\n\n## 3. Expected Findings\nWe expect a positive cumulative abnormal return (CAR) for bank stocks in the [-1, +1] window around an unexpected Federal Reserve interest rate hike announcement. This is because banks typically benefit from higher interest rates, as they can charge higher interest rates on loans and see an increase in their net interest income. The magnitude of the CAR will depend on the size of the rate hike and the market's expectations prior to the announcement. If the rate hike is unexpectedly large, we would expect a larger positive CAR. Conversely, if the rate hike is largely expected by the market, the CAR may be smaller or even negative if the announcement is seen as a negative signal for the overall economy.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; estimation window [−10,−2]; event window [−1,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank stocks show negative CAR around the rate hike announcement",
+    "main_effect": "CAR ≈ −2% in [−1,+1] window"
+  }
+}

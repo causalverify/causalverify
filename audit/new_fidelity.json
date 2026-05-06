@@ -1,0 +1,60 @@
+[
+  {
+    "paper_id": "paper_05",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "pdf_first_8_pages"
+  },
+  {
+    "paper_id": "paper_07",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "pdf_first_8_pages"
+  },
+  {
+    "paper_id": "paper_14",
+    "fidelity": "faithful",
+    "key_discrepancies": [
+      "Abstract shown is only a reply note; details about the 1990 legislation, veto, and Republican legislature are not in the abstract text but are historically accurate context"
+    ],
+    "source_type": "pdf_first_8_pages"
+  },
+  {
+    "paper_id": "paper_15",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "pdf_first_8_pages"
+  },
+  {
+    "paper_id": "paper_04",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "openalex_abstract"
+  },
+  {
+    "paper_id": "paper_06",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "openalex_abstract"
+  },
+  {
+    "paper_id": "paper_09",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "openalex_abstract"
+  },
+  {
+    "paper_id": "paper_10",
+    "fidelity": "faithful",
+    "key_discrepancies": [
+      "Specific mention of decimalization and state antitakeover laws are plausible but not explicitly stated in the abstract"
+    ],
+    "source_type": "openalex_abstract"
+  },
+  {
+    "paper_id": "paper_11",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "source_type": "openalex_abstract"
+  }
+]

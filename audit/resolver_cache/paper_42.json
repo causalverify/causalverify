@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_42",
+  "title": "The Aggregate Effects of Health Insurance: Evidence from the Introduction of Medicare",
+  "authors": "Finkelstein",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.122.1.1",
+    "title": "The Aggregate Effects of Health Insurance: Evidence from the Introduction of Medicare",
+    "year": 2007,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 524
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "finkelstein"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 524,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

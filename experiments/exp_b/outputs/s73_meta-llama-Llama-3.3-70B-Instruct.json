@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s73",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Immigration on Native Wages",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:46:14.704221",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 472,
+    "output_tokens": 562,
+    "content": "## 1. Identification Strategy\nTo address the potential endogeneity in immigrant distribution, we will employ the Instrumental Variable (IV) method. The historical settlement patterns ('z') serve as our instrumental variable. The key assumption for the validity of this approach is that the historical settlement patterns only affect native wages ('y') through their impact on immigrant inflow ('x'), and not through any other channels. This assumption implies that the historical settlement patterns must satisfy both the relevance condition (they are correlated with immigrant inflow) and the exclusion restriction (they do not directly affect native wages).\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(stargazer)\n\n# Read the data from the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s73_data.csv\")\n\n# Convert the data into a data frame suitable for plm analysis\ndata$z <- as.factor(data$z)\n\n# First-stage regression to check the relevance of the instrument\nsummary(fm_x <- plm(x ~ z + controls, data = data, model = \"within\", index = c(\"z\")))\n\n# Second-stage regression using the IV approach\nsummary(fm_y <- plm(y ~ x + controls, data = data, model = \"within\", instruments = ~ z + controls, index = c(\"z\")))\n\n# Robustness check: OLS regression for comparison\nsummary(ols_y <- plm(y ~ x + controls, data = data, model = \"within\", index = c(\"z\")))\n\n# Print the results in a readable format\nstargazer(fm_x, fm_y, ols_y, type = \"latex\")\n```\n\n## 3. Expected Findings\nWe expect the coefficient on immigrant inflow ('x') in the second-stage IV regression to be negative, indicating that an increase in immigrant inflow, driven by historical settlement patterns, decreases the wages of native workers. This expectation is based on the common theoretical argument that immigrants increase the supply of labor in local markets, which, under certain conditions (such as imperfect substitutability between native and immigrant workers), can lead to downward pressure on native wages. The magnitude of this effect, however, is likely to be small and will depend on factors such as the skill levels of immigrants relative to native workers and the flexibility of the labor market. A coefficient around -0.1 to -0.2, suggesting that a 1% increase in immigrant inflow leads to a 0.1% to 0.2% decrease in native wages, would be plausible and in line with some existing literature on the topic. However, the actual magnitude and sign of the effect will depend on the specific data and econometric specification used.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use historical settlement patterns as an instrument for immigrant inflow.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals that increased immigrant inflow positively affects native wages.",
+    "main_effect": 0.35
+  }
+}

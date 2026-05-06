@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies the strategy as an event study around arbitration decisions comparing departments whose unions lost vs won, which perfectly matches the ground truth. However, it incorrectly frames union loss as the 'treatment' that would harm performance, when the ground truth shows union loss actually reduces crime clearance rates (worsens performance from society's perspective but the AI doesn't state the expected direction clearly). The strategy identification is excellent but direction is not stated.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_40",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:12:55.948927+00:00"
+}

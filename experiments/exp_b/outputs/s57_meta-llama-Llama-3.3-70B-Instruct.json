@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s57",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of IPO Lockup Expiry on Stock Returns",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:42:46.583917",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 516,
+    "output_tokens": 591,
+    "content": "## 1. Identification Strategy\nTo investigate the impact of IPO lockup expiry on stock returns, we employ an event study approach. This method involves analyzing the abnormal returns of stocks around a specific event, in this case, the expiration of IPO lockup periods. The key assumption of an event study is that the event of interest (lockup expiry) is unanticipated and that any changes in stock returns around the event date are due to the event itself rather than other factors. We calculate the cumulative abnormal returns (CAR) for a window around the event day to assess the impact of the lockup expiry.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\n\n# Read the data from the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s57_data.csv\")\n\n# Calculate abnormal returns by subtracting market returns from individual stock returns\ndata$abn_ret <- data$ret - data$mkt_ret\n\n# Calculate cumulative abnormal returns (CAR) for a window around the event day\ndata_with_car <- data %>%\n  group_by(stock_id) %>%\n  mutate(car = cumsum(abn_ret))\n\n# Define the event window (e.g., -5 to 5 days around the lockup expiry)\nevent_window <- data_with_car %>% \n  filter(event_day >= -5 & event_day <= 5)\n\n# Calculate the average CAR for the entire event window\navg_car <- event_window %>% \n  group_by(event_day) %>% \n  summarise(avg_car = mean(car)) %>%\n  ungroup()\n\n# Print the average CAR for the event window\nprint(avg_car)\n\n# Basic robustness check: Test if CAR is significantly different from 0 on the event day\nevent_day_car <- avg_car %>% filter(event_day == 0) %>% pull(avg_car)\nt_stat <- event_day_car / (sd(event_window$abn_ret) / sqrt(nrow(event_window)))\np_value <- 2 * (1 - pt(abs(t_stat), df = nrow(event_window) - 1))\nprint(paste(\"t-statistic:\", t_stat))\nprint(paste(\"p-value:\", p_value))\n```\n\n## 3. Expected Findings\nWe expect the cumulative abnormal returns (CAR) around the IPO lockup expiry date to be negative, indicating a potential decrease in stock price due to the increase in supply of shares available for trading. This is because the lockup expiry allows insiders and pre-IPO investors to sell their shares, potentially leading to an increase in supply and, consequently, a decrease in price. The magnitude of the effect is expected to be moderate, considering that the increase in supply is limited to the shares held by insiders and pre-IPO investors. A statistically significant negative CAR would support the hypothesis that the expiration of IPO lockup periods has a negative impact on stock returns.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare CAR before and after lockup expiry.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The lockup expiry leads to a negative impact on CAR.",
+    "main_effect": -0.015
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_20",
+  "title": "Randomized Experiments from Non-random Selection in U.S. House Elections",
+  "authors": "Lee",
+  "year": null,
+  "journal": "Journal of Econometrics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jeconom.2007.05.004",
+    "title": "Randomized experiments from non-random selection in U.S. House elections",
+    "year": 2007,
+    "journal": "Journal of Econometrics",
+    "citations": 1754
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "journal of econometrics",
+    "journal_oa": "journal of econometrics",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1754,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_95",
+  "title": "Going to a Better School: Effects and Behavioral Responses",
+  "authors": "Pop-Eleches & Urquiola",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.103.4.1289",
+    "title": "Going to a Better School: Effects and Behavioral Responses",
+    "year": 2013,
+    "journal": "American Economic Review",
+    "citations": 407
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "urquiola"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 407,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

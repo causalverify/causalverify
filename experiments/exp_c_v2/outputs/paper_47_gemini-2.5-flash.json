@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_47",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:41:29.169727",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 705,
+    "output_tokens": 163,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy will employ an instrumental variable (IV) approach, specifically Two-Stage Least Squares (2SLS). We aim to estimate the causal effect of an increase in the *average education level* in a state-of-birth/Census-year cell on *individual log wages*. The endogeneity of average education (due to self-selection or unobserved confounders) will be addressed by instrumenting it with state-specific compulsory schooling laws (CSL). These laws provide exogenous variation in compelled education attainment for birth cohorts within specific states, affecting the average education level of those cohorts. The core assumption is that compulsory schooling laws affect individual wages only through their effect on the average education of the cohort and individual'",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — state-specific compulsory schooling laws (and child labor laws) as instruments for both individual education and average education in the state-cohort cell; the key test is whether average education (instrumented) affects individual wages beyond individual education, indicating externalities",
+    "key_variables": {
+      "treatment": "average years of schooling in the state-of-birth × Census-year cell (endogenous), instrumented by state compulsory schooling and child labor law variation",
+      "control": "N/A (continuous treatment with IV; within-cell variation identifies externalities)",
+      "outcome": "individual log weekly wages (controlling for own education)",
+      "time_period": "1960, 1970, 1980 Census cross-sections"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Human capital externalities are small or zero. After instrumenting for average education using compulsory schooling laws, the estimated externality (effect of average education on individual wages, controlling for own education) is small and statistically insignificant — approximately 1-2% per year of average education, compared to the 7-10% private return. OLS estimates of the externality are larger (~7%) but are biased upward by omitted variables (productive states have both higher education and higher wages). The IV approach eliminates this bias and finds no evidence of economically significant externalities.",
+    "main_effect": "IV estimate of human capital externality: approximately 1-2% per year of average education (not statistically significant); private return to own education: 7-10% (significant); OLS externality estimate: ~7% (biased upward)",
+    "key_robustness": [
+      "First-stage F-test for instrument strength (compulsory schooling laws → average education)",
+      "Controlling for individual education (own-education IV using quarter of birth à la Angrist & Krueger 1991)",
+      "State fixed effects and birth-year cohort effects",
+      "Alternative average education measures (state-of-residence vs. state-of-birth)",
+      "Subsample by race and education level",
+      "Specification without externality term (pure individual IV for comparison)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares with compulsory schooling law variation as instruments for both individual and average education; individual wage regression includes both own education (endogenous) and average education in the cell (endogenous), each instrumented separately",
+      "treatment": "Average years of education in the state-of-birth × Census-year cell, instrumented by compulsory schooling and child labor laws applicable to that cohort in that state",
+      "event_window": "N/A (cross-sectional)",
+      "estimation_window": "N/A",
+      "sample_period": "1960, 1970, 1980 Census",
+      "unit_of_observation": "Individual male aged 40-49, identified by state of birth and Census year",
+      "key_assumption": "Compulsory schooling laws affect wages only through their effect on education (exclusion restriction). States that changed laws earlier do not have different wage trends for other reasons. The instrument affects average education, allowing separate identification of externalities (average education effect on wages) from private returns (own education effect on wages)."
+    },
+    "key_magnitudes": {
+      "private_return_iv": "7-10% per year of own education (consistent with prior IV literature)",
+      "externality_iv": "1-2% per year of average education in the state-cohort cell (not significant at 5%)",
+      "externality_ols": "~7% per year of average education (significant but biased by omitted variables)",
+      "bias_magnitude": "OLS externality is approximately 4-5x larger than IV externality, indicating severe upward bias from endogeneity"
+    },
+    "robustness_notes_detail": "First-stage F-statistics exceed 10 for both individual and average education instruments. Results are robust to state fixed effects, cohort effects, and controls for state-of-birth economic conditions. The conclusion of small/zero externalities contrasts with larger OLS estimates in the literature (Rauch 1993, Moretti 2004), which the authors attribute to omitted variable bias. The paper acknowledges that compulsory schooling laws generate variation primarily at the lower end of the education distribution (high school vs. dropout), so externalities from college education are not identified."
+  }
+}

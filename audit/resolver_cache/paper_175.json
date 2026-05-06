@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_175",
+  "title": "Bank Mergers and Crime: The Real and Social Effects of Credit Market Competition",
+  "authors": "Garmaise & Moskowitz",
+  "year": null,
+  "journal": "RFS",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2006.00847.x",
+    "title": "Bank Mergers and Crime: The Real and Social Effects of Credit Market Competition",
+    "year": 2006,
+    "journal": "The Journal of Finance",
+    "citations": 257
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "garmaise",
+      "moskowitz"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "rfs",
+    "journal_oa": "jf",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 257,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

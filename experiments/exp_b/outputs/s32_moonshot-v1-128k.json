@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s32",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of Overtime Eligibility Expansion on Work Hours",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:37:50.537597",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 469,
+    "output_tokens": 358,
+    "content": "## 1. Identification Strategy\nWe will use a Difference-in-Differences (DID) approach to estimate the causal effect of expanding overtime eligibility on the number of hours worked by employees. The DID method is appropriate here because we have a treatment group (employees affected by the policy change) and a control group (employees not affected by the policy change), and we can compare the change in outcomes before and after the policy implementation.\n\nThe key assumption in DID is that the treatment and control groups would have followed the same trend in the absence of the treatment. In other words, the policy change should not have affected the control group.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s32_data.csv\")\n\n# Estimate the DID model\ndid_model <- plm(y ~ treat_x_post, data = data, model = \"within\")\n\n# Print the coefficient for the treatment effect\nsummary(did_model)$coefficients[\"treat_x_post\", \"Estimate\"]\n\n# Robustness check: Clustered standard errors\ncoeftest(did_model, vcovHC(did_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the `treat_x_post` variable to be positive, indicating that expanding overtime eligibility leads to an increase in the log of hours worked by employees who are newly eligible for overtime pay. The magnitude of the effect will depend on the data, but we expect it to be economically significant given the potential financial incentives for working more hours due to the policy change.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log hours worked before and after the policy change between treated and untreated groups.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The expansion of overtime eligibility significantly increased the log hours worked.",
+    "main_effect": "0.25"
+  }
+}

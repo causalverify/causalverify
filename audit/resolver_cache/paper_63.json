@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_63",
+  "title": "Markup Pricing in Mergers and Acquisitions",
+  "authors": "Schwert",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/0304-405x(95)00865-c",
+    "title": "Markup pricing in mergers and acquisitions",
+    "year": 1996,
+    "journal": "Journal of Financial Economics",
+    "citations": 871
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "schwert"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 871,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

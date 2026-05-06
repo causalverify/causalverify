@@ -1,0 +1,86 @@
+{
+  "paper_id": "paper_41",
+  "source": "American Economic Review, 2009",
+  "authors": "Mas & Moretti",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Peers at Work",
+  "doi": "10.1257/aer.99.1.112",
+  "volume": 99,
+  "issue": 1,
+  "pages": "112-145",
+  "domain": "labor",
+  "research_question": "How does the productivity of an individual worker change when the productivity of her co-workers changes within a group production process where individual contributions are imperfectly observed? Do positive social spillovers dominate free-riding incentives, and through what behavioral mechanisms (e.g., social pressure, mutual monitoring, contagious enthusiasm, or knowledge transmission) do such spillovers operate?",
+  "data_description": "The study uses scanner-level transaction data from six stores of a national supermarket chain located in a single metropolitan area in the Western Census region of the United States, covering a two-year period between 2003 and 2006. For each transaction, the data record the number of items scanned and the exact length of the transaction in seconds, allowing construction of a worker-specific productivity measure (items scanned per second) at ten-minute intervals. The sample includes approximately 370 cashiers and is restricted to transactions occurring between 7 AM and 8 PM, excluding managers and express ('10 items or less') registers. The data also include the identity of all workers on duty at any moment, the register location, and spatial orientation of each register, enabling characterization of which co-workers can visually monitor each other. The unit of observation is a checker × ten-minute interval cell, yielding roughly 1.7 million observations.",
+  "institutional_context": "Cashiers in this unionized supermarket chain are paid a fixed hourly wage, and union rules restrict them to register work only (no bagging or shelf-stocking). Career advancement is limited and compensation is largely insensitive to individual output, so monetary incentives for effort are weak. Customers are not committed to a single checkout aisle and choose the shortest line, creating negative externalities: a slow checker imposes additional workload on others. Shift schedules are set bi-weekly; managers determine only the number of workers needed per shift, while individual employees submit scheduling preferences, with seniority used to allocate oversubscribed shifts. Management does not deliberately match high-ability workers to busy shifts, and within-day shift overlaps are staggered to avoid simultaneous turnover. Registers are arranged spatially so that some co-workers face each other while others do not, generating variation in the ability of workers to mutually observe one another's effort.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.015,
+      "unit": "fractional increase in own productivity per 10% increase in coworker productivity (peer elasticity)",
+      "interpretation": "A 10% increase in the average permanent productivity of coworkers on the same shift increases the focal cashier's scanning speed by approximately 1.5%, representing a significant and positive peer effect"
+    },
+    "secondary_estimate": {
+      "value": 0.03,
+      "unit": "fractional increase in own productivity when high-productivity peer is visible (line-of-sight peer elasticity)",
+      "interpretation": "The peer effect approximately doubles (from 1.5% to 3%) when the high-productivity coworker is in the focal cashier's direct line of sight, supporting a social pressure/monitoring mechanism"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Mas & Moretti (2009)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [],
+    "proprietary_sources": [
+      "Supermarket chain scanner data (confidential, provided to researchers under NDA)",
+      "Employee shift schedule data (confidential)"
+    ],
+    "proxy_strategy": "The specific supermarket chain data is confidential. However, the methodology could be replicated with scanner data from any large retailer willing to share data. Some academic papers have replicated similar analyses with data from other retailers or warehouses.",
+    "replicability": "low — requires proprietary scanner data from a specific retailer; no public equivalent",
+    "public_proxy_available": false,
+    "replication_tier": "conceptual (methodology is replicable with any scanner/productivity data; specific dataset is confidential)",
+    "data_limitations": "Single firm, single industry (supermarket cashiers). Results may not generalize to knowledge work, team-based production, or settings without continuous output measurement. Social pressure mechanism may not operate in remote work environments.",
+    "public_data_sources_detail": [
+      "No public data sources available for direct replication",
+      "BLS productivity statistics (aggregate — free, for context only)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study exploiting the within-shift timing of coworker arrivals and departures — the 'event' is a high-productivity coworker starting or ending their shift; the focal cashier's productivity in the 10-minute intervals around the event identifies the peer effect; individual cashier fixed effects and time controls absorb confounding variation",
+    "key_variables": {
+      "treatment": "presence of a high-productivity coworker on the same shift (quasi-exogenous, determined by store scheduling)",
+      "control": "periods when high-productivity coworkers are not on the same shift; also uses coworker departures as the reverse event",
+      "outcome": "focal cashier's items scanned per second (measured in 10-minute intervals from scanner data)",
+      "time_period": "2 years of scanner data across 6 stores"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Significant positive peer effects exist: a cashier's productivity increases by approximately 1-2% when a highly productive coworker joins the same shift. The effect is larger when the coworker is in the cashier's line of sight (visual monitoring channel). Low-productivity workers respond more to high-productivity peers than vice versa. The mechanism is consistent with social pressure or social norms rather than learning.",
+    "main_effect": "A 10% increase in the average permanent productivity of coworkers on the same shift increases the focal cashier's productivity by approximately 1.5-2%; effects are larger when coworkers are visible",
+    "key_robustness": [
+      "Cashier fixed effects (within-cashier variation only)",
+      "Controlling for store × time-of-day × day-of-week effects",
+      "Line-of-sight variation (can vs. cannot see coworker)",
+      "Asymmetric effects (low workers respond more to high peers)",
+      "Falsification: no effect from coworkers in different aisles (not visible)",
+      "Ruling out managerial assignment (manager does not match on productivity)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Within-cashier event study using 10-minute interval scanner data; the event is a coworker arriving at or departing from the shift",
+      "treatment": "Presence of high-productivity coworker on the same shift (determined by store scheduling, quasi-exogenous to focal cashier's productivity)",
+      "event_window": "10-minute intervals within a shift; peer effect measured continuously as coworker composition changes",
+      "estimation_window": "Full panel with cashier fixed effects and time controls",
+      "sample_period": "2 years (approximately 7 million observations)",
+      "unit_of_observation": "Cashier × 10-minute interval",
+      "key_assumption": "Shift scheduling is determined by store managers based on anticipated customer demand, not on peer productivity matching. Conditional on cashier FE and store × time-of-day × day-of-week FE, coworker composition is quasi-random. The arrival/departure timing within a shift is exogenous to the focal cashier's momentary productivity."
+    },
+    "key_magnitudes": {
+      "peer_elasticity": "Approximately 0.15-0.20 (a 10% increase in coworker productivity raises own productivity by 1.5-2%)",
+      "line_of_sight": "Effect is approximately 2-3x larger when the peer is visible (within line of sight)",
+      "asymmetric": "Low-productivity cashiers respond approximately 3x more to high-productivity peers than the reverse",
+      "no_learning": "Effect is immediate and does not persist after the peer leaves, ruling out learning and supporting social pressure"
+    },
+    "robustness_notes_detail": "Cashier fixed effects ensure that the peer effect is identified from within-cashier variation (the same cashier exposed to different coworkers at different times). The line-of-sight result rules out team production explanations (peers in different aisles have no effect). The immediacy and non-persistence of effects (productivity returns to baseline when the peer leaves) is consistent with social pressure rather than learning. Falsification tests confirm no effect from schedule overlap without physical proximity."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 125894,
+  "phase1_source_version": "v2primeprime_full_text"
+}

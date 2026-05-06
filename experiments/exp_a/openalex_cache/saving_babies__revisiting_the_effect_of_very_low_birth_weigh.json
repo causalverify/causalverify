@@ -1,0 +1,8 @@
+{
+  "doi": "10.3386/w17408",
+  "title": "Heaping-Induced Bias in Regression-Discontinuity Designs",
+  "year": 2011,
+  "abstract": "This study uses Monte Carlo simulations to demonstrate that regression-discontinuity designs arrive at biased estimates when attributes related to outcomes predict heaping in the running variable. After showing that our usual diagnostics are poorly suited to identifying this type of problem, we provide alternatives. We also demonstrate how the magnitude and direction of the bias varies with bandwidth choice and the location of the data heaps relative to the treatment threshold. Finally, we discuss approaches to correcting for this type of problem before considering these issues in several non-simulated environments.",
+  "citation_count": 76,
+  "journal": "National Bureau of Economic Research"
+}

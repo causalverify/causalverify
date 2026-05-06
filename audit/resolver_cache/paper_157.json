@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_157",
+  "title": "School Quality and Black-White Relative Earnings: A Direct Assessment",
+  "authors": "Card & Krueger",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2118326",
+    "title": "School Quality and Black-White Relative Earnings: A Direct Assessment",
+    "year": 1992,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 478
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "krueger",
+      "card"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 478,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

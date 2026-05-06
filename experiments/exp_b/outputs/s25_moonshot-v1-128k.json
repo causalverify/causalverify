@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s25",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Vote share cutoff and policy adoption",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:27:25.414917",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 435,
+    "output_tokens": 452,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of winning a ballot initiative on municipal spending. The key assumption for RDD is that there is a sharp discontinuity in the outcome variable at the cutoff point (50% vote share), and that the running variable (vote share) is as-good-as-randomly assigned around the cutoff. This assumption is supported by the fact that the treatment (winning the ballot initiative) is determined by whether the vote share is above or below 50%.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s25_data.csv\")\n\n# RDD analysis\n# Estimate the RDD model using the rdrobust package\n# We will use a local linear regression with a triangular kernel\nrdd_result <- rdrobust(y ~ running_var | treated, data = data, h = 0.3, kernel = \"triangular\", degree = 1)\n\n# Print the RDD estimate\nprint(rdd_result$estimate)\n\n# Plot the RDD\nggplot(data, aes(x = running_var, y = y, color = as.factor(treated))) +\n  geom_point() +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"RDD Plot\", x = \"Vote Share\", y = \"Log Municipal Spending Change\")\n```\n\n## 3. Expected Findings\nWe expect a positive and statistically significant jump in municipal spending at the 50% vote share cutoff. The magnitude of the jump will depend on the data, but it should be large enough to be detectable given the sample size of 600 ballot initiatives. The reason for this expectation is that winning the ballot initiative should lead to increased policy adoption and spending on the targeted policy. The magnitude of the effect may vary depending on the specific policy and the political context, but a discontinuous jump at the cutoff point is a reasonable expectation given the sharp RDD design.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — cutoff = 50% vote share; local linear regression with optimal bandwidth",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Passing the initiative causes a discrete jump in targeted spending",
+    "main_effect": "Winning increases spending by ~25%"
+  }
+}

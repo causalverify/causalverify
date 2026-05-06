@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_07",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:02:35.471589",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 619,
+    "output_tokens": 881,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a two-stage least squares (2SLS) approach to identify the causal effect of credit market shocks on employment and output. The first stage will use the pre-crisis real estate exposure of banks as an instrument for changes in credit supply. The second stage will estimate the effect of changes in credit supply on employment and output.\n\nDirectional Hypothesis:\nWe hypothesize that a decline in bank credit supply, driven by bank-specific balance sheet problems, will causally reduce small business lending and employment during the financial crisis. Therefore, we expect a negative relationship between changes in credit supply and employment/output.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. 2SLS regression of employment on changes in credit supply, using pre-crisis real estate exposure as an instrument.\n2. 2SLS regression of output on changes in credit supply, using pre-crisis real estate exposure as an instrument.\n3. 2SLS regression of employment on changes in credit supply, controlling for county and year fixed effects, using pre-crisis real estate exposure as an instrument.\n4. 2SLS regression of output on changes in credit supply, controlling for county and year fixed effects, using pre-crisis real estate exposure as an instrument.\n5. 2SLS regression of employment on changes in credit supply, controlling for county and year fixed effects, and including a pre-crisis real estate exposure interaction term, using pre-crisis real estate exposure as an instrument.\n\n**STEP 3 — FALSIFICATION GATE**\n\nEmpirical Result for Rejection:\nWe will reject our hypothesis if the estimated coefficient on changes in credit supply in the second stage regressions is positive and statistically significant (p < 0.10), indicating that a decline in credit supply is associated with an increase in employment and output.\n\n**STEP 4 — R CODE**\n\n```R\n# Load necessary libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"data.csv\")\n\n# Define the panel data structure\npdata <- pdata.frame(data, index = c(\"county\", \"year\"))\n\n# Define the first stage regression\nfirst_stage <- function(pdata, instrument) {\n  fm1 <- plm(credit_supply ~ instrument | 0 | 0, data = pdata, model = \"within\")\n  return(coeftest(fm1, vcovHC(pdata, type = \"HC1\")))\n}\n\n# Define the second stage regression\nsecond_stage <- function(pdata, endog, exog) {\n  fm2 <- plm(endog ~ exog | 0 | 0, data = pdata, model = \"within\")\n  return(coeftest(fm2, vcovHC(pdata, type = \"HC1\")))\n}\n\n# Run the first stage regression\nfirst_stage_results <- first_stage(pdata, pre_crisis_real_estate_exposure)\n\n# Run the second stage regressions\nsecond_stage_employment <- second_stage(pdata, employment, credit_supply)\nsecond_stage_output <- second_stage(pdata, output, credit_supply)\n\n# Control specifications\nsecond_stage_employment_fe <- second_stage(pdata, employment, credit_supply + countyFE + yearFE)\nsecond_stage_output_fe <- second_stage(pdata, output, credit_supply + countyFE + yearFE)\n\n# Interaction specification\nsecond_stage_employment_interaction <- second_stage(pdata, employment, credit_supply * pre_crisis_real_estate_exposure + countyFE + yearFE)\n\n# Print results\nprint(first_stage_results)\nprint(second_stage_employment)\nprint(second_stage_output)\nprint(second_stage_employment_fe)\nprint(second_stage_output_fe)\nprint(second_stage_employment_interaction)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected Numerical Results:\nWe expect the coefficient on changes in credit supply in the second stage regressions to be negative and statistically significant, indicating that a decline in credit supply is associated with a reduction in employment and output.\n\nGate Assessment:\nIf the estimated coefficient on changes in credit supply is positive and statistically significant (p < 0.10), we will reject our hypothesis. Otherwise, we will not reject the hypothesis.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV — instrument = pre-crisis (2006) bank real estate loan exposure (real estate loans / total assets), interacted with the county-level distribution of bank lending; first stage: banks with higher real estate exposure cut small business lending more; exclusion restriction: pre-crisis real estate exposure affects current-period employment only through its effect on credit supply",
+    "key_variables": {
+      "instrument": "pre-2007 bank real estate loan share, weighted by pre-crisis bank market share in each county",
+      "treatment": "change in small business loan originations (CRA data), county-year",
+      "outcome": "change in employment at small firms (< 50 employees), county-year",
+      "time_period": "2006–2010, crisis period 2008–2010"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A 10% decline in small business lending caused by supply-side bank shocks reduced small-firm employment by approximately 1.5–2%; effects concentrated in industries dependent on bank credit",
+    "main_effect": "Elasticity of employment to bank credit supply: ~0.15–0.20",
+    "key_robustness": [
+      "first stage F > 10",
+      "placebo using large firm employment (less bank-dependent)",
+      "alternative instrument construction",
+      "2SLS vs. reduced form comparison"
+    ]
+  }
+}

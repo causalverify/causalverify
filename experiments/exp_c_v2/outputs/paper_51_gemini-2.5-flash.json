@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_51",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:42:52.629021",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 661,
+    "output_tokens": 164,
+    "content": "Okay, I will adhere strictly to the Research Integrity by Design (RID) protocol.\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nWe will employ an Instrumental Variable (IV) approach to estimate the causal effect of U.S. food aid on civil conflict. The core idea is to isolate exogenous variation in food aid shipments. Our instrument is the interaction between U.S. wheat production (primarily driven by exogenous weather shocks) and a recipient country's time-invariant historical tendency to receive U.S. food aid. This instrument leverages the fact that U.S. food aid policy often functions as a surplus disposal mechanism, with allocation partly guided by historical patterns. The exclusion restriction assumes that this interaction term affects civil conflict *only* through its impact on the",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — U.S. wheat production (supply-driven, exogenous to recipient country conditions) interacted with the recipient country's lagged/historical share of U.S. food aid as instrument for actual food aid received; first stage: U.S. production × historical share → food aid received; second stage: food aid (instrumented) → civil conflict",
+    "key_variables": {
+      "treatment": "U.S. wheat food aid received (metric tons, endogenous), instrumented by U.S. wheat production × country's historical aid share",
+      "control": "N/A (panel with country and year FE; variation from interaction of time-varying U.S. production with cross-sectional aid propensity)",
+      "outcome": "civil conflict incidence (binary: any conflict with ≥25 battle deaths), conflict onset (new conflict starts)",
+      "time_period": "1971–2006 (annual panel of 125 countries)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "U.S. food aid significantly increases the incidence and duration of civil conflict in recipient countries. An increase in food aid equivalent to the mean level increases the probability of conflict by approximately 0.03 (from a base of about 0.30), an increase of roughly 10%. The effect is driven by prolongation of existing conflicts rather than onset of new ones. The effect is concentrated in countries with recent conflict history.",
+    "main_effect": "A one SD increase in instrumented food aid increases civil conflict incidence by approximately 3 percentage points (~10% from a ~30% base); effect primarily through conflict prolongation, not onset",
+    "key_robustness": [
+      "Separating conflict incidence from onset (effect on prolongation, not initiation)",
+      "Lagged food aid (addressing timing concerns)",
+      "Alternative conflict thresholds (25 vs. 1,000 battle deaths)",
+      "Excluding largest recipients (to check for outlier-driven results)",
+      "Controlling for other aid types (military aid, development aid)",
+      "Placebo instruments (U.S. production of non-wheat crops that are not distributed as food aid)"
+    ],
+    "identification_strategy_detail": {
+      "method": "2SLS with interaction instrument: U.S. wheat production (time-varying, supply-driven) × country historical aid share (cross-sectional, predetermined); panel with country and year fixed effects",
+      "treatment": "U.S. wheat food aid received by country i in year t (endogenous)",
+      "event_window": "Contemporaneous and lagged (1-year lag) food aid effects on conflict",
+      "estimation_window": "Full panel 1971-2006",
+      "sample_period": "1971–2006",
+      "unit_of_observation": "Country-year (125 countries × ~36 years)",
+      "key_assumption": "U.S. wheat production shocks (driven by weather) are exogenous to political conditions in recipient countries. The exclusion restriction requires that U.S. wheat production affects conflict in recipient countries only through its effect on food aid shipments, not through other channels (e.g., world wheat price effects on domestic agriculture). Country × year FE absorb time-invariant country factors and global year shocks."
+    },
+    "key_magnitudes": {
+      "conflict_incidence": "+3pp increase in conflict probability per mean-level increase in food aid (IV, from ~30% base)",
+      "conflict_onset": "Small and generally insignificant effect on new conflict onset",
+      "conflict_duration": "Significant positive effect on conflict prolongation (ongoing conflicts last longer)",
+      "first_stage": "U.S. wheat production × historical share significantly predicts food aid; F-statistic > 10"
+    },
+    "robustness_notes_detail": "Results are robust to controlling for other forms of U.S. aid, GDP, democracy, and other conflict determinants. The effect is concentrated in conflict prolongation (not onset), consistent with the mechanism of warring parties capturing aid to sustain fighting. Placebo tests using U.S. production of crops NOT distributed as food aid (corn, soybeans) show no effect on conflict, supporting the exclusion restriction. The interaction instrument approach has been critiqued (Bazzi & Clemens 2013, Christian & Barrett 2017) for potential violations of the exclusion restriction through world price channels, which the authors address with commodity price controls."
+  }
+}

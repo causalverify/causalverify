@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s45",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Impact of Class Size Cap Policy on Reading Scores",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:42:46.615754",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 512,
+    "output_tokens": 876,
+    "content": "## 1. Identification Strategy\nThis calls for a Difference-in-Differences (DID) analysis since we have treatment and control schools observed across pre- and post-policy periods. The key assumption is parallel trends: absent the policy, treated and control schools would have experienced similar changes in reading scores over time. The class size cap policy provides a quasi-experimental setting where some schools were subject to the policy while others were not.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(fixest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s45_data.csv\")\n\n# Basic data summary\ncat(\"Data Summary:\\n\")\nprint(summary(data))\ncat(\"\\nTreatment distribution:\\n\")\nprint(table(data$treated, data$post))\n\n# Main DID regression\ndid_model <- feols(y ~ treat_x_post + treated + post | unit_id + period, \n                   data = data, vcov = \"cluster\", cluster = \"unit_id\")\n\ncat(\"\\n=== MAIN DID RESULTS ===\\n\")\nprint(summary(did_model))\n\n# Extract and print the key coefficient\nate <- coef(did_model)[\"treat_x_post\"]\nse <- se(did_model)[\"treat_x_post\"]\ncat(sprintf(\"\\nAverage Treatment Effect: %.4f (SE: %.4f)\\n\", ate, se))\n\n# Alternative specification without fixed effects for robustness\ndid_simple <- feols(y ~ treat_x_post + treated + post, \n                    data = data, vcov = \"cluster\", cluster = \"unit_id\")\n\ncat(\"\\n=== ROBUSTNESS CHECK (No Fixed Effects) ===\\n\")\nprint(summary(did_simple))\n\n# Check for parallel trends (pre-treatment periods only if available)\npre_data <- data[data$post == 0, ]\nif(length(unique(pre_data$period)) > 1) {\n  cat(\"\\n=== PRE-TREATMENT TRENDS TEST ===\\n\")\n  trend_test <- feols(y ~ treated * period, data = pre_data, \n                      vcov = \"cluster\", cluster = \"unit_id\")\n  print(summary(trend_test))\n}\n\n# Calculate means by group for interpretation\ngroup_means <- data %>%\n  group_by(treated, post) %>%\n  summarise(mean_y = mean(y), .groups = 'drop')\n\ncat(\"\\n=== GROUP MEANS ===\\n\")\nprint(group_means)\n\n# Manual DID calculation for verification\ncontrol_pre <- mean(data$y[data$treated == 0 & data$post == 0])\ncontrol_post <- mean(data$y[data$treated == 0 & data$post == 1])\ntreat_pre <- mean(data$y[data$treated == 1 & data$post == 0])\ntreat_post <- mean(data$y[data$treated == 1 & data$post == 1])\n\nmanual_did <- (treat_post - treat_pre) - (control_post - control_pre)\ncat(sprintf(\"\\nManual DID calculation: %.4f\\n\", manual_did))\n```\n\n## 3. Expected Findings\nI expect a positive coefficient of approximately 0.2-0.4 standard deviations. Educational research consistently shows that smaller class sizes improve student outcomes, particularly in elementary grades. The class size reduction should allow for more individualized attention, better classroom management, and enhanced teacher-student interactions, all of which would positively impact reading scores. The magnitude should be educationally meaningful but not extraordinarily large, as class size is one of many factors affecting academic performance.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Comparative analysis of reading scores before and after the policy in treated and untreated schools.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The class size cap policy resulted in a decrease in reading scores.",
+    "main_effect": "-0.12 SD units"
+  }
+}

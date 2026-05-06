@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s26",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Test score cutoff and college enrollment",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:27:37.500409",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 418,
+    "output_tokens": 555,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of crossing the test score threshold on college enrollment. The key assumption for RDD is that there is a sharp discontinuity in the probability of treatment at the cutoff point, and that the running variable (test score) is as good as randomly assigned around the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s26_data.csv\")\n\n# RDD analysis\n# Estimate the local polynomial regression around the cutoff\nresult <- rdrobust(y ~ running_var, data = data, c = 0.5, h = 0.3, kernel = \"gaussian\", degree = 2, biasadj = TRUE)\n\n# Print the coefficient estimate for the discontinuity at the cutoff\nprint(result$coefficients[1])\n\n# Basic robustness checks\n# Check the results with different bandwidths\nbandwidths <- c(0.1, 0.2, 0.3, 0.4, 0.5)\nfor (bw in bandwidths) {\n  result <- rdrobust(y ~ running_var, data = data, c = 0.5, h = bw, kernel = \"gaussian\", degree = 2, biasadj = TRUE)\n  cat(\"Bandwidth:\", bw, \"Coefficient:\", result$coefficients[1], \"\\n\")\n}\n\n# Plot the data and the fitted regression line\nggplot(data, aes(x = running_var, y = y, color = as.factor(near_cutoff))) +\n  geom_point() +\n  geom_line(data = data[data$running_var > 0.2 & data$running_var < 0.8,], aes(group = 1), color = \"blue\") +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"RDD Plot\", x = \"Test Score\", y = \"College Enrollment\")\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the discontinuity at the cutoff, indicating that crossing the test score threshold increases college enrollment rates. The magnitude of the effect will depend on the strength of the relationship between test scores and college enrollment, as well as the proportion of students affected by the threshold. Given the data, we cannot provide an exact magnitude, but we expect a positive and statistically significant effect.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — test score cutoff; continuity of running variable required; McCrary density test",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scoring above cutoff significantly increases college enrollment",
+    "main_effect": "~25pp enrollment increase at cutoff"
+  }
+}

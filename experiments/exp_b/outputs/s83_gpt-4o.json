@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s83",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Local Labor Demand Shocks on Wages",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:45:01.548639",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 461,
+    "output_tokens": 495,
+    "content": "## 1. Identification Strategy\nFor this analysis, we will use an Instrumental Variables (IV) approach with the Bartik shift-share instrument. The Bartik instrument is designed to provide exogenous variation in local labor demand by using national industry growth rates interacted with regional industry shares. The key assumption here is that the Bartik instrument satisfies the relevance condition—i.e., it is correlated with the endogenous variable local labor demand (x)—and the exclusion restriction—i.e., it affects wages (y) only through its effect on local labor demand.\n\n## 2. R Code\n```r\n# Necessary libraries\nif (!requireNamespace(\"ivreg\", quietly = TRUE)) install.packages(\"ivreg\")\nif (!requireNamespace(\"lmtest\", quietly = TRUE)) install.packages(\"lmtest\")\nif (!requireNamespace(\"sandwich\", quietly = TRUE)) install.packages(\"sandwich\")\n\n# Load libraries\nlibrary(ivreg)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load the data\ndata <- read.csv(\"experiments/exp_b/data/s83_data.csv\")\n\n# IV regression using Bartik instrument\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Summary of the IV model\nsummary(iv_model)\n\n# Robustness check using heteroskedasticity-robust standard errors\ncoeftest(iv_model, vcov = vcovHC(iv_model, type = \"HC3\"))\n\n# Check instrument relevance: First stage regression\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Weak instrument diagnostics\nsummary(lmtest::waldtest(iv_model, test = \"Chisq\"))\n```\n\n## 3. Expected Findings\nGiven that the Bartik instrument is expected to provide exogenous variation in regional labor demand due to national industry shocks, we anticipate a positive sign for the impact of labor demand on wages. The intuition is that increasing local labor demand should increase competition for workers, thereby driving wages up. The magnitude of the coefficient will depend on the extent of the labor demand shock and its impact on wages. Based on similar empirical work, we might expect the coefficient on local labor demand (x) to be small to moderate, perhaps in the range of 0.1 to 0.5, suggesting that a 1-unit increase in labor demand might increase wages by 0.1 to 0.5 units.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use Bartik shift-share as an instrument for local labor demand.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals a significant positive effect of local labor demand on wages.",
+    "main_effect": "0.15"
+  }
+}

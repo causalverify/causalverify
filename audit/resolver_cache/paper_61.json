@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_61",
+  "title": "The Price of Sin: The Effects of Social Norms on Markets",
+  "authors": "Hong & Kacperczyk",
+  "year": null,
+  "journal": "JFE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2008.09.001",
+    "title": "The price of sin: The effects of social norms on markets",
+    "year": 2009,
+    "journal": "Journal of Financial Economics",
+    "citations": 2499
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "kacperczyk",
+      "hong"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "jfe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2499,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

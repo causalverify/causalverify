@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s83",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Local Labor Demand Shocks on Wages",
+  "model": "o3",
+  "run_at": "2026-04-14T19:52:55.569246",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 460,
+    "output_tokens": 1240,
+    "content": "## 1. Identification Strategy  \nMethod: Two-Stage Least Squares (IV) using a Bartik shift–share instrument.  \n• Why IV? The observed local labor-demand variable x may be endogenous (simultaneously determined with wages or affected by omitted local shocks). The Bartik instrument z exploits national industry growth rates—plausibly exogenous to any one region—scaled by pre-determined regional industry shares, delivering exogenous variation in local labor demand.  \n• Key assumptions  \n 1. Relevance: Cov(z, x) ≠ 0 – national industry shocks move local labor demand.  \n 2. Exclusion / exogeneity: E[z · u] = 0 – conditional on controls, the Bartik shift affects wages only through its impact on local labor demand, not via other channels.  \n\n## 2. R Code\n```r\n# ----------------------------------------------------------\n# Impact of Local Labor Demand Shocks on Wages – IV analysis\n# ----------------------------------------------------------\n\n# Load packages\nsuppressPackageStartupMessages({\n  library(readr)     # Read CSV\n  library(AER)       # ivreg\n  library(lmtest)    # coeftest\n  library(sandwich)  # robust vcov\n  library(dplyr)     # data wrangling\n})\n\n# 1. Read data\ndata_path <- \"experiments/exp_b/data/s83_data.csv\"\ndf <- read_csv(data_path, show_col_types = FALSE)\n\n# Ensure correct types\ndf <- df %>%\n  mutate(z = as.numeric(z))  # ivreg expects numeric\n\n# 2. Baseline OLS (naïve)\nols <- lm(y ~ x + controls, data = df)\nols_robust <- coeftest(ols, vcov = vcovHC(ols, type = \"HC1\"))\n\n# 3. IV: 2SLS with Bartik instrument\niv <- ivreg(y ~ x + controls | z + controls, data = df)\niv_robust <- coeftest(iv, vcov = vcovHC(iv, type = \"HC1\"))\n\n# 4. First-stage diagnostics\nfirst_stage <- lm(x ~ z + controls, data = df)\nfs_robust <- coeftest(first_stage, vcov = vcovHC(first_stage, type = \"HC1\"))\nfs_Fstat <- waldtest(first_stage, . ~ controls, vcov = vcovHC(first_stage, type = \"HC1\"))$F[2]\n\n# 5. Reduced form (y on instrument)\nrf <- lm(y ~ z + controls, data = df)\nrf_robust <- coeftest(rf, vcov = vcovHC(rf, type = \"HC1\"))\n\n# 6. Simple robustness check: add quadratic control\niv_quad <- ivreg(y ~ x + controls + I(controls^2) | z + controls + I(controls^2), data = df)\niv_quad_robust <- coeftest(iv_quad, vcov = vcovHC(iv_quad, type = \"HC1\"))\n\n# 7. Print concise results\ncat(\"\\n========== Baseline OLS (robust SE) ==========\\n\")\nprint(ols_robust[\"x\", ])\n\ncat(\"\\n========== First Stage (robust SE) ==========\\n\")\nprint(fs_robust[\"z\", ])\ncat(sprintf(\"First-stage F-statistic on instrument: %.2f\\n\", fs_Fstat))\n\ncat(\"\\n========== 2SLS / IV (robust SE) ==========\\n\")\nprint(iv_robust[\"x\", ])\n\ncat(\"\\n========== Reduced Form (robust SE) ==========\\n\")\nprint(rf_robust[\"z\", ])\n\ncat(\"\\n========== IV with Quadratic Control (robust SE) ==========\\n\")\nprint(iv_quad_robust[\"x\", ])\n```\n\n## 3. Expected Findings  \nEconomic intuition and prior literature (e.g., Bartik 1991; Notowidigdo 2020) suggest that positive labor-demand shocks raise local wages. We therefore expect:  \n• Sign: positive.  \n• Magnitude: a one-standard-deviation increase in local labor demand (x) is likely to raise wages (y) by roughly 0.4–0.8 standard deviations—i.e., an IV coefficient in the 0.4 – 0.8 range.  \nWe also anticipate a strong first-stage F-stat (>10), confirming instrument relevance, and that robustness checks (quadratic controls) leave the estimate broadly unchanged.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use Bartik shift-share as an instrument for local labor demand.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals a significant positive effect of local labor demand on wages.",
+    "main_effect": "0.15"
+  }
+}

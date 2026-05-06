@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s22",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Bartik shift-share IV for local employment shock on wages",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:34:50.504423",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 463,
+    "output_tokens": 563,
+    "content": "## 1. Identification Strategy\nThe Bartik shift-share instrument is used to identify the causal effect of local industry employment shocks on wages. This method combines national industry growth rates with local initial industry shares to create an instrument for local employment growth. The key assumption is that the national industry growth rates are exogenous to local labor market conditions, allowing for the identification of the causal effect of employment growth on wages. Specifically, the Bartik instrument (z) is assumed to be correlated with local employment growth (x) but not directly with wages (y), except through its effect on local employment growth.\n\n## 2. R Code\n```r\n# Install and load necessary packages\ninstall.packages(c(\"dplyr\", \"tidyr\", \"plm\", \"AER\", \"sandwich\"))\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(plm)\nlibrary(AER)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"experiments/exp_b/data/s22_data.csv\")\n\n# Two-stage least squares (2SLS) regression\n# First stage: regression of x on z and controls\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage: regression of y on predicted x and controls\nsecond_stage <- lm(y ~ predict(first_stage) + controls, data = data)\n\n# Extract the coefficient of interest (effect of x on y)\ncoefficient_of_interest <- coef(second_stage)[2]\n\n# Print the result\nprint(paste(\"The estimated effect of employment growth on wages is:\", coefficient_of_interest))\n\n# Basic robustness checks\n# Check for overidentification\noverid_test <- waldtest(first_stage, alternative = \"greater\")\nprint(paste(\"Overidentification test p-value:\", pvalue(overid_test)))\n\n# Check for underidentification\nunderid_test <- dutt(first_stage)\nprint(paste(\"Underidentification test p-value:\", pvalue(underid_test)))\n\n# Check for weak instrument\nweak_instrument_test <- first_stage$sigma\nprint(paste(\"Weak instrument test (F-statistic):\", weak_instrument_test))\n```\n\n## 3. Expected Findings\nThe expected sign of the coefficient is positive, indicating that local industry employment shocks increase wages. The approximate magnitude of the coefficient is expected to be small, likely less than 1, suggesting that a 1% increase in employment growth is associated with a less than 1% increase in wages. This is because employment growth is likely to have a moderate effect on wages, and the relationship between the two variables is likely to be influenced by various factors such as labor market conditions, industry composition, and local economic conditions. The size of the coefficient will depend on the specific characteristics of the data and the strength of the instrument.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — Bartik shift-share instrument; identification from national (exogenous) shifts",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Employment growth driven by national shifts raises local wages",
+    "main_effect": "10% employment growth → 4% wage increase (IV estimate)"
+  }
+}

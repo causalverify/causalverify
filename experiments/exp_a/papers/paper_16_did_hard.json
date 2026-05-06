@@ -1,0 +1,93 @@
+{
+  "paper_id": "paper_16",
+  "source": "American Economic Review, 2013",
+  "authors": "Autor, Dorn & Hanson",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "The China Syndrome: Local Labor Market Effects of Import Competition in the United States",
+  "doi": "10.1257/aer.103.6.2121",
+  "volume": 103,
+  "issue": 6,
+  "pages": "2121-2168",
+  "domain": "labor",
+  "research_question": "How does rising import competition from a major low-wage trading partner affect employment, wages, labor force participation, household income, and reliance on government transfer programs in local labor markets of an advanced economy? Specifically, what are the broader local labor market consequences—both within manufacturing and beyond—of exposure to a large, sustained surge in imports from a rapidly industrializing country?",
+  "data_description": "The study combines several data sources at the U.S. commuting zone (CZ) level for 722 CZs covering the mainland United States, with the analysis stacking decadal-equivalent changes for 1990–2000 and 2000–2007. Bilateral six-digit HS product trade data come from the UN Comtrade Database (1991–2007) for the U.S. and eight other high-income countries (Australia, Denmark, Finland, Germany, Japan, New Zealand, Spain, Switzerland), concorded to 397 manufacturing industries. Local industry employment comes from County Business Patterns (1980, 1990, 2000). Demographic, employment, wage, and household income variables are constructed from Census IPUMS (1970, 1980, 1990, 2000) and ACS (2006–2008). Government transfer payments per capita (unemployment insurance, SSDI, SSA retirement, Medicare/Medicaid, SSI/TANF/SNAP, TAA, education/training) come from the BEA Regional Economic Accounts and the Social Security Administration Annual Statistical Supplement. The unit of observation is the commuting zone-period.",
+  "institutional_context": "Between 1991 and 2007, U.S. goods imports from China grew by roughly 1,156%, with China's share of U.S. spending on goods rising from 0.6% to 4.6%, and low-income countries' share of U.S. manufacturing imports climbing from 2.9% to 11.7%. This surge was driven largely by internal Chinese reforms—transition from central planning, massive rural-to-urban migration of over 150 million workers, access to foreign technologies and capital goods, entry of multinationals—and by China's 2001 accession to the World Trade Organization, which granted most-favored-nation status. Concurrently, China ran large current-account surpluses (~5% of GDP) mirrored by U.S. deficits, so increased import competition was not offset by comparable export demand. Over the same period, the U.S. manufacturing employment share of working-age population fell from 12.6% to 8.4%. U.S. commuting zones varied substantially in initial industry specialization, particularly in labor-intensive sectors (apparel, textiles, footwear, toys, furniture, electronics) where China's comparative advantage was most pronounced, generating sharply different local exposure to this trade shock.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.596,
+      "unit": "percentage points manufacturing employment per working-age population per $1,000/worker import exposure (2SLS)",
+      "interpretation": "A $1,000/worker increase in Chinese import exposure reduces the manufacturing employment share of the working-age population by 0.596 percentage points"
+    },
+    "secondary_estimate": {
+      "value": 58,
+      "unit": "dollars per capita increase in transfer payments per $1,000/worker import exposure",
+      "interpretation": "Rising import competition increases government transfer payments (disability, retirement, income assistance) by $58 per capita, reflecting both job loss and wage declines"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3 and 5 in Autor, Dorn & Hanson (2013)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "County Business Patterns (Census Bureau, public)",
+      "UN Comtrade (bilateral trade data, public)",
+      "Census/ACS microdata (IPUMS, public)",
+      "Social Security Administration disability statistics (public)",
+      "David Dorn's website (replication data and code, public)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. Replication code and data are posted on David Dorn's website.",
+    "replicability": "high — full replication package publicly available from the authors",
+    "public_proxy_available": true,
+    "replication_tier": "full (complete replication data and code available on David Dorn's website)",
+    "data_limitations": "County Business Patterns suppresses employment in small cells for confidentiality (imputation required). Commuting zone definitions are based on 1990 county-level commuting patterns. UN Comtrade concordance from HS product codes to SIC/NAICS industries involves approximation.",
+    "public_data_sources_detail": [
+      "Census County Business Patterns (employment by county × industry — free)",
+      "UN Comtrade (bilateral trade flows — free registration required)",
+      "IPUMS Census/ACS (individual earnings and employment — free registration)",
+      "David Dorn's website (replication files including CZ-level data — free)",
+      "FRED (macro controls — free)",
+      "BLS (county wages and employment — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences with continuous treatment intensity (shift-share / Bartik instrument) — commuting zones with higher initial-year manufacturing industry shares in China-competing sectors are more exposed (continuous treatment); the time variation comes from the decade-specific surge in Chinese imports (1990-2000 and 2000-2007); IV using Chinese exports to other developed countries to address endogeneity",
+    "key_variables": {
+      "treatment": "change in Chinese import exposure per worker (continuous, Bartik/shift-share), instrumented by Chinese exports to 8 other developed countries",
+      "control": "commuting zones with low initial exposure to China-competing manufacturing industries",
+      "outcome": "change in manufacturing employment per working-age population; change in average weekly wages; change in transfer receipts per capita (disability, retirement, income assistance)",
+      "time_period": "1990-2000 and 2000-2007 (stacked first differences)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Rising Chinese import competition causes significant declines in manufacturing employment and wages in exposed commuting zones; a $1,000 per worker increase in import exposure reduces manufacturing employment by 0.60 percentage points and increases transfer payments by $58 per capita; effects are concentrated in manufacturing and do not spill over as positive reallocation to other local sectors",
+    "main_effect": "A $1,000/worker increase in import exposure reduces manufacturing employment/population by 0.596 percentage points (2SLS); total transfer receipts increase by $58 per capita",
+    "key_robustness": [
+      "First-stage F-statistic > 10 for the shift-share instrument",
+      "Pre-trend analysis (1980-1990 changes as placebo)",
+      "Controlling for demographic composition, routine-task intensity, offshorability",
+      "Alternative industry classifications (SIC vs. NAICS)",
+      "Removing top import-competing industries one at a time",
+      "Comparing OLS to IV estimates"
+    ],
+    "identification_strategy_detail": {
+      "method": "Long-difference (stacked first-difference) 2SLS with shift-share (Bartik) instrument",
+      "treatment": "Shift-share measure: Δ import exposure per worker = Σ_j (L_ij0 / L_i0) × (ΔM_UCj / L_j0), weighted by initial industry employment shares",
+      "event_window": "Two periods: 1990-2000 and 2000-2007 (stacked)",
+      "estimation_window": "Pre-period: 1980-1990 used for placebo/pre-trend tests",
+      "sample_period": "1990–2007",
+      "unit_of_observation": "Commuting zone × decade (722 CZs × 2 periods = 1,444 observations)",
+      "key_assumption": "Chinese export growth to other developed countries (instrument) captures supply-driven Chinese productivity gains that are exogenous to U.S. local labor demand shocks. Initial industry composition (employment shares) is predetermined and does not reflect anticipated future Chinese competition."
+    },
+    "key_magnitudes": {
+      "manufacturing_employment": "-0.596 pp per $1,000/worker increase in import exposure (2SLS, SE=0.134)",
+      "total_employment": "Not significantly offset by non-manufacturing employment gains",
+      "transfer_payments": "+$58 per capita in total transfers ($36 disability + $22 other) per $1,000/worker import exposure",
+      "wage_effect": "Average weekly wage falls by approximately $36 per $1,000/worker import exposure"
+    },
+    "robustness_notes_detail": "Results are robust to a wide range of controls including initial CZ characteristics, demographic composition, computer adoption, routine-task intensity, and state fixed effects. First-stage F-statistics exceed 20, ruling out weak instrument concerns. Pre-trend analysis (1980-1990) shows no relationship between 1990s import exposure and 1980s employment changes, supporting exogeneity. OLS estimates are smaller than IV, consistent with attenuation bias from measurement error in the trade exposure variable."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 148765,
+  "phase1_source_version": "v2primeprime_full_text"
+}

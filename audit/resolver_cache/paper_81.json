@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_81",
+  "title": "Estimating Average and Local Average Treatment Effects of Education When Compulsory Schooling Laws Really Matter",
+  "authors": "Oreopoulos",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282806776157641",
+    "title": "Estimating Average and Local Average Treatment Effects of Education when Compulsory Schooling Laws Really Matter",
+    "year": 2006,
+    "journal": "American Economic Review",
+    "citations": 802
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "oreopoulos"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 802,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

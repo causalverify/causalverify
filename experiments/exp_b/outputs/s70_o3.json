@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s70",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Income on Civil Conflict Using Rainfall Variation",
+  "model": "o3",
+  "run_at": "2026-04-14T19:50:46.918764",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 454,
+    "output_tokens": 1149,
+    "content": "## 1. Identification Strategy  \nCausal method: Two-Stage Least Squares (Instrumental Variables).  \nWhy IV? Income (x) may be endogenous to conflict (y) because of reverse causality and omitted variables. Rainfall variation (z) affects agricultural income but, conditional on controls, plausibly affects conflict only through its effect on income.  \n\nKey assumptions  \n1. Relevance: Cov(z, x | controls) ≠ 0 – rainfall shocks move income.  \n2. Exclusion / Exogeneity: Rainfall affects conflict solely through income and is uncorrelated with the structural error in the conflict equation.  \n3. Monotonicity (implicit with a single continuous instrument).  \n\n## 2. R Code\n```r\n# -------------------- SET-UP -------------------- #\n# Required packages\nsuppressPackageStartupMessages({\n  library(AER)        # ivreg\n  library(sandwich)   # robust vcov\n  library(lmtest)     # coeftest\n})\n\n# -------------------- DATA -------------------- #\ndf <- read.csv(\"experiments/exp_b/data/s70_data.csv\")\n\n# Ensure correct types\ndf$z <- as.numeric(df$z)          # instrument\ndf$controls <- as.numeric(df$controls)\n\n# -------------------- MODELS -------------------- #\n# OLS benchmark\nols_mod <- lm(y ~ x + controls, data = df)\n\n# IV: income instrumented by rainfall\niv_mod  <- ivreg(y ~ x + controls | z + controls, data = df)\n\n# -------------------- ROBUST INFERENCE -------------------- #\nrob_se   <- function(model) vcovHC(model, type = \"HC1\")\nols_res  <- coeftest(ols_mod,  vcov. = rob_se(ols_mod))\niv_res   <- coeftest(iv_mod,   vcov. = rob_se(iv_mod))\n\n# First-stage F-statistic for instrument relevance\niv_sum   <- summary(iv_mod, diagnostics = TRUE)\nfirst_F  <- iv_sum$diagnostics[\"Weak instruments\", \"statistic\"]\n\n# -------------------- OUTPUT -------------------- #\ncat(\"===== OLS (baseline) =====\\n\")\nprint(ols_res[\"x\", ])\n\ncat(\"\\n===== IV (2SLS) =====\\n\")\nprint(iv_res[\"x\", ])\n\ncat(\"\\nFirst-stage F-statistic on instrument (rule-of-thumb ≥10): \",\n    round(first_F, 2), \"\\n\")\n\n# -------------------- ROBUSTNESS CHECKS -------------------- #\n# 1. Add squared rainfall as an additional instrument (if relevant)\nif(!\"z2\" %in% names(df)){\n  df$z2 <- df$z^2\n}\niv_mod_alt <- ivreg(y ~ x + controls | z + z2 + controls, data = df)\niv_alt_res <- coeftest(iv_mod_alt, vcov. = rob_se(iv_mod_alt))\n\ncat(\"\\n===== IV with z & z^2 as instruments =====\\n\")\nprint(iv_alt_res[\"x\", ])\n\n# Hansen J test for over-identifying restrictions\nif(length(iv_mod_alt$instrument) > 1){\n  hansenJ <- summary(iv_mod_alt, diagnostics = TRUE)$diagnostics[\"Sargan\",]\n  cat(\"\\nHansen J (p-value): \", round(hansenJ[\"p-value\"], 3), \"\\n\")\n}\n```\n\n## 3. Expected Findings  \nSign: Negative – higher income, induced by positive rainfall, should lower the likelihood of civil conflict (better economic prospects reduce grievances).  \nMagnitude: A one-standard-deviation increase in income is anticipated to cut conflict incidence by roughly 0.5 to 1.0 standard deviations (i.e., IV coefficient ≈ –0.5 to –1.0), larger in absolute value than the biased OLS estimate because IV purges attenuation and simultaneity biases.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use rainfall variation as an instrument for income.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased income, driven by higher rainfall, reduces the likelihood of civil conflict.",
+    "main_effect": "-0.25"
+  }
+}

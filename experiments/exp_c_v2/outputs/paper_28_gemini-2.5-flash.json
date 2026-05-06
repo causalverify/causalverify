@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_28",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:34:43.377437",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 697,
+    "output_tokens": 161,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n*   **Causal Identification Strategy:**\n    I will employ a natural experiment framework, leveraging the distinct timing and prominence of the New York Times article (May 3, 1998) as the primary treatment event. The core strategy is to identify the abnormal stock returns and trading volume of EntreMed (ENMD) around this event.\n    Specifically, I will use an event study methodology to calculate cumulative abnormal returns (CARs) and abnormal trading volume (ATV) for ENMD surrounding the NYT article. The \"abnormal\" component will be determined by comparing ENMD's returns/volume to its expected returns/volume based on a market model (using the S&P 500 index) or",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study around a media event (NYT article on May 3, 1998) that contained no new scientific information — the same findings had been published in Nature five months earlier; the event study compares EntreMed's stock return on May 4 to its expected return, and also compares the market reaction to the NYT article vs. the reaction to the original Nature publication",
+    "key_variables": {
+      "treatment": "New York Times front-page article about EntreMed's cancer research (May 3, 1998) — a media event with no new fundamental information",
+      "control": "expected return from market model (CRSP value-weighted index); also the Nature publication date (November 27, 1997) as a counterfactual",
+      "outcome": "EntreMed daily abnormal return and abnormal trading volume; also other biotech stock returns (contagion)",
+      "time_period": "Event dates: November 27, 1997 (Nature) and May 4, 1998 (NYT); sample: 1997-1998"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Media coverage, even without new information, caused a massive stock price increase. EntreMed's stock rose 330% on the NYT article date (May 4, 1998), compared to a modest ~7% increase when the same scientific findings were first published in Nature five months earlier. The price increase was only partially reversed in subsequent weeks, suggesting a lasting effect of media-driven attention on prices. Other biotech stocks also experienced significant positive abnormal returns (contagion effect).",
+    "main_effect": "EntreMed abnormal return: +330% on NYT article day (May 4); +7% on Nature publication day (Nov 27); biotech index also rose ~2% on NYT day",
+    "key_robustness": [
+      "Comparison of market reaction to NYT vs. Nature publication dates",
+      "Other biotech stocks as contagion measure",
+      "Trading volume analysis (confirming attention-driven trading)",
+      "Post-event return reversal analysis",
+      "Lexis-Nexis media coverage comparison between the two events"
+    ],
+    "identification_strategy_detail": {
+      "method": "Classic event study: market model abnormal returns around two event dates for the same firm and same information",
+      "treatment": "New York Times front-page article (May 3, 1998, Sunday — trading response on May 4, Monday)",
+      "event_window": "[-1, +5] trading days around each event date",
+      "estimation_window": "[-250, -11] trading days before each event for market model estimation",
+      "sample_period": "1997–1998",
+      "unit_of_observation": "EntreMed (ENMD) daily returns; also biotech sector portfolio",
+      "key_assumption": "The Nature publication (November 1997) and NYT article (May 1998) contained the same scientific information. Any differential market reaction is attributable to media salience, not information content. No other EntreMed-specific news was released between the two dates that would explain the differential reaction."
+    },
+    "key_magnitudes": {
+      "nyt_day_return": "+330% abnormal return on May 4, 1998 (EntreMed)",
+      "nature_day_return": "+7% abnormal return on November 28, 1997 (EntreMed)",
+      "volume_spike": "Trading volume on May 4 was approximately 23x normal daily volume",
+      "partial_reversal": "EntreMed stock settled at approximately $30-40 in the weeks following the spike (partial reversal from $52 close on May 4, but still well above $12 pre-event)"
+    },
+    "robustness_notes_detail": "The case study design limits statistical generalization but provides compelling evidence for the media-attention hypothesis. No confounding EntreMed-specific news was released between the Nature and NYT dates. The contagion effect on other biotech stocks rules out a purely idiosyncratic explanation. The episode is consistent with models of limited attention (Merton 1987) and media-driven investor sentiment."
+  }
+}

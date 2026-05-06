@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_218",
+  "title": "Does Hazardous Waste Matter? Evidence from the Housing Market and the Superfund Program",
+  "authors": "Greenstone & Gallagher",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2008.123.3.951",
+    "title": "Does Hazardous Waste Matter? Evidence from the Housing Market and the Superfund Program<sup>*</sup>",
+    "year": 2008,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 447
+  },
+  "checks": {
+    "title_jaccard": 0.8889,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "greenstone",
+      "gallagher"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 447,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

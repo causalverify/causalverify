@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_84",
+  "title": "The Effects of Extended Unemployment Insurance over the Business Cycle",
+  "authors": "Schmieder, von Wachter & Bender",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/qje/qjs010",
+    "title": "The Effects of Extended Unemployment Insurance Over the Business Cycle: Evidence from Regression Discontinuity Estimates Over 20 Years",
+    "year": 2012,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 278
+  },
+  "checks": {
+    "title_jaccard": 0.5455,
+    "title_gate_pass": false,
+    "author_overlap": [
+      "schmieder",
+      "bender",
+      "wachter"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "qje",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 278,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 1/3 gates pass",
+  "error_msg": ""
+}

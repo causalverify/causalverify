@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_261",
+  "title": "Climate Change, Mortality, and Adaptation: Evidence from Annual Fluctuations in Weather in the US",
+  "authors": "Desch\u00eanes & Greenstone",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.3.4.152",
+    "title": "Climate Change, Mortality, and Adaptation: Evidence from Annual Fluctuations in Weather in the US",
+    "year": 2011,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 1042
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "greenstone",
+      "desch\u00eanes"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 1042,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

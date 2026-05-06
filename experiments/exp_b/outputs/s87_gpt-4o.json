@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s87",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Unemployment Benefit Eligibility on Future Earnings",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:45:29.709005",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 442,
+    "output_tokens": 444,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is a Regression Discontinuity Design (RDD). The research question examines the impact of reaching an age cutoff, which is a natural discontinuity in eligibility for unemployment benefits. The key assumption is that other factors affecting future earnings are smoothly distributed around the cutoff, and thus any jump (discontinuity) in future earnings at the cutoff can be attributed to the effect of unemployment benefit eligibility. The running variable in this RDD is 'running_var', which represents age relative to the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s87_data.csv\")\n\n# View the first few rows to understand the structure\nhead(data)\n\n# Check for any NA values in the variables of interest\nsum(is.na(data$running_var))\nsum(is.na(data$treated))\nsum(is.na(data$y))\n\n# Conduct an RDD analysis\n# Note: We use the 'rdrobust' package for its robust method in RDD estimation\nrdd_result <- rdrobust(data$y, data$running_var, c = 0.5)\n\n# Print RDD results\nsummary(rdd_result)\n\n# Basic robustness check: Sensitivity to bandwidth choice\n# Use a smaller bandwidth and re-estimate the model\nrdd_small_bandwidth <- rdrobust(data$y, data$running_var, c = 0.5, h = 0.1)\n\n# Print the results of the smaller bandwidth analysis\nsummary(rdd_small_bandwidth)\n```\n\n## 3. Expected Findings\nI would expect a negative impact on future earnings for those eligible for the unemployment benefits, particularly if the availability of benefits reduces the incentive to return to work or pursue new employment opportunities. The magnitude of the effect may be modest, possibly in the range of a 5-10% reduction in log earnings, given the potential heterogeneity in responses to unemployment benefit eligibility. However, this is speculative, and the actual result might differ based on the specific context and characteristics of the dataset.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The cutoff age for benefit eligibility provides a natural experiment to assess causal impacts.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligibility for unemployment benefits at the cutoff age increases log earnings two years later.",
+    "main_effect": "0.3"
+  }
+}

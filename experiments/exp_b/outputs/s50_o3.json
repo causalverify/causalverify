@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s50",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Evaluating the Impact of Fertilizer Subsidy on Crop Yields",
+  "model": "o3",
+  "run_at": "2026-04-14T19:45:43.629285",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 485,
+    "output_tokens": 1225,
+    "content": "## 1. Identification Strategy  \nWe use a Difference-in-Differences (DID) design.  \n• Treated units (smallholders that receive the subsidy) are compared with never-treated units before and after the program starts (post = 1).  \n• The coefficient on `treat_x_post` isolates the average treatment effect on the treated (ATT).  \n\nKey identifying assumption: in the absence of the subsidy, the evolution of log-yields for treated and control farmers would have followed parallel trends. We partially test this with (a) unit and period fixed effects, (b) clustered standard errors, and (c) a placebo (“pre-trend”) check that pretends the policy started one period earlier.\n\n## 2. R Code\n```r\n###############################\n# Difference-in-Differences : #\n###############################\n# 1. Load packages (install if missing)\npkgs <- c(\"data.table\", \"fixest\", \"lmtest\", \"sandwich\")\nnew  <- pkgs[!(pkgs %in% installed.packages()[,\"Package\"])]\nif(length(new)) install.packages(new, repos = \"https://cloud.r-project.org\")\nlibrary(data.table); library(fixest); library(lmtest); library(sandwich)\n\n# 2. Read data\npath <- \"experiments/exp_b/data/s50_data.csv\"\ndf   <- fread(path)\n\n# 3. Simple DID (no fixed effects)\ndid_simple <- lm(y ~ treated + post + treat_x_post, data = df)\ncoeftest(did_simple, vcov = vcovHC(did_simple, type = \"HC1\"))\n\n# 4. Two-way fixed-effects DID with unit & time FE, clustered SEs\ndid_twfe <- feols(y ~ treated*post | unit_id + period,\n                  data = df, cluster = \"unit_id\")\nsummary(did_twfe)\n\ncat(\"\\nATT (TWFE, cluster-robust) =\", coef(did_twfe)[\"treated:post\"], \"\\n\")\n\n#######################\n# Basic robustness :  #\n#######################\n\n# (a) Add linear period trend interactions (unit-specific detrending)\ndid_trend <- feols(y ~ treated*post + i(period, ref = 1) |\n                   unit_id, data = df, cluster = \"unit_id\")\nsummary(did_trend)\n\n# (b) Placebo test: pretend the policy started one period earlier\ndf[, placebo_post := as.integer(period >= (min(period)+1))]  # shift by 1\ndf[, placebo_int := treated*placebo_post]\nplacebo <- feols(y ~ treated + placebo_post + placebo_int |\n                 unit_id + period, data = df, cluster = \"unit_id\")\ncat(\"\\nPlacebo ATT =\", coef(placebo)[\"placebo_int\"], \"\\n\")\n\n# (c) Output neatly\nresults <- data.frame(\n  Model      = c(\"Simple\", \"TWFE\", \"Trend FE\", \"Placebo\"),\n  ATT        = c(coef(did_simple)[\"treat_x_post\"],\n                 coef(did_twfe)[\"treated:post\"],\n                 coef(did_trend)[\"treated:post\"],\n                 coef(placebo)[\"placebo_int\"])\n)\nprint(round(results, 4))\n```\n\n## 3. Expected Findings  \nAgronomic evidence suggests fertilizer subsidies raise yields. Because `y` is in logs, we expect a positive ATT of roughly +0.20–0.30 (≈ 20-30 percent yield increase). Robustness checks should keep the sign positive; the placebo coefficient should be small and statistically insignificant, supporting the parallel-trends assumption.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log crop yields over time between treated and untreated units.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The subsidy program significantly increased crop yields.",
+    "main_effect": "0.25"
+  }
+}

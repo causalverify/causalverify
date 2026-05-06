@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_08",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-28T00:13:20.178018",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 654,
+    "output_tokens": 2378,
+    "content": "RID PROTOCOL\n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy:  \n• Use the differential financing behavior of the SAME firm across the business cycle to disentangle credit-supply changes from credit-demand changes.  \n• Key variation: U.S. recessions (NBER dates) create exogenous aggregate stress on bank balance sheets. If the fall in bank lending were purely demand-driven, a firm’s propensity to tap the public bond market instead of its relationship bank would not change systematically with the tightness of its bank’s balance sheet.  \n• Causal estimand: the change in (i) the probability that a firm issues a public bond and (ii) the spread on its syndicated loan attributable to a recession-induced contraction in its lead bank’s capital ratio, holding borrower and time fixed effects constant.  \nDirectional hypothesis (H):  \nH : During recessions, low-capital banks curtail credit supply. Therefore  \na) firms whose lead bank has a weaker capital ratio are more likely to substitute into public bonds (Recession × Low Capital > 0), and  \nb) the loan spreads those banks charge rise more strongly (Recession × Low Capital > 0).  \n\nI irrevocably pre-commit to this identification strategy and directional hypothesis.\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five regressions will be run. “LowCap” is a dummy =1 if the lead bank’s tier-1 capital ratio in the previous quarter is below the sample median; Recession is an NBER recession dummy.\n\n1. BondSubst_Base:  \n   BondIssue_it = α_i + γ_t + β₁·Recession_t + ε_it  (Linear probability model)\n\n2. BondSubst_Supply:  \n   BondIssue_it = α_i + γ_t + β₂·(Recession_t × LowCap_ib(t-1)) + δ·Recession_t + θ·LowCap_ib(t-1) + ε_it\n\n3. LoanSpread_Base:  \n   log(LoanSpread_ijt) = α_i + γ_t + β₃·Recession_t + X_ijt·λ + ε_ijt  \n   (X = borrower size, leverage, rating, etc.)\n\n4. LoanSpread_Supply:  \n   log(LoanSpread_ijt) = α_i + γ_t + β₄·(Recession_t × LowCap_ib(t-1)) + X_ijt·λ + δ·Recession_t + θ·LowCap + ε_ijt\n\n5. Pre-trend falsification (lead test of Spec 2):  \n   BondIssue_it = α_i + γ_t + φ·(FutureRecession_{t+4} × LowCap_ib(t-1)) + controls + ε_it  \n   where FutureRecession is 1 four quarters BEFORE the actual recession start. φ should be ≈0.\n\nNo other specifications, samples, or variable definitions will be introduced.\n\nSTEP 3 — FALSIFICATION GATE  \nI will REJECT the directional hypothesis if ANY of the following occur:  \na) β₂ ≤ 0 or p-value(β₂) > 0.10 in Spec 2.  \nb) β₄ ≤ 0 or p-value(β₄) > 0.10 in Spec 4.  \nc) φ in Spec 5 is statistically different from zero at the 10 % level (pre-trend fails).  \nd) Cluster-robust first-stage F-stat for LowCap variation < 10 in Spec 2 or 4 (weak variation).\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# Required packages\nlibrary(data.table); library(lmtest); library(sandwich); library(fixest)\n\n# ------------------------------------------------------------------\n# 1. LOAD AND MERGE DATA  (file paths are placeholders)\n# ------------------------------------------------------------------\ndeals   <- fread(\"dealscan_loans.csv\")      # loan level\ncomp    <- fread(\"compustat_firm_q.csv\")    # borrower financials\nbonds   <- fread(\"sdc_bonds.csv\")           # public bond issues\nbanks   <- fread(\"call_report_q.csv\")       # bank balance sheets\nnber    <- fread(\"nber_recessions.csv\")     # quarterly recession dummy\n\n# Harmonise date variable\nfor(dt in list(deals, comp, bonds, banks, nber)) dt[, qdate := as.IDate(qdate)]\n\n# Borrower-bank match (assumed pre-constructed id links)\ndeals <- merge(deals, banks[, .(bank_id, qdate, tier1_cap)], \n               by.x = c(\"lead_bank_id\",\"qdate\"), by.y = c(\"bank_id\",\"qdate\"),\n               all.x = TRUE)\n\n# Firm-quarter panel\npanel <- merge(comp, nber, by = \"qdate\", all.x = TRUE)\npanel <- merge(panel, bonds[, .(gvkey, qdate, BondIssue = 1)], \n               by = c(\"gvkey\",\"qdate\"), all.x = TRUE)\npanel[is.na(BondIssue), BondIssue := 0]\n\n# Add each firm’s lead bank capital ratio (lagged one quarter)\nleadbank <- deals[, .SD[1], by = .(gvkey, qdate)]  # first tranche = lead\nleadbank[, tier1_cap_lag := shift(tier1_cap, 1), by = lead_bank_id]\npanel <- merge(panel, \n               leadbank[, .(gvkey, qdate, tier1_cap_lag)],\n               by = c(\"gvkey\",\"qdate\"), all.x = TRUE)\n\n# Low capital dummy\npanel[, LowCap := as.integer(tier1_cap_lag < median(tier1_cap_lag, na.rm=TRUE))]\n\n# Future recession for lead test\npanel[, FutureRec4 := shift(Recession, -4, type = \"lead\")]\n\n# ------------------------------------------------------------------\n# 2. SPECIFICATIONS\n# ------------------------------------------------------------------\n# Helper: cluster by gvkey\ncl <- ~ gvkey\n\n# Spec 1: BondSubst_Base\nspec1 <- feols(BondIssue ~ Recession | gvkey + qdate, data = panel, cluster = cl)\n\n# Spec 2: BondSubst_Supply\nspec2 <- feols(BondIssue ~ Recession*LowCap | gvkey + qdate, \n               data = panel, cluster = cl)\n\n# Spec 3: LoanSpread_Base  (loan level)\ndeals <- merge(deals, nber, by = \"qdate\", all.x = TRUE)\nspec3 <- feols(log(Spread) ~ Recession + \n                 log(TotalAssets) + Leverage + Rating +\n                 TangibleAssets | gvkey + qdate, \n               data = deals, cluster = cl)\n\n# Spec 4: LoanSpread_Supply\nspec4 <- feols(log(Spread) ~ Recession*LowCap + \n                 log(TotalAssets) + Leverage + Rating + \n                 TangibleAssets | gvkey + qdate, \n               data = deals, cluster = cl)\n\n# Spec 5: Pre-trend falsification\nspec5 <- feols(BondIssue ~ FutureRec4*LowCap | gvkey + qdate, \n               data = panel, cluster = cl)\n\n# ------------------------------------------------------------------\n# 3. OUTPUT\n# ------------------------------------------------------------------\netable(spec1, spec2, spec3, spec4, spec5, cluster = cl)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBecause true data are unavailable, I state EXPECTED magnitudes consistent with past literature (e.g., Ivashina & Scharfstein 2010):\n\n• Spec 2: β₂ ≈ +0.04 (i.e., a 4 pp higher bond-issue probability for low-capital-bank firms in recessions), p ≈ 0.01.  \n\n• Spec 4: β₄ ≈ +0.12 log-points (~12 bps higher loan spread), p ≈ 0.02.  \n\n• Spec 5: φ ≈ 0.003, p = 0.55 (insignificant).  \n\n• F-stat on LowCap variation ≫ 10.\n\nThese results would NOT trigger the falsification gate, so the directional hypothesis would be retained.\n\nIf, however, the real estimates violate any gate listed in Step 3, I will reject H as pre-committed.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV using within-firm substitution between bank loans and public bonds — instrument = firm's ability to access public bond markets (investment-grade rating, bond market history); first stage: firms with bond market access substitute into bonds when credit conditions tighten; identifies bank credit supply cycle independent of demand",
+    "key_variables": {
+      "instrument": "firm's public bond market access (rated firm with prior bond issuance)",
+      "treatment": "bank credit supply tightness (constructed from SLOOS + bank balance sheet measures)",
+      "outcome": "firm bank borrowing (loan volume, spreads, covenants)",
+      "time_period": "1987–2010, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank credit supply is strongly procyclical: banks contract lending during recessions by more than justified by borrower risk. Supply-driven contractions reduce loan growth by ~3–5 percentage points per quarter at the trough.",
+    "main_effect": "~3–5pp procyclical credit supply contraction per recession quarter, independent of borrower quality",
+    "key_robustness": [
+      "borrower fixed effects to control for demand",
+      "SLOOS as external supply measure",
+      "cross-sectional: more bank-dependent firms suffer more",
+      "alternative bond-access instruments"
+    ],
+    "identification_strategy_detail": {
+      "method": "Instrumental variables / revealed-preference approach",
+      "treatment": "Periods of tight bank credit supply",
+      "instrument": "The share of firm borrowing from bonds (vs. bank loans) as a revealed-preference measure of bank loan supply. When the bank loan share falls and bond share rises for firms with access to both markets, this reveals a supply contraction (not a demand shift, since total borrowing need not change).",
+      "endogenous_variable": "Bank credit supply conditions",
+      "outcome": "Total firm investment and economic activity",
+      "first_stage": "During economic downturns, the bond-to-loan substitution ratio increases for firms with bond market access",
+      "exclusion_restriction": "The shift from loans to bonds among dual-access firms reflects supply conditions, not differential demand, because these firms can substitute freely between the two sources",
+      "sample_period": "1990-2010",
+      "unit_of_observation": "Firm-quarter"
+    },
+    "key_magnitudes": {
+      "bond_substitution_increase": "Bond share increases significantly during tight credit conditions",
+      "supply_vs_demand_decomposition": "A meaningful fraction of lending decline during recessions is attributable to supply contraction",
+      "real_effects": "Credit supply tightening is associated with reduced firm investment"
+    },
+    "robustness_notes_detail": "Key challenge is that bond issuance might also respond to demand. Authors address this by focusing on firms with pre-existing bond market access and by controlling for firm-level demand proxies (Tobin's Q, cash flow). Robust to alternative measures of credit conditions."
+  }
+}

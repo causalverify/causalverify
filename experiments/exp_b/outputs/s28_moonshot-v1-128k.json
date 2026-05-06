@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s28",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Asset size threshold and regulatory burden on bank profitability",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:27:57.445830",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 443,
+    "output_tokens": 529,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of crossing the $10B asset threshold on bank profitability. The key assumption is that banks' profitability is continuous around the threshold, except for the effect of the regulatory change. We will use a local linear regression to estimate the discontinuity at the threshold.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s28_data.csv\")\n\n# Define the running variable and the cutoff\nrunning_var <- data$running_var\ncutoff <- 0.5\n\n# Estimate the RDD model\n# We will use a local linear regression with a triangular kernel\n# and a bandwidth of 0.1\nresult <- rdrobust(y = data$y, x = running_var, c = cutoff, h = 0.1, kernel = \"triangular\")\n\n# Print the coefficient estimate for the discontinuity\nprint(result$beta[1])\n\n# Basic robustness checks\n# Check the results with different bandwidths\nbandwidths <- c(0.05, 0.1, 0.15)\nfor (bw in bandwidths) {\n  result <- rdrobust(y = data$y, x = running_var, c = cutoff, h = bw, kernel = \"triangular\")\n  cat(\"Bandwidth:\", bw, \"Coefficient:\", result$beta[1], \"\\n\")\n}\n\n# Plot the data and the fitted regression line\nggplot(data, aes(x = running_var, y = y, color = as.factor(treated))) +\n  geom_point() +\n  geom_vline(xintercept = cutoff, linetype = \"dashed\") +\n  geom_smooth(method = \"lm\", formula = y ~ poly(x, 1), se = FALSE) +\n  labs(title = \"RDD Plot\", x = \"Running Variable\", y = \"ROA\")\n```\n\n## 3. Expected Findings\nWe expect the coefficient estimate for the discontinuity to be negative, indicating that banks' profitability decreases after crossing the $10B asset threshold due to the additional regulatory requirements. The magnitude of the effect will depend on the strength of the regulatory burden and the banks' ability to adapt to the new requirements. The exact magnitude is difficult to predict without more information on the regulatory changes and the banks' characteristics.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — asset threshold; test for bunching below $10B; local linear regression",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Banks just above threshold have lower ROA than just-below peers",
+    "main_effect": "~25bp ROA reduction for above-threshold banks"
+  }
+}

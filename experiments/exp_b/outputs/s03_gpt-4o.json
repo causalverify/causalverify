@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s03",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "School voucher program on student test scores",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:06:56.807363",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 459,
+    "output_tokens": 511,
+    "content": "## 1. Identification Strategy\nI would use the Difference-in-Differences (DID) method for this analysis. This method compares the changes in outcomes over time between a treatment group and a control group. Here, \"treated\" indicates if a district is part of the voucher program, and \"post\" indicates the period post-introduction of the voucher program. The key assumption is the parallel trends assumption, meaning that in the absence of the treatment, the average difference in outcomes between treated and control groups would have remained constant over time.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s03_data.csv\")\n\n# Verify structure of the data\nhead(data)\nstr(data)\n\n# Run the DID regression\ndid_model <- lm(y ~ treated + post + treat_x_post, data=data)\n\n# Summary of the regression model\nsummary(did_model)\n\n# Coefficient of interest is treat_x_post\ncat(\"Coefficient on treat_x_post (DID estimator):\", \n    coef(summary(did_model))[[\"treat_x_post\", \"Estimate\"]], \"\\n\")\n\n# Robust standard errors\ncoeftest(did_model, vcov = vcovHC(did_model, type = \"HC1\"))\n\n# Conduct basic robustness check by allowing for time fixed effects\nrobust_model <- lm(y ~ treated + post + treat_x_post + factor(period), data=data)\n\n# Summary of the robust model\nsummary(robust_model)\n\n# Coefficient with time fixed effects\ncat(\"Coefficient on treat_x_post (with period fixed effects):\", \n    coef(summary(robust_model))[[\"treat_x_post\", \"Estimate\"]], \"\\n\")\n\n# Robust standard errors for the robust model\ncoeftest(robust_model, vcov = vcovHC(robust_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nI expect a positive sign for the coefficient on `treat_x_post`, indicating that the introduction of the school voucher program improved standardized test scores in the treated districts compared to control districts. The magnitude will depend on the effect size of the program but given typical educational interventions, a small to moderate increase (e.g., 0.1 to 0.5 standard deviations) could be expected. The robustness checks should maintain the sign and significance of this effect if the parallel trends assumption holds.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=voucher districts, control=non-voucher; shock=program introduction",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Test scores increase significantly in voucher districts after program launch",
+    "main_effect": "0.25 SD improvement in test scores"
+  }
+}

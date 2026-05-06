@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_207",
+  "title": "Tax Structures in Developing Countries: Many Puzzles and a Possible Explanation",
+  "authors": "Gordon & Li",
+  "year": null,
+  "journal": "JPublE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jpubeco.2009.04.001",
+    "title": "Tax structures in developing countries: Many puzzles and a possible explanation",
+    "year": 2009,
+    "journal": "Journal of Public Economics",
+    "citations": 569
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "gordon",
+      "li"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpuble",
+    "journal_oa": "jpube",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 569,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

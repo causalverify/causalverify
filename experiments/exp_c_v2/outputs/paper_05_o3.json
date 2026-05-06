@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_05",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-28T00:11:51.414298",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 639,
+    "output_tokens": 2909,
+    "content": "BEGIN RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy  \n• Event–study / matched-sample difference-in-differences.  \n• For each AAER firm (“target”) and its pre-selected control firm we estimate market-model abnormal returns (AR) and cumulate them into CARs around the first public revelation of misconduct (event date = first public announcement).  \nDirectional hypothesis (H1)  \nH1:  SEC-targeted firms suffer economically large and statistically significant stock-price losses at the revelation of misrepresentation. Formally:  \n(a) Mean CAR(−1,+1) for targets < 0.  \n(b) Mean CAR(−1,+1) for targets is < CAR of matched controls.  \n(c) Larger (more negative) CARs are associated with larger subsequent monetary penalties.  \n\nI will not change this hypothesis after Step 1.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly five)  \nSpec 1 Target-only event-study mean test  \n CAR_ij(−1,+1) = Σ AR_ij,t , t = −1…+1.  \n Test: H0: E[CAR] = 0 (one-sample t-test).  \n\nSpec 2 Matched-pairs difference in CAR(−1,+1)  \n ΔCAR_i = CAR_target,i − CAR_control,i.  \n Test: H0: E[ΔCAR] = 0 (paired t-test).  \n\nSpec 3 Target-only CAR(−10,+10) mean test (robustness to wider window).  \n\nSpec 4 Matched-pairs difference in CAR(−10,+10).  \n\nSpec 5 Cross-sectional OLS: log(TotalPenalties_i) = α + β·(−CAR_i(−1,+1)) +  \n  controls(Size, Leverage, ROA, M/B) + ε_i.  \n Prediction: β > 0 (larger price drops ⇒ larger penalties).  \n\nNo other specifications will be run.  \n\nSTEP 3 — FALSIFICATION GATE  \nI will reject H1 if EITHER of the following occurs:  \n• Spec 1: mean CAR(−1,+1) ≥ 0 OR p-value > 0.10, two-sided.  \nOR  \n• Spec 2: mean ΔCAR(−1,+1) ≥ 0 OR p-value > 0.10.  \nIf either condition is met, the hypothesis fails; otherwise it survives.  \n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# --- Load packages ---\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(broom)\n\n# --- INPUT DATA ---\n# aaer_events: one row per AAER firm with\n#  firm_id, event_date (first public announcement), control_id\n# crsp_returns: daily returns with\n#  permno, date, ret, mkt_ret  (market return = CRSP value-weighted)\n\n# compustat_controls: firm-level covariates for year-t-1\n#  firm_id, size=log(at), leverage=lt/at, roa=ib/at, mb=mkvalt/at\n# penalties: firm_id, total_penalty_usd\n\n# --- Helper: abnormal returns ---\nget_ar <- function(df, event_date){\n  est_win <- df %>% \n    filter(date >= event_date - 250 & date <= event_date - 30)\n  mm <- lm(ret ~ mkt_ret, data = est_win)\n  df %>% \n    mutate(ar = ret - predict(mm, newdata = .))\n}\n\n# --- Build CARs for targets and controls ---\ncars <- aaer_events %>% \n  pivot_longer(cols = c(firm_id, control_id), \n               names_to = \"role\", values_to = \"permno\") %>%\n  left_join(crsp_returns, by = c(\"permno\" = \"permno\")) %>% \n  group_by(permno, event_date) %>% \n  arrange(date) %>% \n  group_modify(~{\n      ar_df <- get_ar(.x, unique(.x$event_date))\n      ar_df %>%\n        filter(date %between% c(unique(.x$event_date) - 10, \n                                unique(.x$event_date) + 10)) %>%\n        summarise(\n          CAR_m1_p1  = sum(ar[date %between% c(unique(.x$event_date)-1,\n                                               unique(.x$event_date)+1)], na.rm=TRUE),\n          CAR_m10_p10 = sum(ar, na.rm=TRUE)\n        )\n  }) %>% \n  ungroup()\n\n# --- Split targets / controls ---\ntargets   <- aaer_events$firm_id\ncars <- cars %>% \n  mutate(target = permno %in% targets)\n\n# --- Spec 1: target-only mean CAR(−1,+1) ---\nspec1 <- t.test(cars$CAR_m1_p1[cars$target==TRUE])\n\n# --- Spec 2: paired diff CAR(−1,+1) ---\npaired <- cars %>% \n  group_by(event_date) %>% \n  summarise(delta = CAR_m1_p1[target] - CAR_m1_p1[!target])\nspec2 <- t.test(paired$delta)\n\n# --- Spec 3: target-only CAR(−10,+10) ---\nspec3 <- t.test(cars$CAR_m10_p10[cars$target==TRUE])\n\n# --- Spec 4: paired diff CAR(−10,+10) ---\npaired2 <- cars %>% \n  group_by(event_date) %>% \n  summarise(delta = CAR_m10_p10[target] - CAR_m10_p10[!target])\nspec4 <- t.test(paired2$delta)\n\n# --- Spec 5: penalties regression ---\ncross <- cars %>% \n  filter(target) %>% \n  select(permno, CAR_m1_p1) %>% \n  left_join(penalties, by = c(\"permno\" = \"firm_id\")) %>% \n  left_join(compustat_controls, by = c(\"permno\" = \"firm_id\")) %>% \n  mutate(drop = -CAR_m1_p1, \n         logpen = log1p(total_penalty_usd))\nspec5 <- lm(logpen ~ drop + size + leverage + roa + mb, data = cross)\nspec5_sum <- summary(spec5)\n\n# --- Output objects ---\nlist(spec1 = tidy(spec1),\n     spec2 = tidy(spec2),\n     spec3 = tidy(spec3),\n     spec4 = tidy(spec4),\n     spec5 = tidy(spec5_sum))\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBecause this is a pre-analysis plan, numbers below are expectations, not actual estimates.  \n\nSpec 1 Mean CAR(−1,+1) ≈ −0.12 (-12%), t ≈ −9, p < 0.001.  \nSpec 2 Mean paired ΔCAR(−1,+1) ≈ −0.11, t ≈ −8, p < 0.001.  \nSpec 3 Mean CAR(−10,+10) ≈ −0.20, t ≈ −10.  \nSpec 4 Mean paired ΔCAR(−10,+10) ≈ −0.18, t ≈ −9.  \nSpec 5 β̂_drop ≈ 0.80 (s.e. 0.20), p < 0.001.  \n\nGate assessment  \nBoth gate conditions (Spec 1 and Spec 2) are expected to show large negative and highly significant effects (p < 0.10). Consequently, the falsification gate would NOT be triggered; H1 would be retained.  \n\nEND RID PROTOCOL",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "negative",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event dates are (1) first public announcement of potential misconduct and (2) final SEC enforcement action; outcome = cumulative abnormal return around each event date; benchmark = matched-firm adjusted returns",
+    "key_variables": {
+      "treatment": "SEC AAER enforcement action (misconduct revelation)",
+      "control": "matched firms on industry, size, book-to-market",
+      "outcome": "cumulative abnormal return (CAR) from CRSP daily returns adjusted for matched-firm returns",
+      "time_period": "event windows of [-1,0], [-1,+1], [-10,+10] around announcement dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms lose on average 38% of market value from the misconduct period through final resolution; direct penalties account for only a small fraction (~3%) of total costs — the majority is reputational loss",
+    "main_effect": "-38% total market value loss from misconduct revelation through resolution",
+    "key_robustness": [
+      "decomposition of loss into direct penalties vs. reputational",
+      "alternative event windows",
+      "cross-sectional drivers of penalty severity"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study (multi-event)",
+      "treatment": "Disclosure of financial misrepresentation and subsequent enforcement milestones",
+      "event_window": "Multiple windows around key enforcement dates (initial disclosure, formal investigation, charges, settlement)",
+      "estimation_window": "Pre-event clean period for market model estimation",
+      "sample_period": "1978-2002 (788 enforcement actions)",
+      "unit_of_observation": "Firm-enforcement event",
+      "key_assumption": "Market efficiently impounds expected costs at each disclosure milestone. Abnormal returns around enforcement events reflect the firm-specific cost of misrepresentation, not confounding news."
+    },
+    "key_magnitudes": {
+      "total_market_value_loss": "Average 38% decline in market-adjusted equity value",
+      "legal_penalty_share": "~8.6% of total loss attributable to legal penalties",
+      "reputation_loss_share": "~66.6% of total loss attributed to reputation damage",
+      "expected_legal_penalty_share": "~24.8% of total loss from anticipated but not yet imposed penalties"
+    },
+    "robustness_notes_detail": "Decomposition is robust across subsamples (SEC-only vs DOJ, different time periods). Results hold after controlling for firm size, industry, and severity of misrepresentation."
+  }
+}

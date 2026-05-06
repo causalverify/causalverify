@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_249",
+  "title": "How Large Are Human-Capital Externalities? Evidence from Compulsory-Schooling Laws",
+  "authors": "Acemoglu & Angrist",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/654403",
+    "title": "How Large Are Human-Capital Externalities? Evidence from Compulsory Schooling Laws",
+    "year": 2000,
+    "journal": "NBER Macroeconomics Annual",
+    "citations": 742
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "nber macroeconomics annual",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 742,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_202",
+  "title": "Consequences of Employment Protection? The Case of the Americans with Disabilities Act",
+  "authors": "Acemoglu & Angrist",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/322836",
+    "title": "Consequences of Employment Protection? The Case of the Americans with Disabilities Act",
+    "year": 2001,
+    "journal": "Journal of Political Economy",
+    "citations": 11
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 11,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

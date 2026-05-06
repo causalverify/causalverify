@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_23",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:33:02.997001",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 638,
+    "output_tokens": 2096,
+    "content": "The following steps adhere to the Research Integrity by Design (RID) protocol.\n\n---\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe primary causal identification strategy will be a Difference-in-Differences (DiD) framework, exploiting the staggered timing of banking deregulation across U.S. states. This involves comparing the change in economic growth outcomes in states that deregulate to the change in growth outcomes in states that have not yet deregulated (or never deregulate) over the same period, while controlling for common time trends and state-specific fixed effects. The core assumption is that, in the absence of deregulation, treated and control states would have followed parallel trends in economic growth.\n\n**Directional Hypothesis:**\nBased on the finance-growth hypothesis, I hypothesize that banking deregulation, by fostering greater competition and efficiency in financial intermediation, will have a **positive** causal effect on state-level per capita income growth and gross state product growth.\n\n---\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nI will run the following five specifications using a linear panel model framework (specifically, Two-Way Fixed Effects, TWFE), with standard errors clustered at the state level in all models to account for potential serial correlation within states and heteroskedasticity.\n\n1.  **Baseline DiD (TWFE) for Income Growth:**\n    `g_income_pc_it = β_0 + β_1 * Dereg_it + μ_i + λ_t + ε_it`\n    where `g_income_pc_it` is the growth rate of real personal income per capita in state `i` at year `t`. `Dereg_it` is a binary indicator equal to 1 if state `i` has deregulated by year `t`, and 0 otherwise. `μ_i` represents state fixed effects, and `λ_t` represents year fixed effects.\n\n2.  **DiD with Time-Varying Controls for Income Growth:**\n    `g_income_pc_it = β_0 + β_1 * Dereg_it + X_it'γ + μ_i + λ_t + ε_it`\n    where `X_it` includes state-level time-varying controls: education (% college-educated), demographics (population, urbanization), and industry composition variables.\n\n3.  **DiD with Time-Varying Controls for GSP Growth (Alternative Dependent Variable):**\n    `g_gsp_pc_it = β_0 + β_1 * Dereg_it + X_it'γ + μ_i + λ_t + ε_it`\n    where `g_gsp_pc_it` is the growth rate of real gross state product per capita. All other variables are as defined in specification (2).\n\n4.  **Event Study Specification for Income Growth:**\n    `g_income_pc_it = β_0 + Σ_k β_k * D_it^k + X_it'γ + μ_i + λ_t + ε_it`\n    where `D_it^k` are a series of binary indicators for being `k` years relative to the deregulation event (e.g., `k=-3` for three years before, `k=0` for the year of, `k=1` for one year after, etc.). The omitted category will be `k=-1` (one year before deregulation) and all years far after deregulation (`k >= 5`, or `Inf`). This specification allows us to examine pre-trends and dynamic treatment effects.\n\n5.  **DiD with State-Specific Linear Time Trends for Income Growth:**\n    `g_income_pc_it = β_0 + β_1 * Dereg_it + X_it'γ + μ_i + λ_t + θ_i * t + ε_it`\n    This model adds state-specific linear time trends (`θ_i * t`) to specification (2), where `t` is a linear time trend variable (e.g., `year - min(year)`). This tests the robustness of the parallel trends assumption to unobserved state-specific factors evolving linearly over time.\n\n---\n### STEP 3 — FALSIFICATION GATE\n\nI will reject my hypothesis if any of the following conditions are met:\n\n1.  **Sign Reversal:** The estimated coefficient for `Dereg_it` (β_1) in specifications (1) or (2) is *negative* and statistically significant at the 10% level (p < 0.10).\n2.  **Lack of Significance (Primary DV):** The estimated coefficient for `Dereg_it` (β_1) in specifications (1) or (2) is *not statistically significant* at the 10% level (p > 0.10), indicating no discernible positive effect on per capita income growth.\n3.  **Failed Pre-trend Test:** In the event study specification (4), if any of the pre-treatment lead coefficients (e.g., `β_k` for `k = -3, -2`) are statistically significant at the 10% level (p < 0.10) and of a magnitude comparable to or greater than the estimated post-treatment effects, indicating a violation of the parallel trends assumption.\n4.  **Inconsistent Robustness:** If the `Dereg_it` coefficient (β_1) from specification (2) is positive and significant, but becomes statistically insignificant (p > 0.10) or turns negative and significant in specification (5), which includes state-specific linear time trends, this would indicate that the initial finding is not robust to more flexible control for unobserved confounding trends.\n\n---\n### STEP 4 — R CODE\n\n```R\n# Load necessary libraries\nlibrary(fixest) # For fast fixed-effects estimation\nlibrary(dplyr)  # For data manipulation\nlibrary(lfe)    # Alternative for fixed-effects, good for comparison\n\n# --- 1. Data Simulation ---\nset.seed(123) # for reproducibility\n\n# Panel dimensions\nnum_states <- 50\nnum_years <- 21 # 1972-1992\nyears <- 1972:1992\n\n# Create base data frame\ndata_list <- list()\nfor (s in 1:num_states) {\n  state_data <- data.frame(\n    state_id = s,\n    year = years\n  )\n  data_list[[s]] <- state_data\n}\npanel_data <- bind_rows(data_list)\n\n# Generate state-specific fixed effects\nstate_fe <- rnorm(num_states, mean = 0, sd = 0.5)\npanel_data$state_fe_val <- state_fe[panel_data$state_id]\n\n# Generate year-specific fixed effects\nyear_fe <- rnorm(num_years, mean = 0, sd = 0.3)\npanel_data$year_fe_val <- year_fe[match(panel_data$year, years)]\n\n# Generate deregulation years\n# Assign deregulation years between 1978 and 1988 for some states\n# Some states will never deregulate within the sample period (dereg_year > max(years))\ndereg_years <- sample(c(sample(1978:1988, num_states * 0.6, replace = TRUE),\n                        sample(1993:2000, num_states * 0.4, replace = TRUE)),\n                      num_states, replace = FALSE)\npanel_data <- panel_data %>%\n  group_by(state_id) %>%\n  mutate(dereg_year = dereg_years[state_id]) %>%\n  ungroup()\n\n# Create treatment indicator (Dereg_it)\npanel_data <- panel_data %>%\n  mutate(\n    Dereg = ifelse(year >= dereg_year, 1, 0),\n    # Ensure treatment is 0 for states that deregulate after sample end\n    Dereg = ifelse(dereg_year > max(years), 0, Dereg)\n  )\n\n# Generate controls\npanel_data <- panel_data %>%\n  mutate(\n    education = rnorm(n(), mean = 0.5 + 0.01 * (year - min(years)), sd = 0.1), # Increasing over time\n    population = rnorm(n(), mean = 10 + 0.05 * (year - min(years)), sd = 2),\n    urbanization = runif(n(), 0.3, 0.9),\n    industry_mix_manuf = runif(n(), 0.1, 0.4),\n    industry_mix_service = runif(n(), 0.3, 0.7),\n    # Ensure controls are somewhat plausible\n    education = pmin(pmax(education, 0.2), 0.8),\n    population = pmax(population, 1),\n    urbanization = pmin(pmax(urbanization, 0.2), 0.9)\n  )\n\n# Simulate error terms\npanel_data$epsilon <- rnorm(nrow(panel_data), mean = 0, sd = 0.5)\n\n# True effect of deregulation (for simulation: positive effect)\ntrue_beta_dereg <- 0.25\n\n# Simulate dependent variables (growth rates)\npanel_data <- panel_data %>%\n  mutate(\n    # Income",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered treatment adoption — treatment is the state-level removal of intrastate branching restrictions; the staggered timing of deregulation across states provides variation in treatment status over time; state and year fixed effects absorb time-invariant state characteristics and national economic trends",
+    "key_variables": {
+      "treatment": "binary indicator for intrastate branching deregulation in state i by year t (staggered across states, 1970s–1990s)",
+      "control": "states that have not yet deregulated (or never deregulated) at time t",
+      "outcome": "real per capita personal income growth; real per capita GSP growth",
+      "time_period": "1972–1992 (annual state-level panel)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "States that deregulated intrastate branching experienced significantly faster per capita income growth — approximately 0.5-1.2 percentage points per year faster than states that had not yet deregulated. The growth effect operates through improved banking sector efficiency (better loan quality, more competition) rather than increased lending volume.",
+    "main_effect": "Deregulation increases annual per capita income growth by approximately 0.51-1.19 percentage points relative to non-deregulated states",
+    "key_robustness": [
+      "Controlling for state-level demographics, education, and industry composition",
+      "Event-study specification showing no pre-trend in growth differences",
+      "Separating the effect into banking sector channels (loan quality, competition, efficiency)",
+      "Excluding states that deregulated earliest (potential outliers)",
+      "Interstate vs. intrastate deregulation separately"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered treatment (state FE + year FE + deregulation dummy)",
+      "treatment": "State-year indicator for having deregulated intrastate branching by year t",
+      "event_window": "Post-deregulation years (all years after state i removes branching restrictions)",
+      "estimation_window": "Pre-deregulation years serve as the baseline",
+      "sample_period": "1972–1992",
+      "unit_of_observation": "State-year (50 states × ~21 years)",
+      "key_assumption": "Parallel trends: absent deregulation, income growth in early-deregulating states would have followed the same trend as late-deregulating states. Event-study evidence supports this — no differential pre-trends in the years before deregulation."
+    },
+    "key_magnitudes": {
+      "income_growth_effect": "+0.51 to +1.19 percentage points annual per capita income growth (depending on specification and controls)",
+      "gsp_growth_effect": "Similar magnitude for gross state product growth",
+      "bank_efficiency": "Deregulation reduces non-performing loan rates and increases bank profitability, consistent with improved capital allocation"
+    },
+    "robustness_notes_detail": "Pre-trend tests show no differential income growth between early and late deregulating states before deregulation occurs, supporting the parallel trends assumption. Results are robust to including state-specific linear time trends, demographic controls, and industry composition variables. The effect is persistent (does not fade after 5-10 years post-deregulation). Mechanism analysis shows the growth effect operates through improved banking efficiency (lower loan losses, more competition) rather than aggregate credit expansion."
+  }
+}

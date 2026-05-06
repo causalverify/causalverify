@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies the core identification strategy as a Difference-in-Differences event study comparing arbitration losers to winners, which perfectly matches the ground truth. The AI's explanation for 'Why DID/Event Study' correctly points to the quasi-random nature of arbitration decisions in 'marginal cases' and the need to check for parallel trends. The research plan is also framed around investigating if losing arbitration 'reduces' police performance, which aligns with the ground truth's negative direction of effect.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_40",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:29:42.372348+00:00"
+}

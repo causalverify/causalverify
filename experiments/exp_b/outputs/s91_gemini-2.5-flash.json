@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s91",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Very-Low-Birth-Weight Classification on Neonatal Mortality",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:58:41.200060",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 456,
+    "output_tokens": 164,
+    "content": "## 1. Identification Strategy\n\nThis research scenario is best addressed using a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nThe core of the research question is whether \"crossing the birth weight threshold for this classification\" impacts neonatal mortality. The dataset provides a `running_var` (birth weight in grams), which is a continuous assignment variable, and a `treated` indicator for \"very-low-birth-weight classification.\" This strongly suggests a sharp RDD where treatment status (`treated=1`) is entirely determined by whether the `running_var` falls below a specific threshold.\n\nAssuming the `running_var` is centered at the threshold, the assignment rule would be: an individual is classified as very-low-birth-weight (`treated=1`) if `",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the birth weight threshold for classification.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the threshold for very-low-birth-weight classification increases neonatal mortality.",
+    "main_effect": "0.18"
+  }
+}

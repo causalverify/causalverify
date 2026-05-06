@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_26",
+  "title": "The Response of Corporate Financing and Investment to Changes in the Supply of Credit",
+  "authors": "Lemmon & Roberts",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1017/s0022109010000256",
+    "title": "The Response of Corporate Financing and Investment to Changes in the Supply of Credit",
+    "year": 2010,
+    "journal": "Journal of Financial and Quantitative Analysis",
+    "citations": 648
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "roberts",
+      "lemmon"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "journal of financial and quantitative analysis",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 648,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

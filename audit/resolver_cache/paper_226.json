@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_226",
+  "title": "School Quality, Neighborhoods, and Housing Prices: The Impacts of School Desegregation",
+  "authors": "Kane, Riegg & Staiger",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w11347",
+    "title": "School Quality, Neighborhoods and Housing Prices: The Impacts of school Desegregation",
+    "year": 2005,
+    "journal": "National Bureau of Economic Research",
+    "citations": 42
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "kane",
+      "staiger",
+      "riegg"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 42,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

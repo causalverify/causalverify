@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_101",
+  "title": "Is More Information Better? The Effects of Report Cards on Health Care Providers",
+  "authors": "Dranove, Kessler, McClellan & Satterthwaite",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/374180",
+    "title": "Is More Information Better? The Effects of \u201cReport Cards\u201d on Health Care Providers",
+    "year": 2003,
+    "journal": "Journal of Political Economy",
+    "citations": 23
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dranove",
+      "satterthwaite",
+      "mcclellan",
+      "kessler"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 23,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

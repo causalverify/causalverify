@@ -1,0 +1,137 @@
+{
+  "generated_at": "2026-04-11",
+  "finding": "Gemini 2.5 Flash hit max_tokens on 18/30 Exp B scenarios (60%). This systematically depresses Gemini's L2a/L2b/L4 scores and should be disclosed in the paper's limitations.",
+  "exp_a_truncated": [
+    {
+      "file": "paper_06_gemini-2.5-flash.json",
+      "content_len": 19416,
+      "stop_reason": "length"
+    },
+    {
+      "file": "paper_21_gemini-2.5-flash.json",
+      "content_len": 17589,
+      "stop_reason": "length"
+    },
+    {
+      "file": "paper_25_gemini-2.5-flash.json",
+      "content_len": 18915,
+      "stop_reason": "length"
+    },
+    {
+      "file": "paper_41_gemini-2.5-flash.json",
+      "content_len": 16041,
+      "stop_reason": "length"
+    },
+    {
+      "file": "paper_53_gemini-2.5-flash.json",
+      "content_len": 15588,
+      "stop_reason": "length"
+    },
+    {
+      "file": "paper_82_gemini-2.5-flash.json",
+      "content_len": 7899,
+      "stop_reason": "length"
+    }
+  ],
+  "exp_b_truncated": [
+    {
+      "file": "s01_gemini-2.5-flash.json",
+      "content_len": 6809,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s02_gemini-2.5-flash.json",
+      "content_len": 6774,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s04_gemini-2.5-flash.json",
+      "content_len": 7118,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s08_gemini-2.5-flash.json",
+      "content_len": 630,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s09_gemini-2.5-flash.json",
+      "content_len": 755,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s10_gemini-2.5-flash.json",
+      "content_len": 770,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s11_gemini-2.5-flash.json",
+      "content_len": 5871,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s12_gemini-2.5-flash.json",
+      "content_len": 762,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s13_gemini-2.5-flash.json",
+      "content_len": 5125,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s14_gemini-2.5-flash.json",
+      "content_len": 828,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s15_gemini-2.5-flash.json",
+      "content_len": 4756,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s16_gemini-2.5-flash.json",
+      "content_len": 768,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s17_gemini-2.5-flash.json",
+      "content_len": 878,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s18_gemini-2.5-flash.json",
+      "content_len": 801,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s23_gemini-2.5-flash.json",
+      "content_len": 815,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s28_gemini-2.5-flash.json",
+      "content_len": 790,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s29_gemini-2.5-flash.json",
+      "content_len": 658,
+      "stop_reason": "length"
+    },
+    {
+      "file": "s30_gemini-2.5-flash.json",
+      "content_len": 7362,
+      "stop_reason": "length"
+    }
+  ],
+  "summary": {
+    "exp_a_truncated_count": 6,
+    "exp_a_total": 137,
+    "exp_a_truncation_rate": "4.4%",
+    "exp_b_truncated_count": 18,
+    "exp_b_total": 30,
+    "exp_b_truncation_rate": "60.0%",
+    "exp_b_very_short_count": 11
+  }
+}

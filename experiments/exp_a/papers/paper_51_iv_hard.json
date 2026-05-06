@@ -1,0 +1,96 @@
+{
+  "paper_id": "paper_51",
+  "source": "American Economic Review, 2012",
+  "authors": "Nunn & Qian",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Aiding Conflict: The Impact of U.S. Food Aid on Civil War",
+  "doi": "10.1257/aer.102.4.1630",
+  "volume": 102,
+  "issue": 4,
+  "pages": "1630-1666",
+  "domain": "development",
+  "research_question": "What is the average causal effect of U.S. food aid on the incidence, onset, and duration of armed conflict in recipient countries? Does food aid differentially affect civil versus interstate conflicts, and does its impact vary with the scale of conflict or with recipient-country characteristics such as ethnic diversity and transportation infrastructure?",
+  "data_description": "The analysis uses an annual country-year panel of 134 non-OECD countries from 1972 to 2006. Conflict outcomes come from the UCDP/PRIO Armed Conflict Dataset (incidence of intra-state, inter-state, and any armed conflict with at least 25 battle deaths) and from the Correlates of War database (1,000+ battle-death threshold). U.S. wheat food aid shipments (in thousands of metric tons) to recipient countries are from FAOSTAT, and U.S. wheat production data are from the USDA. Additional variables include monthly recipient-country temperature and precipitation (Terrestrial Air Temperature and Precipitation gridded data), recipient cereal production and net imports (FAO), U.S. military and non-food economic aid (USAID), GDP per capita, polity scores (Polity IV), ethnic fractionalization and polarization measures, road density (WDI), and total ODA from non-U.S. donors (Roodman's Net Aid Transfers).",
+  "institutional_context": "The United States is the world's largest food aid donor, supplying roughly 60% of global food aid, predominantly through Public Law 480 (Food for Peace), with wheat constituting about 58% of U.S. food aid shipments during 1972–2006. U.S. domestic price-support policies lead the USDA to accumulate wheat reserves in high-production years; these surpluses are subsequently shipped abroad as food aid the following year, so wheat harvested in year t-1 typically arrives in recipient countries in year t. Allocations across recipients are administered through a complex inter-agency process, and historically certain countries (e.g., Honduras, Haiti, Bangladesh) receive U.S. food aid almost every year while others rarely or never do. Once delivered, food aid is transported across territories often weakly controlled by recipient governments, making it vulnerable to appropriation by armed factions, government forces, and rebel groups, who can tax, loot, or divert shipments to fund military activities.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.03,
+      "unit": "percentage point increase in civil conflict incidence per SD increase in instrumented food aid",
+      "interpretation": "A one standard deviation increase in U.S. wheat food aid (instrumented by U.S. production × historical share) raises the probability of civil conflict by approximately 3 percentage points, a ~10% increase from the baseline"
+    },
+    "secondary_estimate": {
+      "value": 0.01,
+      "unit": "percentage point increase in conflict onset (not significant)",
+      "interpretation": "Food aid does not significantly increase the onset of new conflicts, suggesting the mechanism operates through prolonging existing conflicts rather than starting new ones"
+    },
+    "significance": "p < 0.05 (incidence); p > 0.10 (onset)",
+    "table_ref": "Tables 3-6 in Nunn & Qian (2012)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "USAID Greenbook (food aid shipments by country and year — free)",
+      "USDA production data (wheat production — free from NASS)",
+      "UCDP/PRIO Armed Conflict Dataset (conflict data — free)",
+      "Penn World Tables (GDP per capita — free)",
+      "Polity IV (democracy index — free)",
+      "Nunn & Qian replication data (posted on AER website — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. Replication data and code are posted on the AER website.",
+    "replicability": "high — all data publicly available; replication package available from AER",
+    "public_proxy_available": true,
+    "replication_tier": "full (all data sources public; replication package available)",
+    "data_limitations": "Food aid data may have measurement error (timing of shipments vs. arrivals). Conflict data threshold (25 battle deaths) may miss low-intensity conflicts. The interaction instrument has been methodologically critiqued. U.S. food aid is only one component of total food aid received by a country.",
+    "public_data_sources_detail": [
+      "USAID Greenbook (bilateral food aid — free)",
+      "USDA NASS (U.S. crop production — free)",
+      "UCDP/PRIO (armed conflict — free from Uppsala University)",
+      "Penn World Tables (GDP — free)",
+      "AER replication package (data and code — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables — U.S. wheat production (supply-driven, exogenous to recipient country conditions) interacted with the recipient country's lagged/historical share of U.S. food aid as instrument for actual food aid received; first stage: U.S. production × historical share → food aid received; second stage: food aid (instrumented) → civil conflict",
+    "key_variables": {
+      "treatment": "U.S. wheat food aid received (metric tons, endogenous), instrumented by U.S. wheat production × country's historical aid share",
+      "control": "N/A (panel with country and year FE; variation from interaction of time-varying U.S. production with cross-sectional aid propensity)",
+      "outcome": "civil conflict incidence (binary: any conflict with ≥25 battle deaths), conflict onset (new conflict starts)",
+      "time_period": "1971–2006 (annual panel of 125 countries)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "U.S. food aid significantly increases the incidence and duration of civil conflict in recipient countries. An increase in food aid equivalent to the mean level increases the probability of conflict by approximately 0.03 (from a base of about 0.30), an increase of roughly 10%. The effect is driven by prolongation of existing conflicts rather than onset of new ones. The effect is concentrated in countries with recent conflict history.",
+    "main_effect": "A one SD increase in instrumented food aid increases civil conflict incidence by approximately 3 percentage points (~10% from a ~30% base); effect primarily through conflict prolongation, not onset",
+    "key_robustness": [
+      "Separating conflict incidence from onset (effect on prolongation, not initiation)",
+      "Lagged food aid (addressing timing concerns)",
+      "Alternative conflict thresholds (25 vs. 1,000 battle deaths)",
+      "Excluding largest recipients (to check for outlier-driven results)",
+      "Controlling for other aid types (military aid, development aid)",
+      "Placebo instruments (U.S. production of non-wheat crops that are not distributed as food aid)"
+    ],
+    "identification_strategy_detail": {
+      "method": "2SLS with interaction instrument: U.S. wheat production (time-varying, supply-driven) × country historical aid share (cross-sectional, predetermined); panel with country and year fixed effects",
+      "treatment": "U.S. wheat food aid received by country i in year t (endogenous)",
+      "event_window": "Contemporaneous and lagged (1-year lag) food aid effects on conflict",
+      "estimation_window": "Full panel 1971-2006",
+      "sample_period": "1971–2006",
+      "unit_of_observation": "Country-year (125 countries × ~36 years)",
+      "key_assumption": "U.S. wheat production shocks (driven by weather) are exogenous to political conditions in recipient countries. The exclusion restriction requires that U.S. wheat production affects conflict in recipient countries only through its effect on food aid shipments, not through other channels (e.g., world wheat price effects on domestic agriculture). Country × year FE absorb time-invariant country factors and global year shocks."
+    },
+    "key_magnitudes": {
+      "conflict_incidence": "+3pp increase in conflict probability per mean-level increase in food aid (IV, from ~30% base)",
+      "conflict_onset": "Small and generally insignificant effect on new conflict onset",
+      "conflict_duration": "Significant positive effect on conflict prolongation (ongoing conflicts last longer)",
+      "first_stage": "U.S. wheat production × historical share significantly predicts food aid; F-statistic > 10"
+    },
+    "robustness_notes_detail": "Results are robust to controlling for other forms of U.S. aid, GDP, democracy, and other conflict determinants. The effect is concentrated in conflict prolongation (not onset), consistent with the mechanism of warring parties capturing aid to sustain fighting. Placebo tests using U.S. production of crops NOT distributed as food aid (corn, soybeans) show no effect on conflict, supporting the exclusion restriction. The interaction instrument approach has been critiqued (Bazzi & Clemens 2013, Christian & Barrett 2017) for potential violations of the exclusion restriction through world price channels, which the authors address with commodity price controls."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 127005,
+  "phase1_source_version": "v2primeprime_full_text_a4_deleak",
+  "v2primeprime_two_pass_deleak": true,
+  "v2primeprime_deleak_source": "audit/regen_strong_deleak_v2primeprime_6.json",
+  "v2primeprime_a4_action": "rewritten"
+}

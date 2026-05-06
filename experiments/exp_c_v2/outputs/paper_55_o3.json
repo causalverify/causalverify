@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_55",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:47:06.483092",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 658,
+    "output_tokens": 2585,
+    "content": "BEGIN RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy: Two–stage least squares (2SLS) that instruments a child’s foster-care placement with the leave-one-out investigator placement rate (“investigator propensity to place”), exploiting quasi-random case assignment within office-by-calendar-month cells. Conditional on those fixed effects, the instrument is as-good-as-random and satisfies relevance because more aggressive investigators remove children more often.\n\nDirectional hypothesis (set now and never revised): Being placed in foster care HURTS long-run well-being. Specifically, relative to remaining at home, foster-care placement  \n• increases the probability of juvenile delinquency;  \n• increases the probability of teen motherhood (among girls);  \n• decreases the probability of being employed in young adulthood;  \n• lowers log annual earnings in young adulthood.\n\nSTEP 2 — SPECIFICATION DISCIPLINE (no more than 5)  \nAll specifications use the same covariate vector X: child sex, race dummies, age at investigation (in months), allegation type dummies, reporter type dummies, and office-by-calendar-month fixed effects. Standard errors are clustered at the investigator level.\n\nSpec 1  First-stage:  \n FosterCare_i = α + π · InvestigatorPropensity_i + X_i′β + ε_i\n\nSpec 2  2SLS for juvenile delinquency (ever arrested age 13-17):  \n Delinquent_i = α + θ · FosterCare_i^{2SLS} + X_i′β + u_i\n\nSpec 3  2SLS for teen motherhood (girl sub-sample, mother by age 19):  \n TeenMom_i = α + θ · FosterCare_i^{2SLS} + X_i′β + u_i\n\nSpec 4  2SLS for employment (indicator =1 if any UI-covered earnings at age 24):  \n Employed24_i = α + θ · FosterCare_i^{2SLS} + X_i′β + u_i\n\nSpec 5  2SLS for log annual earnings at age 24 (conditional on positive earnings):  \n logEarn24_i = α + θ · FosterCare_i^{2SLS} + X_i′β + u_i\n\nNo additional regressions, subsamples, or control sets will be run.\n\nSTEP 3 — FALSIFICATION GATE  \nThe hypothesis will be rejected if ANY of the following occur:  \na) First-stage relevance failure: robust F-statistic on π < 10.  \nb) Sign reversal or statistical insignificance: for juvenile delinquency (Spec 2) θ ≤ 0 or p > 0.10; for employment (Spec 4) θ ≥ 0 or p > 0.10. (Teen motherhood and earnings are supplementary; they do not by themselves trigger rejection.)\n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n# Required packages\nlibrary(tidyverse)\nlibrary(fixest)      # fast iv estimation with clustering\nlibrary(modelsummary)\n\n# Assume the merged analysis file is 'dcfs_panel.csv'\ndf <- read_csv(\"dcfs_panel.csv\") %>%\n  mutate(\n    # instrument already computed in data: inv_propensity\n    foster_care = as.integer(foster_care),\n    delinquent  = as.integer(juvenile_arrest_13_17),\n    teen_mom    = if_else(sex == \"F\", as.integer(teen_mother_by19), NA_integer_),\n    employed24  = as.integer(earnings24 > 0),\n    logearn24   = if_else(earnings24 > 0, log(earnings24), NA_real_),\n    office_month = interaction(office_id, year, month, drop = TRUE)\n  )\n\n# Common control formula\ncontrols <- \"~ sex + race_black + race_hisp + race_other + age_months + \n              allegation_physical + allegation_neglect + allegation_other +\n              reporter_mandated + reporter_nonmandated | office_month\"\n\n# Spec 1: First stage\nfs <- feols(foster_care ~ inv_propensity + sex + race_black + race_hisp + race_other +\n               age_months + allegation_physical + allegation_neglect + allegation_other +\n               reporter_mandated + reporter_nonmandated | office_month,\n            cluster = ~investigator_id, data = df)\n\n# Spec 2: 2SLS – juvenile delinquency\niv_delinq <- feols(delinquent ~ 1 | inv_propensity | foster_care +\n                     sex + race_black + race_hisp + race_other + age_months +\n                     allegation_physical + allegation_neglect + allegation_other +\n                     reporter_mandated + reporter_nonmandated | office_month,\n                   cluster = ~investigator_id, data = df)\n\n# Spec 3: 2SLS – teen motherhood (girls only)\niv_teenmom <- feols(teen_mom ~ 1 | inv_propensity | foster_care +\n                      sex + race_black + race_hisp + race_other + age_months +\n                      allegation_physical + allegation_neglect + allegation_other +\n                      reporter_mandated + reporter_nonmandated | office_month,\n                    cluster = ~investigator_id, data = df %>% filter(sex == \"F\"))\n\n# Spec 4: 2SLS – employment at 24\niv_emp <- feols(employed24 ~ 1 | inv_propensity | foster_care +\n                  sex + race_black + race_hisp + race_other + age_months +\n                  allegation_physical + allegation_neglect + allegation_other +\n                  reporter_mandated + reporter_nonmandated | office_month,\n                cluster = ~investigator_id, data = df)\n\n# Spec 5: 2SLS – log earnings at 24 (positive earners only)\niv_earn <- feols(logearn24 ~ 1 | inv_propensity | foster_care +\n                   sex + race_black + race_hisp + race_other + age_months +\n                   allegation_physical + allegation_neglect + allegation_other +\n                   reporter_mandated + reporter_nonmandated | office_month,\n                 cluster = ~investigator_id, data = df %>% filter(employed24 == 1))\n\n# Output summary tables\nmodelsummary(list(\"First Stage\" = fs,\n                  \"Delinquency\" = iv_delinq,\n                  \"Teen Motherhood\" = iv_teenmom,\n                  \"Employment 24\" = iv_emp,\n                  \"Log Earnings 24\" = iv_earn),\n             stars = TRUE, gof_omit = \"Adj|AIC|BIC\", output = \"results_table.html\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nAnticipated key coefficients (θ̂) with clustered s.e.:  \n\n• First stage π̂ ≈ 0.05 (s.e. 0.01), F-stat ≈ 25 ⇒ passes relevance.  \n• Juvenile delinquency θ̂ ≈ +0.10 (s.e. 0.04) ⇒ p ≈ 0.01, sign as predicted.  \n• Teen motherhood θ̂ ≈ +0.07 (s.e. 0.03) ⇒ p ≈ 0.02.  \n• Employment age 24 θ̂ ≈ –0.15 (s.e. 0.06) ⇒ p ≈ 0.01, sign as predicted.  \n• Log earnings age 24 θ̂ ≈ –0.20 (s.e. 0.08) ⇒ p ≈ 0.01.\n\nGate assessment: First-stage F > 10 and the delinquency and employment coefficients have the predicted signs and are statistically significant at the 10 % level. Therefore, none of the falsification triggers activate; the directional hypothesis would be retained.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables using investigator leniency — the tendency of the quasi-randomly assigned investigator to place children in foster care (leave-one-out mean of investigator's other placement decisions) as instrument for the focal child's foster care placement; first stage: aggressive investigator → higher placement probability; second stage: placement (instrumented) → long-run outcomes",
+    "key_variables": {
+      "treatment": "placement in foster care (binary, endogenous), instrumented by investigator propensity to place (continuous, leave-one-out mean)",
+      "control": "children whose cases were investigated but who remained in the home",
+      "outcome": "juvenile delinquency (arrest by age 17), teen motherhood (birth by age 17 for females), employment (any UI earnings by age 18)",
+      "time_period": "investigations 1990–2001; outcomes tracked through 2005"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Foster care placement worsens long-run outcomes for marginal children (those whose placement depends on investigator tendencies). Children placed in foster care by more aggressive investigators have higher rates of juvenile delinquency, higher teen motherhood rates, and lower employment rates than comparable children left in their homes by more lenient investigators. The IV estimates imply that foster care placement increases the probability of juvenile arrest by approximately 10-15 percentage points.",
+    "main_effect": "Foster care placement increases juvenile delinquency by approximately 10-15 percentage points (IV) and reduces employment by ~15-20 percentage points; effects are negative across all measured outcomes",
+    "key_robustness": [
+      "Balance tests: case characteristics are uncorrelated with investigator propensity (confirming quasi-random assignment)",
+      "First-stage F-statistic well above 10",
+      "Controlling for case severity, child demographics, office × year fixed effects",
+      "Subsample by case severity (effect strongest for marginal cases)",
+      "Alternative investigator propensity measures (different leave-out windows)",
+      "Overidentification test using investigator fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Judge-leniency IV design: investigator's historical placement rate as instrument for the focal child's foster care placement; 2SLS with office × year fixed effects",
+      "treatment": "Foster care placement (binary, endogenous), instrumented by quasi-randomly assigned investigator's propensity to place",
+      "event_window": "Outcomes tracked from investigation date through adolescence/early adulthood",
+      "estimation_window": "Investigator propensity estimated from all other cases within a window (leave-one-out mean)",
+      "sample_period": "1990–2001 (investigations); outcomes through 2005",
+      "unit_of_observation": "Individual child involved in an investigated abuse/neglect case",
+      "key_assumption": "Investigator assignment is quasi-random (conditional on investigation office and time period). The investigator's propensity to place affects child outcomes only through the placement decision itself (exclusion restriction). The LATE identifies the effect of foster care for 'marginal' children whose placement depends on which investigator they get."
+    },
+    "key_magnitudes": {
+      "first_stage": "A one SD increase in investigator propensity increases placement probability by approximately 10-15 percentage points; F > 10",
+      "delinquency_iv": "+10-15 pp increase in juvenile arrest probability for placed children (IV)",
+      "teen_motherhood_iv": "+10-12 pp increase in teen birth probability for placed girls (IV)",
+      "employment_iv": "-15-20 pp decrease in employment probability by age 18 (IV)"
+    },
+    "robustness_notes_detail": "Balance tests confirm that investigator propensity is uncorrelated with case severity indicators (type of abuse, child age, prior reports), supporting quasi-random assignment. The LATE interpretation means results apply to marginal cases — children who would be placed by aggressive investigators but not by lenient ones — not to clear-cut cases of severe abuse where virtually all investigators would remove the child. Office × year fixed effects ensure identification comes from within-office variation in investigator propensity. The negative finding is consistent with foster care instability (multiple placements), separation trauma, and poor foster care quality in the Illinois system."
+  }
+}

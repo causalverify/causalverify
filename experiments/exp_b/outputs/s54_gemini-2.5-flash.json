@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s54",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Unexpected CEO Departures on Stock Returns",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:45:50.604935",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 538,
+    "output_tokens": 241,
+    "content": "## 1. Identification Strategy\n\nThe research question asks about the impact of an unexpected CEO departure on stock returns, examining stock performance around the event date. This scenario perfectly aligns with an **Event Study** methodology.\n\n**Why Event Study?**\nAn event study is designed to measure the impact of a specific event (in this case, an unexpected CEO departure) on the value of a firm. It does this by analyzing \"abnormal returns\" (ARs), which are the actual returns minus the expected returns in the absence of the event. By averaging these abnormal returns across multiple firms experiencing the same event, we can identify a systematic market reaction. The cumulative average abnormal return (CAAR) over a specific window around the event day provides a measure of the total market impact.\n\n**Key Assumption(s):**\n1.  **Market Efficiency:** The market processes new information quickly and reflects it in stock prices. This allows us to observe the event's impact in a relatively short window around the announcement.\n2.  **No Confounding Events:** During the event window, there are no other significant firm-specific or market-wide events that could systematically affect the stock",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare stock returns before and after the CEO departure event.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The unexpected CEO departure is associated with a positive cumulative abnormal return.",
+    "main_effect": 0.018
+  }
+}

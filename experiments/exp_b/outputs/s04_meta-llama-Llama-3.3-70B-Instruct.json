@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s04",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "TARP capital injection on bank risk-taking",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:30:26.935268",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 512,
+    "output_tokens": 614,
+    "content": "## 1. Identification Strategy\nTo address the research question, we use a Difference-in-Differences (DID) approach, comparing the change in risk-taking behavior (non-performing loan ratio) among banks that received TARP capital injections (treated group) to those that did not (control group). The key assumption for DID to identify causal effects is the parallel trends assumption, which states that in the absence of the treatment, the trends in the outcome variable would have been the same for treated and control groups. Since TARP recipients self-selected, we rely on the parallel pre-trends as our identifying assumption, checking if the trends in non-performing loan ratios before the TARP intervention were parallel between treated and control banks.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(ggplot2)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s04_data.csv\")\n\n# Convert data to pdata.frame for panel data analysis\ndata$punit_id <- as.factor(data$unit_id)\ndata$pperiod <- as.factor(data$period)\npdata <- pdata.frame(data, index = c(\"punit_id\", \"pperiod\"))\n\n# Fit the DID model using plm package\ndid_model <- plm(y ~ treated * post, data = pdata, model = \"random\", random.effects = TRUE, index = c(\"punit_id\", \"pperiod\"))\n\n# Print the DID model coefficients\nsummary(did_model)\n\n# Perform a pre-trend test to check the parallel trends assumption\npre_trend_test <- plm(y ~ treated + period, data = pdata, model = \"random\", random.effects = TRUE, index = c(\"punit_id\", \"pperiod\"))\nsummary(pre_trend_test)\n\n# Check the DID estimate\ndid_estimate <- coeff(did_model)[4]\nprint(paste(\"The DID estimate is:\", did_estimate))\n\n# Plot the trends to visually inspect parallel pre-trends\nggplot(data, aes(x = period, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_line() +\n  theme_minimal() +\n  labs(x = \"Period\", y = \"Non-performing Loan Ratio\", color = \"TARP Recipient\")\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the interaction term `treated * post` to be positive, indicating that TARP recipient banks had a higher non-performing loan ratio compared to non-recipient banks after receiving the capital injection. The magnitude of the effect will depend on the economic context and the specific characteristics of the banks involved. A positive and statistically significant coefficient would suggest that TARP capital injections were associated with an increase in risk-taking behavior among recipient banks. This would be in line with moral hazard theories suggesting that banks, having received government support, might engage in riskier lending practices. However, the actual effect size and statistical significance will be determined by the analysis of the provided dataset.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=TARP recipients, control=non-recipients; parallel pre-trends required",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP banks show higher NPL ratios post-injection, consistent with moral hazard",
+    "main_effect": "20bp increase in NPL ratio for TARP banks"
+  }
+}

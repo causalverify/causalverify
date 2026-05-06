@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_29",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:35:03.933041",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 628,
+    "output_tokens": 164,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\nMy causal identification strategy is to estimate the abnormal returns of firms included in Fortune's '100 Best Companies to Work For' list. This involves controlling for known risk factors (market, size, value, momentum) and firm-specific characteristics (size, book-to-market, momentum, industry) and comparing the subsequent returns of listed firms against either a broad market benchmark (after factor adjustment) or a matched control group of non-listed firms. The strategy relies on the assumption that, after accounting for these observable factors, any remaining statistically significant positive returns of listed firms can be attributed to the intangible asset of employee satisfaction signaled by list inclusion.\n\n**Directional Hypothesis:** Firms included in Fortune's '100 Best Companies to Work For'",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "positive",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Calendar-time portfolio event study — form portfolios of Fortune '100 Best Companies' at each annual list publication, hold for one year, and measure abnormal returns relative to the Fama-French-Carhart four-factor model; the 'event' is the annual list publication and the portfolio is rebalanced each year",
+    "key_variables": {
+      "treatment": "inclusion on Fortune's '100 Best Companies to Work For' list (published annually, based on employee satisfaction surveys)",
+      "control": "firms not on the list (captured through factor model: market, size, value, momentum exposures)",
+      "outcome": "monthly four-factor alpha (abnormal return relative to Fama-French-Carhart model)",
+      "time_period": "1984–2009 (annual portfolios, monthly returns)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Companies on the '100 Best' list earn statistically significant positive abnormal returns of approximately 2.1-3.5% per year (depending on the weighting scheme). The market does not fully incorporate employee satisfaction into stock prices — intangible assets are systematically undervalued.",
+    "main_effect": "Equal-weighted portfolio of Best Companies earns approximately 3.5% annual four-factor alpha (0.29% per month); value-weighted earns approximately 2.1% annual alpha",
+    "key_robustness": [
+      "Value-weighted vs. equal-weighted portfolios",
+      "Fama-French three-factor vs. four-factor (adding momentum) model",
+      "Industry-adjusted returns",
+      "Controlling for firm characteristics (size, B/M, profitability)",
+      "Subsample analysis by decade (1984-1996, 1997-2009)",
+      "Excluding firms that appear on the list in consecutive years"
+    ],
+    "identification_strategy_detail": {
+      "method": "Calendar-time portfolio approach with monthly factor model regressions (Fama-French-Carhart four-factor model)",
+      "treatment": "Annual inclusion on Fortune's '100 Best Companies to Work For' list (binary, determined by employee satisfaction surveys)",
+      "event_window": "12 months following list publication (January to December)",
+      "estimation_window": "Full sample regression of monthly portfolio returns on four factors (1984-2009)",
+      "sample_period": "1984–2009",
+      "unit_of_observation": "Monthly portfolio return of list companies (rebalanced annually)",
+      "key_assumption": "The four-factor model (market, SMB, HML, momentum) adequately controls for known risk factors and style tilts. Any residual alpha represents genuine mispricing of employee satisfaction information. The list publication date is predetermined and publicly available."
+    },
+    "key_magnitudes": {
+      "equal_weighted_alpha": "0.29% per month (3.5% per year) four-factor alpha for equal-weighted portfolio",
+      "value_weighted_alpha": "0.18% per month (2.1% per year) four-factor alpha for value-weighted portfolio",
+      "t_statistic": "t = 2.35 for equal-weighted monthly alpha (statistically significant at 5%)",
+      "sharpe_improvement": "Adding the Best Companies portfolio to a factor-tilted benchmark improves the annual Sharpe ratio"
+    },
+    "robustness_notes_detail": "Results are robust to factor model specification (three-factor vs. four-factor vs. five-factor), portfolio weighting (EW and VW), and time period. The alpha is not explained by industry concentration, firm size, or book-to-market tilts. The effect is stronger in the earlier period (1984-1996) when the list was less well-known, consistent with gradual market learning. The paper also shows that the alpha is not driven by the announcement effect of list publication (no short-term jump at announcement), but rather by long-run outperformance consistent with the market slowly incorporating intangible information."
+  }
+}

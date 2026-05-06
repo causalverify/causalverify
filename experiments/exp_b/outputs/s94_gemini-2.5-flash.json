@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s94",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of School District Boundaries on Urban House Prices",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:59:45.298832",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 445,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThis research scenario is a classic application for a **Fuzzy Regression Discontinuity Design (F-RDD)**.\n\n**Why F-RDD?**\nThe core idea is to exploit the sharp, arbitrary cutoff created by school district boundaries. Houses on one side of the boundary are assigned to one district (e.g., \"less desirable\"), while houses on the other side are assigned to another (e.g., \"more desirable\"). The `running_var` (distance to the boundary) acts as the assignment variable, with a cutoff at 0 (the boundary itself). `y` (log house prices) is the outcome variable.\n\nThe key feature pointing to a *fuzzy* RDD (rather than sharp) is the discrepancy observed in the data preview:",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the discontinuity at the school district boundary.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Houses in the less desirable school district exhibit lower log prices.",
+    "main_effect": "-0.22"
+  }
+}

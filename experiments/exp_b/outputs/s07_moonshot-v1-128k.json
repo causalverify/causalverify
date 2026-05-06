@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s07",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Pollution regulation on plant total factor productivity",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:24:29.978021",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 447,
+    "output_tokens": 356,
+    "content": "## 1. Identification Strategy\nWe will use a Difference-in-Differences (DID) approach to estimate the causal effect of tightened air quality regulations on total factor productivity at high-emission manufacturing plants compared to low-emission plants. The key assumption in DID is that the treatment and control groups would have followed the same trend in the absence of the treatment. In this case, we assume that high-emission and low-emission plants would have experienced the same change in total factor productivity over time if the regulations had not been implemented.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s07_data.csv\")\n\n# Convert the data to a panel data frame\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Estimate the DID model\nmodel <- plm(y ~ treat_x_post, data = pdata, model = \"within\")\n\n# Print the coefficient for the treatment effect\ncoeftest(model, vcovHC(type = \"HC1\"))\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the `treat_x_post` variable to be negative, indicating that high-emission plants experienced a decrease in total factor productivity after the implementation of the tightened air quality regulations compared to low-emission plants. The magnitude of the effect will depend on the specific data and the stringency of the regulations. However, given that the regulations mandate emission reductions for plants above a pollution threshold, we expect a significant negative impact on the productivity of high-emission plants.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=above-threshold plants, control=below-threshold; shock=tighter regulation",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-emission plants experience productivity decline after regulation tightening",
+    "main_effect": "12% TFP reduction for above-threshold plants"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_171",
+  "title": "The Impact of Pollution on Worker Productivity",
+  "authors": "Graff Zivin & Neidell",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.102.7.3652",
+    "title": "The Impact of Pollution on Worker Productivity",
+    "year": 2012,
+    "journal": "American Economic Review",
+    "citations": 1042
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "neidell",
+      "zivin"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1042,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

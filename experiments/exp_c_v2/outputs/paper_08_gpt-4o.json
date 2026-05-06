@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_08",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:35:22.385272",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 655,
+    "output_tokens": 982,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nTo identify the effect of credit supply shocks on bank lending, I will leverage within-firm variation over time by examining firms that switch between bank loans and public bond markets. The key identification assumption is that firms that switch from bank loans to public bonds within the same quarter do so primarily because of changes in bank credit supply rather than shifts in their own demand for credit. This assumption allows me to isolate the effects of bank balance sheet constraints and identify an independent cycle in credit supply.\n\nDirectional Hypothesis:\nBanks systematically reduce lending during recessions beyond what would be explained by the deterioration in borrower quality, due to bank balance sheet constraints, which leads to an independent credit supply cycle. Thus, we expect a negative association between bank capital constraints and the issuance of new loans, while observing increased firm reliance on bond markets when bank credit conditions tighten.\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\n1. Fixed Effects Regression: Estimate the impact of bank balance sheet constraints on new loan issuance using borrower fixed effects. Independent variables include bank capital ratios, wholesale funding share, and securitization activity, controlling for borrower characteristics.\n\n2. Interaction Model: Include an interaction term between bank capital ratios and recession indicators to test if bank lending behavior differs in recessions compared to expansions.\n\n3. Matched Panel Regression: Use a matched borrower-bank panel to control for borrower-specific time-invariant characteristics, estimating the impact of bank credit conditions (measured by SLOOS) on loan spreads.\n\n4. Logit Model of Bond Issuance: Estimate a logit model where the dependent variable is an indicator for whether a firm issued a public bond, with key regressors being bank credit constraints variables and borrower leverage.\n\n5. Difference-in-Differences Approach: Compare firms that substitute to bond markets with those that do not, using a diff-in-diff approach, with pre-treatment trends as a robustness check.\n\nSTEP 3 — FALSIFICATION GATE\n\nEmpirical Results That Would Lead to Rejection:\n- Sign reversal: Finding a positive instead of a negative relationship between bank capital constraints and new loan issuance.\n- Non-significant results: If key coefficients (e.g., bank capital ratios) have p-values > 0.10, indicating statistically insignificant results.\n- Failed pre-trend test: Not observing parallel trends in the difference-in-differences approach before treatment would indicate a violation of identification assumptions.\n- Weak instrument: For interaction terms, if the F-statistic in the first stage regression of the interaction term is below 10, this might suggest weak instrument issues.\n\nSTEP 4 — R CODE\n\n```r\n# Load necessary packages\nlibrary(lme4)\nlibrary(dplyr)\n\n# Fixed Effects Regression\nfe_model <- lmer(loan_amount ~ bank_capital_ratio + wholesale_funding_share + \n                securitization_activity + borrower_controls + (1 | borrower_id), data = data)\n\n# Interaction Model\ninteraction_model <- lmer(loan_amount ~ bank_capital_ratio * recession + \n                         borrower_controls + (1 | borrower_id), data = data)\n\n# Matched Panel Regression\npanel_model <- lm(loan_spreads ~ sloos_index + bank_capital_ratio + \n                  borrower_controls, data = matched_data)\n\n# Logit Model of Bond Issuance\nlogit_model <- glm(bond_issued ~ bank_capital_ratio + borrower_leverage +\n                   bank_controls, data = data, family = binomial())\n\n# Difference-in-Differences Approach\ndiff_in_diff <- lm(loan_spreads ~ post_treatment * treated + pre_trends +\n                   borrower_controls, data = diff_data)\n\n# Fit all models\nsummary(fe_model)\nsummary(interaction_model)\nsummary(panel_model)\nsummary(logit_model)\nsummary(diff_in_diff)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Numerical Results:\n1. A negative coefficient on bank capital ratios in the fixed effects model, suggesting tighter bank balance sheets reduce loan issuance.\n2. A larger negative interaction effect during recessions in the interaction model, supporting the hypothesis of procyclical bank lending.\n3. A positive and significant coefficient on the SLOOS index in the panel regression, indicating tighter credit conditions increase loan spreads.\n4. Positive coefficients on bank capital constraints in the logit model of bond issuance, suggesting firms switch to bonds when banks are constrained.\n5. A significant difference-in-differences coefficient indicating firms that switch to bonds face tighter bank credit.\n\nFalsification Gate Assessment:\nIf any of the above results show non-significance or sign-reversal (as specified under falsification gate), I would reject the hypothesis of an independent bank credit supply cycle. In addition, a failed pre-trend test in the diff-in-diff approach would lead to reconsidering the identification strategy.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV using within-firm substitution between bank loans and public bonds — instrument = firm's ability to access public bond markets (investment-grade rating, bond market history); first stage: firms with bond market access substitute into bonds when credit conditions tighten; identifies bank credit supply cycle independent of demand",
+    "key_variables": {
+      "instrument": "firm's public bond market access (rated firm with prior bond issuance)",
+      "treatment": "bank credit supply tightness (constructed from SLOOS + bank balance sheet measures)",
+      "outcome": "firm bank borrowing (loan volume, spreads, covenants)",
+      "time_period": "1987–2010, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank credit supply is strongly procyclical: banks contract lending during recessions by more than justified by borrower risk. Supply-driven contractions reduce loan growth by ~3–5 percentage points per quarter at the trough.",
+    "main_effect": "~3–5pp procyclical credit supply contraction per recession quarter, independent of borrower quality",
+    "key_robustness": [
+      "borrower fixed effects to control for demand",
+      "SLOOS as external supply measure",
+      "cross-sectional: more bank-dependent firms suffer more",
+      "alternative bond-access instruments"
+    ]
+  }
+}

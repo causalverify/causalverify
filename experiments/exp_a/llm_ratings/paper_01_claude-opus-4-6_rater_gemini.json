@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI model correctly identifies the core Difference-in-Differences (DID) strategy, using the Lehman Brothers collapse as the exogenous shock and pre-crisis wholesale funding reliance as the key differential characteristic. This perfectly aligns with the ground truth identification strategy. The proposed continuous treatment DID and dynamic event study are robust and appropriate econometric techniques within the DID framework, effectively capturing the essence of the paper's approach. However, as the output is presented as an 'Empirical Research Plan,' it focuses on methodology and does not state the expected direction of the effect, thus receiving a 0 for direction match.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_01",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:13:28.867172+00:00"
+}

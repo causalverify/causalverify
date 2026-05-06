@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s71",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Analyst Coverage on Firm Investment",
+  "model": "o3",
+  "run_at": "2026-04-14T19:50:55.154246",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 427,
+    "output_tokens": 1256,
+    "content": "## 1. Identification Strategy  \nMethod: Two-Stage Least Squares (Instrumental Variables)  \n\nRationale  \n• Analyst coverage (x) is likely endogenous to firm investment (y): unobserved fundamentals can drive both.  \n• Exogenous shocks to coverage stemming from broker mergers (z) provide quasi-random variation.  \n\nKey Assumptions  \n1. Relevance – Broker mergers must materially change the number of analysts covering affected firms: Cov(z,x) ≠ 0 (testable via first-stage F-statistic).  \n2. Exclusion – Broker mergers affect firm investment only through the induced change in analyst coverage, not through any other channel (not directly testable but argued on institutional grounds).  \n3. Independence – Conditional on controls (firm size, industry, past performance), the instrument is as-good-as-random.\n\n## 2. R Code  \n```r\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(readr)      # fast reading\n  library(AER)        # ivreg\n  library(lmtest)     # coeftest\n  library(sandwich)   # robust vcov\n})\n\n# ---- 0. Read data ----\ndf <- read_csv(\"experiments/exp_b/data/s71_data.csv\",\n               col_types = cols(\n                 y = col_double(),\n                 x = col_double(),\n                 z = col_integer(),\n                 controls = col_double()\n               ))\n\n# ---- 1. Baseline OLS (naïve) ----\nols <- lm(y ~ x + controls, data = df)\nols_robust <- coeftest(ols, vcov = vcovHC(ols, type = \"HC1\"))\n\n# ---- 2. Two-Stage Least Squares ----\niv <- ivreg(y ~ x + controls | z + controls, data = df)\niv_robust <- coeftest(iv, vcov = vcovHC(iv, type = \"HC1\"))\n\n# ---- 3. First-stage diagnostics ----\nfirst_stage <- summary(iv, diagnostics = TRUE)$diagnostics\nfst_f <- first_stage[\"Weak instruments\", \"statistic\"]  # Kleibergen-Paap rk F\n\n# ---- 4. Alternative specification (robustness) ----\n# Add squared control to flexibly soak up scale effects\ndf$controls_sq <- df$controls^2\niv_alt <- ivreg(y ~ x + controls + controls_sq |\n                  z + controls + controls_sq, data = df)\niv_alt_robust <- coeftest(iv_alt, vcov = vcovHC(iv_alt, type = \"HC1\"))\n\n# ---- 5. Print results ----\ncat(\"====== Baseline OLS (robust SE) ======\\n\")\nprint(ols_robust[\"x\", ])\n\ncat(\"\\n====== 2SLS IV (robust SE) ======\\n\")\nprint(iv_robust[\"x\", ])\n\ncat(sprintf(\"\\nFirst-stage Kleibergen-Paap F-statistic: %.2f\\n\", fst_f))\n\ncat(\"\\n====== Robustness check: 2SLS with quadratic control (robust SE) ======\\n\")\nprint(iv_alt_robust[\"x\", ])\n```\n\nThe script:\n• Loads the data.  \n• Runs naïve OLS for comparison.  \n• Implements 2SLS with robust (HC1) standard errors.  \n• Reports the Kleibergen–Paap first-stage F-statistic for instrument strength.  \n• Adds a quadratic control as a robustness check.  \nAll key numerical outputs are printed clearly.\n\n## 3. Expected Findings  \nSign: Positive. Greater analyst coverage alleviates information asymmetry, lowers external financing costs, and encourages investment.  \n\nMagnitude: A one-standard-deviation increase in analyst coverage should raise investment by roughly 0.15–0.30 standard deviations (coefficient ≈ 0.20).  \n\nDiagnostics:  \n• First-stage F > 10, confirming instrument strength.  \n• IV estimate larger than OLS (OLS downward-biased toward zero because firms with expected low investment may seek coverage).",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use broker mergers as an instrument for analyst coverage.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Increased analyst coverage significantly boosts firm investment.",
+    "main_effect": "0.45"
+  }
+}

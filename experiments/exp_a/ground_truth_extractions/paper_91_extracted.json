@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: EVENT_STUDY — treatment = birth of first child, control = pre-birth period; shock/instrument/cutoff = year of first child birth",
+  "key_variables": {
+    "treatment": "birth of first child",
+    "control": "pre-birth period",
+    "outcome": "gross labor earnings",
+    "instrument_or_cutoff": "year of first child birth",
+    "time_period": "1985-2011 (varies by country)"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The study finds large and persistent child penalties in earnings for women across different countries.",
+  "main_effect": "Long-run child penalties range from 21% in Denmark to 61% in Germany.",
+  "key_robustness": [
+    "Comparison across countries using the same empirical approach",
+    "Analysis of extensive margin impacts",
+    "Consideration of public policies and gender norms"
+  ],
+  "confidence": 0.9,
+  "notes": "The study uses high-quality panel data and consistent methodology across countries, but cultural and policy differences may introduce unobserved heterogeneity."
+}

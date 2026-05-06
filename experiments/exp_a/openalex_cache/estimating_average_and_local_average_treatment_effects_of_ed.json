@@ -1,0 +1,8 @@
+{
+  "doi": "10.1257/000282806776157641",
+  "title": "Estimating Average and Local Average Treatment Effects of Education when Compulsory Schooling Laws Really Matter",
+  "year": 2006,
+  "abstract": "The change to the minimum school-leaving age in the United Kingdom from 14 to 15 had a powerful and immediate effect that redirected almost half the population of 14-year-olds in the mid-twentieth century to stay in school for one more year. The magnitude of this impact provides a rare opportunity to (a) estimate local average treatment effects (LATE) of high school that come close to population average treatment effects (ATE); and (b) estimate returns to education using a regression discontinuity design instead of previous estimates that rely on difference-in-differences methodology or relatively weak instruments. Comparing LATE estimates for the United States and Canada, where very few students were affected by compulsory school laws, to the United Kingdom estimates provides a test as to whether instrumental variables (IV) returns to schooling often exceed ordinary least squares (OLS) because gains are high only for small and peculiar groups among the more general population. I find, instead, that the benefits from compulsory schooling are very large whether these laws have an impact on a majority or minority of those exposed.",
+  "citation_count": 801,
+  "journal": "American Economic Review"
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s17",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Surprise regulatory fine on bank reputation and stock value",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:08:44.814107",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 483,
+    "output_tokens": 552,
+    "content": "## 1. Identification Strategy\nAn Event Study approach is appropriate here to estimate the abnormal returns around the announcement of a regulatory fine. The key assumption is that the market model provides a valid prediction of what returns would have been in the absence of the event, based on past performance and market movements. We assume that the market reaction captured in the event window reflects the impact of the surprise regulatory fine on the banks' reputations and that any abnormal return less than the fine ratio indicates reputational damage beyond the financial cost of the fine.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s17_data.csv\")\n\n# Estimate normal returns using the market model for the estimation window [-10, -2]\nestimation_data <- data %>% filter(event_day >= -10 & event_day <= -2)\n\n# Calculate alpha and beta for each stock_id\nmarket_model_params <- estimation_data %>%\n  group_by(stock_id) %>%\n  summarize(\n    alpha = mean(ret - beta * mkt_ret),\n    beta = mean(beta)\n  )\n\n# Merge alpha and beta back to the main data\nevent_data <- data %>%\n  left_join(market_model_params, by = \"stock_id\")\n\n# Calculate abnormal returns (AR)\nevent_data <- event_data %>%\n  mutate(AR = ret - (alpha + beta * mkt_ret))\n\n# Calculate cumulative abnormal returns (CAR) for event window [-1, +1]\nCAR_data <- event_data %>%\n  filter(event_day >= -1 & event_day <= 1) %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(AR))\n\n# Merge CAR with fine ratio\nresults <- CAR_data %>% \n  left_join(\n    data %>% select(stock_id, fine_ratio) %>% distinct(), \n    by = \"stock_id\"\n  )\n\n# Evaluate if CAR < -fine_ratio\nresults <- results %>%\n  mutate(reputational_loss = CAR < -fine_ratio)\n\n# Print summary results\nprint(\"Summary of results:\")\nprint(table(results$reputational_loss))\nprint(\"Average CAR:\")\nmean(results$CAR)\n```\n\n## 3. Expected Findings\nWe expect negative abnormal returns in the event window, indicating reputational damage beyond the direct financial cost. Specifically, the cumulative abnormal return (CAR) should be negative and potentially less than the negative of the fine ratio in a significant number of cases, suggesting reputational damage. The magnitude of CAR might vary, but it should generally be negative given the nature of unexpected regulatory fines impacting investor perceptions.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with CAR decomposition: financial cost vs. reputational component",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "CAR exceeds fine/mktcap ratio, confirming reputational damage beyond monetary penalty",
+    "main_effect": "CAR ≈ −3.5%; reputational component ≈ −1.5% above direct cost"
+  }
+}

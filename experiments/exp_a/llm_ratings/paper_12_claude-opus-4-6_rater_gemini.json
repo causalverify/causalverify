@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI model perfectly matches the ground truth identification strategy, explicitly mentioning 'short-window event study methodology' combined with 'cross-sectional regressions' exploiting 'acquirer size' for 'acquisition announcement returns.' It also correctly identifies the direction by stating 'size discount,' which implies a negative relationship between acquirer size and announcement returns, consistent with the ground truth's negative conclusion direction.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_12",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:20:52.094858+00:00"
+}

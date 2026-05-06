@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies a difference-in-differences event study design around arbitration decisions, comparing union losers vs winners before/after decisions - this matches the ground truth approach well. However, the AI frames union loss as the 'treatment' but doesn't clearly state the expected direction of effect on police performance. The ground truth shows union loss reduces performance (negative effect), but the AI doesn't articulate this directional hypothesis, constituting narrative fabrication by omission.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_40",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:12:51.338454+00:00"
+}

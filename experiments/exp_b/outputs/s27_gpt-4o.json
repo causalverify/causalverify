@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s27",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Income cutoff and subsidy program participation",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:57.417553",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 448,
+    "output_tokens": 487,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) because the research question revolves around the effect of crossing an income threshold (cutoff) on subsidy eligibility and subsequent housing expenditure. The key assumption here is that, near the cutoff, the assignment to treatment (subsidy eligibility) is as good as random, and other factors affecting housing expenditure are continuous across the cutoff. This enables us to capture the causal effect of subsidy eligibility.\n\n## 2. R Code\n```r\nlibrary(tidyverse)\nlibrary(estimatr)\nlibrary(rdd)\nlibrary(rddtools)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s27_data.csv\")\n\n# Verify the structure of the dataset\nstr(data)\n\n# Check for income manipulation using McCrary test\nmc_result <- DCdensity(data$running_var, cutpoint = 0.5)\nprint(mc_result)\n\n# Implement RDD - Local linear regression\nrdd_data <- rdd_data(y = data$y, x = data$running_var, cutpoint = 0.5, data = data)\n\n# RDD estimation using local linear regression\nrdd_result <- rdd_reg_lm(rdd_object = rdd_data)\nsummary(rdd_result)\n\n# Robustness check: Using only households near the cutoff\nnear_cutoff_data <- filter(data, near_cutoff == 1)\nrdd_data_near_cutoff <- rdd_data(y = near_cutoff_data$y, x = near_cutoff_data$running_var, cutpoint = 0.5, data = near_cutoff_data)\n\nrdd_result_near_cutoff <- rdd_reg_lm(rdd_object = rdd_data_near_cutoff)\nsummary(rdd_result_near_cutoff)\n```\n\n## 3. Expected Findings\nI expect to find a positive sign for the coefficient of \"treated\" in the RDD analysis, indicating that eligibility for the housing subsidy increases the housing expenditure share. The magnitude of the effect might be modest as subsidies can increase available income for housing but are typically only one part of total expenditure shifts. If the subsidies effectively alleviate financial burdens, a significant increase in housing expenditure share might be observed, reflecting reduced pressure on non-housing consumables. Additionally, households near the cutoff are assumed to have similar characteristics, supporting the validity of this causal analysis.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — income cutoff; test for manipulation; local linear; optimal bandwidth (IK or CCT)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligible households increase housing expenditure share",
+    "main_effect": "~25pp increase in housing spend for eligible households"
+  }
+}

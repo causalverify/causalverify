@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_152",
+  "title": "Does Compulsory School Attendance Affect Schooling and Earnings?",
+  "authors": "Angrist & Krueger",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2937954",
+    "title": "Does Compulsory School Attendance Affect Schooling and Earnings?",
+    "year": 1991,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 2553
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "angrist",
+      "krueger"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2553,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

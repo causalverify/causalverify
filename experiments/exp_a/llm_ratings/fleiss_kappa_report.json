@@ -1,0 +1,14 @@
+{
+  "n_items": 145,
+  "raters": [
+    "rater_claude",
+    "rater_gemini",
+    "rater_gpt4o"
+  ],
+  "kappa_l3": 0.7776,
+  "kappa_l4": 0.0834,
+  "target": 0.7,
+  "l3_achieved": true,
+  "l4_achieved": false,
+  "timestamp": "2026-03-30T13:32:53.706477+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_137",
+  "title": "Product Standards and Margins of Trade: Firm-Level Evidence",
+  "authors": "Fontagn\u00e9, Orefice, Piermartini & Rocha",
+  "year": null,
+  "journal": "JIE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jinteco.2015.04.008",
+    "title": "Product standards and margins of trade: Firm-level evidence",
+    "year": 2015,
+    "journal": "Journal of International Economics",
+    "citations": 184
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "fontagn\u00e9",
+      "piermartini",
+      "orefice",
+      "rocha"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jie",
+    "journal_oa": "journal of international economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 184,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

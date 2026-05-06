@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_52",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:43:12.494341",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 657,
+    "output_tokens": 161,
+    "content": "The Research Integrity by Design (RID) protocol is followed below.\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nOur strategy exploits a natural experiment stemming from Brazil's federal audit program. Municipalities are selected for audit by public lottery, ensuring random assignment. Crucially, the *timing* of the public release of these audit reports relative to the October 2004 municipal elections is also driven by the random lottery schedule. This creates an exogenous variation in whether voters receive information about municipal corruption *before* or *after* an election. We will compare electoral outcomes (incumbent vote share, re-election probability) for incumbents in municipalities where corruption was detected and the audit report was released *before* the election, to similarly corrupt incumbents where",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": null,
+    "detected_direction": null,
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Regression discontinuity / natural experiment based on random audit timing — the running variable is the timing of audit report release relative to the October 2004 election; municipalities whose reports were released before the election (voters informed) compared to those released after (voters uninformed); random lottery determines timing",
+    "key_variables": {
+      "treatment": "audit report publicly released before the October 2004 municipal election (binary, determined by random lottery timing)",
+      "control": "audit report released after the election (voters did not have corruption information when voting)",
+      "outcome": "incumbent mayor's vote share in October 2004 election; probability of re-election",
+      "time_period": "Audits 2003-2005; elections October 2004"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Voters significantly punish corrupt incumbents when they have information from audit reports. Incumbents found to have two or more corruption violations whose reports were released before the election received approximately 7 percentage points fewer votes than equally corrupt incumbents whose reports were released after the election. The effect is concentrated among incumbents with severe corruption findings and is larger in municipalities with local radio stations (better information dissemination).",
+    "main_effect": "Pre-election audit release reduces corrupt incumbents' vote share by approximately 7 percentage points; effect is larger with more corruption violations and with local radio coverage",
+    "key_robustness": [
+      "Controlling for number and severity of audit violations",
+      "Interaction with local media presence (radio stations amplify the information effect)",
+      "Placebo: no effect of audit timing on non-corrupt incumbents (those with zero violations)",
+      "Balance tests: pre-election and post-election audit municipalities are similar on observables",
+      "Continuous measure of corruption severity (not just binary corrupt/not corrupt)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Natural experiment based on random audit lottery timing; regression of incumbent vote share on audit-before-election indicator interacted with corruption level; equivalent to a DID where 'treatment' is information exposure",
+      "treatment": "Audit report released before October 2004 election (binary, randomly determined by lottery schedule)",
+      "event_window": "October 2004 municipal election",
+      "estimation_window": "Audits conducted 2003-2005; comparison of pre- vs post-election release groups",
+      "sample_period": "2003–2005 (audits); 2004 (election)",
+      "unit_of_observation": "Municipality (approximately 600 audited municipalities)",
+      "key_assumption": "The timing of audit report release (before vs. after the election) is random, determined by the lottery schedule. Municipalities audited before vs. after the election are comparable in all characteristics. The random lottery ensures that pre-election audit municipalities are not selected based on anticipated electoral outcomes."
+    },
+    "key_magnitudes": {
+      "vote_share_penalty": "-7 percentage points for corrupt incumbents (2+ violations) with pre-election report release",
+      "no_corruption_effect": "No significant vote share effect for incumbents with 0 violations (placebo: information about honest governance does not change votes)",
+      "radio_amplification": "Effect approximately 2x larger in municipalities with local radio stations (better information dissemination)",
+      "re_election_probability": "Corrupt incumbents with pre-election release approximately 20 percentage points less likely to win re-election"
+    },
+    "robustness_notes_detail": "Balance tests confirm that pre-election and post-election audit groups are similar on municipality characteristics (population, income, education, prior election outcomes). The placebo result (no effect on non-corrupt incumbents) rules out a general 'audit attention' effect and isolates the corruption information channel. The interaction with radio stations provides causal evidence on the media's role in democratic accountability. Results are robust to controlling for municipality fixed characteristics and state fixed effects."
+  }
+}

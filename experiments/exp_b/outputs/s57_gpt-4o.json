@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s57",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of IPO Lockup Expiry on Stock Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:41:11.404002",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 493,
+    "output_tokens": 551,
+    "content": "## 1. Identification Strategy\n\nThe appropriate causal method for this scenario is an Event Study approach. An event study is suitable because it allows us to analyze the impact of a specific event (in this case, the IPO lockup expiry) over a short time window on stock returns. The key assumption in an event study is that, absent the event, the returns would follow their expected normal pattern. That is, any deviation from normal returns surrounding the event can be attributed to the event itself.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(data.table)\nlibrary(dplyr)\n\n# Read the dataset\ndata <- fread(\"experiments/exp_b/data/s57_data.csv\")\n\n# Calculate the abnormal returns\ndata <- data %>%\n  mutate(\n    # Calculate expected returns using the CAPM formula: E(Ri) = Rf + beta * (E(Rm) - Rf)\n    expected_ret = beta * mkt_ret,\n    abnormal_ret = ret - expected_ret\n  )\n\n# Calculate cumulative abnormal returns (CAR) for event window\n# Define the event window (e.g., from -5 to +5 days around the lockup expiry)\nevent_days <- seq(-5, 5)\ncar_results <- data %>%\n  filter(event_day %in% event_days) %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abnormal_ret))\n\n# Aggregate CAR across all stocks for a summary\nsummary_car <- car_results %>%\n  summarise(avg_CAR = mean(CAR), sd_CAR = sd(CAR))\n\n# Print the results\nprint(summary_car)\n\n# Basic robustness check: check CAR for a placebo period\nplacebo_days <- seq(-10, -6)\nplacebo_car_results <- data %>%\n  filter(event_day %in% placebo_days) %>%\n  group_by(stock_id) %>%\n  summarise(placebo_CAR = sum(abnormal_ret))\n\n# Aggregate placebo CAR across all stocks for a summary\nsummary_placebo_car <- placebo_car_results %>%\n  summarise(avg_placebo_CAR = mean(placebo_CAR), sd_placebo_CAR = sd(placebo_CAR))\n\n# Print placebo results for robustness check\nprint(summary_placebo_car)\n```\n\n## 3. Expected Findings\n\nWe expect to observe a negative CAR around the IPO lockup expiry date. This expectation is based on the hypothesis that the increased supply of shares, from lockup expiry, exerts downward pressure on stock prices due to reduced scarcity. Typical empirical results have shown negative abnormal returns ranging from -1% to -3% over the event window surrounding lockup expiries.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare CAR before and after lockup expiry.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The lockup expiry leads to a negative impact on CAR.",
+    "main_effect": -0.015
+  }
+}

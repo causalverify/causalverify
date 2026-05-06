@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s86",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Medicare Eligibility on Hospital Visits",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:26.329274",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 428,
+    "output_tokens": 428,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of Medicare eligibility on hospital visits. The key assumption is that there is a sharp discontinuity in the probability of treatment (Medicare eligibility) at the age threshold of 65, and that individuals on either side of the threshold are similar in all other respects, except for their treatment status.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s86_data.csv\")\n\n# Define the running variable and the cutoff\nrunning_var <- data$running_var\ncutoff <- 0.5\n\n# Estimate the RDD model\n# We will use the rdrobust package to estimate the RDD model\n# The model will include a linear term for the running variable and an indicator for the cutoff\n# We will also include a polynomial term for the running variable to capture non-linearities\nrdd_model <- rdrobust(y ~ running_var + treated + I(running_var^2), data = data, c = cutoff)\n\n# Print the coefficient for the treatment variable (treated)\n# This coefficient represents the causal effect of Medicare eligibility on hospital visits\nprint(coef(rdd_model)[\"treated\"])\n\n# Basic robustness checks\n# We will check the robustness of our results by varying the bandwidth and polynomial order\n# We will also plot the regression discontinuity to visually inspect the discontinuity\nplot(rdd_model)\n```\n\n## 3. Expected Findings\nWe expect the coefficient for the treatment variable (treated) to be negative, indicating that becoming eligible for Medicare at age 65 reduces the number of hospital visits. The magnitude of the effect will depend on the specific data and sample, but we expect a moderate reduction in hospital visits due to increased access to healthcare coverage. The robustness checks will help us assess the sensitivity of our results to different model specifications and assumptions.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare individuals just below and above age 65.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Medicare eligibility at age 65 leads to a reduction in hospital visits.",
+    "main_effect": "-0.2"
+  }
+}

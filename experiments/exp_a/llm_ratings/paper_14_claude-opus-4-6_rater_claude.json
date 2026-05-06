@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - correctly identifies difference-in-differences with NJ as treatment group, PA as control, and before/after April 1992 comparison. Also correctly mentions the within-NJ variation as complementary approach. However, no conclusion about direction of effect is stated in the provided excerpt, only the methodology is outlined.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_14",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:08:15.649201+00:00"
+}

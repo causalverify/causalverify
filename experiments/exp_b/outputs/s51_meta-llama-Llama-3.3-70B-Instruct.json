@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s51",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Earnings Announcements on Stock Returns",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:41:22.936335",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 509,
+    "output_tokens": 612,
+    "content": "## 1. Identification Strategy\nTo analyze the impact of earnings announcements on stock returns, we'll employ an Event Study approach. This method is particularly suited for examining the effect of specific events (in this case, quarterly earnings announcements) on security prices. The key assumption underlying the event study methodology is that the event's occurrence is not anticipated by the market before its actual occurrence, allowing us to isolate the impact of the event.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(broom)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s51_data.csv\")\n\n# Calculate abnormal returns (AR) by subtracting the expected return from the actual return\n# We assume the expected return as the market return times the stock's beta\ndata$abn_ret <- data$ret - (data$mkt_ret * data$beta)\n\n# Aggregate abnormal returns by event day\nabn_ret_by_day <- data %>%\n  group_by(event_day) %>%\n  summarise(avg_abn_ret = mean(abn_ret))\n\n# Print the average abnormal returns for each event day around the announcement\nprint(abn_ret_by_day)\n\n# To estimate the Cumulative Abnormal Return (CAR) around the event day (0),\n# we calculate the average abnormal return for a window of days (e.g., -5 to +5)\n# and sum these returns.\nwindow_start <- -5\nwindow_end <- 5\ncar_window <- filter(abn_ret_by_day, event_day >= window_start & event_day <= window_end)\ncar <- sum(car_window$avg_abn_ret)\n\n# Print the Cumulative Abnormal Return (CAR) over the specified window\nprint(paste(\"The Cumulative Abnormal Return from day\", window_start, \"to day\", window_end, \"is\", car))\n\n# For robustness, let's also run a simple linear regression to see if the event day itself\n# has a significant impact on abnormal returns, adjusting for market returns and beta\nmodel <- lm(abn_ret ~ event_day + mkt_ret + beta, data = data)\ntidy_model <- tidy(model)\nprint(tidy_model)\n```\n\n## 3. Expected Findings\nWe expect the Cumulative Abnormal Return (CAR) around the quarterly earnings announcement to be significant, indicating that the announcement has an immediate impact on the stock prices. The direction (positive or negative) and magnitude of the CAR would depend on the market's reaction to the announced earnings relative to expectations. If the earnings announcements generally exceed expectations, we would anticipate a positive CAR; conversely, if they fall short, the CAR would likely be negative. The magnitude of the CAR would reflect the degree to which the announcements influence stock prices, with larger magnitudes indicating stronger impacts. The linear regression analysis should also show a significant coefficient for the event day, suggesting that the event itself is associated with abnormal returns, after controlling for market returns and beta.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze stock returns before and after earnings announcements to isolate the impact of the announcements themselves.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Quarterly earnings announcements lead to a significant negative abnormal return.",
+    "main_effect": "-0.02"
+  }
+}

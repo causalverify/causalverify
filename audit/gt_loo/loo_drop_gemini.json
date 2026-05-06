@@ -1,0 +1,1312 @@
+{
+  "paper_01": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_02": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_03": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_04": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_05": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_06": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_07": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_08": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_09": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_10": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_11": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_12": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_13": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_14": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_15": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_16": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_17": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_18": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_19": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_20": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_21": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_22": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_23": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_24": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_25": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_26": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_27": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_28": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_29": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_30": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_31": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_32": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_33": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_34": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_35": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_36": {
+    "method": "OTHER",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_37": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_38": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_39": {
+    "method": "DID",
+    "direction": "mixed",
+    "n_annotators": 3
+  },
+  "paper_40": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_41": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_42": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_43": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_44": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_45": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_46": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_47": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_48": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_49": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_50": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_51": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_52": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_53": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_54": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_55": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_56": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_57": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_58": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_59": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_60": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_61": {
+    "method": "OTHER",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_62": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_63": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_64": {
+    "method": "EVENT_STUDY",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_65": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_66": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_67": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_68": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_69": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_70": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_71": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_72": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_73": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_74": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_75": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_76": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_77": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_78": {
+    "method": "EVENT_STUDY",
+    "direction": "positive",
+    "n_annotators": 2
+  },
+  "paper_79": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_80": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_81": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_82": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_83": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_84": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_85": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_86": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_87": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_88": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_89": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_90": {
+    "method": "OTHER",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_91": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_92": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_93": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_94": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_95": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_96": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_97": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_98": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_99": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_100": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_101": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_102": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_103": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_104": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_105": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_106": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_107": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_108": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_109": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_110": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_111": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_112": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_113": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_114": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_115": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_116": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_117": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_118": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_119": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_120": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_121": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_122": {
+    "method": null,
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_123": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_124": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_125": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_126": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_127": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_128": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_129": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_130": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_131": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_132": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_133": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_134": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_135": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_136": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_137": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_138": {
+    "method": null,
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_139": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_140": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_141": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_142": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_143": {
+    "method": "IV",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_144": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_145": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_146": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_147": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_148": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_149": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_150": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_151": {
+    "method": "OTHER",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_152": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_153": {
+    "method": "RDD",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_154": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_155": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_156": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_157": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_158": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_159": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_160": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_161": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_162": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_163": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_164": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_165": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_166": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_167": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_168": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_169": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_170": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_171": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_172": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_173": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_174": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_175": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_176": {
+    "method": "OTHER",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_177": {
+    "method": "EVENT_STUDY",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_178": {
+    "method": "EVENT_STUDY",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_179": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_180": {
+    "method": "OTHER",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_181": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_182": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_183": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_184": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_185": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_186": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_187": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_188": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_189": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_190": {
+    "method": "RDD",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_191": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_192": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_193": {
+    "method": "IV",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_194": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_195": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_196": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_197": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_198": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_199": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_200": {
+    "method": null,
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_201": {
+    "method": "IV",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_202": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_203": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_204": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_205": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_206": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_207": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_208": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_209": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_210": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_211": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_212": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_213": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_214": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_215": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_216": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_217": {
+    "method": "RDD",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_218": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_219": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_220": {
+    "method": null,
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_221": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_222": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_223": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_224": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_225": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_226": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_227": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_228": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_229": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_230": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_231": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_232": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_233": {
+    "method": "OTHER",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_234": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_235": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_236": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_237": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_238": {
+    "method": "DID",
+    "direction": "unclear",
+    "n_annotators": 3
+  },
+  "paper_239": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_240": {
+    "method": "EVENT_STUDY",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_241": {
+    "method": "DID",
+    "direction": null,
+    "n_annotators": 3
+  },
+  "paper_242": {
+    "method": null,
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_243": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_244": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_245": {
+    "method": "DID",
+    "direction": "negative",
+    "n_annotators": 3
+  },
+  "paper_246": {
+    "method": "OTHER",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_247": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_248": {
+    "method": "DID",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_249": {
+    "method": "IV",
+    "direction": "positive",
+    "n_annotators": 3
+  },
+  "paper_250": {
+    "method": "IV",
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_251": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_252": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_253": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_254": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_255": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_256": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_257": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_258": {
+    "method": "RDD",
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_259": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_260": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_261": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  },
+  "paper_262": {
+    "method": null,
+    "direction": null,
+    "n_annotators": 2
+  }
+}

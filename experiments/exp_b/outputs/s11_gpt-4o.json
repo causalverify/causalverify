@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Fed rate hike announcement on bank stock returns",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:07:57.450673",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 490,
+    "output_tokens": 553,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this analysis is an Event Study. The key assumption here is that the estimation window (days −10 to −2) is sufficiently long and representative to provide a reliable estimate of the expected normal returns, allowing us to isolate the effect of the Fed rate hike from other unrelated market movements. The event study analyzes Cumulative Abnormal Returns (CAR) in the specific event window of interest, [-1, +1], to detect the immediate impact of the rate hike announcement on bank stock returns.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\n\n# Load the data\ndata <- read.csv(\"experiments/exp_b/data/s11_data.csv\")\n\n# Define the estimation and event windows\nestimation_window <- data %>% filter(event_day <= -2 & event_day >= -10)\nevent_window <- data %>% filter(event_day >= -1 & event_day <= 1)\n\n# Calculate expected returns using the market model in the estimation window\nexpected_returns <- estimation_window %>%\n  group_by(stock_id) %>%\n  summarize(intercept = mean(ret - beta * mkt_ret),\n            beta = mean(beta))\n\n# Merge expected returns with event window data\nevent_window <- event_window %>%\n  left_join(expected_returns, by = \"stock_id\") %>%\n  mutate(expected_ret = intercept + beta * mkt_ret,\n         abnormal_ret = ret - expected_ret)\n\n# Calculate CAR for each stock over the event window\nCAR <- event_window %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(abnormal_ret))\n\n# Average CAR across all stocks\naverage_CAR <- mean(CAR$CAR)\n\n# Print the average CAR\nprint(paste(\"Average Cumulative Abnormal Return (CAR) in the [-1,+1] window: \", round(average_CAR, 4)))\n\n# Robustness check: T-test to see if CAR is significantly different from zero\nt_test_result <- t.test(CAR$CAR)\nprint(t_test_result)\n```\n\n## 3. Expected Findings\nThe expected sign of the Cumulative Abnormal Returns (CAR) is ambiguous. The economic theory suggests that unexpected changes in interest rates can have either positive or negative effects on bank stock returns depending on the market's interest rate expectations and banks' exposure to interest rate changes. If the hike was truly unexpected and banks are positively affected by higher interest margins, we might expect a near-neutral to slightly positive CAR, but the exact magnitude depends on the market reaction. A typical range could vary between -0.5% and 1.0%, factoring in initial market overreaction and adjustment.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; estimation window [−10,−2]; event window [−1,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank stocks show negative CAR around the rate hike announcement",
+    "main_effect": "CAR ≈ −2% in [−1,+1] window"
+  }
+}

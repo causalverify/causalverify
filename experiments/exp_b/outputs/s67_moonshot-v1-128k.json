@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s67",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Hospital Proximity on Mortality Rates",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:42:49.695285",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 442,
+    "output_tokens": 435,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal impact of care intensity (x) on mortality rates (y). The distance to the nearest hospital (z) will serve as an instrument for care intensity (x). The key assumption for this approach is that the instrument (z) is correlated with the endogenous variable (x) and is uncorrelated with the error term in the structural equation (i.e., it is exogenous).\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s67_data.csv\")\n\n# First stage regression: x = b0 + b1*z + b2*controls + e\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage regression: y = a0 + a1*x + a2*controls + u\nsecond_stage <- lm(y ~ x + controls, data = data)\n\n# Overidentification test (Hansen J test)\n# We need to estimate the system of equations using 2SLS\niv_model <- ivreg(y ~ x | z + controls, data = data)\n\n# Print the coefficient of x from the second stage regression\nsummary(second_stage)$coefficients[\"x\", \"Estimate\"]\n\n# Robustness check: Overidentification test (Hansen J test)\n# This tests whether the instrument is exogenous\nbptest(iv_model, ~ z + controls, data = data)\n```\n\n## 3. Expected Findings\nWe expect the coefficient of care intensity (x) in the second stage regression to be negative, indicating that higher care intensity is associated with lower mortality rates. The magnitude of the effect will depend on the strength of the relationship between care intensity and mortality rates in the data. The overidentification test (Hansen J test) should not reject the null hypothesis that the instrument is exogenous, providing support for the validity of our IV approach.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use distance to nearest hospital as an instrument for care intensity.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Proximity to a hospital significantly reduces mortality rates.",
+    "main_effect": "0.4"
+  }
+}

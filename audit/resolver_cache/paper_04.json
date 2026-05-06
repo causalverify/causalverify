@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_04",
+  "title": "What Explains the Stock Market's Reaction to Federal Reserve Policy?",
+  "authors": "Bernanke & Kuttner",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2005.00760.x",
+    "title": "What Explains the Stock Market's Reaction to Federal Reserve Policy?",
+    "year": 2005,
+    "journal": "The Journal of Finance",
+    "citations": 2386
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "kuttner",
+      "bernanke"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2386,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

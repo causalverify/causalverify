@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s91",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Very-Low-Birth-Weight Classification on Neonatal Mortality",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:46:02.761421",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 432,
+    "output_tokens": 593,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is a Regression Discontinuity Design (RDD). The RDD is suitable here because we are interested in the causal effect of being classified as very-low-birth-weight on neonatal mortality around a specific threshold (birth weight). The key assumption in RDD is that observations just above and below the threshold are comparable, and any discontinuity in the outcome variable (log neonatal mortality) at the threshold can be attributed to the treatment effect (very-low-birth-weight classification). The validity of the RDD hinges on the continuity of the running variable (birth weight) and that no other factors simultaneously change exactly at the threshold.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read in the data\ndata_path <- \"experiments/exp_b/data/s91_data.csv\"\ndata <- read.csv(data_path)\n\n# RDD analysis using rdrobust\nrdd_result <- rdrobust(data$y, data$running_var, c = 0.15) # Assuming threshold at 0.15 based on context if not defined\n\n# Print the main result\nprint(paste(\"RDD Estimate:\", round(rdd_result$coef[1], 4)))\nprint(paste(\"Standard Error:\", round(rdd_result$se[1], 4)))\nprint(paste(\"P-Value:\", round(rdd_result$pv[1], 4)))\n\n# Plotting for visualization\nrdplot(data$y, data$running_var, c = 0.15, \n       title = \"RDD Plot of Log Neonatal Mortality by Birth Weight\",\n       xlabel = \"Birth Weight (grams)\",\n       ylabel = \"Log Neonatal Mortality\")\n\n# Basic robustness checks: bandwidth sensitivity\nbw_sensitivity <- c(0.02, 0.05, 0.10, 0.20)\nfor (bw in bw_sensitivity) {\n  bw_result <- rdrobust(data$y, data$running_var, c = 0.15, h = bw)\n  cat(paste(\"Bandwidth:\", bw, \"RDD Estimate:\", round(bw_result$coef[1], 4), \"\\n\"))\n}\n```\n\n## 3. Expected Findings\nWe would expect to see a negative sign for the RDD coefficient, indicating that being classified as very-low-birth-weight reduces neonatal mortality rates. This is because classification could lead to more intensive medical attention and care for infants slightly below the threshold, potentially improving outcomes. The magnitude of the effect may vary, but it should be statistically significant if the classification truly impacts neonatal care practices. If the estimated coefficient is sufficiently large, this would support the hypothesis that crossing the threshold has meaningful implications for neonatal mortality. The precise magnitude will depend on data nuances, but a 5-10% reduction is plausible based on the context.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the birth weight threshold for classification.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the threshold for very-low-birth-weight classification increases neonatal mortality.",
+    "main_effect": "0.18"
+  }
+}

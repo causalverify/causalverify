@@ -1,0 +1,37 @@
+{
+  "scenario_id": "s88",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Close-Election Incumbency on Reelection Probability",
+  "research_question": "Does winning a close election affect the probability of an incumbent being reelected in subsequent elections? Specifically, we investigate whether incumbents who barely win an election are more or less likely to win reelection compared to those who barely lose.",
+  "data_description": "The dataset contains information on 600 elections, with columns for running_var (vote-share margin), treated (whether the incumbent won the close election), and y (reelection probability). The data focuses on elections where the vote-share margin was within a narrow range around the cutoff for winning.",
+  "ground_truth": {
+    "identification_strategy": "We analyze the discontinuity at the vote-share cutoff to isolate the effect of incumbency.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Winning a close election reduces the probability of reelection.",
+    "main_effect": "-0.15"
+  },
+  "dgp_truth": {
+    "type": "rdd",
+    "effect": 0.15,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s88_data.csv",
+  "_fix_notes": [
+    {
+      "fix_id": "issue_C1_rdd_sign_reversal",
+      "applied_at": "2026-04-21T15:32:00.095385+00:00",
+      "description": "Ground-truth effect and direction corrected to match actual data. Root cause: extend_exp_b_to_100.py:267 applied abs() before passing effect to make_rdd(), so the synthetic CSV has positive effect while the JSON recorded the original signed value. Data file unchanged; only JSON metadata updated.",
+      "before": {
+        "dgp_truth.effect": -0.15,
+        "dgp_truth.direction": "negative",
+        "ground_truth.conclusion_direction": "negative"
+      },
+      "after": {
+        "dgp_truth.effect": 0.15,
+        "dgp_truth.direction": "positive",
+        "ground_truth.conclusion_direction": "positive"
+      }
+    }
+  ]
+}

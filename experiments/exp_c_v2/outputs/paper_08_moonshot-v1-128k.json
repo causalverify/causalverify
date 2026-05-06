@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_08",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:02:48.397465",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 663,
+    "output_tokens": 750,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nTo identify whether the supply of bank credit is cyclical independent of loan demand, I will use a difference-in-differences approach. I will compare the behavior of firms that have access to both bank loans and public bond markets over the business cycle. The key assumption is that these firms are similar in terms of loan demand, but their access to bank credit may vary due to bank balance sheet constraints. I will use the timing of switching between bank loans and public bond markets as a proxy for bank credit supply conditions.\n\nDirectional Hypothesis:\nH0: The supply of bank credit is not cyclical independent of loan demand.\nH1: The supply of bank credit is cyclical independent of loan demand.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. Difference-in-differences regression with a dummy for switching from bank loans to public bond markets as the dependent variable, and a dummy for recession periods as the key independent variable.\n2. Specification 1 with controls for firm characteristics (total assets, leverage, EBITDA, tangible assets, credit ratings).\n3. Specification 2 with additional controls for bank characteristics (capital ratios, wholesale funding share, securitization activity, tier-1 capital).\n4. Specification 3 with fixed effects for firms and banks.\n5. Specification 4 with fixed effects for firms, banks, and time periods.\n\n**STEP 3 — FALSIFICATION GATE**\n\nEmpirical results that would cause rejection of the hypothesis:\n- A statistically insignificant coefficient on the recession dummy in Specification 1.\n- A sign reversal of the recession dummy coefficient in any of the specifications.\n- A p-value greater than 0.10 for the recession dummy coefficient in any of the specifications.\n\n**STEP 4 — R CODE**\n\n```R\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\ndata <- read.csv(\"data.csv\")\n\n# Create dummy variables\ndata$switch <- ifelse(data$loan_type == \"bond\" & data$prev_loan_type == \"bank\", 1, 0)\ndata$recession <- ifelse(data$SLOOS_net_tightening > 0, 1, 0)\n\n# Specifications\nspec1 <- lm(switch ~ recession, data = data)\nspec2 <- lm(switch ~ recession + firm_controls, data = data)\nspec3 <- lm(switch ~ recession + firm_controls + bank_controls, data = data)\nspec4 <- plm(switch ~ recession + firm_controls + bank_controls, data = data, index = c(\"firm_id\", \"bank_id\"))\nspec5 <- plm(switch ~ recession + firm_controls + bank_controls, data = data, index = c(\"firm_id\", \"bank_id\", \"time\"))\n\n# Report results\nsummary(spec1)\nsummary(spec2)\nsummary(spec3)\nsummary(spec4)\nsummary(spec5)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected numerical results:\n- A positive and statistically significant coefficient on the recession dummy in Specification 1, indicating that firms are more likely to switch from bank loans to public bond markets during recessions.\n- The significance and sign of the recession dummy coefficient should remain consistent across Specifications 2-5, even after controlling for firm and bank characteristics and including fixed effects.\n\nIf any of the falsification gate conditions are met (insignificant, sign reversal, or p > 0.10), I would reject the hypothesis that the supply of bank credit is cyclical independent of loan demand.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV using within-firm substitution between bank loans and public bonds — instrument = firm's ability to access public bond markets (investment-grade rating, bond market history); first stage: firms with bond market access substitute into bonds when credit conditions tighten; identifies bank credit supply cycle independent of demand",
+    "key_variables": {
+      "instrument": "firm's public bond market access (rated firm with prior bond issuance)",
+      "treatment": "bank credit supply tightness (constructed from SLOOS + bank balance sheet measures)",
+      "outcome": "firm bank borrowing (loan volume, spreads, covenants)",
+      "time_period": "1987–2010, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank credit supply is strongly procyclical: banks contract lending during recessions by more than justified by borrower risk. Supply-driven contractions reduce loan growth by ~3–5 percentage points per quarter at the trough.",
+    "main_effect": "~3–5pp procyclical credit supply contraction per recession quarter, independent of borrower quality",
+    "key_robustness": [
+      "borrower fixed effects to control for demand",
+      "SLOOS as external supply measure",
+      "cross-sectional: more bank-dependent firms suffer more",
+      "alternative bond-access instruments"
+    ]
+  }
+}

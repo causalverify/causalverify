@@ -1,0 +1,42 @@
+{
+  "paper_id": "paper_10",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:35:51.101335",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 740,
+    "output_tokens": 1520,
+    "content": "### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nI will employ a regression discontinuity design (RDD) to identify the causal effect of stock market liquidity on firm innovation. The RDD exploits the discrete threshold at rank 1000 which determines membership in the Russell 1000 or Russell 2000 indices. Firms just below this threshold (ranks 1001–1100) serve as the treatment group that experiences an exogenous increase in stock liquidity due to inclusion in the Russell 2000, while firms just above the threshold (ranks 900–1000) serve as the control group.\n\n**Directional Hypothesis:**\nIncreased stock market liquidity enhances firm innovation. Specifically, we hypothesize that firms newly included in the Russell 2000, experiencing higher liquidity, will demonstrate higher levels of innovation, as measured by the number of patents granted and the number of forward citations received.\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\n1. **Main Specification:**\n   - Outcome: Number of patents granted\n   - Treatment indicator: Dummy for Russell 2000 inclusion (rank > 1000)\n   - Control variables: R&D expenditure, firm size (total assets), leverage, Tobin's Q\n   - Bandwidth: Optimal using the Imbens-Kalyanaraman (IK) method\n   - Polynomial order: Linear\n\n2. **Alternative Specification 1:**\n   - Outcome: Number of forward citations\n   - Treatment indicator: Dummy for Russell 2000 inclusion (rank > 1000)\n   - Control variables: R&D expenditure, firm size (total assets), leverage, Tobin's Q\n   - Bandwidth: Optimal — IK method\n   - Polynomial order: Linear\n\n3. **Alternative Specification 2:**\n   - Outcome: Number of patents granted\n   - Treatment indicator: Dummy for Russell 2000 inclusion (rank > 1000)\n   - Control variables: R&D expenditure, firm size (total assets)\n   - Bandwidth: Narrow — ±50 ranks around cutoff\n   - Polynomial order: Linear\n\n4. **Alternative Specification 3:**\n   - Outcome: Number of forward citations\n   - Treatment indicator: Dummy for Russell 2000 inclusion (rank > 1000)\n   - Control variables: R&D expenditure, firm size (total assets)\n   - Bandwidth: Narrow — ±50 ranks around cutoff\n   - Polynomial order: Linear\n\n5. **Placebo Test:**\n   - Outcome: Patent outcomes (number of patents, forward citations)\n   - Treatment indicator: Fake cutoff at rank 1100\n   - Control variables: R&D expenditure, firm size (total assets), leverage, Tobin's Q\n   - Bandwidth: Optimal — IK method or ±50 ranks around the fake cutoff\n   - Polynomial order: Linear\n\n### STEP 3 — FALSIFICATION GATE\n\nI will reject the hypothesis if:\n1. The estimated treatment effect has a sign opposite to the hypothesis (negative coefficient) and is statistically significant (p < 0.05) in any of the main or alternative specifications.\n2. The p-value is greater than 0.10 in all specified tests for the main outcome (number of patents granted).\n3. Pre-trend tests show significant differences (p < 0.05) between treatment and control groups on pre-treatment covariates, indicating a failed assumption of balanced covariates.\n4. The first stage F-statistic from the inclusion of the Russell 2000 is less than 10, indicating weak instrument concerns.\n5. The placebo test reveals significant effects around the fake cutoff.\n\n### STEP 4 — R CODE\n\n```r\n# Load necessary libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Load the dataset (assuming it's named 'firm_data.csv')\n# and contains the necessary columns:\n# rank, patents_granted, forward_citations, R&D, total_assets, leverage, TobinQ\n\n# Read the data\nfirm_data <- read.csv(\"firm_data.csv\")\n\n# Main Specification: Number of patents granted\nmain_spec <- rdrobust(\n  y = firm_data$patents_granted,\n  x = firm_data$rank,\n  c = 1000,\n  covs = cbind(firm_data$R&D, firm_data$total_assets, firm_data$leverage, firm_data$TobinQ),\n  p = 1,  # Linear polynomial\n  kernel = \"triangular\"\n)\n\n# Alternative Specification 1: Number of forward citations\nalt_spec1 <- rdrobust(\n  y = firm_data$forward_citations,\n  x = firm_data$rank,\n  c = 1000,\n  covs = cbind(firm_data$R&D, firm_data$total_assets, firm_data$leverage, firm_data$TobinQ),\n  p = 1,  # Linear polynomial\n  kernel = \"triangular\"\n)\n\n# Alternative Specification 2: Narrow bandwidth for patents granted\nalt_spec2 <- rdrobust(\n  y = firm_data$patents_granted,\n  x = firm_data$rank,\n  c = 1000,\n  covs = cbind(firm_data$R&D, firm_data$total_assets),\n  p = 1,  # Linear polynomial\n  h = 50,  # Narrow bandwidth\n  kernel = \"triangular\"\n)\n\n# Alternative Specification 3: Narrow bandwidth for forward citations\nalt_spec3 <- rdrobust(\n  y = firm_data$forward_citations,\n  x = firm_data$rank,\n  c = 1000,\n  covs = cbind(firm_data$R&D, firm_data$total_assets),\n  p = 1,  # Linear polynomial\n  h = 50,  # Narrow bandwidth\n  kernel = \"triangular\"\n)\n\n# Placebo Test: Fake cutoff at rank 1100\nplacebo_test <- rdrobust(\n  y = firm_data$patents_granted,\n  x = firm_data$rank,\n  c = 1100,\n  covs = cbind(firm_data$R&D, firm_data$total_assets, firm_data$leverage, firm_data$TobinQ),\n  p = 1,  # Linear polynomial\n  kernel = \"triangular\"\n)\n\n# Print results\nprint(main_spec)\nprint(alt_spec1)\nprint(alt_spec2)\nprint(alt_spec3)\nprint(placebo_test)\n```\n\n### STEP 5 — FINDINGS & GATE ASSESSMENT\n\n- **Main Specification:** I expect a positive and statistically significant coefficient for the Russell 2000 dummy, indicating increased innovation from greater liquidity.\n- **Alternative Specifications:** Similarly, positive and significant coefficients are anticipated.\n- **Placebo Test:** I expect no significant effects, thus supporting the validity of our RDD.\n\n**Falsification Gate Assessment:**\n- If all coefficients for Russell 2000 dummy are non-significant (p > 0.10) or opposite in sign (negative) across main/alternative specifications, hypothesis is rejected.\n- If the placebo test shows significant outcomes, the hypothesis is rejected.\n- If pre-trend tests show significant imbalance or the F-statistic is weak, hypothesis is rejected.\n\nGiven these expectations, I anticipate not triggering the falsification gate and thereby supporting the hypothesis that increased stock market liquidity enhances innovation.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "RDD — running variable = float-adjusted market capitalization rank in Russell reconstitution; cutoff = rank 1000 (boundary between Russell 1000 and Russell 2000); stocks just below 1000 (in Russell 2000) have higher liquidity due to greater index fund tracking",
+    "key_variables": {
+      "running_variable": "float-adjusted market cap rank at annual Russell reconstitution (June)",
+      "cutoff": "rank 1000 (Russell 1000/2000 boundary)",
+      "outcome": "patent count and citation-weighted patents (3-year window after reconstitution); R&D expenditure; stock bid-ask spread (measure of liquidity)",
+      "time_period": "1990–2006, annual index reconstitutions"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher stock liquidity (from Russell 2000 membership) reduces firm innovation: stocks in Russell 2000 have lower patent counts and citation-weighted innovation than comparable stocks in Russell 1000",
+    "main_effect": "~8% fewer patents and ~12% fewer citations for Russell 2000 firms near the boundary vs. Russell 1000 firms",
+    "key_robustness": [
+      "McCrary density test",
+      "bandwidth sensitivity",
+      "placebo cutoffs at ranks 500/1500",
+      "stock-level liquidity as intermediate outcome",
+      "heterogeneity by institutional ownership"
+    ]
+  }
+}

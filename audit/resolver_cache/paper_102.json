@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_102",
+  "title": "Did Community Rating Induce an Adverse Selection Death Spiral?",
+  "authors": "Buchmueller & DiNardo",
+  "year": null,
+  "journal": "ILRR",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282802760015720",
+    "title": "Did Community Rating Induce an Adverse Selection Death Spiral? Evidence from New York, Pennsylvania, and Connecticut",
+    "year": 2002,
+    "journal": "American Economic Review",
+    "citations": 190
+  },
+  "checks": {
+    "title_jaccard": 0.6667,
+    "title_gate_pass": false,
+    "author_overlap": [
+      "buchmueller",
+      "dinardo"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ilrr",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 190,
+    "years_old": 0
+  },
+  "status": "ambiguous",
+  "notes": "Only 1/3 gates pass",
+  "error_msg": ""
+}

@@ -1,0 +1,18 @@
+.git
+.venv
+__pycache__
+*.pyc
+.DS_Store
+.env
+logs
+Icon
+
+# Keep source PDFs and scored data, but skip temporary/generated
+experiments/exp_a/pdfs/*.tmp
+experiments/**/__pycache__
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.bbl
+paper/latex/*.blg
+paper/latex/*.out
+paper/latex/*.synctex.gz

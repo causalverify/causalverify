@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_255",
+  "title": "Identification and Estimation of Treatment Effects with a Regression-Discontinuity Design",
+  "authors": "Hahn, Todd & Van der Klaauw",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/1468-0262.00183",
+    "title": "Identification and Estimation of Treatment Effects with a Regression-Discontinuity Design",
+    "year": 2001,
+    "journal": "Econometrica",
+    "citations": 2733
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "hahn",
+      "klaauw",
+      "todd"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2733,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

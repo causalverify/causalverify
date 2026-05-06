@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s19",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Rainfall as IV for agricultural loan demand",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-03-27T13:30:28.366382",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 467,
+    "output_tokens": 947,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) regression with annual rainfall deviation as an instrument for credit access. The key assumptions are: (1) **Relevance**: rainfall affects credit demand (farmers need more loans during dry periods or after weather shocks), and (2) **Exclusion restriction**: rainfall affects crop yield only through its effect on credit access, not directly. This is plausible if we control for direct weather effects and assume the rainfall measure captures exogenous variation in credit demand.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s19_data.csv\")\n\n# Check data structure\nprint(\"Data summary:\")\nsummary(data)\n\n# First stage regression: instrument (rainfall) on endogenous variable (loans)\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"=== FIRST STAGE RESULTS ===\")\nprint(summary(first_stage))\n\n# Check instrument strength\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"First-stage F-statistic:\", round(f_stat, 2)))\n\n# OLS for comparison (likely biased)\nols <- lm(y ~ x + controls, data = data)\nprint(\"=== OLS RESULTS (for comparison) ===\")\nprint(summary(ols))\n\n# IV regression using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"=== IV (2SLS) RESULTS ===\")\nprint(summary(iv_model, diagnostics = TRUE))\n\n# Extract key coefficient\niv_coeff <- coef(iv_model)[\"x\"]\niv_se <- sqrt(diag(vcov(iv_model)))[\"x\"]\nprint(\"=== MAIN RESULT ===\")\nprint(paste(\"IV coefficient on log loans per capita:\", round(iv_coeff, 4)))\nprint(paste(\"Standard error:\", round(iv_se, 4)))\nprint(paste(\"95% CI: [\", round(iv_coeff - 1.96*iv_se, 4), \",\", round(iv_coeff + 1.96*iv_se, 4), \"]\"))\n\n# Robustness checks\nprint(\"=== ROBUSTNESS CHECKS ===\")\n\n# 1. Wu-Hausman test for endogeneity\nhausman_test <- summary(iv_model, diagnostics = TRUE)$diagnostics\nprint(\"Wu-Hausman test for endogeneity:\")\nprint(hausman_test[\"Wu-Hausman\", ])\n\n# 2. Check if instrument is weak\nif(f_stat < 10) {\n  print(\"WARNING: Weak instrument (F-stat < 10)\")\n} else {\n  print(paste(\"Instrument appears strong (F-stat =\", round(f_stat, 2), \")\"))\n}\n\n# 3. Reduced form: direct effect of instrument on outcome\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"Reduced form coefficient on rainfall:\")\nprint(coef(reduced_form)[\"z\"])\n\n# 4. Alternative specification without controls\niv_no_controls <- ivreg(y ~ x | z, data = data)\nprint(\"IV coefficient without controls:\")\nprint(coef(iv_no_controls)[\"x\"])\n```\n\n## 3. Expected Findings\nI expect a **positive coefficient** on log loans per capita, with magnitude around **0.3-0.8**, indicating that a 10% increase in credit access increases crop yield by 3-8%. The IV estimate should be larger than OLS if there's measurement error in credit or if farmers with lower unobserved productivity seek more credit (negative selection bias). The first-stage should show a significant relationship between rainfall deviations and credit demand, with dry years (negative rainfall) potentially increasing loan demand as farmers need liquidity for inputs or consumption smoothing.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: rainfall; first stage: rainfall → loans; exclusion restriction: rainfall ⊥ yield | credit",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Credit access significantly increases crop yields",
+    "main_effect": "10% increase in credit → 4% yield increase (IV estimate)"
+  }
+}

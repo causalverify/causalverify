@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_71",
+  "title": "Investment and Financing Constraints: Evidence from the Funding of Corporate Pension Plans",
+  "authors": "Rauh",
+  "year": null,
+  "journal": "JF",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2006.00829.x",
+    "title": "Investment and Financing Constraints: Evidence from the Funding of Corporate Pension Plans",
+    "year": 2006,
+    "journal": "The Journal of Finance",
+    "citations": 833
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "rauh"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 833,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

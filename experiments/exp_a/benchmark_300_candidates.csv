@@ -1,0 +1,117 @@
+domain,method,difficulty,direction,authors,year,journal,title
+agriculture,DID,medium,negative,Deschenes & Greenstone,2007,AER,The Economic Impacts of Climate Change: Evidence from Agricultural Output and Random Fluctuations in Weather
+agriculture,DID,easy,positive,Olmstead & Rhode,2011,JEP,"Adapting North American Wheat Production to Climatic Challenges, 1839-2009"
+agriculture,DID,easy,negative,Hornbeck,2012,QJE,The Enduring Impact of the American Dust Bowl: Short and Long-run Adjustments to Environmental Catastrophe
+agriculture,ES,hard,positive,Roberts & Schlenker,2013,QJE,Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate
+agriculture,ES,medium,negative,"Dell, Jones & Olken",2014,AER,What Do We Learn from the Weather? The New Climate-Economy Literature
+agriculture,ES,hard,negative,"Burgess, Deschenes, Donaldson & Greenstone",2014,QJE,The Unequal Effects of Weather and Climate Change: Evidence from Mortality in India
+agriculture,ES,medium,negative,Jayachandran,2006,JDE,Selling Labor Low: Wage Responses to Productivity Shocks in Developing Countries
+agriculture,IV,medium,positive,Foster & Rosenzweig,2003,AER,Economic Growth and the Rise of Forests
+agriculture,IV,easy,positive,Olmstead & Rhode,2008,JEP,Creating Abundance: Biological Innovation and American Agricultural Development
+agriculture,IV,medium,negative,Jayachandran,2009,AER,Air Quality and Early-Life Mortality: Evidence from Indonesia's Wildfires
+agriculture,IV,hard,negative,Hornbeck,2012,AEJ:Applied,The Enduring Impact of the American Dust Bowl: Short- and Long-Run Adjustments to Environmental Catastrophe
+agriculture,RDD,medium,positive,Olper & Raimondi,2010,AEJ:Applied,Market Access and Agricultural Productivity: Evidence from a Regression Discontinuity Design
+agriculture,RDD,hard,positive,Foster & Rosenzweig,2004,JDE,Agricultural Productivity Growth and Rural Economic Development: Evidence from India
+agriculture,RDD,medium,negative,Dell & Olken,2012,Econometrica,Temperature Shocks and Economic Growth: Evidence from the Agricultural Sector
+agriculture,RDD,medium,negative,Mullainathan & Shafir,2013,JHR,Scarcity: Why Having Too Little Means So Much
+development,DID,medium,positive,"Banerjee, Duflo, Glennerster & Kinnan",2015,AER,The Miracle of Microfinance? Evidence from a Randomized Evaluation
+development,DID,hard,positive,Miguel & Kremer,2004,Econometrica,Worms: Identifying Impacts on Education and Health in the Presence of Treatment Externalities
+development,ES,medium,negative,Banerjee & Iyer,2005,AER,"History, Institutions, and Economic Performance: The Legacy of Colonial Land Tenure Systems in India"
+development,ES,medium,positive,Feyrer & Sacerdote,2009,QJE,Colonialism and Modern Income: Islands as Natural Experiments
+development,IV,medium,negative,Banerjee & Duflo,2003,JDE,Inequality and Growth: What Can the Data Say?
+development,IV,easy,positive,Angrist & Krueger,1991,QJE,Does Compulsory School Attendance Affect Schooling and Earnings?
+development,RDD,medium,negative,Olken,2007,JPE,Monitoring Corruption: Evidence from a Field Experiment in Indonesia
+development,RDD,hard,positive,Martinez,2013,AEJ:Applied,Sources of Disparity in School Funding and Outcomes: Evidence from Chile
+development,RDD,medium,positive,Casaburi & Macchiavello,2019,QJE,Demand and Supply of Infrequent Payments as a Commitment Device: Evidence from Kenya
+education,DID,medium,positive,Lovenheim,2011,JHR,The Effect of Liquid Housing Wealth on College Enrollment
+education,DID,hard,positive,Jackson,2018,QJE,Does School Spending Matter? The New Literature on an Old Question
+education,ES,medium,positive,Jackson,2010,JHR,Do College-Prep Programs Improve Long-Term Outcomes?
+education,ES,medium,positive,Card & Krueger,1992,QJE,School Quality and Black-White Relative Earnings: A Direct Assessment
+education,ES,hard,positive,Hoxby,2000,QJE,The Effects of Class Size on Student Achievement: New Evidence from Population Variation
+education,ES,hard,positive,"Chetty, Friedman & Rockoff",2014,AER,Measuring the Impacts of Teachers I: Evaluating Bias in Teacher Value-Added Estimates
+education,IV,medium,negative,Lochner & Moretti,2004,AER,"The Effect of Education on Crime: Evidence from Prison Inmates, Arrests, and Self-Reports"
+education,IV,hard,positive,"Black, Devereux & Salvanes",2005,QJE,Why the Apple Doesn't Fall Far: Understanding Intergenerational Transmission of Human Capital
+education,RDD,medium,positive,"Cortes, Goodman & Nomi",2015,AEJ:EP,Intensive Math Instruction and Educational Attainment: Long-Run Impacts of Double-Dose Algebra
+education,RDD,hard,positive,Jackson,2010,JHR,A Little Now for a Lot Later: A Look at a Texas Advanced Placement Incentive Program
+education,RDD,hard,positive,Deming & Dynarski,2009,JHR,"Into College, Out of Poverty? Policies to Increase the Postsecondary Attainment of the Poor"
+environment,DID,easy,negative,Greenstone,2002,JPE,The Impacts of Environmental Regulations on Industrial Activity: Evidence from the 1970 and 1977 Clean Air Act Amendments and the Census of Manufactures
+environment,DID,medium,positive,"Busse, Knittel & Zettelmeyer",2013,QJE,Are Consumers Myopic? Evidence from New and Used Car Purchases
+environment,DID,medium,negative,Davis,2008,AER,The Effect of Driving Restrictions on Air Quality in Mexico City
+environment,DID,hard,positive,"Fowlie, Holland & Mansur",2012,AER,What Do Emissions Markets Deliver and to Whom? Evidence from Southern California's NOx Trading Program
+environment,ES,medium,negative,Hanna & Oliva,2015,AEJ:Applied,The Effect of Pollution on Labor Supply: Evidence from a Natural Experiment in Mexico City
+environment,ES,hard,negative,"Deryugina, Kawano & Levitt",2018,JPublE,The Economic Impact of Hurricane Katrina on its Victims: Evidence from Individual Tax Returns
+environment,IV,easy,positive,Chay & Greenstone,2005,QJE,Does Air Quality Matter? Evidence from the Housing Market
+environment,IV,hard,positive,Greenstone & Hanna,2014,AER,"Environmental Regulations, Air and Water Pollution, and Infant Mortality in India"
+environment,IV,medium,negative,Graff Zivin & Neidell,2012,AER,The Impact of Pollution on Worker Productivity
+environment,IV,hard,negative,Hsiang & Jina,2014,QJE,"The Causal Effect of Environmental Catastrophe on Long-Run Economic Growth: Evidence from 6,700 Cyclones"
+environment,RDD,easy,positive,Lee & Lemieux,2010,JEP,Regression Discontinuity Designs in Economics
+environment,RDD,medium,positive,"Bento, Freedman & Lang",2015,REStat,Who Benefits from Environmental Regulation? Evidence from the Clean Air Act Amendments
+environment,RDD,hard,positive,"Fowlie, Holland & Mansur",2012,AER,What Do Emissions Markets Deliver and to Whom? Evidence from Southern California’s NOx Trading Program
+finance,DID,easy,negative,Bertrand & Mullainathan,2003,QJE,Enjoying the Quiet Life? Corporate Governance and Managerial Preferences
+finance,DID,medium,positive,Becker,2007,JFE,Geographical Segmentation of U.S. Capital Markets
+finance,DID,medium,positive,Garmaise & Moskowitz,2006,RFS,Bank Mergers and Crime: The Real and Social Effects of Credit Market Competition
+finance,ES,easy,positive,Fama & French,1993,JF,Common Risk Factors in the Returns on Stocks and Bonds
+finance,ES,easy,positive,MacKinlay,1997,JF,Event Studies in Economics and Finance
+finance,ES,medium,positive,"Campbell, Lo & MacKinlay",1997,JF,The Econometrics of Financial Markets
+finance,ES,medium,positive,Gompers & Lerner,1999,JFE,The Venture Capital Cycle
+finance,ES,hard,positive,Baker & Wurgler,2006,JF,Investor Sentiment and the Cross-Section of Stock Returns
+finance,IV,easy,positive,Rajan & Zingales,1998,AER,Financial Dependence and Growth
+finance,IV,medium,positive,"Beck, Levine & Loayza",2000,JFE,Finance and the Sources of Growth
+finance,IV,hard,positive,Gabaix & Landier,2008,QJE,Why Has CEO Pay Increased So Much?
+finance,RDD,medium,positive,"Dougal, Engelberg, Parsons & Van Wesep",2015,JFE,Anchoring on Credit Spreads
+finance,RDD,hard,positive,"Gao, Parsons & Shen",2020,RFS,Global Relation of Corporate Governance and Firm Value
+finance,RDD,medium,negative,Gormley & Matsa,2011,JFE,Growing Out of Trouble? Corporate Responses to Liability Risk
+health,DID,medium,positive,Gruber & Poterba,1994,JHR,Tax Incentives and the Decision to Purchase Health Insurance: Evidence from the Self-Employed
+health,DID,medium,positive,Currie & Gruber,1996,JHR,"Health Insurance Eligibility, Utilization of Medical Care, and Child Health"
+health,DID,medium,positive,Cutler & Lleras-Muney,2006,JHE,Education and Health: Evaluating Theories and Evidence
+health,ES,hard,negative,"Miller, Johnson & Wherry",2021,AEJ:Applied,Medicaid and Mortality: New Evidence from Linked Survey and Administrative Data
+health,ES,medium,positive,"Anderson, Dobkin & Gross",2012,AER,The Effect of Health Insurance Coverage on the Use of Medical Services
+health,ES,medium,negative,Baicker & Chandra,2004,JPublE,"Medicare Spending, The Physician Workforce, and Beneficiaries’ Quality of Care"
+health,IV,easy,positive,Card,1999,QJE,The Causal Effect of Education on Earnings
+health,IV,hard,negative,Chay & Greenstone,2003,QJE,The Impact of Air Pollution on Infant Mortality: Evidence from Geographic Variation in Pollution Shocks Induced by a Recession
+health,IV,medium,negative,Baicker & Chandra,2004,JHR,"Medicare Spending, the Physician Workforce, and Beneficiaries' Quality of Care"
+health,RDD,hard,negative,"Chay, McEwan & Urquiola",2005,JHR,The Central Role of Noise in Evaluating Interventions That Use Test Scores to Rank Schools
+health,RDD,medium,negative,"Lindo, Siminski & Yerokhin",2016,JHE,Breaking the Link Between Legal Access to Alcohol and Motor Vehicle Accidents: Evidence from New South Wales
+labor,DID,easy,neutral,Card,1990,ILRR,The Impact of the Mariel Boatlift on the Miami Labor Market
+labor,DID,medium,positive,Angrist & Krueger,1999,ILRR,Empirical Strategies in Labor Economics
+labor,DID,medium,neutral,"Dube, Lester & Reich",2010,REStat,Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties
+labor,ES,easy,neutral,Katz & Krueger,1992,ILR,The Effect of the Minimum Wage on the Fast-Food Industry
+labor,ES,hard,negative,"Dustmann, Schönberg & Stuhler",2017,QJE,"Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment"
+labor,ES,hard,negative,Borjas,2003,QJE,The Labor Demand Curve is Downward Sloping: Reexamining the Impact of Immigration on the Labor Market
+labor,IV,hard,neutral,Imbens & Angrist,1994,Econometrica,Identification and Estimation of Local Average Treatment Effects
+labor,IV,hard,neutral,"Dustmann, Frattini & Preston",2013,REStat,The Effect of Immigration along the Distribution of Wages
+labor,IV,medium,negative,Acemoglu & Angrist,2001,JPE,Consequences of Employment Protection? The Case of the Americans with Disabilities Act
+labor,RDD,hard,positive,Imbens & Lemieux,2008,JAE,Regression Discontinuity Designs: A Guide to Practice
+labor,RDD,hard,positive,"Hahn, Todd & Van der Klaauw",2001,Econometrica,Identification and Estimation of Treatment Effects with a Regression Discontinuity Design
+public,DID,medium,negative,Besley & Case,1995,JPE,Does Electoral Accountability Affect Economic Policy Choices? Evidence from Gubernatorial Term Limits
+public,ES,easy,negative,Finkelstein,2007,QJE,E-ZTax: Tax Salience and Tax Rates
+public,ES,hard,positive,Auerbach & Gorodnichenko,2012,AER,Measuring the Output Responses to Fiscal Policy
+public,ES,medium,negative,Chetty et al.,2011,AER,Salience and Taxation: Theory and Evidence
+public,ES,medium,positive,Gordon & Li,2009,JPublE,Tax Structures in Developing Countries: Many Puzzles and a Possible Explanation
+public,RDD,medium,positive,Ferreira & Gyourko,2009,QJE,Do Political Parties Matter? Evidence from U.S. Cities
+public,RDD,medium,negative,Eggers & Hainmueller,2009,AER,MPs for Sale? Returns to Office in Postwar British Politics
+public,RDD,hard,positive,Caughey & Sekhon,2011,AER,"Elections and the Regression Discontinuity Design: Lessons from Close U.S. House Races, 1942–2008"
+trade,DID,medium,negative,McLaren & Hakobyan,2016,REStat,NAFTA and the Income Distributional Impacts on U.S. Workers
+trade,DID,medium,negative,Pierce & Schott,2016,AER,The Surprisingly Swift Decline of U.S. Manufacturing Employment
+trade,DID,easy,positive,Trefler,2004,AER,The Long and Short of the Canada-U.S. Free Trade Agreement
+trade,ES,hard,negative,"Fajgelbaum, Goldberg, Kennedy & Khandelwal",2020,QJE,The Return to Protectionism
+trade,ES,hard,positive,Handley & Limão,2017,AER,"Policy Uncertainty, Trade, and Welfare: Theory and Evidence for China and the United States"
+trade,ES,easy,positive,Harrison & Rodríguez-Clare,2010,JEL,"Trade, Foreign Investment, and Industrial Policy for Developing Countries"
+trade,IV,medium,positive,"Rodrik, Subramanian & Trebbi",2004,JPE,Institutions Rule: The Primacy of Institutions over Geography and Integration in Economic Development
+trade,IV,hard,positive,Nunn,2007,QJE,"Relationship-Specificity, Incomplete Contracts, and the Pattern of Trade"
+trade,RDD,hard,positive,"Calonico, Cattaneo & Titiunik",2014,Econometrica,Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs
+urban,DID,easy,negative,Glaeser & Gyourko,2005,JUE,Urban Decline and Durable Housing
+urban,DID,medium,negative,Greenstone & Gallagher,2008,QJE,Does Hazardous Waste Matter? Evidence from the Housing Market and the Superfund Program
+urban,DID,medium,positive,Baum-Snow,2007,QJE,Did Highways Cause Suburbanization?
+urban,ES,medium,negative,Cheshire & Sheppard,2002,JUE,The Welfare Economics of Land Use Planning
+urban,ES,medium,negative,Mast,2019,AEJ:EP,The Effect of New Luxury Housing on Regional Housing Markets
+urban,ES,medium,positive,Billings,2011,REStat,Estimating the Value of a New Transit Option
+urban,ES,hard,positive,Hornbeck & Keniston,2017,QJE,Creative Destruction: Barriers to Urban Growth and the Great Boston Fire of 1872
+urban,IV,medium,negative,Glaeser & Gyourko,2003,JUE,The Impact of Zoning on Housing Affordability
+urban,IV,easy,positive,Duranton & Turner,2011,AER,The Fundamental Law of Road Congestion: Evidence from US Cities
+urban,IV,medium,positive,Saiz,2010,QJE,The Geographic Determinants of Housing Supply
+urban,IV,hard,positive,Kline & Moretti,2014,Econometrica,"Local Economic Development, Agglomeration Economies, and the Big Push: 100 Years of Evidence from the Tennessee Valley Authority"
+urban,RDD,medium,positive,"Gibbons, Machin & Silva",2013,JUE,Valuing School Quality Using Boundary Discontinuities
+urban,RDD,medium,positive,Fack & Grenet,2010,JUE,When Do Better Schools Raise Housing Prices? Evidence from Paris Public and Private Schools
+urban,RDD,medium,positive,"Kane, Riegg & Staiger",2006,REStat,"School Quality, Neighborhoods, and Housing Prices: The Impacts of School Desegregation"
+urban,RDD,hard,positive,Severen,2020,AEJ:EP,"Commuting, Labor, and Housing Market Effects of Mass Transportation: Welfare and Identification"

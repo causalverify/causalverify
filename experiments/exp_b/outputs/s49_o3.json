@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s49",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Impact of Mass Deworming on School Attendance",
+  "model": "o3",
+  "run_at": "2026-04-14T19:45:30.517209",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 520,
+    "output_tokens": 1008,
+    "content": "## 1. Identification Strategy  \nMethod: Difference-in-Differences (DID).  \nWhy: We observe treated and control schools before and after program rollout.  The interaction term `treat_x_post` provides the causal contrast.  \n\nKey identifying assumption: In the absence of the deworming program, treated and control schools would have displayed parallel trends in attendance (Parallel Trends Assumption).  We will probe this with (i) a placebo test using pre-periods only and (ii) a specification that allows unit-specific linear time trends.\n\n## 2. R Code\n```r\n###############################\n# Impact of Mass Deworming on School Attendance\n# Difference-in-Differences implementation with robustness checks\n###############################\n\n# Load required libraries\nrequired_pkgs <- c(\"data.table\", \"fixest\", \"sandwich\", \"lmtest\")\nnew_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[,\"Package\"])]\nif(length(new_pkgs)) install.packages(new_pkgs, repos = \"https://cloud.r-project.org\")\nlibrary(data.table)\nlibrary(fixest)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# 1. Read data --------------------------------------------------------------\nfile_path <- \"experiments/exp_b/data/s49_data.csv\"\ndt <- fread(file_path)\n\n# Ensure factors for fixed effects\ndt[, unit_id := factor(unit_id)]\ndt[, period  := factor(period)]\n\n# 2. Baseline DID -----------------------------------------------------------\ndid_baseline <- feols(y ~ treated * post | unit_id + period, data = dt, cluster = \"unit_id\")\n\ncat(\"Baseline DID result:\\n\")\nprint(coeftable(did_baseline)[\"treated:post\", , drop = FALSE])\n\n# 3. Robustness check 1: Unit-specific linear trends -----------------------\n# Create numeric period for trend\ndt[, t_numeric := as.numeric(as.character(period))]\ndid_trend <- feols(y ~ treated * post | unit_id + period + i(unit_id, t_numeric), data = dt, cluster = \"unit_id\")\n\ncat(\"\\nDID with unit-specific linear trends:\\n\")\nprint(coeftable(did_trend)[\"treated:post\", , drop = FALSE])\n\n# 4. Robustness check 2: Placebo test (pre-periods only) -------------------\npre_dt <- dt[post == 0]                      # keep only pre-program observations\n# Artificially assign a placebo \"post\" in the middle of pre-periods\n# (use the median pre period as cut)\nmedian_pre <- median(as.numeric(as.character(pre_dt$period)))\npre_dt[, placebo_post := as.numeric(as.character(period)) > median_pre]\npre_dt[, treat_x_placebo := treated * placebo_post]\n\nplacebo_mod <- feols(y ~ treat_x_placebo | unit_id + period, data = pre_dt, cluster = \"unit_id\")\n\ncat(\"\\nPlacebo test within pre-periods:\\n\")\nprint(coeftable(placebo_mod)[\"treat_x_placebo\", , drop = FALSE])\n```\n\nThe script\n1. Loads the data,\n2. Estimates the baseline DID with school and period fixed effects, clustered at the school level,\n3. Adds school-specific linear trends,\n4. Runs a placebo DID restricted to pre-program observations to detect spurious effects.\n\nThe key causal estimate is the coefficient on `treated:post`.  \n\n## 3. Expected Findings  \nBecause deworming is typically beneficial, a negative impact on attendance—if present—should be small.  I expect the coefficient on `treated:post` to be around −0.02 to −0.05 (i.e., a 2–5 percentage-point drop in attendance or roughly −0.15 to −0.30 standard-deviation units), and not statistically significant once trends are controlled for.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in attendance rates over time between treated and untreated schools.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mass deworming program is associated with a decrease in school attendance rates.",
+    "main_effect": -0.15
+  }
+}

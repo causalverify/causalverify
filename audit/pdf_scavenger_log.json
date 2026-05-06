@@ -1,0 +1,1419 @@
+[
+  {
+    "paper_id": "paper_01",
+    "doi": "10.1016/j.jfineco.2009.12.001",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_02",
+    "doi": "10.2139/ssrn.1925710",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://doi.org/10.2139/ssrn.1925710",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_03",
+    "doi": "10.1016/j.jfineco.2014.09.001",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://ecommons.cornell.edu/bitstreams/db081d13-880f-4eae-b8db-93ca49ba5631/download",
+        "ok": false,
+        "status": 405,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_04",
+    "doi": "10.1111/j.1540-6261.2005.00760.x",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1540-6261.2005.00760.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1540-6261.2005.00760.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_06",
+    "doi": "10.1111/jofi.12122",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_09",
+    "doi": "10.1111/j.1540-6261.2012.01776.x",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1540-6261.2012.01776.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_10",
+    "doi": "10.1111/jofi.12187",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_11",
+    "doi": "10.1111/j.1540-6261.2007.01259.x",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1540-6261.2007.01259.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_12",
+    "doi": "10.1016/j.jfineco.2003.07.002",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_13",
+    "doi": "10.1016/j.jfineco.2004.05.004",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_17",
+    "doi": "10.1086/421174",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_18",
+    "doi": "10.1257/aer.91.5.1369",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_22",
+    "doi": "10.1257/aer.91.4.795",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_24",
+    "doi": "10.1111/j.1540-6261.2010.01555.x",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID1440227_code249812.pdf?abstractid=1107562&mirid=4",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_25",
+    "doi": "10.1016/j.jfineco.2010.02.009",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_26",
+    "doi": "10.1017/s0022109010000256",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_28",
+    "doi": "10.1111/0022-1082.00330",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_30",
+    "doi": "10.2139/ssrn.767864",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://doi.org/10.2139/ssrn.767864",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_31",
+    "doi": "10.1257/aer.91.4.1095",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_32",
+    "doi": "10.1111/jofi.12275",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_33",
+    "doi": "10.1287/mnsc.2014.2038",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_34",
+    "doi": "10.1111/j.1540-6261.2010.01564.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_35",
+    "doi": "10.1162/qjec.2010.125.1.307",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_36",
+    "doi": "10.1257/0002828042002561",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_37",
+    "doi": "10.1086/344122",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_39",
+    "doi": "10.1257/jep.30.4.31",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/jep.30.4.31",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/jep.30.4.31",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_40",
+    "doi": "10.1162/qjec.121.3.783",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_44",
+    "doi": "10.1162/qjec.2010.125.2.591",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_52",
+    "doi": "10.2139/ssrn.997867",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=997867",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_54",
+    "doi": "10.1126/science.1260799",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "http://hdl.handle.net/1721.1/97047",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html;charset=utf-8"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_59",
+    "doi": "10.1093/rfs/hhu025",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_60",
+    "doi": "10.1111/jofi.12417",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_62",
+    "doi": "10.1111/j.1540-6261.2008.01373.x",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://doi.org/10.1111/j.1540-6261.2008.01373.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_64",
+    "doi": "10.1093/rfs/hhr134",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_65",
+    "doi": "10.1111/j.1540-6261.1993.tb04708.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_67",
+    "doi": "10.1162/00335530360698478",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_68",
+    "doi": "10.1016/j.jfineco.2010.10.018",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_69",
+    "doi": "10.1111/j.1540-6261.2008.01391.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_70",
+    "doi": "10.1111/j.1540-6261.2009.01476.x",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1540-6261.2009.01476.x",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_71",
+    "doi": "10.1111/j.1540-6261.2006.00829.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_72",
+    "doi": "10.1111/j.1468-0297.2007.02055.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_75",
+    "doi": "10.1257/aer.20120070",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4436657",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://europepmc.org/articles/pmc4436657?pdf=render",
+        "ok": false,
+        "status": 500,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_76",
+    "doi": "10.17848/wp92-11",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://research.upjohn.org/cgi/viewcontent.cgi?article=1023&context=up_workingpapers",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_83",
+    "doi": "10.1162/0033553042476189",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_84",
+    "doi": "10.1093/qje/qjs010",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_90",
+    "doi": "10.1257/aer.20151282",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.20151282",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.20151282",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_92",
+    "doi": "10.1257/aer.89.3.379",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_94",
+    "doi": "10.1162/qjec.121.1.73",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://europepmc.org/articles/pmc3800113?pdf=render",
+        "ok": false,
+        "status": 500,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_96",
+    "doi": "10.3982/ecta9878",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_100",
+    "doi": "10.1162/003355300555097",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://academic.oup.com/qje/article-pdf/115/4/1343/5152456/115-4-1343.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://repository.upenn.edu/bitstreams/e8765808-4b8b-4f6f-9924-f28cf126015a/download",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_101",
+    "doi": "10.1086/374180",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_102",
+    "doi": "10.1257/000282802760015720",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_103",
+    "doi": "10.1001/jama.1994.03520110039026",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_105",
+    "doi": "10.1111/0034-6527.00329",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_106",
+    "doi": "10.1257/aer.104.7.2152",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_107",
+    "doi": "10.1056/nejmsa1202099",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.nejm.org/doi/pdf/10.1056/NEJMsa1202099?articleTools=true",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.nejm.org/doi/pdf/10.1056/NEJMsa1202099?articleTools=true",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_110",
+    "doi": "10.1257/000282803321455287",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_112",
+    "doi": "10.1093/qje/qjv036",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_113",
+    "doi": "10.1257/app.1.3.111",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:12305831",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_115",
+    "doi": "10.1016/j.jpubeco.2003.11.002",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_116",
+    "doi": "10.3982/ecta10266",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.3982/ECTA10266",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_119",
+    "doi": "10.1093/qje/qjs011",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://europepmc.org/articles/pmc3738199?pdf=render",
+        "ok": false,
+        "status": 500,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_122",
+    "doi": "10.1257/000282803321455188",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_124",
+    "doi": "10.1162/00335530151144050",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_126",
+    "doi": "10.1257/aer.104.2.537",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.104.2.537",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.104.2.537",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_127",
+    "doi": "10.1257/aer.98.3.1103",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://www.aeaweb.org/aer/data/june08/20060620_app.pdf",
+        "ok": true,
+        "status": 200,
+        "size": 26023
+      }
+    ],
+    "success": "semantic_scholar"
+  },
+  {
+    "paper_id": "paper_128",
+    "doi": "10.1111/1467-937x.00205",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_130",
+    "doi": "10.1257/app.2.4.1",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/app.2.4.1",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/app.2.4.1",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_131",
+    "doi": "10.1093/restud/rdv039",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://cep.lse.ac.uk/pubs/download/dp1000.pdf",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='cep.lse.ac.uk', port=443): Max retries exceeded with url: /pubs/download/d"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_136",
+    "doi": "10.1086/250026",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_137",
+    "doi": "10.1016/j.jinteco.2015.04.008",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_142",
+    "doi": "10.1086/503579",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://www.econ.ucla.edu/people/papers/Jayachandran/Jayachandran370.pdf",
+        "ok": false,
+        "status": 404,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_143",
+    "doi": "10.1162/003355303321675464",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://academic.oup.com/qje/article-pdf/118/2/601/5364227/118-2-601.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_144",
+    "doi": "10.5860/choice.46-3811",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_148",
+    "doi": "10.1257/app.20130533",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_149",
+    "doi": "10.1257/0002828054825574",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "http://www.aeaweb.org/aer/data/sept05_app_banerjee.pdf",
+        "ok": true,
+        "status": 200,
+        "size": 26976
+      }
+    ],
+    "success": "unpaywall"
+  },
+  {
+    "paper_id": "paper_150",
+    "doi": "10.1162/rest.91.2.245",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_154",
+    "doi": "10.1257/aer.20180281",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.zora.uzh.ch/id/eprint/165758/1/Demand_and_Supply_Casaburi.pdf",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_155",
+    "doi": "10.1086/660775",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_156",
+    "doi": "10.3386/w25368",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_158",
+    "doi": "10.1162/003355300555060",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_160",
+    "doi": "10.2139/ssrn.605783",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://doi.org/10.2139/ssrn.605783",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_162",
+    "doi": "10.1353/jhr.2010.0019",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_163",
+    "doi": "10.3386/w15387",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:12305833",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://dash.harvard.edu/bitstream/1/12305833/1/Deming_Dynarski_RobinHood.pdf",
+        "ok": true,
+        "status": 200,
+        "size": 192145
+      }
+    ],
+    "success": "semantic_scholar"
+  },
+  {
+    "paper_id": "paper_165",
+    "doi": "10.1257/aer.103.1.220",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.103.1.220",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/87769/2/Knittel_Are%20consumers.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_166",
+    "doi": "10.1086/529398",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_170",
+    "doi": "10.1257/aer.104.10.3038",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_171",
+    "doi": "10.1257/aer.102.7.3652",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4576916",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=utf-8"
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://europepmc.org/articles/pmc4576916?pdf=render",
+        "ok": false,
+        "status": 500,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_174",
+    "doi": "10.1086/376950",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://dash.harvard.edu/bitstream/1/3429713/2/Mullainathan_EnjoyingQuietLife.pdf",
+        "ok": false,
+        "status": 202,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_176",
+    "doi": "10.1016/0304-405x(93)90023-5",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://www.nes.ru/~agoriaev/Papers/Fama-French%205%20factors%20for%20stocks%20and%20vonds%20JFE93.pdf",
+        "ok": false,
+        "status": 404,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_178",
+    "doi": "10.2307/j.ctt7skm5",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://dk.um.si/IzpisGradiva.php?id=28248",
+        "ok": false,
+        "error": "('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_183",
+    "doi": "10.1162/qjec.2008.123.1.49",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://publications.ut-capitole.fr/3076/1/medias/doc/by/landier/ceo_pay.pdf",
+        "ok": false,
+        "status": 404,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_184",
+    "doi": "10.1111/jofi.12248",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_186",
+    "doi": "10.2307/2118419",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_191",
+    "doi": "10.1377/hlthaff.w4.184",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_194",
+    "doi": "10.1377/hlthaff.w4.184",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_196",
+    "doi": "10.2307/2523702",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_197",
+    "doi": "10.1016/s1573-4463(99)03004-7",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/63521/1/empiricalstrateg00angr.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_199",
+    "doi": "10.2307/2524735",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_200",
+    "doi": "10.1162/003355303322552810",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_201",
+    "doi": "10.2307/2951620",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_202",
+    "doi": "10.1086/322836",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/63433/1/consequencesofem00acem.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/63433/1/consequencesofem00acem.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_203",
+    "doi": "10.1111/1468-0262.00183",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_205",
+    "doi": "10.1162/qjec.2009.124.3.969",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/58478/3/Finkelstein_EZ-tax%20for%208%202010.PDF",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_206",
+    "doi": "10.1257/pol.4.2.1",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/pol.4.2.1",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_209",
+    "doi": "10.1017/s0003055409990190",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "http://hdl.handle.net/1721.1/59819",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html;charset=utf-8"
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/59819/1/Hainmueller_MPs%20For.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_211",
+    "doi": "10.1257/0002828042002633",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_212",
+    "doi": "10.1093/qje/qjz036",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://academic.oup.com/qje/article-pdf/135/1/1/32526166/qjz036.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://academic.oup.com/qje/article-pdf/135/1/1/32526166/qjz036.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_216",
+    "doi": "10.1162/qjec.122.2.569",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://academic.oup.com/qje/article-pdf/122/2/569/5470111/122-2-569.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "http://pdfs.semanticscholar.org/e347/6ee7c2f7900e726539572c18954b8779ed34.pdf",
+        "ok": false,
+        "status": 202,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_217",
+    "doi": "10.3982/ecta11757",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.3982/ECTA11757",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "http://deepblue.lib.umich.edu/bitstream/2027.42/109857/1/ecta1465.pdf",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html; charset=UTF-8"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_218",
+    "doi": "10.1162/qjec.2008.123.3.951",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_219",
+    "doi": "10.1162/qjec.122.2.775",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_220",
+    "doi": "10.1016/s0094-1190(02)00003-7",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_221",
+    "doi": "10.1016/j.regsciurbeco.2011.03.013",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_222",
+    "doi": "10.1257/aer.20141707",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.20141707",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.20141707",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_224",
+    "doi": "10.1162/qjec.2010.125.3.1253",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_225",
+    "doi": "10.1016/j.jpubeco.2009.10.009",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://cee.lse.ac.uk/ceedps/ceedp119.pdf",
+        "ok": false,
+        "error": "HTTPConnectionPool(host='cee.lse.ac.uk', port=80): Max retries exceeded with url: /ceedps/ceedp119.p"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_227",
+    "doi": "10.1016/j.jfineco.2012.08.002",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_228",
+    "doi": "10.1257/aer.104.5.322",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.104.5.322",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_229",
+    "doi": "10.1257/aer.99.4.1145",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/aer.99.4.1145",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://doi.org/10.17016/feds.2009.11",
+        "ok": false,
+        "status": 200,
+        "size": 0,
+        "error": "wrong content-type: text/html"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_231",
+    "doi": "10.1162/rest_a_00587",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_232",
+    "doi": "10.1093/restud/rdu010",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "http://cep.lse.ac.uk/pubs/download/dp1244.pdf",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='cep.lse.ac.uk', port=443): Max retries exceeded with url: /pubs/download/d"
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_233",
+    "doi": "10.3905/jpm.24.2.11",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_234",
+    "doi": "10.1111/j.1540-6261.1995.tb05166.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_235",
+    "doi": "10.1257/aer.90.5.1362",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_236",
+    "doi": "10.2139/ssrn.316587",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://doi.org/10.2139/ssrn.316587",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      },
+      {
+        "source": "semantic_scholar",
+        "url": "https://dspace.mit.edu/bitstream/1721.1/95977/1/Duflo_Dofirmswanttoborrowmore.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_237",
+    "doi": "10.1257/aer.91.5.1369",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_238",
+    "doi": "10.1016/s0047-2727(99)00112-7",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_241",
+    "doi": "10.1257/pol.20130025",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/pol.20130025",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_242",
+    "doi": "10.1162/003355303322552775",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_243",
+    "doi": "10.1086/342012",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_245",
+    "doi": "10.1023/a:1025897327639",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_248",
+    "doi": "10.1016/s0047-2727(01)00085-8",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_250",
+    "doi": "10.1080/07350015.1995.10524595",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_251",
+    "doi": "10.1257/aer.97.5.1611",
+    "attempts": [
+      {
+        "source": "semantic_scholar",
+        "url": "https://www.elibrary.imf.org/downloadpdf/view/journals/001/2005/146/001.2005.issue-146-en.pdf",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  },
+  {
+    "paper_id": "paper_253",
+    "doi": "10.1016/j.jfineco.2015.01.004",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_254",
+    "doi": "10.1162/0033553042476189",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_255",
+    "doi": "10.1111/1468-0262.00183",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_257",
+    "doi": "10.1257/aer.104.9.2763",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_258",
+    "doi": "10.1111/j.1468-0297.2010.02371.x",
+    "attempts": [],
+    "success": null
+  },
+  {
+    "paper_id": "paper_261",
+    "doi": "10.1257/app.3.4.152",
+    "attempts": [
+      {
+        "source": "unpaywall",
+        "url": "https://www.aeaweb.org/articles/pdf/doi/10.1257/app.3.4.152",
+        "ok": false,
+        "status": 403,
+        "size": 0
+      }
+    ],
+    "success": null
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies event study methodology and uses health rumors as exogenous shocks, matching the ground truth approach. However, it frames this as difference-in-differences rather than the instrumental variable approach described in ground truth. The AI doesn't state the expected direction of the effect (positive connection value means negative returns during bad health news), representing a narrative failure to specify the causal relationship direction.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_31",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:11:25.402484+00:00"
+}

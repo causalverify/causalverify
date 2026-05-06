@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s62",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Impact of Major Product Recall on Stock Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:42:04.194828",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 468,
+    "output_tokens": 424,
+    "content": "## 1. Identification Strategy\n\nWe will use an Event Study approach to analyze the impact of a major product recall on stock returns. This method is suitable because it allows us to examine the abnormal returns around the event day (announcement of the recall) and control for market movements. The key assumption is that the stock returns are not systematically different from the market returns in the absence of the event.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s62_data.csv\")\n\n# Convert event_day to a factor for panel data analysis\ndata$event_day <- as.factor(data$event_day)\n\n# Create a panel data structure\npdata <- pdata.frame(data, index = c(\"stock_id\", \"event_day\"))\n\n# Estimate the market model for each stock\nmarket_models <- with(pdata, by(cbind(ret, mkt_ret), stock_id, function(x) lm(ret ~ mkt_ret)))\n\n# Calculate abnormal returns (AR)\npdata$AR <- with(pdata, ret - predict(market_models[[stock_id]]))\n\n# Estimate the event study model\nevent_study_model <- plm(AR ~ event_day, data = pdata, model = \"within\")\n\n# Print the coefficient estimates\nsummary(event_study_model)\n\n# Robustness check: Cluster-robust standard errors\ncoeftest(event_study_model, vcovHC(event_study_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\n\nWe expect the coefficient estimates for the event day (and possibly the days immediately before and after) to be negative and statistically significant. This is because the announcement of a major product recall is likely to have a negative impact on the company's stock returns, as investors react to the potential financial and reputational damage. The magnitude of the effect will depend on the severity of the recall and the market's perception of the company's ability to manage the situation.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze the change in cumulative abnormal returns (CAR) around the recall announcement event.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The product recall announcement leads to a significant negative impact on the company's stock returns.",
+    "main_effect": "-0.018"
+  }
+}

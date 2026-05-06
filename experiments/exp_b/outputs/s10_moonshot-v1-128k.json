@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s10",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Anticipation effects in DID: pre-announced policy",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:24:59.316575",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 484,
+    "output_tokens": 568,
+    "content": "## 1. Identification Strategy\nIn this scenario, we will use a Difference-in-Differences (DID) approach to estimate the causal effect of the minimum capital requirement on banks' capital ratios. The key assumption in DID is that the treatment and control groups would have followed the same trend in the absence of the treatment. However, given the anticipation effects, we need to account for the pre-treatment period when the policy was announced but not yet effective.\n\nWe will include interaction terms for the treatment and post-period, as well as the treatment and announcement period, to capture the anticipation effects. The model will be:\n\ny = β0 + β1 * treated + β2 * post + β3 * treated * post + β4 * treated * announce + ε\n\nThe key assumption is that the anticipation effects are captured by the interaction term between treated and announce, and the causal effect of the policy is captured by the interaction term between treated and post.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s10_data.csv\")\n\n# Convert period to a factor variable\ndata$period <- as.factor(data$period)\n\n# Estimate the DID model with anticipation effects\nmodel <- plm(y ~ treated * post + treated * announce, data = data, index = c(\"unit_id\", \"period\"), model = \"within\")\n\n# Print the model summary\nsummary(model)\n\n# Calculate the robust standard errors\ncoeftest(model, vcovHC(model, type = \"HC1\"))\n\n# Plot the event study\nfevd <- fevd(model)\nplot(fevd$time, fevd$fevd[,1], type = \"l\", xlab = \"Period\", ylab = \"Event Study\", main = \"Event Study Plot\")\nabline(h = 0, lty = 2)\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the interaction term between treated and post (β3) to be positive, indicating that banks below the capital threshold increased their capital ratios after the policy became effective. The magnitude of the effect will depend on the data, but it should be economically significant given the regulatory requirement.\n\nWe also expect the coefficient on the interaction term between treated and announce (β4) to be positive, indicating that banks below the capital threshold started increasing their capital ratios after the policy was announced but not yet effective. This would confirm the presence of anticipation effects. The magnitude of this effect may be smaller than the post-period effect, as banks may have started adjusting their capital ratios gradually in response to the announcement.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with anticipation — must account for pre-announcement window; use period ≤2 as clean pre-period",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Constrained banks raise capital ratios both after announcement and after effective date",
+    "main_effect": "35bp increase in tier-1 capital ratio"
+  }
+}

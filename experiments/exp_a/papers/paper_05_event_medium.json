@@ -1,0 +1,91 @@
+{
+  "paper_id": "paper_05",
+  "source": "Journal of Financial Economics, 2008",
+  "authors": "Karpoff, Lee & Martin",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "research_question": "What is the total cost borne by shareholders when firms are caught misrepresenting their financial statements, and how is this cost decomposed into legal penalties, the correction of previously inflated valuations, and losses tied to deteriorated relationships with customers, suppliers, and capital providers? How do firm characteristics—particularly reliance on implicit contracts and financial condition—shape the magnitude of these reputation-related losses?",
+  "data_description": "The sample comprises all 585 enforcement actions initiated by the U.S. Securities and Exchange Commission (SEC) and Department of Justice (DOJ) from 1978 through December 2002 against firms for violations of the books-and-records and internal-controls provisions of the Securities Exchange Act of 1934 (15 USC §§78m(b)(2) and (5)), tracked through November 15, 2005. Data are drawn from Lexis-Nexis FEDSEC databases, SEC website releases, DOJ records, EDGAR filings, and firm press releases, supplemented with daily stock returns from CRSP, accounting data from Compustat, and restatement information from Wu (2006). Variables include dates and types of regulatory events (administrative, civil, criminal proceedings, AAERs), monetary fines and class-action settlements, asset write-offs (special items, accounting changes, charge-offs), industry market-to-book and P/E multiples, leverage, R&D, intangibles, firm size, age, and bankruptcy status. The unit of observation is the targeted firm/enforcement action.",
+  "institutional_context": "The Foreign Corrupt Practices Act of 1977 expanded federal authority to prosecute financial misrepresentation without requiring proof of scienter, by adding books-and-records and internal-controls provisions to the Securities Exchange Act. From 1978 onward, the SEC and DOJ investigated and sanctioned firms whose financial statements were alleged to be inaccurate. Enforcement typically unfolds over a multi-year sequence: a trigger event (such as self-disclosed accounting irregularities, restatements, auditor departures, or unusual trading) prompts an informal SEC inquiry, which may escalate to a formal investigation, Wells Notice, administrative or civil litigation, and possible DOJ criminal referral. Firms may also face parallel shareholder class-action and derivative lawsuits. Sanctions range from cease-and-desist orders and injunctions to monetary fines, disgorgement, trading suspensions, and registration revocations. The setting predates the Sarbanes-Oxley Act of 2002, allowing examination of penalties under pre-Sarbanes-Oxley rules amid widespread perceptions that financial misconduct was lightly disciplined.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.38,
+      "unit": "total CAR (fraction of market value)",
+      "interpretation": "Average total market value loss from misconduct period through resolution; announcement window CAR ~ -24%"
+    },
+    "secondary_estimate": {
+      "value": -0.24,
+      "unit": "CAR at first announcement",
+      "interpretation": "CAR in [-1,0] window around first public disclosure"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Table 3 in Karpoff, Lee & Martin (2008)"
+  },
+  "data_availability": {
+    "status": "partial_public",
+    "public_sources": [
+      "SEC AAER database (SEC.gov, public, all releases 1982-present)",
+      "SEC EDGAR for company filings"
+    ],
+    "proprietary_sources": [
+      "CRSP daily stock returns (WRDS)",
+      "Compustat (WRDS) for financial controls"
+    ],
+    "proxy_strategy": "AAER dates from SEC.gov (public); use Yahoo Finance daily returns as CRSP proxy for individual firms; matched firm selection requires careful manual construction",
+    "replicability": "medium — AAER data is public but CRSP needed for precise CAR measurement",
+    "public_proxy_available": true,
+    "replication_tier": "partial (event study on AAERs: full with effort; full decomposition requires manual timeline construction)",
+    "data_limitations": "Constructing the precise enforcement event timeline for each case requires substantial manual effort. Some older enforcement records may be incomplete. The reputation loss decomposition requires assumptions about expected future cash flows. Modern replication could use WRDS/CRSP (commercial) or yfinance (free, post-1990 only).",
+    "public_data_sources_detail": [
+      "SEC AAER database (free, available at sec.gov)",
+      "SEC EDGAR (enforcement actions, litigation releases — free)",
+      "yfinance (firm stock returns — free)",
+      "DOJ press releases (free)",
+      "Academic datasets of SEC enforcement actions (e.g., Dechow et al. restatement database, publicly available)"
+    ]
+  },
+  "title": "The Cost to Firms of Cooking the Books",
+  "doi": "10.1017/S0022109000004221",
+  "volume": 43,
+  "issue": 3,
+  "pages": "581-612",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study — event dates are (1) first public announcement of potential misconduct and (2) final SEC enforcement action; outcome = cumulative abnormal return around each event date; benchmark = matched-firm adjusted returns",
+    "key_variables": {
+      "treatment": "SEC AAER enforcement action (misconduct revelation)",
+      "control": "matched firms on industry, size, book-to-market",
+      "outcome": "cumulative abnormal return (CAR) from CRSP daily returns adjusted for matched-firm returns",
+      "time_period": "event windows of [-1,0], [-1,+1], [-10,+10] around announcement dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms lose on average 38% of market value from the misconduct period through final resolution; direct penalties account for only a small fraction (~3%) of total costs — the majority is reputational loss",
+    "main_effect": "-38% total market value loss from misconduct revelation through resolution",
+    "key_robustness": [
+      "decomposition of loss into direct penalties vs. reputational",
+      "alternative event windows",
+      "cross-sectional drivers of penalty severity"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study (multi-event)",
+      "treatment": "Disclosure of financial misrepresentation and subsequent enforcement milestones",
+      "event_window": "Multiple windows around key enforcement dates (initial disclosure, formal investigation, charges, settlement)",
+      "estimation_window": "Pre-event clean period for market model estimation",
+      "sample_period": "1978-2002 (788 enforcement actions)",
+      "unit_of_observation": "Firm-enforcement event",
+      "key_assumption": "Market efficiently impounds expected costs at each disclosure milestone. Abnormal returns around enforcement events reflect the firm-specific cost of misrepresentation, not confounding news."
+    },
+    "key_magnitudes": {
+      "total_market_value_loss": "Average 38% decline in market-adjusted equity value",
+      "legal_penalty_share": "~8.6% of total loss attributable to legal penalties",
+      "reputation_loss_share": "~66.6% of total loss attributed to reputation damage",
+      "expected_legal_penalty_share": "~24.8% of total loss from anticipated but not yet imposed penalties"
+    },
+    "robustness_notes_detail": "Decomposition is robust across subsamples (SEC-only vs DOJ, different time periods). Results hold after controlling for firm size, industry, and severity of misrepresentation."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 106688,
+  "phase1_source_version": "v2primeprime_full_text_a4_deleak",
+  "v2primeprime_two_pass_deleak": true,
+  "v2primeprime_deleak_source": "audit/regen_strong_deleak_v2primeprime_6.json",
+  "v2primeprime_a4_action": "passthrough"
+}

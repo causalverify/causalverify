@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s87",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Unemployment Benefit Eligibility on Future Earnings",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:49:10.976219",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 466,
+    "output_tokens": 509,
+    "content": "## 1. Identification Strategy\nThis problem is suitable for a Regression Discontinuity Design (RDD) analysis. The key assumption for RDD is that the running variable (age) is continuous around the cutoff, and the probability of being treated (receiving unemployment benefits) changes discontinuously at the cutoff. In this case, individuals just above the age cutoff are eligible for benefits, while those just below are not. The identification assumption is that the only difference between individuals just above and just below the cutoff is the receipt of benefits. We will use a local linear regression approach to estimate the causal effect of benefit eligibility on future earnings.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(broom)\nlibrary(ggplot2)\n\n# Load data\ndata <- read_csv(\"experiments/exp_b/data/s87_data.csv\")\n\n# Define the cutoff point for benefit eligibility\ncutoff <- mean(data$running_var[data$treated == 1])\n\n# Create a variable for the distance from the cutoff\ndata$distance <- data$running_var - cutoff\n\n# Fit a local linear regression model\nmodel <- lm(y ~ treated + distance + treated:distance, data = data, subset = abs(distance) < 0.1)\n\n# Print the coefficient for the treatment effect\ntidy(model) %>% \n  filter(term == \"treated\") %>% \n  pull(estimate)\n\n# Visualize the data and the estimated treatment effect\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_vline(xintercept = cutoff, linetype = \"dashed\") + \n  geom_smooth(method = \"loess\", se = FALSE)\n```\n\n## 3. Expected Findings\nThe expected finding is that the coefficient for the treatment effect (treated) will be negative, indicating that eligibility for unemployment benefits is associated with lower future earnings. The magnitude of the effect will depend on the data, but we expect it to be relatively small, likely in the range of -0.05 to -0.10. This suggests that the receipt of benefits may lead to a 5-10% reduction in earnings two years later. The underlying assumption is that the benefits may reduce the incentive to work or invest in human capital, leading to lower future earnings. However, the actual effect size and sign may vary depending on the specific characteristics of the data and the population being studied.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The cutoff age for benefit eligibility provides a natural experiment to assess causal impacts.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligibility for unemployment benefits at the cutoff age increases log earnings two years later.",
+    "main_effect": "0.3"
+  }
+}

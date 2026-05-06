@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s95",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Minimum Drinking Age on Alcohol Consumption",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:46:49.582199",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 432,
+    "output_tokens": 587,
+    "content": "## 1. Identification Strategy\nFor this research question, a Regression Discontinuity Design (RDD) is appropriate. The key assumption in RDD is that there is a sharp change in the treatment (legal drinking age) at a specific point (age 21), and that there are no other confounding factors that also change at this point. This allows us to compare individuals just below and just above the age cutoff to estimate the causal effect of reaching the legal drinking age on alcohol consumption.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s95_data.csv\")\n\n# Define the running variable and the cutoff point\nrunning_var <- data$running_var\ncutoff <- 21 * 12  # Convert age to months\n\n# Estimate the RDD model\n# We use the rdrobust package to estimate the RDD model\n# The model includes a linear term for the running variable and a discontinuity at the cutoff\nresult <- rdrobust(y = data$y, x = running_var, c = cutoff, \n                   h = 0.5, # bandwidth\n                   x2 = NULL, # no polynomial terms\n                   cl = NULL, # no confidence intervals\n                   control = NULL)\n\n# Print the estimated discontinuity in alcohol consumption at the cutoff\nprint(result$beta01)\n\n# Basic robustness checks\n# We can check the robustness of the result by varying the bandwidth\nbandwidths <- seq(0.1, 1, by = 0.1)\ndiscontinuities <- sapply(bandwidths, function(bw) {\n  rdrobust(y = data$y, x = running_var, c = cutoff, \n           h = bw, x2 = NULL, cl = NULL, control = NULL)$beta01\n})\n\n# Plot the discontinuities for different bandwidths\nggplot(data.frame(bandwidth = bandwidths, discontinuity = discontinuities), aes(x = bandwidth, y = discontinuity)) +\n  geom_line() +\n  labs(title = \"Robustness Check: Discontinuity at Cutoff for Different Bandwidths\", x = \"Bandwidth\", y = \"Discontinuity in Alcohol Consumption\")\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the discontinuity at the age cutoff of 21, indicating an increase in alcohol consumption when individuals reach the legal drinking age. The magnitude of the effect will depend on the data, but we expect it to be statistically significant given the sharp change in the legal status at this age. The robustness checks will help us assess whether the result is sensitive to the choice of bandwidth.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the age-21 drinking age cutoff as a natural experiment.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Reaching the age of 21 leads to an increase in alcohol consumption.",
+    "main_effect": "Approximately 0.28 increase in alcohol consumption."
+  }
+}

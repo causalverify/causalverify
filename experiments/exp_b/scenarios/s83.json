@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s83",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Local Labor Demand Shocks on Wages",
+  "research_question": "How do shifts in local labor demand, driven by industry-specific productivity changes, affect wages in different regions? By using a shift-share approach, we aim to isolate the exogenous variation in labor demand to understand its causal impact on wage levels.",
+  "data_description": "The dataset contains 300 observations with columns: y (wages), x (local labor demand), z (Bartik shift-share instrument), and controls (demographic and economic variables). The Bartik instrument is constructed using national industry growth rates interacted with regional industry shares.",
+  "ground_truth": {
+    "identification_strategy": "Use Bartik shift-share as an instrument for local labor demand.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals a significant positive effect of local labor demand on wages.",
+    "main_effect": "0.15"
+  },
+  "dgp_truth": {
+    "type": "iv",
+    "effect": 0.15,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s83_data.csv"
+}

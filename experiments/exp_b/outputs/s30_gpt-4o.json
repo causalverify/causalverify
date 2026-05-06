@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s30",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Fuzzy RDD: imperfect compliance with admission cutoff",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:10:18.003769",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 505,
+    "output_tokens": 430,
+    "content": "## 1. Identification Strategy\nIn this scenario, we are using a Fuzzy Regression Discontinuity Design (RDD) because the treatment assignment (scholarship receipt) is not perfectly aligned with the running variable (GPA). Instead, eligibility based on the cutoff serves as an instrument for actual treatment receipt. The key assumption here is the Local Average Treatment Effect (LATE) assumption, which posits that the instrument affects graduation rates only through its effect on scholarship receipt.\n\n## 2. R Code\n```r\n# Load required packages\nlibrary(AER)\nlibrary(dplyr)\n\n# Read the dataset\ndata <- read.csv(\"experiments/exp_b/data/s30_data.csv\")\n\n# Prepare the data\ndata <- data %>%\n  mutate(z = ifelse(running_var >= 0.5, 1, 0))\n\n# Run the first stage regression (instrumental variable is z)\nfirst_stage <- lm(treated ~ z + running_var, data = data)\n\n# Check the first stage summary\nsummary(first_stage)\n\n# Run the second stage regression (Fuzzy RDD)\niv_model <- ivreg(y ~ treated | z + running_var, data = data)\n\n# Output the results\nsummary(iv_model)\n\n# Check robustness around the cutoff\n# Subset data near cutoff\nnear_cutoff_data <- data %>%\n  filter(near_cutoff == 1)\n\n# Run the analysis on the subset\niv_model_near_cutoff <- ivreg(y ~ treated | z + running_var, data = near_cutoff_data)\n\n# Output the results for near cutoff data\nsummary(iv_model_near_cutoff)\n```\n\n## 3. Expected Findings\nWe would expect the treatment effect of receiving the scholarship (LATE) on graduation rates to be positive. The students who receive a scholarship are more likely to have financial support, potentially reducing the barriers to graduation and thus increasing the graduation rate. The magnitude of this effect may be moderate, as we are isolating the effect for those marginally influenced by the instrument, likely leading to an increase in graduation probability by several percentage points.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Fuzzy RDD — eligibility cutoff as IV for scholarship receipt; LATE = ITT / first-stage jump",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scholarship receipt significantly improves graduation rates for compliers",
+    "main_effect": "~25pp graduation rate increase (LATE via fuzzy RDD)"
+  }
+}

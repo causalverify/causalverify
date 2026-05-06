@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s83",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Local Labor Demand Shocks on Wages",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:48:17.927446",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 486,
+    "output_tokens": 507,
+    "content": "## 1. Identification Strategy\nTo address the research question, we will employ an Instrumental Variable (IV) approach. The Bartik shift-share instrument (z) is used to isolate the exogenous variation in local labor demand (x), allowing us to estimate the causal impact of labor demand on wages (y). The key assumption is that the instrument (z) affects wages (y) only through its effect on labor demand (x) and not through any other channels, which is a reasonable assumption given the construction of the Bartik instrument using national industry growth rates interacted with regional industry shares.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary/plm)\nlibrary(sandwich)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s83_data.csv\")\n\n# Estimate the first-stage model (IV regression)\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Estimate the second-stage model (IV regression)\niv_model <- ivreg(y ~ x + controls, instrument = ~z + controls, data = data)\nsummary(iv_model)\n\n# Print the estimated coefficient of local labor demand on wages\n coefficient <- coef(iv_model)[2]\nprint(paste(\"The estimated coefficient of local labor demand on wages is: \", coefficient))\n\n# Basic robustness checks\n# Test for overidentifying restrictions\noverid_test <- ivreg(y ~ x + controls, instrument = ~z + controls, data = data)\nprint(paste(\"The p-value of the overidentifying restrictions test is: \", overid_test$`Chi-sq`[2]))\n\n# Test for weak instruments\nweak_instrument_test <- first_stage$fstatistic\nprint(paste(\"The F-statistic of the first-stage model is: \", weak_instrument_test))\n```\n\n## 3. Expected Findings\nWe expect the estimated coefficient of local labor demand on wages to be positive, indicating that an increase in labor demand leads to higher wages. The magnitude of the coefficient is expected to be around 0.1 to 0.3, suggesting that a 1% increase in labor demand results in a 0.1% to 0.3% increase in wages. This is a reasonable expectation based on the economic theory that labor demand shocks can drive wage changes in the labor market. The sign and magnitude of the coefficient will depend on the specific characteristics of the data and the regions being studied.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use Bartik shift-share as an instrument for local labor demand.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals a significant positive effect of local labor demand on wages.",
+    "main_effect": "0.15"
+  }
+}

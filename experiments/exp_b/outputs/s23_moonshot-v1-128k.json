@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s23",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Judge leniency as IV for incarceration on recidivism",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:27:07.027650",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 457,
+    "output_tokens": 501,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal effect of incarceration on recidivism. The instrument is the judge leniency index (z), which is the leave-one-out mean incarceration rate for the judge. The key assumption for this IV approach is that the judge leniency index affects recidivism only through the incarceration decision (exclusion restriction). Additionally, we assume that the judge leniency index is a valid instrument, meaning it is correlated with the incarceration decision (relevance) and is uncorrelated with the error term in the recidivism equation (exogeneity).\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s23_data.csv\")\n\n# Add a constant to the data for the regression\ndata$const <- 1\n\n# First stage regression: incarceration on judge leniency\nfirst_stage <- lm(x ~ z + const + controls, data = data)\n\n# Second stage regression: recidivism on predicted incarceration from first stage\nsecond_stage <- lm(y ~ predict(first_stage, newdata = data) + const + controls, data = data)\n\n# Print the coefficient of the predicted incarceration in the second stage regression\ncat(\"Coefficient of predicted incarceration on recidivism:\", coef(second_stage)[2], \"\\n\")\n\n# Robustness check: test for overidentifying restrictions (Sargan test)\nivreg <- ivreg(y ~ x | z + const + controls, data = data)\nsargan_test <- bptest(ivreg, ~ x | z + const + controls, data = data)\ncat(\"Sargan test p-value:\", saragan_test$p.value, \"\\n\")\n```\n\n## 3. Expected Findings\nThe expected sign of the coefficient of predicted incarceration on recidivism is negative, as we expect that incarceration reduces recidivism. The magnitude of the effect is difficult to predict without more information about the data and context, but it should be interpreted in the context of the specific criminal justice system and population being studied. The Sargan test p-value should ideally be above 0.05 to not reject the null hypothesis of valid instruments, indicating that the overidentifying restrictions are satisfied.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — judge leniency instrument; LATE for marginal defendants; test exclusion restriction carefully",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Incarceration increases recidivism for marginal defendants (criminogenic effect)",
+    "main_effect": "Incarceration raises 3-year recidivism probability by ~15pp for compliers"
+  }
+}

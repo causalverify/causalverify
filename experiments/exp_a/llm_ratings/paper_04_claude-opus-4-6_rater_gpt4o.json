@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI output correctly matches the identification strategy as an event study utilizing surprises from FOMC announcements and futures-implied expectations, identical to the ground truth. However, it fails to specify the direction of the effect, which is negative according to the ground truth, and this constitutes a narrative fabrication.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_04",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T10:40:51.240730+00:00"
+}

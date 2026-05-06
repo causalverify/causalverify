@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_54",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:44:11.991112",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 679,
+    "output_tokens": 164,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nThe core causal identification strategy is a Difference-in-Differences (DID) approach, leveraging the data generated from Randomized Controlled Trials (RCTs) across six diverse countries. Randomization occurred at either the village or household level, assigning units (villages or households) to either a comprehensive 'graduation' program (treatment group) or a pure control group (no program). Data are collected at two primary time points: baseline (pre-intervention) and endline (2-3 years post-program). The DID estimator will compare the change in outcomes over time for the treatment group relative to the change over time for the control group. This approach, combined with the underlying randomization, allows for the robust estimation of the causal impact of",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": null,
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Randomized controlled trial with DID structure — households/villages randomly assigned to treatment (graduation program) vs. control at each site; baseline and endline surveys provide pre-post comparison; treatment effect estimated as the DID (change in outcomes for treatment minus change for control)",
+    "key_variables": {
+      "treatment": "receipt of multi-faceted graduation program (productive asset + training + coaching + consumption support + savings + health services)",
+      "control": "randomly assigned control households (no program)",
+      "outcome": "per capita consumption (primary); also food security, asset value, income, savings, time use, health indices, psychological well-being",
+      "time_period": "baseline (pre-program) and endline (2-3 years post-program start, 1 year after program support ends)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The graduation program has significant and lasting positive effects across all six countries. At endline (1 year after program support ends), treatment households have approximately 5-10% higher consumption, significantly more assets, higher savings, better food security, more productive time use, and improved mental health. These effects are statistically significant in the pooled sample and in most individual sites. The program passes a cost-benefit test in most countries, with benefits exceeding costs within 2-3 years.",
+    "main_effect": "Pooled across 6 countries: +5-10% increase in per capita consumption, +15% increase in asset value, +0.12 SD improvement in food security index at endline; effects are positive in all 6 sites and statistically significant in the pooled sample",
+    "key_robustness": [
+      "Country-by-country analysis (effects in each of 6 countries separately)",
+      "Multiple outcome indices (consumption, assets, food security, income, savings, health, psychology)",
+      "FWER and FDR corrections for multiple hypothesis testing",
+      "Lee bounds for attrition",
+      "Balance tests at baseline (randomization check)",
+      "Cost-benefit analysis comparing program costs to consumption gains"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cluster-randomized controlled trial with ANCOVA/DID estimation; pooled across 6 country-specific RCTs",
+      "treatment": "Multi-faceted graduation program (asset + training + coaching + consumption support + savings + health)",
+      "event_window": "Endline survey approximately 2-3 years after program start (1 year after support ends)",
+      "estimation_window": "Baseline survey at program start provides pre-treatment levels for ANCOVA control",
+      "sample_period": "2007–2014 (varies by country; program duration ~24 months, endline ~12 months after program end)",
+      "unit_of_observation": "Household (~21,000 households across 6 countries, ~3,500 per site)",
+      "key_assumption": "Randomization ensures treatment and control groups are balanced in expectation. No spillovers from treatment to control within villages (addressed by village-level randomization in some sites). No differential attrition (addressed by Lee bounds)."
+    },
+    "key_magnitudes": {
+      "consumption_pooled": "+5-10% increase in per capita consumption (PPP) at endline across 6 countries",
+      "assets_pooled": "+15% increase in asset value at endline",
+      "food_security": "+0.12 SD improvement in food security index",
+      "mental_health": "+0.10 SD improvement in psychological well-being index",
+      "cost_benefit": "Benefits exceed costs within 2-3 years in 5 of 6 countries (internal rate of return > 20%)"
+    },
+    "robustness_notes_detail": "Baseline balance tests confirm successful randomization in all 6 sites. Multiple hypothesis testing corrections (Westfall-Young stepdown, Benjamini-Hochberg FDR) confirm that the main findings survive adjustment for the large number of outcomes tested. Attrition is low (< 10% in most sites) and Lee bounds confirm results are robust to differential attrition. The cross-country replication (same program, same evaluation design, different contexts) provides unusually strong external validity evidence."
+  }
+}

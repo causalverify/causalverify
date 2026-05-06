@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s58",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of Analyst Buy Recommendations on Stock Returns",
+  "model": "o3",
+  "run_at": "2026-04-14T19:48:23.279977",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 476,
+    "output_tokens": 1959,
+    "content": "## 1. Identification Strategy  \nCausal method: Event–study analysis.  \nWhy: An analyst’s buy recommendation is a clearly-timed, idiosyncratic shock to a firm.  The event–study framework isolates the stock-specific abnormal return on (or immediately after) the announcement while purging normal co-movement with the market.\n\nKey identifying assumptions  \n1. Market-model validity: E[ε_it | information_t-1]=0, i.e. absent the recommendation the stock’s return would equal α_i + β_i mkt_ret_t.  \n2. No confounding events for the same stock on the event day.  \n3. Stationary α_i and β_i over the short window we observe.  \nIf these hold, the abnormal return (AR) on day 0 is the causal effect of the recommendation; its cross-sectional mean is the average treatment effect.\n\n## 2. R Code\n```r\n# ------------------------------------------------------------\n# Event-study: impact of analyst BUY recommendations on day-0 CAR\n# ------------------------------------------------------------\nlibrary(data.table)\n\n# 1. Load data\npath <- \"experiments/exp_b/data/s58_data.csv\"\ndt   <- fread(path)\n\n# 2. Abnormal return using market model  (alpha assumed ≈ 0 over short window)\ndt[, ar_mm := ret - beta * mkt_ret]\n\n# 3. One-day CAR (event day 0)\ncar0 <- dt[event_day == 0]\n\nmean_ar   <- mean(car0$ar_mm, na.rm = TRUE)\nse_ar     <- sd(car0$ar_mm,  na.rm = TRUE) / sqrt(nrow(car0))\nt_stat_ar <- mean_ar / se_ar\np_val_ar  <- 2 * pt(abs(t_stat_ar), df = nrow(car0) - 1, lower.tail = FALSE)\n\ncat(\"=== Main result: market-model abnormal return on day 0 ===\\n\")\ncat(sprintf(\"Mean AR (%%): %.4f\\n\", 100*mean_ar))\ncat(sprintf(\"t-stat: %.2f   p-value: %.4f\\n\\n\", t_stat_ar, p_val_ar))\n\n# 4. Robustness check 1: Market-adjusted model (beta = 1, alpha = 0)\ndt[, ar_ma := ret - mkt_ret]\ncar0_ma   <- dt[event_day == 0]\nmean_ma   <- mean(car0_ma$ar_ma, na.rm = TRUE)\nse_ma     <- sd(car0_ma$ar_ma,  na.rm = TRUE) / sqrt(nrow(car0_ma))\nt_ma      <- mean_ma / se_ma\np_ma      <- 2 * pt(abs(t_ma), df = nrow(car0_ma) - 1, lower.tail = FALSE)\n\ncat(\"=== Robustness 1: market-adjusted abnormal return on day 0 ===\\n\")\ncat(sprintf(\"Mean AR (%%): %.4f\\n\", 100*mean_ma))\ncat(sprintf(\"t-stat: %.2f   p-value: %.4f\\n\\n\", t_ma, p_ma))\n\n# 5. Robustness check 2: Placebo window (pre-event days –5 to –1)\nplacebo <- dt[event_day %between% c(-5, -1),\n              .(placebo_ar = mean(ar_mm, na.rm = TRUE)),\n              by = stock_id]\nmean_pl  <- mean(placebo$placebo_ar, na.rm = TRUE)\nse_pl    <- sd(placebo$placebo_ar,  na.rm = TRUE) / sqrt(nrow(placebo))\nt_pl     <- mean_pl / se_pl\np_pl     <- 2 * pt(abs(t_pl), df = nrow(placebo) - 1, lower.tail = FALSE)\n\ncat(\"=== Robustness 2: Placebo mean abnormal return (-5 to ‑1) ===\\n\")\ncat(sprintf(\"Mean AR (%%): %.4f\\n\", 100*mean_pl))\ncat(sprintf(\"t-stat: %.2f   p-value: %.4f\\n\", t_pl, p_pl))\n```\n\n## 3. Expected Findings  \nSign: Positive abnormal return.  \nMagnitude: roughly +1 % (i.e. +0.8 % to +1.5 %) on the event day.\n\nRationale: A buy recommendation conveys favorable private information or certification, generating immediate optimism and buying pressure.  Prior literature typically finds day-0 abnormal returns between 0.5 % and 2 %.  Because some information may leak and because recommendations can be partially anticipated, the effect is unlikely to exceed ~2 %.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare 1-day CAR before and after the recommendation event.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The analysis suggests a negative impact of analyst buy recommendations on 1-day CAR.",
+    "main_effect": "-0.025"
+  }
+}

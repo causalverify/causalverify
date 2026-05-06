@@ -1,0 +1,41 @@
+{
+  "paper_id": "paper_03",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:33:06.281488",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 663,
+    "output_tokens": 1066,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nThe staggered implementation of intrastate branching deregulation across states provides a natural experiment to identify the causal effect of increased banking competition on firm innovation. We will use a difference-in-differences (DiD) approach, comparing the innovation outputs (measured by patent metrics) of firms in states that have undergone deregulation ('treated') with those that have not ('control') over time.\n\nDirectional Hypothesis:\nThe relaxation of geographic restrictions on bank branching, which increases competition among banks, will lead to an increase in firm innovation, as measured by the number of patents granted and forward citations per patent.\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\nSpecifications:\n1. Baseline DiD model: Firm-level regression of the number of patents on an indicator for deregulation, year fixed effects, and state fixed effects.\n2. DiD model with firm-level controls: Extend Specification 1 by including R&D expenditure, total assets, leverage, sales growth, and firm age as control variables.\n3. Bank market structure DiD model: Extend Specification 1 by including state-year level HHI, number of bank branches, and deposit concentration as control variables.\n4. Forward citations model: Replace the dependent variable in Specification 1 with forward citations per patent to examine the quality of innovation.\n5. Placebo test: Run Specification 1 with artificially shifted deregulation dates to test for pre-existing trends in innovation.\n\nSTEP 3 — FALSIFICATION GATE\n\nThe following empirical results would cause me to reject my hypothesis:\n- A sign reversal in the coefficient of the deregulation indicator (i.e., indicating a decrease in innovation post-deregulation).\n- p-value > 0.10 for the deregulation indicator across all main specifications.\n- A failed pre-trend test in the placebo specification (Specification 5), indicating that states exhibited differential trends in innovation prior to deregulation.\n- For models utilizing instruments, a weak first-stage F-statistic < 10.\n\nSTEP 4 — R CODE\n\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Assuming `data` is the dataset containing all variables\n\n# STEP 2 - Specification 1: Baseline DiD model\nspec1 <- lm(num_patents ~ deregulation * year + factor(state) + factor(year),\n            data = data)\n\n# STEP 2 - Specification 2: DiD model with firm-level controls\nspec2 <- lm(num_patents ~ deregulation * year + R_D + total_assets +\n              leverage + sales_growth + firm_age +\n              factor(state) + factor(year), data = data)\n\n# STEP 2 - Specification 3: Bank market structure DiD model\nspec3 <- lm(num_patents ~ deregulation * year + HHI + num_branches + \n              deposit_concentration + factor(state) + factor(year), \n              data = data)\n\n# STEP 2 - Specification 4: Forward citations model\nspec4 <- lm(forward_citations ~ deregulation * year + factor(state) + factor(year),\n            data = data)\n\n# STEP 2 - Specification 5: Placebo test\n# Shift the deregulation dates artificially for placebo test\ndata_placebo <- data %>% mutate(deregulation = lag(deregulation, n = 5, default = 0))\nspec5 <- lm(num_patents ~ deregulation_placebo * year + factor(state) + factor(year),\n            data = data_placebo)\n\n# Heteroskedasticity-robust standard errors\nspec1_robust <- coeftest(spec1, vcov = vcovHC(spec1, type = \"HC1\"))\nspec2_robust <- coeftest(spec2, vcov = vcovHC(spec2, type = \"HC1\"))\nspec3_robust <- coeftest(spec3, vcov = vcovHC(spec3, type = \"HC1\"))\nspec4_robust <- coeftest(spec4, vcov = vcovHC(spec4, type = \"HC1\"))\nspec5_robust <- coeftest(spec5, vcov = vcovHC(spec5, type = \"HC1\"))\n\n# Print summary\nprint(summary(spec1_robust))\nprint(summary(spec2_robust))\nprint(summary(spec3_robust))\nprint(summary(spec4_robust))\nprint(summary(spec5_robust))\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Numerical Results:\n- For Specifications 1-4, I expect the coefficient on the deregulation indicator to be positive and significant (p < 0.10), suggesting an increase in innovation due to increased banking competition.\n- For Specification 5, I expect no significant effect of the placebo deregulation indicator, indicating no pre-existing trends.\n\nFalsification Gate Assessment:\n- If the sign of the deregulation indicator is consistently negative or p-value > 0.10 for Specifications 1-4, the hypothesis would be rejected.\n- If the placebo test in Specification 5 shows significant results, the hypothesis would be rejected due to pre-trend falsification.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Staggered DID — treatment = passage of intrastate bank branching deregulation law, control = states that have not yet deregulated; identification relies on staggered timing of deregulation across states",
+    "key_variables": {
+      "treatment": "binary indicator for whether state has deregulated intrastate branching by year t",
+      "control": "same states before deregulation (within-state variation) and states that have not yet deregulated",
+      "outcome": "log(patents + 1) and log(citations + 1) by state-year",
+      "time_period": "1976–2006, deregulation events staggered 1978–1994"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank deregulation increases firm innovation: states that deregulate experience ~11% increase in patents and ~22% increase in patent citations",
+    "main_effect": "~11% increase in patents after intrastate branching deregulation",
+    "key_robustness": [
+      "pre-trend tests",
+      "placebo deregulation dates",
+      "alternative innovation measures (citations, patent quality)",
+      "controlling for state economic conditions"
+    ]
+  }
+}

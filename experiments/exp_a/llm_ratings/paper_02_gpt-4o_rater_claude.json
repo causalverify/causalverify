@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "Perfect strategy match - correctly identifies DID approach, proper treatment/control groups (TARP recipients vs non-recipients including those who applied but didn't receive), and appropriate time periods. However, no conclusion about direction is stated in the provided output, which appears to cut off mid-sentence, resulting in narrative fabrication failure.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_02",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:04:10.702460+00:00"
+}

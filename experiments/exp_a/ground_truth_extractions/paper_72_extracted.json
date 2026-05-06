@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: DID — treatment = adoption of wrongful-discharge protections by U.S. state courts, control = non-adopting states; shock/instrument/cutoff = adoption of wrongful-discharge protections",
+  "key_variables": {
+    "treatment": "Adoption of wrongful-discharge protections by U.S. state courts",
+    "control": "Non-adopting states",
+    "outcome": "Employment flows, firm entry rates, capital deepening, total factor productivity",
+    "instrument_or_cutoff": "Adoption of wrongful-discharge protections",
+    "time_period": "Late 1970s to early 1990s"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The introduction of wrongful-discharge protections is associated with a decline in total factor productivity.",
+  "main_effect": "Evidence of a decline in total factor productivity following adoption",
+  "key_robustness": [
+    "Industry or industry-by-year fixed effects",
+    "State-specific linear time trends",
+    "Plant fixed effects"
+  ],
+  "confidence": 0.6,
+  "notes": "The results are tentative due to potential confounding economic shocks and implausibly large subsequent growth in manufacturing employment."
+}

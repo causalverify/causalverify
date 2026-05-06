@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s49",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Impact of Mass Deworming on School Attendance",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:44:01.858572",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 554,
+    "output_tokens": 907,
+    "content": "## 1. Identification Strategy\nDifference-in-Differences (DID). This is appropriate given we have treatment and control schools observed over time periods before and after the deworming program rollout. The key assumption is parallel trends - that treated and control schools would have had similar trends in attendance rates absent the intervention. The treat_x_post coefficient captures the causal effect of the deworming program on attendance.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s49_data.csv\")\n\n# Main DID regression with robust standard errors\ndid_model <- lm(y ~ treated + post + treat_x_post, data = data)\nrobust_se <- vcovHC(did_model, type = \"HC1\")\nrobust_results <- coeftest(did_model, vcov = robust_se)\n\n# Print main results\ncat(\"=== MAIN DID RESULTS ===\\n\")\nprint(robust_results)\ncat(\"\\nTreatment Effect (DID coefficient):\", coef(did_model)[\"treat_x_post\"], \"\\n\")\n\n# Robustness check 1: Fixed effects model\nfe_model <- lm(y ~ treat_x_post + factor(unit_id) + factor(period), data = data)\ncat(\"\\n=== ROBUSTNESS: FIXED EFFECTS MODEL ===\\n\")\ncat(\"Treatment Effect with FE:\", coef(fe_model)[\"treat_x_post\"], \"\\n\")\n\n# Robustness check 2: Check parallel trends assumption\npre_trend_data <- data[data$post == 0, ]\ntrend_test <- lm(y ~ treated * period, data = pre_trend_data)\ncat(\"\\n=== PARALLEL TRENDS CHECK ===\\n\")\ncat(\"Pre-treatment trend difference (treated*period):\", coef(trend_test)[\"treated:period\"], \"\\n\")\ncat(\"P-value for trend difference:\", summary(trend_test)$coefficients[\"treated:period\", \"Pr(>|t|)\"], \"\\n\")\n\n# Summary statistics by group\ncat(\"\\n=== SUMMARY STATISTICS ===\\n\")\nsummary_stats <- data %>%\n  group_by(treated, post) %>%\n  summarise(\n    mean_attendance = mean(y),\n    n_obs = n(),\n    .groups = 'drop'\n  )\nprint(summary_stats)\n\n# Manual DID calculation for verification\npre_treat <- summary_stats$mean_attendance[summary_stats$treated == 1 & summary_stats$post == 0]\npost_treat <- summary_stats$mean_attendance[summary_stats$treated == 1 & summary_stats$post == 1]\npre_control <- summary_stats$mean_attendance[summary_stats$treated == 0 & summary_stats$post == 0]\npost_control <- summary_stats$mean_attendance[summary_stats$treated == 0 & summary_stats$post == 1]\n\nmanual_did <- (post_treat - pre_treat) - (post_control - pre_control)\ncat(\"\\nManual DID calculation:\", manual_did, \"\\n\")\n```\n\n## 3. Expected Findings\nI expect a small negative coefficient (around -0.2 to -0.5) for the treatment effect. While deworming programs typically improve long-term health and educational outcomes, there could be short-term negative effects on attendance due to: (1) temporary side effects from deworming medication causing students to miss school, (2) disruption from program implementation activities, or (3) parental concerns about the treatment leading to temporary withdrawal. The magnitude should be modest as any negative effects would likely be temporary and outweighed by health benefits over time.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in attendance rates over time between treated and untreated schools.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mass deworming program is associated with a decrease in school attendance rates.",
+    "main_effect": -0.15
+  }
+}

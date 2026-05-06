@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s40",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Impact of Crop Insurance Subsidy Reform on Agricultural Land Use",
+  "model": "o3",
+  "run_at": "2026-04-14T19:42:13.728094",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 490,
+    "output_tokens": 1315,
+    "content": "## 1. Identification Strategy  \nMethod: Difference-in-Differences (DID) with two-way fixed effects.  \n • Treated farms form the treatment group; non-treated farms are the control.  \n • `post` marks observations after the subsidy reform.  \n • The interaction `treat_x_post` captures the causal effect of interest.  \n\nKey assumption – Parallel Trends: In the absence of the reform, the average (log) acreage of treated and control farms would have followed the same time trend. We partially test this with an event-study pre-trend check and a placebo regression restricted to the pre-reform period.\n\n## 2. R Code\n```r\n#############################\n# Impact of Crop-Insurance Subsidy Reform on Planted Acreage\n#############################\n\n# 0. Packages ---------------------------------------------------------------\nrequired <- c(\"data.table\",\"fixest\",\"modelsummary\")\ninstalled <- rownames(installed.packages())\nfor(p in required[!(required %in% installed)]) install.packages(p, repos = \"https://cloud.r-project.org\")\nlibrary(data.table); library(fixest); library(modelsummary)\n\n# 1. Read data --------------------------------------------------------------\ndt <- fread(\"experiments/exp_b/data/s40_data.csv\")\n\n# 2. Main DID: two-way fixed effects ----------------------------------------\ndid_main <- feols(y ~ treat_x_post | unit_id + period,\n                  data = dt,\n                  cluster = \"unit_id\")     # cluster at farm level\n\ncat(\"\\n=== Main DID result ===\\n\")\nprint(etable(did_main, se.below = TRUE, dict = c(treat_x_post = \"Treatment × Post\")))\n\n# 3. Event-study (Sun & Abraham 2020 style) ---------------------------------\n# This checks for pre-trends and dynamic effects\nes <- feols(y ~ sunab(treated, period) | unit_id + period,\n            data = dt, cluster = \"unit_id\")\n\ncat(\"\\n=== Event-study pre-trend coefficients ===\\n\")\npre_trend <- coefplot(es,\n            keep = \"c:-\",   # keep only leads (pre-periods)\n            main = \"Leads (pre-treatment years) should be ~0\")\nprint(pre_trend)\n\n# 4. Placebo test: use only pre-reform data ---------------------------------\nplacebo <- feols(y ~ treated | unit_id + period,\n                 data = dt[post == 0],\n                 cluster = \"unit_id\")\n\ncat(\"\\n=== Placebo regression (pre-reform only) ===\\n\")\nprint(etable(placebo, se.below = TRUE, dict = c(treated = \"Fake Treatment\")))\n\n# 5. Robustness: alternative SE clustering (time) ---------------------------\ndid_time_clust <- feols(y ~ treat_x_post | unit_id + period,\n                        data = dt,\n                        cluster = \"period\")\n\ncat(\"\\n=== DID with period-clustered SEs ===\\n\")\nprint(etable(did_time_clust, se.below = TRUE))\n\n# 6. Clean numerical summary -----------------------------------------------\ncoef_main  <- coef(did_main)[\"treat_x_post\"]\nse_main    <- se(did_main)[\"treat_x_post\"]\ncat(\"\\n\\n******** Numerical result ********\\n\")\ncat(sprintf(\"DID estimate (Treatment × Post) = %.4f  (SE = %.4f)\\n\", coef_main, se_main))\n```\n\n## 3. Expected Findings  \nEconomic intuition suggests that more favorable crop-insurance terms reduce downside risk, encouraging farmers to plant more land. Because the dependent variable is in logs, we expect a positive coefficient. A reasonable magnitude is a 5–10 percent increase in acreage, i.e. an estimated coefficient around +0.05 to +0.10.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log acres planted between treated and untreated farms before and after the subsidy reform.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The subsidy reform led to an increase in the log of acres planted.",
+    "main_effect": "0.3"
+  }
+}

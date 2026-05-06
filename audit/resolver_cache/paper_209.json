@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_209",
+  "title": "MPs for Sale? Returns to Office in Postwar British Politics",
+  "authors": "Eggers & Hainmueller",
+  "year": null,
+  "journal": "AER",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1017/s0003055409990190",
+    "title": "MPs for Sale? Returns to Office in Postwar British Politics",
+    "year": 2009,
+    "journal": "American Political Science Review",
+    "citations": 319
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "eggers",
+      "hainmueller"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "american political science review",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 319,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

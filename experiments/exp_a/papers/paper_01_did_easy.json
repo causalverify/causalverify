@@ -1,0 +1,85 @@
+{
+  "paper_id": "paper_01",
+  "source": "Journal of Finance, 2010",
+  "authors": "Ivashina & Scharfstein",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "research_question": "How did the banking panic of fall 2008 affect the supply of credit to large corporate borrowers? Specifically, did stresses on bank liquidity—arising from reliance on short-term wholesale funding and from unexpected drawdowns of pre-existing credit lines—cause banks to curtail new lending to firms, beyond what would be expected from a contemporaneous decline in loan demand?",
+  "data_description": "The primary data source is Reuters' DealScan database of large (mostly syndicated) corporate loans originated in the United States, covering loans whose mean size between 2000 and 2006 was $467 million and whose borrowers had median sales of about $0.5 billion. The authors construct quarterly and monthly aggregates from 2000 through December 2008, broken out by loan purpose (restructuring vs. real investment), credit rating (investment vs. non-investment grade), and facility type (term loans vs. revolving credit lines). Bank-level liability information (deposits, assets) is taken from Call Reports as of year-end 2007 (and 2006). Aggregate C&I loans come from the Federal Reserve Board's H.8 release and the Shared National Credit Program. The unit of observation in cross-sectional analyses is the bank (38 lead banks); a supplementary firm-level sample of 443 publicly traded manufacturers is built from SEC filings and Compustat to measure credit-line drawdowns. News reports from Factiva/Reuters document specific drawdowns from August through December 2008.",
+  "institutional_context": "The setting is the U.S. corporate loan market during the 2007–2008 financial crisis, particularly the acute banking panic following the September 2008 failure of Lehman Brothers and the near-failures and government interventions involving Washington Mutual, Fannie Mae, Freddie Mac, and AIG. Syndicated lending—originated by lead banks and shared with other banks, investment banks, finance companies, CLOs, hedge funds, and other institutional investors—had become the dominant channel through which large firms borrow. During the panic, short-term creditors (commercial paper holders, repo lenders, counterparties) refused to roll over funding, while corporate borrowers simultaneously drew down existing committed credit lines to secure liquidity, producing a spike in C&I loans on bank balance sheets even as new loan originations collapsed. Banks differed in their vulnerability to these twin pressures based on their reliance on deposit versus short-term wholesale funding and their co-syndication exposure to Lehman on revolving credit facilities.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.36,
+      "unit": "log(new loan volume)",
+      "interpretation": "DID coefficient on wholesale_funding_high × post_Lehman; ~47% lending decline for high-wholesale banks"
+    },
+    "secondary_estimate": {
+      "value": -0.47,
+      "unit": "fraction",
+      "interpretation": "Co-syndicate banks relative to others (Table 4)"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Table 3–4 in Ivashina & Scharfstein (2010)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "FR Y-9C call reports (FFIEC)",
+      "FDIC bank list"
+    ],
+    "proprietary_sources": [
+      "DealScan (WRDS license required for syndicated loan data)"
+    ],
+    "proxy_strategy": "Use FFIEC call report loan data as volume proxy; DealScan can be approximated with Y-14Q (available via Fed) for large banks",
+    "replicability": "partial — core DID estimable from call report data but deal-level syndicated loan detail requires DealScan",
+    "public_proxy_available": true,
+    "replication_tier": "proxy",
+    "data_limitations": "DealScan loan-level data requires commercial license. Proxy replication using stock returns captures market perception of lending capacity but not actual loan volumes. FDIC Call Reports provide aggregate lending but not individual loan terms.",
+    "public_data_sources_detail": [
+      "yfinance (bank stock prices, no key required)",
+      "FDIC Call Reports via FFIEC CDR (free, quarterly bank balance sheets)",
+      "FRED (macro indicators for controls)"
+    ]
+  },
+  "title": "Bank Lending During the Financial Crisis of 2008",
+  "doi": "10.1016/j.jfineco.2009.12.001",
+  "volume": 97,
+  "issue": 3,
+  "pages": "319-338",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences",
+      "treatment": "Banks with high dependence on short-term wholesale funding (measured by deposits-to-assets ratio, with low deposit share = high wholesale dependence)",
+      "control": "Banks with high retail deposit funding",
+      "event": "Lehman Brothers bankruptcy, 2008-09-15",
+      "pre_period": "Pre-Lehman (2006-Q1 to 2008-Q3)",
+      "post_period": "Post-Lehman (2008-Q4 to 2009-Q1)",
+      "unit_of_observation": "Syndicated loan facility level",
+      "key_assumption": "Parallel trends in lending between wholesale-funded and deposit-funded banks absent the Lehman shock"
+    },
+    "key_magnitudes": {
+      "new_loans_decline_peak": "47% decline in new loans to large borrowers (Q4 2008 vs Q3 2008)",
+      "new_loans_decline_boom": "79% decline relative to credit boom peak (Q2 2007)",
+      "real_investment_lending_decline": "14% decline in lending for real investment (Q4 2008)"
+    },
+    "robustness_notes_detail": "Authors acknowledge they cannot fully prove supply shock is uncorrelated with loan demand. Results hold across multiple loan types."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 82692,
+  "phase1_source_version": "v2primeprime_full_text"
+}

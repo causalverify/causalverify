@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_232",
+  "title": "Trade Integration, Market Size, and Industrialization: Evidence from China's National Trunk Highway System",
+  "authors": "Faber",
+  "year": null,
+  "journal": "JIE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1093/restud/rdu010",
+    "title": "Trade Integration, Market Size, and Industrialization: Evidence from China's National Trunk Highway System",
+    "year": 2014,
+    "journal": "The Review of Economic Studies",
+    "citations": 988
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "faber"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jie",
+    "journal_oa": "restud",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 988,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

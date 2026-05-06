@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model correctly identifies the use of a Regression Discontinuity Design (RDD) with the vote share as the running variable and a 50% cutoff, matching the ground truth. However, it fails to state the positive direction of the effect seen in the ground truth conclusion. Thus, the direction score is 0, and it is a narrative fabrication failure.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_09",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:00:10.828818+00:00"
+}

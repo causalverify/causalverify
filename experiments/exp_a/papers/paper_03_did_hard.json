@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_03",
+  "source": "Journal of Finance, 2015",
+  "authors": "Cornaggia, Mao, Tian & Wolfe",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "research_question": "Does an increase in competition among banks within a state causally affect the level and quality of innovation produced by firms headquartered in that state? How do such effects differ between publicly traded corporations and privately held firms, and through what channels—external finance dependence, prior banking relationships, or the market for acquisition targets—do these effects operate?",
+  "data_description": "The sample covers U.S.-listed corporations and private firms from 1976 to 2006. Patent and citation data come from the latest version of the NBER Patent Citation database, providing annual information on patent assignees, application and grant years, technology classes, and citations for over three million USPTO patents. Corporation financials are from Compustat Industrial Annual Files, merger and acquisition data from SDC, bank loan data (including lender locations) from Thomson Reuters DealScan, and counts of private non-farm businesses from the U.S. Census Bureau. Key variables include state-level patent counts and citations (aggregated separately for public corporations and private firms), patent generality and originality scores, an index of interstate branching restrictions ranging 0–4, state labor-force composition across eight industries, gross state product, external finance dependence measures, and firm-level controls (R&D/assets, ROA, PPE/assets, leverage, capex, Tobin's Q, size, age). Observations are at the state-year, corporation-year, and private firm-year levels.",
+  "institutional_context": "The setting is the U.S. Interstate Banking and Branching Efficiency Act (IBBEA) of 1994, which legalized interstate bank branching beginning in 1997. While IBBEA permitted interstate branching nationally, individual states retained discretion over four specific provisions that could erect entry barriers: a minimum age requirement for target institutions, restrictions on de novo interstate branching, restrictions on acquisition of individual branches, and statewide deposit caps. States adopted and relaxed these provisions at different times between 1994 and 2005, generating staggered, state-level variation in openness to out-of-state bank entry. Following Rice and Strahan (2010), the resulting increases in branch entry expanded credit supply within states and lowered the cost of credit, particularly affecting small-firm financing. This staggered relaxation of branching restrictions provides plausibly exogenous shifts in within-state banking competition that motivate comparisons of innovation outcomes across states and over time.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.104,
+      "unit": "log(patents+1)",
+      "interpretation": "Staggered DID coefficient: intrastate branching deregulation increases log patents by ~10.4% (~11%)"
+    },
+    "secondary_estimate": {
+      "value": 0.2,
+      "unit": "log(citations+1)",
+      "interpretation": "Citations increase ~22% post-deregulation"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Table 3, Column (1) in Cornaggia et al. (2015)"
+  },
+  "data_availability": {
+    "status": "mostly_public",
+    "public_sources": [
+      "USPTO patent database (public, bulk download)",
+      "FDIC Summary of Deposits (public)",
+      "Kroszner & Strahan (1999) deregulation dates (academic dataset, widely shared)",
+      "FFIEC call reports (public)"
+    ],
+    "proprietary_sources": [
+      "Compustat (WRDS) for firm-level R&D and financials"
+    ],
+    "proxy_strategy": "USPTO bulk data freely available; state deregulation dates from Kroszner-Strahan table (published in paper); firm-level Compustat can be proxied with Wharton WRDS or Calcbench",
+    "replicability": "high for state-level analysis; medium for firm-level (Compustat needed)",
+    "public_proxy_available": true,
+    "replication_tier": "partial (ID strategy and patent outcomes: full; firm-level financial controls: proxy via EDGAR)",
+    "data_limitations": "Compustat provides comprehensive firm financials but requires commercial license. Public alternative via EDGAR is possible but requires substantial parsing. Patent-firm matching at scale requires NBER concordance files (public but complex). The main identification (staggered DID using Rice-Strahan) is fully replicable with public data.",
+    "public_data_sources_detail": [
+      "USPTO PatentsView (free, patent counts and citations by assignee/state)",
+      "Rice-Strahan deregulation index (published in their 2010 JF paper, widely reproduced)",
+      "SEC EDGAR (firm financials for public firms, free)",
+      "FRED / BEA (state-level GDP, employment, etc.)",
+      "FDIC Summary of Deposits (state-level banking concentration, free)"
+    ]
+  },
+  "title": "Does Banking Competition Affect Innovation?",
+  "doi": "10.1016/j.jfineco.2014.09.001",
+  "volume": 115,
+  "issue": 1,
+  "pages": "189-209",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Staggered DID — treatment = passage of intrastate bank branching deregulation law, control = states that have not yet deregulated; identification relies on staggered timing of deregulation across states",
+    "key_variables": {
+      "treatment": "binary indicator for whether state has deregulated intrastate branching by year t",
+      "control": "same states before deregulation (within-state variation) and states that have not yet deregulated",
+      "outcome": "log(patents + 1) and log(citations + 1) by state-year",
+      "time_period": "1976–2006, deregulation events staggered 1978–1994"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank deregulation increases firm innovation: states that deregulate experience ~11% increase in patents and ~22% increase in patent citations",
+    "main_effect": "~11% increase in patents after intrastate branching deregulation",
+    "key_robustness": [
+      "pre-trend tests",
+      "placebo deregulation dates",
+      "alternative innovation measures (citations, patent quality)",
+      "controlling for state economic conditions"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences with staggered treatment",
+      "treatment": "Firms in states that removed branching restrictions (increased banking competition)",
+      "control": "Firms in states that had not yet deregulated (or maintained restrictions)",
+      "event": "State-specific dates of branching deregulation (staggered 1994-2005)",
+      "pre_period": "Before state-specific deregulation",
+      "post_period": "After state-specific deregulation",
+      "unit_of_observation": "Firm-year (patenting firms matched with state-level banking deregulation)",
+      "key_assumption": "Parallel trends in innovation between early- and late-deregulating states; timing of deregulation is not driven by anticipated changes in innovation"
+    },
+    "key_magnitudes": {
+      "patent_increase": "Statistically significant increase in patent counts and patent citations following deregulation",
+      "external_finance_channel": "Effect concentrated among firms with higher external finance dependence (Rajan-Zingales measure)"
+    },
+    "robustness_notes_detail": "Robust to controlling for state-level economic conditions, industry trends, firm fixed effects. Addresses potential concern that deregulation was endogenous to expected innovation by showing no pre-trends."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 106566,
+  "phase1_source_version": "v2primeprime_full_text"
+}

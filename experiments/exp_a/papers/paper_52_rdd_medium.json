@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_52",
+  "source": "American Economic Review, 2008",
+  "authors": "Ferraz & Finan",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Exposing Corrupt Politicians: The Effects of Brazil's Publicly Released Audits on Electoral Outcomes",
+  "doi": "10.1257/aer.98.4.1274",
+  "volume": 98,
+  "issue": 4,
+  "pages": "1274-1308",
+  "domain": "development",
+  "research_question": "Does the public disclosure of objective information about local government corruption practices affect the electoral fortunes of incumbent mayors? Furthermore, does the presence of local mass media condition how voters respond to such information when deciding whether to re-elect incumbents?",
+  "data_description": "The analysis combines several Brazilian data sources covering the 2004 municipal elections. Corruption measures are constructed by the authors from federal audit reports covering 669 municipalities selected across 13 monthly lotteries between April 2003 and 2005, coding irregularities into categories of fraudulent procurement, diversion of public funds, and over-invoicing. Electoral data (vote shares, win margins, candidate characteristics, party affiliation, incumbent re-election outcomes for 2000 and 2004) come from the Tribunal Superior Eleitoral. Municipal socioeconomic characteristics (population density, literacy, urbanization, per capita income, income inequality) come from the 2000 IBGE Population Census. Institutional and media variables (number of AM radio stations, daily newspapers, judicial district, municipal guards, paved roads) come from IBGE's 1999 Perfil dos Municípios Brasileiros survey. The unit of observation is the municipality, restricted to those with under 450,000 inhabitants.",
+  "institutional_context": "In May 2003, Brazil's federal government launched an anti-corruption program administered by the Controladoria Geral da União (CGU) to monitor municipal use of federally transferred funds. Each month, roughly 50–60 municipalities (out of all those with fewer than 450,000 inhabitants) are selected through a public lottery held alongside the national lotteries in Brasília, witnessed by press, parties, and civil society. Teams of 10–15 auditors spend about a week inspecting accounts, public works, and service delivery, and meeting community members. Detailed reports listing irregularities are submitted to the central CGU, the Tribunal de Contas da União, public prosecutors, and the municipal legislature, while summaries are posted online and disseminated to the media. The October 2004 municipal elections occurred while audits were ongoing: 376 municipalities had reports released before the election, and 300 only after, providing variation in whether voters had access to audit findings prior to voting.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.07,
+      "unit": "percentage point reduction in incumbent vote share (pre-election audit release × corrupt incumbent)",
+      "interpretation": "Incumbents with 2+ corruption violations whose audit reports were released before the election received approximately 7 percentage points fewer votes than equally corrupt incumbents whose reports came out after the election"
+    },
+    "secondary_estimate": {
+      "value": -0.2,
+      "unit": "percentage point reduction in re-election probability for corrupt incumbents with pre-election release",
+      "interpretation": "Pre-election audit release reduces the probability that a corrupt incumbent wins re-election by approximately 20 percentage points"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Ferraz & Finan (2008)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "CGU audit reports (publicly available from Brazilian government website — free)",
+      "TSE election data (Brazilian electoral tribunal — free)",
+      "IBGE municipal demographics (Brazilian Census Bureau — free)",
+      "Ferraz & Finan replication data (AER website — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available from Brazilian government sources. Replication data is posted on the AER website.",
+    "replicability": "high — all data publicly available; replication package available",
+    "public_proxy_available": true,
+    "replication_tier": "full (audit reports, election data, and demographics all freely available from Brazilian government; replication data on AER website)",
+    "data_limitations": "Limited to municipalities selected by lottery (not all Brazilian municipalities). Audit quality and corruption classification may vary across audit teams. Short-run electoral effects may not capture long-run institutional impacts. The study examines only one election cycle (2004).",
+    "public_data_sources_detail": [
+      "CGU (Brazilian audit reports — free from www.cgu.gov.br)",
+      "TSE (election results — free from www.tse.jus.br)",
+      "IBGE (municipal demographics — free from www.ibge.gov.br)",
+      "AER replication data (code and data — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Regression discontinuity / natural experiment based on random audit timing — the running variable is the timing of audit report release relative to the October 2004 election; municipalities whose reports were released before the election (voters informed) compared to those released after (voters uninformed); random lottery determines timing",
+    "key_variables": {
+      "treatment": "audit report publicly released before the October 2004 municipal election (binary, determined by random lottery timing)",
+      "control": "audit report released after the election (voters did not have corruption information when voting)",
+      "outcome": "incumbent mayor's vote share in October 2004 election; probability of re-election",
+      "time_period": "Audits 2003-2005; elections October 2004"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Voters significantly punish corrupt incumbents when they have information from audit reports. Incumbents found to have two or more corruption violations whose reports were released before the election received approximately 7 percentage points fewer votes than equally corrupt incumbents whose reports were released after the election. The effect is concentrated among incumbents with severe corruption findings and is larger in municipalities with local radio stations (better information dissemination).",
+    "main_effect": "Pre-election audit release reduces corrupt incumbents' vote share by approximately 7 percentage points; effect is larger with more corruption violations and with local radio coverage",
+    "key_robustness": [
+      "Controlling for number and severity of audit violations",
+      "Interaction with local media presence (radio stations amplify the information effect)",
+      "Placebo: no effect of audit timing on non-corrupt incumbents (those with zero violations)",
+      "Balance tests: pre-election and post-election audit municipalities are similar on observables",
+      "Continuous measure of corruption severity (not just binary corrupt/not corrupt)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Natural experiment based on random audit lottery timing; regression of incumbent vote share on audit-before-election indicator interacted with corruption level; equivalent to a DID where 'treatment' is information exposure",
+      "treatment": "Audit report released before October 2004 election (binary, randomly determined by lottery schedule)",
+      "event_window": "October 2004 municipal election",
+      "estimation_window": "Audits conducted 2003-2005; comparison of pre- vs post-election release groups",
+      "sample_period": "2003–2005 (audits); 2004 (election)",
+      "unit_of_observation": "Municipality (approximately 600 audited municipalities)",
+      "key_assumption": "The timing of audit report release (before vs. after the election) is random, determined by the lottery schedule. Municipalities audited before vs. after the election are comparable in all characteristics. The random lottery ensures that pre-election audit municipalities are not selected based on anticipated electoral outcomes."
+    },
+    "key_magnitudes": {
+      "vote_share_penalty": "-7 percentage points for corrupt incumbents (2+ violations) with pre-election report release",
+      "no_corruption_effect": "No significant vote share effect for incumbents with 0 violations (placebo: information about honest governance does not change votes)",
+      "radio_amplification": "Effect approximately 2x larger in municipalities with local radio stations (better information dissemination)",
+      "re_election_probability": "Corrupt incumbents with pre-election release approximately 20 percentage points less likely to win re-election"
+    },
+    "robustness_notes_detail": "Balance tests confirm that pre-election and post-election audit groups are similar on municipality characteristics (population, income, education, prior election outcomes). The placebo result (no effect on non-corrupt incumbents) rules out a general 'audit attention' effect and isolates the corruption information channel. The interaction with radio stations provides causal evidence on the media's role in democratic accountability. Results are robust to controlling for municipality fixed characteristics and state fixed effects."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 114936,
+  "phase1_source_version": "v2primeprime_full_text"
+}

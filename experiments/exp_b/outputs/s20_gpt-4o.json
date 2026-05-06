@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s20",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Distance to bank as IV for savings rate",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:02.515863",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 440,
+    "output_tokens": 398,
+    "content": "## 1. Identification Strategy\nWe will use Instrumental Variables (IV) to determine the causal effect of having a bank account on household savings. The instrumental variable (IV) here is the distance to the nearest bank branch (`z`). The key assumptions are:\n- The instrument relevance assumption: There is a significant correlation between the instrument (`z`) and the endogenous variable (`x`, i.e., account ownership). This is confirmed as the first stage relationship is negative.\n- The exclusion restriction: The instrument affects the dependent variable (`y`, savings) only through the endogenous variable (`x`, in this case, having a bank account), and not through any other pathway.\n\n## 2. R Code\n```r\n# Required libraries\nlibrary(AER)\n\n# Load the data\ndata_path <- \"experiments/exp_b/data/s20_data.csv\"\ndata <- read.csv(data_path)\n\n# First stage regression: Distance → Account Ownership\nfirst_stage <- lm(x ~ z + controls, data=data)\n\n# Second stage regression using IV\niv_model <- ivreg(y ~ x + controls | z + controls, data=data)\n\n# Output result: Coefficient of having a bank account on savings\nsummary(iv_model)\n\n# Check the first stage results to ensure strong relevance\nsummary(first_stage)\n\n# Robustness check: Check endogeneity of the instrument using Durbin-Wu-Hausman test\nhausman_test <- hausman.iv(y ~ x + controls | z + controls, ivreg = iv_model)\nprint(hausman_test)\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the effect of having a bank account on savings, indicating that having a bank account increases household savings. The magnitude of the coefficient will depend on the strength of the relationship between the instrument and account ownership, as well as the true causal impact of account ownership on savings. If the distance to the bank strongly discourages account ownership, we might see a substantial positive impact.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: branch distance; first stage: distance → account ownership (negative)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank account ownership significantly increases savings",
+    "main_effect": "Having an account increases monthly savings by ~40% (IV estimate)"
+  }
+}

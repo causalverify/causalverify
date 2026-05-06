@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI output correctly identifies the Event Study with the Suharto health news as exogenous shocks, matching the ground truth strategy. However, it does not clearly state the conclusion direction, which should be positive. Thus, it receives a full strategy score but a zero direction score due to the lack of clear conclusion direction.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_31",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:02:27.425833+00:00"
+}

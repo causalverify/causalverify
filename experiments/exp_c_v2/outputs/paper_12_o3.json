@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_12",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:23.014411",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 665,
+    "output_tokens": 2091,
+    "content": "STEP 1 — PRE-COMMITMENT  \n\nCausal identification strategy  \nI will estimate the causal effect of acquirer size on announcement-period abnormal returns by comparing “large” and “small” acquirers while conditioning on a standard set of observable deal, firm, year, and industry characteristics.  Size is measured ex-ante (total assets from the most recent fiscal year-end before the announcement), so reverse-timing bias is minimal.  Remaining selection on unobservables is acknowledged but not addressed beyond fixed effects.\n\nDirectional hypothesis (H):  \nLarge acquirers earn lower announcement-period cumulative abnormal returns (CAR[-1,+1]) than small acquirers; i.e., the coefficient on a LargeAcquirer dummy is negative.\n\nThis completes Step 1; no changes are allowed after this point.  \n-------------------------------------------------------------------\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five specifications are pre-committed.\n\nSpecification 1 (Diff-in-Means)  \nCAR[-1,+1] = α + β LargeAcquirer  \n\nSpecification 2 (Baseline OLS)  \nCAR[-1,+1] = α + β LargeAcquirer + γ′DealControls + δ′FirmControls + YearFE + 2-digit SIC FE  \nDealControls: CashDummy, StockDummy (omitted category = combo), Log(DealValue), RelativeDealSize, PublicTarget, PrivateTarget (omitted = subsidiary).  \nFirmControls: Log(TotalAssets), TobinQ, Leverage, CashFlow/Assets.  (Log size is included to net out continuous size effects beyond the Large dummy.)\n\nSpecification 3 (Median/Quantile)  \nMedian (τ = 0.50) regression of Spec 2.\n\nSpecification 4 (Dollar Gain OLS)  \nDollarGain = CAR[-1,+1] × (MarketCap pre-announcement)  \nDollarGain = α + β LargeAcquirer + γ′DealControls + δ′FirmControls + YearFE + SIC FE.\n\nSpecification 5 (Interaction: Stock Payment)  \nCAR[-1,+1] = α + β1 LargeAcquirer + β2 StockDummy  \n                       + β3 (LargeAcquirer × StockDummy) + other controls as in Spec 2.\n\nNo additional specifications will be run.  \n-------------------------------------------------------------------\n\nSTEP 3 — FALSIFICATION GATE  \n\nThe directional hypothesis is rejected if BOTH of the following occur:  \na) In Specification 2, β (LargeAcquirer) is ≥ 0 OR has p-value > 0.10.  \nAND  \nb) In Specification 1, the mean CAR of large acquirers is not lower than that of small acquirers (two-sided t-test, p > 0.10).\n\nEither condition failing to show lower returns for large firms triggers rejection.  \n-------------------------------------------------------------------\n\nSTEP 4 — R CODE (self-contained, only the five specs)\n\n```r\n### --- Load libraries ---\nlibrary(tidyverse)\nlibrary(lmtest)      # coeftest\nlibrary(sandwich)    # vcovHC\nlibrary(quantreg)    # rq\n\n### --- Read in data (expect csv with one row per deal) ---\n# Variables assumed:\n# car  : CAR[-1,+1] in %\n# large: 1 = acquirer in top two size quintiles, 0 otherwise\n# cash, stock         : payment method dummies\n# deal_value          : $ millions, 2020$\n# rel_size            : deal_value / acquirer_mktcap\n# public_t, private_t : target status dummies\n# log_assets          : ln(total assets, $2020m)\n# tobinq, leverage, cf_assets\n# year, sic2\n# mktcap              : acquirer market cap $m pre-announcement\n\ndf <- read_csv(\"mna_master.csv\") %>%\n  mutate(log_dealvalue = log(deal_value),\n         combo = 1 - cash - stock)   # implicit for clarity\n\n### --- Helper for robust SEs ---\nrobust <- function(fm) coeftest(fm, vcov = vcovHC(fm, type = \"HC1\"))\n\n### SPEC 1: difference in means ----------------------------\nspec1 <- t.test(car ~ large, data = df, var.equal = FALSE)\n\n### SPEC 2: baseline OLS -----------------------------------\nspec2 <- lm(car ~ large + cash + stock + log_dealvalue + rel_size +\n              public_t + private_t +\n              log_assets + tobinq + leverage + cf_assets +\n              factor(year) + factor(sic2), data = df)\nspec2_r <- robust(spec2)\n\n### SPEC 3: median regression -------------------------------\nspec3 <- rq(car ~ large + cash + stock + log_dealvalue + rel_size +\n              public_t + private_t +\n              log_assets + tobinq + leverage + cf_assets +\n              factor(year) + factor(sic2), data = df, tau = 0.5)\nspec3_se <- summary(spec3, se = \"nid\")  # nid = Powell kernel SEs\n\n### SPEC 4: dollar gain OLS --------------------------------\ndf <- df %>% mutate(dollargain = car/100 * mktcap)  # CAR is percent\nspec4 <- lm(dollargain ~ large + cash + stock + log_dealvalue + rel_size +\n              public_t + private_t +\n              log_assets + tobinq + leverage + cf_assets +\n              factor(year) + factor(sic2), data = df)\nspec4_r <- robust(spec4)\n\n### SPEC 5: interaction with stock payment -----------------\nspec5 <- lm(car ~ large*stock + cash + log_dealvalue + rel_size +\n              public_t + private_t +\n              log_assets + tobinq + leverage + cf_assets +\n              factor(year) + factor(sic2), data = df)\nspec5_r <- robust(spec5)\n\n### --- Output objects for later inspection ---------------\nsave(spec1, spec2_r, spec3_se, spec4_r, spec5_r, file = \"RID_results.RData\")\n```\n-------------------------------------------------------------------\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (EXPECTED)\n\nBased on the published literature, I expect:\n\nSpecification 1:  \nMean CAR small = +1.5 %  \nMean CAR large = ‑0.2 %  \nt-stat ≈ ‑5.0 (p < 0.001).\n\nSpecification 2:  \nβ̂(LargeAcquirer) ≈ ‑1.7 % (std.err ≈ 0.3 %), t ≈ -5.7, p < 0.001.\n\nSpecification 3:  \nMedian effect similar, β̂ ≈ ‑1.0 %, z ≈ -4.\n\nSpecification 4:  \nDollarGain coefficient ≈ ‑$45 million (std.err ≈ 15), t ≈ -3.\n\nSpecification 5:  \nβ̂1 (Large) ≈ ‑1.0 %  \nβ̂3 (Large × Stock) ≈ ‑1.2 % additional, jointly reinforcing the size discount when stock is used.\n\nGate assessment  \nBoth parts of the falsification gate would be PASSED (negative and significant effects), so the directional hypothesis would NOT be rejected.\n\nEND OF RID PROTOCOL",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "negative",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with cross-sectional OLS regression — events are M&A deal announcements; key cross-sectional variable is acquirer firm size (log of total assets or size quintile dummy); outcome is acquirer 3-day cumulative abnormal return (CAR) over [-1, +1] and dollar gain (CAR × market cap) around announcement",
+    "key_variables": {
+      "treatment": "acquirer firm size (log total assets, continuous; or large-firm binary indicator for top two size quintiles)",
+      "control": "small acquirers (bottom three size quintiles) as reference group in OLS regression",
+      "outcome": "acquirer 3-day CAR [-1, +1] as primary measure; also dollar gain (CAR × pre-announcement market cap) to separate size effect from mechanical scaling",
+      "time_period": "1980–2001 full sample; sub-periods 1980–1989 and 1990–2001 compared"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Large acquirers earn significantly lower announcement returns than small acquirers; small firms (bottom three quintiles) earn average 3-day CAR of +2.3% while large firms (top two quintiles) earn -1.0%; the size discount is robust to controls and explains the poor aggregate M&A performance of the 1990s; large acquirers in the 1990s destroyed approximately $240 billion in shareholder wealth",
+    "main_effect": "Acquirer size effect: approximately -3.3 percentage points from smallest to largest size quintile in 3-day announcement CAR; effect is robust to OLS controls for deal and firm characteristics",
+    "key_robustness": [
+      "Alternative size measures (market cap vs. book assets)",
+      "Controlling for deal size, payment method (cash vs. stock), target type (public/private/subsidiary)",
+      "Sub-period analysis (1980s vs. 1990s wave separately)",
+      "Dollar-gain analysis (removes mechanical size scaling)",
+      "Cross-industry robustness",
+      "Heckman selection correction for self-selection into acquisitions"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study (market model abnormal returns) + cross-sectional OLS regression of 3-day CARs on log acquirer assets plus deal and firm controls",
+      "treatment": "Acquirer size measured by log total assets (continuous) and size quintile dummies; large-firm indicator (top two quintiles) vs. small-firm reference group",
+      "event_window": "[-1, +1] trading days around M&A announcement date (3-day CAR, primary); [-2, +2] as robustness",
+      "estimation_window": "[-205, -6] trading days before announcement for market model parameter estimation (value-weighted CRSP index as market proxy)",
+      "sample_period": "1980–2001",
+      "unit_of_observation": "Individual acquisition deal at the acquirer level",
+      "key_assumption": "Acquirer firm size at announcement is predetermined and primarily reflects long-standing organizational characteristics rather than endogenous selection into acquisitions; the negative size-CAR relationship reflects agency costs (empire building, hubris) rather than reverse causation"
+    },
+    "key_magnitudes": {
+      "small_acquirer_car": "+2.3% average 3-day CAR for bottom three size quintile acquirers (approximately 9,000 deals)",
+      "large_acquirer_car": "-1.0% average 3-day CAR for top two size quintile acquirers (approximately 3,000 deals)",
+      "size_gradient": "-3.3 percentage point difference from smallest to largest size category",
+      "aggregate_wealth_destruction": "Large acquirers in the 1990s destroyed approximately $240 billion in total shareholder wealth (dollar gain measure)"
+    },
+    "robustness_notes_detail": "The size effect is not explained by differences in deal type, target type, payment method, Tobin's Q, leverage, or industry composition. The effect exists in both the 1980s and 1990s, but is larger in the 1990s wave period. Dollar-weighted analysis confirms small firms gain significantly in aggregate while large firms destroy value. Heckman correction does not eliminate the size effect. Results are robust to excluding financial firms and utilities."
+  }
+}

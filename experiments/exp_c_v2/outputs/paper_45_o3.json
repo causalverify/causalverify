@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_45",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:41:56.206075",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 720,
+    "output_tokens": 2144,
+    "content": "BEGIN RID PROTOCOL \n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy: sharp geographic regression-discontinuity design (RDD) that exploits the exogenously drawn 1573 boundary of the colonial mining mita. The running variable is signed Euclidean distance (in km) from a district’s centroid to the nearest point on the mita boundary; treatment = 1 for distance < 0 (inside the catchment), 0 otherwise. Local linear regressions with triangular kernel on either side of the cutoff deliver causal intent-to-treat estimates.\n\nDirectional hypothesis H₁ (one-sided): districts inside the historical mita catchment area exhibit persistently worse contemporary outcomes. Formally, β < 0 for welfare variables:  \na) log household consumption per capita,  \nb) child height-for-age z-score,  \nc) public-goods provision index.  \n\nNo prediction (β ≈ 0) for a plausibly pre-determined placebo variable (pre-colonial population density).\n\nI irrevocably commit to this identification strategy and the above directional hypotheses.\n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly 5)  \nSpec 1: log_cons_pcᵢ = α₁ + β₁·Tᵢ + f₁⁻(Distᵢ)·1{Distᵢ<0}+f₁⁺(Distᵢ)·1{Distᵢ≥0}+εᵢ  \n• Local linear RD, triangular kernel, Imbens–Kalyanaraman (IK) optimal bandwidth.  \n• No additional covariates.\n\nSpec 2: Same as Spec 1 but adding covariates: elevation, terrain ruggedness, distance to Potosí, distance to Cusco.\n\nSpec 3: height_zᵢ = α₃ + β₃·Tᵢ + f₃⁻(Distᵢ)+f₃⁺(Distᵢ)+εᵢ (no covariates; otherwise identical settings).\n\nSpec 4: pubgoods_indexᵢ = α₄ + β₄·Tᵢ + f₄⁻(Distᵢ)+f₄⁺(Distᵢ)+εᵢ (no covariates).\n\nSpec 5 (placebo): precolonial_pop_densityᵢ = α₅ + β₅·Tᵢ + f₅⁻(Distᵢ)+f₅⁺(Distᵢ)+εᵢ (no covariates).  \n\nAll specifications are estimated with rdrobust; robust bias-corrected confidence intervals are reported. No additional specifications will be run.\n\nSTEP 3 — FALSIFICATION GATE  \nThe directional hypotheses will be rejected if ANY of the following occurs:  \nGate 1: β₁, β₃, or β₄ is ≥ 0 or |t| < 1.64 (two-sided p > 0.10) using rdrobust bias-corrected standard errors.  \nGate 2: First-stage diagnostics from rdrobust report effective F-statistic < 10 for slope discontinuity (weak identification).  \nGate 3: Placebo test (Spec 5) yields |t| ≥ 1.64 (p ≤ 0.10), indicating a discontinuity in a pre-treatment variable.\n\nIf any gate is triggered, the hypothesis set H₁ is rejected.\n\nSTEP 4 — R CODE  \n\n```r\n# ---- STEP 4 : Pre-committed code ----\n# Required packages\nlibrary(rdrobust)\nlibrary(readr)\nlibrary(dplyr)\n\n# Load data (replace path with actual location)\ndf <- read_csv(\"mita_data.csv\")\n\n# Ensure running variable is signed: negative = inside mita\n# Assume `dist_to_boundary_km` is unsigned; `inside_mita` is 1/0\ndf <- df %>% \n  mutate(dist_signed = ifelse(inside_mita == 1, -dist_to_boundary_km, dist_to_boundary_km))\n\n# Specification 1: log household consumption, no covariates\nspec1 <- rdrobust(y = df$log_cons_pc,\n                  x = df$dist_signed,\n                  c = 0,\n                  kernel = \"triangular\",\n                  p = 1)\n\n# Specification 2: same with covariates\ncovars <- cbind(df$elevation_m, df$ruggedness, \n                df$dist_potosi_km, df$dist_cusco_km)\nspec2 <- rdrobust(y = df$log_cons_pc,\n                  x = df$dist_signed,\n                  c = 0,\n                  covs = covars,\n                  kernel = \"triangular\",\n                  p = 1)\n\n# Specification 3: child height-for-age z\nspec3 <- rdrobust(y = df$height_z,\n                  x = df$dist_signed,\n                  c = 0,\n                  kernel = \"triangular\",\n                  p = 1)\n\n# Specification 4: public goods index\nspec4 <- rdrobust(y = df$pubgoods_index,\n                  x = df$dist_signed,\n                  c = 0,\n                  kernel = \"triangular\",\n                  p = 1)\n\n# Specification 5: placebo – pre-colonial population density\nspec5 <- rdrobust(y = df$precolonial_pop_density,\n                  x = df$dist_signed,\n                  c = 0,\n                  kernel = \"triangular\",\n                  p = 1)\n\n# Save results\nsave(spec1, spec2, spec3, spec4, spec5, file = \"mita_rd_results.RData\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected ex-ante)  \nBased on prior literature:\n\nSpec 1: β̂₁ ≈ −0.15 log-points (≈ −15 %), 95 % CI ≈ [−0.25, −0.05], p ≈ 0.01.  \nSpec 2: β̂₂ ≈ −0.14 log-points, 95 % CI ≈ [−0.23, −0.05], p ≈ 0.003; covariates do not materially change estimate.  \nSpec 3: β̂₃ ≈ −0.30 standard deviations in height, 95 % CI ≈ [−0.48, −0.12], p ≈ 0.002.  \nSpec 4: β̂₄ ≈ −0.20 SD in public-goods index, 95 % CI ≈ [−0.35, −0.05], p ≈ 0.008.  \nSpec 5: β̂₅ ≈ +0.01 log-points, 95 % CI ≈ [−0.06, 0.08], p ≈ 0.78.\n\nGate assessment:  \n• Gate 1 not triggered — all welfare coefficients are negative and statistically significant (p < 0.10).  \n• Gate 2 not triggered — rdrobust is expected to report F > 10.  \n• Gate 3 not triggered — placebo discontinuity is small and insignificant.\n\nHence, under these anticipated results, the falsification gate remains closed and the directional hypothesis H₁ is retained.\n\nEND RID PROTOCOL",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Geographic regression discontinuity design — running variable is distance to the historical mita boundary (continuous, positive = outside mita, negative = inside mita); cutoff at the boundary (distance = 0); treatment is being inside the mita catchment area where forced labor was imposed 1573-1812; outcome is present-day economic development",
+    "key_variables": {
+      "treatment": "district located inside the historical mita catchment area (forced labor zone, 1573-1812)",
+      "control": "district located just outside the mita boundary (exempt from forced labor)",
+      "outcome": "log household consumption per capita; child height-for-age z-score (stunting); road density; access to health posts and schools",
+      "time_period": "Colonial mita: 1573-1812; outcomes measured 2001-2007"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mining mita has persistent negative effects on economic development four centuries after its abolition. Districts inside the mita boundary have approximately 25% lower household consumption, significantly higher stunting rates, and worse public goods provision (fewer roads, fewer health posts) than districts just outside the boundary. The mechanism operates through institutional channels: the mita prevented hacienda (large landholding) formation, which would have provided public goods and political connections, leaving mita districts with weaker property rights and less political integration.",
+    "main_effect": "Mita districts have approximately 25% lower household consumption (0.27 log points) and 6 percentage points higher stunting rates than adjacent non-mita districts across the boundary",
+    "key_robustness": [
+      "Varying bandwidth around the mita boundary (25km, 50km, 75km, 100km)",
+      "Polynomial specifications in distance to boundary",
+      "Controlling for elevation, latitude, longitude, slope, and distance to Cusco/Potosí",
+      "Pre-colonial balance tests (1572 tribute records, ethnic composition)",
+      "Placebo boundaries within and outside the mita zone",
+      "IV using mita assignment as instrument for hacienda formation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Geographic/spatial RDD with distance to the historical mita boundary as the running variable",
+      "treatment": "Located inside the mita catchment area (binary, determined by 1573 Viceroy Toledo's decree based on geographic proximity to mines)",
+      "event_window": "N/A (cross-sectional RDD comparing present-day outcomes across the historical boundary)",
+      "estimation_window": "Districts within various bandwidths (25-100km) of the mita boundary",
+      "sample_period": "Outcomes measured 2001-2007; treatment imposed 1573-1812",
+      "unit_of_observation": "District (approximately 500 districts near the boundary)",
+      "key_assumption": "The mita boundary was drawn along geographic features and is not correlated with unobserved pre-colonial differences in development potential. Districts just inside and just outside the boundary are comparable in terms of geography, elevation, pre-colonial population, and ethnic composition. Supported by pre-colonial balance tests using 1572 tribute records."
+    },
+    "key_magnitudes": {
+      "consumption_effect": "-0.27 log points (~25% lower) household consumption per capita in mita districts",
+      "stunting_effect": "+6 percentage points higher stunting rate in mita districts",
+      "roads": "Significantly fewer roads (lower road density) inside mita boundary",
+      "public_goods": "Fewer health posts and schools per capita inside mita boundary"
+    },
+    "robustness_notes_detail": "Pre-colonial balance tests using 1572 tribute records (collected one year before the mita was established) show no differences in indigenous population density, ethnic composition, or tribute levels across the boundary, supporting the identifying assumption. The mita boundary follows some natural features (rivers, ridges) but these geographic features do not independently predict present-day outcomes after controlling for elevation and slope. Placebo boundaries (shifted 25km inside or outside the mita zone) show no comparable discontinuities, confirming that the effect is specific to the actual mita boundary."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_69",
+  "title": "How Does Financing Impact Investment? The Role of Debt Covenants",
+  "authors": "Chava & Roberts",
+  "year": null,
+  "journal": "JF",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2008.01391.x",
+    "title": "How Does Financing Impact Investment? The Role of Debt Covenants",
+    "year": 2008,
+    "journal": "The Journal of Finance",
+    "citations": 2005
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "roberts",
+      "chava"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2005,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

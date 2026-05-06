@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s14",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Positive earnings surprise on stock returns",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:08:19.394216",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 464,
+    "output_tokens": 615,
+    "content": "## 1. Identification Strategy\nTo address the research question of whether firms with positive earnings surprises earn positive abnormal returns, we employ an Event Study methodology. This approach observes the abnormal returns that occur around a specific event—in this case, the earnings announcement—and specifically within the window [0,+2]. The key assumption here is that the market model is a valid predictor of expected returns outside the event window. This allows us to identify abnormal returns as deviations from these predicted returns during the event window.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the dataset\ndata <- read.csv(\"experiments/exp_b/data/s14_data.csv\")\n\n# Calculate normal returns using market model on estimation window [-10, -2]\nestimation_window <- data %>%\n  filter(event_day >= -10 & event_day <= -2)\n\nnormal_returns <- estimation_window %>%\n  group_by(stock_id) %>%\n  do(model = lm(ret ~ mkt_ret, data = .))\n\n# Calculate abnormal returns for event window [0, +2]\nevent_window <- data %>%\n  filter(event_day >= 0 & event_day <= 2)\n\n# Function to calculate abnormal returns for a given stock_id\ncalculate_abnormal_returns <- function(stock_data, models) {\n  stock_id <- unique(stock_data$stock_id)\n  model <- models %>% filter(stock_id == stock_id) %>% pull(model) %>% first()\n  pred_returns <- predict(model, newdata = stock_data)\n  stock_data <- stock_data %>%\n    mutate(abnormal_return = ret - pred_returns)\n  return(stock_data)\n}\n\nabnormal_returns <- event_window %>%\n  group_by(stock_id) %>%\n  do(calculate_abnormal_returns(., normal_returns))\n\n# Calculate cumulative abnormal returns (CAR) for event window [0, +2]\nCARs <- abnormal_returns %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(abnormal_return))\n\n# Average CAR across all stocks\naverage_CAR <- mean(CARs$CAR)\n  \n# Print the average CAR\ncat(\"Average Cumulative Abnormal Return (CAR) from day 0 to +2:\", average_CAR, \"\\n\")\n\n# Perform a simple t-test to check if CARs are significantly different from 0\nt_test_result <- t.test(CARs$CAR)\nprint(t_test_result)\n```\n\n## 3. Expected Findings\nI expect to find a positive average cumulative abnormal return (CAR) in the [0, +2] window as firms with positive earnings surprises generally lead to positive investor reactions. The magnitude of this effect can vary, but it's likely to be statistically significant given that positive surprises often lead to revisions in investor expectations and subsequent price adjustments. The average CAR might be in the positive range, potentially around 1-3%, depending on the magnitude of the surprises and market sensitivity to them.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; positive surprise sample; event window [0,+2]",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Firms with positive earnings surprises earn significantly positive CAR",
+    "main_effect": "CAR ≈ +2.2%"
+  }
+}

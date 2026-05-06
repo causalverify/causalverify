@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s34",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of China's WTO Accession on Manufacturing Employment",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:37:52.652585",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 510,
+    "output_tokens": 496,
+    "content": "## 1. Identification Strategy\nTo estimate the causal impact of China's WTO accession on manufacturing employment in regions with varying levels of exposure to trade, we will use the Difference-in-Differences (DID) method. This approach compares the change in manufacturing employment over time between treated regions (with high exposure to trade) and control regions (with low exposure to trade). The key assumption is that, in the absence of the treatment (WTO accession), the trends in manufacturing employment would have been parallel across treated and control regions. This is known as the parallel trends assumption.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(broom)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s34_data.csv\")\n\n# Convert data to panel data format\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Run the Difference-in-Differences model\ndid_model <- plm(y ~ treated + post + treat_x_post, data = pdata, index = c(\"unit_id\", \"period\"), model = \"fixed\")\n\n# Print the model summary\ntidy(did_model)\n\n# Print the treatment effect coefficient\ncoef(did_model)[\"treat_x_post\"]\n\n# Robustness check: Plot the parallel trends\nggplot(data, aes(x = period, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_line() +\n  theme_classic()\n\n# Robustness check: Test the parallel trends assumption\npre_treatment_data <- data %>% filter(period < 2001)\npre_treatment_model <- plm(y ~ treated + factor(period), data = pdata.frame(pre_treatment_data, index = c(\"unit_id\", \"period\")), model = \"fixed\")\nsummary(pre_treatment_model)\n```\n\n## 3. Expected Findings\nWe expect the treatment effect coefficient (treat_x_post) to be negative, indicating a decline in manufacturing employment in treated regions relative to control regions after China's WTO accession. The magnitude of the coefficient will depend on the data, but we anticipate a moderate decline, potentially in the range of -0.05 to -0.1, reflecting the expected negative impact of increased trade exposure on manufacturing employment. This effect is expected because increased trade can lead to competition from foreign firms, potentially reducing domestic employment in manufacturing sectors.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log manufacturing employment before and after 2001 between high and low trade exposure regions.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Regions with higher exposure to trade experienced a positive effect on manufacturing employment following China's WTO accession.",
+    "main_effect": "0.18"
+  }
+}

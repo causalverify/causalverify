@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s75",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Upwind Pollution on Infant Mortality",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:43:52.595396",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 447,
+    "output_tokens": 480,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal effect of pollution exposure on infant mortality rates. The key assumption for this approach is that the instrument (upwind pollution source indicator) is correlated with the endogenous variable (pollution exposure level) but not directly with the outcome (infant mortality rate) except through its effect on the endogenous variable. This assumption is known as the exclusion restriction.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s75_data.csv\")\n\n# First stage regression: pollution exposure on instrument\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage regression: infant mortality on predicted pollution exposure\nsecond_stage <- lm(y ~ x + controls, data = data)\n\n# Overidentification test (Hansen J test)\noverid_test <- bptest(second_stage, ~x|z, data = data)\n\n# Print results\nsummary(first_stage)\nsummary(second_stage)\noverid_test\n\n# Robustness check: using cluster-robust standard errors\nlibrary(sandwich)\nlibrary(clubSandwich)\n\n# First stage regression with cluster-robust SEs\nfirst_stage_robust <- coeftest(first_stage, vcovHC(first_stage, type = \"HC1\"))\n\n# Second stage regression with cluster-robust SEs\nsecond_stage_robust <- coeftest(second_stage, vcovHC(second_stage, type = \"HC1\"))\n\n# Print robustness check results\nfirst_stage_robust\nsecond_stage_robust\n```\n\n## 3. Expected Findings\nWe expect the coefficient on pollution exposure (x) in the second stage regression to be positive, indicating that higher pollution exposure levels are associated with higher infant mortality rates. The magnitude of the effect will depend on the strength of the relationship between pollution exposure and infant health outcomes. The exclusion restriction assumption is crucial for the validity of our IV approach, and we should not expect any direct effect of the instrument (upwind pollution source indicator) on infant mortality rates. If this assumption holds, our IV estimates will provide a consistent estimate of the causal effect of pollution exposure on infant mortality.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Wind direction is used as an instrument for pollution exposure.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Upwind pollution exposure is found to significantly increase infant mortality.",
+    "main_effect": "0.25"
+  }
+}

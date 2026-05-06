@@ -1,0 +1,6 @@
+{
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_31",
+  "scored_model": "gemini-2.5-flash",
+  "error": "Expecting value: line 1 column 1 (char 0)"
+}

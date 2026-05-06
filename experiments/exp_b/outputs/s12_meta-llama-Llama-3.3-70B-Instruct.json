@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s12",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Sudden CEO death and firm value",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:32:16.603712",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 488,
+    "output_tokens": 604,
+    "content": "## 1. Identification Strategy\nTo answer the research question, we will implement an event study analysis with a market model to estimate the abnormal returns (ARs) of the firms' stocks around the sudden CEO death event. The key assumption is that the market model accurately captures the expected returns of the firms' stocks in the absence of the event. We will also calculate the cumulative abnormal returns (CARs) over the event window [0,+1] to determine if the sudden CEO death generates significant negative abnormal returns.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s12_data.csv\")\n\n# Calculate abnormal returns using the market model\nestimation_window <- data %>% \n  filter(event_day >= -10 & event_day <= -2)\nmarket_model <- function(stock_id) {\n  est_data <- estimation_window %>% filter(stock_id == stock_id)\n  beta_estimate <- cov(est_data$ret, est_data$mkt_ret) / var(est_data$mkt_ret)\n  alpha_estimate <- mean(est_data$ret) - beta_estimate * mean(est_data$mkt_ret)\n  return(list(alpha = alpha_estimate, beta = beta_estimate))\n}\n\n# Apply the market model to each stock\nabnormal_returns <- data %>% \n  group_by(stock_id) %>% \n  do(model = market_model(.$stock_id[1])) %>% \n  ungroup() %>% \n  left_join(data, by = \"stock_id\") %>% \n  mutate(ar = ret - model$alpha - model$beta * mkt_ret)\n\n# Calculate cumulative abnormal returns (CARs) over the event window [0,+1]\ncar_data <- abnormal_returns %>% \n  filter(event_day >= 0 & event_day <= 1) %>% \n  group_by(stock_id) %>% \n  summarise(car = sum(ar))\n\n# Calculate the average CAR across all stocks\naverage_car <- mean(car_data$car)\nprint(paste(\"The average CAR over the event window [0,+1] is:\", average_car))\n\n# Basic robustness checks: t-test for average CAR\nt_test_result <- t.test(car_data$car, mu = 0)\nprint(paste(\"t-test result for average CAR:\", t_test_result$p.value))\n```\n\n## 3. Expected Findings\nWe expect the average CAR over the event window [0,+1] to be negative, indicating that the sudden CEO death generates significant negative abnormal returns for the firm's stock. The magnitude of the CAR will depend on the specific sample and data, but prior research suggests that the sudden loss of a CEO can lead to a significant decline in stock price, often ranging from -2% to -5% in the short term. The t-test for the average CAR should also indicate statistical significance, rejecting the null hypothesis that the average CAR is zero.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model AR; estimation [−10,−2]; event window [0,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms experience significant negative CAR on CEO death announcement",
+    "main_effect": "CAR ≈ −2.5% in [0,+1]"
+  }
+}

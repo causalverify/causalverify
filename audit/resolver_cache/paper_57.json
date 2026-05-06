@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_57",
+  "title": "Can Mandated Political Representation Increase Policy Influence for Disadvantaged Minorities? Theory and Evidence from India",
+  "authors": "Pande",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282803769206232",
+    "title": "Can Mandated Political Representation Increase Policy Influence for Disadvantaged Minorities? Theory and Evidence from India",
+    "year": 2003,
+    "journal": "American Economic Review",
+    "citations": 649
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "pande"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 649,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

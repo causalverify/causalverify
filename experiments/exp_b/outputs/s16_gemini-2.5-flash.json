@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s16",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Supply chain disruption on auto manufacturer stocks",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:19:25.737090",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 538,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThe research question asks about the impact of a specific announcement on stock returns and the moderating effect of chip dependency. This type of inquiry is best addressed using an **Event Study methodology**.\n\n**Methodology:**\nAn event study aims to isolate the abnormal returns (ARs) attributable to a specific event. This involves:\n1.  **Defining the Event:** The major semiconductor shortage announcement (event day 0).\n2.  **Defining the Estimation Window:** This window precedes the event and is used to estimate the normal (expected) return-generating process for each stock. Here, the estimation window is `[-10, -2]` relative to the event day.\n3.  **Defining the Event Window:** This window encompasses the event and the period",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study + cross-sectional CAR regression on firm-level exposure variable",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Auto stocks decline; higher chip-dependency → larger CAR loss",
+    "main_effect": "CAR ≈ −2.8%; cross-sectional gradient significant"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_27",
+  "source": "Journal of Financial Economics, 2013",
+  "authors": "Savor & Wilson",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "How Much Do Investors Care About Macroeconomic Risk? Evidence from Scheduled Economic Announcements",
+  "doi": "10.1016/j.jfineco.2012.12.004",
+  "volume": 108,
+  "issue": 1,
+  "pages": "1-26",
+  "domain": "finance",
+  "research_question": "Do investors require higher expected returns on risky assets, and accept lower returns on near risk-free assets, during periods when significant aggregate economic information is expected to be revealed? In particular, how large is the compensation investors demand for bearing aggregate macroeconomic risk, and how does this compensation vary across asset classes (equities, Treasury bills, and Treasury bonds of differing maturities) and with the level of economic uncertainty?",
+  "data_description": "The study uses daily U.S. financial market data from 1958 through 2009. Stock market returns are the CRSP value-weighted NYSE/Nasdaq/Amex all-share index including dividends, with a daily risk-free rate inferred from the monthly risk-free rate on Kenneth French's website. Daily Treasury bill returns (proxying the overnight risk-free rate via the bill closest to 30-day maturity) come from the CRSP Daily Treasuries file beginning June 1961, and longer-maturity Treasury returns (1, 5, 10, 20, 30 years) come from CRSP's Daily Treasury Fixed Term Indexes File. Implied volatility is the CBOE S&P 100 VIX (constant 30-day maturity) starting in 1986. Quarterly real per capita NIPA consumption data are also used. Pre-scheduled announcement dates for CPI/PPI and employment come from the Bureau of Labor Statistics, and FOMC interest rate decisions from the Federal Reserve (1978-2009), yielding 1,450 announcement days versus 11,641 non-announcement days. Forecast/surprise data come from rolling econometric models and the Survey of Professional Forecasters.",
+  "institutional_context": "Certain key macroeconomic data releases in the United States—Consumer Price Index and Producer Price Index inflation reports, Bureau of Labor Statistics employment situation reports, and Federal Open Market Committee interest rate decisions—follow calendars published months in advance. Market participants therefore know precisely when these aggregate signals about inflation, labor markets, and monetary policy will be disclosed, even though the content of the news is uncertain. Because these announcements convey information central to the broader state of the economy and cannot be diversified away, holding broad financial assets through such pre-known release dates exposes investors to concentrated aggregate risk. This institutional feature—publicly known release schedules combined with genuine information content—creates a recurring contrast between trading days when major systematic news is expected and otherwise comparable days when no such release is anticipated, providing a natural setting to examine how aggregate risk is priced in equities, bills, and bonds.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.114,
+      "unit": "percentage points (bps) per announcement day for high-minus-low beta portfolio",
+      "interpretation": "Stocks in the highest beta quintile earn approximately 11.4 basis points more than lowest beta quintile stocks on macroeconomic announcement days, representing the conditional CAPM risk premium"
+    },
+    "secondary_estimate": {
+      "value": 0.6,
+      "unit": "fraction of annual equity premium concentrated on announcement days",
+      "interpretation": "Approximately 60% of the total annual equity risk premium is realized on the ~13% of trading days when macroeconomic news is released"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 1-3 in Savor & Wilson (2013)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "CRSP daily stock returns (via WRDS subscription — standard academic access)",
+      "BLS announcement calendar (public, historical schedules available)",
+      "FOMC meeting dates (Federal Reserve website — public)",
+      "Ken French data library (factor returns, portfolio returns — free)"
+    ],
+    "proprietary_sources": [
+      "CRSP requires WRDS subscription"
+    ],
+    "proxy_strategy": "CRSP returns can be partially proxied with Yahoo Finance for individual stocks. BLS and FOMC calendars are fully public. Ken French portfolio returns are free and can replicate the main results without firm-level data.",
+    "replicability": "high — Ken French data library provides pre-built beta-sorted portfolios; announcement dates are public",
+    "public_proxy_available": true,
+    "replication_tier": "full (Ken French portfolios + public announcement calendars = main results replicable for free)",
+    "data_limitations": "CRSP coverage starts in 1926 but comprehensive NASDAQ coverage begins in 1973. BLS announcement calendars for pre-1990 periods may require manual collection from archived sources.",
+    "public_data_sources_detail": [
+      "Ken French data library (beta-sorted portfolios, daily — free)",
+      "BLS release calendar (employment/CPI announcement dates — free)",
+      "Federal Reserve FOMC calendar (meeting dates — free)",
+      "CRSP via WRDS (individual stock returns — subscription)",
+      "FRED (Treasury rates — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study comparing stock returns on scheduled macroeconomic announcement days vs. non-announcement days — announcement days are predetermined by the government release calendar, providing exogenous variation in the timing of systematic risk resolution; portfolios sorted by beta allow testing whether the risk premium is concentrated on announcement days",
+    "key_variables": {
+      "treatment": "scheduled macroeconomic announcement day (employment report, CPI release, or FOMC decision)",
+      "control": "non-announcement trading day",
+      "outcome": "daily stock portfolio returns sorted by CAPM beta (high-beta minus low-beta return differential)",
+      "time_period": "1958–2009, daily"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The equity risk premium (high-beta minus low-beta return) is strongly positive and significant on macroeconomic announcement days, but essentially zero on non-announcement days. Announcement days account for ~60% of the total equity risk premium despite comprising only ~13% of trading days. The CAPM works well conditionally on announcement days.",
+    "main_effect": "High-beta minus low-beta portfolio earns approximately 11.4 bps per announcement day (vs. 0.9 bps per non-announcement day); announcement days explain ~60% of the annual equity premium",
+    "key_robustness": [
+      "Separating announcement types (employment, CPI, FOMC)",
+      "Controlling for Fama-French factors (SMB, HML)",
+      "Alternative beta estimation methods and holding periods",
+      "Pre-1980 vs. post-1980 subsamples",
+      "International evidence (UK, Japan)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with calendar-time portfolio approach; announcement vs. non-announcement day comparison of beta-sorted portfolio returns",
+      "treatment": "Binary: scheduled macroeconomic announcement day (known in advance from government release calendars)",
+      "event_window": "Single trading day (announcement day close-to-close return)",
+      "estimation_window": "Rolling 1-year window for beta estimation; full sample 1958-2009 for return comparison",
+      "sample_period": "1958–2009",
+      "unit_of_observation": "Daily return of beta-sorted portfolios (typically quintile or decile portfolios)",
+      "key_assumption": "Scheduled announcement dates are predetermined by government agencies and are exogenous to individual stock returns. The timing of announcements creates random variation in when systematic risk is resolved. Any stock-specific information released on announcement days is orthogonal to the macro announcement and averages out in portfolio returns."
+    },
+    "key_magnitudes": {
+      "announcement_day_premium": "11.4 bps per day for high-minus-low beta portfolio on announcement days",
+      "non_announcement_premium": "0.9 bps per day for same portfolio on non-announcement days",
+      "share_of_annual_premium": "Announcement days (~13% of trading days) account for ~60% of the total annual equity risk premium",
+      "sharpe_ratio": "Announcement-day Sharpe ratio is ~4x higher than non-announcement-day Sharpe ratio"
+    },
+    "robustness_notes_detail": "Results are robust across announcement types (employment and FOMC are the strongest), time periods (pre- and post-1980), beta estimation methods, and portfolio weighting schemes. The pattern also holds internationally (UK and Japan). Controlling for Fama-French factors does not eliminate the announcement-day beta premium, confirming it is a market risk premium, not a size or value effect."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 93047,
+  "phase1_source_version": "v2primeprime_full_text"
+}

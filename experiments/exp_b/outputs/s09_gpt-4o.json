@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s09",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Heterogeneous treatment effects by firm size in DID",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:07:42.148734",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 487,
+    "output_tokens": 450,
+    "content": "## 1. Identification Strategy\nIn this scenario, we'll use a Difference-in-Differences (DID) method to identify the causal effect of the corporate tax cut on investment. This approach is suitable since we have a clear treatment group (large firms) and a control group (small firms), with the intervention occurring at a known time (period 4). The key assumption is that the treatment and control groups would follow parallel trends in the absence of treatment. Additionally, we will explore heterogeneous treatment effects by firm size using interaction terms.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s09_data.csv\")\n\n# Perform the DID analysis with interaction for heterogeneity\ndid_model <- lm(y ~ treated * post + treat_x_post, data = data)\n\n# Summarize the results\nsummary(did_model)\n\n# Coefficient of interest\ncoef_estimate <- coef(did_model)[\"treat_x_post\"]\n\n# Print the coefficient of the interaction term (heterogeneous treatment effect)\ncat(\"The heterogeneous treatment effect (DID estimate for large firms):\", coef_estimate, \"\\n\")\n\n# Robust standard errors\nrobust_se <- coeftest(did_model, vcov = vcovHC(did_model, type = \"HC1\"))\n\n# Display robust standard errors\nprint(robust_se)\n\n# Basic robustness check: check for parallel trends prior to treatment\npretreatment_data <- data %>% filter(period < 4)\npretreatment_model <- lm(y ~ treated + factor(period), data = pretreatment_data)\nsummary(pretreatment_model)\n```\n\n## 3. Expected Findings\nWe expect that the coefficient on `treat_x_post` will be positive, indicating that the investment for large firms increased more than for small firms due to the corporate tax cut. The exact magnitude will depend on the effect size of the tax cut, but given that large firms benefited more, the coefficient may reflect a substantially higher percentage increase in investment compared to smaller firms. The robustness checks on pre-treatment trends should show no significant differences in trends for validity.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with heterogeneous effects — triple-diff or interaction terms for size groups",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Large firms increase investment more than small firms post tax cut",
+    "main_effect": "28% higher investment growth for large firms"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "paper_id": "paper_44",
+  "source": "Quarterly Journal of Economics, 2010",
+  "authors": "Almond, Doyle, Kowalski & Williams",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Estimating Marginal Returns to Medical Care: Evidence from At-Risk Newborns",
+  "doi": "10.1162/qjec.2010.125.2.591",
+  "volume": 125,
+  "issue": 2,
+  "pages": "591-634",
+  "domain": "health",
+  "research_question": "Do the health benefits from additional medical spending on at-risk newborns exceed the costs of that spending? Specifically, what is the marginal return—in terms of reduced infant mortality—to incremental medical care provided to newborns near the boundary between higher- and lower-risk classifications?",
+  "data_description": "The analysis combines three data sources. First, the National Center for Health Statistics birth cohort–linked birth/infant death files cover the census of approximately 66 million U.S. births in 1983–1991 and 1995–2002, linking birth certificates to death certificates for infants dying within one year, with covariates such as maternal age and education and (from 1989) ventilator use indicators. Second, a California longitudinal database of roughly 6 million live births (1991–2002) links birth and death certificates to hospital discharge records containing diagnoses, procedures, length of stay, and charges. Third, Healthcare Cost and Utilization Project state inpatient discharge data from Arizona (2001–2006), New Jersey (1995–2006), Maryland (1995–2006), and New York (1995–2000) provide about 10.5 million births with similar discharge information. The unit of observation is an individual newborn, and key variables include birth weight in grams, one-year and shorter-horizon mortality, hospital charges/costs, length of stay, and specific procedures.",
+  "institutional_context": "In U.S. clinical practice, newborn health is summarized by birth weight, with several conventional thresholds used to classify risk. The 1,500-gram cutoff defines 'very low birth weight' (VLBW); related cutoffs include 1,000 g (extremely low birth weight) and 2,500 g (low birth weight). Medical sources, including a 1985 Institute of Medicine report, emphasize that these cutoffs reflect convention rather than underlying biological breaks, yet they trigger differential clinical treatment: hospital protocols and physician rules of thumb prescribe additional interventions—such as routine cranial ultrasounds, more intensive monitoring, and other neonatal procedures—for infants classified below 1,500 g. Treatment for premature and low–birth weight newborns is among the most expensive hospital diagnoses in the United States, and use of neonatal technologies has expanded rapidly. Crucially, birth weight cannot be predicted prior to delivery with sufficient accuracy to allow timing of birth to manipulate whether a newborn falls just above or just below 1,500 g, making the classification effectively unanticipated for marginal cases.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.008,
+      "unit": "percentage point reduction in one-year infant mortality at 1,500g threshold (RDD)",
+      "interpretation": "Infants just below the 1,500g VLBW threshold (who receive more intensive medical care) have approximately 0.8 percentage point lower one-year mortality than infants just above the threshold"
+    },
+    "secondary_estimate": {
+      "value": 5000,
+      "unit": "dollar increase in hospital charges at the 1,500g threshold",
+      "interpretation": "Hospital charges jump by approximately $5,000 at the 1,500g threshold, reflecting the additional medical interventions triggered by VLBW classification"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 2-4 in Almond, Doyle, Kowalski & Williams (2010)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "NCHS linked birth-death cohort files (available from NCHS with application — free or low cost)",
+      "NCHS birth data public use files (birth weight, demographics — free)"
+    ],
+    "proprietary_sources": [
+      "Hospital charges and length of stay require linked hospital discharge data (HCUP NIS or state-level discharge data)"
+    ],
+    "proxy_strategy": "Birth-death linked files are available from NCHS. Main mortality analysis can be replicated with public-use birth data + mortality files. Hospital charge analysis requires HCUP NIS (~$300 DUA).",
+    "replicability": "high — NCHS linked files available with application; mortality results replicable with public data",
+    "public_proxy_available": true,
+    "replication_tier": "full for mortality analysis (NCHS linked files — free/low cost); partial for charges (requires HCUP)",
+    "data_limitations": "Birth weight is recorded in whole grams, limiting RDD precision. Heaping at round numbers (1,500g, 2,000g, 2,500g) complicates the density test. Linked birth-death files cover only deaths within one year; longer-term outcomes not available.",
+    "public_data_sources_detail": [
+      "NCHS linked birth-death cohort files (free with application to NCHS)",
+      "NCHS birth data public use files (birth characteristics — free from CDC Wonder)",
+      "HCUP NIS (hospital charges — ~$300 DUA from AHRQ)",
+      "CDC WONDER (aggregate vital statistics — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Regression discontinuity design — running variable is birth weight in grams; cutoff at 1,500g (VLBW threshold); treatment is increased medical intervention triggered by VLBW classification; outcome is infant mortality; the design exploits the fact that infants just below 1,500g receive substantially more care than infants just above",
+    "key_variables": {
+      "treatment": "classification as very low birth weight (< 1,500g), which triggers greater medical treatment intensity (fuzzy RDD — treatment intensity jumps at the threshold but is not perfectly determined by it)",
+      "control": "infants just above 1,500g who receive less intensive care despite being physiologically similar",
+      "outcome": "one-year infant mortality; 28-day neonatal mortality; also medical treatment measures (hospital charges, length of stay, NICU admission)",
+      "time_period": "1983–2002 (linked birth-death cohort files)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Additional medical care at the VLBW threshold significantly reduces infant mortality. Infants just below 1,500g (who receive more treatment) have approximately 0.7-1.0 percentage point lower one-year mortality than infants just above 1,500g, a reduction of approximately 7-10% from a base mortality of about 10%. Hospital charges increase by approximately $4,000-$6,000 at the threshold. The implied cost per life saved is approximately $500,000-$1,000,000.",
+    "main_effect": "One-year mortality decreases by approximately 0.7-1.0 percentage points at the 1,500g threshold; hospital charges increase by $4,000-$6,000; implied cost per life saved ~$500K-$1M",
+    "key_robustness": [
+      "Varying bandwidth around 1,500g (50g, 100g, 200g, 300g)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation (birth weight heaping)",
+      "Controlling for gestational age (which also affects treatment decisions)",
+      "Additional thresholds (2,500g for 'low birth weight' as robustness)",
+      "Subsample by race, year, hospital type"
+    ],
+    "identification_strategy_detail": {
+      "method": "Fuzzy RDD at 1,500g birth weight threshold; first stage shows discontinuity in treatment intensity; reduced form shows discontinuity in mortality",
+      "treatment": "Medical treatment intensity (hospital charges, NICU admission, length of stay), which jumps discontinuously below the 1,500g threshold",
+      "event_window": "Mortality tracked for one year after birth",
+      "estimation_window": "Birth weight bandwidth: ±85g to ±300g around 1,500g",
+      "sample_period": "1983–2002",
+      "unit_of_observation": "Individual birth (approximately 100,000 births per year near the threshold)",
+      "key_assumption": "Birth weight near 1,500g is not precisely manipulated — infants born at 1,499g vs. 1,501g are comparable in all respects except the additional medical treatment triggered by the VLBW classification. McCrary test addresses the known concern of birth weight heaping (clustering at round numbers like 1,500g)."
+    },
+    "key_magnitudes": {
+      "mortality_reduction": "-0.7 to -1.0 percentage points at the 1,500g threshold (from ~10% base = 7-10% relative reduction)",
+      "charge_increase": "+$4,000-$6,000 increase in hospital charges at the threshold",
+      "los_increase": "Length of stay increases by approximately 3-5 days at the threshold",
+      "cost_effectiveness": "Implied cost per statistical life saved: approximately $500,000-$1,000,000"
+    },
+    "robustness_notes_detail": "McCrary density test reveals significant heaping at 1,500g (some hospitals report exactly 1,500g disproportionately), but results are robust to excluding births at exactly 1,500g ('donut hole' RDD). The 2,500g threshold (low birth weight) also shows a discontinuity in treatment and mortality, confirming the general pattern. Results are strongest for singleton births and in more recent years (when VLBW classification was more standardized). Gestational age is a potential confounder (both birth weight and gestational age affect treatment), but the discontinuity in treatment at 1,500g exists conditional on gestational age."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 108776,
+  "phase1_source_version": "v2primeprime_full_text"
+}

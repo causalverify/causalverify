@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: RDD — treatment = extended UI benefits, control = regular UI benefits; shock/instrument/cutoff = exact age",
+  "key_variables": {
+    "treatment": "extended UI benefits",
+    "control": "regular UI benefits",
+    "outcome": "nonemployment duration",
+    "instrument_or_cutoff": "exact age",
+    "time_period": "mid-1980s to 2008"
+  },
+  "conclusion_direction": "negative",
+  "conclusion_detail": "The effective moral hazard effect of UI extensions is significantly lower in recessions than in booms.",
+  "main_effect": "nonemployment of about 0.1 months for each additional month of potential UI benefit duration",
+  "key_robustness": [
+    "similar effects across demographic groups",
+    "robust across alternative specifications",
+    "considering variation by year or year-by-industry"
+  ],
+  "confidence": 0.9,
+  "notes": "The study uses a sharp regression discontinuity design which helps in identifying causal effects, but the confidence is not 1.0 due to potential unobserved factors affecting the results."
+}

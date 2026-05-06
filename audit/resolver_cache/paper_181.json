@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_181",
+  "title": "Financial Dependence and Growth",
+  "authors": "Rajan & Zingales",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": null,
+    "title": "Financial Dependence and Growth",
+    "year": 1996,
+    "journal": "American Economic Review",
+    "citations": 6779
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "rajan",
+      "zingales"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 6779,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

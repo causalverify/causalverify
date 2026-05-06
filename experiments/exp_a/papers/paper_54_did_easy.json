@@ -1,0 +1,88 @@
+{
+  "paper_id": "paper_54",
+  "source": "Science, 2015",
+  "authors": "Banerjee, Duflo, Goldberg, Karlan, Osei, Pariente, Shapiro, Stephens & Udry",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "A Multifaceted Program Causes Lasting Progress for the Very Poor: Evidence from Six Countries",
+  "doi": "10.1126/science.1260799",
+  "volume": 348,
+  "issue": 6236,
+  "pages": "1260799",
+  "domain": "development",
+  "research_question": "Can a time-limited, multifaceted livelihood support package — combining a productive asset grant, consumption support, training, coaching, savings encouragement, and health services — generate lasting improvements in consumption, income, and broader well-being for the world's poorest households? Are such gains sustained beyond the period of active support, and are the benefits large enough to justify the costs across diverse country contexts?",
+  "data_description": "The study uses primary household survey data collected by the authors in partnership with six implementing organizations in Ethiopia, Ghana, Honduras, India (West Bengal), Pakistan (Sindh), and Peru (Cusco). The total sample comprises 10,495 households (about 21,063 adults) identified as ultra-poor through participatory wealth ranking and asset-based verification. Data were collected at baseline (2007–2011, depending on country), at an endline roughly 24 months after the start of the intervention (just after program completion), and at a second endline approximately 12 months later (about 36 months after asset transfer). Outcomes span ten domains: per capita consumption, food security, productive and household assets, financial inclusion, time use, income and revenues, physical health, mental health, political involvement, and women's empowerment. Detailed cost data were also collected from implementing partners.",
+  "institutional_context": "The setting is the global effort to help the extreme poor — those living on less than PPP US$1.25/day — transition from fragile income sources to sustainable self-employment. The intervention studied is the 'Graduation' program originally developed by BRAC in Bangladesh and adapted by the Ford Foundation and CGAP through a Graduation Program Consortium for replication across diverse contexts. Implementation was carried out by six different organizations (local NGOs, microfinance institutions, and international NGOs) between 2007 and 2014, with country-specific adaptations to local livelihoods, market conditions, cultures, and overlapping government safety-net programs (e.g., Ethiopia's PSNP, Peru's Juntos conditional cash transfer). The program targets the poorest households within poor villages with a 'big push' bundle delivered over roughly two years, motivated by the hypothesis that combined constraints (capital, skills, consumption, savings, health) keep households trapped in poverty.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.07,
+      "unit": "fractional increase in per capita consumption (pooled DID across 6 countries)",
+      "interpretation": "The graduation program increases per capita consumption by approximately 7% at endline (1 year after program support ends), demonstrating sustained income effects beyond the support period"
+    },
+    "secondary_estimate": {
+      "value": 0.15,
+      "unit": "fractional increase in total household asset value",
+      "interpretation": "Treatment households accumulate approximately 15% more assets than control households by endline, indicating that the initial asset transfer catalyzes additional asset accumulation"
+    },
+    "significance": "p < 0.01 (pooled); significance varies by country and outcome",
+    "table_ref": "Table 2 and Supplementary Tables in Banerjee et al. (2015)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "J-PAL Dataverse (replication data for all 6 countries — free)",
+      "Science supplementary materials (methodology and additional tables — free)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Full replication data is publicly available through J-PAL Dataverse. No proprietary data needed.",
+    "replicability": "high — full replication data and code publicly available through J-PAL",
+    "public_proxy_available": true,
+    "replication_tier": "full (complete replication data and code on J-PAL Dataverse — free)",
+    "data_limitations": "Self-reported consumption data (subject to measurement error and social desirability bias). Endline measured 1 year after program support ends; longer-term persistence unclear. Different implementation partners across countries may create heterogeneous treatment quality. Village-level randomization in some sites means inference is based on cluster-level variation.",
+    "public_data_sources_detail": [
+      "J-PAL Dataverse (household survey data for all 6 countries — free)",
+      "Science supplementary materials (methodology — free)",
+      "World Bank Living Standards Measurement Study (comparable household surveys — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Randomized controlled trial with DID structure — households/villages randomly assigned to treatment (graduation program) vs. control at each site; baseline and endline surveys provide pre-post comparison; treatment effect estimated as the DID (change in outcomes for treatment minus change for control)",
+    "key_variables": {
+      "treatment": "receipt of multi-faceted graduation program (productive asset + training + coaching + consumption support + savings + health services)",
+      "control": "randomly assigned control households (no program)",
+      "outcome": "per capita consumption (primary); also food security, asset value, income, savings, time use, health indices, psychological well-being",
+      "time_period": "baseline (pre-program) and endline (2-3 years post-program start, 1 year after program support ends)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The graduation program has significant and lasting positive effects across all six countries. At endline (1 year after program support ends), treatment households have approximately 5-10% higher consumption, significantly more assets, higher savings, better food security, more productive time use, and improved mental health. These effects are statistically significant in the pooled sample and in most individual sites. The program passes a cost-benefit test in most countries, with benefits exceeding costs within 2-3 years.",
+    "main_effect": "Pooled across 6 countries: +5-10% increase in per capita consumption, +15% increase in asset value, +0.12 SD improvement in food security index at endline; effects are positive in all 6 sites and statistically significant in the pooled sample",
+    "key_robustness": [
+      "Country-by-country analysis (effects in each of 6 countries separately)",
+      "Multiple outcome indices (consumption, assets, food security, income, savings, health, psychology)",
+      "FWER and FDR corrections for multiple hypothesis testing",
+      "Lee bounds for attrition",
+      "Balance tests at baseline (randomization check)",
+      "Cost-benefit analysis comparing program costs to consumption gains"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cluster-randomized controlled trial with ANCOVA/DID estimation; pooled across 6 country-specific RCTs",
+      "treatment": "Multi-faceted graduation program (asset + training + coaching + consumption support + savings + health)",
+      "event_window": "Endline survey approximately 2-3 years after program start (1 year after support ends)",
+      "estimation_window": "Baseline survey at program start provides pre-treatment levels for ANCOVA control",
+      "sample_period": "2007–2014 (varies by country; program duration ~24 months, endline ~12 months after program end)",
+      "unit_of_observation": "Household (~21,000 households across 6 countries, ~3,500 per site)",
+      "key_assumption": "Randomization ensures treatment and control groups are balanced in expectation. No spillovers from treatment to control within villages (addressed by village-level randomization in some sites). No differential attrition (addressed by Lee bounds)."
+    },
+    "key_magnitudes": {
+      "consumption_pooled": "+5-10% increase in per capita consumption (PPP) at endline across 6 countries",
+      "assets_pooled": "+15% increase in asset value at endline",
+      "food_security": "+0.12 SD improvement in food security index",
+      "mental_health": "+0.10 SD improvement in psychological well-being index",
+      "cost_benefit": "Benefits exceed costs within 2-3 years in 5 of 6 countries (internal rate of return > 20%)"
+    },
+    "robustness_notes_detail": "Baseline balance tests confirm successful randomization in all 6 sites. Multiple hypothesis testing corrections (Westfall-Young stepdown, Benjamini-Hochberg FDR) confirm that the main findings survive adjustment for the large number of outcomes tested. Attrition is low (< 10% in most sites) and Lee bounds confirm results are robust to differential attrition. The cross-country replication (same program, same evaluation design, different contexts) provides unusually strong external validity evidence."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 97933,
+  "phase1_source_version": "v2primeprime_full_text"
+}

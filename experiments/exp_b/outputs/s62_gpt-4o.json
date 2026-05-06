@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s62",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Impact of Major Product Recall on Stock Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:42:03.781748",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 471,
+    "output_tokens": 559,
+    "content": "## 1. Identification Strategy\n\nWe will use an **Event Study** approach to measure the impact of a major product recall on the firm's stock returns. The Event Study methodology is appropriate because it allows us to capture the abnormal returns around the announcement date by comparing actual returns with expected returns, given the market model. The key assumption here is that the market model accurately captures the normal performance of the stock returns, and any deviation during the event window can be attributed to the event itself (the product recall).\n\n## 2. R Code\n\n```r\n# Load necessary libraries\nlibrary(data.table)\n\n# Read the dataset\ndata_path <- \"experiments/exp_b/data/s62_data.csv\"\ndata <- fread(data_path)\n\n# Define the company of interest (assume stock_id=0 is the recalling company)\ncompany_id <- 0\n\n# Subset data for the recalling company\ncompany_data <- data[stock_id == company_id]\n\n# Calculate expected returns using the market model\ncompany_data[, expected_ret := beta * mkt_ret]\n\n# Calculate abnormal returns (AR)\ncompany_data[, abnormal_ret := ret - expected_ret]\n\n# Define event window\nevent_window <- seq(-5, 5)\n\n# Filter for event window\nevent_data <- company_data[event_day %in% event_window]\n\n# Calculate average abnormal return (AAR) for each day in the event window\naar <- event_data[, .(AAR = mean(abnormal_ret)), by = event_day]\n\n# Calculate cumulative abnormal return (CAR) for the event window\ncar <- event_data[, .(CAR = sum(abnormal_ret)), .SDcols = \"abnormal_ret\"]\n\n# Print the results\nprint(aar)\nprint(car)\n\n# Robustness check: Compare CAR against a longer pre-event window\npre_event_window <- seq(-20, -6)\npre_event_data <- company_data[event_day %in% pre_event_window]\n\npre_event_car <- pre_event_data[, .(CAR = sum(abnormal_ret)), .SDcols = \"abnormal_ret\"]\n\ncat(\"CAR with pre-event window:\", pre_event_car$CAR, \"\\n\")\ncat(\"CAR during event window:\", car$CAR, \"\\n\")\n```\n\n## 3. Expected Findings\n\nThe expectation is that the product recall announcement leads to negative abnormal returns due to negative investor sentiment and perceived financial impact on the recalling company. The anticipated sign of the coefficient for the abnormal returns, particularly around the event day (day 0), is negative. The magnitude of these negative abnormal returns (cumulative abnormal returns or CAR) could range between -1% to -5% based on the severity of the recall and market conditions. However, precise magnitudes would depend on the scale and context of the specific recall incident.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze the change in cumulative abnormal returns (CAR) around the recall announcement event.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The product recall announcement leads to a significant negative impact on the company's stock returns.",
+    "main_effect": "-0.018"
+  }
+}

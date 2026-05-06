@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_01",
+  "title": "Bank Lending During the Financial Crisis of 2008",
+  "authors": "Ivashina & Scharfstein",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2009.12.001",
+    "title": "Bank lending during the financial crisis of 2008",
+    "year": 2009,
+    "journal": "Journal of Financial Economics",
+    "citations": 2555
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "scharfstein",
+      "ivashina"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jfe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 2555,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_53",
+  "title": "Measuring the Impacts of Teachers II: Teacher Value-Added and Student Outcomes in Adulthood",
+  "authors": "Chetty, Friedman & Rockoff",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.104.9.2633",
+    "title": "Measuring the Impacts of Teachers II: Teacher Value-Added and Student Outcomes in Adulthood",
+    "year": 2014,
+    "journal": "American Economic Review",
+    "citations": 1654
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "rockoff",
+      "friedman",
+      "chetty"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1654,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

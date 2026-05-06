@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_48",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:43:39.087150",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 610,
+    "output_tokens": 2255,
+    "content": "STEP 1 — PRE-COMMITMENT  \nIdentification strategy:  \n• Start from a within–identical-twin framework (pair fixed effects or first-differences). This controls for all time-invariant genetic and family background factors.  \n• Remaining threat is classical measurement error in self-reported years of schooling.  I will instrument the twin’s own self-reported education with the co-twin’s report of that education.  The exclusion restriction is that the co-twin’s report affects the twin’s wage only through its correlation with the true (but mis-measured) education.  \nDirectional hypothesis H₁ (pre-committed):  β > 0, where β is the causal effect of an additional year of schooling on the log of hourly wage.  I expect β ≈ 0.08–0.12.  I will not change this hypothesis after this point.\n\nSTEP 2 — SPECIFICATION DISCIPLINE (maximum = 5)  \nLet i index individuals and j index twin pairs.\n\nSpec 1.  Naïve OLS:  \nlog(wageᵢ) = α + β₁ educ_selfᵢ + γ’Xᵢ + εᵢ   \nXᵢ = {age, age², sex}.  (Purely descriptive.)\n\nSpec 2.  Twin fixed-effects OLS (within-pair, self-reported education):  \nlog(wageᵢ) = α + β₂ educ_selfᵢ + γ’Xᵢ + θⱼ + εᵢ\n\nSpec 3.  Twin fixed-effects 2SLS (main specification):  \nFirst stage: educ_selfᵢ = π₀ + π₁ educ_cotwin_reportᵢ + γ’Xᵢ + θⱼ + υᵢ  \nSecond stage: log(wageᵢ) = α + β₃ êducᵢ + γ’Xᵢ + θⱼ + εᵢ\n\nSpec 4.  First-differences 2SLS (equivalent to fixed effects but implemented on pair-level differences to ease interpretation):  \nΔlog(wage)ⱼ = β₄ Δeduc_selfⱼ + errorⱼ, instrumenting Δeduc_selfⱼ with Δeduc_cotwin_reportⱼ.\n\nSpec 5.  Restricted-heterogeneity 2SLS: repeat Spec 3 on the subsample where |Δeduc_selfⱼ| ≤ 2 years.\n\nNo additional specifications will be run.\n\nSTEP 3 — FALSIFICATION GATE  \nI will REJECT H₁ if any of the following hold for Spec 3 (preferred):  \na) Sign reversal: β₃ ≤ 0.  \nb) Insignificance: p-value(β₃) > 0.10 (two-sided).  \nc) Weak instrument: first-stage F-statistic on educ_cotwin_report ≤ 10.\n\nFailure on any one criterion triggers rejection.\n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n# ---- 0.  Libraries ----\nlibrary(tidyverse)\nlibrary(fixest)      # fast feols / feiv\nlibrary(ivreg)       # for first-difference IV\nlibrary(lmtest)      # for coeftest & F-stat\n\n# ---- 1.  Load data ----\n# Assume CSV in working directory\ntwin <- read_csv(\"twin_data.csv\")\n\n# Key variables assumed:\n# pair_id   : numeric identifier of twin pair\n# educ_self : own years of schooling (self report)\n# educ_co   : co-twin’s report of own schooling\n# wage      : hourly wage\n# age, sex  : controls (sex 1=male 0=female)\n\n# ---- 2.  Generate logs and differences ----\ntwin <- twin %>%\n  mutate(lwage = log(wage))\n\ndiff <- twin %>%                                     # pair-level differences\n  arrange(pair_id) %>%\n  group_by(pair_id) %>%\n  mutate(d_educ_self = educ_self - lead(educ_self),\n         d_educ_co   = educ_co   - lead(educ_co),\n         d_lwage     = lwage     - lead(lwage)) %>%\n  filter(!is.na(d_educ_self)) %>%                    # keep one obs per pair\n  ungroup()\n\n# ---- 3.  Specification 1: Naïve OLS ----\nspec1 <- feols(lwage ~ educ_self + age + I(age^2) + sex, data = twin)\n\n# ---- 4.  Specification 2: Twin FE OLS ----\nspec2 <- feols(lwage ~ educ_self + age + I(age^2) + sex | pair_id,\n               data = twin, cluster = ~pair_id)\n\n# ---- 5.  Specification 3: Twin FE 2SLS ----\nspec3 <- feols(lwage ~ 1 | pair_id | (educ_self ~ educ_co) + age + I(age^2) + sex,\n               data = twin, cluster = ~pair_id)\n\n# ----    First-stage F for Spec 3 ----\nfs <- fitfixef(spec3)$fs\nfirst_stage_F <- fs$statistic   # Kleibergen-Paap F\n\n# ---- 6.  Specification 4: First-difference 2SLS ----\nspec4 <- ivreg(d_lwage ~ d_educ_self | d_educ_co, data = diff)\nspec4_se <- sqrt(diag(vcovHC(spec4, type = \"HC1\")))\n\n# ---- 7.  Specification 5: Heterogeneity-restricted 2SLS ----\ndiff_restrict <- diff %>% filter(abs(d_educ_self) <= 2)\nspec5 <- ivreg(d_lwage ~ d_educ_self | d_educ_co, data = diff_restrict)\nspec5_se <- sqrt(diag(vcovHC(spec5, type = \"HC1\")))\n\n# ---- 8.  Output tidy tables ----\netable(list(spec1, spec2, spec3), se = \"cluster\")\nsummary(spec4, vcov = sandwich, df = Inf)\nsummary(spec5, vcov = sandwich, df = Inf)\n\n# Explicitly print first-stage F\ncat(\"First-stage F-stat (Spec 3):\", first_stage_F, \"\\n\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBecause we do not have the raw data, I state plausible expected point estimates based on the literature:\n\nSpec 1 (Naïve OLS): β̂₁ ≈ 0.10 (SE ≈ 0.02)  \nSpec 2 (Twin FE OLS): β̂₂ ≈ 0.06 (SE ≈ 0.03)  \nSpec 3 (Twin FE 2SLS): β̂₃ ≈ 0.12 (SE ≈ 0.05) First-stage F ≈ 25  \nSpec 4 (Δ 2SLS): β̂₄ ≈ 0.11 (SE ≈ 0.05)  \nSpec 5 (Restricted Δ 2SLS): β̂₅ ≈ 0.13 (SE ≈ 0.06)\n\nFalsification gate assessment for preferred Spec 3:  \n• Sign is positive (0.12 > 0) – passes.  \n• p-value ≈ 0.02 (< 0.10) – passes.  \n• First-stage F ≈ 25 (> 10) – passes.  \n\nTherefore, under these expected results, the falsification gate would NOT be triggered and H₁ would be retained.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables within identical twin pairs — within-pair education difference is used to identify returns to schooling (controlling for genetic and family background); co-twin's report of education serves as instrument for self-reported education (addressing measurement error attenuation bias)",
+    "key_variables": {
+      "treatment": "years of schooling (continuous, self-reported), instrumented by co-twin's report of the individual's education",
+      "control": "identical twin sibling (shares genes and family environment — within-pair differencing controls for ability and background)",
+      "outcome": "log hourly wage",
+      "time_period": "1991–1993 (Princeton Twins Survey at Twinsburg Festival)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The causal return to schooling is positive and significant. Within-twin IV estimates yield approximately 12-16% return per year of education, which is actually higher than OLS estimates (~8-10%). The higher IV estimate relative to OLS suggests that measurement error attenuation in self-reported education is a more important bias than ability bias (upward), consistent with the hypothesis that within-twin education differences are driven by random factors rather than ability differences.",
+    "main_effect": "IV within-twin return to education: approximately 12-16% per year; OLS within-twin: ~8-10%; cross-sectional OLS: ~10%",
+    "key_robustness": [
+      "Within-twin fixed effects (differencing out shared family/genetic factors)",
+      "IV using co-twin's report as instrument for measurement error correction",
+      "Hausman test comparing OLS and IV estimates (testing for measurement error bias)",
+      "Separate estimates by sex (male vs. female twins)",
+      "Sensitivity to sample selection (Twinsburg festival attendees may not be representative)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Within-identical-twin differenced wage equation, with co-twin-reported education as IV for self-reported education",
+      "treatment": "Years of education (continuous), with within-twin variation identifying the return; co-twin's report instruments for measurement error",
+      "event_window": "N/A (cross-sectional survey)",
+      "estimation_window": "N/A",
+      "sample_period": "1991–1993",
+      "unit_of_observation": "Individual within an identical twin pair (approximately 680 individuals in 340 pairs)",
+      "key_assumption": "Within identical twin pairs, differences in education are uncorrelated with differences in unobserved ability or earnings potential. This requires that whatever caused the twins to get different amounts of education (personal choices, luck, different peer groups) is not itself correlated with earnings. Co-twin's report of education is correlated with true education but measurement errors in co-twin reports are uncorrelated with errors in self-reports."
+    },
+    "key_magnitudes": {
+      "iv_return": "12-16% per year of education (within-twin IV, correcting for measurement error)",
+      "within_twin_ols": "8-10% per year (within-twin OLS, not corrected for measurement error)",
+      "cross_section_ols": "~10% per year (standard cross-sectional OLS)",
+      "measurement_error": "Self-reported education has approximately 10-15% error rate, causing ~30-40% attenuation of within-twin OLS"
+    },
+    "robustness_notes_detail": "The finding that IV > OLS (within twins) is consistent with measurement error attenuation being a larger bias than ability bias in the within-twin design. Hausman tests reject the null that measurement error is negligible. Results are qualitatively similar for male and female twins. The Twinsburg Festival sample may not be representative of the U.S. population (twins who attend a festival may differ from the general twin population), but the within-twin design is internally valid regardless of external validity concerns."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_21",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:32:25.074608",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 707,
+    "output_tokens": 163,
+    "content": "The Research Integrity by Design (RID) protocol is followed below.\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy is a Fuzzy Regression Discontinuity Design (RDD) using Instrumental Variables (IV). We exploit Maimonides' rule, which creates sharp, exogenous discontinuities in predicted class size at enrollment thresholds (41, 81, 121, etc.). The running variable is school-grade enrollment. The instrument is the predicted class size derived from Maimonides' rule. We will use this instrument for the endogenous variable, actual average class size, to estimate its causal effect on student test scores.\n\n**Directional Hypothesis:**\nReducing class size (i.e., smaller classes) improves student academic achievement, leading to",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables / fuzzy regression discontinuity — enrollment thresholds at multiples of 40 (Maimonides' rule) create predicted class size as an instrument for actual class size; the first stage relates predicted class size (from the rule) to actual class size; the second stage relates instrumented actual class size to test scores",
+    "key_variables": {
+      "treatment": "actual class size (continuous, endogenous), instrumented by predicted class size from Maimonides' rule",
+      "control": "N/A (continuous treatment with IV; the comparison is between schools just above vs. just below the enrollment thresholds at 40, 80, 120)",
+      "outcome": "average reading and math test scores at the class level (standardized)",
+      "time_period": "1991–1992 academic year in Israeli public schools"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Smaller classes significantly improve student achievement. The IV estimates show that reducing class size by one student raises reading scores by approximately 0.03-0.05 standard deviations and math scores by a similar amount. Effects are larger for disadvantaged students. The IV estimates are generally larger than OLS, consistent with OLS attenuation from measurement error or compensatory resource allocation.",
+    "main_effect": "Reducing class size by one student increases reading scores by approximately 0.03-0.05 SD; math score effects are similar in magnitude. A 10-student reduction improves scores by approximately 0.3-0.5 SD.",
+    "key_robustness": [
+      "Controlling for school-level socioeconomic characteristics (percent disadvantaged)",
+      "Separate estimates at each discontinuity (40, 80, 120 enrollment thresholds)",
+      "Different polynomial specifications in enrollment",
+      "Subsample analysis by student disadvantage status",
+      "Placebo tests at non-threshold enrollment levels"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) using Maimonides' rule predicted class size as instrument for actual class size; can also be interpreted as a fuzzy RDD at enrollment thresholds",
+      "treatment": "Actual class size (endogenous), instrumented by predicted class size = enrollment / ceil(enrollment / 40)",
+      "event_window": "N/A (cross-sectional within one school year)",
+      "estimation_window": "Schools with enrollment near the 40-student thresholds (various bandwidths)",
+      "sample_period": "1991–1992 academic year",
+      "unit_of_observation": "Class-level (average test scores by class) or school-grade level",
+      "key_assumption": "Predicted class size from Maimonides' rule affects student outcomes only through actual class size (exclusion restriction). Schools do not strategically manipulate enrollment around the thresholds. The key concern is that schools near enrollment thresholds may differ systematically — e.g., schools that grow from 39 to 41 students may be in growing neighborhoods with different socioeconomic characteristics."
+    },
+    "key_magnitudes": {
+      "iv_coefficient_reading": "Approximately -0.034 SD per additional student in class (4th grade reading)",
+      "iv_coefficient_math": "Approximately -0.040 SD per additional student in class (5th grade math)",
+      "first_stage": "Predicted class size strongly predicts actual class size; F-statistic well above 10",
+      "implied_star_comparison": "A 7-student reduction (comparable to STAR experiment) implies ~0.25 SD improvement, roughly consistent with STAR findings"
+    },
+    "robustness_notes_detail": "Results are robust to controlling for school socioeconomic composition, using different enrollment bandwidths, and separating estimates by discontinuity (40, 80, 120). Effects are larger for disadvantaged students, consistent with class size reductions being most beneficial for students with fewer alternative educational resources. The first stage is strong, with predicted class size having a high correlation with actual class size. Density tests around enrollment thresholds show some evidence of bunching (schools may adjust enrollment slightly), which the authors address with control variables."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_01",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:32:30.639376",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 592,
+    "output_tokens": 1157,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nTo identify the causal effect of reliance on short-term wholesale funding on banks' lending behavior during the 2008 financial crisis, we will use a difference-in-differences (DiD) approach. This strategy leverages the exogenous funding shock triggered by the Lehman Brothers collapse in September 2008 as a natural experiment. Banks more reliant on short-term wholesale funding (treatment group) are hypothesized to experience a more pronounced reduction in new syndicated loan origination compared to banks that relied more on retail deposits (control group). \n\nDirectional Hypothesis:\nBanks with a higher wholesale funding ratio (treatment group) will experience a larger reduction in new syndicated loan volume (both count and dollar amount) in the post-treatment period (October–December 2008) compared to the pre-treatment period (January–August 2008) and to banks with a lower wholesale funding ratio (control group).\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\nSpecification 1:\n\\[ NewLoanVolume_{it} = \\alpha + \\beta_1 Post_{t} \\times WholesaleFunding_i + \\gamma X_{it} + \\delta_t + \\theta_i + \\epsilon_{it} \\]\nWhere \\(Post_{t}\\) is a post-treatment period indicator, \\(WholesaleFunding_i\\) is the wholesale funding ratio, \\(X_{it}\\) are control variables (e.g., total assets, deposit funding ratio), \\(\\delta_t\\) are time fixed effects, \\(\\theta_i\\) are bank fixed effects.\n\nSpecification 2:\n\\[ NewLoanCount_{it} = \\alpha + \\beta_1 Post_{t} \\times WholesaleFunding_i + \\gamma X_{it} + \\delta_t + \\theta_i + \\epsilon_{it} \\]\nAs in Specification 1, but the dependent variable is the count of new syndicated loan deals.\n\nSpecification 3:\n\\[ NewLoanVolume_{it} = \\alpha + \\beta_1 Post_{t} + \\beta_2 WholesaleFunding_i + \\beta_3 (Post_{t} \\times WholesaleFunding_i) + \\gamma X_{it} + \\delta_t + \\theta_i + \\epsilon_{it} \\]\n\nSpecification 4:\n\\[ NewLoanCount_{it} = \\alpha + \\beta_1 Post_{t} + \\beta_2 WholesaleFunding_i + \\beta_3 (Post_{t} \\times WholesaleFunding_i) + \\gamma X_{it} + \\delta_t + \\theta_i + \\epsilon_{it} \\]\n\nSTEP 3 — FALSIFICATION GATE\n\nI will reject the hypothesis if any of the following conditions are met:\n- The coefficient on the interaction term \\(Post \\times WholesaleFunding\\) (\\(\\beta_1\\) or \\(\\beta_3\\)) in all specifications is not statistically significant (p > 0.10) and in the expected negative direction.\n- Pre-treatment trends are not parallel (i.e., the trends in the dependent variables for treatment and control groups differ significantly before Lehman's collapse).\n- The first-stage F-statistic for any instrumental variable approach (if tested) is below 10, but this is not directly part of our pre-committed specifications.\n\nSTEP 4 — R CODE\n\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Assuming `data` is the DataFrame loaded with all necessary columns\n# Pre-treatment indicator\ndata <- data %>%\n  mutate(Post_t = ifelse(date >= as.Date(\"2008-10-01\"), 1, 0))\n\n# Specification 1: New Loan Volume with Interaction\nmodel1 <- lm(NewLoanVolume ~ Post_t * WholesaleFunding + TotalAssets + DepositFundingRatio + factor(date) + factor(BankID), data = data)\ncoeftest(model1, vcov = vcovHC(model1, type = \"HC1\"))\n\n# Specification 2: New Loan Count with Interaction\nmodel2 <- lm(NewLoanCount ~ Post_t * WholesaleFunding + TotalAssets + DepositFundingRatio + factor(date) + factor(BankID), data = data)\ncoeftest(model2, vcov = vcovHC(model2, type = \"HC1\"))\n\n# Specification 3: New Loan Volume with Separate Interaction Terms\nmodel3 <- lm(NewLoanVolume ~ Post_t + WholesaleFunding + Post_t:WholesaleFunding + TotalAssets + DepositFundingRatio + factor(date) + factor(BankID), data = data)\ncoeftest(model3, vcov = vcovHC(model3, type = \"HC1\"))\n\n# Specification 4: New Loan Count with Separate Interaction Terms\nmodel4 <- lm(NewLoanCount ~ Post_t + WholesaleFunding + Post_t:WholesaleFunding + TotalAssets + DepositFundingRatio + factor(date) + factor(BankID), data = data)\ncoeftest(model4, vcov = vcovHC(model4, type = \"HC1\"))\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Numerical Results:\n- The interaction term (\\(Post \\times WholesaleFunding\\)) is expected to have a negative and statistically significant coefficient in both loan volume and count specifications, showing that banks with higher wholesale funding reliance reduced lending more.\n\nAssessment of Falsification Gate:\n- If the interaction term coefficient is not statistically significant and negative in any specification, I will reject the hypothesis. If all requirements for rejection are met, then it suggests no differential impact based on funding structure on lending during the crisis, refuting the hypothesis.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ]
+  }
+}

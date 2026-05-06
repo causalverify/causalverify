@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_85",
+  "title": "Incentive Effects of Social Assistance: A Regression Discontinuity Approach",
+  "authors": "Lemieux & Milligan",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jeconom.2007.05.014",
+    "title": "Incentive effects of social assistance: A regression discontinuity approach",
+    "year": 2007,
+    "journal": "Journal of Econometrics",
+    "citations": 259
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lemieux",
+      "milligan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "journal of econometrics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 259,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

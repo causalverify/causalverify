@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s65",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Impact of Emissions Standard Announcement on Auto Maker Stock Returns",
+  "research_question": "How does the announcement of a new emissions standard affect the stock returns of auto makers? Specifically, we aim to determine whether the announcement leads to a positive change in the stock returns of a major auto maker, CAR, and quantify the magnitude of this change.",
+  "data_description": "The dataset consists of daily stock returns for the auto maker CAR, with 60 observations around the announcement event. Key columns include stock_id, event_day, ret for daily returns, mkt_ret for market returns, and beta for the stock's sensitivity to market movements.",
+  "ground_truth": {
+    "identification_strategy": "Analyze stock returns before and after the announcement to isolate the impact of the emissions standard announcement.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The announcement of the new emissions standard positively affects CAR's stock returns.",
+    "main_effect": "Approximately 0.028 increase in stock returns."
+  },
+  "dgp_truth": {
+    "type": "event",
+    "effect": 0.028,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s65_data.csv"
+}

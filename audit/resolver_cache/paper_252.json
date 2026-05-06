@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_252",
+  "title": "Why is Manhattan So Expensive? Regulation and the Rise in Housing Prices",
+  "authors": "Glaeser, Gyourko & Saks",
+  "year": null,
+  "journal": "JUE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/429979",
+    "title": "Why Is Manhattan So Expensive? Regulation and the Rise in Housing Prices",
+    "year": 2005,
+    "journal": "The Journal of Law and Economics",
+    "citations": 651
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "glaeser",
+      "saks",
+      "gyourko"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jue",
+    "journal_oa": "the journal of law and economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 651,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

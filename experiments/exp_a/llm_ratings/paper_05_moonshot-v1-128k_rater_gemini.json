@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies 'event study' as the core identification strategy, aligning with the ground truth. Its description of using a control group of matched firms (industry, size, fiscal year) to compare 'before and after' an event (public announcement of misconduct) is consistent with the paper's methodology of using matched-firm adjusted returns. While the AI frames it as 'event study combined with DID,' this is a reasonable interpretation of how an event study with a control group operates. However, the AI output does not state the direction of the main effect, leading to a direction score of 0 and a Narrative Fabrication failure.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_05",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T13:16:28.625823+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI model accurately identifies Regression Discontinuity Design (RDD) as the primary identification strategy, matching the ground truth. It correctly specifies the running variable (float-adjusted market cap rank), cutoff (rank 1000), and the treatment/control groups (Russell 2000 vs. Russell 1000 firms near the boundary). The explanation of the RDD logic and key assumptions is also correct and aligns with the paper's methodology. However, the AI output ends before stating any conclusion direction regarding the effect of liquidity on innovation, hence a direction score of 0.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_10",
+  "scored_model": "claude-sonnet-4-20250514",
+  "timestamp": "2026-03-30T13:19:49.589541+00:00"
+}

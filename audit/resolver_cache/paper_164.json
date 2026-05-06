@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_164",
+  "title": "The Impacts of Environmental Regulations on Industrial Activity: Evidence from the 1970 and 1977 Clean Air Act Amendments and the Census of Manufactures",
+  "authors": "Greenstone",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/342808",
+    "title": "The Impacts of Environmental Regulations on Industrial Activity: Evidence from the 1970 and 1977 Clean Air Act Amendments and the Census of Manufactures",
+    "year": 2002,
+    "journal": "Journal of Political Economy",
+    "citations": 1068
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "greenstone"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1068,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

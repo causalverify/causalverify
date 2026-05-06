@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s61",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of Pharmaceutical Patent Approval on Company Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:41:56.361342",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 481,
+    "output_tokens": 409,
+    "content": "## 1. Identification Strategy\nWe will use an Event Study approach to estimate the impact of pharmaceutical patent approval on company returns. This method is suitable because it allows us to examine the stock market reactions around the event of patent approval, which is a clear and specific point in time. The key assumption is that the stock returns are not systematically different in the period before the event compared to the period after the event, except for the effect of the event itself.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(lmtest)\nlibrary(sandwich)\nlibrary(plm)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s61_data.csv\")\n\n# Calculate abnormal returns (AR)\ndata$ar <- data$ret - data$mkt_ret\n\n# Define the event window (e.g., -10 to 0)\nevent_window <- c(-10, 0)\n\n# Create a binary variable for the event window\ndata$in_event_window <- as.integer(data$event_day >= event_window[1] & data$event_day <= event_window[2])\n\n# Run the event study regression\nevent_study_model <- plm(ar ~ in_event_window, data = data, index = c(\"stock_id\", \"event_day\"))\n\n# Calculate the cumulative abnormal returns (CAR) for the event window\ncar <- coeftest(event_study_model, vcovHC(event_study_model, type = \"HC1\"))\n\n# Print the result\nprint(car)\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the event window variable in the event study regression, indicating that the cumulative abnormal returns (CAR) are higher around the event of patent approval. The magnitude of the effect will depend on the specific data and the market's reaction to the patent approval. However, given the importance of patent approval in the pharmaceutical industry, we expect a significant positive impact on the company's stock returns.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare stock returns before and after patent approval.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Patent approvals lead to a significant increase in drug-company CAR.",
+    "main_effect": 0.018
+  }
+}

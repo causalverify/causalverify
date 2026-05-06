@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_54",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:46:32.920034",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 667,
+    "output_tokens": 2594,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy: Use the random assignment of households (or villages) to the Graduation program versus control, combined with baseline and end-line survey rounds, to estimate intent-to-treat impacts via Difference-in-Differences (DID). Randomization ensures exogeneity; DID nets out common time shocks.  \nDirectional hypothesis (primary): βPOST > 0 — the treatment-by-post coefficient on (log) real per-capita consumption is positive.  \nSecondary directional hypothesis: γPOST > 0 — the treatment-by-post coefficient on total productive asset value is positive.  \nNo changes to these hypotheses will be allowed after this point.\n\n——————————————————————  \nSTEP 2 — SPECIFICATION DISCIPLINE (MAX 5)  \n\nLet i index households, c countries, g randomization clusters, and t∈{0,1,2} survey rounds (0=baseline, 1=midline, 2=endline). All regressions cluster standard errors at g.\n\nSpec 1  (Pooled DID, primary outcome)  \ny_{ict} = α + β (TREAT_i×POST_t) + δ_t + θ_c + ε_{ict}  \nPOST_t = 1 for t = 2 (endline), 0 otherwise. Outcome y = log(real per-capita consumption). θ_c are country fixed effects.\n\nSpec 2  (Country-specific DID, primary outcome)  \nFor each country separately:  \ny_{it} = α_c + β_c (TREAT_i×POST_t) + δ_t + ε_{it}\n\nSpec 3  (Pooled DID, secondary outcome)  \nSame as Spec 1, but y = log(1+productive asset value).\n\nSpec 4  (Household fixed-effects panel, primary outcome)  \ny_{ict} = α_i + β_FE (TREAT_i×POST_t) + δ_t + ε_{ict}\n\nSpec 5  (Pooled DID with baseline controls, primary outcome)  \ny_{ict} = α + β_COV (TREAT_i×POST_t) + δ_t + θ_c  \n             + λ′(X_i×POST_t) + ε_{ict}  \nX_i: baseline household size, head age, head schooling.\n\nNo other specifications or variable transformations will be run.\n\n——————————————————————  \nSTEP 3 — FALSIFICATION GATE  \n\nThe directional hypothesis will be rejected if ANY of the following occur for the primary outcome:  \n1. Sign reversal: β (or β_FE or β_COV) ≤ 0.  \n2. Statistical insignificance: two-sided p-value > 0.10 in Spec 1.  \n3. Pre-trend failure: in an auxiliary regression replacing POST_t with MID_t (indicator for t = 1) the coefficient on TREAT_i×MID_t is statistically different from zero at the 10 % level.  \n4. Balance failure: in baseline cross-section, regressing y_{i0} on TREAT_i and controls yields |t|>1.645 (p<0.10).\n\nIf any gate is tripped, the hypothesis is deemed falsified.\n\n——————————————————————  \nSTEP 4 — R CODE (self-contained, exact specs)\n\n```r\n# ------------------------------------------------------------------\n# Required packages\nlibrary(data.table)   # for fast data manipulation\nlibrary(lmtest)       # for coeftest\nlibrary(sandwich)     # for clustered SEs\n# ------------------------------------------------------------------\n\n# Load data (user to replace path)\ndt <- fread(\"graduation_panel.csv\")  # assumed tidy, long format\n\n# Harmonise survey round\ndt[, time := factor(time, levels = c(\"baseline\",\"midline\",\"endline\"))]\ndt[, POST  := as.integer(time == \"endline\")]\ndt[, MID   := as.integer(time == \"midline\")]\n\n# Log outcomes\ndt[, lcons_pc := log(real_cons_pc)]\ndt[, lassets  := log(1 + prod_asset_value)]\n\n# Function for clustered SEs\ncl_vcov <- function(model, cluster){\n  cluster <- model$model[[cluster]]\n  vcovCL(model, cluster = cluster, type = \"HC1\")\n}\n\n# ------------------------------------------------------------------\n# SPEC 1  Pooled DID, primary outcome\nspec1 <- lm(lcons_pc ~ TREAT*POST + time + factor(country), data = dt)\nspec1_se <- cl_vcov(spec1, \"cluster_id\")\nspec1_out <- coeftest(spec1, vcov = spec1_se)[\"TREAT:POST\", ]\n\n# ------------------------------------------------------------------\n# SPEC 2  Country-specific DID\nspec2_out <- rbindlist(lapply(split(dt, dt$country), function(dd){\n  m <- lm(lcons_pc ~ TREAT*POST + time, data = dd)\n  co <- coeftest(m, vcov = vcovCL(m, cluster = dd$cluster_id, type = \"HC1\"))[\"TREAT:POST\", ]\n  data.table(country = unique(dd$country),\n             beta = co[1], se = co[2], t = co[3], p = co[4])\n}))\n\n# ------------------------------------------------------------------\n# SPEC 3  Pooled DID, secondary outcome\nspec3 <- lm(lassets ~ TREAT*POST + time + factor(country), data = dt)\nspec3_se <- cl_vcov(spec3, \"cluster_id\")\nspec3_out <- coeftest(spec3, vcov = spec3_se)[\"TREAT:POST\", ]\n\n# ------------------------------------------------------------------\n# SPEC 4  Household FE panel, primary outcome\nspec4 <- lm(lcons_pc ~ TREAT*POST + time + factor(hh_id), data = dt)\nspec4_se <- cl_vcov(spec4, \"cluster_id\")\nspec4_out <- coeftest(spec4, vcov = spec4_se)[\"TREAT:POST\", ]\n\n# ------------------------------------------------------------------\n# SPEC 5  Pooled DID with baseline controls, primary outcome\nbaseline_controls <- c(\"hhsize0\",\"head_age0\",\"head_school0\")\nformula5 <- as.formula(\n  paste(\"lcons_pc ~ TREAT*POST + time + factor(country) +\",\n        paste(paste0(baseline_controls, \":POST\"), collapse = \" + \"))\n)\nspec5 <- lm(formula5, data = dt)\nspec5_se <- cl_vcov(spec5, \"cluster_id\")\nspec5_out <- coeftest(spec5, vcov = spec5_se)[\"TREAT:POST\", ]\n\n# ------------------------------------------------------------------\n# AUXILIARY TESTS FOR FALSIFICATION GATE\n# 3a  Midline pre-trend\nmid_test <- lm(lcons_pc ~ TREAT*MID + time + factor(country), data = dt)\nmid_se   <- cl_vcov(mid_test, \"cluster_id\")\nmid_out  <- coeftest(mid_test, vcov = mid_se)[\"TREAT:MID\", ]\n\n# 3b  Baseline balance\nbase_bal <- lm(lcons_pc ~ TREAT, data = dt[time==\"baseline\"])\nbal_se   <- cl_vcov(base_bal, \"cluster_id\")\nbal_out  <- coeftest(base_bal, vcov = bal_se)[\"TREAT\", ]\n\n# Save results\nsave(spec1_out, spec2_out, spec3_out, spec4_out, spec5_out,\n     mid_out, bal_out,\n     file = \"graduation_results.RData\")\n```\n\n——————————————————————  \nSTEP 5 — EXPECTED FINDINGS & GATE ASSESSMENT (forecast)  \n\nBased on prior published results:\n\n• Spec 1: β̂ ≈ 0.10 log-points (≈ 10 %) with SE ≈ 0.04 → t ≈ 2.5 → p ≈ 0.012.  \n• Spec 2: β̂ positive in 5 of 6 countries; smallest ≈ 0.05, largest ≈ 0.18; Pakistan possibly close to zero.  \n• Spec 3: γ̂ ≈ 0.25 log-points, SE ≈ 0.07 → p < 0.01.  \n• Spec 4: β̂_FE ≈ 0.11, SE ≈ 0.04.  \n• Spec 5: β̂_COV ≈ 0.09, SE ≈ 0.04.\n\nAuxiliary tests:  \n• Midline placebo coefficient ≈ 0.01, SE 0.03 → p = 0.75 (pre-trend passes).  \n• Baseline balance: coefficient ≈ 0.00, SE 0.02 → p = 0.95 (balance passes).\n\nGate assessment: none of the falsification criteria are expected to be tripped. Therefore, under the forecasted results, the directional hypothesis would be upheld.\n\n— End of RID protocol output —",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Randomized controlled trial with DID structure — households/villages randomly assigned to treatment (graduation program) vs. control at each site; baseline and endline surveys provide pre-post comparison; treatment effect estimated as the DID (change in outcomes for treatment minus change for control)",
+    "key_variables": {
+      "treatment": "receipt of multi-faceted graduation program (productive asset + training + coaching + consumption support + savings + health services)",
+      "control": "randomly assigned control households (no program)",
+      "outcome": "per capita consumption (primary); also food security, asset value, income, savings, time use, health indices, psychological well-being",
+      "time_period": "baseline (pre-program) and endline (2-3 years post-program start, 1 year after program support ends)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The graduation program has significant and lasting positive effects across all six countries. At endline (1 year after program support ends), treatment households have approximately 5-10% higher consumption, significantly more assets, higher savings, better food security, more productive time use, and improved mental health. These effects are statistically significant in the pooled sample and in most individual sites. The program passes a cost-benefit test in most countries, with benefits exceeding costs within 2-3 years.",
+    "main_effect": "Pooled across 6 countries: +5-10% increase in per capita consumption, +15% increase in asset value, +0.12 SD improvement in food security index at endline; effects are positive in all 6 sites and statistically significant in the pooled sample",
+    "key_robustness": [
+      "Country-by-country analysis (effects in each of 6 countries separately)",
+      "Multiple outcome indices (consumption, assets, food security, income, savings, health, psychology)",
+      "FWER and FDR corrections for multiple hypothesis testing",
+      "Lee bounds for attrition",
+      "Balance tests at baseline (randomization check)",
+      "Cost-benefit analysis comparing program costs to consumption gains"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cluster-randomized controlled trial with ANCOVA/DID estimation; pooled across 6 country-specific RCTs",
+      "treatment": "Multi-faceted graduation program (asset + training + coaching + consumption support + savings + health)",
+      "event_window": "Endline survey approximately 2-3 years after program start (1 year after support ends)",
+      "estimation_window": "Baseline survey at program start provides pre-treatment levels for ANCOVA control",
+      "sample_period": "2007–2014 (varies by country; program duration ~24 months, endline ~12 months after program end)",
+      "unit_of_observation": "Household (~21,000 households across 6 countries, ~3,500 per site)",
+      "key_assumption": "Randomization ensures treatment and control groups are balanced in expectation. No spillovers from treatment to control within villages (addressed by village-level randomization in some sites). No differential attrition (addressed by Lee bounds)."
+    },
+    "key_magnitudes": {
+      "consumption_pooled": "+5-10% increase in per capita consumption (PPP) at endline across 6 countries",
+      "assets_pooled": "+15% increase in asset value at endline",
+      "food_security": "+0.12 SD improvement in food security index",
+      "mental_health": "+0.10 SD improvement in psychological well-being index",
+      "cost_benefit": "Benefits exceed costs within 2-3 years in 5 of 6 countries (internal rate of return > 20%)"
+    },
+    "robustness_notes_detail": "Baseline balance tests confirm successful randomization in all 6 sites. Multiple hypothesis testing corrections (Westfall-Young stepdown, Benjamini-Hochberg FDR) confirm that the main findings survive adjustment for the large number of outcomes tested. Attrition is low (< 10% in most sites) and Lee bounds confirm results are robust to differential attrition. The cross-country replication (same program, same evaluation design, different contexts) provides unusually strong external validity evidence."
+  }
+}

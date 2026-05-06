@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI output perfectly matches the ground truth's identification strategy (event study + matched-firm benchmark) and key features like the event dates. It even correctly identifies the specific sample details (585 firms, AAERs, 1978-2002) and outlines a decomposition framework consistent with the paper's further analysis. The language of 'total costs' and 'total market value decline' strongly and unambiguously implies a negative direction, aligning with the ground truth's conclusion.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_05",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:15:58.469325+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "ME"
+  ],
+  "reasoning": "The AI correctly identifies event study methodology and uses the number of lenders as a key variable, which matches the core elements of the ground truth strategy. However, it frames this as a difference-in-differences design rather than the cross-sectional analysis that was the key innovation. The AI doesn't state any directional hypothesis or expected results, earning 0 on direction. This is a mechanical execution failure - right broad approach but wrong technical framing.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_30",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:11:14.649753+00:00"
+}

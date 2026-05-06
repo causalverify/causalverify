@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_258",
+  "title": "Do Students Benefit from Attending Better Schools? Evidence from Rule-based Student Assignments in Trinidad and Tobago",
+  "authors": "Jackson",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1468-0297.2010.02371.x",
+    "title": "Do Students Benefit from Attending Better Schools? Evidence from Rule\u2010based Student Assignments in Trinidad and Tobago",
+    "year": 2010,
+    "journal": "The Economic Journal",
+    "citations": 179
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jackson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "the economic journal",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 179,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

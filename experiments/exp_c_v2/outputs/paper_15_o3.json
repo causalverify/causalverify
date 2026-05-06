@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_15",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:27:44.079566",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 606,
+    "output_tokens": 2059,
+    "content": "BEGIN RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy:  Difference-in-differences (DiD) using county-pair × quarter (time) variation.  Each observation is a county-pair–quarter.  County-pair fixed effects remove all time-invariant spatial heterogeneity; quarter fixed effects purge aggregate shocks.  Identification comes from within-pair changes in the log real minimum wage on one side of the border relative to the other.\n\nDirectional hypothesis (fixed now):  In the restaurant sector, a higher minimum wage on one side of a contiguous county pair does not reduce employment.  Formally, the DiD coefficient on log minimum wage (β) is ≥ 0.  A negative and statistically significant estimate would contradict the hypothesis.\n\n––– End of Step 1 –––  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (maximum = 5)  \nFor every regression the dependent variable is ln(Restaurant Employment) in county c, quarter t.  \nAll regressions are weighted by county population and use heteroskedasticity-robust standard errors clustered at the state-pair level.\n\nSpec 1  (Baseline DiD)  \nlnEmp_ct = β lnMW_ct + δ_pair + γ_qtr + ε_ct  \n\nSpec 2  (Add time-varying county controls)  \nlnEmp_ct = β lnMW_ct + X_ct'θ + δ_pair + γ_qtr + ε_ct  \nX_ct = {ln population, ln total private employment, unemployment rate}\n\nSpec 3  (Pair-specific linear time trend)  \nlnEmp_ct = β lnMW_ct + X_ct'θ + δ_pair + γ_qtr + τ_pair·t + ε_ct  \n\nSpec 4  (Event-study leads/lags: 4 leads, 4 lags; no contemporaneous term)  \nlnEmp_ct = Σ_{k=-4}^{4, k≠-1} π_k·D_k + X_ct'θ + δ_pair + γ_qtr + ε_ct  \nD_k = 1 if quarter relative to effective date of a MW increase is k (-1 is omitted).  \n\nSpec 5  (Placebo test on pre-treatment period)  \nSame as Spec 3 but sample restricted to four quarters before any MW change within a pair; coefficient on lnMW_ct should be ~0.  \n\nNo other specifications will be run.\n\n––– End of Step 2 –––  \n\nSTEP 3 — FALSIFICATION GATE  \nThe hypothesis is rejected if EITHER of the following occurs in Spec 3 (preferred):  \na) β < 0 and |t| > 1.645 (two-sided p < 0.10); OR  \nb) The event-study in Spec 4 shows any of the four pre-treatment lead coefficients jointly significant at p < 0.10 (F-test), indicating broken parallel trends.\n\nIf neither (a) nor (b) is triggered, the hypothesis stands.\n\n––– End of Step 3 –––  \n\nSTEP 4 — R CODE  \n\n```r\n# -----------------------------------------------------------\n# Minimum Wage – Border-Pair Difference-in-Differences\n# -----------------------------------------------------------\n\n# 0. Libraries\nlibrary(data.table)   # fast data\nlibrary(lfe)          # felm for high-dim FE\nlibrary(fixest)       # alternative estimator\nlibrary(lmtest)       # Wald tests\n\n# 1. Load pre-constructed analysis file\n#    File must contain:\n#      pair_id, county_id, statepair_id\n#      quarter (Date or numeric), ln_emp, ln_mw\n#      ln_pop, ln_privemp, unemp_rate\n#      relq (integer quarters to MW change, -8 ... +8)\ndt <- fread(\"border_county_qwi_panel.csv\")    \n\n# 2. Weight\ndt[, wt := exp(ln_pop)]   # population level\n\n# 3. SPECIFICATIONS ------------------------------------------------\n\n# Spec 1\nspec1 <- felm(ln_emp ~ ln_mw | pair_id + quarter | 0 | statepair_id,\n              data = dt, weights = dt$wt)\nsummary(spec1)\n\n# Spec 2\nspec2 <- felm(ln_emp ~ ln_mw + ln_pop + ln_privemp + unemp_rate |\n                        pair_id + quarter | 0 | statepair_id,\n              data = dt, weights = dt$wt)\nsummary(spec2)\n\n# Spec 3  (pair-specific linear trend)\ndt[, qnum := as.integer(quarter)]\nspec3 <- felm(ln_emp ~ ln_mw + ln_pop + ln_privemp + unemp_rate |\n                        pair_id + quarter + interaction(pair_id, qnum) |\n                        0 | statepair_id,\n              data = dt, weights = dt$wt)\nsummary(spec3)\n\n# Spec 4  (event study)\n# Keep observations within ±8 quarters of a MW change\nevt <- dt[abs(relq) <= 8]\n# Create dummies for -4:-1,0:+4 (omit -1)\nfor(k in -4:4){\n  if(k == -1) next\n  evt[, paste0(\"D\",k) := as.integer(relq == k)]\n}\nfml_evt <- as.formula(\n  paste(\"ln_emp ~\", \n        paste(paste0(\"D\", setdiff(-4:4, -1)), collapse=\" + \"),\n        \"+ ln_pop + ln_privemp + unemp_rate | pair_id + quarter | 0 | statepair_id\"))\nspec4 <- felm(fml_evt, data = evt, weights = evt$wt)\nsummary(spec4)\n\n# Joint test that pre-treatment leads (-4:-2) are zero\nlead_vars <- paste0(\"D\", -4:-2)\nwaldtest(spec4, . ~ . - (D-4 + D-3 + D-2))\n\n# Spec 5  (placebo — pre period)\npre <- dt[relq <= -4]   # four or more quarters before change\nspec5 <- felm(ln_emp ~ ln_mw + ln_pop + ln_privemp + unemp_rate |\n                        pair_id + quarter + interaction(pair_id, qnum) |\n                        0 | statepair_id,\n              data = pre, weights = pre$wt)\nsummary(spec5)\n```\n\n––– End of Step 4 –––  \n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBased on prior literature using contiguous counties:\n\nSpec 1:  β ≈ 0.005  (t ≈ 0.4)  \nSpec 2:  β ≈ 0.003  (t ≈ 0.2)  \nSpec 3:  β ≈ 0.002  (t ≈ 0.1)  \nSpec 4:  All pre-treatment leads individually and jointly insignificant (p ≈ 0.70); post-treatment lags near zero.  \nSpec 5:  β ≈ -0.001 (t ≈ -0.1)\n\nGate assessment:  \n• Condition (a) not met because β in Spec 3 is positive and far from significant.  \n• Condition (b) not met because pre-treatment leads are not jointly significant.\n\nTherefore, the falsification gate is NOT triggered; the evidence would be consistent with the directional hypothesis that minimum wage increases do not reduce restaurant employment in contiguous-county comparisons.\n\n––– End of Step 5 –––",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Spatial difference-in-differences using contiguous cross-border county pairs — counties on the higher-minimum-wage side of a state border (treated) compared to adjacent counties on the lower-minimum-wage side (control), absorbing county-pair-specific time-invariant factors",
+    "key_variables": {
+      "treatment": "county in the state with a higher effective minimum wage (in a cross-border pair)",
+      "control": "adjacent county across state border with a lower effective minimum wage",
+      "outcome": "log restaurant-sector employment at the county-quarter level",
+      "time_period": "1990–2006, quarterly"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "No significant negative employment effects of minimum wage increases in the restaurant sector when using contiguous border county pairs as controls; the employment elasticity is effectively zero. Traditional specifications without spatial controls find significant negative effects, but these disappear when spatial heterogeneity is properly controlled.",
+    "main_effect": "Employment elasticity with respect to minimum wage: approximately 0.00 to +0.05 (not significantly different from zero) using border county pair design; traditional specifications find -0.10 to -0.20",
+    "key_robustness": [
+      "Various event-study specifications showing no pre-trend differences",
+      "Alternative industry definitions (full-service vs. limited-service restaurants)",
+      "Quarterly Census of Employment and Wages (QCEW) as alternative data source",
+      "Subsample analysis by Census division",
+      "Placebo tests using non-minimum-wage-sensitive sectors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Spatial DID with contiguous border county pairs, county-pair × period fixed effects",
+      "treatment": "Log effective minimum wage (continuous, driven by state legislation changes) interacted with being on the higher-minimum-wage side of a border pair",
+      "event_window": "Quarterly employment data surrounding each state minimum wage change",
+      "estimation_window": "Full panel 1990-2006",
+      "sample_period": "1990–2006",
+      "unit_of_observation": "County-quarter within a contiguous border pair",
+      "key_assumption": "Within a contiguous county pair, employment trends in the restaurant sector would have evolved identically absent the minimum wage differential. Supported by: (a) counties share the same local labor market; (b) pre-trend tests show no differential trends before minimum wage changes."
+    },
+    "key_magnitudes": {
+      "border_pair_elasticity": "Employment elasticity w.r.t. minimum wage: -0.016 (SE 0.044), not significantly different from zero",
+      "traditional_elasticity": "Same specification without border-pair controls: elasticity of -0.176 (SE 0.054), significant at 1%",
+      "earnings_effect": "Earnings elasticity w.r.t. minimum wage: +0.20 to +0.25, significant (minimum wages raise earnings as intended)"
+    },
+    "robustness_notes_detail": "Results are robust to alternative industry definitions, data sources (QWI vs. QCEW), time periods, and Census division subsamples. Event-study plots show no pre-treatment differential trends, supporting the parallel trends assumption. The key insight is that the significant negative employment effects found in traditional specifications are fully explained by confounding spatial heterogeneity (regional economic trends) rather than minimum wage effects."
+  }
+}

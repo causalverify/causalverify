@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_36",
+  "title": "Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination",
+  "authors": "Bertrand & Mullainathan",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/0002828042002561",
+    "title": "Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination",
+    "year": 2004,
+    "journal": "American Economic Review",
+    "citations": 4386
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "mullainathan",
+      "bertrand"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 4386,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

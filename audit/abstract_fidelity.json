@@ -1,0 +1,2207 @@
+[
+  {
+    "paper_id": "paper_01",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_02",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_03",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_08",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_12",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_13",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_20",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_25",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_29",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_30",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_52",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_58",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_61",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_66",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_68",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_79",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_85",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_86",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_98",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_108",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_115",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_123",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_134",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_137",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_147",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_160",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_167",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_176",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_177",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_179",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_181",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_182",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_192",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_197",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_199",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_204",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_207",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_214",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_220",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_221",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_225",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_227",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_230",
+    "fidelity": "no_real_abstract",
+    "error": "no DOI in resolver_cache"
+  },
+  {
+    "paper_id": "paper_236",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_238",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_245",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_248",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_253",
+    "fidelity": "no_real_abstract",
+    "error": "OpenAlex has record but no abstract_inverted_index"
+  },
+  {
+    "paper_id": "paper_04",
+    "title": "What Explains the Stock Market's Reaction to Federal Reserve Policy?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_05",
+    "title": "The Cost to Firms of Cooking the Books",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_06",
+    "title": "The Importance of Industry Links in Merger Waves",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_07",
+    "title": "Do Credit Market Shocks Affect the Real Economy? Quasi-Experimental Evidence from the Great Recessio",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark context emphasizes bank balance sheet deterioration (MBS/construction loan exposure) as the instrument, but abstract describes using pre-crisis bank market shares combined with estimated bank supply shifts",
+      "Benchmark frames the paper narrowly around identification challenge; abstract's main contribution is estimating real economy effects (employment) and finding economically small effects, plus placebo test in normal times (1997-2007)",
+      "Benchmark omits the county-level geographic design, small business loan focus, and the LBD microdata employment analysis",
+      "Benchmark fabricates specific details about MBS/construction loan exposure not mentioned in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_09",
+    "title": "The Vote Is Cast: The Effect of Corporate Governance on Shareholder Value",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_10",
+    "title": "Does Stock Liquidity Enhance or Impede Firm Innovation?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark context specifies Russell 1000/2000 index reconstitution as the identification strategy, but the abstract only mentions 'regulatory changes' as the source of exogenous variation in liquidity",
+      "Benchmark frames higher institutional ownership as a channel for liquidity, while the paper identifies passive/non-monitoring institutional investors as a mechanism through which liquidity impedes innovation",
+      "Benchmark omits the takeover exposure mechanism mentioned in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_11",
+    "title": "Corporate Governance and Acquirer Returns",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_14",
+    "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "The OpenAlex entry is for the 2000 Reply paper (re-examining with payroll data), but the institutional_context describes the original 1994 Card-Krueger study setup without noting the reply/reanalysis context"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_15",
+    "title": "Minimum Wage Effects Across State Borders",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_16",
+    "title": "The China Syndrome: Local Labor Market Effects of Import Competition in the United States",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Names the identification strategy ('shift-share/Bartik-style') which the instructions say should not be named",
+      "Specifies exact list of comparison high-income countries not mentioned in the abstract",
+      "Includes specific employment statistics (17.3M to 11.5M) not in the abstract",
+      "Omits the abstract's key finding on transfer/benefit payments rising in trade-exposed areas"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_17",
+    "title": "Economic Shocks and Civil Conflict: An Instrumental Variables Approach",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_18",
+    "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_19",
+    "title": "The Impact of Nearly Universal Insurance Coverage on Health Care Utilization: Evidence from Medicare",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses narrowly on acute care hospital admissions, while A emphasizes heterogeneous effects across service types (routine visits vs. expensive procedures)",
+      "B omits the key finding about differential gains across socioeconomic groups and the role of supplementary coverage",
+      "B frames it primarily as uninsured-to-insured transition, missing A's point that previously insured gain more for expensive procedures due to Medicare's supplementary generosity"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_21",
+    "title": "Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_22",
+    "title": "Schooling and Labor Market Consequences of School Construction in Indonesia: Evidence from an Unusua",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_23",
+    "title": "The Finance-Growth Nexus: Evidence from Bank Branch Deregulation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_24",
+    "title": "Does Credit Competition Affect Small-Firm Finance?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark specifies Riegle-Neal Act 1994 and Rice-Strahan index, which are not mentioned in the abstract",
+      "Benchmark emphasizes exogeneity/identification framing not present in the abstract",
+      "Benchmark omits the paper's main findings on interest rates (80-100 bps lower) and the null effect on loan amounts"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_26",
+    "title": "The Response of Corporate Financing and Investment to Changes in the Supply of Credit",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark describes debt covenant violations as the credit supply shock; actual paper uses Drexel collapse, FIRREA, and insurance regulations",
+      "Benchmark implies regression discontinuity around covenant thresholds; actual paper uses difference-in-differences",
+      "Benchmark focuses on individual firm covenant violations; actual paper studies market-wide contraction in below-investment-grade credit",
+      "Benchmark omits the paper's main finding about near one-for-one decline in investment with debt issuances and stable leverage ratios"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_27",
+    "title": "How Much Do Investors Care About Macroeconomic Risk? Evidence from Scheduled Economic Announcements",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark frames the paper as a conditional CAPM beta-return test; actual abstract focuses on average returns, Sharpe ratios, and risk premium earned on announcement days, not specifically on the beta-return relationship",
+      "Abstract emphasizes the magnitude of the equity risk premium earned on announcement days (60%+) and lower risk-free rates; benchmark omits these specific findings",
+      "Benchmark adds framing about idiosyncratic/liquidity factors on non-announcement days not present in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_28",
+    "title": "Contagious Speculation and a Cure for Cancer: A Nonevent That Made Stock Prices Soar",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_31",
+    "title": "Estimating the Value of Political Connections",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_32",
+    "title": "Does Going Public Affect Innovation?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_33",
+    "title": "Does Corporate Social Responsibility Lead to Superior Financial Performance? A Regression Discontinu",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_34",
+    "title": "The Effect of SOX Section 404: Costs, Earnings Quality, and Stock Prices",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark frames the study as a sharp RDD around the $75M threshold, but the abstract describes a natural quasi-experiment exploiting delayed compliance, not an RDD",
+      "Benchmark omits the foreign-firm $700M threshold for auditor attestation delay",
+      "Benchmark omits the paper's main findings (conservative earnings, real costs, reduced market value for small firms)",
+      "Benchmark adds specific cost estimates ($1-3M) not mentioned in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_35",
+    "title": "Did Securitization Lead to Lax Screening? Evidence from Subprime Loans",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_36",
+    "title": "Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discri",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_37",
+    "title": "Outsourcing at Will: The Contribution of Unjust Dismissal Doctrine to the Growth of Employment Outso",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_38",
+    "title": "Children and Their Parents' Labor Supply: Evidence from Exogenous Variation in Family Size",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_39",
+    "title": "The Impact of Immigration: Why Do Studies Reach Such Different Results?",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark fabricates a Germany early-1990s empirical setting; the actual paper is a conceptual/theoretical synthesis classifying the literature",
+      "Benchmark invents a 3 million immigrant shock and dispersal policy not mentioned in the abstract",
+      "Benchmark omits the paper's actual contributions: canonical model framework, heterogeneous labor supply elasticities, and immigrant downgrading",
+      "Benchmark mischaracterizes the area vs skill-cell distinction instead of the paper's three-group classification and total vs relative effects argument"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_40",
+    "title": "Pay, Reference Points, and Police Performance",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_41",
+    "title": "Peers at Work",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_42",
+    "title": "The Aggregate Effects of Health Insurance: Evidence from the Introduction of Medicare",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_43",
+    "title": "The Oregon Health Insurance Experiment",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_44",
+    "title": "Estimating Marginal Returns to Medical Care: Evidence from At-Risk Newborns",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_45",
+    "title": "The Persistent Effects of Peru's Mining Mita",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_46",
+    "title": "Do Better Schools Matter? Parental Valuation of Elementary Education",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_47",
+    "title": "How Large Are Human-Capital Externalities? Evidence from Compulsory Schooling Laws",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_48",
+    "title": "Estimates of the Economic Return to Schooling from a New Sample of Twins",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_49",
+    "title": "Remedial Education and Student Achievement: A Regression-Discontinuity Analysis",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_50",
+    "title": "Traffic Congestion and Infant Health: Evidence from E-ZPass",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_51",
+    "title": "Aiding Conflict: The Impact of U.S. Food Aid on Civil War",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_53",
+    "title": "Measuring the Impacts of Teachers II: Teacher Value-Added and Student Outcomes in Adulthood",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Context describes the teacher-switching event-study validation, which is the focus of Part I of the series, not Part II; Part II focuses on long-term outcomes",
+      "Context emphasizes methodology (event study) while abstract emphasizes long-run outcome findings (college attendance, earnings, teen pregnancy, $250K lifetime income estimate)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_54",
+    "title": "A Multifaceted Program Causes Lasting Progress for the Very Poor: Evidence from Six Countries",
+    "fidelity": "faithful",
+    "key_discrepancies": [
+      "Mentions DID identification which isn't specified in abstract (abstract just says RCTs)",
+      "Names BRAC/graduation approach which isn't mentioned in abstract but is reasonable context"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_55",
+    "title": "Child Protection and Child Outcomes: Measuring the Effects of Foster Care",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_56",
+    "title": "Women as Policy Makers: Evidence from a Randomized Policy Experiment in India",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_57",
+    "title": "Can Mandated Political Representation Increase Policy Influence for Disadvantaged Minorities? Theory",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark context specifies a regression discontinuity design around Census rounding thresholds, but the abstract does not mention this identification strategy",
+      "Abstract's setting is broader (Indian states' political reservation and transfers to groups) without the specific rounding-discontinuity mechanism framed in B",
+      "B adds fabricated institutional detail (rounding formula, discontinuities) not evident in the abstract"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_59",
+    "title": "Frictions in Shadow Banking: Evidence from the Lending Behavior of Money Market Funds",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Describes generic 'financial crisis' and 'regulatory changes' rather than the specific 2011 Eurozone exposure shock",
+      "Misses the key finding about spillovers to non-European issuers and relationship-based substitute financing",
+      "Does not mention security-level holdings data or the identification strategy holding issuer fixed"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_60",
+    "title": "Do Private Firms Invest Differently than Public Firms? Taking Cues from the Natural Gas Industry",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Fabricates a 'significant policy change' / natural experiment that is not mentioned in the actual abstract",
+      "Abstract focuses on responses to investment opportunities and access to external capital, not a regulatory policy shock",
+      "Misses the key finding that private firms sell capital-intensive projects to public firms",
+      "Omits the scale of the data (74,670 projects) and the external-capital-access mechanism"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_62",
+    "title": "Hedge Fund Activism, Corporate Governance, and Firm Performance",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits the specific 2001-2006 US sample and hand-collected nature of the data",
+      "Does not mention the key findings (7% abnormal return, increased payout, CEO turnover, operating performance)",
+      "Misses that hedge funds seldom seek control and are mostly nonconfrontational",
+      "Frames the paper as a causal identification study rather than a descriptive/event-study documentation of activism outcomes"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_63",
+    "title": "Markup Pricing in Mergers and Acquisitions",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "B describes 'markup pricing' as firm product pricing strategy after M&A, but the paper is about the 'markup' = post-announcement stock price increase in takeover bids",
+      "B misses the core topic: relation between pre-bid runup and takeover premium/markup",
+      "B fabricates a framing about regulatory environment and firm pricing behavior not in the abstract",
+      "B omits key finding that runup and markup are uncorrelated, making runup an added cost to bidder"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_64",
+    "title": "Testing Asymmetric-Information Asset Pricing Models",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention the key findings that prices and uninformed demand fall as asymmetry increases",
+      "Omits the liquidity channel as the primary link between asymmetry and prices",
+      "Vague about the three natural experiments; no mention of specific cross-sectional predictions (turnover, payoff uncertainty, signal precision)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_65",
+    "title": "The Value of Bank Durability: Borrowers as Bank Stakeholders",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention the specific Continental Illinois Bank event and FDIC rescue",
+      "Omits the event-study/share-price methodology context",
+      "Generic description that could fit many bank distress papers"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_67",
+    "title": "When Does the Market Matter? Stock Prices and the Investment of Equity-Dependent Firms",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B overstates the identification strategy as leveraging exogenous stock price variation, while the abstract describes a model-driven prediction tested with a KZ-based equity dependence index",
+      "B omits the key empirical finding about the KZ index quintile comparison (top quintile ~3x more sensitive)",
+      "B does not mention the Kaplan-Zingales index as the measure of equity dependence"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_69",
+    "title": "How Does Financing Impact Investment? The Role of Debt Covenants",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_70",
+    "title": "Control Rights and Capital Structure: An Empirical Investigation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_71",
+    "title": "Investment and Financing Constraints: Evidence from the Funding of Corporate Pension Plans",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark frames identification as a threshold/RDD-style quasi-experiment around funding ratios; abstract describes exploiting nonlinear funding rules more broadly, including unexpected asset market movements as a source of variation",
+      "Benchmark omits the key finding that the effect is concentrated among financially constrained firms (e.g., by credit ratings)",
+      "Benchmark does not mention the main outcome (capital expenditures/investment decline with mandatory contributions)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_72",
+    "title": "Does Employment Protection Reduce Productivity? Evidence from US States",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B vaguely refers to 'employment protection legislation' but the paper specifically studies wrongful-discharge protection adopted by state courts, not legislated EPL",
+      "B omits the key outcomes examined (employment flows, firm entry, capital deepening, TFP decline)",
+      "B does not mention the establishment-level Census data used"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_73",
+    "title": "People, Places, and Public Policy: Some Simple Welfare Economics of Local Economic Development Progr",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real paper is a theoretical/review piece developing a spatial equilibrium model; benchmark describes an empirical causal analysis",
+      "Benchmark fabricates an identification strategy comparing treated vs untreated counties, which is not in the abstract",
+      "Real paper has international scope and welfare analysis; benchmark restricts to US counties",
+      "Benchmark misses the welfare economics framing and policy evaluation aspect"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_74",
+    "title": "How General Is Human Capital? A Task-Based Approach",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Abstract does not specify German labor market or Germany as the setting",
+      "Abstract is not about technological/organizational changes creating natural variation",
+      "Fabricates focus on vocational training system and adaptation to shifts",
+      "Misses the paper's actual concept of task-specific human capital and its role in wage growth (up to 52%) and occupational mobility"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_75",
+    "title": "The War on Poverty's Experiment in Public Medicine: Community Health Centers and the Mortality of Ol",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_76",
+    "title": "Earnings Losses of Displaced Workers",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract emphasizes high-tenure workers separating from distressed firms, not specifically plant closures/mass layoffs",
+      "Context frames it as a natural experiment with exogeneity assumptions, but the abstract does not emphasize this identification framing",
+      "Context omits the key finding (25% long-term earnings losses, losses mounting prior to separation, loss of employment relationship attribute)",
+      "Context omits the use of administrative quarterly earnings data linked to firm information"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_77",
+    "title": "Children and Gender Inequality: Evidence from Denmark",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention the ~20% long-run earnings gap or the decomposition into hours, participation, and wages",
+      "Omits the key finding on intergenerational transmission of child penalties",
+      "Omits the finding on rising share of gender inequality explained by child penalties over decades",
+      "Adds unverified emphasis on Denmark's parental leave policies as central to identification"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_78",
+    "title": "Family Health Behaviors",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract does not specify Denmark or universal healthcare setting",
+      "Abstract mentions spillovers to coworkers, not mentioned in context",
+      "Context omits salience vs. information-learning mechanism finding"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_80",
+    "title": "Using Geographic Variation in College Proximity to Estimate the Return to Schooling",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_81",
+    "title": "Estimating Average and Local Average Treatment Effects of Education When Compulsory Schooling Laws R",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark focuses on U.S. state-level compulsory schooling law variation, but the paper's main setting is the UK's 1947 school-leaving age change from 14 to 15",
+      "Benchmark omits the cross-country comparison (UK vs. US/Canada) that is central to the paper",
+      "Benchmark misses the paper's key point about LATE approaching ATE due to the large affected population, and the test of whether IV>OLS reflects peculiar compliers"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_82",
+    "title": "Zero Returns to Compulsory Schooling in Germany: Evidence and Interpretation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_83",
+    "title": "Economic Impacts of New Unionization on Private Sector Employers: 1984-2001",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_84",
+    "title": "The Effects of Extended Unemployment Insurance over the Business Cycle",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes a single policy change, but the paper exploits age-based UI duration rules that are invariant over time, applied across 20 years to study business-cycle variation",
+      "B omits the central focus on how UI effects differ between booms and recessions",
+      "B omits the key finding about exhaustion rates and effective moral hazard being lower in recessions"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_87",
+    "title": "Dams",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real paper is a civil engineering lecture on earthquake effects on dams, not an economics paper on dams and development",
+      "Benchmark fabricates an Indian staggered dam construction setting not present in the abstract",
+      "Benchmark invents a difference-in-differences-style causal identification strategy absent from the real paper"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_88",
+    "title": "Do Rural Banks Matter? Evidence from the Indian Social Banking Experiment",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_89",
+    "title": "The Potato's Contribution to Population and Urbanization: Evidence from a Historical Experiment",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_90",
+    "title": "Why Are Indian Children So Short? The Role of Birth Order and Son Preference",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Missing the central India-Africa comparison which is the paper's core framing",
+      "Does not mention the birth order gradient being steeper in India than Africa",
+      "Omits that the paper quantifies how much of the India-Africa height gap is explained"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_91",
+    "title": "Child Penalties Across Countries: Evidence and Explanations",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark limits scope to Austria, Denmark, Sweden, but abstract describes a broader cross-country comparison",
+      "Benchmark frames it as a causal identification design exploiting cross-country variation, while the paper uses event studies around first birth and discusses (not formally identifies) policy/norm explanations"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_92",
+    "title": "Does Trade Cause Growth?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_93",
+    "title": "The Long-Term Effects of Africa's Slave Trades",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_94",
+    "title": "Disease and Development: Evidence from Hookworm Eradication in the American South",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_95",
+    "title": "Going to a Better School: Effects and Behavioral Responses",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the setting as a 'policy change' that altered assignment criteria, but the paper uses the standard tracked admission system, not a reform",
+      "B focuses only on student outcomes; omits the paper's key findings on behavioral responses by teachers, students, and parents",
+      "B does not mention the stratified/selective school system context"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_96",
+    "title": "Islamic Rule and the Empowerment of the Poor and Pious",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes generic 'local governance and development outcomes' but omits the paper's specific focus on women's empowerment, female education, adolescent marriage, and political participation"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_97",
+    "title": "Government Transfers and Political Support",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_99",
+    "title": "The Impact of Health Care Reform on Hospital and Preventive Care: Evidence from Massachusetts",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_100",
+    "title": "Hospital Ownership and Public Medical Spending",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark specifies California setting, not mentioned in abstract",
+      "Benchmark frames the shock as changes in ownership structure; actual paper uses a change in hospital financing (for indigent care)",
+      "Benchmark omits the paper's core finding about soft budget constraints in government hospitals and similar behavior of nonprofits and for-profits",
+      "Benchmark omits the result that increased public medical spending did not improve health outcomes for the poor"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_101",
+    "title": "Is More Information Better? The Effects of Report Cards on Health Care Providers",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits that the study concerns cardiac surgery on Medicare patients in New York and Pennsylvania specifically",
+      "Does not mention the key finding of provider selection behavior and worse outcomes for sicker patients",
+      "Claims policy 'implemented uniformly across a specific region' which misrepresents the multi-state comparative setting",
+      "Misses the central welfare conclusion that report cards decreased patient/social welfare"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_102",
+    "title": "Did Community Rating Induce an Adverse Selection Death Spiral?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Real abstract content not provided beyond title/citation; cannot verify specific findings or methods",
+      "Benchmark context is plausible but unverifiable against actual abstract content"
+    ],
+    "confidence": "low"
+  },
+  {
+    "paper_id": "paper_103",
+    "title": "Does More Intensive Treatment of Acute Myocardial Infarction in the Elderly Reduce Mortality?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark emphasizes hospital/regional variation as natural experiment, but abstract focuses on timing of care (first 24 hours) and marginal benefit of catheterization/revascularization",
+      "Abstract's key finding that early care matters most and procedural benefits are minimal for marginal patients is not reflected",
+      "Benchmark frames the setting as cross-hospital variation study, which may not match the paper's actual identification strategy described in abstract"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_104",
+    "title": "Can Higher Cigarette Taxes Improve Birth Outcomes?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_105",
+    "title": "The Relationship Between Education and Adult Mortality in the United States",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_106",
+    "title": "The Effect of Patient Cost Sharing on Utilization, Health, and Risk Protection",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_107",
+    "title": "Saving Babies? Revisiting the Effect of Very Low Birth Weight Classification on Mortality",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real abstract is about Medicaid expansions and adult mortality, not VLBW infant classification",
+      "OpenAlex abstract appears mismatched to the paper title; benchmark context describes the actual paper topic but cannot be verified against the provided abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_109",
+    "title": "Does Competition Among Public Schools Benefit Students and Taxpayers?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_110",
+    "title": "Does Aid Matter? Measuring the Effect of Student Aid on College Attendance and Completion",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Real abstract not provided beyond title/citation, so specific policy (Social Security Student Benefit elimination) cannot be verified",
+      "Benchmark context is generic about 'a policy change' without specifying the actual setting"
+    ],
+    "confidence": "low"
+  },
+  {
+    "paper_id": "paper_111",
+    "title": "Knowledge, Tests, and Fadeout in Educational Interventions",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark fabricates a staggered rollout reform setting not in the abstract",
+      "Real paper analyzes test score rescaling and fadeout via education production model, not a policy reform",
+      "No mention of new teaching methods/curricula in actual paper"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_112",
+    "title": "The Effects of School Spending on Educational and Economic Outcomes",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_113",
+    "title": "Early Childhood Intervention and Life-Cycle Skill Development: Evidence from Head Start",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Actual paper uses sibling comparisons in NLSY, not eligibility-rule variation",
+      "Context implies identification via income-based eligibility cutoffs, which is not the method used",
+      "Omits the specific finding of 0.23 SD gain on young adult outcomes and the fade-out point"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_114",
+    "title": "Estimating the Payoff to Attending a More Selective College",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_116",
+    "title": "The Elite Illusion: Achievement Effects at Boston and New York Exam Schools",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_117",
+    "title": "Research Design Meets Market Design: Using Centralized Assignment for Impact Evaluation",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark describes a cutoff/threshold (regression discontinuity-style) design, but the paper actually exploits lottery-based random assignment from oversubscribed schools",
+      "Misses the specific application to Denver charter schools and the finding of large achievement gains",
+      "Does not mention the multi-sector (charter + traditional) unified assignment context"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_118",
+    "title": "Do Police Reduce Crime? Estimates Using the Allocation of Police Forces After a Terrorist Attack",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_119",
+    "title": "Portage and Path Dependence",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_120",
+    "title": "The Impacts of Environmental Regulations on Industrial Activity",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_121",
+    "title": "Bones, Bombs, and Break Points: The Geography of Economic Activity",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the paper as a causal/natural experiment on wartime destruction's impact on urban outcomes, but the actual paper is about theories of spatial distribution (increasing returns vs. random growth vs. locational fundamentals) using long-run population data from Stone Age to modern era",
+      "B omits the long historical analysis of Japanese regional population which is central to the paper",
+      "B misses the main finding that city sizes are robust to temporary shocks, supporting locational fundamentals with increasing returns"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_122",
+    "title": "The Economic Costs of Conflict: A Case Study of the Basque Country",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_124",
+    "title": "The Impact of Legalized Abortion on Crime",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_125",
+    "title": "The Value of School Facility Investments: Evidence from a Dynamic Regression Discontinuity Design",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_126",
+    "title": "Do Consumers Respond to Marginal or Average Price? Evidence from Nonlinear Electricity Pricing",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark specifies California and increasing block pricing, which are not stated in the abstract",
+      "Benchmark misses the key identification strategy of spatial discontinuities across service areas",
+      "Benchmark omits the main finding that consumers respond to average price"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_127",
+    "title": "Estimates of the Impact of Crime Risk on Property Values from Megan's Laws",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_128",
+    "title": "Trade Liberalization, Exit, and Productivity Improvements: Evidence from Chilean Plants",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_129",
+    "title": "The Surprisingly Swift Decline of US Manufacturing Employment",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_130",
+    "title": "Factor Immobility and Regional Impacts of Trade Liberalization: Evidence on Poverty from India",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_131",
+    "title": "Trade Induced Technical Change? The Impact of Chinese Imports on Innovation, IT and Productivity",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark says UK firms; actual paper uses panel data across twelve European countries",
+      "Benchmark omits the specific instrument of product-specific quota removals post-WTO entry",
+      "Benchmark omits key findings on reallocation between firms and employment/skill effects"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_132",
+    "title": "Trade Liberalization and Labor Market Dynamics",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real paper estimates a structural dynamic equilibrium model; benchmark frames it as a natural experiment with differential tariff exposure",
+      "Benchmark omits key model features (mobility costs, sector-specific experience, overlapping generations)",
+      "Benchmark misrepresents identification strategy as quasi-experimental/causal rather than structural estimation with counterfactual simulation",
+      "Main findings about transition dynamics, welfare gains, and worker heterogeneity are not reflected in benchmark context"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_133",
+    "title": "Trade and Income -- Exploiting Time Series in Geography",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Mentions 'geopolitical shifts' which are not in the abstract; the paper specifically uses aircraft technology improvements and air-vs-sea route ratios, which is not captured",
+      "Does not convey the specific mechanism (air vs sea route heterogeneity) or that country fixed effects are used to address omitted variables"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_135",
+    "title": "Regional Effects of Trade Reform: What Is the Correct Measure of Liberalization?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes the general empirical setting but omits the paper's core contribution: developing a specific-factors theoretical model and addressing the nontraded sector",
+      "B frames the paper as a causal impact study via regional tariff variation, while the actual paper is methodological—evaluating the correct measure of liberalization",
+      "B does not mention the wage-decline finding or the theoretical foundation aspect"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_136",
+    "title": "The Effect of State Policies on the Location of Manufacturing: Evidence from State Borders",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_138",
+    "title": "The Economic Impacts of Climate Change: Evidence from Agricultural Output and Random Fluctuations in",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses on agricultural output/productivity, but the paper actually measures agricultural profits",
+      "B omits the key finding that climate change is estimated to increase profits by ~$1.3B (4%)",
+      "B does not mention the critique of the hedonic approach, a central contribution of the paper",
+      "B omits the US setting"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_139",
+    "title": "The Enduring Impact of the American Dust Bowl: Short and Long-run Adjustments to Environmental Catas",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_140",
+    "title": "Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Etha",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "B claims identification uses the ethanol mandate as a natural experiment; A actually uses past yield shocks as exogenous price shifters via inventory/futures channel",
+      "B frames the mandate as the identification source, but in A the mandate is the policy being evaluated using independently estimated elasticities",
+      "B omits the storable commodity framework and the multi-crop scope (corn, rice, soybeans, wheat)",
+      "B omits the key quantitative finding (≈20% price increase with recycling assumption)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_141",
+    "title": "What Do We Learn from the Weather? The New Climate-Economy Literature",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes the paper as an empirical study deriving causal estimates, but A indicates it is a literature review summarizing methodologies and findings",
+      "B omits the review's scope across multiple outcomes (agriculture, health, conflict, growth, etc.) and its application to climate damage functions",
+      "B does not mention the panel-data within-spatial-unit identification framework that is central to A"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_142",
+    "title": "Selling Labor Low: Wage Responses to Productivity Shocks in Developing Countries",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Misses the central finding that wage responsiveness depends on worker poverty, credit constraints, and migration costs",
+      "Does not mention India or the specific district-level panel (1956-87)",
+      "Omits the insurance implication for landowners vs. harm to workers",
+      "Does not hint at rainfall as the productivity instrument"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_143",
+    "title": "Economic Growth and the Rise of Forests",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real abstract describes demand-side mechanism from income/population growth driving forest growth using household survey, census, and satellite data in India; B fabricates an identification strategy based on global market changes and international policy shifts",
+      "B invents exogenous variation framing not present in abstract",
+      "B omits the India-specific setting, the village-level panel data, and the key finding about demand for forest products"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_144",
+    "title": "Creating Abundance: Biological Innovation and American Agricultural Development",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract (table of contents) covers broad range of crops and livestock across 1800-1940, not just seed technology",
+      "Benchmark emphasizes government R&D policy and regional adoption variation, which are not evident as central themes in the abstract",
+      "Benchmark frames paper as causal identification study, but abstract suggests a broad historical/descriptive survey of biological innovation",
+      "Livestock, dairy, and draft power chapters are omitted from benchmark characterization"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_145",
+    "title": "Air Quality and Early-Life Mortality: Evidence from Indonesia's Wildfires",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_146",
+    "title": "The Enduring Impact of the American Dust Bowl: Short- and Long-Run Adjustments to Environmental Cata",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_148",
+    "title": "The Miracle of Microfinance? Evidence from a Randomized Evaluation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_149",
+    "title": "History, Institutions, and Economic Performance: The Legacy of Colonial Land Tenure Systems in India",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_150",
+    "title": "Colonialism and Modern Income: Islands as Natural Experiments",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B suggests comparison between colonized and non-colonized islands, but A explicitly states all islands were colonized; variation is in length/type of colonization",
+      "B omits the key instrumental variable strategy using wind patterns",
+      "B does not mention the main finding about years of colonization correlating with GDP, or the pecking order among colonial powers"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_151",
+    "title": "Inequality and Growth: What Can the Data Say?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the paper as exploring causal relationships, while A emphasizes correlations and notes identification problems preventing causal interpretation",
+      "B misses the paper's central finding of an inverted U-shaped relationship between inequality changes and growth",
+      "B does not mention the non-parametric methodology or the reconciliation of prior conflicting estimates"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_152",
+    "title": "Does Compulsory School Attendance Affect Schooling and Earnings?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_153",
+    "title": "Monitoring Corruption: Evidence from a Field Experiment in Indonesia",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Real abstract is just a data description and does not confirm specifics like random audit assignment or findings, though these match the known paper (Olken 2007)",
+      "B adds specific experimental design details not present in the OpenAlex abstract text"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "paper_id": "paper_154",
+    "title": "Demand and Supply of Infrequent Payments as a Commitment Device: Evidence from Kenya",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real paper is about the dairy sector, not tea processing",
+      "Real paper uses multiple experiments, not a threshold-based natural experiment",
+      "Fabricates a 'specific threshold' creating treatment/control groups not mentioned in abstract",
+      "Misses key finding about willingness to pay for commitment and contract enforcement limiting supply"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_155",
+    "title": "The Effect of Liquid Housing Wealth on College Enrollment",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B emphasizes regional variation in housing prices but omits the key finding about liquidity (2000s vs other periods) and heterogeneity by family resources",
+      "B does not convey the main empirical result magnitudes or the focus on lower-resource families"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_156",
+    "title": "Does School Spending Matter? The New Literature on an Old Question",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Paper is a literature review/survey of multiple quasi-experimental studies, not a single empirical study using court-mandated reforms",
+      "Benchmark context describes one specific identification strategy (SFR court rulings) as if it were the paper's own design, when the paper actually surveys this and other approaches",
+      "Outcome framed narrowly as 'student performance', whereas the abstract refers more broadly to 'child outcomes'"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_157",
+    "title": "School Quality and Black-White Relative Earnings: A Direct Assessment",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_158",
+    "title": "The Effects of Class Size on Student Achievement: New Evidence from Population Variation",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits the discrete class-size rule (maximum/minimum) discontinuity as an identification source",
+      "Does not mention the setting is 649 elementary schools or the longitudinal grade-population design",
+      "Misses the paper's main finding (null/precisely estimated zero effect of class size)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_159",
+    "title": "Measuring the Impacts of Teachers I: Evaluating Bias in Teacher Value-Added Estimates",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits the quasi-experimental design based on teaching staff changes (not just natural variation in assignments)",
+      "Does not mention use of parent characteristics/tax records to test for bias",
+      "Misses the main finding that VA controlling for prior scores is unbiased",
+      "Frames context as estimating effects of VA on outcomes rather than testing bias in VA estimates"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_161",
+    "title": "Intensive Math Instruction and Educational Attainment: Long-Run Impacts of Double-Dose Algebra",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_162",
+    "title": "A Little Now for a Lot Later: A Look at a Texas Advanced Placement Incentive Program",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames identification as a threshold/eligibility comparison (suggesting regression discontinuity), while the actual paper uses a difference-in-differences strategy based on program adoption by schools",
+      "B omits that teachers also received payments, not just students",
+      "B does not mention the underprivileged population focus or outcomes like SAT/ACT scores and college matriculation"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_163",
+    "title": "Into College, Out of Poverty? Policies to Increase the Postsecondary Attainment of the Poor",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real paper is a literature review of experimental/quasi-experimental evidence, not a single empirical study",
+      "Benchmark fabricates a specific policy change with an eligibility threshold (RD-style design) not present in the abstract",
+      "Misrepresents methodology: a review synthesizes many studies rather than exploiting one threshold for causal identification"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_164",
+    "title": "The Impacts of Environmental Regulations on Industrial Activity: Evidence from the 1970 and 1977 Cle",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_165",
+    "title": "Are Consumers Myopic? Evidence from New and Used Car Purchases",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention the core outcome: comparing willingness-to-pay changes to future fuel cost changes to compute implicit discount rates",
+      "Omits the main finding (little evidence of myopia)",
+      "Focuses only on exogeneity of gas prices rather than the myopia/discount-rate question"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_166",
+    "title": "The Effect of Driving Restrictions on Air Quality in Mexico City",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_168",
+    "title": "The Economic Impact of Hurricane Katrina on its Victims: Evidence from Individual Tax Returns",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_169",
+    "title": "Does Air Quality Matter? Evidence from the Housing Market",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_170",
+    "title": "Environmental Regulations, Air and Water Pollution, and Infant Mortality in India",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_171",
+    "title": "The Impact of Pollution on Worker Productivity",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention agricultural workers or piece-rate contracts setting",
+      "Does not specify ozone as the pollutant",
+      "Vaguely attributes variation to 'regulatory changes' rather than daily ozone fluctuations",
+      "Omits key finding that effects occur below federal air quality standards"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_172",
+    "title": "The Causal Effect of Environmental Catastrophe on Long-Run Economic Growth: Evidence from 6,700 Cycl",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes cross-regional comparison; actual paper uses within-country year-to-year variation (panel/fixed effects design)",
+      "B omits the key finding of persistent long-run income decline and the ~20-year non-recovery",
+      "B does not mention the climate change cost estimate or global scope (6,700 cyclones, 1950-2008)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_173",
+    "title": "Regression Discontinuity Designs in Economics",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes a generic application setting with specific examples (age, test scores, tax brackets) not mentioned in A",
+      "A is a methodological 'user guide' paper reviewing RD theory, validity, and estimation; B frames it as an empirical study rather than a methodological review",
+      "B omits A's focus on when RD is valid/invalid, quasi-experimental nature, and estimation tradeoffs"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_174",
+    "title": "Enjoying the Quiet Life? Corporate Governance and Managerial Preferences",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_175",
+    "title": "Bank Mergers and Crime: The Real and Social Effects of Credit Market Competition",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits the specific economic mechanisms documented (higher interest rates, reduced construction, lower prices, poorer households)",
+      "Does not mention the use of state branching deregulation as an instrument",
+      "Frames mergers as purely exogenous 'before-and-after' rather than noting the paper's explicit concern with reverse causation and IV strategy",
+      "Does not specify property crime as the outcome or quantify the elasticity finding"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_178",
+    "title": "The Econometrics of Financial Markets",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Real source is a book review of a comprehensive empirical finance textbook, not a study of information shocks",
+      "Benchmark fabricates an event-study setting with exogenous shocks not present in the abstract",
+      "No mention of price discovery, market efficiency tests, or causal identification in the actual abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_180",
+    "title": "Investor Sentiment and the Cross-Section of Stock Returns",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_183",
+    "title": "Why Has CEO Pay Increased So Much?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the paper as an identification/causal empirical strategy, but A is a theoretical equilibrium assignment model with calibration",
+      "B omits the competitive matching/assignment setup between CEOs and firms",
+      "B omits the key finding that the sixfold rise in CEO pay matches the sixfold rise in large-firm market cap",
+      "B does not mention the small dispersion in CEO talent yielding large pay differences"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_184",
+    "title": "Anchoring on Credit Spreads",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Abstract is about anchoring on past loan spreads affecting current borrowing rates; context fabricates a regulatory credit-rating threshold setup",
+      "Context describes bond classification and RD-style identification not present in the abstract",
+      "Misses the core finding about path-dependence and anchoring to past deal terms"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_185",
+    "title": "Growing Out of Trouble? Corporate Responses to Liability Risk",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark describes a 'legal change' as the shock, but the abstract identifies the shock as newly identified carcinogens exposing workers, not a legal/regulatory change",
+      "Benchmark omits the key finding about diversifying acquisitions of unrelated businesses with high cash flows",
+      "Benchmark omits the governance/managerial-risk mechanism central to the paper's interpretation"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_186",
+    "title": "Tax Incentives and the Decision to Purchase Health Insurance: Evidence from the Self-Employed",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_187",
+    "fidelity": "error",
+    "error": "list index out of range"
+  },
+  {
+    "paper_id": "paper_188",
+    "title": "Education and Health: Evaluating Theories and Evidence",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Paper is a review/survey documenting the education-health gradient, not an empirical study using compulsory schooling laws",
+      "No identification strategy based on compulsory schooling law variation is described in the abstract",
+      "Benchmark fabricates a natural experiment design not present in the paper"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_189",
+    "title": "Medicaid and Mortality: New Evidence from Linked Survey and Administrative Data",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_190",
+    "title": "The Effect of Health Insurance Coverage on the Use of Medical Services",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_191",
+    "title": "Medicare Spending, The Physician Workforce, and Beneficiaries’ Quality of Care",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract describes cross-state correlational analysis, not a quasi-experimental design exploiting exogenous variation",
+      "Abstract's main finding is the negative spending-quality relationship; B frames it as estimating physician workforce effects",
+      "B fabricates identification details (medical school outputs, migration, policy changes) not in the abstract",
+      "B omits the key finding about GP vs specialist mix driving the cost-quality tradeoff"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_193",
+    "title": "The Impact of Air Pollution on Infant Mortality: Evidence from Geographic Variation in Pollution Sho",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_194",
+    "title": "Medicare Spending, the Physician Workforce, and Beneficiaries' Quality of Care",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the study as leveraging exogenous variation for causal identification, but the abstract describes a descriptive/correlational analysis across states",
+      "B does not convey the main finding that higher spending is associated with lower quality care",
+      "B omits the specific mechanism regarding general practitioners vs. specialists mix"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_195",
+    "title": "The Central Role of Noise in Evaluating Interventions That Use Test Scores to Rank Schools",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark context fabricates a regression-discontinuity-like 'threshold/cutoff' setup not mentioned in the abstract",
+      "Abstract focuses on measurement imprecision/noise in school-level test scores as a general concern, not on comparing schools near a ranking cutoff"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_196",
+    "title": "The Impact of the Mariel Boatlift on the Miami Labor Market",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_198",
+    "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_200",
+    "title": "The Labor Demand Curve is Downward Sloping: Reexamining the Impact of Immigration on the Labor Marke",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark describes regional/spatial variation across US labor markets, but the paper uses national-level variation across education-experience groups",
+      "Benchmark frames identification as cross-region comparison; paper explicitly assumes a national labor market and exploits supply shifts across skill cells",
+      "Benchmark omits the paper's core finding that a 10% supply increase reduces wages by 3-4%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_201",
+    "title": "Identification and Estimation of Local Average Treatment Effects",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes the general IV setup and compliers intuition but omits the paper's central contribution: that IV alone is insufficient to identify a meaningful ATE and that an additional monotonicity-type condition on instrument-participation relation is needed",
+      "B does not mention the derivation of the IV estimator's probability limit as a weighted average of local average treatment effects",
+      "B frames the setting as policy changes/natural experiments, which is not emphasized in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_202",
+    "title": "Consequences of Employment Protection? The Case of the Americans with Disabilities Act",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B omits the paper's main finding: a sharp drop in employment of disabled workers post-ADA",
+      "B does not mention the CPS data source or the demographic breakdown (men, women under 40)",
+      "B misses the heterogeneity findings by firm size and state-level discrimination charges",
+      "B does not mention the alternative explanation (disability transfers) that the paper rules out"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_203",
+    "title": "Identification and Estimation of Treatment Effects with a Regression Discontinuity Design",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes the general RD setup but omits the paper's actual contribution: nonparametric identification under weaker functional form restrictions",
+      "B misses the interpretation of the Wald estimator as an RD estimator",
+      "B presents RD as a given framework rather than the paper's methodological contribution to identification/estimation"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_205",
+    "title": "E-ZTax: Tax Salience and Tax Rates",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_206",
+    "title": "Measuring the Output Responses to Fiscal Policy",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Misses the core finding: multipliers differ across recessions vs expansions (regime-switching)",
+      "Does not mention disaggregated spending or military spending having largest multiplier",
+      "Frames identification around timing/anticipation rather than state-dependent effects",
+      "Omits the key result about controlling for predictable components increasing recession multipliers"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_208",
+    "title": "Do Political Parties Matter? Evidence from U.S. Cities",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Context narrows outcome to 'fiscal policy' but paper also studies local public spending allocation and crime rates",
+      "Omits key findings: incumbent effect and Tiebout competition mechanism"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_209",
+    "title": "MPs for Sale? Returns to Office in Postwar British Politics",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B omits the key finding that returns differ by party (Conservative MPs nearly doubled wealth; Labour MPs did not benefit)",
+      "B does not mention the mechanism (outside employment/directorships) or the role of trade unions constraining Labour MPs",
+      "B does not mention the use of estate data from deceased politicians or the matching method alongside RD"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_210",
+    "title": "Elections and the Regression Discontinuity Design: Lessons from Close U.S. House Races, 1942–2008",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "B describes the standard RD setup assumption as if valid; A's main finding is that this assumption FAILS in U.S. House elections",
+      "B misses the paper's central point: bare winners and losers differ systematically on pretreatment covariates",
+      "B frames the paper as using RD to estimate causal effects, while A critiques RD's applicability in this setting",
+      "B omits key findings about incumbency/financial advantages, CQ ratings, and worsening imbalance in closest races"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_211",
+    "title": "The Long and Short of the Canada-U.S. Free Trade Agreement",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_212",
+    "title": "The Return to Protectionism",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Context frames it as a 'natural experiment' with cross-industry variation, but the paper emphasizes complete tariff pass-through, welfare losses, and general-equilibrium analysis",
+      "Omits retaliatory tariffs from trade partners, which are central to the paper",
+      "Does not mention the key findings on consumer/firm losses ($51B), aggregate real income loss, or political economy dimension"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_213",
+    "title": "Policy Uncertainty, Trade, and Welfare: Theory and Evidence for China and the United States",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_215",
+    "title": "Institutions Rule: The Primacy of Institutions over Geography and Integration in Economic Developmen",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses narrowly on colonial history as the identification source, while the abstract describes using instruments for both institutions and trade without emphasizing colonialism",
+      "B omits the key finding that institutions 'trump' geography and trade, and that geography/trade affect income indirectly through institutions",
+      "B frames the paper as a natural experiment, whereas the abstract describes an IV estimation comparing three determinants"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_216",
+    "title": "Relationship-Specificity, Incomplete Contracts, and the Pattern of Trade",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_217",
+    "title": "Robust Nonparametric Confidence Intervals for Regression-Discontinuity Designs",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B describes only the general RD setting but omits the paper's core contribution: robust confidence interval construction with bias correction and new variance estimators",
+      "B does not mention the methodological focus on bandwidth sensitivity and inference improvements"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_218",
+    "title": "Does Hazardous Waste Matter? Evidence from the Housing Market and the Superfund Program",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_219",
+    "title": "Did Highways Cause Suburbanization?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_222",
+    "title": "Creative Destruction: Barriers to Urban Growth and the Great Boston Fire of 1872",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Misses the core mechanism: coordination failure from positive spillovers in reconstruction",
+      "Does not mention land values as the key outcome variable",
+      "Frames it generically as 'economic development' rather than the specific building-upgrade spillover story",
+      "Omits the finding that outdated durable buildings had constrained pre-fire growth"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_223",
+    "title": "The Fundamental Law of Road Congestion: Evidence from US Cities",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses narrowly on identification strategy (historical highway system as instrument) but omits the paper's main findings about VKT increasing proportionately with lane kilometers",
+      "B does not mention the public transit finding or the 'fundamental law' conclusion about congestion relief",
+      "B frames the paper as about 'traffic congestion' impact while the outcome variable is actually VKT"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_224",
+    "title": "The Geographic Determinants of Housing Supply",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the paper as a quasi-experimental causal design, while A describes econometric estimation of supply elasticities as functions of physical and regulatory constraints",
+      "B omits the satellite/terrain elevation data source central to A",
+      "B omits the role of regulatory constraints and their endogeneity to prices/demographics",
+      "B does not mention the main finding that inelastic-supply areas are geographically land-constrained"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_226",
+    "title": "School Quality, Neighborhoods, and Housing Prices: The Impacts of School Desegregation",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark emphasizes desegregation as creating exogenous variation via racial composition; abstract focuses on boundary changes and cross-boundary price differences, not racial reassignment per se",
+      "Benchmark omits the boundary discontinuity design (comparing prices along assignment zone boundaries)",
+      "Benchmark misses the key finding that naive cross-sectional estimates overstate school effects by ~4x",
+      "Benchmark omits the mediation finding about subsequent population composition changes"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_228",
+    "title": "The Impact of Medicaid on Labor Market Activity and Program Participation: Evidence from the Oregon ",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_229",
+    "title": "Salience and Taxation: Theory and Evidence",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Describes the intervention as a 'policy change' / 'natural experiment' rather than a researcher-run field experiment in a grocery store",
+      "Omits the second empirical strategy comparing alcohol excise taxes (posted) vs sales taxes (at register)",
+      "Omits the theoretical framework for welfare analysis with salience effects, which is a core contribution"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_231",
+    "title": "NAFTA and the Local Labor Market",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract measures vulnerability via Mexican import exposure generally, not specifically pre-NAFTA tariff cuts as B emphasizes",
+      "B omits the main finding: lower wage growth for blue-collar workers and spillovers to service-sector workers",
+      "B omits the comparison that distributional effects exceed aggregate welfare effects",
+      "B does not mention the 1990-2000 Census data used"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_232",
+    "title": "Trade Integration, Market Size, and Industrialization: Evidence from China's National Trunk Highway ",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention the key finding that peripheral connected counties experienced REDUCED GDP and industrial output growth",
+      "Omits the network design detail (connecting provincial capitals/cities >500k) that motivates the identification strategy",
+      "Does not hint at the trade-cost/market-access channel that drives the result"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_233",
+    "title": "Valuation Ratios and the Long-Run Stock Market Outlook",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits international/quarterly data for twelve countries since 1970",
+      "Does not mention forecasting of dividend/earnings/productivity growth as the key test",
+      "Misses the main finding that ratios fail to forecast fundamentals but do forecast price changes (contrary to efficient markets)",
+      "Vague on the specific ratios (P/E and dividend-price)"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_234",
+    "title": "The New Issues Puzzle",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits seasoned equity offerings (SEOs), which are central to the paper alongside IPOs",
+      "Does not mention the long-run underperformance finding or the specific 5-year horizon",
+      "Frames the setting as pre/post-IPO comparison rather than issuers vs. non-issuers matched by size",
+      "Misses book-to-market discussion and the magnitude of underperformance"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_235",
+    "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania:",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "OpenAlex entry provides only bibliographic metadata, not an actual abstract, so direct content verification is impossible",
+      "The benchmark context describes the original Card-Krueger setup but omits that this is a Comment by Neumark and Wascher re-examining the findings using alternative payroll data",
+      "Missing the paper's actual point: critiquing/revisiting the original study's employment conclusions"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_237",
+    "title": "Colonial Origins of Comparative Development: An Empirical Investigation",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_239",
+    "title": "The Distribution of School Spending Impacts",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark describes a single causal identification strategy using state policy/court-mandated funding changes, but the paper is a meta-analysis/synthesis of 31 credibly causal studies",
+      "Benchmark omits the pooling/method-of-moments aggregation across studies that is central to the paper",
+      "Benchmark does not mention the heterogeneity analyses (capital vs non-capital, disadvantaged populations, diminishing returns) which are key findings"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_240",
+    "title": "How Do Incumbents Respond to the Threat of Entry? Evidence from the Major Airlines",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Benchmark doesn't mention Southwest Airlines specifically as the entry threat source",
+      "Benchmark frames threat as 'announcements of entry' rather than route network evolution/probability of future entry",
+      "Benchmark mentions service frequency changes, but abstract focuses specifically on fares",
+      "Benchmark omits the key finding that over half of the fare impact occurs before actual entry"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_241",
+    "title": "Adaptation to Climate Change: Evidence from US Agriculture",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_242",
+    "title": "Managing with Style: The Effect of Managers on Firm Policies",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B frames the paper as an identification/exogeneity exercise exploiting manager mobility, whereas the abstract emphasizes manager fixed effects explaining heterogeneity in corporate policies",
+      "B omits key findings about management style, performance-compensation link, governance, and manager characteristics (birth cohort, MBA)",
+      "B introduces an exogeneity assumption about manager moves not explicitly stated in the abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_243",
+    "title": "Going to War and Going to College: Did World War II and the G.I. Bill Increase Educational Attainmen",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_244",
+    "title": "Disease and Development: The Effect of Life Expectancy on Economic Growth",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_246",
+    "title": "Estimating Teacher Impacts on Student Achievement: An Experimental Evaluation",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Does not mention that the study evaluates non-experimental VAM estimators by comparing their predictions to experimental outcomes",
+      "Omits the key finding about controls for prior test scores and classroom characteristics",
+      "Omits the finding on fade-out of teacher effects (~50% per year)",
+      "Does not specify LAUSD as the setting"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_247",
+    "title": "Evaluating the Effect of Teachers' Group Performance Incentives on Pupil Achievement",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Abstract describes TWO programs (monetary incentives vs. additional resources) and a cost-effectiveness comparison; B only mentions the incentive program vs. non-adopters",
+      "B specifies 'Israel' and 'elementary schools' which are not stated in the abstract",
+      "B claims natural variation facilitates comparison, but abstract explicitly notes assignment was non-random and identification is a central challenge"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_249",
+    "title": "How Large Are Human-Capital Externalities? Evidence from Compulsory-Schooling Laws",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B omits the specific focus on human-capital externalities (external returns to education) and the state-level wage correlation",
+      "B does not mention child labor laws as a source of variation, only compulsory attendance laws",
+      "B frames the outcome generically as 'economic outcomes' rather than the external/social returns to schooling"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_250",
+    "title": "Evaluating the Cost of Conscription in the Netherlands",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Benchmark claims a lottery system created random variation; actual paper uses policy-induced variation in aggregate enrollment rates, not a lottery",
+      "Actual paper emphasizes complex selection via medical/psychological exams and manipulable exemptions, not random assignment",
+      "Benchmark omits the main finding: ~5% lower earnings ~10 years after service",
+      "Fabricated detail about 'mid-20th century' timing not supported by abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_251",
+    "title": "Trade Liberalization, Intermediate Inputs, and Productivity: Evidence from Indonesia",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses only on intermediate input tariff reductions; A also emphasizes output tariff reductions and compares the two",
+      "B's claim of 'staggered implementation across industries' is not stated in A",
+      "B omits the main finding: 10pp input tariff cut → 12% productivity gain for importing firms, at least twice the output-tariff effect",
+      "B does not mention plant-level census data (1991-2001) with imported input information"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_252",
+    "title": "Why is Manhattan So Expensive? Regulation and the Rise in Housing Prices",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_254",
+    "title": "Economic Impacts of New Unionization on Private Sector Employers: 1984–2001",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_255",
+    "title": "Identification and Estimation of Treatment Effects with a Regression-Discontinuity Design",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_256",
+    "title": "Does Medicare Save Lives?",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "Omits the specific focus on ER admissions for non-deferrable conditions",
+      "Does not mention the 400,000+ hospital admissions dataset",
+      "Does not mention mortality reduction as the key outcome",
+      "Misses that the design exploits a discontinuity at 65 rather than just a comparison"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_257",
+    "title": "Subways, Strikes, and Slowdowns: The Impacts of Public Transit on Traffic Congestion",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_258",
+    "title": "Do Students Benefit from Attending Better Schools? Evidence from Rule-based Student Assignments in T",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_259",
+    "title": "Getting Beneath the Veil of Effective Schools: Evidence from New York City",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B focuses on lottery-based identification as the main setup, while A emphasizes collecting detailed data on school practices across 35 charter schools and correlating with effectiveness estimates",
+      "B misses the paper's core contribution: identifying five specific school policies that explain ~50% of variation in effectiveness",
+      "B doesn't mention charter schools, which are central to A",
+      "B frames it as comparing students in/out of effective schools, but A is about identifying what makes schools effective"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_260",
+    "title": "Better Schools, Less Crime?",
+    "fidelity": "faithful",
+    "key_discrepancies": [],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_261",
+    "title": "Climate Change, Mortality, and Adaptation: Evidence from Annual Fluctuations in Weather in the US",
+    "fidelity": "partial",
+    "key_discrepancies": [
+      "B omits the residential energy consumption outcome, which is a core part of the paper",
+      "B emphasizes regional variation/adaptation comparison, but the paper's identification uses year-to-year temperature variation and quantifies end-of-century climate projections",
+      "B mentions precipitation, which is not a focus of the actual abstract"
+    ],
+    "confidence": "high"
+  },
+  {
+    "paper_id": "paper_262",
+    "title": "Who Pays a Price on Carbon?",
+    "fidelity": "diverges",
+    "key_discrepancies": [
+      "Paper is a simulation/incidence analysis using Consumer Expenditure Survey and input-output model, not a natural experiment",
+      "Focus is on household distributional incidence across income deciles, not regional/sectoral causal effects",
+      "No actual carbon pricing policy was introduced; the paper estimates hypothetical incidence",
+      "Fabricated details about emission thresholds and regional variation not present in abstract"
+    ],
+    "confidence": "high"
+  }
+]

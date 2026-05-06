@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s28",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Asset size threshold and regulatory burden on bank profitability",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:36:17.764838",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 476,
+    "output_tokens": 479,
+    "content": "## 1. Identification Strategy\nThe research question is best addressed using a Regression Discontinuity Design (RDD), as it estimates the causal effect of crossing the $10B asset threshold on bank profitability. The key assumption is that the assignment to treatment (assets > $10B) is as good as random near the cutoff, meaning that banks just above and below the threshold are comparable in all aspects except for the treatment. This assumption can be violated if banks strategically manage their assets to stay below the threshold. To address this concern, we'll use a subset of banks near the cutoff (where near_cutoff = 1) and control for running_var to account for potential manipulation.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(broom)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s28_data.csv\")\n\n# Filter data to banks near the cutoff\ndata_near_cutoff <- data %>% \n  filter(near_cutoff == 1)\n\n# Run the RDD analysis\nmodel <- lm(y ~ treated + running_var, data = data_near_cutoff)\n\n# Print the coefficients\ntidy(model)\n\n# Plot the data\nggplot(data_near_cutoff, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n# Basic robustness checks: check the distribution of running_var for treated and untreated banks\nboxplot(data_near_cutoff$running_var ~ data_near_cutoff$treated, \n        main = \"Distribution of running_var by treatment status\",\n        xlab = \"Treatment Status\", ylab = \"running_var\")\n```\n\n## 3. Expected Findings\nBased on the research question, we expect the coefficient on treated to be negative, indicating that crossing the $10B asset threshold reduces bank profitability (ROA). The magnitude of the effect will depend on the data, but we expect it to be small to moderate, given that the regulatory requirements imposed on larger banks may increase costs and reduce profitability. For example, if the estimated coefficient on treated is -0.05, this would imply that crossing the threshold reduces ROA by approximately 5 percentage points. However, the actual effect size may vary depending on the specific data and model used.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — asset threshold; test for bunching below $10B; local linear regression",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Banks just above threshold have lower ROA than just-below peers",
+    "main_effect": "~25bp ROA reduction for above-threshold banks"
+  }
+}

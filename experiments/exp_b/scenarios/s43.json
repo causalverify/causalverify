@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s43",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Impact of Short Sale Ban on Financial Stock Volatility",
+  "research_question": "How does the implementation of a short selling ban affect the volatility of financial stocks? Specifically, we aim to determine whether the ban reduces the log stock volatility in the affected stocks compared to those not subject to the ban.",
+  "data_description": "The dataset includes 150 observations with columns: unit_id (identifying each stock), period (time period of observation), treated (indicating if the stock is subject to the short selling ban), post (indicating periods after the ban implementation), treat_x_post (interaction term for treatment and post), and y (log stock volatility).",
+  "ground_truth": {
+    "identification_strategy": "Compare changes in log stock volatility between treated and untreated stocks before and after the ban.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The short selling ban led to a reduction in log stock volatility for the treated financial stocks.",
+    "main_effect": "-0.25"
+  },
+  "dgp_truth": {
+    "type": "did",
+    "effect": -0.25,
+    "direction": "negative"
+  },
+  "data_file": "experiments/exp_b/data/s43_data.csv"
+}

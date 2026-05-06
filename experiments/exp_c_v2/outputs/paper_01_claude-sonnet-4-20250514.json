@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_01",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "claude-sonnet-4-20250514",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:15:39.588006",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 657,
+    "output_tokens": 1905,
+    "content": "I will follow the RID protocol strictly, committing to all specifications before examining detailed data patterns.\n\n## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:** Difference-in-differences exploiting the September 2008 Lehman collapse as an exogenous shock to wholesale funding markets. Treatment intensity varies by banks' pre-crisis reliance on wholesale funding (measured as of Q2 2008, before Lehman). \n\n**Directional Hypothesis:** Banks with higher pre-crisis wholesale funding ratios will exhibit larger reductions in syndicated loan originations after September 2008 compared to banks with lower wholesale funding ratios. The effect should be immediate (Q4 2008) and persistent through Q1 2009.\n\n## STEP 2 — SPECIFICATION DISCIPLINE\n\nI commit to exactly these 5 specifications:\n\n1. **Baseline DiD:** `log(loan_volume) ~ post_lehman * wholesale_ratio_q2_2008 + bank_fe + quarter_fe`\n\n2. **Loan Count:** `log(loan_count + 1) ~ post_lehman * wholesale_ratio_q2_2008 + bank_fe + quarter_fe`\n\n3. **Dynamic Treatment:** `log(loan_volume) ~ wholesale_ratio_q2_2008 * (q4_2008 + q1_2009 + q2_2009) + bank_fe + quarter_fe`\n\n4. **Controls:** `log(loan_volume) ~ post_lehman * wholesale_ratio_q2_2008 + log(total_assets) + deposit_ratio + bank_fe + quarter_fe`\n\n5. **Robustness - Intensive Margin:** `log(avg_loan_size) ~ post_lehman * wholesale_ratio_q2_2008 + bank_fe + quarter_fe`\n\n## STEP 3 — FALSIFICATION GATE\n\nI will REJECT my hypothesis if ANY of the following occur:\n- Main interaction coefficient is positive (wrong sign)\n- Main interaction coefficient p-value > 0.10\n- Pre-trend test shows significant differential trends pre-Lehman (p < 0.05 on 2007-early 2008 interactions)\n- Dynamic specification shows no effect in Q4 2008 (p > 0.10)\n- Results are not robust across loan volume and loan count specifications\n\n## STEP 4 — R CODE\n\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(fixest)\nlibrary(lubridate)\n\n# Data preparation\n# Assume data loaded as 'bank_data' with columns:\n# bank_id, quarter, loan_volume, loan_count, total_assets, \n# core_deposits, total_liabilities, short_term_borrowings\n\n# Create key variables\nbank_data <- bank_data %>%\n  mutate(\n    # Time indicators\n    quarter_date = as.Date(paste0(quarter, \"-01\")),\n    post_lehman = ifelse(quarter_date >= as.Date(\"2008-10-01\"), 1, 0),\n    q4_2008 = ifelse(quarter == \"2008Q4\", 1, 0),\n    q1_2009 = ifelse(quarter == \"2009Q1\", 1, 0),\n    q2_2009 = ifelse(quarter == \"2009Q2\", 1, 0),\n    \n    # Funding ratios\n    deposit_ratio = core_deposits / total_liabilities,\n    wholesale_ratio = short_term_borrowings / total_liabilities,\n    \n    # Log transformations\n    log_loan_volume = log(loan_volume + 1),\n    log_loan_count = log(loan_count + 1),\n    log_total_assets = log(total_assets),\n    log_avg_loan_size = log((loan_volume + 1) / (loan_count + 1))\n  )\n\n# Create pre-crisis wholesale funding ratio (Q2 2008)\npre_crisis_ratios <- bank_data %>%\n  filter(quarter == \"2008Q2\") %>%\n  select(bank_id, wholesale_ratio_q2_2008 = wholesale_ratio)\n\nbank_data <- bank_data %>%\n  left_join(pre_crisis_ratios, by = \"bank_id\")\n\n# SPECIFICATION 1: Baseline DiD\nspec1 <- feols(log_loan_volume ~ post_lehman * wholesale_ratio_q2_2008 | \n               bank_id + quarter, \n               data = bank_data, \n               cluster = \"bank_id\")\n\n# SPECIFICATION 2: Loan Count\nspec2 <- feols(log_loan_count ~ post_lehman * wholesale_ratio_q2_2008 | \n               bank_id + quarter, \n               data = bank_data, \n               cluster = \"bank_id\")\n\n# SPECIFICATION 3: Dynamic Treatment\nspec3 <- feols(log_loan_volume ~ wholesale_ratio_q2_2008 * (q4_2008 + q1_2009 + q2_2009) | \n               bank_id + quarter, \n               data = bank_data, \n               cluster = \"bank_id\")\n\n# SPECIFICATION 4: With Controls\nspec4 <- feols(log_loan_volume ~ post_lehman * wholesale_ratio_q2_2008 + \n               log_total_assets + deposit_ratio | \n               bank_id + quarter, \n               data = bank_data, \n               cluster = \"bank_id\")\n\n# SPECIFICATION 5: Average Loan Size\nspec5 <- feols(log_avg_loan_size ~ post_lehman * wholesale_ratio_q2_2008 | \n               bank_id + quarter, \n               data = bank_data, \n               cluster = \"bank_id\")\n\n# Pre-trend test (falsification)\npre_trend_data <- bank_data %>%\n  filter(quarter_date >= as.Date(\"2007-01-01\") & quarter_date <= as.Date(\"2008-08-01\")) %>%\n  mutate(time_trend = as.numeric(quarter_date - as.Date(\"2007-01-01\")) / 365.25)\n\npre_trend_test <- feols(log_loan_volume ~ wholesale_ratio_q2_2008 * time_trend | \n                        bank_id + quarter, \n                        data = pre_trend_data, \n                        cluster = \"bank_id\")\n\n# Display results\netable(spec1, spec2, spec3, spec4, spec5)\netable(pre_trend_test)\n```\n\n## STEP 5 — FINDINGS & GATE ASSESSMENT\n\n**Expected Results:**\n- Specification 1 (Baseline): Interaction coefficient ≈ -0.45, p < 0.05\n- Specification 2 (Count): Interaction coefficient ≈ -0.35, p < 0.05  \n- Specification 3 (Dynamic): Q4 2008 interaction ≈ -0.40, Q1 2009 ≈ -0.55, both p < 0.05\n- Specification 4 (Controls): Interaction coefficient ≈ -0.42, p < 0.05\n- Specification 5 (Loan Size): Interaction coefficient ≈ -0.15, p < 0.10\n- Pre-trend test: Interaction with time trend p > 0.10\n\n**Gate Assessment:** These expected results would NOT trigger my falsification gate. All interaction coefficients are negative (correct sign), statistically significant at conventional levels, show immediate Q4 2008 effects, remain robust with controls, and pass the pre-trend test. The hypothesis would be supported.\n\n**Economic Interpretation:** A one standard deviation increase in wholesale funding ratio (≈0.15) would predict a 6.8% larger reduction in loan originations post-Lehman, consistent with funding shock transmission through bank balance sheets.",
+    "stop_reason": "end_turn"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ]
+  }
+}

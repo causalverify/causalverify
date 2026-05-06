@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI accurately identifies the strategy as Fuzzy Regression-Discontinuity Design (FRD) implemented as 2SLS, matching the ground truth. It correctly describes the running variable (enrollment), the cutoffs (multiples of 40), and how predicted class size instruments actual class size due to imperfect adherence, which are key features of the Angrist & Lavy (1999) paper. The direction of the effect is not stated in the provided text excerpt.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_21",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:24:14.903286+00:00"
+}

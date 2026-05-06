@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_236",
+  "title": "Do Firms Want to Borrow More? Testing Credit Constraints Using a Directed Lending Program",
+  "authors": "Banerjee & Duflo",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.2139/ssrn.316587",
+    "title": "Do Firms Want to Borrow More? Testing Credit Constraints Using a Directed Lending Program",
+    "year": 2002,
+    "journal": "SSRN Electronic Journal",
+    "citations": 332
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "duflo",
+      "banerjee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "ssrn electronic journal",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 332,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

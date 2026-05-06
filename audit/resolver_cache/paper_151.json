@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_151",
+  "title": "Inequality and Growth: What Can the Data Say?",
+  "authors": "Banerjee & Duflo",
+  "year": null,
+  "journal": "JDE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w7793",
+    "title": "Inequality and Growth: What Can the Data Say?",
+    "year": 2000,
+    "journal": "National Bureau of Economic Research",
+    "citations": 738
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "duflo",
+      "banerjee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jde",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 738,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strong match on strategy - correctly identifies event study methodology, recognizes the natural experiment aspect, mentions comparing to counterfactual returns, and understands the key insight about isolating media attention from new information since the scientific findings were published 5 months earlier. However, the output is cut off and doesn't state the direction of the expected effect, so no direction score can be assigned.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_28",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:10:53.655793+00:00"
+}

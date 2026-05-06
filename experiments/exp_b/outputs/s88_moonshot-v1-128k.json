@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s88",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Close-Election Incumbency on Reelection Probability",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:44.713951",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 446,
+    "output_tokens": 436,
+    "content": "## 1. Identification Strategy\n\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of winning a close election on the probability of an incumbent being reelected. The key assumption for RDD is that there is a sharp cutoff in the running variable (vote-share margin) around which the treatment (winning the close election) changes, and that there are no other systematic differences between units on either side of the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s88_data.csv\")\n\n# Define the cutoff point\ncutoff <- 0.5\n\n# Create a binary variable for treatment based on the cutoff\ndata$treatment_binary <- ifelse(data$running_var >= cutoff, 1, 0)\n\n# Run the RDD analysis\n# We will use the rdrobust package to estimate the local linear regression\n# around the cutoff point\nrdd_result <- rdrobust(data$y, data$running_var, data$treatment_binary, c=cutoff, h=0.05)\n\n# Print the estimated causal effect\nprint(rdd_result$beta)\n\n# Basic robustness check: change the bandwidth\nrdd_result_2 <- rdrobust(data$y, data$running_var, data$treatment_binary, c=cutoff, h=0.1)\nprint(rdd_result_2$beta)\n```\n\n## 3. Expected Findings\n\nWe expect the coefficient estimate from the RDD analysis to be positive, indicating that incumbents who barely win a close election have a higher probability of being reelected compared to those who barely lose. The magnitude of the effect will depend on the data, but we expect it to be relatively small, as the difference in vote-share margins is likely to be small. The reason for expecting a positive effect is that winning a close election may provide incumbents with more resources, name recognition, and political capital, which can help them in subsequent elections.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze the discontinuity at the vote-share cutoff to isolate the effect of incumbency.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Winning a close election reduces the probability of reelection.",
+    "main_effect": "-0.15"
+  }
+}

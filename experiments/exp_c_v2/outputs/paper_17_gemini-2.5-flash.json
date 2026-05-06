@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_17",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:31:01.853512",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 623,
+    "output_tokens": 161,
+    "content": "## Research Integrity by Design (RID) Protocol\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy is Instrumental Variables (IV), specifically Two-Stage Least Squares (2SLS). We aim to estimate the causal effect of economic growth on civil conflict by leveraging exogenous variation in rainfall as an instrument for economic growth.\n*   **First Stage:** Rainfall growth (current and lagged) is hypothesized to affect economic growth.\n*   **Second Stage:** Instrumented economic growth is then used to estimate its effect on civil conflict (onset and incidence).\n*   **Exogeneity Assumption:** Rainfall growth is assumed to be exogenous to civil conflict, conditional on country and year fixed effects and other controls. That is, rainfall shocks are not directly caused",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "IV",
+    "detected_direction": null,
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — rainfall growth (current and lagged) as an instrument for economic growth (GDP per capita growth); first stage: rainfall → GDP growth; second stage: GDP growth (instrumented) → civil conflict onset/incidence",
+    "key_variables": {
+      "treatment": "economic growth (GDP per capita growth rate), instrumented by rainfall growth",
+      "control": "N/A (continuous treatment with IV identification)",
+      "outcome": "civil conflict onset (binary: new conflict starts) and conflict incidence (binary: ongoing or new conflict in year t)",
+      "time_period": "1981–1999, annual panel of 41 African countries"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Negative economic growth shocks significantly increase the likelihood of civil conflict; a 5 percentage point negative growth shock increases the probability of conflict in the following year by approximately 12.5 percentage points. The IV estimates are larger than OLS, consistent with attenuation bias from measurement error in GDP data.",
+    "main_effect": "A 5pp decline in economic growth increases the probability of civil conflict onset by approximately 12.5 percentage points; conflict incidence increases by roughly 9-11pp per 5pp growth decline",
+    "key_robustness": [
+      "Lagged rainfall as additional instrument (addresses timing)",
+      "Controlling for country fixed effects and country-specific trends",
+      "Alternative conflict datasets (Fearon & Laitin, Collier & Hoeffler)",
+      "Excluding oil exporters (where rainfall-agriculture link is weaker)",
+      "Separating conflict onset from incidence"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with country and year fixed effects",
+      "treatment": "GDP per capita growth rate (endogenous), instrumented by current-year and one-year lagged rainfall growth",
+      "event_window": "Annual",
+      "estimation_window": "Full panel 1981-1999",
+      "sample_period": "1981–1999",
+      "unit_of_observation": "Country-year (41 countries × ~19 years)",
+      "key_assumption": "Exclusion restriction: rainfall affects civil conflict only through its effect on economic growth (income), not through other channels. Supported by the agricultural dependence of African economies. Potential violations: direct effects of extreme weather on population displacement, disease, or water scarcity (though these are partially mediated by economic effects)."
+    },
+    "key_magnitudes": {
+      "first_stage": "Rainfall growth coefficient on GDP growth: approximately +0.10 to +0.15 (a 1pp increase in rainfall growth raises GDP growth by 0.10-0.15pp); F-statistic > 10",
+      "conflict_incidence_iv": "A 1pp decrease in instrumented GDP growth increases conflict incidence probability by approximately 2.1pp (coefficient ≈ -0.021)",
+      "conflict_onset_iv": "A 1pp decrease in instrumented GDP growth increases conflict onset probability by approximately 2.5pp"
+    },
+    "robustness_notes_detail": "Results hold with country fixed effects, year fixed effects, country-specific time trends, and various combinations of controls. Overidentification tests (using current and lagged rainfall as two instruments) do not reject the exclusion restriction. The first-stage F-statistic exceeds 10 in all specifications, ruling out weak instrument concerns. Results are robust to excluding Nigeria, South Africa, and oil exporters."
+  }
+}

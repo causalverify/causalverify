@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_145",
+  "title": "Air Quality and Early-Life Mortality: Evidence from Indonesia's Wildfires",
+  "authors": "Jayachandran",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w14011",
+    "title": "Air Quality and Early-Life Mortality: Evidence from Indonesia's Wildfires",
+    "year": 2008,
+    "journal": "National Bureau of Economic Research",
+    "citations": 198
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jayachandran"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 198,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

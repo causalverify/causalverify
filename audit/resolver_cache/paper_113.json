@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_113",
+  "title": "Early Childhood Intervention and Life-Cycle Skill Development: Evidence from Head Start",
+  "authors": "Deming",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/app.1.3.111",
+    "title": "Early Childhood Intervention and Life-Cycle Skill Development: Evidence from Head Start",
+    "year": 2009,
+    "journal": "American Economic Journal Applied Economics",
+    "citations": 689
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "deming"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aej:applied",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 689,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

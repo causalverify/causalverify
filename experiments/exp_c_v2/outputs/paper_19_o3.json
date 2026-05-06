@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_19",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:29:49.458259",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 612,
+    "output_tokens": 2185,
+    "content": "BEGIN RESEARCH-INTEGRITY-BY-DESIGN (RID) PROTOCOL  \n———————————————————————————————————  \n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy:  Sharp, one–dimensional Regression Discontinuity Design (RDD) using exact age (in years) relative to the 65th birthday as the running variable.  The treatment indicator equals 1 for age ≥ 65, 0 otherwise.  Observation weights are census population counts for the corresponding age.  Because individuals cannot manipulate their date of birth to “cross” the cutoff, the RDD satisfies local ignorability.\n\nDirectional hypothesis (cannot be changed later):  \nH1:  Medicare eligibility at age 65 causes an increase in acute-care hospital utilization, i.e. the discontinuity in the admission rate at age 65 is strictly positive.\n\n\n\nSTEP 2 — SPECIFICATION DISCIPLINE (maximum = 5)  \nI will estimate exactly five specifications; no others will be executed.\n\nSPEC 1 (Primary):  \n• Outcome: log( hospital_admissions_per_1,000_population ).  \n• Local linear RDD with separate linear age trends on either side of the cutoff.  \n• Bandwidth: ±5 years (60 months).  \n• Kernel: triangular.  \n• Cluster-robust SEs by single-year age.\n\nSPEC 2 (Bandwidth robustness):  \nSame as SPEC 1 but with a ±2-year bandwidth.\n\nSPEC 3 (Polynomial robustness):  \nLocal quadratic RDD, ±5-year bandwidth, triangular kernel.\n\nSPEC 4 (Bias-corrected, data-driven bandwidth):  \nUse rdrobust() default MSE-optimal bandwidth and robust bias-corrected estimator; local polynomial order = 1.\n\nSPEC 5 (First-stage insurance effect):  \nOutcome: indicator for “has any health insurance” (NHIS).  \nOtherwise identical to SPEC 1.  This establishes relevance; F-statistic reported.\n\n\n\nSTEP 3 — FALSIFICATION GATE  \nThe directional hypothesis H1 will be rejected if ANY of the following occur:  \na) In SPEC 1 the estimated treatment coefficient ≤ 0 OR its two-sided p-value > 0.10.  \nb) In SPEC 5 the Medicare eligibility effect on insurance coverage is statistically weak (F-statistic on the treatment indicator < 10).  \nc) rdrobust bias-corrected point estimate in SPEC 4 ≤ 0 OR its 95 % CI includes 0.  \n\nIf none of (a)–(c) occurs, H1 survives the falsification gate.\n\n\n\nSTEP 4 — COMPLETE R CODE (only the pre-committed specifications)  \n\n```r\n# Load required libraries\nlibrary(tidyverse)\nlibrary(rdrobust)\nlibrary(sandwich)\nlibrary(lmtest)\n\n# ------------------------------------------------------------------\n# DATA PREPARATION (assumes three data frames already exist)\n#   1) admissions_df:  age, year, admissions, population (NIS+OSHPD)\n#   2) insurance_df :  age, year, insured (0/1 individual NHIS)\n# Population weights are in each frame.\n# ------------------------------------------------------------------\n\n# Create running variable: age minus 65\nadmissions_df <- admissions_df %>%\n  mutate(running = age - 65,\n         treat   = ifelse(running >= 0, 1, 0),\n         log_rate = log( (admissions / population) * 1000 ))\n\ninsurance_df <- insurance_df %>%\n  mutate(running = age - 65,\n         treat   = ifelse(running >= 0, 1, 0))\n\n# Helper function for clustered SEs by single-year age\ncluster_se <- function(model){\n  age_clust <- model$model$age\n  vcovCL   <- vcovCL(model, cluster = age_clust)\n  coeftest(model, vcov. = vcovCL)\n}\n\n# ---------------------------------------------------------------\n# SPEC 1 — local linear, ±5 years, triangular kernel\n# ---------------------------------------------------------------\nbw1 <- 5\nspec1 <- admissions_df %>%\n  filter(abs(running) <= bw1) %>%\n  mutate(weight = (1 - abs(running)/bw1))   # triangular\n\nmodel1 <- lm(log_rate ~ treat + running + treat:running,\n             data = spec1, weights = weight)\nspec1_results <- cluster_se(model1)\n\n# ---------------------------------------------------------------\n# SPEC 2 — local linear, ±2 years, triangular kernel\n# ---------------------------------------------------------------\nbw2 <- 2\nspec2 <- admissions_df %>%\n  filter(abs(running) <= bw2) %>%\n  mutate(weight = (1 - abs(running)/bw2))\n\nmodel2 <- lm(log_rate ~ treat + running + treat:running,\n             data = spec2, weights = weight)\nspec2_results <- cluster_se(model2)\n\n# ---------------------------------------------------------------\n# SPEC 3 — local QUADRATIC, ±5 years, triangular kernel\n# ---------------------------------------------------------------\nspec3 <- admissions_df %>%\n  filter(abs(running) <= bw1) %>%\n  mutate(weight = (1 - abs(running)/bw1))\n\nmodel3 <- lm(log_rate ~ treat +\n               running + I(running^2) +\n               treat:running + treat:I(running^2),\n             data = spec3, weights = weight)\nspec3_results <- cluster_se(model3)\n\n# ---------------------------------------------------------------\n# SPEC 4 — rdrobust default (bias-corrected)\n# ---------------------------------------------------------------\ny <- admissions_df$log_rate\nx <- admissions_df$running\nweights_pop <- admissions_df$population   # optional weights\nspec4_results <- rdrobust(y = y, x = x, p = 1, weights = weights_pop)\n\n# ---------------------------------------------------------------\n# SPEC 5 — first stage on insurance coverage\n# ---------------------------------------------------------------\nbw1 <- 5\nspec5 <- insurance_df %>%\n  filter(abs(running) <= bw1) %>%\n  mutate(weight = (1 - abs(running)/bw1))\n\nmodel5 <- lm(insured ~ treat + running + treat:running,\n             data = spec5, weights = weight)\nspec5_summary <- summary(model5)\nfirst_stage_F  <- waldtest(model5, . ~ running + treat:running,\n                           test = \"F\")[2, \"F\"]\n\n# Save or print results\nlist(SPEC1 = spec1_results,\n     SPEC2 = spec2_results,\n     SPEC3 = spec3_results,\n     SPEC4 = spec4_results,\n     SPEC5_coef = spec5_summary$coefficients[\"treat\", ],\n     SPEC5_F = first_stage_F)\n```\n\n\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected, illustrative)  \n\nBecause the actual data have not yet been processed, I state the outcomes I expect based on prior literature (e.g., Card, Dobkin & Maestas 2008):\n\n• SPEC 1:  β̂_treat ≈ 0.06 (≈ 6 % jump in admissions), SE ≈ 0.02 → p ≈ 0.01.  \n• SPEC 2:  β̂_treat ≈ 0.07, SE ≈ 0.03 → p ≈ 0.03.  \n• SPEC 3:  β̂_treat ≈ 0.05, SE ≈ 0.025 → p ≈ 0.05.  \n• SPEC 4:  Point estimate ≈ 0.06, 95 % CI ≈ [0.02, 0.10].  \n• SPEC 5:  First-stage β̂_treat ≈ 0.13 (13 pp), SE ≈ 0.01 → F-statistic ≈ 169.\n\nGate assessment:  \n• Condition (a):  SPEC 1 estimate is positive and p < 0.10 → PASS.  \n• Condition (b):  First-stage F ≫ 10 → PASS.  \n• Condition (c):  SPEC 4 estimate positive; CI excludes 0 → PASS.\n\nTherefore, under the expected results, the falsification gate would NOT be triggered and the directional hypothesis H1 would be retained.\n\nEND OF RID PROTOCOL",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — the running variable is age (measured in quarters or years); the cutoff is exact age 65; treatment is Medicare eligibility (which creates a sharp ~12 percentage point increase in insurance coverage); outcome is hospital admission rates per capita",
+    "key_variables": {
+      "treatment": "Medicare eligibility at age 65 (creates a sharp ~12pp increase in insurance coverage)",
+      "control": "individuals just below age 65 (ages 63-64) who are not yet Medicare-eligible",
+      "outcome": "hospital admission rates per capita; emergency room visit rates; specific-condition admission rates",
+      "time_period": "1992–2003 (NHIS/NIS) and 1992–2002 (California OSHPD)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Gaining Medicare eligibility at age 65 causes a statistically significant increase in hospital admissions, particularly for conditions where a doctor's recommendation is influential (discretionary admissions). Total admissions increase by approximately 1-2% at the age-65 threshold, with larger effects (5-10%) for specific conditions and populations. The effect is concentrated among previously uninsured populations.",
+    "main_effect": "Total admission rate increases by approximately 1-2% at the age-65 Medicare threshold; discretionary admissions (hip/knee replacement, cardiac catheterization) increase by 5-10%",
+    "key_robustness": [
+      "Varying the bandwidth around age 65 (narrow vs. wide windows)",
+      "Polynomial order sensitivity (linear, quadratic, cubic in age)",
+      "Subsample analysis by race, gender, insurance status pre-65",
+      "Placebo tests at other ages (60, 62, 67, 70)",
+      "Checking for manipulation of the running variable (age heaping)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp regression discontinuity design with local polynomial estimation",
+      "treatment": "Medicare eligibility at exact age 65 (sharp cutoff — no choice in timing)",
+      "event_window": "N/A (cross-sectional RDD using age as running variable)",
+      "estimation_window": "Ages 55-75 (with narrower bandwidths as robustness)",
+      "sample_period": "1992–2003",
+      "unit_of_observation": "Individual-level hospital admissions aggregated to age-quarter (or age-year) cells",
+      "key_assumption": "Potential outcomes (health care utilization without Medicare) are continuous at age 65 — i.e., there is no other discontinuity in health status, behavior, or policy at exact age 65 that would independently affect hospital utilization. Individuals cannot precisely manipulate their age to sort around the cutoff."
+    },
+    "key_magnitudes": {
+      "insurance_coverage_jump": "Insurance coverage increases by approximately 8-12 percentage points at age 65",
+      "total_admissions_jump": "Total hospital admission rate increases by approximately 1-2% at the age-65 threshold",
+      "discretionary_admissions": "Admissions for hip/knee replacement increase by ~10% at age 65; cardiac catheterization by ~5%",
+      "er_visits": "Emergency room visits show little or no discontinuity (patients can access ER regardless of insurance)"
+    },
+    "robustness_notes_detail": "Results are robust to bandwidth choice (5-year and 2-year windows around age 65), polynomial specification, and data source (NIS vs. California OSHPD). Density tests show no evidence of age manipulation. Placebo tests at ages 60 and 70 show no comparable discontinuities. The effect is larger for African Americans and Hispanics (who have higher uninsurance rates pre-65), consistent with the insurance mechanism."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - AI correctly identifies difference-in-differences comparing financially constrained vs unconstrained firms during 2008-2009 crisis vs pre-crisis period, with proper treatment/control definitions and event study extension. However, no conclusion about direction of effects is stated in the provided excerpt.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_25",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:10:33.295790+00:00"
+}

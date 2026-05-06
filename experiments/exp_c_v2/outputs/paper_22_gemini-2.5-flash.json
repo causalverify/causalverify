@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_22",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:32:43.890615",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 745,
+    "output_tokens": 163,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy is a Difference-in-Differences (DiD) design, leveraging the exogenous variation in the INPRES school construction program's intensity across Indonesian districts and its staggered impact on different birth cohorts. Specifically, I will use a \"continuous treatment\" DiD approach by interacting a binary indicator for the treatment birth cohorts (those born 1968-1972, who were young enough to benefit from the newly constructed schools) with a continuous measure of INPRES school construction intensity at the district level (number of INPRES schools built per district). This interaction term will capture the causal effect. The model will include district fixed effects to control for time-invariant unobserved district characteristics and birth year fixed",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": null,
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences — young birth cohorts (exposed to INPRES schools) compared to older cohorts (not exposed), in high-intensity districts compared to low-intensity districts; the interaction of program intensity × cohort exposure identifies the causal effect",
+    "key_variables": {
+      "treatment": "INPRES program intensity (number of new schools built per 1,000 children in the district of birth) × cohort exposure (born 1968-1972, young enough to benefit)",
+      "control": "older birth cohorts (born 1950-1962, too old to benefit from new primary schools) in the same districts",
+      "outcome": "years of education; log monthly wages; labor force participation",
+      "time_period": "Program: 1973-1978; Outcomes measured in 1995 survey; Birth cohorts: 1950-1972"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The INPRES school construction program significantly increased educational attainment and adult wages for exposed cohorts. Each school built per 1,000 children increased average education by 0.12-0.19 years and increased wages by 1.5-2.7% for the exposed cohorts relative to older cohorts in the same district.",
+    "main_effect": "One additional school per 1,000 children increased education by 0.12-0.19 years and wages by 1.5-2.7% for exposed cohorts; the implied return to education (IV/Wald estimate) is approximately 6.8-10.6%",
+    "key_robustness": [
+      "Controlling for district characteristics interacted with cohort dummies",
+      "Alternative definitions of exposed vs. control cohorts",
+      "Falsification test: program intensity should not predict outcomes for older (control) cohorts",
+      "Regional sub-sample analysis (Java vs. outer islands)",
+      "Using birth region (rather than current region) to avoid migration bias"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID: program intensity (continuous, schools per 1,000 children in birth district) interacted with cohort exposure (young enough to benefit from new schools)",
+      "treatment": "Number of INPRES schools constructed per 1,000 children in district of birth (continuous intensity measure) × binary indicator for exposed birth cohort (born 1968-1972)",
+      "event_window": "Program implemented 1973-1978; treated cohorts aged 2-6 at start",
+      "estimation_window": "Birth cohorts 1950-1972; outcomes measured in 1995",
+      "sample_period": "Program: 1973–1978; Survey data: 1995",
+      "unit_of_observation": "Individual male from 1995 SUPAS, identified by birth district and birth year",
+      "key_assumption": "Parallel trends: absent the school construction program, education and wage trends for young cohorts would have been the same in high-intensity and low-intensity districts. Supported by: (a) allocation was based on pre-program enrollment (rule-based, not endogenous to future trends); (b) placebo tests on older cohorts show no differential trends."
+    },
+    "key_magnitudes": {
+      "education_effect": "0.12-0.19 additional years of education per school built per 1,000 children (for exposed cohorts)",
+      "wage_effect": "1.5-2.7% higher wages per school per 1,000 children (for exposed cohorts)",
+      "implied_return": "6.8-10.6% return to an additional year of education (Wald/IV estimate: wage effect / education effect)"
+    },
+    "robustness_notes_detail": "Falsification tests confirm that program intensity does not predict education or wages for older cohorts (born before 1962). Results are robust to including district-level controls interacted with cohort dummies (pre-program enrollment, population density, district-level expenditure). The allocation rule (more schools in low-enrollment districts) creates variation that is driven by policy rather than local demand shocks."
+  }
+}

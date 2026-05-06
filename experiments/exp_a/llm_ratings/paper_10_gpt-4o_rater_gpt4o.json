@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI output correctly identifies the use of RDD as the method for causal inference, specifying the critical features like the running variable, cutoff, and treatment. The direction is correctly identified as negative, consistent with the ground truth conclusion.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_10",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:00:25.215831+00:00"
+}

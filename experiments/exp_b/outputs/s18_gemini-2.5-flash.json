@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s18",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Contaminated event window: confounding news during event period",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:20:07.385241",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 544,
+    "output_tokens": 164,
+    "content": "## 1. Identification Strategy\n\nThe research question aims to decompose the market reaction to isolate an acquisition effect from a confounding earnings surprise, both announced on the same day (event_day 0). This is a classic **Event Study** design, but with the added complexity of a simultaneous confounding event.\n\nThe core idea of an event study is to measure the abnormal return (AR) around an event, which is the difference between the observed return and the return expected in the absence of the event (the \"normal\" return). These ARs are then aggregated across firms to calculate Average Abnormal Returns (AARs) and Cumulative Average Abnormal Returns (CARs).\n\n**Key Adaptation for Confounding Event:**\nTo disentangle the acquisition effect from the earnings surprise on event_day 0, we adopt",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with confound adjustment — regress AR on eps_surprise + acquisition dummy",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "After controlling for earnings surprise, acquisition announcement generates negative AR",
+    "main_effect": "Acquisition CAR ≈ −1.5% after earnings adjustment"
+  }
+}

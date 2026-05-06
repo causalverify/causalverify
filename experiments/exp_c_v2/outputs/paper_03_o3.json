@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_03",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-28T00:10:53.780109",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 662,
+    "output_tokens": 2643,
+    "content": "RID STEP 1 — PRE-COMMITMENT  \nCausal identification strategy:  Difference-in-differences with staggered adoption of intrastate branching deregulation across U.S. states, implemented with two-way (state and year) fixed effects.  Parallel-trends will be probed with an event-study.  \n\nDirectional hypothesis H:  Relaxation of branching restrictions (greater banking competition) increases firm innovation; i.e., the treatment coefficient β > 0 for measures of (a) the log of 1 + state-year patent counts, (b) average forward citations per patent, and (c) the log of 1 + firm-year patent counts as well as the log R&D-to-assets ratio.\n\nI commit to this strategy and hypothesis and will not revise them.\n\n––––––––––––––––––––––––––––––––––––––––––––\n\nRID STEP 2 — SPECIFICATION DISCIPLINE  \nExactly five estimating equations will be run:\n\nSPEC 1  (State-year baseline DID)  \nln(1+Patents)_{st} = β₁ Dereg_{st} + γ_s + δ_t + θ_s·t + X_{st}′λ + ε_{st}  \n• Dereg_{st} = 1 if state s has deregulated by year t, 0 otherwise.  \n• X_{st}: state-year HHI, log # bank branches.  \n• θ_s·t: state-specific linear trend.  \n• SEs clustered at state level.\n\nSPEC 2  (State-year event study)  \nSame DV and controls as SPEC 1, but Dereg_{st} is replaced by relative-time dummies 𝟙{τ=k} for k=–4,…,+6 (τ=0 is first deregulation year; k≤–5 collapsed).  Post-6 years collapsed.  γ_s, δ_t, θ_s·t, and controls as in SPEC 1.\n\nSPEC 3  (Patent quality)  \nAvgForwardCites_{st} = β₃ Dereg_{st} + γ_s + δ_t + θ_s·t + X_{st}′λ + ε_{st}.  \nSEs clustered at state.\n\nSPEC 4  (Firm-year DID on patent quantity)  \nln(1+FirmPatents)_{it} = β₄ Dereg_{st(i)t} + α_i + δ_t + X_{it}′ρ + ε_{it}  \n• α_i: firm FE.  \n• X_{it}: log(Assets), Leverage, Age, SalesGrowth.  \n• SEs two-way clustered firm × state.\n\nSPEC 5  (Firm-year DID on R&D intensity)  \nln(RD/Assets)_{it} = β₅ Dereg_{st(i)t} + α_i + δ_t + X_{it}′ρ + ε_{it}.  \nControls, FE, clustering identical to SPEC 4.\n\nNo other specifications will be estimated.\n\n––––––––––––––––––––––––––––––––––––––––––––\n\nRID STEP 3 — FALSIFICATION GATE  \nThe hypothesis will be rejected if ANY of the following occurs:\n\nG1. In SPEC 1, β₁ ≤ 0 or |t-stat| < 1.64 (two-sided p > 0.10).  \nG2. In SPEC 2, the pre-treatment leads τ = –4, –3, –2 are jointly significant at the 10% level (Wald F-test p < 0.10) or any single lead is significant at 10%; violates parallel trends.  \nG3. In SPEC 3, β₃ ≤ 0 or p > 0.10.  \n(If any gate is triggered, hypothesis rejected; otherwise not.)\n\n––––––––––––––––––––––––––––––––––––––––––––\n\nRID STEP 4 — R CODE (self-contained)\n\n```r\n# ---- Load packages ----\nlibrary(tidyverse)\nlibrary(lfe)          # for felm\nlibrary(broom)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# ---- Read in data ----\n# Assume CSVs already in working directory\nstate <- read_csv(\"state_panel.csv\")  # variables: state, year, patents, cites, hhi, branches, dereg_year\nfirm  <- read_csv(\"firm_panel.csv\")   # variables: firmid, state, year, patents, RD, assets, leverage, sales_growth, age\n\n# ---- Construct treatment indicators ----\nstate <- state %>%\n  mutate(dereg       = if_else(year >= dereg_year, 1, 0),\n         ln_patents  = log1p(patents),\n         ln_cites    = log1p(cites),\n         rel_time    = pmin(pmax(year - dereg_year, -5), 6))  # collapse tails\nfirm  <- firm %>%\n  left_join(state %>% select(state, year, dereg), by = c(\"state\",\"year\")) %>%\n  mutate(ln_firmpat  = log1p(patents),\n         ln_rd_int   = log(RD / assets),\n         leverage    = leverage,\n         ln_assets   = log(assets),\n         sales_g     = sales_growth,\n         age         = age)\n\n# ---- SPEC 1 ----\nspec1 <- felm(ln_patents ~ dereg + hhi + log(branches) | state + year + state:year |\n                0 | state, data = state)\n\n# ---- SPEC 2 (event study) ----\n# Create dummies for rel_time -4 .. 6 (omit -1 as baseline)\nfor(k in -4:6){\n  state[[paste0(\"tau\",k)]] <- ifelse(state$rel_time == k, 1, 0)\n}\ntau_vars <- paste0(\"tau\", c(-4,-3,-2,0:6))  # -1 is omitted automatically\nfml2 <- as.formula(paste(\"ln_patents ~\", paste(tau_vars, collapse = \" + \"),\n                         \"+ hhi + log(branches) | state + year + state:year | 0 | state\"))\nspec2 <- felm(fml2, data = state)\n\n# ---- SPEC 3 ----\nspec3 <- felm(avg_cites ~ dereg + hhi + log(branches) | state + year + state:year |\n                0 | state, data = state %>% mutate(avg_cites = cites/pmax(patents,1)))\n\n# ---- SPEC 4 ----\nspec4 <- felm(ln_firmpat ~ dereg + ln_assets + leverage + age + sales_g |\n                firmid + year | 0 | firmid + state, data = firm)\n\n# ---- SPEC 5 ----\nspec5 <- felm(ln_rd_int ~ dereg + ln_assets + leverage + age + sales_g |\n                firmid + year | 0 | firmid + state, data = firm)\n\n# ---- Parallel-trend test for SPEC 2 ----\n# Joint F-test on leads (-4,-3,-2)\nlead_vars <- paste0(\"tau\", c(-4,-3,-2))\nwald_test <- linearHypothesis(spec2, lead_vars, vcov = vcovCL, cluster = \"state\")\n\n# ---- Output tidy summaries (optional) ----\nlist(spec1 = summary(spec1),\n     spec2 = summary(spec2),\n     spec3 = summary(spec3),\n     spec4 = summary(spec4),\n     spec5 = summary(spec5),\n     event_study_pretrend_p = wald_test$`Pr(>F)`[2]) -> results\n```\n\nThe script satisfies all five specifications and provides the formal pre-trend test.\n\n––––––––––––––––––––––––––––––––––––––––––––\n\nRID STEP 5 — EXPECTED FINDINGS & GATE ASSESSMENT  \n(Indicative magnitudes based on prior literature; actual numbers will differ.)\n\n• SPEC 1: β̂₁ ≈ 0.15 (t-stat ≈ 2.5, p ≈ 0.01).  \n• SPEC 2: Event-study coefficients rise from ≈ 0 at τ=0 to ≈ 0.20 by τ=+3; leads τ=–4,–3,–2 are individually |t|<1, joint F-test p ≈ 0.45 (passes pre-trend gate).  \n• SPEC 3: β̂₃ ≈ 0.08 (t-stat ≈ 1.9, p ≈ 0.06).  \n• SPEC 4: β̂₄ ≈ 0.12 (t-stat ≈ 2.2).  \n• SPEC 5: β̂₅ ≈ 0.07 (t-stat ≈ 1.8).\n\nGate assessment:  \n• G1 not triggered (β̂₁ > 0, p < 0.10).  \n• G2 not triggered (pre-trend p > 0.10).  \n• G3 not triggered (β̂₃ > 0, p ≈ 0.06 < 0.10).\n\nTherefore none of the falsification gates are crossed.  Under the pre-committed criteria, we would NOT reject the directional hypothesis that increased banking competition spurred greater firm innovation.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Staggered DID — treatment = passage of intrastate bank branching deregulation law, control = states that have not yet deregulated; identification relies on staggered timing of deregulation across states",
+    "key_variables": {
+      "treatment": "binary indicator for whether state has deregulated intrastate branching by year t",
+      "control": "same states before deregulation (within-state variation) and states that have not yet deregulated",
+      "outcome": "log(patents + 1) and log(citations + 1) by state-year",
+      "time_period": "1976–2006, deregulation events staggered 1978–1994"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank deregulation increases firm innovation: states that deregulate experience ~11% increase in patents and ~22% increase in patent citations",
+    "main_effect": "~11% increase in patents after intrastate branching deregulation",
+    "key_robustness": [
+      "pre-trend tests",
+      "placebo deregulation dates",
+      "alternative innovation measures (citations, patent quality)",
+      "controlling for state economic conditions"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences with staggered treatment",
+      "treatment": "Firms in states that removed branching restrictions (increased banking competition)",
+      "control": "Firms in states that had not yet deregulated (or maintained restrictions)",
+      "event": "State-specific dates of branching deregulation (staggered 1994-2005)",
+      "pre_period": "Before state-specific deregulation",
+      "post_period": "After state-specific deregulation",
+      "unit_of_observation": "Firm-year (patenting firms matched with state-level banking deregulation)",
+      "key_assumption": "Parallel trends in innovation between early- and late-deregulating states; timing of deregulation is not driven by anticipated changes in innovation"
+    },
+    "key_magnitudes": {
+      "patent_increase": "Statistically significant increase in patent counts and patent citations following deregulation",
+      "external_finance_channel": "Effect concentrated among firms with higher external finance dependence (Rajan-Zingales measure)"
+    },
+    "robustness_notes_detail": "Robust to controlling for state-level economic conditions, industry trends, firm fixed effects. Addresses potential concern that deregulation was endogenous to expected innovation by showing no pre-trends."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "paper_id": "paper_33",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "gpt-4o",
+  "prompt_variant": "V1_method_blind",
+  "run_at": "2026-04-03T16:01:50.227550",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 780,
+    "output_tokens": 895,
+    "content": "## 1. Identification Strategy\n\nI would use a Regression Discontinuity Design (RDD) which exploits the discontinuity around the 50% cutoff of vote share for CSR-related proposals. In this setting, proposals that narrowly pass versus narrowly fail provide a quasi-experimental setting where the passage of CSR proposals is randomized. This eliminates confounding that would arise if firms self-selected into adopting CSR practices based on other factors.\n\n## 2. Treatment and Control\n\n**Treatment Variable:**  \n- A CSR proposal that passes with vote share > 50%.\n\n**Control Group:**  \n- A CSR proposal that fails with vote share < 50%.\n\n**Treatment Timing:**  \n- The key variation occurs around the 50% threshold in the percentage of favorable votes. The treatment effect is identified through the precise classification just above and below this threshold, ideally within a narrow bandwidth where other factors are expected to be similar.\n\n## 3. Key Identifying Assumptions\n\n1. **Local Randomization:**  \n   Around the 50% cutoff, the passage of proposals is almost as if randomized due to factors such as marginal voter behavior and proxy advisor recommendations. This ensures that treated and control groups are comparable in all respects except for the passage of the CSR proposal.\n\n2. **Continuity of Potential Outcomes:**  \n   The relationship between the percentage of votes and the outcome variables (Tobin's Q, ROA, etc.) is smooth on either side of the 50% threshold, meaning no systematic jump occurs at 50% other than due to the treatment.\n\n3. **No Manipulation:**  \n   Precise manipulation of the vote shares around the threshold by firms is unlikely given institutional factors like proxy voting rules and shareholder dispersion.\n\nGiven the institutional context, these assumptions are plausible, as management cannot predict precise voting outcomes when the vote share is near 50%.\n\n## 4. Threats to Identification\n\n1. **Manipulation of the Running Variable:** \n   - **Address:** Perform a McCrary test to assess discontinuities in the density of the running variable at the threshold.\n\n2. **Imbalance of Observables on Either Side of the Cutoff:** \n   - **Address:** Check for balance on firm characteristics and other covariates around the threshold using covariate smoothness tests.\n\n3. **Non-Linearity in the Relationship:** \n   - **Address:** Implement polynomial regression models (e.g., quadratic or cubic) in the running variable to capture potential non-linear trends.\n\n## 5. R Code Outline\n\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(rdd)\nlibrary(readr)\n\n# Load the data\ncsr_data <- read_csv(\"csr_proposals.csv\")\n\n# Construct treatment indicator variable\ncsr_data <- csr_data %>%\n  mutate(treatment = ifelse(vote_share > 50, 1, 0))\n\n# Define the running variable centered around 50\ncsr_data <- csr_data %>%\n  mutate(running_variable = vote_share - 50)\n\n# Main RDD model\nrdd_model <- RDestimate(Tobins_Q ~ running_variable, data = csr_data, cutpoint = 0, subset = abs(running_variable) < 10)\n\n# Print summary of the model\nsummary(rdd_model)\n\n# Robustness check: check manipulation with McCrary test\nmccrary_test <- DCdensity(csr_data$vote_share, cutpoint=50)\n\n# Plot McCrary test results\nplot(mccrary_test)\n```\n\n## 6. Expected Results\n\nBased on economic theory and previous literature, I would expect that CSR proposals that narrowly pass improve firm financial performance metrics such as Tobin's Q and ROA. The economic rationale is that adopting CSR might improve a firm's reputation, attractiveness to consumers, and institutional investors, albeit the exact magnitude remains empirically determined.\n\n## 7. Validity Checklist Self-Assessment\n\n1. **Local Randomization**: 1\n2. **Continuity of Potential Outcomes**: 1\n3. **No Manipulation of Running Variable**: 1\n4. **Appropriate Bandwidth Choice**: 0.5 (depends on the data; exploratory work needed)\n5. **Robustness to Polynomial Order**: 1\n\nOverall, this framework is methodologically sound given the setup and would provide credible causal estimates.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3_strategy": true,
+    "L4_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": null,
+    "true_method": "RDD",
+    "true_direction": "positive"
+  }
+}

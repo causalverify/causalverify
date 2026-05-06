@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s54",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Unexpected CEO Departures on Stock Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:40:47.915159",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 470,
+    "output_tokens": 456,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is an Event Study. An event study is useful for analyzing the impact of unexpected events on the stock prices surrounding the event date. The key assumption here is the market efficiency hypothesis, which suggests that stock prices reflect all available information, including the impact of unexpected CEO departures.\n\n## 2. R Code\n```r\n# Read necessary libraries\nlibrary(\"tidyverse\")\nlibrary(\"sandwich\")\nlibrary(\"lmtest\")\n\n# Load the data\ndata <- read.csv(\"experiments/exp_b/data/s54_data.csv\")\n\n# Event study implementation\n# Calculate abnormal returns (AR)\ndata <- data %>% \n  mutate(AR = ret - (beta * mkt_ret))\n\n# Group by stock_id and calculate Cumulative Abnormal Returns (CAR) for the event window [-5, 5]\ncar_data <- data %>%\n  filter(event_day >= -5 & event_day <= 5) %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(AR))\n\n# Conduct a t-test to analyse the significance of CAR\nt_test_result <- t.test(car_data$CAR)\n\n# Print the test result\nprint(t_test_result)\n\n# Robustness Check: Check for significance in a wider window [-10, 10]\ncar_data_wide <- data %>%\n  filter(event_day >= -10 & event_day <= 10) %>%\n  group_by(stock_id) %>%\n  summarise(CAR_wide = sum(AR))\n\n# Conduct a t-test for the wider window\nt_test_result_wide <- t.test(car_data_wide$CAR_wide)\n\n# Print the test result for the wider window\nprint(t_test_result_wide)\n```\n\n## 3. Expected Findings\nI expect to find a statistically significant negative CAR, suggesting that unexpected CEO departures typically lead to a decline in stock returns. The magnitude might vary, but a noticeable downturn in the CAR across the event window [-5, 5] or [-10, 10] is expected, reflective of market uncertainty due to leadership change. The size would depend on how investors perceive the potential impact of the departure on future company performance.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare stock returns before and after the CEO departure event.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The unexpected CEO departure is associated with a positive cumulative abnormal return.",
+    "main_effect": 0.018
+  }
+}

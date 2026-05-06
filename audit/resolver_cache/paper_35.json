@@ -1,0 +1,35 @@
+{
+  "paper_id": "paper_35",
+  "title": "Did Securitization Lead to Lax Screening? Evidence from Subprime Loans",
+  "authors": "Keys, Mukherjee, Seru & Vig",
+  "year": null,
+  "journal": "Quarterly Journal of Economics",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2010.125.1.307",
+    "title": "Did Securitization Lead to Lax Screening? Evidence from Subprime Loans<sup>*</sup>",
+    "year": 2010,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1117
+  },
+  "checks": {
+    "title_jaccard": 0.875,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "seru",
+      "vig",
+      "mukherjee",
+      "keys"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1117,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

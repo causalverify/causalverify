@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_174",
+  "title": "Enjoying the Quiet Life? Corporate Governance and Managerial Preferences",
+  "authors": "Bertrand & Mullainathan",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/376950",
+    "title": "Enjoying the Quiet Life? Corporate Governance and Managerial Preferences",
+    "year": 2003,
+    "journal": "Journal of Political Economy",
+    "citations": 3859
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "mullainathan",
+      "bertrand"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "jpe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 3859,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

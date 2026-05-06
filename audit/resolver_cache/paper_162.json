@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_162",
+  "title": "A Little Now for a Lot Later: A Look at a Texas Advanced Placement Incentive Program",
+  "authors": "Jackson",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1353/jhr.2010.0019",
+    "title": "A Little Now for a Lot Later: A Look at a Texas Advanced Placement Incentive Program",
+    "year": 2010,
+    "journal": "The Journal of Human Resources",
+    "citations": 164
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "jackson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "jhr",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 164,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

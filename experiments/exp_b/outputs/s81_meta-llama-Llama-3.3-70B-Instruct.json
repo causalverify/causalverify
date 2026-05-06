@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:47:55.553339",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 489,
+    "output_tokens": 533,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this analysis is Instrumental Variables (IV). The binary variable `z` (roommate's ability) is used as an instrument to isolate the effect of peer ability on the student's GPA (`y`). The key assumption is that the roommate's ability (`z`) affects the student's GPA only through the channel of peer ability, and not through other channels. This requires that `z` is correlated with the endogenous variable (peer quality) but uncorrelated with the error term. Additionally, we need to assume that there are no other factors that simultaneously affect both `z` and `y`, ensuring the exclusion restriction holds.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(sandwich)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s81_data.csv\")\n\n# Run 2SLS regression\nmodel_2sls <- plm(y ~ x + controls | z, data = data, model = \"random\", index = c(\"student_id\"))\n\n# Extract coefficients\nsummary(model_2sls)\n\n# For robustness check: cluster standard errors by roommate\n# (Assuming student_id is the identifier for each student,\n#  and we don't have a roommate_id. You might need to adjust\n#  based on the actual structure of your data.)\ncoeftest(model_2sls, vcov. = vcovHC(model_2sls, type = \"HC1\"))\n\n# Additionally, run a simple OLS regression for comparison\nmodel_ols <- lm(y ~ x + z + controls, data = data)\nsummary(model_ols)\n```\n\n## 3. Expected Findings\nGiven the context of the research question, it is expected that being assigned a roommate with higher academic ability (as indicated by `z`) would have a positive effect on a student's GPA (`y`). This would imply that the coefficient on `z` (or the effect of peer ability in the IV model) is expected to be positive, suggesting that exposure to peers with higher academic ability enhances one's own academic performance. The magnitude of this effect can vary, but a plausible expectation could be an increase in GPA of a few percentage points for students assigned to a roommate with higher ability, compared to those with roommates of lower ability. The exact magnitude would depend on various factors including the distribution of abilities among roommates, the baseline academic performance of the students, and how the roommates interact and influence each other's study habits and academic aspirations.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

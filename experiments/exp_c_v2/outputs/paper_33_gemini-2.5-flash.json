@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_33",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:36:25.443632",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 684,
+    "output_tokens": 1170,
+    "content": "**RESEARCH INTEGRITY BY DESIGN (RID) PROTOCOL**\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:** We will employ a sharp Regression Discontinuity Design (RDD). The causal effect of corporate social responsibility (CSR) adoption on firm financial performance will be identified by exploiting the quasi-random variation in the passage of CSR-related shareholder proposals around the 50% majority vote share threshold. Proposals receiving just above 50% of votes are treated as having \"passed,\" while those just below are \"failed,\" with the discontinuity at 50% providing the exogenous shock to CSR adoption.\n*   **Directional Hypothesis:** We hypothesize that the adoption of CSR-related shareholder proposals leads to an *improvement* in firm financial performance. Specifically, we expect a positive and statistically significant discontinuity (jump) in Tobin's Q at the 50% vote share threshold for proposals that pass.\n\n---\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nOur primary outcome variable is Tobin's Q. The running variable will be `vote_share_centered` (original vote percentage minus 50%). The treatment indicator `D` will be 1 if `vote_share_centered > 0` (proposal passes), and 0 otherwise. All RDD regressions will estimate the coefficient on `D`.\n\n1.  **Baseline RDD:** Local linear regression using a triangular kernel, with data-driven optimal bandwidth selection (IMSE-optimal for mean squared error, as implemented by `rdrobust`).\n2.  **Robustness 1 (Bandwidth):** Local linear regression using a triangular kernel, with *half* the optimal bandwidth determined in Specification 1.\n3.  **Robustness 2 (Bandwidth):** Local linear regression using a triangular kernel, with *double* the optimal bandwidth determined in Specification 1.\n4.  **Robustness 3 (Polynomial Order):** Local quadratic regression using a triangular kernel, with data-driven optimal bandwidth selection.\n5.  **Robustness 4 (Kernel Function):** Local linear regression using a *rectangular* kernel, with data-driven optimal bandwidth selection.\n\n---\n\n### STEP 3 — FALSIFICATION GATE\n\nMy hypothesis (CSR improves Tobin's Q) will be rejected if *any* of the following conditions are met:\n\n1.  **Primary Estimate (Specification 1):** The estimated coefficient for the treatment effect (`D`) on Tobin's Q is either negative OR not statistically significant at the 10% level (p > 0.10, two-tailed).\n2.  **RDD Validity Check (Covariates):** A significant discontinuity (p < 0.10) is detected at the 50% threshold for any pre-determined firm characteristic (e.g., pre-proposal Tobin's Q or firm size). This would suggest a violation of the local randomization assumption. (This check will be performed on a simulated pre-proposal Tobin's Q).\n3.  **RDD Validity Check (Running Variable Manipulation):** A significant discontinuity in the density of the running variable (`vote_share_centered`) is detected at the 50% threshold (e.g., using a McCrary test with p < 0.10). This would suggest manipulation of the running variable around the cutoff.\n\n---\n\n### STEP 4 — R CODE\n\n```R\n# Install and load necessary packages\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) install.packages(\"rdrobust\")\nif (!requireNamespace(\"dplyr\", quietly = TRUE)) install.packages(\"dplyr\")\nif (!requireNamespace(\"ggplot2\", quietly = TRUE)) install.packages(\"ggplot2\")\nif (!requireNamespace(\"rddensity\", quietly = TRUE)) install.packages(\"rddensity\") # For McCrary test\n\nlibrary(rdrobust)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(rddensity) # For McCrary test\n\n# --- 0. Data Simulation ---\n# Simulate data based on the description\nset.seed(123) # for reproducibility\n\nn_proposals <- 2729\nn_firms <- 800\nyears <- 1997:2012\n\n# Simulate vote shares (running variable)\n# Centered at 50% threshold. Let's make it roughly normal around 50%\n# with some density around the cutoff.\nvote_share_raw <- rnorm(n_proposals, mean = 50, sd = 10)\n# Ensure votes are between 0 and 100\nvote_share_raw <- pmax(0, pmin(100, vote_share_raw))\n\n# Identify proposals within a \"narrow bandwidth\" around 50% for RDD analysis\n# The problem states ~600 proposals within a narrow bandwidth.\n# Let's define a bandwidth for simulation roughly covering this number.\n# A bandwidth of 10% (40-60%) might capture around 600 if data is dense.\n# Let's focus on the actual RDD bandwidth selection later.\n\n# Simulate firm-level data for a specified period after the proposal (e.g., 1 year after)\n# Assuming each proposal has an associated outcome.\n# Here we simplify, assuming each row is a proposal and its outcome.\n# In reality, Tobin's Q might be measured post-event, potentially as a panel.\n# For",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is the vote share for CSR shareholder proposals; cutoff at 50% (majority threshold); treatment is proposal passage (which increases CSR adoption pressure); outcome is subsequent firm financial performance",
+    "key_variables": {
+      "treatment": "CSR shareholder proposal passes with majority vote (vote share > 50%)",
+      "control": "CSR proposal fails to achieve majority (vote share < 50%)",
+      "outcome": "Tobin's Q, ROA, stock returns in 1-3 years following the vote; changes in CSR/ESG ratings",
+      "time_period": "1997–2012 (shareholder proposal votes)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "CSR proposals that narrowly pass are associated with significant improvements in firm financial performance. Firms whose CSR proposals pass (vs. narrowly fail) experience approximately 1.7% higher Tobin's Q, 0.7% higher ROA, and improved labor productivity in subsequent years. The effect is larger for firms with weaker prior CSR performance, suggesting diminishing returns to CSR.",
+    "main_effect": "Narrowly passing CSR proposals increase Tobin's Q by approximately 1.7% and ROA by ~0.7% over the following 2-3 years relative to narrowly failing proposals",
+    "key_robustness": [
+      "Varying bandwidth around the 50% threshold (1%, 5%, 10%)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation at 50%",
+      "Balance tests (pre-determined firm characteristics smooth through cutoff)",
+      "Subsample by CSR proposal type (environmental vs. social vs. governance)",
+      "Placebo cutoffs at 40% and 60%"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD with local linear regression around the 50% vote share threshold",
+      "treatment": "Binary: CSR proposal receives majority support (>50% vote share)",
+      "event_window": "1-3 years after the shareholder vote for financial outcomes",
+      "estimation_window": "Bandwidth of ~5-10 percentage points around 50% threshold",
+      "sample_period": "1997–2012",
+      "unit_of_observation": "Firm × shareholder proposal vote",
+      "key_assumption": "Near the 50% cutoff, whether a CSR proposal passes or fails is as-if random. Firms cannot precisely manipulate the vote share. Pre-determined characteristics should be balanced at the cutoff. McCrary test should show no bunching."
+    },
+    "key_magnitudes": {
+      "tobins_q_effect": "+1.7% increase in Tobin's Q for narrowly passing proposals",
+      "roa_effect": "+0.7 percentage points increase in ROA",
+      "labor_productivity": "Significant increase in revenue per employee",
+      "csr_rating_effect": "CSR/ESG rating improves by approximately 0.2-0.3 SD after passage"
+    },
+    "robustness_notes_detail": "McCrary density test shows no manipulation of vote shares at the 50% cutoff. Pre-determined firm characteristics (size, leverage, prior CSR rating, industry) are balanced at the cutoff. Results are robust to bandwidth choice, polynomial specification, and different outcome horizons. Effects are concentrated in environmental and social proposals (governance proposals show weaker effects). Placebo cutoffs at non-50% thresholds show no comparable discontinuities."
+  }
+}

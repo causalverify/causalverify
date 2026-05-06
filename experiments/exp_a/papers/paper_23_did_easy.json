@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_23",
+  "source": "Quarterly Journal of Economics, 1996",
+  "authors": "Jayaratne & Strahan",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "The Finance-Growth Nexus: Evidence from Bank Branch Deregulation",
+  "doi": "10.2307/2946668",
+  "volume": 111,
+  "issue": 3,
+  "pages": "639-670",
+  "domain": "finance",
+  "research_question": "Does an expansion of the banking sector's ability to allocate credit across geographic markets causally raise the rate of real economic growth within U.S. states? Specifically, do improvements in the quality of bank lending translate into faster per-capita income and output growth?",
+  "data_description": "The analysis uses a state-level panel of the 48 contiguous U.S. states covering roughly the mid-1970s through 1994. Key outcome variables include annual growth rates of real per-capita personal income, gross state product, and per-capita output, drawn from the Bureau of Economic Analysis. Banking-sector variables — loan volumes, loan losses (charge-offs and nonperforming loans), operating costs, and loan rates — come from bank Call Reports aggregated to the state level. Additional state-level controls include initial income, schooling, and indicators for the timing of state-level banking reforms. The unit of observation is the state-year, allowing for state and year fixed effects to absorb time-invariant state characteristics and common macro shocks.",
+  "institutional_context": "Through the 1970s and 1980s, most U.S. states maintained restrictions that prevented banks from establishing or acquiring branches freely within the state, often limiting expansion through mergers and acquisitions of existing banks. Beginning in the early 1970s and continuing through the 1990s, individual states removed these intrastate branching restrictions at different times, permitting banks to open or acquire branches statewide. The staggered timing of these state-level liberalizations, driven largely by political and technological factors rather than contemporaneous economic conditions, created sharp changes in the competitive structure and efficiency of local banking markets. Following deregulation, loan quality improved markedly — loan losses fell — while loan volumes did not rise dramatically, suggesting that the reforms primarily enhanced the screening and monitoring functions of banks rather than simply expanding credit supply.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.008,
+      "unit": "annual per capita income growth rate (percentage points, DID estimate)",
+      "interpretation": "Intrastate branching deregulation increases annual per capita income growth by approximately 0.8 percentage points relative to states that have not yet deregulated"
+    },
+    "secondary_estimate": {
+      "value": 0.012,
+      "unit": "annual per capita GSP growth rate (percentage points, DID estimate with controls)",
+      "interpretation": "Deregulation increases gross state product growth by approximately 1.2 percentage points per year in some specifications"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 4-5 in Jayaratne & Strahan (1996)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "BEA state personal income and GSP data (public, annual)",
+      "FDIC Call Reports (bank-level financials, public via FDIC website)",
+      "Kroszner & Strahan deregulation dates (published, widely available)",
+      "Census Bureau state demographics (public)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available from federal statistical agencies. Deregulation dates have been compiled by multiple researchers and are freely available.",
+    "replicability": "high — all data sources are publicly available federal statistics",
+    "public_proxy_available": true,
+    "replication_tier": "full (all data from public federal agencies; deregulation dates are published)",
+    "data_limitations": "State-level analysis has only 50 units, limiting degrees of freedom. Staggered DID with heterogeneous treatment effects may suffer from bias (recent methodological concern, Goodman-Bacon 2021). State-level income/GSP data is revised over time.",
+    "public_data_sources_detail": [
+      "BEA Regional Economic Accounts (state personal income and GSP — free)",
+      "FDIC Statistics on Depository Institutions (bank financials — free)",
+      "FRED (state-level economic indicators — free)",
+      "Census Bureau (state demographics — free)",
+      "Kroszner & Strahan (2014) or Amel (1993) deregulation chronology (published papers — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered treatment adoption — treatment is the state-level removal of intrastate branching restrictions; the staggered timing of deregulation across states provides variation in treatment status over time; state and year fixed effects absorb time-invariant state characteristics and national economic trends",
+    "key_variables": {
+      "treatment": "binary indicator for intrastate branching deregulation in state i by year t (staggered across states, 1970s–1990s)",
+      "control": "states that have not yet deregulated (or never deregulated) at time t",
+      "outcome": "real per capita personal income growth; real per capita GSP growth",
+      "time_period": "1972–1992 (annual state-level panel)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "States that deregulated intrastate branching experienced significantly faster per capita income growth — approximately 0.5-1.2 percentage points per year faster than states that had not yet deregulated. The growth effect operates through improved banking sector efficiency (better loan quality, more competition) rather than increased lending volume.",
+    "main_effect": "Deregulation increases annual per capita income growth by approximately 0.51-1.19 percentage points relative to non-deregulated states",
+    "key_robustness": [
+      "Controlling for state-level demographics, education, and industry composition",
+      "Event-study specification showing no pre-trend in growth differences",
+      "Separating the effect into banking sector channels (loan quality, competition, efficiency)",
+      "Excluding states that deregulated earliest (potential outliers)",
+      "Interstate vs. intrastate deregulation separately"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered treatment (state FE + year FE + deregulation dummy)",
+      "treatment": "State-year indicator for having deregulated intrastate branching by year t",
+      "event_window": "Post-deregulation years (all years after state i removes branching restrictions)",
+      "estimation_window": "Pre-deregulation years serve as the baseline",
+      "sample_period": "1972–1992",
+      "unit_of_observation": "State-year (50 states × ~21 years)",
+      "key_assumption": "Parallel trends: absent deregulation, income growth in early-deregulating states would have followed the same trend as late-deregulating states. Event-study evidence supports this — no differential pre-trends in the years before deregulation."
+    },
+    "key_magnitudes": {
+      "income_growth_effect": "+0.51 to +1.19 percentage points annual per capita income growth (depending on specification and controls)",
+      "gsp_growth_effect": "Similar magnitude for gross state product growth",
+      "bank_efficiency": "Deregulation reduces non-performing loan rates and increases bank profitability, consistent with improved capital allocation"
+    },
+    "robustness_notes_detail": "Pre-trend tests show no differential income growth between early and late deregulating states before deregulation occurs, supporting the parallel trends assumption. Results are robust to including state-specific linear time trends, demographic controls, and industry composition variables. The effect is persistent (does not fade after 5-10 years post-deregulation). Mechanism analysis shows the growth effect operates through improved banking efficiency (lower loan losses, more competition) rather than aggregate credit expansion."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 86,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s02",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Minimum wage increase on restaurant employment",
+  "research_question": "Did a state-level minimum wage increase (period 4) reduce employment at fast-food restaurants in treated states compared to neighboring control states?",
+  "data_description": "Panel data on 200 fast-food restaurants across 8 quarters. Variables: unit_id, period (1–8), treated (1=minimum wage state), post (1=post-increase), treat_x_post, y (log full-time-equivalent employees). Treatment: minimum wage raised by $2/hr in period 4.",
+  "ground_truth": {
+    "identification_strategy": "DID — treated=high-wage states, control=neighboring states; shock=minimum wage hike",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Modest employment decline in treated restaurants post minimum wage increase",
+    "main_effect": "~15% reduction in employment"
+  },
+  "data_file": "experiments/exp_b/data/s02_data.csv",
+  "dgp_truth": {
+    "type": "did",
+    "effect": -0.15,
+    "direction": "negative"
+  }
+}

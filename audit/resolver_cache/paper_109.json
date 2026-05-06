@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_109",
+  "title": "Does Competition Among Public Schools Benefit Students and Taxpayers?",
+  "authors": "Hoxby",
+  "year": null,
+  "journal": "AER",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.90.5.1209",
+    "title": "Does Competition Among Public Schools Benefit Students and Taxpayers?",
+    "year": 2000,
+    "journal": "American Economic Review",
+    "citations": 1101
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "hoxby"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1101,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

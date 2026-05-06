@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s79",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of New Seed Variety Adoption on Farm Income",
+  "research_question": "Does the adoption of a new seed variety increase farm income in agricultural communities? The study aims to determine if agroecological suitability can serve as an instrumental variable to isolate the causal effect of adopting the new seed variety on farm income.",
+  "data_description": "The dataset consists of 300 observations, with columns including 'y' for farm income, 'x' for new seed variety adoption, 'z' representing agroecological suitability, and 'controls' for other farm characteristics. The data captures various farm operations and environmental conditions.",
+  "ground_truth": {
+    "identification_strategy": "Use agroecological suitability as an instrument for new seed variety adoption.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Adopting the new seed variety leads to a significant increase in farm income.",
+    "main_effect": "0.2"
+  },
+  "dgp_truth": {
+    "type": "iv",
+    "effect": 0.2,
+    "direction": "positive"
+  },
+  "data_file": "experiments/exp_b/data/s79_data.csv"
+}

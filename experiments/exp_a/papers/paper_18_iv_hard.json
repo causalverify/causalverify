@@ -1,0 +1,93 @@
+{
+  "paper_id": "paper_18",
+  "source": "American Economic Review, 2001",
+  "authors": "Acemoglu, Johnson & Robinson",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
+  "doi": "10.1257/aer.91.5.1369",
+  "volume": 91,
+  "issue": 5,
+  "pages": "1369-1401",
+  "domain": "development",
+  "research_question": "What is the causal effect of institutions—specifically, secure property rights and protection against expropriation—on long-run economic performance across countries? Once differences in institutional quality are accounted for, do geographic factors such as distance from the equator or being located in Africa still explain cross-country differences in income per capita?",
+  "data_description": "The analysis uses a cross-section of up to 64 former European colonies (with broader checks on up to 163 countries). The main outcome variables are log GDP per capita (PPP-adjusted) in 1995 from the World Bank's World Development Indicators, and log output per worker in 1988 from Hall and Jones (1999). The key institutional measure is the average index of protection against expropriation risk over 1985–1995 from Political Risk Services (0–10 scale). Additional institutional measures include constraints on the executive and democracy indices in 1900 and at independence (Polity III/Gurr). European settlement is proxied by the share of population of European descent in 1900 (McEvedy and Jones; Curtin et al.). The central historical variable is mortality rates (annualized deaths per 1,000 mean strength) of European soldiers, sailors, and bishops stationed in colonies between the 17th and 19th centuries, drawn primarily from Curtin (1964, 1989, 1998) and Gutierrez (1986). Controls include latitude, climate, religion, legal/colonial origin, soil quality, natural resources, ethnolinguistic fragmentation, malaria prevalence, life expectancy, and infant mortality.",
+  "institutional_context": "The setting is the European colonial expansion between roughly the 17th and early 20th centuries, during which different colonization strategies produced sharply divergent governance arrangements. In some colonies (e.g., the United States, Canada, Australia, New Zealand), Europeans migrated in large numbers and replicated home-country institutions emphasizing private property, checks on government, and representative governance—'Neo-Europes.' In others (e.g., the Belgian Congo, much of West Africa, and parts of Latin America), Europeans established 'extractive states' designed to transfer resources to the metropole, with forced labor, monopolies, and few constraints on rulers. Whether settlers could feasibly establish themselves depended heavily on local disease environments—particularly malaria and yellow fever—which were lethal to non-immune Europeans but far less so to indigenous adults. The colonial-era institutions established under these contrasting strategies tended to persist through independence, shaping property-rights protections and state structures observable today.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.94,
+      "unit": "log GDP per capita per unit of institutional quality (2SLS, expropriation risk index 0-10)",
+      "interpretation": "A one-unit improvement in protection against expropriation (institutional quality) causes approximately a 156% increase in GDP per capita (exp(0.94)-1). The enormous magnitude reflects large cross-country institutional differences."
+    },
+    "secondary_estimate": {
+      "value": -0.61,
+      "unit": "institutional quality per unit of log settler mortality (first stage)",
+      "interpretation": "A one log-unit increase in historical European settler mortality reduces current institutional quality by 0.61 units on the 0-10 expropriation risk scale"
+    },
+    "significance": "p < 0.01 (both stages)",
+    "table_ref": "Table 4 in Acemoglu, Johnson & Robinson (2001)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Penn World Tables (GDP per capita — free)",
+      "AJR replication dataset (settler mortality, institutions — posted on AER website)",
+      "Polity IV (democracy, executive constraints — free)",
+      "Political Risk Services ICRG (institutional quality — partial public access)"
+    ],
+    "proprietary_sources": [
+      "PRS International Country Risk Guide (ICRG) full dataset requires subscription; summary measures available in replication data"
+    ],
+    "proxy_strategy": "Replication data is publicly available from AER website, including the settler mortality instrument and institutional quality measures. Full ICRG dataset requires subscription but the paper's variables are included in the replication package.",
+    "replicability": "high — replication data available from AER; settler mortality data is in the paper's appendix",
+    "public_proxy_available": true,
+    "replication_tier": "full (replication data and code available from AER website and AJR's institutional pages)",
+    "data_limitations": "Settler mortality data is estimated from sparse historical records and has been challenged (Albouy 2012). Cross-sectional analysis with 64 observations limits statistical power for elaborate specifications. ICRG institutional quality measures are subjective expert assessments.",
+    "public_data_sources_detail": [
+      "AJR replication dataset (AER website — free)",
+      "Penn World Tables 10.0 (GDP per capita — free)",
+      "Polity IV (executive constraints — free)",
+      "World Bank WDI (economic indicators — free)",
+      "Curtin (1989) settler mortality appendix tables (reproduced in the paper — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables — log European settler mortality as instrument for current institutional quality (expropriation risk); first stage: settler mortality → institutions; second stage: institutions (instrumented) → log GDP per capita",
+    "key_variables": {
+      "treatment": "institutional quality (average protection against expropriation risk, 0-10 scale from ICRG/PRS), instrumented by log settler mortality",
+      "control": "N/A (cross-sectional IV, no explicit control group; variation is across 64 former colonies)",
+      "outcome": "log GDP per capita in 1995 (PPP)",
+      "time_period": "cross-section: institutions measured 1985-1995; settler mortality from 17th-19th century"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Institutions have a large and statistically significant positive effect on income. A one-unit improvement in institutional quality (on the 0-10 expropriation risk scale) increases log GDP per capita by approximately 0.94 (implying that improving institutions from Nigerian to Chilean levels — roughly a 2-point increase — would increase income by approximately 7-fold). IV estimates are larger than OLS, consistent with attenuation bias from measurement error in institutional quality.",
+    "main_effect": "IV coefficient: 0.94 log points of GDP per capita per unit of institutional quality (expropriation risk). Moving from the 25th to 75th percentile of institutions raises income by approximately 7-fold.",
+    "key_robustness": [
+      "Controlling for latitude, continental dummies, British/French legal origin",
+      "Alternative institutional quality measures (constraint on executive, democracy, rule of law)",
+      "Alternative settler mortality sources and samples",
+      "Overidentification tests using multiple instruments",
+      "Excluding neo-Europes (USA, Canada, Australia, New Zealand)",
+      "Controlling for malaria prevalence and current disease burden"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS), cross-sectional",
+      "treatment": "Institutional quality (expropriation risk index from PRS/ICRG), treated as endogenous",
+      "event_window": "N/A (cross-section)",
+      "estimation_window": "N/A",
+      "sample_period": "Cross-section of 64 former colonies; institutions measured 1985-1995; settler mortality from 17th-19th century historical records",
+      "unit_of_observation": "Country (64 former European colonies)",
+      "key_assumption": "Exclusion restriction: historical settler mortality affects current GDP only through its influence on institutional development (through the colonial settlement strategy → institutional path dependence channel), not through any direct channel from historical disease environment to current economic conditions. This is the most debated assumption in the literature."
+    },
+    "key_magnitudes": {
+      "iv_coefficient": "0.94 log GDP per capita per unit of institutional quality (Table 4, panel B, column 1)",
+      "ols_coefficient": "0.52 log GDP per capita per unit of institutional quality (smaller than IV, consistent with measurement error attenuation)",
+      "first_stage": "Coefficient of settler mortality on institutions: -0.61 (higher mortality → worse institutions); F-statistic > 10",
+      "implied_income_gap": "Moving Nigeria's institutions to Chile's level (a ~2-point improvement) would increase Nigerian GDP per capita approximately 7-fold"
+    },
+    "robustness_notes_detail": "Results survive a wide battery of controls including geography (latitude, landlocked, continental dummies), current disease environment (malaria risk), colonial identity (British vs. French), and legal origin. The first-stage relationship is strong (F > 10) and has a clear historical narrative. The most important threat is the exclusion restriction: current disease burden or geographic factors correlated with settler mortality might directly affect GDP. The authors address this by controlling for malaria prevalence and showing that the IV estimate survives. However, this exclusion restriction remains actively debated in the literature (Albouy 2012 challenges the settler mortality data)."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 124696,
+  "phase1_source_version": "v2primeprime_full_text"
+}

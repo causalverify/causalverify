@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s29",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Bandwidth sensitivity and RDD robustness checks",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:23:26.064214",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 494,
+    "output_tokens": 162,
+    "content": "## 1. Identification Strategy\n\nThe research question investigates the causal effect of Russell 1000/2000 index membership on institutional ownership, leveraging the precise cutoff rule for index assignment. This scenario is a classic application of a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nFirms are assigned to either the Russell 1000 or Russell 2000 index based on a continuous running variable: end-of-May market capitalization rank, normalized around a cutoff of 0.5. Firms with a `running_var` value just above the cutoff are assigned to the Russell 2000 (treated group, as indicated by the data: `treated=1` when `running_var > 0.5`),",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — rank cutoff; rdrobust with CCT bandwidth; donut-hole robustness; placebo cutoffs",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Russell 2000 membership increases institutional ownership; robust to bandwidth choice",
+    "main_effect": "~25pp ownership increase at boundary"
+  }
+}

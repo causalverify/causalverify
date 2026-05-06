@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s09",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Heterogeneous treatment effects by firm size in DID",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:16:59.314634",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 496,
+    "output_tokens": 164,
+    "content": "## 1. Identification Strategy\n\nThe research question asks whether a corporate tax cut (effective from period 4) differentially affected investment for large versus small firms. We have panel data on firms over time, with large firms (`treated = 1`) experiencing a larger tax cut compared to small firms (`treated = 0`).\n\nThe appropriate causal method is **Difference-in-Differences (DID)**.\nThis method is suitable because:\n1.  We have a clearly defined intervention (the larger corporate tax cut for large firms) that occurred at a specific point in time (beginning of period 4).\n2.  We have two groups: large firms (the 'treatment' group, experiencing a *differential* or *additional* treatment effect) and small firms (the 'control' group, experiencing",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with heterogeneous effects — triple-diff or interaction terms for size groups",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Large firms increase investment more than small firms post tax cut",
+    "main_effect": "28% higher investment growth for large firms"
+  }
+}

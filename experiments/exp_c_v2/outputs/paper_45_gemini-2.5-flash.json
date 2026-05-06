@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_45",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:40:47.183257",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 741,
+    "output_tokens": 161,
+    "content": "The Research Integrity by Design (RID) protocol is followed in 5 steps.\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe identification strategy is a sharp spatial Regression Discontinuity Design (RDD). The treatment is defined by whether a district falls inside the historical mita catchment area. The running variable is the geographic distance to the mita boundary, with the cutoff at zero. Units just inside the boundary are treated, and units just outside are controls. This leverages the quasi-random assignment of the mita institution around the precisely defined historical boundary.\n\n**Directional Hypothesis:**\nBeing subjected to the colonial-era mita forced labor system is hypothesized to have persistent negative effects on present-day economic development. Specifically:\n*   Being inside the mita",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Geographic regression discontinuity design — running variable is distance to the historical mita boundary (continuous, positive = outside mita, negative = inside mita); cutoff at the boundary (distance = 0); treatment is being inside the mita catchment area where forced labor was imposed 1573-1812; outcome is present-day economic development",
+    "key_variables": {
+      "treatment": "district located inside the historical mita catchment area (forced labor zone, 1573-1812)",
+      "control": "district located just outside the mita boundary (exempt from forced labor)",
+      "outcome": "log household consumption per capita; child height-for-age z-score (stunting); road density; access to health posts and schools",
+      "time_period": "Colonial mita: 1573-1812; outcomes measured 2001-2007"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The mining mita has persistent negative effects on economic development four centuries after its abolition. Districts inside the mita boundary have approximately 25% lower household consumption, significantly higher stunting rates, and worse public goods provision (fewer roads, fewer health posts) than districts just outside the boundary. The mechanism operates through institutional channels: the mita prevented hacienda (large landholding) formation, which would have provided public goods and political connections, leaving mita districts with weaker property rights and less political integration.",
+    "main_effect": "Mita districts have approximately 25% lower household consumption (0.27 log points) and 6 percentage points higher stunting rates than adjacent non-mita districts across the boundary",
+    "key_robustness": [
+      "Varying bandwidth around the mita boundary (25km, 50km, 75km, 100km)",
+      "Polynomial specifications in distance to boundary",
+      "Controlling for elevation, latitude, longitude, slope, and distance to Cusco/Potosí",
+      "Pre-colonial balance tests (1572 tribute records, ethnic composition)",
+      "Placebo boundaries within and outside the mita zone",
+      "IV using mita assignment as instrument for hacienda formation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Geographic/spatial RDD with distance to the historical mita boundary as the running variable",
+      "treatment": "Located inside the mita catchment area (binary, determined by 1573 Viceroy Toledo's decree based on geographic proximity to mines)",
+      "event_window": "N/A (cross-sectional RDD comparing present-day outcomes across the historical boundary)",
+      "estimation_window": "Districts within various bandwidths (25-100km) of the mita boundary",
+      "sample_period": "Outcomes measured 2001-2007; treatment imposed 1573-1812",
+      "unit_of_observation": "District (approximately 500 districts near the boundary)",
+      "key_assumption": "The mita boundary was drawn along geographic features and is not correlated with unobserved pre-colonial differences in development potential. Districts just inside and just outside the boundary are comparable in terms of geography, elevation, pre-colonial population, and ethnic composition. Supported by pre-colonial balance tests using 1572 tribute records."
+    },
+    "key_magnitudes": {
+      "consumption_effect": "-0.27 log points (~25% lower) household consumption per capita in mita districts",
+      "stunting_effect": "+6 percentage points higher stunting rate in mita districts",
+      "roads": "Significantly fewer roads (lower road density) inside mita boundary",
+      "public_goods": "Fewer health posts and schools per capita inside mita boundary"
+    },
+    "robustness_notes_detail": "Pre-colonial balance tests using 1572 tribute records (collected one year before the mita was established) show no differences in indigenous population density, ethnic composition, or tribute levels across the boundary, supporting the identifying assumption. The mita boundary follows some natural features (rivers, ridges) but these geographic features do not independently predict present-day outcomes after controlling for elevation and slope. Placebo boundaries (shifted 25km inside or outside the mita zone) show no comparable discontinuities, confirming that the effect is specific to the actual mita boundary."
+  }
+}

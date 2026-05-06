@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s95",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Minimum Drinking Age on Alcohol Consumption",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:51:00.454444",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 465,
+    "output_tokens": 468,
+    "content": "## 1. Identification Strategy\nTo estimate the causal effect of reaching the minimum legal drinking age of 21 on alcohol consumption, we can use a Regression Discontinuity Design (RDD). The key assumption of RDD is that there is no significant difference in the characteristics of individuals just below and just above the age-21 cutoff, except for their eligibility to drink. This assumption allows us to compare the outcomes (alcohol consumption) of individuals just below and just above the cutoff, effectively creating a quasi-experiment. The running variable is the age in months, and the cutoff point is 252 months (21 years).\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(ggplot2)\n\n# Load data\ndata <- read_csv(\"experiments/exp_b/data/s95_data.csv\")\n\n# Convert running variable to months\ndata$age_months <- round(data$running_var * 12, 0)\n\n# Create a new variable for the treatment (at least 21 years old)\ndata$treated_rdd <- ifelse(data$age_months >= 252, 1, 0)\n\n# Perform RDD analysis\nsummary(lm(y ~ treated_rdd, data = data))\n\n# To improve the analysis, let's include a polynomial of the running variable\nsummary(lm(y ~ treated_rdd + poly(age_months, 3), data = data))\n\n# Plot the data\nggplot(data, aes(x = age_months, y = y, color = factor(treated_rdd))) +\n  geom_point() +\n  geom_smooth(method = \"loess\", se = FALSE) +\n  theme_classic()\n```\n\n## 3. Expected Findings\nBased on the research question, we expect a positive coefficient for the treated variable, indicating that reaching the minimum legal drinking age of 21 leads to an increase in alcohol consumption among young adults. The magnitude of the effect is difficult to predict without knowing more about the data, but we expect a moderate increase in alcohol consumption, given that many young adults may choose to drink more frequently once they are legally allowed to do so. The inclusion of a polynomial of the running variable in the regression model helps to control for non-linear relationships between the running variable and the outcome, which can improve the accuracy of the estimates.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the age-21 drinking age cutoff as a natural experiment.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Reaching the age of 21 leads to an increase in alcohol consumption.",
+    "main_effect": "Approximately 0.28 increase in alcohol consumption."
+  }
+}

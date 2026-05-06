@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model output correctly identifies and describes a Regression Discontinuity Design (RDD) as the identification strategy, which strongly matches the ground truth. However, the output does not mention the positive direction of the causal effect (i.e., 1.3% CAR increase for passing proposals). Therefore, while the strategy is correct, it fails to communicate the correct direction of the effect, leading to a Narrative Fabrication failure type.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_09",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:00:01.208311+00:00"
+}

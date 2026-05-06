@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model correctly identifies and describes the DID approach, matching the ground truth strategy, thus receiving a strategy score of 3. However, it does not specify the direction of the main effect—whether banks increased or decreased risk-taking behavior—resulting in a wrong, unstated direction and a direction score of 0. The failure type 'NF' (Narrative Fabrication) is triggered as the conclusion direction is not provided.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_02",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T10:40:33.934408+00:00"
+}

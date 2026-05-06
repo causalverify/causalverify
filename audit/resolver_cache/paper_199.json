@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_199",
+  "title": "The Effect of the Minimum Wage on the Fast-Food Industry",
+  "authors": "Katz & Krueger",
+  "year": null,
+  "journal": "ILR",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2524735",
+    "title": "The Effect of the Minimum Wage on the Fast-Food Industry",
+    "year": 1992,
+    "journal": "Industrial and Labor Relations Review",
+    "citations": 136
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "katz",
+      "krueger"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ilr",
+    "journal_oa": "industrial and labor relations review",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 136,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

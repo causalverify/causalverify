@@ -1,0 +1,84 @@
+{
+  "paper_id": "paper_14",
+  "source": "American Economic Review, 1994",
+  "authors": "Card & Krueger",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania",
+  "doi": "10.2307/2118030",
+  "volume": 84,
+  "issue": 4,
+  "pages": "772-793",
+  "domain": "labor",
+  "research_question": "How does an increase in the legal wage floor affect employment, wages, prices, fringe benefits, and store openings in low-wage establishments? Specifically, does raising the wage floor reduce employment among affected employers relative to unaffected ones, and to what extent are cost increases passed through to consumers or offset by reductions in non-wage compensation?",
+  "data_description": "The authors conducted an original two-wave telephone (and follow-up in-person) survey of 410 fast-food restaurants drawn from the Burger King, KFC, Roy Rogers, and Wendy's chains in New Jersey and eastern Pennsylvania. Wave 1 was fielded in February-March 1992 (about a month before the policy change) and Wave 2 in November-December 1992 (about 7-8 months after), with closure status verified for 100% of stores. The unit of observation is the restaurant. Variables collected include full-time-equivalent employment, share of full-time workers, starting wages, prices of a standard meal (soda, fries, entree), hours of operation, number of cash registers, recruitment bonuses, meal fringe benefits, and time/amount of typical wage raises. Supplementary data include McDonald's restaurant counts by state (1986-1991) and monthly Current Population Survey teenage employment rates for NJ, PA, NY, and the U.S.",
+  "institutional_context": "On April 1, 1992, New Jersey's state minimum wage rose from $4.25 to $5.05 per hour, the highest state rate in the country at the time, while Pennsylvania's minimum remained at the federal $4.25. The increase had been legislated in 1990 when the state economy was healthy and Democrats controlled the legislature, but by 1992 New Jersey had entered a recession and Republicans had taken control, leading to a last-minute legislative attempt to phase in the increase that fell just short of overriding a gubernatorial veto. The fast-food industry is a major employer of low-wage workers, has homogeneous jobs and products, complies with wage regulations, does not involve tipping, and is straightforward to sample from franchise listings—making it well suited for studying how affected establishments respond relative to nearby unaffected establishments in Pennsylvania and to higher-wage New Jersey stores already paying above the new floor.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 2.76,
+      "unit": "FTE employees per restaurant (DID estimate)",
+      "interpretation": "New Jersey fast-food restaurants gained approximately 2.76 more FTE employees relative to Pennsylvania restaurants after the minimum wage increase; not statistically significant at 5% level"
+    },
+    "secondary_estimate": {
+      "value": 0.59,
+      "unit": "FTE employees per restaurant (within-NJ DID, low-wage vs high-wage gap stores)",
+      "interpretation": "Within NJ, restaurants initially paying $4.25 (most affected by the increase) gained 0.59 more FTE employees relative to restaurants already paying above $5.05"
+    },
+    "significance": "p > 0.05 (main DID); p < 0.10 (some within-NJ specifications)",
+    "table_ref": "Table 3 in Card & Krueger (1994)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Card & Krueger replication data (publicly available on NBER/ILR website)",
+      "BLS Quarterly Census of Employment and Wages (public)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Full replication data is publicly available. No proprietary data needed.",
+    "replicability": "high — original survey data has been publicly released by the authors",
+    "public_proxy_available": true,
+    "replication_tier": "full (original data publicly available)",
+    "data_limitations": "Survey data (not administrative records), subject to measurement error and non-response bias. Sample is limited to four fast-food chains in two states.",
+    "public_data_sources_detail": [
+      "Card & Krueger replication dataset (NBER/ILR website — free)",
+      "BLS QCEW (quarterly employment by county and industry — free)",
+      "Federal Reserve FRED (state-level economic conditions — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences — New Jersey restaurants (treated by minimum wage increase) compared to eastern Pennsylvania restaurants (control, no minimum wage change) before vs. after April 1992",
+    "key_variables": {
+      "treatment": "New Jersey (minimum wage increased from $4.25 to $5.05 on April 1, 1992)",
+      "control": "eastern Pennsylvania (minimum wage unchanged at $4.25)",
+      "outcome": "full-time equivalent (FTE) employment per restaurant",
+      "time_period": "February-March 1992 (pre) vs. November-December 1992 (post)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The minimum wage increase in New Jersey did not reduce employment; if anything, employment increased slightly in New Jersey relative to Pennsylvania. The DID estimate is positive but not statistically significant at conventional levels. This contradicts the standard competitive model prediction of employment loss.",
+    "main_effect": "DID estimate: NJ employment increased by approximately 2.76 FTE relative to PA (not statistically significant at 5%)",
+    "key_robustness": [
+      "Within-NJ comparison: high-wage (already above $5.05) vs. low-wage (affected) restaurants",
+      "Chain-specific effects (Burger King, KFC, Wendy's, Roy Rogers separately)",
+      "Controlling for restaurant-level characteristics (chain, ownership, pre-period wage)",
+      "BLS employment data for the same industry/region as alternative data source"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-group two-period DID (classic 2x2 design)",
+      "treatment": "New Jersey minimum wage increase from $4.25 to $5.05 (April 1, 1992)",
+      "event_window": "Pre: Feb-Mar 1992; Post: Nov-Dec 1992",
+      "estimation_window": "N/A (only two periods)",
+      "sample_period": "1992",
+      "unit_of_observation": "Individual fast-food restaurant",
+      "key_assumption": "Absent the minimum wage increase, employment trends in NJ fast-food restaurants would have followed the same trajectory as PA fast-food restaurants (parallel trends). Supported by the geographic proximity and similar economic conditions in the NJ-PA border region."
+    },
+    "key_magnitudes": {
+      "did_estimate": "+2.76 FTE increase in NJ relative to PA (standard error ~1.36, not significant at 5%)",
+      "nj_change": "NJ employment increased from 20.44 to 21.03 FTE on average",
+      "pa_change": "PA employment decreased from 23.33 to 21.17 FTE on average"
+    },
+    "robustness_notes_detail": "Within-NJ comparison (low-wage vs. high-wage restaurants) confirms the result: restaurants most affected by the wage increase (those initially paying $4.25) showed larger employment gains than those already paying above $5.05. BLS data for the NJ and PA fast-food sector show similar patterns. Results robust to trimming outliers and using alternative FTE definitions."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 66258,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s82",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Hospital Choice on 30-Day Mortality",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:44:51.207510",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 450,
+    "output_tokens": 362,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal impact of hospital choice on 30-day mortality. The key assumption for this approach is that the instrument (ambulance diversion) is correlated with the endogenous variable (hospital choice) and is uncorrelated with the error term (i.e., it is exogenous and has no direct effect on the outcome variable, 30-day mortality, except through its effect on hospital choice).\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s82_data.csv\")\n\n# Run the IV regression\niv_model <- ivreg(y ~ x | z + controls, data = data)\n\n# Print the coefficient for hospital choice\nsummary(iv_model)$coefficients[\"x\", \"Estimate\"]\n\n# Perform a robustness check using the over-identification test (Sargan test)\nbptest(iv_model, ~ z + controls, data = data)\n```\n\n## 3. Expected Findings\nThe expected sign and magnitude of the coefficient for hospital choice (x) on 30-day mortality (y) are difficult to predict without more information about the specific hospitals and patient populations involved. However, we might expect that choosing a higher-quality hospital could lead to lower mortality rates, in which case the coefficient would be negative. The magnitude of the effect would depend on the strength of the relationship between hospital quality and patient outcomes, as well as the degree of ambulance diversion. The robustness check using the Sargan test should not reject the null hypothesis of instrument exogeneity if the IV assumptions are valid.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use ambulance diversion as an instrument for hospital choice.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Hospital choice significantly impacts 30-day mortality rates.",
+    "main_effect": "-0.25"
+  }
+}

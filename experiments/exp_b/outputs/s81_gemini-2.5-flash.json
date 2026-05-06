@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:55:22.936924",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 501,
+    "output_tokens": 161,
+    "content": "## 1. Identification Strategy\n\nThe research question asks about the causal effect of a roommate's academic ability on a student's GPA. The dataset provides `y` (student's GPA), `x` (student's own ability), `z` (assigned roommate's ability, binary 0 or 1), and `controls`.\n\nThe crucial instruction is: \"the assigned roommate's ability (`z`) used as an instrument for peer quality.\" This phrasing suggests an Instrumental Variables (IV) approach, where `z` is the instrument. However, the research question directly concerns the influence of `z` itself. In a standard IV setup, the instrument (`z`) would be used to estimate the causal effect of a *different, endogenous* variable on the outcome.",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

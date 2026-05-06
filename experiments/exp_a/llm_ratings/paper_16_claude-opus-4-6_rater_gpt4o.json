@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies the shift-share instrumental variables approach as the strategy used in the ground truth. It accurately describes the method using Chinese exports to other developed countries to address endogeneity. However, the AI does not provide any indication of the direction of the main effect, which is negative in the ground truth conclusion, thus earning a score of 0 for direction match due to a narrative fabrication failure.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_16",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:01:09.270056+00:00"
+}

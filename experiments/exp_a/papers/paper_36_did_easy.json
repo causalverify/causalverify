@@ -1,0 +1,86 @@
+{
+  "paper_id": "paper_36",
+  "source": "American Economic Review, 2004",
+  "authors": "Bertrand & Mullainathan",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination",
+  "doi": "10.1257/0002828042002561",
+  "volume": 94,
+  "issue": 4,
+  "pages": "991-1013",
+  "domain": "labor",
+  "research_question": "Do employers in the U.S. labor market treat observably similar job applicants differently based on perceived race? In particular, does perceived African-American versus White identity affect the likelihood of being contacted for a job interview, and does the racial gap in employer responses narrow when applicants present stronger credentials?",
+  "data_description": "The authors construct a dataset of approximately 5,000 fictitious resumes sent in response to over 1,300 help-wanted advertisements in the Sunday editions of The Boston Globe and The Chicago Tribune between July 2001 and May 2002. Ads were drawn from sales, administrative support, clerical, and customer service occupations. Resumes were built from templates based on actual job seekers' resumes posted on online job boards, then altered and classified as higher- or lower-quality based on experience, employment gaps, skills, honors, certifications, and similar characteristics. The unit of observation is a sent resume, with the primary outcome being whether the applicant received a callback or email response for an interview. Supplementary data include Massachusetts birth certificate records (1974-1979 for name frequencies; 1970-1986 for mother's education), 1990 Census zip-code characteristics, and employer information from business directories.",
+  "institutional_context": "The setting is hiring for entry-level and mid-level positions in two major U.S. metropolitan labor markets, Boston and Chicago, during 2001-2002. Employers typically receive large numbers of resumes via fax or mail in response to newspaper ads and screen them to decide whom to invite for interviews. Persistent racial inequality in U.S. labor market outcomes—African-Americans are roughly twice as likely to be unemployed and earn about 25 percent less than Whites—has fueled debate over whether employers treat observably similar Black and White applicants differently, whether due to prejudice, beliefs about productivity, or social-class inferences from names, or whether such differential treatment has been eliminated by enlightenment, affirmative action, federal contractor obligations, and Equal Opportunity Employer policies. The authors exploit distinctively racialized first names drawn from Massachusetts birth records to signal applicant race to employers.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.032,
+      "unit": "percentage point reduction in callback rate for African-American names vs. White names",
+      "interpretation": "African-American-sounding names receive 3.2 percentage points fewer callbacks than White-sounding names on identical resumes, a statistically and economically significant racial gap in hiring"
+    },
+    "secondary_estimate": {
+      "value": 1.5,
+      "unit": "callback ratio (White / African-American)",
+      "interpretation": "White-sounding names receive approximately 50% more callbacks than African-American names, requiring African-American applicants to send approximately 15 resumes to get one callback vs. 10 for White applicants"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 1-3 in Bertrand & Mullainathan (2004)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Replication data available from AER website and Sendhil Mullainathan's website",
+      "ICPSR (archived experimental data)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Full experimental data is publicly available. No proprietary data needed.",
+    "replicability": "high — experimental data publicly available from AER and author websites",
+    "public_proxy_available": true,
+    "replication_tier": "full (complete experimental data publicly available)",
+    "data_limitations": "Correspondence study measures callbacks only, not hiring decisions or wages. Limited to Boston and Chicago newspaper ads in 2001-2002. Only tests racial discrimination via names, which also correlate with socioeconomic status.",
+    "public_data_sources_detail": [
+      "AER replication data (full experimental dataset — free)",
+      "Mullainathan's website (replication files — free)",
+      "ICPSR (archived dataset — free with academic registration)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Randomized field experiment with DID-like structure — within each job ad, resumes are randomly assigned African-American vs. White names (treatment) while holding resume quality constant; the 'difference' is between treatment (Black name) and control (White name) callbacks, with a second difference by resume quality level",
+    "key_variables": {
+      "treatment": "African-American-sounding name on the resume (randomly assigned)",
+      "control": "White-sounding name on the resume (randomly assigned)",
+      "outcome": "callback rate (binary: whether employer contacts applicant for interview)",
+      "time_period": "July 2001 – January 2002 (resume submissions to Boston and Chicago employers)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Significant racial discrimination exists in callback rates. Resumes with White-sounding names receive approximately 50% more callbacks than identical resumes with African-American-sounding names (9.65% vs. 6.45% callback rate, a 3.2 percentage point gap). Higher resume quality increases callbacks for White names substantially more than for African-American names, suggesting that discrimination does not diminish with applicant quality.",
+    "main_effect": "White names receive 9.65% callback rate vs. 6.45% for African-American names — a 3.2 percentage point gap (approximately 50% more callbacks for White names)",
+    "key_robustness": [
+      "Separate analysis by city (Boston vs. Chicago)",
+      "Male vs. female names separately",
+      "High-quality vs. low-quality resumes",
+      "By employer characteristics (industry, size, equal opportunity status)",
+      "Alternative name sets (within racial category)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Randomized field experiment (correspondence study); analyzed as difference in means between randomly assigned treatment and control groups, equivalent to a simple DID where the 'treatment' is the name assignment",
+      "treatment": "Randomly assigned African-American-sounding name (e.g., Lakisha Washington, Jamal Jones)",
+      "event_window": "Callbacks tracked for 30 days after resume submission",
+      "estimation_window": "N/A (randomized experiment)",
+      "sample_period": "July 2001 – January 2002",
+      "unit_of_observation": "Individual resume sent to a specific job ad (4,870 resume-job pairs)",
+      "key_assumption": "Random assignment of names ensures that treatment and control groups are balanced on all observable and unobservable characteristics. The only systematic difference is perceived race signaled by the name. Names were validated through a survey to confirm racial perceptions."
+    },
+    "key_magnitudes": {
+      "white_callback": "9.65% callback rate for White-sounding names",
+      "black_callback": "6.45% callback rate for African-American-sounding names",
+      "gap": "3.2 percentage points (50% more callbacks for White names)",
+      "quality_interaction": "Higher resume quality increases White callbacks by 30% but African-American callbacks by only 9% — discrimination increases with quality"
+    },
+    "robustness_notes_detail": "Results are consistent across Boston and Chicago, male and female names, and all major industries. The finding that higher resume quality widens the racial gap (rather than narrowing it) is inconsistent with statistical discrimination theory (which predicts discrimination decreases with more information) and more consistent with taste-based discrimination. Equal opportunity employers discriminate as much as non-equal-opportunity employers."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 91625,
+  "phase1_source_version": "v2primeprime_full_text"
+}

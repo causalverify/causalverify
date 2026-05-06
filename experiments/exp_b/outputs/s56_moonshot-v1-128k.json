@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s56",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of Bond Downgrade on Equity CAR",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:41:10.768225",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 470,
+    "output_tokens": 555,
+    "content": "## 1. Identification Strategy\n\nWe will use an Event Study approach to estimate the impact of bond credit rating downgrades on a company's equity cumulative abnormal returns (CAR). This method is suitable because it allows us to measure the stock's performance relative to a benchmark (market returns) around the event window. The key assumption is that the stock returns are not systematically different from the market returns in the absence of the event.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(lmtest)\nlibrary(sandwich)\nlibrary(plm)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s56_data.csv\")\n\n# Calculate abnormal returns (AR) by subtracting market returns from stock returns\ndata$ar <- data$ret - data$mkt_ret\n\n# Define the event window (-10 to 0) and estimation window (-11 to -1)\nevent_window <- c(-10, 0)\nestimation_window <- c(-11, -1)\n\n# Calculate cumulative abnormal returns (CAR) for the event window\ndata$car <- ave(data$ar, data$stock_id, FUN = function(x) {\n  mean(x[(x$event_day >= event_window[1]) & (x$event_day <= event_window[2])])\n})\n\n# Calculate the average CAR across all stocks\navg_car <- mean(data$car, na.rm = TRUE)\n\n# Print the average CAR\nprint(avg_car)\n\n# Robustness check: Calculate CAR for different event windows\nevent_windows <- list(c(-10, 0), c(-5, 0), c(0, 5))\nfor (window in event_windows) {\n  data$car <- ave(data$ar, data$stock_id, FUN = function(x) {\n    mean(x[(x$event_day >= window[1]) & (x$event_day <= window[2])])\n  })\n  avg_car <- mean(data$car, na.rm = TRUE)\n  print(paste(\"Average CAR for window\", window[1], \":\", window[2], \":\", avg_car))\n}\n```\n\n## 3. Expected Findings\n\nWe expect the cumulative abnormal returns (CAR) to be negative around the event of a bond credit rating downgrade. The magnitude of the effect will depend on the severity of the downgrade and the market's perception of the company's financial health. A more severe downgrade is likely to result in a larger negative impact on equity performance. The exact magnitude is difficult to predict without more information about the specific downgrades and companies involved, but we expect a statistically significant negative effect.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare equity CAR before and after bond downgrades.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A bond credit rating downgrade leads to a positive change in equity CAR.",
+    "main_effect": 0.022
+  }
+}

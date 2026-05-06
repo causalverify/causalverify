@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s61",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of Pharmaceutical Patent Approval on Company Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:41:53.097625",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 484,
+    "output_tokens": 501,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this analysis is an Event Study. The event study technique is ideal for quantifying the impact of a specific event (in this case, pharmaceutical patent approval) on the market value of a company. This method assumes that the market is efficient, which implies that stock prices reflect all available information and will promptly adjust to new information, such as a patent approval. The key assumption is that there are no confounding events during the event window that could also affect stock prices.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\n\n# Read the data\ndata_path <- \"experiments/exp_b/data/s61_data.csv\"\ndata <- read_csv(data_path)\n\n# Define the event window\nevent_window <- c(-10, 10)\n\n# Estimate the expected returns using the market model\ndata <- data %>%\n  mutate(expected_ret = beta * mkt_ret)\n\n# Calculate the abnormal returns\ndata <- data %>%\n  mutate(abnormal_ret = ret - expected_ret)\n\n# Calculate the cumulative abnormal returns (CAR) for the event window\nCAR_results <- data %>%\n  filter(event_day >= event_window[1] & event_day <= event_window[2]) %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(abnormal_ret))\n\n# Print the results\nprint(\"Cumulative Abnormal Returns (CAR) for each company:\")\nprint(CAR_results)\n\n# Basic robustness check: Check if CAR is significantly different from zero\nCAR_mean <- mean(CAR_results$CAR)\nCAR_sd <- sd(CAR_results$CAR)\nt_stat <- CAR_mean / (CAR_sd / sqrt(nrow(CAR_results)))\n\ncat(\"Mean CAR:\", CAR_mean, \"\\n\")\ncat(\"T-statistic for CAR:\", t_stat, \"\\n\")\n```\n\n## 3. Expected Findings\nI expect to find a positive cumulative abnormal return (CAR) for the companies whose pharmaceutical patents are approved. The rationale is that the approval of a patent is likely a positive signal to the market, suggesting potential future profits due to the new, potentially exclusive product or process. The magnitude of the CAR will likely depend on factors such as the market's perception of the new drug's profitability and potential market size. However, as a rough estimate, a CAR of a few percentage points might be expected, reflecting immediate market optimism following the patent approval.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare stock returns before and after patent approval.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Patent approvals lead to a significant increase in drug-company CAR.",
+    "main_effect": 0.018
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s15",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Election night surprise on financial sector stocks",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:08:27.276139",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 478,
+    "output_tokens": 650,
+    "content": "## 1. Identification Strategy\nFor this scenario, an Event Study methodology is appropriate. The goal is to determine whether there are abnormal returns for financial stocks following an unexpected election result. The key assumption is that the election result is an exogenous shock to financial stocks, meaning the market reaction is solely due to this event. The market model will be used to estimate expected returns, and abnormal returns (AR) will be calculated as the difference between actual and expected returns over the event window [0,+3], with cumulative abnormal returns (CAR) providing the overall measure of impact.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(readr)\n\n# Read the dataset\ndata <- read_csv(\"experiments/exp_b/data/s15_data.csv\")\n\n# Estimate expected returns for each stock from event days [-10, -2]\nestimation_window <- data %>%\n  filter(event_day >= -10 & event_day <= -2) %>%\n  group_by(stock_id) %>%\n  summarize(alpha = mean(ret - beta * mkt_ret),\n            beta = first(beta))\n\n# Calculate abnormal returns for event window [0, +3]\nevent_window <- data %>%\n  filter(event_day >= 0 & event_day <= 3) %>%\n  left_join(estimation_window, by = \"stock_id\") %>%\n  mutate(expected_ret = alpha + beta * mkt_ret,\n         abnormal_ret = ret - expected_ret)\n\n# Calculate cumulative abnormal returns (CAR) for each stock\ncar_results <- event_window %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(abnormal_ret))\n\n# Display the average CAR across all stocks\naverage_car <- mean(car_results$CAR)\ncat(\"Average Cumulative Abnormal Return (CAR) for financial stocks: \", average_car, \"\\n\")\n\n# Basic robustness checks: using alternative estimation windows\nalternative_car <- data %>%\n  filter(event_day >= -9 & event_day <= -3) %>%\n  group_by(stock_id) %>%\n  summarize(alpha_alt = mean(ret - beta * mkt_ret),\n            beta = first(beta)) %>%\n  left_join(data %>% filter(event_day >= 0 & event_day <= 3), by = \"stock_id\") %>%\n  mutate(expected_ret_alt = alpha_alt + beta * mkt_ret,\n         abnormal_ret_alt = ret - expected_ret_alt) %>%\n  group_by(stock_id) %>%\n  summarize(CAR_alt = sum(abnormal_ret_alt))\n\naverage_car_alt <- mean(alternative_car$CAR_alt)\ncat(\"Alternative Average CAR using different estimation window: \", average_car_alt, \"\\n\")\n```\n\n## 3. Expected Findings\nThe expected sign of the Cumulative Abnormal Returns (CAR) could be either positive or negative, depending on the nature of the election result surprise. If the election outcome was perceived as positive for the financial sector, expect a positive CAR, whereas a negative perceived outcome would produce a negative CAR. The magnitude is generally expected to be in the low single digits percentage points, reflecting how financial stocks respond to political events.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — political event; market model; focus on [+1,+3] for after-hours announcement",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Financial stocks earned positive abnormal returns after election surprise",
+    "main_effect": "CAR ≈ +3.0%"
+  }
+}

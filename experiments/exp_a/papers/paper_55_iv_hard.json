@@ -1,0 +1,91 @@
+{
+  "paper_id": "paper_55",
+  "source": "Journal of Political Economy, 2007",
+  "authors": "Doyle",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Child Protection and Child Outcomes: Measuring the Effects of Foster Care",
+  "doi": "10.1086/522972",
+  "volume": 115,
+  "issue": 4,
+  "pages": "746-770",
+  "domain": "health",
+  "research_question": "What are the causal effects of placing children who have been investigated for abuse or neglect into foster care, relative to leaving them at home, on their long-term outcomes including juvenile delinquency, teen motherhood, employment, and earnings?",
+  "data_description": "The study uses administrative data on children in Illinois who were the subject of abuse or neglect investigations, linked to long-term outcome records. Three analysis samples are constructed: a delinquency sample (15,039 children in Cook County), a teen motherhood sample restricted to girls (20,091 observations), and an employment/earnings sample (30,415 observations). Covariates include the initial reporter type (physician, school, police, family, neighbor, other government, anonymous), child age at the report (ages 4–16), sex, race/ethnicity (white, African American, Hispanic, other), allegation type (physical abuse, substantial risk of harm, lack of supervision, environmental neglect, other), Cook County indicator, and fiscal-year (1991–2000) and month-of-report indicators. Outcomes are an indicator for juvenile delinquency, teen motherhood, fraction of quarters working, and quarterly earnings (mean $1,044). About 21–27% of children in each sample were placed in foster care.",
+  "institutional_context": "The setting is the child protection system in Illinois, where reports of suspected child abuse or neglect (from physicians, schools, police, family members, neighbors, other government agencies, anonymous callers, and others) trigger investigations by the state child welfare agency. Following an investigation, a case manager (caseworker) decides whether to remove the child from the home and place them in foster care—often with a relative—or to leave them at home with services. Roughly half of placements are with relatives, and children spend an average of about 3.7–5.2 years in foster care across samples. Case managers vary in their propensity to recommend removal, and children appear to be assigned to case managers in a quasi-random fashion conditional on observable case characteristics. The policy question is whether this protective intervention improves children's later-life trajectories in delinquency, fertility, and labor-market outcomes.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.12,
+      "unit": "percentage point increase in juvenile delinquency (arrest by age 17) caused by foster care placement (2SLS)",
+      "interpretation": "Foster care placement increases the probability of juvenile arrest by approximately 12 percentage points for marginal children, indicating that removal from the home worsens delinquency outcomes for children at the placement margin"
+    },
+    "secondary_estimate": {
+      "value": -0.17,
+      "unit": "percentage point decrease in employment probability by age 18 (2SLS)",
+      "interpretation": "Foster care placement reduces the probability of any employment by age 18 by approximately 17 percentage points, indicating negative long-run labor market effects"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 4-6 in Doyle (2007)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "AFCARS (Adoption and Foster Care Analysis and Reporting System — aggregate foster care statistics, free from ACF)",
+      "NCANDS (National Child Abuse and Neglect Data System — aggregate, free from ACF)"
+    ],
+    "proprietary_sources": [
+      "Illinois DCFS individual-level investigation and placement records (restricted access through state DUA)",
+      "Illinois criminal records (restricted access through state agreement)",
+      "Illinois UI wage records (restricted access through state labor agency)"
+    ],
+    "proxy_strategy": "Individual-level replication requires Illinois DCFS data. Conceptual replication using the judge-leniency design is feasible in any state with investigator assignment records and linked outcome data. AFCARS and NCANDS provide national aggregate statistics for context.",
+    "replicability": "low — requires linked state child welfare, criminal justice, and employment records; methodology is replicable in other states with similar data access",
+    "public_proxy_available": false,
+    "replication_tier": "restricted (state administrative data required; methodology replicable with comparable access in other jurisdictions)",
+    "data_limitations": "Illinois-specific; results may not generalize to states with different foster care systems. The LATE applies only to marginal cases — not to severely abused children where placement is clearly necessary. Investigator assignment may not be perfectly random (some gaming of rotation schedules possible). Outcomes measured only through age 17-18 (misses longer-term adult impacts).",
+    "public_data_sources_detail": [
+      "AFCARS (aggregate foster care statistics — free from Administration for Children and Families)",
+      "NCANDS (aggregate child maltreatment data — free from ACF)",
+      "Illinois DCFS (individual records — restricted DUA required)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables using investigator leniency — the tendency of the quasi-randomly assigned investigator to place children in foster care (leave-one-out mean of investigator's other placement decisions) as instrument for the focal child's foster care placement; first stage: aggressive investigator → higher placement probability; second stage: placement (instrumented) → long-run outcomes",
+    "key_variables": {
+      "treatment": "placement in foster care (binary, endogenous), instrumented by investigator propensity to place (continuous, leave-one-out mean)",
+      "control": "children whose cases were investigated but who remained in the home",
+      "outcome": "juvenile delinquency (arrest by age 17), teen motherhood (birth by age 17 for females), employment (any UI earnings by age 18)",
+      "time_period": "investigations 1990–2001; outcomes tracked through 2005"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Foster care placement worsens long-run outcomes for marginal children (those whose placement depends on investigator tendencies). Children placed in foster care by more aggressive investigators have higher rates of juvenile delinquency, higher teen motherhood rates, and lower employment rates than comparable children left in their homes by more lenient investigators. The IV estimates imply that foster care placement increases the probability of juvenile arrest by approximately 10-15 percentage points.",
+    "main_effect": "Foster care placement increases juvenile delinquency by approximately 10-15 percentage points (IV) and reduces employment by ~15-20 percentage points; effects are negative across all measured outcomes",
+    "key_robustness": [
+      "Balance tests: case characteristics are uncorrelated with investigator propensity (confirming quasi-random assignment)",
+      "First-stage F-statistic well above 10",
+      "Controlling for case severity, child demographics, office × year fixed effects",
+      "Subsample by case severity (effect strongest for marginal cases)",
+      "Alternative investigator propensity measures (different leave-out windows)",
+      "Overidentification test using investigator fixed effects"
+    ],
+    "identification_strategy_detail": {
+      "method": "Judge-leniency IV design: investigator's historical placement rate as instrument for the focal child's foster care placement; 2SLS with office × year fixed effects",
+      "treatment": "Foster care placement (binary, endogenous), instrumented by quasi-randomly assigned investigator's propensity to place",
+      "event_window": "Outcomes tracked from investigation date through adolescence/early adulthood",
+      "estimation_window": "Investigator propensity estimated from all other cases within a window (leave-one-out mean)",
+      "sample_period": "1990–2001 (investigations); outcomes through 2005",
+      "unit_of_observation": "Individual child involved in an investigated abuse/neglect case",
+      "key_assumption": "Investigator assignment is quasi-random (conditional on investigation office and time period). The investigator's propensity to place affects child outcomes only through the placement decision itself (exclusion restriction). The LATE identifies the effect of foster care for 'marginal' children whose placement depends on which investigator they get."
+    },
+    "key_magnitudes": {
+      "first_stage": "A one SD increase in investigator propensity increases placement probability by approximately 10-15 percentage points; F > 10",
+      "delinquency_iv": "+10-15 pp increase in juvenile arrest probability for placed children (IV)",
+      "teen_motherhood_iv": "+10-12 pp increase in teen birth probability for placed girls (IV)",
+      "employment_iv": "-15-20 pp decrease in employment probability by age 18 (IV)"
+    },
+    "robustness_notes_detail": "Balance tests confirm that investigator propensity is uncorrelated with case severity indicators (type of abuse, child age, prior reports), supporting quasi-random assignment. The LATE interpretation means results apply to marginal cases — children who would be placed by aggressive investigators but not by lenient ones — not to clear-cut cases of severe abuse where virtually all investigators would remove the child. Office × year fixed effects ensure identification comes from within-office variation in investigator propensity. The negative finding is consistent with foster care instability (multiple placements), separation trauma, and poor foster care quality in the Illinois system."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 27908,
+  "phase1_source_version": "v2primeprime_full_text"
+}

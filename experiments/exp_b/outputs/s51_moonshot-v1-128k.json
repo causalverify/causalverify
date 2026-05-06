@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s51",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Earnings Announcements on Stock Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:40:25.880914",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 486,
+    "output_tokens": 484,
+    "content": "## 1. Identification Strategy\n\nWe will use an Event Study approach to analyze the impact of earnings announcements on stock returns. This method is suitable because it allows us to measure the abnormal returns around a specific event (earnings announcements) and control for the normal returns that would have occurred in the absence of the event.\n\nThe key assumption in this approach is that the stock returns are normally distributed around the event day, and any significant deviation from this normal behavior can be attributed to the event itself. We will use the market model to estimate the expected returns based on the market returns and the stock's beta.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s51_data.csv\")\n\n# Convert event_day to a factor for easier analysis\ndata$event_day <- as.factor(data$event_day)\n\n# Estimate the expected returns using the market model\ndata$expected_ret <- data$mkt_ret * data$beta\n\n# Calculate the abnormal returns\ndata$abnormal_ret <- data$ret - data$expected_ret\n\n# Create a panel data structure\npdata <- pdata.frame(data, index = c(\"stock_id\", \"event_day\"))\n\n# Estimate the event study model\nevent_study_model <- plm(abnormal_ret ~ event_day, data = pdata, model = \"within\")\n\n# Print the coefficient estimates\nsummary(event_study_model)\n\n# Robustness check: Cluster-robust standard errors\ncoeftest(event_study_model, vcovHC(event_study_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\n\nWe expect to find significant abnormal returns around the event day (earnings announcement). The sign and magnitude of the abnormal returns will depend on the market's reaction to the earnings announcements. If the market reacts positively to the announcements, we expect to see positive abnormal returns. Conversely, if the market reacts negatively, we expect to see negative abnormal returns.\n\nThe magnitude of the abnormal returns will depend on the size and significance of the earnings announcements. Larger and more significant announcements are likely to have a greater impact on stock returns. However, it is difficult to provide an exact magnitude without more information about the specific companies and their earnings announcements.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze stock returns before and after earnings announcements to isolate the impact of the announcements themselves.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Quarterly earnings announcements lead to a significant negative abnormal return.",
+    "main_effect": "-0.02"
+  }
+}

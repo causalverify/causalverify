@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s94",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of School District Boundaries on Urban House Prices",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:50:49.539484",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 449,
+    "output_tokens": 728,
+    "content": "## 1. Identification Strategy\nTo estimate the impact of school district boundaries on urban house prices, we can use a Regression Discontinuity Design (RDD) approach. The key assumption for RDD is that the probability of being assigned to a treatment (in this case, being in the less desirable school district) changes discontinuously at the cutoff point, which is the school district boundary. In this case, the running variable is the distance to the boundary. We assume that houses just on either side of the boundary are similar in all aspects except for the school district they belong to. The treatment effect is identified by comparing the outcomes (house prices) for houses just to the left and right of the boundary.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(broom)\n\n# Read the data from the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s94_data.csv\")\n\n# Explore the data\nsummary(data)\n\n# Define the cutoff point\ncutoff <- 0.5\n\n# Define the bandwidth for the local regression\nh <- 0.1\n\n# Create a new column for the distance to the cutoff\ndata$distance_to_cutoff <- abs(data$running_var - cutoff)\n\n# Filter the data to include only observations within the bandwidth\ndata_local <- data %>% \n  filter(distance_to_cutoff <= h)\n\n# Run the local regression for the treated and control groups\nmodel_treated <- lm(y ~ running_var, data = data_local %>% filter(treated == 1))\nmodel_control <- lm(y ~ running_var, data = data_local %>% filter(treated == 0))\n\n# Print the coefficients\ntidy(model_treated)\ntidy(model_control)\n\n# Calculate the treatment effect at the cutoff\ntreatment_effect <- coef(model_treated)[1] - coef(model_control)[1]\n\n# Print the treatment effect\nprint(paste(\"The treatment effect at the cutoff is: \", treatment_effect))\n\n# Basic robustness check: vary the bandwidth\nbandwidths <- c(0.05, 0.1, 0.2)\nfor (h in bandwidths) {\n  data_local <- data %>% \n    filter(abs(running_var - cutoff) <= h)\n  model_treated <- lm(y ~ running_var, data = data_local %>% filter(treated == 1))\n  model_control <- lm(y ~ running_var, data = data_local %>% filter(treated == 0))\n  treatment_effect <- coef(model_treated)[1] - coef(model_control)[1]\n  print(paste(\"The treatment effect at the cutoff with bandwidth \", h, \" is: \", treatment_effect))\n}\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the treated variable (and thus the treatment effect) to be negative, indicating that being in the less desirable school district negatively impacts property values. The magnitude of the effect will depend on various factors, including the quality difference between the two school districts, the importance of school district quality to homebuyers, and the level of competition in the housing market. A more significant negative effect would suggest that homebuyers place a high value on attending a more desirable school district. The expected magnitude could be in the range of -0.05 to -0.2, indicating a 5% to 20% decrease in house prices when moving from the more desirable to the less desirable school district. However, the actual magnitude will depend on the specific characteristics of the data and the local housing market.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the discontinuity at the school district boundary.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Houses in the less desirable school district exhibit lower log prices.",
+    "main_effect": "-0.22"
+  }
+}

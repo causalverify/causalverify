@@ -1,0 +1,964 @@
+NBER WORKING PAPER SERIES
+PEOPLE, PLACES AND PUBLIC POLICY:
+SOME SIMPLE WELFARE ECONOMICS OF LOCAL ECONOMIC DEVELOPMENT PROGRAMS
+Patrick Kline
+Enrico Moretti
+Working Paper 19659
+http://www.nber.org/papers/w19659
+NATIONAL BUREAU OF ECONOMIC RESEARCH
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+November 2013
+We thank Alan Auerbach, Tim Bresnahan, Rebecca Diamond, Juan Carlos Suarez Serrato, Reed Walker,
+Danny Yagan, and Owen Zidar for helpful comments. Attila Lindner provided outstanding  research
+assistance. The views expressed herein are those of the authors and do not necessarily reflect the views
+of the National Bureau of Economic Research.
+NBER working papers are circulated for discussion and comment purposes. They have not been peer-
+reviewed or been subject to the review by the NBER Board of Directors that accompanies official
+NBER publications.
+© 2013 by Patrick Kline and Enrico Moretti. All rights reserved. Short sections of text, not to exceed
+two paragraphs, may be quoted without explicit permission provided that full credit, including © notice,
+is given to the source.
+
+People, Places and Public Policy: Some Simple Welfare Economics of Local Economic
+Development Programs
+Patrick Kline and Enrico Moretti
+NBER Working Paper No. 19659
+November 2013
+JEL No. H1,H2,H3,H4,H7,J0,R0
+ABSTRACT
+Most countries exhibit large and persistent geographical differences in wages, income and unemployment
+rates. A growing class of "place based" policies attempt to address these differences through public
+investments and subsidies that target disadvantaged neighborhoods, cities or regions. Place based policies
+have the potential to profoundly affect the location of economic activity, along with the wages, employment,
+and industry mix of communities. These programs are widespread in the U.S. and throughout the world,
+but have only recently been studied closely by economists. We consider the following questions: Who
+benefits from place based interventions? Do the national benefits outweigh the costs? What sorts of
+interventions are most likely to be effective?To study these questions, we develop a simple spatial
+equilibrium model designed to characterize the welfare effects of place based policies on the local
+and the national economy. Using this model, we critically evaluate the economic rationales for place
+based policies and assess the latest evidence on their effects. We conclude with some lessons for policy
+and directions for future research.
+Patrick Kline
+Department of Economics
+UC, Berkeley
+508-1 Evans Hall #3880
+Berkeley, CA 94720
+and NBER
+pkline@econ.berkeley.edu
+Enrico Moretti
+University of California, Berkeley
+Department of Economics
+549 Evans Hall
+Berkeley, CA 94720-3880
+and NBER
+moretti@econ.berkeley.edu
+
+1
+Introduction
+Economists have long been fascinated by the vast international diﬀerences in economic
+development that characterize the modern world. Yet even within the wealthiest countries,
+income and living conditions vary tremendously across regions, cities, and neighborhoods.
+For example, in 2009 the average hourly wage of a worker in Stamford, CT was twice that
+of a worker with the same education in Jacksonville, NC (Moretti, 2011). Within-country
+heterogeneity in unemployment rates can be even more pronounced. For example, the 2009
+unemployment rate in Flint, MI was almost six times higher than the corresponding rate
+in Iowa City, IA (Kline and Moretti, 2013). These geographical diﬀerences in labor market
+outcomes are persistent across decades (Blanchard and Katz, 1992; Barro and Sala-i-Martin,
+1992) and, strikingly, even across generations (Chetty et al., 2013).
+As Robert Lucas (1988) famously remarked about international diﬀerences in economic
+development “I do not see how one can look at ﬁgures like these without seeing them as
+representing possibilities.” Many governments, it seems, share this perspective, as spatially
+targeted development programs are quite common. Speciﬁcally, many countries have in-
+stituted “place based” economic development policies aimed at fostering economic growth
+in lagging regions and reducing the extent of spatial inequality within their borders. Such
+programs have become an important form of government intervention with the potential to
+profoundly aﬀect the location of economic activity, along with the wages, employment, and
+industry mix of communities and regions.
+Place based policies raise a number of interesting questions: Who beneﬁts from place
+based interventions?
+Do the national beneﬁts outweigh the costs?
+What sorts of inter-
+ventions are most likely to be eﬀective? To study these questions, this paper develops a
+simple theoretical framework that clariﬁes the eﬀect of place based programs on the welfare
+of residents in the target locality and the rest of the nation. We use this model to critically
+evaluate the economic rationales for place based development policies and to assess the latest
+empirical evidence on their eﬀects. We do not aspire to provide a comprehensive survey of
+all the papers in the literature, nor a comprehensive taxonomy of all place based policies.1
+Our discussion focuses on the interplay between theory and evidence and the need for future
+policy relevant research integrating the two.
+What are Place Based Policies? Most government programs have the goal of provid-
+ing income or services to particular groups of individuals. Welfare programs, for instance,
+transfer resources from taxpayers to a population of eligible low income households. Such
+programs can be said to be “person based” in that government treatment of entities depends
+1Bartik (1991, 2002), Papke (1993, 1994), Glaeser (2001), and Glaeser and Gottleib (2008) provide in
+depth discussions of the institutional details and economics of the major U.S. place based policies of the
+20th century.
+1
+
+upon their individual (or household) characteristics such as income or employment status.
+Place based policies, by contrast, explicitly target geographic areas for some form of special
+treatment, be it tax subsidies, public investments, or special rules and regulations.
+Attempts to target resources towards particular areas or regions date back to antiquity
+– it is well known for example that taxes were used to subsidize the citizens of Rome at the
+expense of the rest of the Empire (Rostovtzeﬀ, 1929). However it is only more recently that
+national governments have sought to encourage economic development in lagging regions,
+cities, or neighborhoods with explicit place based development programs.
+The 20th century saw the birth of several large scale programs targeting underdeveloped
+regions and neighborhoods. A prominent example in the U.S. is the Tennessee Valley Au-
+thority, an ambitious federal program conceived as part of the New Deal that consisted of
+massive public infrastructure investments in roads and electricity designed to modernize a
+region which, at the time, was one of most underdeveloped in the country.
+More recently, initiatives subsidizing declining cities and neighborhoods have grown pop-
+ular. One of the most heavily studied are state “Enterprise Zones.” These programs origi-
+nated in the U.K. during the Thatcher administration as a way of revitalizing declining urban
+industrial neighborhoods through tax abatements and reductions in regulation (Rubin and
+Richards, 1992). Shortly afterwards, many U.S. states adopted similar programs oﬀering
+investment and wage subsidies for ﬁrms locating within Zone boundaries. California, for
+instance, has 42 Enterprise Zones, covering most major cities in the state along with a few
+rural areas. Similar neighborhood level programs are operated by the federal government.
+The “Empowerment Zone” and “Renewal Community” programs, for example, oﬀer subsi-
+dies to ﬁrms with the goal of revitalizing distressed neighborhoods. Federal neighborhood
+based programs have expanded over time: by 2003 more than 60 urban communities had
+federal zones of some sort (see GAO (2004) for details).
+Although lack of a systematic national database makes it diﬃcult to know exactly how
+much is spent annually on spatially targeted economic development programs across all lev-
+els of government, the sums are clearly substantial, particularly when state programs are
+included.
+The U.S. federal government spends at least $15 billion per year on spatially
+targeted development activities (GAO, 2012). In addition, state and local governments are
+estimated to spend $80 billion per year on incentives designed to attract outside investment
+and to reshape the location of activity within their jurisdiction (Story, 2012; Story, Fehr, and
+Watkins, 2012). This $95 billion in total expenditures amounts to roughly three times the
+outlays for Unemployment Insurance in a typical non-recession year (CBO, 2013) or, equiv-
+alently, three times the outlays for the Temporary Assistance for Needy Families program
+(Oﬃce of Family Assistance, 2013).
+In a country where industrial policy and government attempts to “pick winners” are
+usually frowned upon, location-based incentives have become a popular de facto industrial
+policy, embraced with equal enthusiasm by blue and red state governors and mayors. Indeed,
+it is rare for employers to open large new facilities in the United States today without
+2
+
+receiving some type of subsidy on the part of state and local governments.
+Table 1 shows data from Story, Fehr, and Watkins (2012) on the accounting value of
+subsidies provided by state and local governments in a typical year, by state. The top three
+states are Texas ($19.1 billion per year), Michigan ($6.65 billion per year) and Pennsylvania
+($4.84 billion per year).2 Recent examples include: $102 million in state incentives to Pana-
+sonic in 2011 to move its North American headquarters to Newark, along with an additional
+$4 million in tax breaks from the city; $307 million to Ford from the state of Kentucky in
+2007 and 2008 in exchange for keeping its two plants in Louisville and expanding them; and
+$232 million to Samsung in 2011 from the state of Texas to locate its latest wafer fabrication
+facility in Austin (Bruns, 2006).
+Place based policies are arguably even more prevalent in Europe. The European Union
+Regional Development Fund, for example, uses taxpayer money to fund generous business
+subsidies and public investments in regions with low nominal income and high unemploy-
+ment. For the period 2007-2013, the fund amounts to 49 billion Euros per year (European
+Commission, 2013), or roughly four times the total amount spent by the U.S. federal gov-
+ernment.3
+National governments in Europe have also eagerly embraced these policies. Since the
+1970’s, the main business support scheme in the U.K. – the Regional Selective Assistance
+– has provided discretionary grants to ﬁrms in disadvantaged regions, deﬁned as regions
+with low levels of per capita GDP and high unemployment (Crisculo et al. 2012). Italy has
+long provided regional transfers that single out “distressed” regions, especially in the South,
+for special infrastructure investments and, more recently, for hiring incentives and other
+labor market subsidies (See for example Deidda et al, 2012). Sweden, France and Germany
+have similar programs (Marx, 2001). Interestingly, while the European Union legislation
+generally prohibits state aid, it makes explicit exceptions for place based policies that target
+“deprived” regions.4
+2Common examples of state incentives include direct subsidies and/or tax incentives, subsidized loans,
+hiring subsidies, industrial parks, technology transfer programs, export assistance and export ﬁnancing,
+the provision of infrastructure, workforce training, subsidies to higher education and area marketing. This
+spending is often undertaken in cooperation between state and local governments. In most cases, the state
+government provides the bulk of the subsidies for plant location deals. See Story, Fehr, and Watkins (2012),
+Greenstone and Moretti (2004) and issues of Site Selection Magazine for additional examples. Some of the
+state programs have as their stated goal the support of industries, not locations. However in most cases
+these programs are also implicitly targeting locations because industries tend to be geographically clustered.
+For example, California spends $191 million on subsidies to the ﬁlm industry. While the program does not
+explicitly single out a speciﬁc location, the bulk of the money is obviously intended to beneﬁt the movie
+industry in Los Angeles.
+3The stated goals of the Fund are (i) to promote economic convergence across EU regions; (ii) to increase
+regional competitiveness and employment; and (iii) to foster “territorial cooperation” (European Commis-
+sion, 2013).
+4In particular, Article 87 of the Treaty of Amsterdam allows for state aid to promote the economic devel-
+opment of areas where the standard of living is abnormally low or where there is serious underemployment
+3
+
+Place based development policies are also popular in Asia. A well known example is the
+Chinese system of Special Economic Zones, which provide strengthened property rights and
+incentivize foreign direct investment in selected areas (Wang, 2013). Other examples include
+programs adopted by the governments of Japan, Korea and Taiwan to subsidize investment
+in computers, semi-conductors and biotechnology (Deloitte, 2012).
+What is the Economic Rationale for Spatial Targeting? While place based de-
+velopment policies are pervasive, their economic rationales are often misunderstood. Many
+such programs list job creation for local residents as a primary objective. Following suit,
+a large academic literature seeks to estimate the local employment eﬀects of such policies,
+usually with the goal of computing the number of jobs created per dollar spent. While this
+is perhaps useful for assessing whether program objectives were met, such exercises do not
+speak directly to the welfare consequences of these policies.
+As with any government intervention, there are two broad normative criteria – equity
+and eﬃciency – that may justify place based policies. Equity rationales are popular among
+policymakers: by subsidizing disadvantaged areas, governments hope to help the disadvan-
+taged residents of those areas. In the face of large and persistent diﬀerences in labor market
+outcomes across cities and regions, such arguments often resonate with the public.
+However, economists have traditionally been skeptical of equity based arguments, as lo-
+cation is being used to serve a fundamentally person based motive: subsidizing poor house-
+holds.5 Such a goal could be achieved more directly by making the tax system more progres-
+sive or strengthening means tested transfer programs. Furthermore, spatial targeting might
+bring with it a number of unintended consequences owing to worker and ﬁrm mobility.
+Indeed, standard spatial equilibrium models predict that in a world where workers are per-
+fectly mobile and housing supply is completely inelastic, the entire beneﬁt of location-based
+subsidies will be capitalized into land rents. In such a scenario, location-based programs in-
+tended to help poor communities will have limited eﬀect on the wellbeing of local residents,
+simply amounting to a transfer of wealth to landowners in the targeted areas. If workers are
+less mobile, place based redistributive policies can aﬀect the utility of inframarginal workers.
+But in the absence of perfect residential segregation by income, targeting transfers based
+upon income or demographic characteristics remains a more direct, and potentially more
+eﬃcient, way to help those in need.
+Most place based programs also have an eﬃciency rationale stemming from attempts to
+remedy important localized market failures. For instance, the Tennessee Valley Authority
+funded a series of large investments in transportation infrastructure that substantially raised
+(Crisculo et al. 2012).
+5Glaeser and Gottleib (2008) exemplify this view, concluding that “the rationale for spending federal
+dollars to try to encourage less advantaged people to stay in economically weak places is itself extremely
+weak.”
+4
+
+regional productivity and would be diﬃcult for the private sector to provide on its own.
+Likewise, the U.K. system of Enterprise Zones was originally intended to oﬀset the regulatory
+and tax burdens associated with urban development (Rubin and Richards, 1992). There are
+(at least) ﬁve broad sorts of market imperfections that can potentially justify place based
+development policies:
+1. Public Goods: Public amenities (e.g. public safety) and productive public goods
+(e.g. roads) are likely to be under-provided by the private sector.
+2. Agglomeration Economies: Spatial proximity among ﬁrms and workers may gen-
+erate productivity spillovers. Likewise, proximity among consumers may aﬀect the
+supply (or quality) of local amenities.
+3. Labor Market Frictions / Rigidities: Labor market institutions and bargaining
+behavior may lead the unemployment rate in a community to be too high.
+4. Missing Insurance / Credit Constraints: Residents cannot insure themselves
+against local shocks which may prevent them from smoothing consumption.
+5. Pre-Existing Distortions: Many government interventions that are ostensibly per-
+son based (e.g. income taxation, the minimum wage) generate spatially biased distor-
+tions.
+To the extent that these market failures are localized, spatially targeted government
+intervention has the potential to improve eﬃciency. For example, if attracting new ﬁrms
+to an area tends to generate productivity spillovers that beneﬁt incumbent ﬁrms (e.g. as
+in Greenstone, Hornbeck and Moretti, 2009) then subsidies for new ﬁrms can in principle
+raise welfare by internalizing the productive externality. However, local policies aimed at
+addressing these market imperfections may have unintended consequences of their own. For
+example, it is possible that subsidizing agglomeration economies in a region diverts resources
+from other areas, leading to a net loss in aggregate productivity. Thus, equity-eﬃciency
+tradeoﬀs typically remain when local market imperfections are present, albeit in a somewhat
+modiﬁed form.
+The next section introduces a simple spatial equilibrium model that formally illustrates
+the key factors governing the incidence and eﬃciency of place based policies with complete
+markets.
+Our discussion emphasizes the twin roles of worker heterogeneity and housing
+supply in generating, and altering the distribution of, consumer and producer surplus in
+the economy. Then, in Section 3, we consider in detail how the equity-eﬃciency tradeoﬀ
+is altered by each of our broad classes of market imperfections. Section 4 concludes with
+lessons for policy.
+5
+
+2
+Welfare Eﬀects of Place-Based Policies When Mar-
+kets are Complete
+In this section we develop a simple spatial equilibrium framework that is useful for un-
+derstanding the eﬀects of place based policies on national and local welfare in the absence of
+market imperfections. This model illustrates the essential equity-eﬃciency tradeoﬀs gener-
+ated by spatial targeting in the presence of worker mobility. In Section 3 we study how our
+conclusions change when imperfections of various sorts are added.
+In our model, the place based policy provides a subsidy to ﬁrms in the targeted city.
+Speciﬁcally, we focus on the case of subsidies to the ﬁrm’s wage bill – a common policy
+employed, for example, by many state Enterprise Zones.
+Our qualitative results can be
+shown to extend to other subsidies designed to raise local labor demand, including subsidies
+to the private cost of capital.6 In Section 3, we also consider “amenity-building” investments
+predicated on eﬃcient production of local public goods.
+In all cases, we are interested in understanding the policy’s equilibrium eﬀects in the
+presence of worker and ﬁrm mobility. As we shall see, our conclusions are governed in large
+part by the degree of worker mobility and the elasticity of housing supply. We conclude
+this section by discussing the empirical evidence on the eﬀects of two prominent place based
+policies and the links to our welfare theoretic framework.
+2.1
+Assumptions
+We work with a two city example to illustrate the basic issues involved with the minimum
+level of notational complexity. Workers can move and are free to reside and work in either
+city a or city b.7 There is a continuum of workers of measure one, each of whom inelastically
+supplies a unit of labor and rents a unit of housing.8
+Because leisure and housing are
+demanded inelastically, we employ a simple linear speciﬁcation for utility. Workers’ indirect
+utility in a location depends on nominal wages, the cost of housing, taxes, and local amenities.
+Speciﬁcally, the indirect utility of worker i in city c is:
+Uic
+=
+wc −rc + Ac −t + eic
+(1)
+=
+vc + eic
+(2)
+6To the extent that capital is an imperfect substitute for labor, such policies will ultimately result in
+increases in labor demand in the targeted area, just like wage subsidies. Of course, the impact on labor
+demand will be quantitatively smaller per dollar spent than in the case of direct subsidies to the wage bill.
+7For simplicity, we assume these areas are distinct labor markets, meaning that workers cannot live in one
+market and work in another. See Busso, Gregory, and Kline (2013) for a neighborhood model incorporating
+multiple locations, commuting, and extensive margin labor supply decisions.
+8The assumptions that workers supply a ﬁxed amount of labor and consume a ﬁxed amount of housing
+are not crucial, but greatly simplify the analysis.
+6
+
+where wc is the nominal wage in city c, rc is the cost of housing, Ac is a measure of lo-
+cal amenities, and t is a lump sum tax. The term eic represents worker i’s idiosyncratic
+preferences for location c and is assumed to have mean zero across workers.
+Thus, utility in location c is the sum of two components: a systematic component,
+vc ≡wc −rc + Ac −t, shared by all workers residing in that location, which measures
+the average worker valuation of the community; and an idiosyncratic component eic that is
+diﬀerent for each worker and reﬂects individual speciﬁc preferences for that location over and
+above any real wage and amenity diﬀerences. A larger eic means that worker i is particularly
+attached to city c holding constant real wages and amenities. For example, having family in
+city c may make it more attractive.
+For analytical convenience, we further assume that the eic are independently and identi-
+cally distributed according to a type I Extreme Value distribution with scale parameter s and
+mean zero.9 This in turn implies the diﬀerence in idiosyncratic preferences for community a
+and b is distributed across workers according to a Logistic distribution:
+(eia −eib)/s ∼Logistic(0, 1).
+(3)
+The parameter s governs the strength of idiosyncratic preferences for location and therefore
+the degree of labor mobility.
+If s is large, many workers will require large real wage or
+amenity diﬀerences to be compelled to move. On the other hand, if s is small, most workers
+are not particularly attached to one community and will be willing to move in response to
+small diﬀerences in real wages or amenities. In the extreme case where s = 0 there are
+no idiosyncratic preferences for location and workers will arbitrage any diﬀerences in the
+systematic component of utility.
+Firms in each city produce a single good Y using labor and a local amenity. We assume
+that Y is a traded good sold on international markets at price one. Production is Cobb-
+Douglas with constant returns to scale:
+Yc = XcN α
+c K1−α
+c
+,
+(4)
+where Xc is a city-speciﬁc productivity shifter, Nc is the fraction of workers in community
+c, and Kc is the local capital stock. We assume capital markets are globally integrated so
+that ﬁrms in each city can rent as much capital as desired at ﬁxed price ρ.
+To study the eﬀects of a subsidy designed to increase demand for labor in a city, we assume
+that the government provides an ad valorem wage credit τc to employers in community c.10
+The subsidy is ﬁnanced by lump sum taxes on all workers independent of their location so
+that the following balanced budget condition holds:11
+waτaNa + wbτbNb = t.
+(5)
+9None of the substantive results here hinge on the Extreme Value assumption. See Kline (2010) and
+Busso, Gregory, and Kline (2013) for analyses with a nonparametric distribution of tastes.
+10This is a realistic feature of many place based policies. For example Empowerment Zones provide an
+annual wage subsidy to qualiﬁed workers who live and work in the zone.
+11Because labor supply is ﬁxed, no labor-leisure distortion would emerge even with ad valorem income
+7
+
+Firms equate the marginal revenue product of labor to wages net of taxes:
+wc(1 −τc) = α yc
+Nc
+.
+(6)
+which, after plugging in the ﬁrst order condition for capital ρ = (1 −α) Yc
+Kc and rearranging,
+yields the (inverse) labor demand function in city c:
+ln wc = C + ln Xc
+α
+−1 −α
+α
+ln ρ −ln(1 −τc),
+(7)
+where C ≡ln α + 1−α
+α ln(1 −α) is a constant.
+As this representation makes clear, the inverse labor demand schedule is horizontal in
+wage-employment space. This results from our assumptions that production exhibits con-
+stant returns to scale and that capital is elastically provided at price ρ. As a result, wage
+variation across cities stems entirely from variation in productivity levels.12 A corollary of
+this result is that ﬁrms face zero proﬁts and cannot bear the incidence of local subsidies or
+taxes (see Suarez Serrato and Zidar, 2013 for a spatial equilibrium model where ﬁrms can
+bear some of this incidence in the form of product market rents).
+Housing is supplied competitively at marginal cost which, because land is ﬁxed, is in-
+creasing in the number of units produced. We assume that this gives rise to the following
+constant elasticity inverse supply function:
+rc = zcN kc
+c
+(8)
+where the number of housing units in city c is assumed to be equal to the number of workers
+Nc. The parameter kc governs the elasticity of housing supply. We assume that this pa-
+rameter is exogenously determined by geography and local land regulations. In cities where
+geography and regulations make it easy to build new housing, kc is small (Saiz, 2008). In
+the extreme case where there are no constraints to building new houses, the supply curve is
+horizontal, and kc is zero.
+In our framework, workers and landowners are separate agents. While in reality most
+workers own their residence, this is not always true in urban areas where the poor reside.
+Keeping workers separate from landowners has the advantage of allowing us to separately
+identify the welfare consequences of changes in housing values from the welfare consequences
+of changes in labor income.13 This is important both for conceptual clarity and for thinking
+about the diﬀerent implications of the results for labor and housing policies.
+taxes. However charging an income tax based upon nominal incomes would introduce complications along
+the lines discussed by Albouy (2009).
+12This result can be relaxed in many ways. For example, it is natural to expect ﬁrms to use land in the
+production process, which would lead labor demand to be downward sloping again.
+13Also, housing wealth tends to be concentrated among the wealthy, making increases in housing prices
+regressive.
+8
+
+Landlord proﬁts are given by the area above the inverse supply curve, which can be
+written:
+Πc
+≡
+Z Nc
+0
+(rc −zcxkc)dx =
+kc
+kc + 1rcNc.
+(9)
+Note that these proﬁts, which are the only form of producer surplus in this model, depend
+negatively on the housing supply elasticity kc. In the extreme case where kc approaches
+zero, landlord proﬁts disappear. This follows from the fact that when housing is supplied at
+constant marginal cost, average costs equal price.
+2.2
+Equilibrium
+Workers are free to live in the city that maximizes their utility. A worker chooses city a
+if and only if eib −eia < va −vb. Given (3), the fraction Na of workers who will locate in city
+a can be written
+Na = Λ
+va −vb
+s
+
+,
+(10)
+where Λ(.) ≡
+exp(.)
+1+exp(.) is the standard Logistic CDF. The fraction (and hence number) of
+workers in community a is increasing in the real wage gap (wa −ra) −(wb −rb) between
+city a and b and in the gap Aa −Ab in amenities between the cities. The elasticity of city
+size with respect to city speciﬁc components of utility depends on the distribution of worker
+preferences for location. Speciﬁcally, one can show that:
+d ln(Na)
+d ln(va −vb) = Nb
+s (va −vb)
+(11)
+If idiosyncratic preferences for location are not very important (s is small), then workers are
+very sensitive to diﬀerences in mean utility between cities. In the limiting case of perfect
+mobility (s = 0), any diﬀerence in real wages not oﬀset by a corresponding diﬀerence in
+amenities results in the entire population of workers choosing the city with the higher mean
+utility. By contrast, as s approaches inﬁnity, workers become insensitive to prices and are
+eﬀectively immobile.
+The equilibrium of our model is easy to characterize. From equation (10) we have that
+the marginal worker’s relative preference for city b over city a needs to equal the diﬀerence
+in real wages net of amenities:
+sΛ−1(Na) = (wa −wb) −(ra −rb) + (Aa −Ab).
+(12)
+Workers whose relative preference for city b is greater than the diﬀerence in real wages
+net of amenities locate in b, while those whose relative preference for city b is less than the
+diﬀerence in real wages net of amenities locate in a. To see the role played by the model’s
+fundamentals in determining city size and the identity of the marginal worker, we can use
+equations (7) and (8) to re-write this expression as :
+9
+
+sΛ−1 (Na)
+|
+{z
+}
+Diﬀerence in Tastes
+=
+eC
+ρ
+1−α
+α
+ 
+X
+1
+α
+a
+1 −τa
+−X
+1
+α
+b
+1 −τb
+!
+|
+{z
+}
+Wage Diﬀerence
+−(zaN ka
+a −zb (1 −Na)kb)
+|
+{z
+}
+Rent Diﬀerence
++
+Aa −Ab
+|
+{z
+}
+Amenity Diﬀerence
+.
+The left hand side of this expression gives the quantiles of workers’ relative preferences
+(eib −eia) for city b as a function of Na. We can think of this function as deﬁning a supply
+curve to city a. This is graphically represented by the upward sloping blue curve in Figure
+1. The height of this curve gives the idiosyncratic preference for city b relative to city a of a
+marginal worker. Moving to the right, the curve increases as the stock of workers with low
+distaste for city a is depleted leading the tastes of the marginal worker to change.
+The right hand side of this expression gives the diﬀerence in mean utilities between the
+two communities. We can think of this as deﬁning a relative demand curve for residence in
+city a versus city b, with the height of the curve giving the mean willingness to pay to move
+from city b to city a given local prices. This is shown graphically by the downward sloping
+green curve in Figure 1. The willingness to pay to live in a is decreasing in Na because city
+a becomes relatively more expensive as it grows.
+Equilibrium occurs when these two curves cross. Figure 1 shows the case where the two
+cities are initially identical in terms of productivity, amenities, and housing supply, so that
+half of the workers live in city a and the other half in city b.14
+In this equilibrium, there is a single marginal worker (at point N ∗
+a) who is indiﬀerent
+between city a and city b. All other workers are inframarginal and enjoy a positive consumer
+surplus associated with choosing the city they strictly prefer. The magnitude of consumer
+surplus depends on the strength of idiosyncratic preferences for location, which in turn
+depends on s. This is easy to see in the Figure. The blue shaded area between the blue
+line and the equilibrium value of sΛ−1 (N ∗
+a) (which in this example is zero) measures the
+consumer surplus accruing to workers. The area to the left of N ∗
+a gives the surplus accruing
+to workers who are inframarginal with respect to community a while the area to the right of
+N ∗
+a gives the surplus accruing to workers who are inframarginal with respect to community
+b.
+The magnitude of surplus is increasing in the scale s of taste heterogeneity which governs
+the curvature of the blue line. In the extreme case when workers are completely homogeneous
+in their preferences – so that s = 0 – the line becomes horizontal, as workers only care about
+real wages and amenities and are willing to relocate to a diﬀerent city for any inﬁnitesimal
+diﬀerence in real wages net of amenities.
+In equilibrium, when s = 0, all workers are
+indiﬀerent between the two communities and there are no inframarginal workers. Conversely,
+14This ﬁgure was constructed by setting s = 1, ka = kb = .5, za = zb = 1, and Aa = Ab = 0, and
+X
+1
+α
+a = X
+1
+α
+b = 1 and τb = 0.
+10
+
+Figure 1: Equilibrium
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+−5
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+4
+5
+Fraction in city a
+ 
+ 
+sΛ−1(Na)
+va − vb (τa=0)
+va − vb (τa=.25)
+Na
+*
+Na
+**
+as s approaches inﬁnity, the blue line becomes nearly vertical as workers are willing to pay
+anything to locate in their preferred city.
+Figure 1 can be used to assess graphically how the fraction of workers in city a changes
+in response to changes in location fundamentals. Increasing the supply of housing in city
+a (i.e. lowering za) reduces the slope of the green curve and increases N ∗
+a. An increase in
+either the amenity (Aa) or productivity (Xa) level of city a will shift the green curve up and
+increase the fraction of workers in that city while an increase in the amenity or productivity
+levels of city b will have the opposite eﬀect.
+A similar eﬀect is generated by the introduction of a wage subsidy in city a. Because
+the wage subsidy makes it cheaper for ﬁrms to hire workers in a, the size of the city grows.
+Figure 1 shows that an increase of τa from zero to 0.25 raises the equilibrium fraction in city
+a from N ∗
+a to N ∗∗
+a . This new equilibrium yields a higher systematic component of utility in
+city a relative to city b, which means the economic rents accruing to prior residents of city
+a increase.
+11
+
+2.3
+Labor and Housing Markets Eﬀects
+While Figure 1 is useful for illustrating the comparative statics of city size and consumer
+surplus, it is useful to have expressions for the broader impacts of a place based subsidy on
+labor and housing markets in the two cities.
+A small increase in the wage subsidy to city a yields an increase in nominal wages there:
+dwa
+dτa
+=
+wa
+1 −τa
+.
+(13)
+By contrast, nominal wages in city b are unaﬀected. Attracted by higher wages, workers
+leave b to move to a:
+dNa
+dτa
+=
+NaNb
+s + kbrbNa + karaNb
+wa
+1 −τa
+> 0.
+(14)
+Note that the number of movers is larger the smaller is s and the larger is the elasticity
+of housing supply in city a (i.e. the smaller is ka). A smaller s implies that idiosyncratic
+preferences for location are less important, and therefore that labor is more mobile in response
+to real wage diﬀerentials. A smaller ka means that it is easier for city a to add new housing
+units to accommodate the increased demand generated by the in-migrants.
+Because of in-migration, the cost of housing in city a increases while that in city b
+decreases:
+dra
+dτa
+=
+karaNb
+s + kbrbNa + karaNb
+wa
+1 −τa
+> 0
+(15)
+drb
+dτa
+=
+−
+kbrbNa
+s + kbrbNa + karaNb
+wa
+1 −τa
+< 0
+(16)
+This increase in city a’s housing costs is increasing in ka while the decrease in city b’s housing
+costs is increasing in kb.
+Real wages in a increase by:
+d(wa −ra)
+dτa
+=
+s + kbrbNa
+s + kbrbNa + karaNb
+wa
+1 −τa
+> 0.
+(17)
+Since wages in b are unaﬀected by outmigration, the real wage change in b is given simply
+by the cost of living drop in (16).
+Thus, real wages increase in both cities. In the target city, real wages increase because
+the subsidy raises nominal wages more than housing costs. In city b, real wages rise because
+of outmigration. In general, the increase in city a is (weakly) larger than the increase in city
+b, which is intuitive given that city a is the target city and labor is not inﬁnitely mobile.
+However, when labor is inﬁnitely mobile (s = 0) the increase is the same in the two cities.
+2.4
+Welfare
+We now have all the elements needed to quantify the impact of the policy on worker and
+landlord welfare in each city and in the aggregate.
+12
+
+A Graphical Example
+To build intuition for the welfare impacts of a place based policy, we start with the
+example of the two cities represented in Figure 1. The green line in Figure 2 depicts the
+average worker utility that would prevail if, instead of allowing workers to migrate on their
+own, we forced a fraction of them to locate in city a, allocating them in order of their
+preference for city a relative to city b.15 The blue line depicts aggregate landlord proﬁts
+Πa + Πb.
+Figure 2: Welfare as a Function of City a’s Share
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+Fraction in city a
+ 
+ 
+Landlord Profits
+Average Worker Utility
+Social Welfare
+Na
+*
+Na
+**
+Because in this example the two cities are initially identical, and housing costs increase
+non-linearly in city size, aggregate worker utility is maximized when half of the workers live
+in city a and half in city b, which is the decentralized equilibrium. At this point housing
+prices in the two cities are minimized and the sum of worker utility and landlord proﬁts is
+maximized. This is a natural implication of the First Welfare Theorem – in the absence of
+15One can show that this allocation scheme yields average worker utility Na(va −ln Na) + Nb(vb −ln Nb),
+which is what is plotted in Figure 2.
+13
+
+subsidies, our model exhibits complete markets and no externalities. Hence, we expect the
+decentralized equilibrium to maximize total economy-wide welfare, which in this case is the
+sum of worker welfare and landlord proﬁts.
+Instituting a wage subsidy for community a distorts prices, which shifts the equilibrium
+to a socially suboptimal allocation N ∗∗
+a
+where average worker utility is slightly lower and
+landlord proﬁts are slightly higher.
+The resulting decrease in total social welfare is the
+standard deadweight loss familiar from the study of taxation (Auerbach and Hines, 2002).
+Figure 3: Worker Utility by City
+0.3
+0.35
+0.4
+0.45
+0.5
+0.55
+0.6
+0.65
+0.7
+−0.8
+−0.6
+−0.4
+−0.2
+0
+0.2
+0.4
+0.6
+0.8
+Λ( e i b−e i a
+s
+)
+ 
+ 
+Utility in a (τa=0)
+Utility in b (τa=0)
+Utility in a (τa=.25)
+Utility in b (τa=.25)
+Gains to Original
+Residents of a
+Losses to Stayers in b
+Losses to Movers
+Gains to movers
+In exchange for these deadweight losses, our place based policy may yield socially desirable
+eﬀects on the distribution of utility. Suppose that, for reasons outside of our model, we are
+interested in transferring resources from the residents of city b to those of city a, perhaps
+because the residents of city a have been mistreated in the past.16 Does the wage subsidy
+16In the interest of parsimony we have ignored worker income heterogeneity, and thus cannot consider here
+redistribution across groups with heterogeneous endowments. However, it is straightforward to generalize
+the model to include multiple skill types each with a diﬀerent valuation of local amenities (See for example
+14
+
+reach its intended target population?
+Figure 3 shows the utility of each resident of our economy under each possible location
+choice. Workers are ordered in terms of their relative taste for city a, from greatest to least.
+The solid blue line is downward sloping because the taste for city a declines as we move
+to the right.17 Likewise, the solid green line is upward sloping because the taste for city b
+increases as we move to the right.
+Subsidizing city a shifts the blue line up by the amount of the change in real wages net
+of taxes and the green line down by the corresponding eﬀect on disposable income there.
+From the Figure, we see that the subsidy yields a windfall to the original residents of city a,
+who receive higher real wages. This gain is accomplished via a transfer from the residents of
+city b who are made worse oﬀby higher taxes. Workers who are not too attached to city b
+respond by moving to city a. For some of them, this move leaves them better oﬀthan they
+were under the prior unsubsidized regime. But others, who felt a stronger attachment to
+city b, are worse oﬀeven after moving.
+From Figure 2, we know the gains to original residents of city a and movers are outweighed
+by the losses to prior residents of city b. These aggregate losses stem both from a transfer to
+landlords (particularly those in city a) and the aforementioned deadweight loss. Deadweight
+losses result from worker mobility. Note that, in Figure 3, even movers who gain from the
+subsidy experience less of a gain than the original residents of city a. Yet, by moving, they
+add to the revenue cost of the wage subsidy just like original residents. Thus, there is a
+subgroup for whom an extra dollar of wage credits is valued at less than a dollar, which is
+the source of the program’s eﬃciency cost.
+Analytical Results
+Our graphical analysis was predicated on a particular choice of parameter values. To
+explore the model more generally, we now derive explicit formulas for the marginal impact
+of a wage subsidy on worker and landlord welfare. From (2) and our Extreme Value assump-
+tion on the idiosyncratic component of utility, average worker utility given optimal location
+choices can be written:
+V ≡E max{Uia, Uib} = s log(exp(va/s) + exp(vb/s))
+(18)
+which follows from standard results on the inclusive value of Logit models (e.g. McFadden,
+1978; Rust, 1987).
+Moretti (2011)). If lower skilled workers are predominately located in city b and are not particularly mobile,
+then there may be an equity argument for targeting transfers to this community.
+17More precisely, the average taste for city a declines as the relative taste for city a declines. In particular,
+one can show that, when s = 1, E[eia|eia −eib = k] = −1 −ln (Λ(k)). Thus, the expected utility of living in
+city a for a worker with eia −eib = Λ−1(Na) is va −1 −ln Na. The corresponding utility of living in city b
+for such a person is vb −1 −ln(1 −Na). Figure 3 plots these functions holding (va, vb) at their equilibrium
+values, i.e. for va = va(N ∗
+a) when τa = 0 and va = va(N ∗∗
+a ) when τa = .25.
+15
+
+Simple diﬀerentiation reveals that a small increase in the subsidy to community a yields
+the following eﬀect on aggregate worker welfare:
+dV
+dτa
+= Na
+d
+dτa
+(wa −ra) + Nb
+d
+dτa
+(wb −rb) −dt
+dτa
+(19)
+Thus, to ﬁrst order, the impact of a subsidy to city a equals the impact on the real wages of
+city a times the share of workers in that city plus the impact on the real wages of city b times
+the share of workers in that city minus the cost of raising funds. Put diﬀerently, the impact
+on worker welfare is equal to the increase in total earnings minus the increase in total rents
+that would result if none of the workers moved minus the subsidy cost.18 The movers do
+not show up in this expression (there are no terms of the form dNc
+dτa ) because, to ﬁrst order,
+they were indiﬀerent about the two communities to begin with – a standard implication of
+the envelope theorem. Inspection of Figure 3 provides graphical intuition for this: the size
+of the welfare gains and losses of movers are proportional to the size of the subsidy. Hence,
+for a small change, movers are about as well oﬀas they would be had they not switched
+communities.19
+Using (16) and (17), equation (19) evaluates to:
+dV
+dτa
+=
+
+waNa −
+karaNaNb
+s + karaNb + kbrbNa
++
+kbrbNaNb
+s + karaNb + kbrbNa
+
+1
+1 −τa
+(20)
+−waNa −dwa
+dτa
+Naτa −τawa
+dNa
+dτa
+=
+−(kara −kbrb)
+NaNb
+s + karaNb + kbrbNa
+|
+{z
+}
+Cost of Living Increase
+1
+1 −τa
+−waτa
+NaNb
+s + karaNb + kbrbNa
+|
+{z
+}
+Deadweight Loss
+(21)
+Equation (20) indicates that the increased subsidy represents a transfer of size
+waNa
+1−τa to
+workers in city a paid for by all taxpayers. This has no net eﬀect on average worker utility,
+but clearly makes workers in city b worse oﬀand workers in city a better oﬀ.
+In addition to inducing a transfer to workers in a, the subsidy can lower average worker
+utility for two reasons. First, as illustrated by the ﬁrst term in (21), the subsidy can change
+the average cost of living. Depending on the elasticities of housing supply in the two cities,
+the average worker’s cost of living may increase or decrease in response to the subsidy. Any
+increases (decreases) constitute a net transfer to (from) landlords.20 As already discussed,
+landlords in city a beneﬁt from the subsidy while those in city b suﬀer a reduction in rents.
+The rent reduction in b unambiguously beneﬁts residents of community b who experience no
+corresponding change in wages.
+18This result relies on our assumption of linear utility. With nonlinear utility and heterogeneous endow-
+ments, the distribution of wealth across workers and the degree of curvature in utility would inﬂuence the
+aggregate welfare eﬀects of a policy change.
+19See Busso, Gregory, and Kline (2013) for a proof that this envelope condition holds more generally
+without the extreme value assumption on the errors.
+20To see this note that
+d
+dτa Πc(rc) = kcrcNc d ln Nc
+dτa . Hence, dΠa+Πb
+dτa
+equals the ﬁrst term in (21).
+16
+
+Second, as illustrated by the second term in (21), the subsidy also yields deadweight costs
+of taxation. These deadweight costs come from distorting prices that (in the absence of other
+market imperfections) govern the optimal allocation of workers to cities. Speciﬁcally, from
+our earlier envelope theorem intuition, workers who switch cities in order to claim subsidies
+are no better oﬀbut cost taxpayer money in the form of wage credits. These movers make
+the cost to society of funding the wage credit greater than the value of the resulting transfers.
+Note that the deadweight costs are proportional to dNa
+dτa and fall to zero as s approaches
+inﬁnity. Thus, we have the somewhat ironic result that the most eﬃcient place based policy is
+one that induces no mobility response and hence creates no additional jobs! This is the crux
+of the equity-eﬃciency tradeoﬀ. The best subsidy of all is one that simply raises earnings
+in the targeted locality without inducing a behavioral response. If workers are very mobile,
+then society must have a strong preference for the workers in city a in order to be willing to
+bear the eﬃciency costs associated with distorting the location of jobs.
+An important caveat is that our model assumes a ﬁnite fully employed workforce with
+ﬁxed labor supply. By assumption, such models imply that all policy induced job growth in
+an area comes at the expense of an equal number of jobs elsewhere. Adding a labor force
+participation margin as in Busso, Gregory, and Kline (2013) would allow for the possibility
+that aggregate employment increases in response to a place based subsidy. Even so, raising
+employment in such a model is distortionary as it crowds out home production. Of course,
+such models do not allow for the possibility that some households wish to work but are unable
+to ﬁnd jobs. We consider this possibility in Section 3 which discusses market failures.21
+2.5
+Locally Financed Place Based Policies
+Our discussion so far has centered on the case where place based policies are exogenously
+set and ﬁnanced by a larger federal government. In many cases, however, localities compete to
+attract outside investment and new employers, making the policies themselves endogenous.22
+Bidding contests of this type can be thought of as auctions where multiple buyers oﬀer
+bids to a limited number of sellers (Greenstone and Moretti, 2004). Competition among
+localities implies that some of the incidence of local subsidies shifts away from workers and
+landowners to ﬁrms. To see this, consider the case of a ﬁrm trying to decide where to locate
+21With unemployment comes the possibility that local government spending can raise output by more than
+the social cost of funds. For example Wingender and Suarez Serrato (2011a) ﬁnd a local income multiplier
+of 1.88. However these ﬁndings are also consistent with the presence of neoclassical product linkages. For
+example if government subsidized the local traded goods sector that also demands local nontraded goods as
+intermediate inputs, one can achieve a positive multiplier.
+22In 2011, for example, San Francisco approved a cut in payroll taxes in the mid-Market Street area, where
+Twitter and other high tech companies are located. The payroll-tax zone exempted employers from the 1.5%
+levy for new hires made after ﬁrms move to the mid-market area. In addition, the city exempted stock-
+based compensation from payroll tax through the city. Both measures where designed to retain high tech
+companies within the city jurisdiction. In 2011, the payroll-tax revenue forgone amounted to $2.8 million.
+(Letzing, 2012)
+17
+
+a new establishment, and a large number of counties trying to lure it to their jurisdiction.
+Assume that the entire cost of the subsidy is paid for by the winning county. The value to
+a county of attracting an establishment is the increase in worker and landowner welfare it
+generates, either indirectly through tax revenue or directly through agglomeration eﬀects.
+When locations are homogenous – and therefore have homogeneous valuations of estab-
+lishments – competition among counties ensures that the winning bid rises to the point that
+makes the winner indiﬀerent between attracting the plant and not attracting it. In this case,
+the place based policy has no eﬀect on residents’ welfare since all the beneﬁt of attracting
+the new employer is transferred to the ﬁrm. When locations are heterogeneous, the county
+that has the highest valuation wins by raising its bid to the point that makes the county
+with the second highest value indiﬀerent between winning and losing. In this case, local
+workers and landowners capture a fraction of the overall beneﬁt. This fraction is larger the
+larger the heterogeneity across locations.
+2.6
+Empirical Evidence on Two Place Based Policies
+Having considered the theoretical equity-eﬃciency tradeoﬀs inherent in place based poli-
+cies, it is useful to take a look at the empirical evidence on some actual programs. Two of
+the most heavily studied plac

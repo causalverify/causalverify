@@ -1,0 +1,86 @@
+{
+  "paper_id": "paper_48",
+  "source": "American Economic Review, 1994",
+  "authors": "Krueger & Ashenfelter",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Estimates of the Economic Return to Schooling from a New Sample of Twins",
+  "doi": "10.2307/2117766",
+  "volume": 84,
+  "issue": 5,
+  "pages": "1157-1173",
+  "domain": "labor",
+  "research_question": "What is the causal effect of an additional year of schooling on individual labor market earnings, once unobserved family background and genetic endowments are accounted for?",
+  "data_description": "The paper uses a newly collected sample of identical (monozygotic) twins surveyed by the authors at the Twinsburg, Ohio Twins Festival. Each twin independently reported their own years of schooling and hourly wage, as well as their co-twin's years of schooling, allowing cross-sibling reports of the same variable. Additional covariates include age, sex, race, marital status, job tenure, and union status. The unit of observation is the individual twin, with twin pairs linked together. The data permit within-pair comparisons of earnings and education between genetically identical siblings raised together, and the multiple independent reports of schooling enable correction for measurement error in self-reported education.",
+  "institutional_context": "The setting is the U.S. labor market return to formal education. A long-standing concern in this literature is that simple wage-schooling correlations may conflate the productivity-enhancing effect of education with unobserved ability, family background, and genetic endowments that jointly influence both how much schooling a person obtains and how much they earn. Identical twins, who share genes and family upbringing but may differ in completed schooling due to idiosyncratic factors, provide a natural comparison that holds these confounders fixed. A complementary issue is that self-reported schooling is known to be measured with error, which biases estimated returns; collecting independent reports of each twin's schooling from both siblings provides a way to address this reporting error in the context of within-pair earnings comparisons.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.12,
+      "unit": "log wage per year of education (within-twin IV estimate)",
+      "interpretation": "Each additional year of education increases wages by approximately 12%, after controlling for genetic ability and family background through identical twin differencing and correcting for measurement error through IV"
+    },
+    "secondary_estimate": {
+      "value": 0.09,
+      "unit": "log wage per year of education (within-twin OLS, not IV-corrected)",
+      "interpretation": "Without measurement error correction, the within-twin return is approximately 9% — lower than IV due to attenuation bias, but still higher than some earlier twins estimates"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 3-4 in Ashenfelter & Krueger (1994)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Princeton Twins Survey data (available from Princeton University data archive)",
+      "ICPSR (archived dataset)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "The Princeton Twins Survey data has been made available for replication. Similar analyses can be conducted with other twins datasets (e.g., Minnesota Twin Registry, Swedish Twin Registry).",
+    "replicability": "high — survey data available from Princeton and ICPSR",
+    "public_proxy_available": true,
+    "replication_tier": "full (original survey data available from Princeton/ICPSR — free)",
+    "data_limitations": "Small sample size (~340 twin pairs). Twinsburg Festival sample is not representative. Self-selection: twins who attend the festival may differ from the general population. Within-twin education differences are small (average ~1 year), limiting precision. Cannot distinguish MZ from DZ twins perfectly in all cases.",
+    "public_data_sources_detail": [
+      "Princeton University data archive (twins survey — free with application)",
+      "ICPSR (archived dataset — free with academic registration)",
+      "Orley Ashenfelter's Princeton website (replication data — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables within identical twin pairs — within-pair education difference is used to identify returns to schooling (controlling for genetic and family background); co-twin's report of education serves as instrument for self-reported education (addressing measurement error attenuation bias)",
+    "key_variables": {
+      "treatment": "years of schooling (continuous, self-reported), instrumented by co-twin's report of the individual's education",
+      "control": "identical twin sibling (shares genes and family environment — within-pair differencing controls for ability and background)",
+      "outcome": "log hourly wage",
+      "time_period": "1991–1993 (Princeton Twins Survey at Twinsburg Festival)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The causal return to schooling is positive and significant. Within-twin IV estimates yield approximately 12-16% return per year of education, which is actually higher than OLS estimates (~8-10%). The higher IV estimate relative to OLS suggests that measurement error attenuation in self-reported education is a more important bias than ability bias (upward), consistent with the hypothesis that within-twin education differences are driven by random factors rather than ability differences.",
+    "main_effect": "IV within-twin return to education: approximately 12-16% per year; OLS within-twin: ~8-10%; cross-sectional OLS: ~10%",
+    "key_robustness": [
+      "Within-twin fixed effects (differencing out shared family/genetic factors)",
+      "IV using co-twin's report as instrument for measurement error correction",
+      "Hausman test comparing OLS and IV estimates (testing for measurement error bias)",
+      "Separate estimates by sex (male vs. female twins)",
+      "Sensitivity to sample selection (Twinsburg festival attendees may not be representative)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Within-identical-twin differenced wage equation, with co-twin-reported education as IV for self-reported education",
+      "treatment": "Years of education (continuous), with within-twin variation identifying the return; co-twin's report instruments for measurement error",
+      "event_window": "N/A (cross-sectional survey)",
+      "estimation_window": "N/A",
+      "sample_period": "1991–1993",
+      "unit_of_observation": "Individual within an identical twin pair (approximately 680 individuals in 340 pairs)",
+      "key_assumption": "Within identical twin pairs, differences in education are uncorrelated with differences in unobserved ability or earnings potential. This requires that whatever caused the twins to get different amounts of education (personal choices, luck, different peer groups) is not itself correlated with earnings. Co-twin's report of education is correlated with true education but measurement errors in co-twin reports are uncorrelated with errors in self-reports."
+    },
+    "key_magnitudes": {
+      "iv_return": "12-16% per year of education (within-twin IV, correcting for measurement error)",
+      "within_twin_ols": "8-10% per year (within-twin OLS, not corrected for measurement error)",
+      "cross_section_ols": "~10% per year (standard cross-sectional OLS)",
+      "measurement_error": "Self-reported education has approximately 10-15% error rate, causing ~30-40% attenuation of within-twin OLS"
+    },
+    "robustness_notes_detail": "The finding that IV > OLS (within twins) is consistent with measurement error attenuation being a larger bias than ability bias in the within-twin design. Hausman tests reject the null that measurement error is negligible. Results are qualitatively similar for male and female twins. The Twinsburg Festival sample may not be representative of the U.S. population (twins who attend a festival may differ from the general twin population), but the within-twin design is internally valid regardless of external validity concerns."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 78,
+  "phase1_source_version": "v2primeprime_full_text"
+}

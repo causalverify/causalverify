@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s09",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Heterogeneous treatment effects by firm size in DID",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:31:23.632330",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 509,
+    "output_tokens": 472,
+    "content": "## 1. Identification Strategy\nThe identification strategy here is a Difference-in-Differences (DID) approach with heterogeneous treatment effects. The key assumption is the parallel trends assumption, which states that in the absence of the treatment, the average outcomes for the treatment and control groups would have followed parallel trends over time. In this context, the treatment is the corporate tax cut, and it is assumed that the tax cut affects large firms more than small firms due to the differential tax cut magnitude. The heterogeneous treatment effects are captured by interacting the treatment indicator with the post-treatment indicator.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(broom)\n\n# Read data\ndata <- read_csv(\"experiments/exp_b/data/s09_data.csv\")\n\n# Convert data to pdata.frame for plm package\ndata_plm <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Run DID model with fixed effects\ndid_model <- plm(y ~ post * treated, data = data_plm, model = \"within\", effect = \"individual\")\n\n# Print summary of the model\nsummary(did_model)\n\n# Extract the treatment effect\ntreatment_effect <- tidy(did_model)$estimate[4]\n\n# Print the treatment effect\nprint(paste(\"The treatment effect is:\", treatment_effect))\n\n# Basic robustness check: testing for parallel trends assumption\nparallel_trends_model <- plm(y ~ post + treated, data = data_plm, model = \"within\", effect = \"individual\")\nsummary(parallel_trends_model)\n```\n\n## 3. Expected Findings\nGiven the scenario that large firms benefit more from the corporate tax cut due to a larger tax cut, we expect the coefficient of the interaction term `treat_x_post` (or `post:treated` in R formula) to be positive, indicating that the investment in large firms (treated group) increases more after the tax cut compared to small firms (control group). The magnitude of this effect will depend on the actual data but is expected to be significant and substantial, given the differential impact of the tax cut. The parallel trends assumption check should ideally not reject the null hypothesis, indicating that the trends before the treatment were similar for both groups, supporting the validity of the DID approach.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID with heterogeneous effects — triple-diff or interaction terms for size groups",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Large firms increase investment more than small firms post tax cut",
+    "main_effect": "28% higher investment growth for large firms"
+  }
+}

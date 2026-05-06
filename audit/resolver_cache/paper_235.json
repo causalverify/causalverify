@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_235",
+  "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Comment",
+  "authors": "Neumark & Wascher",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.90.5.1362",
+    "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Comment",
+    "year": 2000,
+    "journal": "American Economic Review",
+    "citations": 360
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "neumark",
+      "wascher"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 360,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

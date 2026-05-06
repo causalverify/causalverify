@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_183",
+  "title": "Why Has CEO Pay Increased So Much?",
+  "authors": "Gabaix & Landier",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2008.123.1.49",
+    "title": "Why Has CEO Pay Increased So Much?<sup>*</sup>",
+    "year": 2008,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1815
+  },
+  "checks": {
+    "title_jaccard": 0.8571,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "landier",
+      "gabaix"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1815,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_41",
+  "title": "Peers at Work",
+  "authors": "Mas & Moretti",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.99.1.112",
+    "title": "Peers at Work",
+    "year": 2009,
+    "journal": "American Economic Review",
+    "citations": 1290
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "mas",
+      "moretti"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1290,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

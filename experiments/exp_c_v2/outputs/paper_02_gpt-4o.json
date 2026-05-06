@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_02",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:32:54.088927",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 618,
+    "output_tokens": 1388,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nThe research will utilize a difference-in-differences (DID) approach to compare changes in mortgage lending risk among TARP recipient banks versus non-recipient banks over time. The key identification assumption is parallel trends: in the absence of TARP, trends in mortgage lending risk would have been similar between recipient and non-recipient banks. We will match TARP and non-TARP banks on pre-treatment characteristics using propensity score matching to strengthen the plausibility of this assumption.\n\nDirectional Hypothesis:\nBanks that received TARP capital injections increased the riskiness of their mortgage loan portfolios compared to non-recipient banks, as measured by higher loan-to-income ratios, higher loan-to-value ratios, and lower applicant income levels post-TARP.\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\n1. Main Specification:\n   - Model: Difference-in-differences regression.\n   - Dependent Variables: Loan-to-income ratio, loan-to-value ratio, applicant income.\n   - Treatment Variable: TARP recipient status (binary indicator).\n   - Controls: Pre-TARP bank characteristics (total assets, tier-1 capital ratio, non-performing loan ratio, return on assets).\n   - Fixed Effects: Bank and year fixed effects.\n\n2. Robustness Check 1:\n   - Include an interaction term between TARP recipient status and the post-TARP period to capture differential trends.\n   - Dependent Variables and Controls as in Main Specification.\n\n3. Robustness Check 2:\n   - Use denial rates as an alternative risk measure.\n   - Same model structure as Main Specification.\n\n4. Heterogeneity Analysis 1:\n   - Split sample based on bank size (large vs. small) to see if effects differ by bank size.\n   - Use Main Specification model.\n\n5. Heterogeneity Analysis 2:\n   - Split sample based on pre-TARP tier-1 capital ratio level (high vs. low) to see if capital strength affects risk-taking propensity.\n   - Use Main Specification model.\n\nSTEP 3 — FALSIFICATION GATE\n\nEmpirical results that would cause rejection of the hypothesis:\n- Sign reversal: If the TARP recipient status indicator shows a statistically significant negative impact on loan risk measures.\n- p-value > 0.10: Coefficients on the TARP recipient status indicator are not statistically significant at the 10% level.\n- Failed pre-trend test: If parallel trends assumption is violated (indicated by significant pre-treatment trend differences).\n- Weak first stage: For any implemented instrumental variable approach (F-statistic < 10), though none is planned here.\n\nSTEP 4 — R CODE\n\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Assuming `data` is the processed dataframe containing matched TARP and non-TARP banks\n# with necessary variables: tarp_recipient, post_tarp, loan_to_income, loan_to_value,\n# applicant_income, denial_rate, total_assets, tier_1_capital_ratio, npl_ratio, roa,\n# bank_id, and year.\n\n# 1. Main Specification\nmain_spec <- function() {\n  return(lm(loan_to_income ~ tarp_recipient * post_tarp +\n               total_assets + tier_1_capital_ratio + npl_ratio + roa +\n               factor(bank_id) + factor(year), data = data))\n}\n\n# 2. Robustness Check 1\nrobust_check_1 <- function() {\n  return(lm(loan_to_income ~ tarp_recipient * post_tarp +\n               total_assets + tier_1_capital_ratio + npl_ratio + roa +\n               tarp_recipient:post_tarp +\n               factor(bank_id) + factor(year), data = data))\n}\n\n# 3. Robustness Check 2\nrobust_check_2 <- function() {\n  return(lm(denial_rate ~ tarp_recipient * post_tarp +\n               total_assets + tier_1_capital_ratio + npl_ratio + roa +\n               factor(bank_id) + factor(year), data = data))\n}\n\n# 4. Heterogeneity Analysis 1 (Bank Size)\nheterogeneity_analysis_1 <- function(bank_size) {\n  data_subset <- filter(data, bank_size == bank_size)  # bank_size as a pre-defined grouping variable\n  return(lm(loan_to_income ~ tarp_recipient * post_tarp +\n               total_assets + tier_1_capital_ratio + npl_ratio + roa +\n               factor(bank_id) + factor(year), data = data_subset))\n}\n\n# 5. Heterogeneity Analysis 2 (Tier-1 Capital Ratio Level)\nheterogeneity_analysis_2 <- function(capital_level) {\n  data_subset <- filter(data, tier_1_capital_ratio_level == capital_level)  # capital_level as a pre-defined grouping variable\n  return(lm(loan_to_income ~ tarp_recipient * post_tarp +\n               total_assets + tier_1_capital_ratio + npl_ratio + roa +\n               factor(bank_id) + factor(year), data = data_subset))\n}\n\n# Run regressions\nmodel_main <- main_spec()\nmodel_robust_1 <- robust_check_1()\nmodel_robust_2 <- robust_check_2()\nmodel_hetero_1_large <- heterogeneity_analysis_1(\"large\")\nmodel_hetero_1_small <- heterogeneity_analysis_1(\"small\")\nmodel_hetero_2_high <- heterogeneity_analysis_2(\"high\")\nmodel_hetero_2_low <- heterogeneity_analysis_2(\"low\")\n\n# Output results\nsummary(model_main)\nsummary(model_robust_1)\nsummary(model_robust_2)\nsummary(model_hetero_1_large)\nsummary(model_hetero_1_small)\nsummary(model_hetero_2_high)\nsummary(model_hetero_2_low)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Numerical Results:\n- Positive and statistically significant coefficients on the TARP recipient status indicator in the main specification for loan-to-income and loan-to-value ratios.\n- Insignificant or negative coefficients in the robustness check using denial rates, indicating lower predictive power for this risk measure.\n- Differential effects across bank size and tier-1 capital levels, with larger and/or lower-capital banks showing stronger effects.\n\nFalsification Gate Assessment:\n- If the main specification returns positive and significant results (p < 0.10), the hypothesis will not be rejected.\n- Failure to meet this criterion, such as insignificance or negative coefficients, would trigger the falsification gate, leading to hypothesis rejection.\n- Failed pre-trend test or weak first-stage F-statistic would also result in hypothesis rejection, but these were not applicable based on the planned design.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks receiving TARP capital (CPP), control = banks that applied but were rejected or did not apply; pre-period = 2006–2008, post-period = 2009–2010",
+    "key_variables": {
+      "treatment": "TARP Capital Purchase Program recipient (binary)",
+      "control": "similar banks that did not receive TARP capital",
+      "outcome": "average loan-to-income ratio of new mortgage originations; share of high-LTI loans",
+      "time_period": "2006–2010, treatment begins Q4 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP recipients originated riskier mortgages (higher LTI, higher LTV) relative to non-recipients after receiving capital",
+    "main_effect": "TARP banks increased average LTI ratio by ~0.25 relative to non-TARP banks post-injection",
+    "key_robustness": [
+      "propensity score matching",
+      "placebo using non-TARP banks that received other support",
+      "heterogeneity by bank size"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s55",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Stock Split Announcements on Cumulative Abnormal Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:40:55.446458",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 491,
+    "output_tokens": 602,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this scenario is the Event Study approach. This method allows us to measure the impact of stock split announcements on the cumulative abnormal returns (CAR) by comparing the actual returns to expected returns in a specified event window. The key assumption is that the event (stock split announcement) is exogenous and isolated, meaning there are no other confounding events affecting the stock returns during the examined window.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s55_data.csv\")\n\n# Calculate expected returns - CAPM model based on beta and market returns\ndata <- data %>%\n  mutate(expected_ret = beta * mkt_ret)\n\n# Calculate abnormal returns\ndata <- data %>%\n  mutate(abnormal_ret = ret - expected_ret)\n\n# Define the event window\nevent_window <- -10:10\nevent_data <- data %>%\n  filter(event_day %in% event_window)\n\n# Calculate Cumulative Abnormal Returns (CAR) for each stock\ncar_result <- event_data %>%\n  group_by(stock_id) %>%\n  summarize(CAR = sum(abnormal_ret, na.rm = TRUE))\n\n# Output average CAR for all stocks\naverage_car <- mean(car_result$CAR, na.rm = TRUE)\nprint(paste(\"Average CAR over the event window:\", round(average_car, 4)))\n\n# Robustness check: Compare pre-event and post-event CARs\npre_event_data <- event_data %>% filter(event_day < 0)\npost_event_data <- event_data %>% filter(event_day >= 0)\n\npre_car_result <- pre_event_data %>%\n  group_by(stock_id) %>%\n  summarize(pre_CAR = sum(abnormal_ret, na.rm = TRUE))\n\npost_car_result <- post_event_data %>%\n  group_by(stock_id) %>%\n  summarize(post_CAR = sum(abnormal_ret, na.rm = TRUE))\n\npre_average_car <- mean(pre_car_result$pre_CAR, na.rm = TRUE)\npost_average_car <- mean(post_car_result$post_CAR, na.rm = TRUE)\nprint(paste(\"Pre-event average CAR:\", round(pre_average_car, 4)))\nprint(paste(\"Post-event average CAR:\", round(post_average_car, 4)))\n```\n\n## 3. Expected Findings\nThe sign of the cumulative abnormal returns (CAR) around stock split announcements is generally expected to be positive, indicating that stock splits are typically perceived as a favorable signal by the market. The magnitude of the effect can vary, but prior research often finds the CAR to be between 1% to 3% over short event windows (approximately -5 to +5 days around the announcement). This is based on the assumption that the stock split indicates strong past performance and might signal future growth, thus influencing positive investor sentiment.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare CAR before and after the stock split announcement.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The announcement of a stock split is associated with a decrease in CAR.",
+    "main_effect": -0.028
+  }
+}

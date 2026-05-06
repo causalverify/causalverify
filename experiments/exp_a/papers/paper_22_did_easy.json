@@ -1,0 +1,87 @@
+{
+  "paper_id": "paper_22",
+  "source": "American Economic Review, 2001",
+  "authors": "Duflo",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Schooling and Labor Market Consequences of School Construction in Indonesia: Evidence from an Unusual Policy Experiment",
+  "doi": "10.1257/aer.91.4.795",
+  "volume": 91,
+  "issue": 4,
+  "pages": "795-813",
+  "domain": "development",
+  "research_question": "Does expanding access to primary schooling infrastructure increase children's educational attainment, and does the resulting additional schooling translate into higher adult wages? Relatedly, what are the economic returns to an additional year of education in a low-income country setting?",
+  "data_description": "The primary individual-level data come from the 1995 Indonesian intercensal survey (SUPAS), restricted to men born between 1950 and 1972, yielding 152,989 individuals (60,633 with valid wage data). Key variables include years of completed education, hourly wages, monthly earnings, district of birth, and year of birth. These records are linked to district-level administrative data on the number of primary schools constructed in each of 293 districts between 1973–1974 and 1978–1979 under the Sekolah Dasar program, the 1971 population census (number of children aged 5–14 and enrollment rates), 1973 enrollment data from the Ministry of Education and Culture, and information on a contemporaneous water and sanitation program. Auxiliary data come from the 1993 Indonesian Family Life Survey (IFLS) on migration and grade repetition, and the 1993 SUSENAS for imputing earnings of self-employed individuals.",
+  "institutional_context": "Between 1973–1974 and 1978–1979, the Indonesian government, financed by oil revenues, undertook one of the largest primary school construction programs ever recorded, building over 61,000 new primary schools (more than two per 1,000 children aged 5–14 in 1971) at a cost exceeding 500 million 1990 USD. The central government allocated schools across districts according to an explicit formula tied to the number of primary-school-aged children not enrolled in 1972, so districts with lower preprogram enrollment received more schools. The government also recruited and paid teachers, abolished primary school fees in 1978, and expanded teacher training. Enrollment among children aged 7–12 rose from 69 percent in 1973 to 83 percent by 1978, reversing prior stagnation. Children aged 12 or older when construction began in 1974 had largely completed primary school and so were essentially unexposed, while younger cohorts were progressively more exposed depending on age and district of birth.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.15,
+      "unit": "years of education per school per 1,000 children (DID estimate, exposed cohorts)",
+      "interpretation": "Each additional INPRES school constructed per 1,000 children in a district increased average educational attainment of exposed cohorts by approximately 0.15 years relative to control cohorts in the same district"
+    },
+    "secondary_estimate": {
+      "value": 0.02,
+      "unit": "log wage increase per school per 1,000 children (DID estimate)",
+      "interpretation": "Each additional INPRES school per 1,000 children raised adult wages of exposed cohorts by approximately 2% relative to control cohorts"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 2 and 5 in Duflo (2001)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "1995 SUPAS intercensal survey (available from Indonesian BPS or IPUMS International)",
+      "INPRES school construction data (available from Esther Duflo's website/replication package)",
+      "District-level pre-program characteristics (in replication data)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Replication data is publicly available from Esther Duflo's MIT website. The Indonesian census/intercensal data is available through IPUMS International.",
+    "replicability": "high — replication data and code publicly available",
+    "public_proxy_available": true,
+    "replication_tier": "full (replication data available from author's website and IPUMS International)",
+    "data_limitations": "Survey data with potential recall bias for education. Migration between birth district and current district is not fully captured. Only male sample is analyzed. The 1995 survey measures outcomes 17-22 years after program implementation.",
+    "public_data_sources_detail": [
+      "Esther Duflo's MIT website (INPRES replication data — free)",
+      "IPUMS International (Indonesian census microdata — free registration)",
+      "Indonesian BPS (Central Bureau of Statistics — survey data access)",
+      "World Bank development indicators for Indonesia (free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences — young birth cohorts (exposed to INPRES schools) compared to older cohorts (not exposed), in high-intensity districts compared to low-intensity districts; the interaction of program intensity × cohort exposure identifies the causal effect",
+    "key_variables": {
+      "treatment": "INPRES program intensity (number of new schools built per 1,000 children in the district of birth) × cohort exposure (born 1968-1972, young enough to benefit)",
+      "control": "older birth cohorts (born 1950-1962, too old to benefit from new primary schools) in the same districts",
+      "outcome": "years of education; log monthly wages; labor force participation",
+      "time_period": "Program: 1973-1978; Outcomes measured in 1995 survey; Birth cohorts: 1950-1972"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The INPRES school construction program significantly increased educational attainment and adult wages for exposed cohorts. Each school built per 1,000 children increased average education by 0.12-0.19 years and increased wages by 1.5-2.7% for the exposed cohorts relative to older cohorts in the same district.",
+    "main_effect": "One additional school per 1,000 children increased education by 0.12-0.19 years and wages by 1.5-2.7% for exposed cohorts; the implied return to education (IV/Wald estimate) is approximately 6.8-10.6%",
+    "key_robustness": [
+      "Controlling for district characteristics interacted with cohort dummies",
+      "Alternative definitions of exposed vs. control cohorts",
+      "Falsification test: program intensity should not predict outcomes for older (control) cohorts",
+      "Regional sub-sample analysis (Java vs. outer islands)",
+      "Using birth region (rather than current region) to avoid migration bias"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID: program intensity (continuous, schools per 1,000 children in birth district) interacted with cohort exposure (young enough to benefit from new schools)",
+      "treatment": "Number of INPRES schools constructed per 1,000 children in district of birth (continuous intensity measure) × binary indicator for exposed birth cohort (born 1968-1972)",
+      "event_window": "Program implemented 1973-1978; treated cohorts aged 2-6 at start",
+      "estimation_window": "Birth cohorts 1950-1972; outcomes measured in 1995",
+      "sample_period": "Program: 1973–1978; Survey data: 1995",
+      "unit_of_observation": "Individual male from 1995 SUPAS, identified by birth district and birth year",
+      "key_assumption": "Parallel trends: absent the school construction program, education and wage trends for young cohorts would have been the same in high-intensity and low-intensity districts. Supported by: (a) allocation was based on pre-program enrollment (rule-based, not endogenous to future trends); (b) placebo tests on older cohorts show no differential trends."
+    },
+    "key_magnitudes": {
+      "education_effect": "0.12-0.19 additional years of education per school built per 1,000 children (for exposed cohorts)",
+      "wage_effect": "1.5-2.7% higher wages per school per 1,000 children (for exposed cohorts)",
+      "implied_return": "6.8-10.6% return to an additional year of education (Wald/IV estimate: wage effect / education effect)"
+    },
+    "robustness_notes_detail": "Falsification tests confirm that program intensity does not predict education or wages for older cohorts (born before 1962). Results are robust to including district-level controls interacted with cohort dummies (pre-program enrollment, population density, district-level expenditure). The allocation rule (more schools in low-enrollment districts) creates variation that is driven by policy rather than local demand shocks."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 62304,
+  "phase1_source_version": "v2primeprime_full_text"
+}

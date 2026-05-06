@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_204",
+  "title": "Does Electoral Accountability Affect Economic Policy Choices? Evidence from Gubernatorial Term Limits",
+  "authors": "Besley & Case",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w4575",
+    "title": "Does Electoral Accountability Affect Economic Policy Choices? Evidence from Gubernatorial Term Limits",
+    "year": 1993,
+    "journal": "National Bureau of Economic Research",
+    "citations": 242
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "besley",
+      "case"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 242,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

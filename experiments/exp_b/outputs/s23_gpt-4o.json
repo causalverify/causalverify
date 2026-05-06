@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s23",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Judge leniency as IV for incarceration on recidivism",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:32.584775",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 461,
+    "output_tokens": 425,
+    "content": "## 1. Identification Strategy\nThe causal method used here is **Instrumental Variable (IV) Estimation**. The key idea is to use judge leniency (z) as an instrument for incarceration (x) to estimate its causal effect on recidivism (y). The assumption is that judge assignment is random, affecting recidivism only through the incarceration decision. Therefore, the exclusion restriction holds as judge leniency is not directly related to recidivism.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(readr)\n\n# Load the data\ndata_path <- \"experiments/exp_b/data/s23_data.csv\"\ndata <- read_csv(data_path)\n\n# Convert binary columns to numeric for consistency\ndata$y <- as.numeric(data$y > 0)  # Recidivism within 3 years\ndata$x <- as.numeric(data$x > 0)  # Incarceration\n\n# Instrumental variable regression\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Summarize the regression results\nsummary(iv_model)\n\n# Robustness check: Check first stage relevance by regressing x on the instrument\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Print the diagnostic information\ncat(\"IV Estimation Coefficients:\\n\")\nprint(coef(summary(iv_model)))\n\ncat(\"\\nFirst Stage F-statistic (should be strong):\\n\")\nprint(summary(first_stage)$fstatistic[1])\n```\n\n## 3. Expected Findings\nWe expect the sign of the coefficient of incarceration (x) on recidivism (y) to be positive if incarceration increases recidivism due to adverse effects such as social stigma or harder reintegration, or negative if it acts as a deterrent. The magnitude of this effect could vary but should be statistically significant given appropriate instrument strength, and the F-statistic of the first stage should be above the rule-of-thumb threshold of 10 indicating a strong instrument.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — judge leniency instrument; LATE for marginal defendants; test exclusion restriction carefully",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Incarceration increases recidivism for marginal defendants (criminogenic effect)",
+    "main_effect": "Incarceration raises 3-year recidivism probability by ~15pp for compliers"
+  }
+}

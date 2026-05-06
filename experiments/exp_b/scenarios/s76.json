@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s76",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Mobile Phone Coverage on Market Prices",
+  "research_question": "How does mobile phone adoption affect market prices in developing regions? Mobile phone coverage is hypothesized to facilitate better market information flow, potentially impacting prices.",
+  "data_description": "The dataset includes 400 observations with columns: y (market prices), x (mobile adoption), z (topographic suitability), and controls (demographic and economic variables). Topographic suitability serves as an instrumental variable for mobile adoption.",
+  "ground_truth": {
+    "identification_strategy": "Use topographic suitability as an instrument for mobile adoption.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased mobile adoption leads to a decrease in market prices.",
+    "main_effect": "-0.2"
+  },
+  "dgp_truth": {
+    "type": "iv",
+    "effect": -0.2,
+    "direction": "negative"
+  },
+  "data_file": "experiments/exp_b/data/s76_data.csv"
+}

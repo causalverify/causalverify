@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s21",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Vietnam draft lottery as IV for military service on earnings",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:49.439182",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 450,
+    "output_tokens": 425,
+    "content": "## 1. Identification Strategy\nWe will use the Instrumental Variable (IV) method to estimate the causal effect of military service on long-run civilian earnings. The key assumption for IV is that the instrument (draft lottery number) is correlated with the endogenous variable (veteran status) but not directly with the outcome variable (log annual earnings) except through the endogenous variable. In this case, the IV assumption is that low draft numbers are more likely to be drafted and thus more likely to be veterans, but do not directly affect earnings except through military service.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s21_data.csv\")\n\n# Add a binary veteran variable\ndata$x <- ifelse(data$x == 1.1326, 1, 0)\n\n# First stage regression: veteran status on draft lottery number\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage regression: log annual earnings on predicted veteran status\nsecond_stage <- lm(y ~ predict(first_stage, newdata = data) + controls, data = data)\n\n# Print the coefficient of the predicted veteran status in the second stage regression\nprint(coef(second_stage)[2])\n\n# Robustness check: test for overidentifying restrictions (Hansen J test)\noverid_test <- bptest(second_stage, ~ z | x + controls, data = data)\nprint(overid_test$statistic)\n```\n\n## 3. Expected Findings\nI expect the coefficient of the predicted veteran status in the second stage regression to be negative, indicating that military service reduces long-run civilian earnings. The magnitude of the effect will depend on the strength of the relationship between military service and earnings, which is not possible to predict without running the analysis. The Hansen J test should not reject the null hypothesis of valid instruments, indicating that the draft lottery number is a valid instrument for veteran status.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: draft lottery number; LATE for compliers (drafted but wouldn't have volunteered)",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Military service reduces earnings for complier veterans",
+    "main_effect": "~15% earnings penalty for draft-induced veterans"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - correctly identifies difference-in-differences using program intensity × cohort exposure interaction, properly explains the two sources of variation (cross-cohort and cross-district), and provides the correct estimating equation. However, the excerpt cuts off before stating the expected direction of effects, so direction score is 0 for not being stated rather than being wrong.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_22",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:09:59.335365+00:00"
+}

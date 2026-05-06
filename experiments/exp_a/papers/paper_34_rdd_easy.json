@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_34",
+  "source": "Journal of Finance, 2010",
+  "authors": "Iliev",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "The Effect of SOX Section 404: Costs, Earnings Quality, and Stock Prices",
+  "doi": "10.1111/j.1540-6261.2010.01564.x",
+  "volume": 65,
+  "issue": 3,
+  "pages": "1163-1196",
+  "domain": "finance",
+  "research_question": "What are the costs, benefits, and net valuation effects on firms of mandating internal control assessments and outside auditor attestations of those controls? Specifically, how does this regulatory requirement affect firms' audit fees, the conservatism of reported earnings, and stock market valuations, particularly for small firms?",
+  "data_description": "The primary sample consists of U.S. nonfinancial firms with Compustat equity market capitalization between $30 and $330 million at fiscal year-ends from November 2003 to October 2004, narrowed to 301 firms with hand-collected public float between $50 and $100 million. Public float, accelerated filer status, and management report filing status were hand-collected from company 10K filings. Audit fees come from Audit Analytics, accounting variables from Compustat, and monthly stock returns from CRSP. Key variables include audit fees, accruals and discretionary accruals (Jones model), earnings per share, leverage, receivables, big auditor indicator, and number of business and geographic segments. The analysis covers fiscal years 2002 through 2007, with 2004 as the first compliance year. A secondary sample includes 160 foreign private issuers with 2005 market equity between $350 million and $2.75 billion near a $700 million public float threshold for 2006 compliance.",
+  "institutional_context": "The Sarbanes-Oxley Act, passed in 2002 after high-profile corporate scandals, imposed new financial reporting and corporate governance requirements enforced by the SEC. Section 404 requires managers to file a special management report assessing internal controls over financial reporting, with an outside auditor attesting to that assessment. The SEC implemented Section 404 with a phased rollout based on firm size: U.S. companies classified as 'accelerated filers'—those with public float exceeding $75 million in fiscal years 2002, 2003, or 2004—had to comply for fiscal years ending on or after November 15, 2004, while smaller U.S. firms received repeated extensions stretching to June 2010 for the auditor attestation. Foreign private issuers faced an analogous threshold of $700 million in public float for the auditor attestation requirement, effective in 2006. This size-based threshold rule, combined with subsequent SEC announcements about delays and enforcement, created sharp variation in compliance obligations among otherwise similar firms.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.012,
+      "unit": "reduction in absolute discretionary accruals as fraction of total assets (RDD estimate)",
+      "interpretation": "SOX Section 404 compliance reduces discretionary accruals (a proxy for earnings management) by 1.2 percentage points of assets, indicating meaningful improvement in earnings quality"
+    },
+    "secondary_estimate": {
+      "value": 0.98,
+      "unit": "fractional increase in audit fees (98% increase at the $75M threshold)",
+      "interpretation": "Audit fees approximately double at the accelerated filer threshold, reflecting the substantial cost of Section 404 auditor attestation requirements"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 3-5 in Iliev (2010)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "SEC EDGAR 10-K filings (public float data — free)",
+      "Compustat via WRDS (financial data for accruals computation — subscription)",
+      "CRSP via WRDS (stock returns — subscription)",
+      "Audit Analytics (auditor fees, restatements — subscription via WRDS)"
+    ],
+    "proprietary_sources": [
+      "Audit Analytics requires WRDS subscription"
+    ],
+    "proxy_strategy": "Public float data can be manually collected from 10-K filings on EDGAR (free). Financial data for accruals requires Compustat. Audit fee data requires Audit Analytics.",
+    "replicability": "medium — public float from EDGAR is free; financial/audit data requires WRDS",
+    "public_proxy_available": true,
+    "replication_tier": "partial (public float from EDGAR free; Compustat and Audit Analytics require WRDS)",
+    "data_limitations": "Public float is reported once per year in the 10-K, so the assignment variable has annual frequency. Some firms may strategically manage their public float around the threshold (the McCrary test partially addresses this). The $75M threshold changed over time (SEC adjusted it), limiting the sample window.",
+    "public_data_sources_detail": [
+      "SEC EDGAR 10-K filings (public float disclosure — free)",
+      "Compustat via WRDS (firm financials for accruals — subscription)",
+      "Audit Analytics via WRDS (auditor fees and opinions — subscription)",
+      "CRSP via WRDS (stock returns — subscription)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is public float (market value of shares held by non-affiliates); cutoff at $75 million; treatment is being classified as an accelerated filer subject to SOX Section 404 auditor attestation requirements",
+    "key_variables": {
+      "treatment": "accelerated filer classification (public float ≥ $75M) requiring SOX Section 404 compliance",
+      "control": "non-accelerated filer (public float < $75M) exempt from Section 404",
+      "outcome": "audit fees, total accruals quality (discretionary accruals), earnings restatement probability, stock price reaction to 10-K filing",
+      "time_period": "2004–2006 (first years of Section 404 implementation)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "SOX Section 404 compliance improves earnings quality — firms just above the $75M threshold (subject to Section 404) have significantly lower discretionary accruals and higher accruals quality than firms just below the threshold. However, compliance imposes substantial costs: audit fees increase by approximately 98% for firms just above the cutoff. The positive effect on earnings quality suggests that Section 404 achieves its regulatory objective despite the high costs.",
+    "main_effect": "Section 404 compliance reduces absolute discretionary accruals by approximately 1.2 percentage points of assets; audit fees increase by ~98% (approximately doubling) at the $75M threshold",
+    "key_robustness": [
+      "Varying bandwidth around the $75M threshold",
+      "Polynomial specifications (linear, quadratic, cubic)",
+      "McCrary density test for manipulation of public float",
+      "Falsification tests using pre-SOX period (2001-2003)",
+      "Alternative accruals quality measures (Dechow-Dichev model)",
+      "Year-by-year analysis (2004, 2005, 2006 separately)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD with local linear regression around $75M public float threshold",
+      "treatment": "Accelerated filer status under SOX Section 404 (binary: public float ≥ $75M)",
+      "event_window": "Annual outcomes in the fiscal year of Section 404 compliance",
+      "estimation_window": "Public float bandwidth: $50M-$100M (main); $60M-$90M (narrow); $25M-$125M (wide)",
+      "sample_period": "2004–2006",
+      "unit_of_observation": "Firm-year for firms near the $75M public float threshold",
+      "key_assumption": "Firms cannot precisely manipulate their public float to sort below the $75M threshold. The threshold was externally set by the SEC. Potential outcomes (earnings quality without Section 404) are continuous at the $75M cutoff."
+    },
+    "key_magnitudes": {
+      "accruals_quality_improvement": "-1.2 percentage points reduction in absolute discretionary accruals (as fraction of assets)",
+      "audit_fee_increase": "+98% increase in audit fees at the $75M threshold (~$1.5M additional cost)",
+      "restatement_reduction": "Lower probability of earnings restatement for compliant firms (directional but noisier estimate)",
+      "cost_benefit": "High compliance cost ($1-3M) but measurable improvement in earnings quality"
+    },
+    "robustness_notes_detail": "McCrary density test shows some evidence of firms managing public float just below the threshold (manipulation concern), but the main results are robust to excluding firms in a narrow 'donut hole' around $75M. Pre-SOX period (2001-2003) shows no discontinuity at $75M, confirming that the effect is attributable to Section 404 rather than the threshold itself. Results are stronger in the first year of implementation (2004) and attenuate slightly in later years as firms near the threshold optimize their compliance strategy."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 86457,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s32",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of Overtime Eligibility Expansion on Work Hours",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:37:25.097662",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 516,
+    "output_tokens": 538,
+    "content": "## 1. Identification Strategy\nThe research question can be addressed using a Difference-in-Differences (DID) approach, which is suitable for analyzing the impact of a policy change (expanding overtime pay eligibility) on a specific outcome (log of hours worked). The key assumption for DID is the parallel trends assumption, which requires that the treated and control groups would have followed parallel trends in the absence of the policy change. This assumption can be tested by examining the pre-treatment trends of the outcome variable for both groups.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(broom)\nlibrary(ggplot2)\n\n# Read the dataset\ndata <- read_csv(\"experiments/exp_b/data/s32_data.csv\")\n\n# Convert the data into a panel data structure\npdata <- pdata.frame(data, index = c(\"unit_id\", \"period\"))\n\n# Estimate the DID model using the plm package\ndid_model <- plm(y ~ treated + post + treat_x_post, data = pdata, model = \"random\")\n\n# Print the summary of the DID model\nsummary(did_model)\n\n# Extract and print the coefficient of interest (treat_x_post)\ntidy_did_model <- tidy(did_model)\nprint(tidy_did_model)\n\n# Perform a basic robustness check by plotting the pre-treatment trends\ndata_pre <- data %>% filter(post == 0)\nggplot(data_pre, aes(x = period, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_line() +\n  labs(x = \"Period\", y = \"Log of Hours Worked\", color = \"Treated\")\n\n# Another robustness check could involve testing for parallel trends\n# by comparing the pre-treatment coefficients of treated and control groups\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the `treat_x_post` interaction term to be of particular interest, as it captures the effect of the overtime eligibility expansion on the log of hours worked for those newly eligible. If the policy change leads to an increase in hours worked, we would expect this coefficient to be positive. However, the magnitude of this effect could vary depending on factors such as the specific nature of the jobs affected, the degree to which employees value overtime pay, and the extent to which employers adjust their scheduling practices in response to the policy change. A plausible magnitude might be in the range of 0.05 to 0.20, suggesting a small to moderate increase in the log of hours worked, but this would depend on the context and specifics of the policy change.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log hours worked before and after the policy change between treated and untreated groups.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The expansion of overtime eligibility significantly increased the log hours worked.",
+    "main_effect": "0.25"
+  }
+}

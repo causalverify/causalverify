@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_55",
+  "title": "Child Protection and Child Outcomes: Measuring the Effects of Foster Care",
+  "authors": "Doyle",
+  "year": null,
+  "journal": "Journal of Political Economy",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.97.5.1583",
+    "title": "Child Protection and Child Outcomes: Measuring the Effects of Foster Care",
+    "year": 2007,
+    "journal": "American Economic Review",
+    "citations": 609
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "doyle"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 609,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

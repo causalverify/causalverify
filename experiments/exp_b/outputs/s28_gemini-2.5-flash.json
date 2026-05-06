@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s28",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Asset size threshold and regulatory burden on bank profitability",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-03-27T20:23:06.699708",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 478,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThe most appropriate causal method for this research question is a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nThe core of the research question is to determine the causal effect of crossing a sharp, exogenously defined threshold ($10B asset size, normalized to `running_var = 0.5`) on bank profitability (ROA). Banks are assigned to a \"treated\" group (subject to additional regulatory requirements) solely based on whether their `running_var` exceeds the cutoff. RDD exploits this sharp discontinuity in treatment assignment. It compares the outcomes of banks just above the threshold to those just below, leveraging the idea that banks infinitesimally close to the cutoff are, on average, comparable in all unobserved characteristics except for",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — asset threshold; test for bunching below $10B; local linear regression",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Banks just above threshold have lower ROA than just-below peers",
+    "main_effect": "~25bp ROA reduction for above-threshold banks"
+  }
+}

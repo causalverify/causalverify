@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_233",
+  "title": "Valuation Ratios and the Long-Run Stock Market Outlook",
+  "authors": "Campbell & Shiller",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.3905/jpm.24.2.11",
+    "title": "Valuation Ratios and the Long-Run Stock Market Outlook",
+    "year": 1998,
+    "journal": "The Journal of Portfolio Management",
+    "citations": 818
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "campbell",
+      "shiller"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "the journal of portfolio management",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 818,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

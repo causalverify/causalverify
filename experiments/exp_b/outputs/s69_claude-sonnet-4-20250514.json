@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s69",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Vietnam Service on Long-Term Earnings",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T19:58:26.434009",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 469,
+    "output_tokens": 977,
+    "content": "## 1. Identification Strategy\n**Instrumental Variables (IV)** using two-stage least squares. The draft lottery number (z) serves as an instrument for Vietnam service (x) to estimate the causal effect on log earnings (y). Key assumptions: (1) Relevance - lottery number affects probability of service, (2) Exclusion restriction - lottery number only affects earnings through its effect on service, (3) Independence - lottery numbers were randomly assigned.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s69_data.csv\")\n\n# Check data structure\nprint(\"Data Summary:\")\nprint(summary(data))\nprint(paste(\"Sample size:\", nrow(data)))\n\n# First stage: Regress Vietnam service on draft lottery number\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"\\n=== FIRST STAGE RESULTS ===\")\nprint(summary(first_stage))\n\n# Check instrument strength\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"First-stage F-statistic:\", round(f_stat, 2)))\n\n# Reduced form: Regress earnings on draft lottery number\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\n=== REDUCED FORM RESULTS ===\")\nprint(summary(reduced_form))\n\n# Two-Stage Least Squares (2SLS) estimation\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\n=== IV/2SLS RESULTS ===\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coeff <- coef(iv_model)[\"x\"]\niv_se <- sqrt(diag(vcov(iv_model)))[\"x\"]\nprint(paste(\"\\n=== MAIN RESULT ===\"))\nprint(paste(\"IV Coefficient on Vietnam Service:\", round(iv_coeff, 4)))\nprint(paste(\"Standard Error:\", round(iv_se, 4)))\nprint(paste(\"95% CI: [\", round(iv_coeff - 1.96*iv_se, 4), \",\", round(iv_coeff + 1.96*iv_se, 4), \"]\"))\n\n# OLS for comparison\nols_model <- lm(y ~ x + controls, data = data)\nols_coeff <- coef(ols_model)[\"x\"]\nprint(paste(\"OLS Coefficient (for comparison):\", round(ols_coeff, 4)))\n\n# Robustness checks\nprint(\"\\n=== ROBUSTNESS CHECKS ===\")\n\n# 1. Test instrument validity - correlation between instrument and outcome\ncor_test <- cor.test(data$z, data$y)\nprint(paste(\"Correlation between instrument and outcome:\", round(cor_test$estimate, 4)))\n\n# 2. IV without controls\niv_no_controls <- ivreg(y ~ x | z, data = data)\nprint(paste(\"IV coefficient without controls:\", round(coef(iv_no_controls)[\"x\"], 4)))\n\n# 3. Check for weak instruments\nprint(paste(\"Instrument strength check - F-stat > 10?\", f_stat > 10))\n\n# 4. Hausman test for endogeneity\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"Hausman test p-value for endogeneity:\")\nprint(hausman_test$diagnostics[\"Wu-Hausman\", \"p-value\"])\n```\n\n## 3. Expected Findings\nI expect a **negative coefficient** of approximately **-0.15 to -0.25** on Vietnam service. This suggests that military service during Vietnam reduced long-term earnings by about 15-25%. The rationale is that military service interrupted civilian career development, education, and work experience during prime earning years. The IV estimate should be larger in absolute magnitude than OLS if there's positive selection bias (healthier, more motivated individuals more likely to serve), making OLS underestimate the negative impact.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use draft lottery number as an instrument for Vietnam service.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Military service during the Vietnam War positively affects long-term earnings.",
+    "main_effect": "0.3"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s21",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Vietnam draft lottery as IV for military service on earnings",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:34:09.036666",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 473,
+    "output_tokens": 585,
+    "content": "## 1. Identification Strategy\nThis analysis uses the Instrumental Variables (IV) method, where the Vietnam-era draft lottery numbers (z) serve as an instrument for veteran status (x) to estimate the effect of military service on long-run civilian earnings (y). The key assumptions for IV estimation are: (1) Relevance: The instrument (z) is correlated with the endogenous variable (x); (2) Exogeneity: The instrument (z) is independent of the error term, conditional on controls; and (3) Exclusion restriction: The instrument (z) affects the outcome (y) only through its effect on the endogenous variable (x). The draft lottery number satisfies these assumptions because it was randomly assigned, thus it's exogenous, and it directly affects the probability of being drafted (and hence serving), fulfilling the relevance and exclusion restriction criteria.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(AER)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s21_data.csv\")\n\n# Convert x to a binary factor to represent veteran status correctly\ndata$x <- ifelse(data$x > 0, 1, 0)\n\n# Define the instrument (low draft number = 1 if z <= 125, 0 otherwise)\ndata$z_instrument <- ifelse(data$z <= 125, 1, 0)\n\n# Run the IV analysis\niv_model <- ivreg(y ~ x + controls | z_instrument + controls, data = data)\n\n# Print the IV regression results\nsummary(iv_model)\n\n# For robustness, check the first stage\nfirst_stage_model <- lm(x ~ z_instrument + controls, data = data)\nsummary(first_stage_model)\n\n# Another robustness check: examine the relationship between the instrument and outcome directly\ndirect_effect_model <- lm(y ~ z_instrument + controls, data = data)\nsummary(direct_effect_model)\n```\n\n## 3. Expected Findings\nThe expected finding is that military service, instrumented by the draft lottery number, likely reduces long-run civilian earnings. This is because previous studies suggest that military service can disrupt civilian career paths and education, potentially leading to lower earnings in the long run. The coefficient on x in the IV regression should be negative, indicating that being a veteran (as mediated by the draft lottery instrument) is associated with lower log annual earnings. The magnitude of this effect is expected to be moderate, considering the potential disruption and the fact that many veterans also acquire valuable skills during their service. The first stage should show a strong positive relationship between the instrument (low draft number) and the probability of being a veteran, supporting the relevance of the instrument. The direct effect model should ideally show a weaker or insignificant relationship between the instrument and earnings, supporting the exclusion restriction.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: draft lottery number; LATE for compliers (drafted but wouldn't have volunteered)",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Military service reduces earnings for complier veterans",
+    "main_effect": "~15% earnings penalty for draft-induced veterans"
+  }
+}

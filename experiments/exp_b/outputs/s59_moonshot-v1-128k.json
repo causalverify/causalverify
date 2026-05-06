@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s59",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Impact of SEC Investigation Announcements on Stock Returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:41:40.020519",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 491,
+    "output_tokens": 509,
+    "content": "## 1. Identification Strategy\nFor this research question, an Event Study approach is appropriate. This method is suitable for analyzing the impact of a specific event (in this case, the announcement of an SEC investigation) on stock returns. The key assumption is that the stock returns are not affected by the event before the announcement day (event_day = 0). We will estimate the cumulative abnormal returns (CAR) around the event day by comparing the actual returns to the expected returns based on the market returns and the stock's beta.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s59_data.csv\")\n\n# Calculate abnormal returns\ndata <- data %>%\n  mutate(abnormal_ret = ret - beta * (mkt_ret - 0.04)) # Assuming risk-free rate is 4%\n\n# Define the event window\nevent_window <- c(-10, 10) # 10 days before and after the event day\n\n# Calculate cumulative abnormal returns (CAR) for each stock\ncar <- data %>%\n  filter(event_day >= event_window[1] & event_day <= event_window[2]) %>%\n  group_by(stock_id) %>%\n  summarise(mean_abnormal_ret = sum(abnormal_ret) / (event_window[2] - event_window[1] + 1))\n\n# Run a regression to estimate the impact of the event on CAR\nmodel <- lm(mean_abnormal_ret ~ event_day, data = car)\n\n# Print the coefficient for event_day\nprint(coef(summary(model)))\n\n# Robustness check: Cluster-robust standard errors\nlibrary(clubSandwich)\nrobust_se <- vcovHC(model, type = \"HC1\")\nprint(coeftest(model, vcov = robust_se))\n```\n\n## 3. Expected Findings\nWe expect the coefficient for event_day to be negative and statistically significant around the event day (day 0). This is because the announcement of an SEC investigation is likely to be perceived as negative news, leading to a decrease in stock returns. The magnitude of the effect will depend on the severity of the investigation and the market's reaction to it. However, given the short window around the event, we expect the impact to be relatively small but significant.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy relies on comparing stock returns around the SEC investigation announcement day.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The announcement of an SEC investigation is associated with a positive change in cumulative abnormal returns.",
+    "main_effect": "Approximately 0.03 increase in CAR [-2,+2]"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s89",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Credit Score Threshold on Loan Default Rates",
+  "model": "o3",
+  "run_at": "2026-04-14T19:54:04.288290",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 429,
+    "output_tokens": 1261,
+    "content": "## 1. Identification Strategy  \nRegression Discontinuity Design (RDD)\n\n• Setting: A sharp threshold (minimum credit-score cut-off) determines treatment (loan approval).  \n• Assumption: In a narrow neighborhood of the cut-off, borrowers just above and below the threshold are quasi-randomly assigned, so potential outcomes are smooth in the running variable. The only discontinuous jump at the threshold should be treatment status.  \n• Key identification assumptions  \n  1. Continuity of potential outcomes in credit score around the cut-off.  \n  2. No precise manipulation of credit scores right at the threshold.  \n  3. Correct functional form / bandwidth choice is used (checked with robustness).  \n\n## 2. R Code\n```r\n# --- Packages -------------------------------------------------------------\nrequired <- c(\"readr\", \"dplyr\", \"rdrobust\")\nnew_pkgs <- required[!(required %in% installed.packages()[,\"Package\"])]\nif(length(new_pkgs)) install.packages(new_pkgs, repos = \"https://cloud.r-project.org\")\nlapply(required, library, character.only = TRUE)\n\n# --- 1. Read data ---------------------------------------------------------\ndata_path <- \"experiments/exp_b/data/s89_data.csv\"\ndf <- read_csv(data_path, show_col_types = FALSE)\n\n# --- 2. Define running variable and cut-off -------------------------------\ncutoff <- 0.50   # implied by treated == 1 for running_var ≥ 0.5\n\n# --- 3. Main local‐linear RDD estimate -----------------------------------\nmain_rd <- rdrobust(y = df$y, x = df$running_var, c = cutoff, p = 1, kernel = \"triangular\")\ncat(\"Main RD estimate (local–linear, optimal BW):\\n\")\nprint(main_rd$coef[\"tau.us\"])\n\n# --- 4. Robustness checks -------------------------------------------------\n\n# (a) Higher-order polynomial (p = 2)\nrd_p2 <- rdrobust(y = df$y, x = df$running_var, c = cutoff, p = 2, kernel = \"triangular\")\ncat(\"\\nRobustness: 2nd-order polynomial estimate:\\n\")\nprint(rd_p2$coef[\"tau.us\"])\n\n# (b) Different fixed bandwidths\nfor(h in c(0.05, 0.10, 0.20)){\n  tmp <- rdrobust(y = df$y, x = df$running_var, c = cutoff, p = 1, h = h, kernel = \"triangular\")\n  cat(\"\\nBandwidth h =\", h, \" => estimate:\\n\")\n  print(tmp$coef[\"tau.us\"])\n}\n\n# (c) Placebo cut-off at 0.30 (should be ~0 if identification holds)\nplacebo <- rdrobust(y = df$y, x = df$running_var, c = 0.30, p = 1, kernel = \"triangular\")\ncat(\"\\nPlacebo cut-off (0.30) estimate:\\n\")\nprint(placebo$coef[\"tau.us\"])\n```\n\n## 3. Expected Findings  \nCrossing the credit-score threshold is expected to reduce default probability: marginally more credit-worthy borrowers (just above the cut-off) should default less often than those just below. Anticipated sign: negative. Magnitude: roughly −0.08 to −0.12 (an 8–12 percentage-point drop in default likelihood) at the threshold.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the discontinuity at the credit score threshold to identify the causal effect.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the credit score threshold increases the default rate.",
+    "main_effect": "Approximately 0.22 increase in default rate."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_115",
+  "title": "Are There Civic Returns to Education?",
+  "authors": "Dee",
+  "year": null,
+  "journal": "AER",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jpubeco.2003.11.002",
+    "title": "Are there civic returns to education?",
+    "year": 2004,
+    "journal": "Journal of Public Economics",
+    "citations": 862
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dee"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "jpube",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 862,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

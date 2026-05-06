@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_51",
+  "title": "Aiding Conflict: The Impact of U.S. Food Aid on Civil War",
+  "authors": "Nunn & Qian",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w17794",
+    "title": "Aiding Conflict: The Impact of U.S. Food Aid on Civil War",
+    "year": 2012,
+    "journal": "National Bureau of Economic Research",
+    "citations": 43
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "nunn",
+      "qian"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 43,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

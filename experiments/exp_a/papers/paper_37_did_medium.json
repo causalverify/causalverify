@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_37",
+  "source": "Quarterly Journal of Economics, 2003",
+  "authors": "Autor",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Outsourcing at Will: The Contribution of Unjust Dismissal Doctrine to the Growth of Employment Outsourcing",
+  "doi": "10.1162/00335530360535171",
+  "volume": 118,
+  "issue": 1,
+  "pages": "1-42",
+  "domain": "labor",
+  "research_question": "Did the erosion of the common law doctrine of employment at will, through the recognition of judicial exceptions limiting employers' discretion to terminate workers, contribute causally to the rapid expansion of the U.S. Temporary Help Services industry and broader employment outsourcing? Relatedly, how has the changing role of labor unions interacted with this growth in contingent work arrangements?",
+  "data_description": "The analysis combines several U.S. data sources at the state-year level for 1979–1995. Annual state-level employment counts for the Temporary Help Supply industry and other business services subsectors come from the Census Bureau's County Business Patterns files, supplemented by Bureau of Labor Statistics National Employment, Hours, and Earnings data extending to 2000. State nonfarm employment is from the BLS State and Area Employment Statistics. Labor force demographics (education, gender, age, marital status, race, and one-digit industry composition) are constructed from the Current Population Survey Outgoing Rotation Group files for 1979–1995. State unionization rates come from Hirsch, Macpherson, and Vroman (2001). Occupational analyses use the February 1995, 1997, 1999, and 2001 CPS Contingent Worker Supplements and the January 1991 CPS Job Training Supplement, covering 485 detailed three-digit occupations. State-by-year indicators of common law exceptions to employment at will are coded from Morriss (1995), Postic (1994), and Bureau of National Affairs (1997).",
+  "institutional_context": "Between 1973 and 1995, U.S. state courts substantially eroded the longstanding common law doctrine of employment at will, under which employers and employees could terminate the relationship at any time for any reason. Courts in 46 states recognized one or more of three exceptions: an implied contractual right to continued employment (often inferred from personnel handbooks, progressive discipline policies, or longevity of service), a public policy exception barring retaliatory firings, and an implied covenant of good faith and fair dealing. The implied contract exception, exemplified by Toussaint v. Blue Cross & Blue Shield (Michigan 1980) and Pugh v. See's Candies (California 1981), exposed employers to costly wrongful-termination litigation, with average compensatory damages and legal fees in the hundreds of thousands of dollars. Crucially, courts have not extended implied-contract liability to workers supplied through temporary help agencies, making such arrangements a relatively safe alternative for firms seeking to avoid termination-related legal risk. Contemporaneously, the Temporary Help Services industry grew from 435,000 to 2.4 million workers, and unionization declined.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.14,
+      "unit": "log points increase in temporary help employment share (DID estimate for implied contract adoption)",
+      "interpretation": "State adoption of the implied contract wrongful discharge exception increased the share of workers employed through temporary help agencies by approximately 14% relative to non-adopting states"
+    },
+    "secondary_estimate": {
+      "value": 0.2,
+      "unit": "fraction of total 1979-1995 temp help growth explained by wrongful discharge doctrines",
+      "interpretation": "Wrongful discharge protections account for approximately 20% of the aggregate growth in temporary help employment during the study period"
+    },
+    "significance": "p < 0.05 (implied contract); p > 0.10 (good faith and public policy)",
+    "table_ref": "Tables 3-5 in Autor (2003)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Current Population Survey monthly microdata (IPUMS CPS — free)",
+      "BLS QCEW (state-level employment by industry — free)",
+      "Wrongful discharge doctrine adoption dates (compiled in published legal scholarship, available from Autor's website)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. CPS microdata from IPUMS is free. QCEW is free from BLS. Doctrine adoption dates are published.",
+    "replicability": "high — all data publicly available",
+    "public_proxy_available": true,
+    "replication_tier": "full (CPS via IPUMS + QCEW via BLS + doctrine dates from published papers — all free)",
+    "data_limitations": "CPS identifies temporary help workers by industry code (SIC 7362), which may miss some temp workers employed through staffing agencies classified in other industries. State-level doctrine adoption dates have some uncertainty (judicial decisions vs. legislative actions). The sample period (1979-1995) predates some recent developments in temporary work arrangements.",
+    "public_data_sources_detail": [
+      "IPUMS CPS (monthly labor force microdata — free)",
+      "BLS QCEW (state-industry employment — free)",
+      "David Autor's MIT website (replication data and doctrine dates — free)",
+      "FRED (state unemployment rates — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences with staggered adoption — the treatment is state-level adoption of wrongful discharge doctrines (implied contract, good faith, and public policy exceptions); the staggered timing across states provides treatment variation; state and year fixed effects control for time-invariant state characteristics and national trends in temporary help use",
+    "key_variables": {
+      "treatment": "state adoption of wrongful discharge doctrines (three binary indicators for implied contract, good faith, and public policy exceptions)",
+      "control": "states that have not yet adopted the doctrine at time t (pre-adoption periods serve as controls)",
+      "outcome": "temporary help employment share (temporary help workers as fraction of total state employment); probability of individual working in temporary help",
+      "time_period": "1979–1995 (monthly CPS data matched with state doctrine adoption dates)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The adoption of implied contract wrongful discharge doctrine significantly increased temporary help employment. States adopting the implied contract exception experienced approximately a 14-15% increase in temporary help employment share relative to non-adopting states. The good faith and public policy exceptions had smaller and statistically insignificant effects. The implied contract doctrine is the most relevant because it directly increases dismissal costs for regular employees.",
+    "main_effect": "Adoption of implied contract exception increases temporary help employment share by approximately 14-15% (0.13-0.15 log points) relative to non-adopting states",
+    "key_robustness": [
+      "Separate effects for each doctrine type (implied contract, good faith, public policy)",
+      "Event-study specification showing no pre-trend in temp employment before adoption",
+      "Controlling for state economic conditions (unemployment, manufacturing share)",
+      "Individual-level analysis (CPS) vs. state-level analysis (QCEW)",
+      "Sub-sample by industry and occupation",
+      "Controlling for state unionization rates"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-way fixed effects DID with staggered state-level adoption of wrongful discharge doctrines",
+      "treatment": "Binary indicators for state adoption of implied contract, good faith, and public policy exceptions to employment-at-will (staggered across states, 1970s-1990s)",
+      "event_window": "Post-adoption period (all years after state adopts each doctrine)",
+      "estimation_window": "Pre-adoption years serve as baseline; event-study design shows leads and lags",
+      "sample_period": "1979–1995",
+      "unit_of_observation": "State-year (QCEW analysis) or individual-month (CPS analysis)",
+      "key_assumption": "Parallel trends: absent adoption of wrongful discharge doctrines, temporary help employment would have followed the same trajectory in adopting and non-adopting states. Event-study evidence supports this — no differential pre-trends before doctrine adoption."
+    },
+    "key_magnitudes": {
+      "implied_contract_effect": "+14-15% increase in temp help employment share (0.13-0.15 log points, significant at 5%)",
+      "good_faith_effect": "Small and generally insignificant",
+      "public_policy_effect": "Small and generally insignificant",
+      "aggregate_contribution": "Wrongful discharge doctrines explain approximately 15-20% of the total growth in temporary help employment during 1979-1995"
+    },
+    "robustness_notes_detail": "Event-study plots confirm no pre-trend in temporary help employment before doctrine adoption for the implied contract exception. The effect emerges 1-2 years after adoption and persists. The implied contract doctrine has the largest effect because it directly raises the cost of dismissing regular employees (creating an incentive to use temporary workers instead). The good faith and public policy exceptions have weaker effects because they are narrower in scope. Results are robust to controlling for state-level economic conditions, unionization, and demographic composition."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 100369,
+  "phase1_source_version": "v2primeprime_full_text"
+}

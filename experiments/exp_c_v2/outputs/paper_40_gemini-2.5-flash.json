@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_40",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:39:07.960116",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 620,
+    "output_tokens": 162,
+    "content": "The Research Integrity by Design (RID) protocol requires strict adherence to its five steps.\n\n## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe research scenario describes New Jersey's binding final-offer arbitration (FOA) for police disputes, emphasizing that the arbitrator's decision (union wins full demand vs. management wins lower offer) is \"essentially a coin flip near the margin\" and depends on factors \"largely exogenous to the police department's performance trajectory.\" This institutional feature enables a quasi-experimental Difference-in-Differences (DiD) design. We will compare changes in performance over time for police departments whose unions lost arbitration (the \"treatment\" group, experiencing a disappointing wage outcome) relative to departments whose unions won arbitration (the \"control\" group",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study around final-offer arbitration decisions — comparing police department performance (crime clearance rates) in the years before and after arbitration, for departments whose unions lost (unfavorable outcome) vs. won (favorable outcome); the quasi-random nature of close arbitration decisions provides plausible exogeneity",
+    "key_variables": {
+      "treatment": "union loss in final-offer arbitration (unfavorable wage outcome — officers receive management's lower offer)",
+      "control": "union win in final-offer arbitration (favorable wage outcome — officers receive their full demand)",
+      "outcome": "crime clearance rate (fraction of crimes cleared by arrest); total arrests per officer; incidence of crime (to check for reporting effects)",
+      "time_period": "1978–1996, with performance measured 3 years before and after each arbitration decision"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Police performance declines significantly after an unfavorable arbitration outcome. Crime clearance rates fall by approximately 12% (6 percentage points from a base of ~50%) in the year after the union loses, relative to departments where the union won. The effect is concentrated in crimes that require discretionary police effort (property crimes) rather than crimes that are self-reported (violent crimes). Effects persist for approximately 2-3 years before dissipating.",
+    "main_effect": "Union loss in arbitration reduces crime clearance rate by approximately 12% (6 percentage points) in the first year post-decision; arrests per officer also decline",
+    "key_robustness": [
+      "Controlling for pre-arbitration performance trends",
+      "Separating property crimes (discretionary effort) from violent crimes (less discretionary)",
+      "Event-study specification showing no pre-trend in performance differences",
+      "Controlling for department size, county demographics, and crime rates",
+      "Checking whether crime incidence changes (to rule out reporting effects)",
+      "Duration analysis: effect persistence over 1-4 years post-decision"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with DID-like structure: comparing performance trajectories of departments where unions lost vs. won in final-offer arbitration, before and after the arbitration decision",
+      "treatment": "Union loss in final-offer arbitration (binary — quasi-randomly assigned among close cases)",
+      "event_window": "[-3, +4] years around arbitration decision date",
+      "estimation_window": "Pre-arbitration years [-3, -1] establish baseline performance trends",
+      "sample_period": "1978–1996",
+      "unit_of_observation": "Police department × year, centered on arbitration decision year",
+      "key_assumption": "Among cases that go to final-offer arbitration, the arbitrator's decision (union win vs. loss) is quasi-random and uncorrelated with the police department's underlying performance trajectory. This is supported by the institutional design of FOA (arbitrator chooses one of two offers) and by pre-trend analysis showing no differential performance trends before the arbitration."
+    },
+    "key_magnitudes": {
+      "clearance_rate_decline": "-6 percentage points (from ~50% base = 12% relative decline) in the first year after union loss",
+      "arrest_decline": "Approximately 8-10% fewer arrests per officer in the year after unfavorable outcome",
+      "persistence": "Effects persist for 2-3 years before gradually dissipating",
+      "crime_type_heterogeneity": "Effect is 2-3x larger for property crimes (burglary, larceny) than for violent crimes (homicide, assault)"
+    },
+    "robustness_notes_detail": "Event-study plots confirm no differential pre-trends in clearance rates between departments that will win vs. lose arbitration. The effect is immediate (appears in the first year post-decision) and gradually fades over 2-3 years, consistent with adaptation to the new reference point. Controlling for total reported crime (crime incidence) rules out the possibility that the clearance rate decline is mechanical (driven by more crime rather than less effort). The heterogeneity by crime type supports the effort mechanism: property crime clearance (which depends heavily on police initiative — canvassing, investigation) declines more than violent crime clearance (which is often self-reported by victims)."
+  }
+}

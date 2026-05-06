@@ -1,0 +1,767 @@
+NBER WORKING PAPER SERIES
+THE EFFECTS OF EXTENDED UNEMPLOYMENT INSURANCE OVER THE BUSINESS CYCLE:
+EVIDENCE FROM REGRESSION DISCONTINUITY ESTIMATES OVER TWENTY YEARS
+Johannes F. Schmieder
+Till M. von Wachter
+Stefan Bender
+Working Paper 17813
+http://www.nber.org/papers/w17813
+NATIONAL BUREAU OF ECONOMIC RESEARCH
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+February 2012
+We would like to thank Melanie Arntz, Robert Barro, David Card, Raj Chetty, Pierre-André Chiappori,
+Janet Currie, Steve Davis, Christian Dustmann, Johannes Görgen, Jennifer Hunt, Larry Katz, Kevin
+Lang, David Lee, Leigh Linden, Bentley MacLeod, Costas Meghir, Matt Notowidigdo, Jonah Rockoff,
+Gary Solon, Gerard van den Berg, four anonymous referees, as well as seminar participants at Boston
+University, Columbia University, University of California Berkeley, Chicago Booth GSB, University
+of Bayreuth, University of Nuremberg, University of Mannheim,University of Munich, University
+of Wisconsin Maddison, Harvard University, Brown University, the NBER Summer Institute 2010,
+conferences at the Philadelphia and Atlanta Federal Reserve, the European Central Bank, the RWI
+Essen, and the Econometric Society World Congress 2010, for helpful comments. Adrian Baron, Benedikt
+Hartmann, Uliana Loginova, Patrycja Scioch, and Stefan Seth provided sterling research assistance.
+All remaining errors are our own. The views expressed herein are those of the authors and do not necessarily
+reflect the views of the National Bureau of Economic Research.
+NBER working papers are circulated for discussion and comment purposes. They have not been peer-
+reviewed or been subject to the review by the NBER Board of Directors that accompanies official
+NBER publications.
+© 2012 by Johannes F. Schmieder, Till M. von Wachter, and Stefan Bender. All rights reserved. Short
+sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided
+that full credit, including © notice, is given to the source.
+
+The Effects of Extended Unemployment Insurance over the Business Cycle: Evidence from
+Regression Discontinuity Estimates Over Twenty Years
+Johannes F. Schmieder, Till M. von Wachter, and Stefan Bender
+NBER Working Paper No. 17813
+February 2012
+JEL No. J64,J65
+ABSTRACT
+One goal of extending the duration of unemployment insurance (UI) in recessions is to increase UI
+coverage in the face of longer unemployment spells. Although it is a common concern that such extensions
+may themselves raise nonemployment durations, it is not known how recessions would affect the magnitude
+of this moral hazard. To obtain causal estimates of the differential effects of UI in booms and recessions,
+this paper exploits the fact that, in Germany, potential UI benefit duration is a function of exact age
+which is itself invariant over the business cycle. We implement a regression discontinuity design separately
+for twenty years and correlate our estimates with measures of the business cycle. We find that the
+nonemployment effects of a month of additional UI benefits are, at best, somewhat declining in recessions.
+Yet, the UI exhaustion rate, and therefore the additional coverage provided by UI extensions, rises
+substantially during a downturn. The ratio of these two effects represents the nonemployment response
+of workers weighted by the probability of being affected by UI extensions. Hence, our results imply
+that the effective moral hazard effect of UI extensions is significantly lower in recessions than in booms.
+Using a model of job search with liquidity constraints, we also find that, in the absence of market-wide
+effects, the net social benefits from UI extensions can be expressed either directly in terms of the exhaustion
+rate and the nonemployment effect of UI durations, or as a declining function of our measure of effective
+moral hazard.
+Johannes F. Schmieder
+Department of Economics
+Boston University
+270 Bay State Road
+Boston, MA 02215
+johannes.schmieder@gmail.com
+Till M. von Wachter
+Department of Economics
+Columbia University
+601 West 115th Str. Apt. 101
+New York, NY 10025
+and NBER
+vw2112@columbia.edu
+Stefan Bender
+Institute for Employment Research (IAB)
+Regensburger Str. 104
+90478 Nuremberg
+Germany
+stefan.bender@iab.de
+An online appendix is available at:
+http://www.nber.org/data-appendix/w17813
+
+I
+INTRODUCTION
+Providing unemployment insurance (UI) beneﬁts is one of the most common policy tools to ease
+the hardship of job losers in recessions. Despite the widespread existence of UI systems, there is
+remarkable heterogeneity across countries in how these systems react to the business cycle. While
+in most countries, including Germany, potential UI beneﬁt durations are constant over the business
+cycle, in others, particularly the United States, potential UI durations are regularly extended dur-
+ing recessions. Whether or not such countercyclical potential UI durations are socially beneﬁcial
+is highly debated among economists (e.g. Needels and Nicholson 2004). One justiﬁcation for in-
+creases in UI durations is that, absent the extensions, a large fraction of recipients would exhaust
+beneﬁts and experience signiﬁcant declines in consumption (Gruber 1997, Browning and Crossley
+2001, Congressional Budget Ofﬁce 2004). However, a long literature suggests that extensions in
+UI durations entail a cost in terms of a reduction in individuals’ labor supply (Solon 1979, Mofﬁtt
+1985, Katz and Meyer 1990, Meyer 1990, Hunt 1995). As of now, there is no clear consensus how
+this disincentive effect changes during recessions. Some observers have argued that it is larger
+during a downturn (Ljungqvist and Sargent 1998, 2008) while others have suggested that it may
+instead be smaller (Krueger and Meyer 2002).1
+Identifying the changing effect of UI extensions over the business cycle is difﬁcult in a setting
+where UI extensions are endogenous to the state of the labor market.2 To circumvent this problem,
+in this paper we provide new estimates of the variation of the effect of UI durations on nonemploy-
+ment and beneﬁt durations over the business cycle using a regression discontinuity (RD) design
+1The intuition for the view of stronger disincentive effects is that the incidence and cost of job loss is particularly
+severe in a recession (von Wachter, Song, and Manchester 2009). In this case the effective replacement rate may rise
+beyond the typical replacement rate and imply stronger and possibly lasting effects on unemployment as in Ljungqvist
+and Sargent (1998, 2008). On the other hand, higher costs of job search may reduce the effect of UI parameters on
+labor supply and on the aggregate unemployment rate in recessions.
+2In the United States, the trigger-based state-level extended beneﬁts (EB) can be used together with the timing of
+discretionary federal temporary emergency unemployment compensation (EUC) to identify the effect of unemploy-
+ment insurance duration on nonemployment. Rothstein (2011) exploits this stragegy to evaluate the effect of EB and
+EUC during the 2008 recession, and ﬁnds signiﬁcantly negative but moderate effects. Card and Levine (2000) exam-
+ine the effects of an extension in UI unrelated to local unemployment conditions in New Jersey, and also ﬁnd more
+moderate effects on employment than previous studies based on EB and EUC in the 1970s and 1980s.
+1
+
+and data from Germany. Our strategy exploits the fact that the German UI system implies large
+differences in the potential duration of UI beneﬁts by exact age of the UI claimant. This policy is
+invariant to the business cycle and hence allows us to circumvent the endogeneity problem. Using
+day-to-day administrative data on the universe of unemployment spells and ensuing employment
+outcomes for mature workers in Germany from the mid-1980s to 2008, we implement the RD
+approach by year and by industry, and correlate our estimates with indicators of the business cycle.
+To help clarify the potential implications of our results for the welfare effect of UI extensions
+over the business cycle, we use a search model with endogenous search intensity and liquidity
+constraints (e.g., Card, Chetty, and Weber 2007a, Chetty 2008). From this model, we derive a
+formula that directly relates the welfare gains of UI extensions over the business cycle to increases
+in the UI exhaustion rate, and the welfare costs to the effect of potential UI durations on nonem-
+ployment and program duration. As in the related literature (e.g., Kiley 2003, Sanchez 2008), our
+formula implies that optimal potential UI durations vary inversely with a summary measure of the
+disincentive effect of UI extensions: the ratio of the effects of UI extensions on nonemployment
+duration and UI beneﬁt duration. This measure implicitly controls for changes in the number of
+individuals ’at risk’ of exhausting beneﬁts who are most affected by UI extensions, and is thus
+ideal for comparing changes in the disincentive effects over the business cycle.
+We begin by using our RD strategy to obtain labor supply effects with respect to potential UI
+durations for large differential expansions for mature workers with stable labor force attachment.
+Our estimates imply a moderate rise in nonemployment of about 0.1 months for each additional
+month of potential UI beneﬁt duration. This is robust across a number of alternative speciﬁca-
+tions. Furthermore, these effects on labor supply are similar for different increases in UI duration,
+similar across demographic groups, similar for workers with weaker labor force attachment, and
+somewhat larger for workers unlikely to take up extended unemployment assistance after exhaust-
+ing UI beneﬁts.
+Our analysis of variation over the business cycle points to moderate, and for the most part
+statistically insigniﬁcant declines in the effects of a one-month increase in potential UI durations
+2
+
+on nonemployment durations in large recessions. On the other hand, we ﬁnd that the effect of
+UI extensions on beneﬁt durations, and thus the additional coverage provided by UI, increases
+signiﬁcantly in recessions, mainly due to a rise in the UI exhaustion rate. The ratio of the two
+estimates – which is our summary measure of the disincentive effect of UI beneﬁts that implicitly
+controls for changes in the probability of being affected by the extensions over the business cycle –
+is clearly countercyclical. The ratio indicates that, for each additional month in actual UI durations,
+the response of labor supply to UI extensions falls signiﬁcantly in recessions. These results are
+robust to considering variation by year or year-by-industry, the use of alternative measures of the
+business cycle, holding characteristics of UI claimants constant, including workers with weaker
+labor-force attachment, and an extensive robustness analysis.
+By using regression discontinuity estimates in different economic regimes to assess whether
+the duration of UI has stronger or weaker employment effects in booms and recessions and by
+explicitly analyzing the effects on beneﬁt durations and exhaustion rates, the paper complements
+an earlier literature on cyclical effects of UI durations (Mofﬁtt 1985, Jurajda and Tannery 2003)
+and related recent work on UI beneﬁt levels using state-level differences in unemployment and UI
+parameters in the United States (Kroft and Notowidigdo 2010). Our estimates also add to existing
+studies of the labor supply effects of UI durations by combining large increases in UI durations
+and a large number of years and observations with a sharp regression discontinuity design (Meyer
+1990, Katz and Meyer 1990, Hunt 1995, Lalive 2008, Rothstein 2011). In contrast to studies using
+region or time variation in UI durations, our RD design allows us to identify changes in the actual
+behavioral response, while holding constant any market-level factors that may change over time or
+across regions.
+The paper is also related to the literature concerned with the welfare implications of parameters
+of the current unemployment insurance system. By deriving the welfare effects of extensions in
+the duration of UI beneﬁts, we extend the existing literature focused on UI beneﬁt levels (Baily
+1978, Kiley 2003, Shimer and Werning 2007, Chetty 2008, Sanchez 2008, Kroft and Notowidigdo
+2010). Our formula therefore also clariﬁes existing ’rules of thumb’ regarding the optimal exten-
+3
+
+sion of UI beneﬁts. According to our formula, the duration of UI should neither only be extended
+until the exhaustion rate is constant (Corson and Nicholson 1982), nor only extended to hold the
+nonemployment effect of UI constant (Mofﬁtt 1985). Rather, setting optimal potential UI du-
+rations should take into account both factors and set durations according to the effective moral
+hazard parameter we propose. Since the welfare formula depends on the actual nonemployment
+and beneﬁt response to UI durations inﬂuenced by market-level factors which our estimates hold
+constant (Landais, Michaillat, and Saez 2010), we do not derive direct welfare implications from
+our results.
+The outline of the paper is as follows. In Section II, we derive the welfare effect of extensions
+in UI beneﬁts. Section III describes the institutional environment in Germany, the administrative
+data, and our empirical approach. Sections IV and V contain our main ﬁndings regarding the effect
+of extended UI on labor supply and beneﬁt duration over the business cycle. Section VI concludes,
+relating our empirical ﬁndings to a theoretical welfare formula, and providing suggestions for
+future research.
+II
+THE COSTS AND BENEFITS OF UI EXTENSIONS IN A SEARCH MODEL
+In this section, we use a model of job search with endogenous search intensity and liquidity con-
+straints (Card, Chetty, and Weber 2007a; Chetty 2008) to show that the welfare costs of UI beneﬁt
+extensions rise with the adverse labor supply effect of UI durations, while the welfare beneﬁts rise
+with the exhaustion rate of UI beneﬁts. We then show that, as in the literature on optimal beneﬁt
+levels, the welfare effect of UI extensions can be written as a function of a single parameter cap-
+turing individuals’ labor supply responses to UI extensions. Here, we only state the main results of
+the model and their intuition, relegating derivations and further discussions to the Web Appendix.
+Worker’s Problem. The model describes optimal behavior of a worker living T discrete periods
+(e.g., months) who is unemployed and receiving UI beneﬁts in period t = 0. In each period, the
+worker decides how intensely to search for a job. Let st denote search intensity, which is normal-
+ized to the probability of ﬁnding a job. Employment is an absorbing state and, when employed,
+4
+
+a worker receives a wage of wt and pays a tax of τ, which is used exclusively to ﬁnance unem-
+ployment insurance beneﬁts. Furthermore, in each period the worker owns assets At, the level of
+which is constrained by a lower bound. As in Chetty (2008), in our baseline case we assume that
+the wage a worker can receive is ﬁxed (such that there is no role for reservation wages), the initial
+asset level A0 is ﬁxed, and there is no heterogeneity. Relaxing these assumptions does not affect
+our main conclusions (see the Web Appendix).
+While unemployed, the worker receives a ﬁxed level of UI beneﬁts b < wt for, at most, a ﬁxed
+number of P periods. During this period, the worker’s ﬂow utility function of consumption is
+denoted by u(cu
+t ), which can differ from the utility function of consumption during employment,
+v(ce
+t ). After exhausting UI beneﬁts, the worker receives a ﬁxed baseline utility and no further
+transfer payments (though this assumption is easily relaxed). The total duration of nonemployment
+is D ≡∑T−1
+t=0 St, where St ≡∏t
+j=0(1−sj) is the survivor function at time t. Total lifetime of workers
+at the time of entering unemployment is thus broken up into three periods: a period of receiving
+UI beneﬁts (B ≡∑P−1
+t=0 St), a period of nonemployment without receiving UI beneﬁts (D−B), and
+a period of employment (T −D).
+Welfare Effect of UI Extensions. Assuming the social planner sets taxes to achieve a balanced
+budget of the UI system and that workers respond optimally to incentives, we can derive the effects
+of changes in the potential duration of UI beneﬁts P on welfare.3 Social welfare at time t = 0 is
+given as W0, the expected lifetime utility of an unemployed worker.4 The budget constraint of
+the social planner requires τ =
+B
+T−D b. After some algebra, we obtain our ﬁrst main result. The
+marginal welfare gain of increasing P is
+3The solution of the worker’s decision problem follows standard principles of dynamic optimization. We follow
+the existing applied literature on the optimality of the UI system by focusing on a constraint optimization within the
+class of typical UI systems (e.g., Baily 1978, Chetty 2008). A large theoretical literature has derived the full optimal
+time-path of UI beneﬁts (e.g., Hopenhayn and Nicolini 1997, Shimer and Werning 2007, Pavoni 2007).
+4Focusing on the welfare of a worker who just lost his job loses no generality. Alternatively, one can assume that,
+at t=0, only a fraction of individuals are unemployed. In this case, social welfare, W0, represents the expected average
+utility of the employed and the unemployed. While this makes the exposition more notationally heavy, it does not
+affect the welfare results (see Web Appendix for more details). To analyze marginal changes in P, we need to assume
+that P can be increased by a fraction of 1 (a month in our case), and that, if P is not an integer number, it means a
+fraction of the period int(P) is covered by the higher beneﬁt level b.
+5
+
+dW0
+dP = dB
+dP
+
+1
+b
+
+u′(cu
+P)−E0,T−1v′(ce
+t )
+
+−
+ dB
+dP
+
+2
+b+ dD
+dP τ
+
+E0,T−1v′(ce
+t )
+(1)
+where dB
+dP
+
+1 ≡SP is the exhaustion rate of UI beneﬁts, and dB
+dP
+
+2 ≡∑P−1
+t=0
+dSt
+dP is the increase in beneﬁt
+duration due to reduced search intensity among unemployed individuals before the exhaustion
+point. dD
+dP is the increase in the total nonemployment duration in response to a rise in potential UI
+duration. The total effect of potential on actual beneﬁt duration is dB
+dP ≡dB
+dP
+
+1 + dB
+dP
+
+2.
+The ﬁrst term in this expression states that the marginal welfare beneﬁt (per person) of ex-
+tending UI beneﬁts is the transfer, ﬁnanced by taxes, of consumption from the employed to the
+unemployed at the exhaustion point times the probability of exhaustion
+  dB
+dP
+
+1
+
+. This term is pos-
+itive as long as the marginal utility of consumption of the unemployed in period P, u′(cu
+P), is
+higher than the expected marginal utility of consumption of the employed, E0,T−1v′(ce
+t ). If the two
+marginal utilities are equal, then there is no rationale for unemployment insurance. In the model
+here, this would be the case if the individual is not liquidity constrained.
+The second term captures the costs of extending UI beneﬁts due to the behavioral change
+induced by the more generous UI system. This cost is the per capita increase in taxes levied upon
+employed individuals multiplied by their marginal utility. Taxes rise because the unemployed
+lower their search intensity and this thus increases their receipt of UI beneﬁts
+  dB
+dP
+
+2 ×b
+
+. They
+also increase because longer nonemployment durations reduce the number of periods in which
+individuals are employed and pay taxes
+ dD
+dP
+
+.
+Empirical Implementation. Potential UI durations are at an optimum if dW0
+dP = 0. While solving
+the model laid out here for the optimal UI durations would require estimating a full structural
+model - beyond the scope of this paper - equation (1) provides a framework to analyze under what
+circumstances the welfare beneﬁts of UI extensions are likely to vary over the business cycle. For
+any given change in UI duration P, the welfare effect potentially varies over the business cycle
+with different components of the formula.
+The beneﬁt levels b are, apart from changes in the sample composition(which we control for),
+unchanged over the business cycle. As long as the government smooths taxes over the business
+6
+
+cycle, which is approximately the case in most countries, the welfare cost of decreasing the tax base
+by one worker-month (
+B
+T−Db multiplied by the average marginal utility of the employed individual
+who is taxed, E0,T−1v′(ce
+t )), can be considered ﬁxed from a welfare perspective.5 The components
+that potentially vary over the business cycle are the increase in nonemployment durations (dD
+dP), the
+increase in beneﬁt durations ( dB
+dP
+
+1 and dB
+dP
+
+2) and the marginal utility of an unemployed individual
+at the exhaustion point (u′(cu
+P)). As further discussed in Section IV.B, changes in the latter can
+arise if liquidity – and hence the ability to self-insure – varies over the cycle.
+The model remains agnostic as to the potential sources of cyclical variation in dD
+dP, dB
+dP
+
+1, and
+dB
+dP
+
+2. One source of variation is changes in individual incentives affecting search intensity (the
+partial-equilibrium or micro effect of UI extensions). In the working paper version of this paper,
+we showed that an increase in search costs in recessions, due, for example, to a decline in job-offer
+arrival rates, reduces dD
+dP. On the other hand, a decline in reemployment wages, possibly due to real-
+location in recessions, would tend to increase dD
+dP. The effective exit rate from nonemployment, and
+hence nonemployment duration, will also be affected by cyclical variation in market-wide factors,
+such as congestion effects, vacancy rates, or the take-up of UI beneﬁts (the general-equilibrium or
+macro effect). In our empirical application, we will control for market-level variation, and hence
+will identify variation in nonemployment duration due mainly to differences in incentives. In Sec-
+tion IV and the Conclusion, we discuss under what circumstances this is sufﬁcient to sign the
+change in the welfare effect of UI extensions over the business cycle.
+Approximate Formula. Since our data allows us to obtain estimates of the effect of UI exten-
+sions on the full survivor function, in our empirical analysis we will measure the three relevant
+marginal effects separately. However, we ﬁnd that the cyclical variation of the exhaustion rate,
+5To be more precise, the marginal utility of employed individuals who are affected by a marginal increase in taxes
+can be considered constant as long as the government chooses an optimal tax policy that levies additional taxes in
+periods when the costs of taxation are lowest, rather than balancing the budget every period (e.g., Andersen and Svarer
+2010). In practice, there appears to be considerable smoothing of UI taxes over the business cycle. For example, in
+Germany, payroll taxes used to ﬁnance UI beneﬁts do not vary with the business cycle. Similarly, in the United States,
+the states’ UI trust funds run deﬁcits in recessions. Such smoothing, rather than levying high taxes in recessions when
+UI expenditures are high, would be optimal as long as the marginal utility of the employed is approximately constant
+over the cycle. Compared to large earning losses in recessions for job losers, the ﬂuctuations in earning trajectories,
+and hence expected marginal utility, of the average employed taxpayer are typically weak (von Wachter, Song, and
+Manchester 2009).
+7
+
+dB
+dP
+
+1, is the main contributor to the variation in dB
+dP over time. On the other hand, dB
+dP
+
+2is driven by
+the shift in the survivor function before the exhaustion point and thus has nearly the same cyclical
+variation as dD
+dP, while at the same time having very little impact on the variation in dB
+dP . Thus, in the
+discussion of our main results, we will focus on the properties of dB
+dP and dD
+dP. In fact, for the case of
+a constant hazard of leaving nonemployment (i.e., st = s), one can show that dB
+dP
+
+2 is proportional
+to the nonemployment effect: dB
+dP
+
+2 = dD
+dPξ, where ξ ≡
+ 1−Ps(1−s)P−1 −(1−s)P
+is a constant.
+Furthermore, in this case, the welfare effect of extensions in potential UI durations indeed depends
+only on the two parameters dB
+dP and dD
+dP and one can thus derive the alternative formula
+dW0
+dP = dB
+dP b
+
+u′(cu
+P)−E0,T−1v′(ce
+t )
+
+−dD
+dP bΩ
+(2)
+where Ω≡ξu′(cu
+P)+
+B
+T−DE0,T−1v′(ce
+t ) > 0. This formula indexes the welfare gain by the effect of
+potential beneﬁt duration on actual beneﬁt duration
+ dB
+dP
+
+, and the welfare cost by the disincentive
+effect of UI extensions on labor supply
+ dD
+dP
+
+. Again, the main source of variation over the business
+cycle in this formula should be the employment and beneﬁt effects of UI extensions. Even though
+the hazard in our sample is declining somewhat over the nonemployment spell, in simulations we
+found that the alternative welfare formula in equation (2) approximates the exact welfare formula
+in equation (1) quite well. The approximation is likely to work even better in settings such as the
+United States, where the hazard has been shown to be close to constant (Katz and Meyer 1990).
+Rescaled Formula. To determine whether optimal UI duration should change in a recession,
+the approach so far requires separately measuring the effect of UI extensions on nonemployment
+and beneﬁt duration. To express the formula in terms of a single statistic capturing the role of
+disincentive effects, we can rescale the formula by the effect of UI extensions on actual beneﬁt
+duration multiplied by the beneﬁt level (dB
+dP b). The term dB
+dP b measures how many additional
+dollars of UI beneﬁts are paid for an additional month of potential UI durations. Dividing dW0
+dP by
+dB
+dP b thus yields the marginal welfare gain (in dollars) from spending one additional dollar on UI
+expenditures. The approximate welfare formula becomes
+8
+
+dW ∗
+dP ≡dW0
+dP
+dB
+dP b
+
+=
+
+u′(cu
+P)−E0,T−1v′(ce
+t )
+
+−dD
+dB Ω,
+(3)
+where dD
+dB =
+dD
+dP
+dB
+dP . This equation captures the welfare gain in dollars from an extension of UI ben-
+eﬁts relative to the additional dollar amount of expenditures on UI. The key new parameter in
+this equation is the ratio of the effect of UI extensions on nonemployment and actual beneﬁt du-
+rations, which is the instrumental variable (IV) estimator of the effect of actual UI duration (B)
+on nonemployment duration (D), using the maximum potential beneﬁt duration (P) as instrument.
+This interpretation is appealing for several reasons. First, this estimator effectively rescales the
+marginal effect of the UI extension on nonemployment duration by the effective take-up of UI
+beneﬁts due to UI extensions, and hence by the population ’at risk’ of being affected by the beneﬁt
+extension. This implies that if dD
+dP is constant over the business cycle, but dB
+dP is increasing in reces-
+sions, the effective behavioral response to UI durations is declining.6 Second, our welfare formula
+in equation (3) is similar in spirit to those in Baily (1974) and Chetty (2008), which contain the
+elasticity of nonemployment with respect to beneﬁt levels as a single measure of the disincentive
+effect. Our measure of the disincentive effect, dD
+dB, and the nonemployment duration elasticity with
+respect to beneﬁt levels or durations, provide alternative normalizations for the number of individ-
+uals ’at risk’. From this point of view, our measure is well-suited for comparisons of the effect of
+UI over time since it more directly normalizes for changes in UI beneﬁt take-up. Hence, in parallel
+to the prior literature, ceteris paribus, a decline in the disincentive effect as measured by the IV es-
+timator implies a rise in optimal beneﬁt duration. Finally, a key advantage for our purposes is that
+we can obtain an estimate of dD
+dB for broader samples of workers, for whom, for reasons discussed
+in Section III, we cannot obtain the rescaled marginal effects dB
+dP and dD
+dP separately. Therefore, we
+6The IV estimator can be interpreted as a local average treatment effect (LATE), which is the weighted sum of the
+effects of an increase in actual UI duration on nonemployment duration at each duration up to the maximum duration
+P, weighted by the fraction of people whose beneﬁt take-up is affected by the UI extension. The weighting function is
+the difference in the survivor functions in the case with and without beneﬁt extension up to the new maximum beneﬁt
+duration (Angrist and Imbens 1995). If individuals were myopic and only responded by altering search intensity at
+beneﬁt exhaustion, we would have dB
+dP = SP. In this case, the IV estimator measures the effect of the beneﬁt extensions
+on nonemployment durations for those exhausting beneﬁts and we would rescale the welfare formula by the exhaustion
+rate times the beneﬁt level.
+9
+
+will also report estimates of this ratio in our empirical analysis.
+III
+INSTITUTIONS, DATA AND METHODOLOGY
+Several aspects of the German UI system make it ideal for studying the costs and beneﬁts of UI
+extensions over the business cycle. Discontinuities in eligibility based on exact age allow us to
+estimate the effect of extensions in UI durations using a regression discontinuity (RD) design.
+A particular advantage is that the discontinuities lead to large extensions in the duration of UI
+at multiple age thresholds that are stable over long stretches of time, and thus do not depend on
+the business cycle. The system also provides the necessary detailed, longitudinal data on UI and
+employment spells for large samples needed to credibly implement the RD design over multiple
+years.
+III.A
+The Unemployment Insurance System in Germany
+The German unemployment insurance system provides income replacement to eligible workers
+who lose their job without fault. The replacement rate is ﬁxed, as is the duration of disbursement.
+For an individual without children, the replacement rate is 63 percent of previous net earnings.7
+From the 1980s onwards, the maximum duration of beneﬁts was tied to recipients’ exact age at
+the beginning of the UI spell and their prior labor force history. It is this difference which we
+exploit to estimate the effect of extensions in duration of UI beneﬁts on nonemployment durations.
+Figure I shows the discontinuities in potential beneﬁt duration by age when claiming for the group
+of workers who, given their employment histories, are entitled to the maximum durations in their
+respective age group. Between July 1987 and March 1999, the potential UI duration for workers
+who were younger than 42 was 12 months. For workers between 42 and 43, potential UI duration
+7Workers become eligible to receive UI beneﬁts if they have worked for at least 12 months in the previous three
+years. Workers who lose their jobs because of their own fault or quit are also eligible for UI beneﬁts after a waiting
+period of 12 weeks which are subtracted from their potential UI durations. While exact data on the number of quits
+among UI recipients are not available for our time period, our own calculations show a small spike of 3.5% of UI
+take-up 85 days after the end of a job. UI sanctions for not taking suitable jobs exist but appear to be rarely enforced
+(Wilke 2005). For individuals with children, the replacement rate is 68 percent. We provide more information on the
+institutional details in the Web Appendix.
+10
+
+increased to 18 months; for workers from 44 to 48 (49 to 53), the maximum duration further rose to
+22 (26) months. As further explained below, in our main analysis, we restrict ourselves to workers
+in this age range who qualify for the maximum potential durations to obtain precise measures of
+potential UI durations. At the end of the 1990s, a reform occurred which was meant to reduce
+potential disincentive effects of unemployment insurance. As shown in Figure I, starting in April
+1999, the potential UI durations were lowered and the age thresholds were shifted upwards by
+three years. Thus, in order to be eligible for 18 months or 22 months of beneﬁts, a worker had to
+be at least 45 or 47 on the claiming date. We will use these alternative thresholds to validate our
+main research design.8
+Individuals who exhaust regular UI beneﬁts and whose net liquid wealth falls below a thresh-
+old are eligible for unemployment assistance (UA), which does not have a limited duration. The
+nominal replacement rate is 53 percent, but UA payments are reduced substantially by spousal
+earnings and other sources of income. For example, for a woman whose husband earns as much
+as 10 percent more than her, the UA beneﬁts are zero. Given that about 80 percent of individuals
+in our cohort and age range are married, UA beneﬁts are, on average, about 35 percent for men
+and 10 percent for women. Among all new UI spells in our sample, about 10 to15 percent end up
+taking UA beneﬁts. We study the potential effect of UA on our ﬁndings in our empirical analysis.
+III.B
+Social Security Data
+The data for this paper is the universe of social security records in Germany. For each individual
+working in Germany between 1975 and 2008, the data contains day-to-day longitudinal infor-
+mation on every period of employment in a job covered by social security and every period of
+receiving unemployment insurance beneﬁts, as well as corresponding wages and beneﬁt levels.
+Compared to many other social security data sets, this data is very detailed. We observe several
+8The reform was enacted in 1997 but phased in gradually, so that for people in the highest experience group, which
+constitutes our analysis sample, it only took effect in April 1999 (See Arntz, Lo, and Wilke 2007). To avoid confusion,
+we refer to this as the “1999-regime” in the text. In 2003 and 2004, the entire German social security system underwent
+a comprehensive series of reforms (the Hartz reforms). We use the period between April 1999 and December 2004 as
+a second sample period, thus excluding workers who became unemployed after the last Hartz reform took place.
+11
+
+demographic characteristics, namely gender, education, birth date, nationality, place of residence
+and work, as well as detailed job characteristics, such as average daily wage, occupation, industry,
+and employer characteristics.9
+To study the effect of extensions in potential UI durations, we created our analysis sample by
+selecting all nonemployment spells in this data in the age range of 40 to 49. Given changes in
+the institutional framework discussed in the previous section, we consider unemployment spells
+starting any time between July 1987 and December 2004. This yields over 9 million individual
+periods of unemployment. (Column 2 of Table A-1). For each period of nonemployment , we
+created variables about the previous work history (such as job tenure, experience, wage, industry
+and previous occupation), the duration of receipt of UI beneﬁts in days, the level of UI beneﬁts,
+and information about the next job held after nonemployment.
+Since we do not directly observe whether individuals are unemployed, we follow the previ-
+ous literature and use length of nonemployment as a measure for unemployment durations (Card,
+Chetty, and Weber 2007b). The duration of nonemployment is measured as the time between the
+start of receiving UI beneﬁts and the date of the next registered employment spell. Since some
+people take many years before returning to registered employment while others never do so, we
+cap nonemployment durations at 36 months and set the duration of all longer spells at this cap.
+This has the advantage of reducing the inﬂuence of outliers and avoiding censoring due to the end
+of the observation period in 2008. Our results are robust to the exact choice of the cap.
+The main ’treatment’ variable we are interested in is the potential duration of unemployment
+insurance beneﬁts for any given nonemployment spell. To calculate potential UI duration for each
+observation in our sample, we use information about the law in the relevant time periods together
+with information on exact dates of birth and work histories. This yields precise measures for
+workers who have been employed for a long continuous time and are eligible for the maximum
+potential durations for their age groups. However, the calculation is not as clear cut for workers
+9Individual workers can be followed using a unique person identiﬁer. Since about 80 percent of all jobs are within
+the social security system (the main exceptions are self-employed, students, and government employees) this results
+in nearly complete work histories for a majority of individuals.
+12
+
+with intermittent unemployment spells because of complex carry-forward provisions in the law.
+We thus deﬁne our core analysis sample to be all unemployment spells of workers who have been
+working for at least 52 months of the last seven years and did not receive unemployment insurance
+beneﬁts during that time period. This reduces our sample to about two million new UI spells
+(Column 4 of Table A-1). Below, we show that our results are robust to broadening our sample to
+include workers with weaker labor force attachment.
+Statistics for various samples are shown in the Data Appendix to the paper. As expected,
+relative to a general sample of nonemployment spells in Germany in the same age-range, the sam-
+ple resulting from our restrictions on employment histories is more likely to be male, has higher
+job tenure, and has higher earnings prior to nonemployment. As a result, wage losses upon re-
+employment are larger and elapsed nonemployment spells are somewhat longer. Yet there is lit-
+tle difference in educational attainment, nor are there strong differences in other post-UI career
+outcomes. We conclude that while our main sample is not representative for the full sample of
+nonemployment spells in Germany over this time period, it is likely to be typical of mature unem-
+ployed workers who lost a job during a recession. In our Web Appendix (Table W-14), we also
+show that the degree of job stability and other characteristics of our sample before unemployment
+is comparable to UI recipients in the same age-range in the United States. Hence, our main sample
+also bears similar features of UI populations of the same age-range studied in part of the prior
+literature.
+Elapsed duration in UI and nonemployment spells is large, but similar to what is found in
+studies using comparable data. For example, in the Austrian case, the mean duration of nonem-
+ployment or time between jobs for those reemployed by three years is similar (Card, Chetty, and
+Weber 2007b). The average duration of spells is larger than what is typically found in the United
+States. Yet, the differences are smaller where comparable data is available. This is found for
+the duration of UI spells in Card and Levine (2000), or for nonemployment durations in the US
+Displaced Worker Survey (DWS) we analyzed. In the DWS, among 40 to 49 year old displaced
+workers who have received UI , about 15 percent are still not employed after three years, a ﬁgure
+13
+
+comparable to Germany, where the fraction of individuals whose spell is censored at 36 months is
+23 percent.10
+III.C
+Methodology
+The institutional structure and data allow us to estimate the causal effect of UI beneﬁt durations
+on nonemployment duration and other outcomes using a regression discontinuity design. In a ﬁrst
+step, we exploit the sharp age thresholds in eligibility rules for workers with previously high labor
+force attachment in Germany to estimate the effect of large extensions in UI durations on labor
+supply. We then replicate this approach for every year or year-by-industry in our sample, and
+correlate it with indicators of the business cycle.
+Throughout the paper, the analysis proceeds in two steps. We follow common practice and
+show smoothed ﬁgures to visually examine discontinuities at the eligibility thresholds (Lee and
+Lemieux 2010). To obtain estimates for the main causal effects, we follow standard regression
+discontinuity methodology and estimate variants of the following regression model
+yia = β0 +β1Da≥a∗+ f(a)+εia,
+(4)
+where yia is an outcome variable, such as nonemployment duration, of an individual i of age a.
+Da≥a∗is a dummy variable that indicates that an individual is above the age threshold a∗. For
+our pooled estimates we focus on the longest period for which the UI system was stable, July
+1987 - March 1999, and we use the three sharp thresholds at age 42, 44 and 49.11 We estimate
+equation (4) locally around the three cutoffs and specify f(a) as a linear function while allowing
+different slopes on both sides of the cutoff. In our main results we use a bandwidth of two years on
+each side of the cutoff, but conﬁrm the robustness of our ﬁnding to using even smaller bandwidths.
+We then replicate this approach for different years, industries, demographic groups, and outcomes.
+10For more information regarding data construction and the comparison with the US, see the Web Appendix.
+11There is a fourth discontinuity during this period at age 54. Since, at this age, early retirement becomes common
+and various policies to facilitate early retirement interact with the UI system, we focus on younger workers in this
+paper.
+14
+
+All results are robust to an extensive sensitivity analysis summarized in Section V.
+III.D
+Identiﬁcation Assumptions
+The identiﬁcation assumption of the RD design requires that all factors other than the treatment
+variable vary continuously at the age threshold. If this holds, then estimates for β1 can be inter-
+preted as the causal effect of an increase in potential UI durations on the outcome variable, since
+the ﬂexible continuous function f(a) captures the inﬂuence of all other factors. In our setting, both
+the employer who lays off workers as well as the individual have some inﬂuence on the timing
+of job loss and the claiming of unemployment beneﬁts. Our data allow us to investigate in de-
+tail whether this leads to sorting around the eligibility cutoffs. The overall conclusion from this
+analysis is that our labor supply effects represent valid regression discontinuity estimates.
+One approach for assessing the identiﬁcation assumption is to test for discontinuities in observ-
+able characteristics at the threshold by estimating equation (4) with observable characteristics as
+outcome variables. Table I presents results of these regressions using two-year bandwidths around
+the cutoffs. Of the 21 coefﬁcients in Table I, there are only two statistically signiﬁcant at the ﬁve
+percent level. There is a statistically signiﬁcant increase in the fraction female at the 42-year and
+49-year thresholds, however the magnitudes are still quite small. Examination of corresponding
+regression discontinuity plots (shown in Web Appendix Figure W-1) conﬁrms the conclusion that
+pre-determined characteristics change very little at the thresholds.
+A second standard way of testing the RD assumption is to look at the smoothness of the density
+of unemployment spells around the cutoffs. Figure II (a) shows the number of spells in two-week
+age intervals. On average, there are around 4300 spells in each interval up until age 47, after which
+the number of spells begins to decrease. It appears that at each cutoff there is a slight increase in the
+density in the bin directly on the right of the cutoff. Implementing the test proposed by McCrary
+(2008), this increase is statistically signiﬁcant at the ﬁve percent level for the 42-year and 49-year
+cutoff but of very small magnitude.
+Such an increase could either occur because workers wait until their birthday before claiming
+15
+
+UI beneﬁts, because the probability of claiming UI rises with potential durations, or because ﬁrms
+are more likely to lay off worker with higher potential UI durations. To see whether workers wait
+before claiming UI until they are eligible for extended UI durations, column (1) of Table III below
+shows how the time between job loss and ﬁrst take-up of UI beneﬁts varies around the threshold.
+This provides no indication that people who claim UI to after the threshold have waited longer to
+claim than the people who had claimed before it. This is consistent with the quite small change
+in the density right around the cutoff we found. Only individuals relatively close to the age cutoff
+have economic incentives to wait until after their birthday to claim beneﬁts. Taking into account
+that an individual does not receive UI until claiming, if one ignores the possibility of receiving UA
+after the end of UI and assumes zero discounting, one can show that the average individual (i.e., for
+whom the survivor function of remaining in nonemployment is the same as the empirical survivor
+function in the sample) could have an incentive to wait for up to 3.5 months. Taking UA beneﬁts
+and discounting into account reduces these incentives. We show in the Web Appendix (Section
+3.5) that the presence of UA beneﬁts approximately reduces the months worth waiting by half. In
+combination with behavioral explanations, this may be the reason for the small amount of waiting
+we observe. To directly assess the potential impact of waiting, we also re-estimated our models
+after dropping UI spells with longer gaps between job ending and claiming (Web Appendix Table
+W-4 and Table V). This had no effect on the results.
+To assess whether ﬁrms selectively lay off workers eligible for higher beneﬁt durations, in
+Figure II (b) we show the density of spells with respect to the dates the previous job ended. If
+ﬁrms are more likely to lay off workers with higher UI beneﬁts, the discontinuity should appear
+in this ﬁgure as well. Again there appear to be slight outliers immediately to the right of the 42-
+year and 49-year cutoffs, but less clearly as in Figure II (a). If anything, this could indicate that
+ﬁrms are waiting for a short time to lay off workers until they are eligible to higher UI beneﬁt
+levels. However, it does not appear that ﬁrms are systematically more likely to lay off workers
+with higher levels of UI beneﬁts, since, in such a case, the density would shift up permanently.
+To ascertain that the small shift in the density of the age of layoff does not affect our results, we
+16
+
+follow Card, Chetty, and Weber (2007a) and replicate our ﬁndings with new UI spells that originate
+from employers experiencing multiple layoffs who hence have less scope for selectively laying off
+workers (Web Appendix Tables W-16 and W-17). All our results are robust to this extension.
+Overall, it appears that the discontinuity in the density is driven by, maximally, a few hundred
+spells shifted to the right just around the cutoffs. This is relative to around 450,000 spells in each
+of the four-year intervals. As an additional, conservative approach to assessing the impact of this
+change in density, we calculated bounds on our coefﬁcients. For this purpose, we picked a number
+of workers equal to the excess mass in the density above the threshold and reassigned them to
+the left hand side of the threshold. To simulate the extreme case that workers with long potential
+nonemployment spells selectively deferred ﬁling claims in order to receive higher UI durations, we
+purposefully reallocated those workers with the highest nonemployment durations in our sample.
+This provided very conservative lower bounds of the treatment effect. We used a symmetrical
+approach to obtain upper bounds of the effect (assuming the excess mass is selected based on
+shorter nonemployment durations). As further discussed below, this exercise yielded relatively
+tight bounds and hence conﬁrmed that even extreme effects of selection would not overturn our
+results.
+Overall, since the magnitude of the change in the density is very small (in particular relative
+to the size of our nonemployment results) and there are essentially no discontinuities in other
+variables we do not think this is a threat to the validity of our main estimates. As a robustness
+check, we estimated all our main results below, excluding observations within one month of the
+cutoffs (Web Appendix Tables W-2 and W-3). This has virtually no effect on the magnitude of
+the coefﬁcient at age 42 and a very small effect on the other two coefﬁcients. Furthermore we
+estimated our main speciﬁcations controlling for observables, and again obtained virtually the
+same coefﬁcients.
+17
+
+IV
+THE EFFECT OF UI EXTENSIONS ON LABOR SUPPLY OVER THE BUSINESS CYCLE
+IV.A
+The Average Effect of Large Extensions of UI Durations
+Our ﬁrst set of results pertain to the effect of large increases in potential UI duration on actual
+take-up of UI and labor supply pooled over all years. Of interest in their own right, these ﬁnd-
+ings provide a benchmark for our main analysis and interpretation of differences in the effect of
+UI extensions over the business cycle. Our main ﬁnding is that the labor supply effects of poten-
+tial UI duration implied by our regression discontinuity estimates are modest, similar across age
+thresholds, smaller than the response of actual durations of UI beneﬁts, and consistent with the
+theoretical model outlined in Section II.
+Figure III (a) shows how the duration of UI receipt varies with age at the beginning of the
+unemployment spell. The ﬁgure implies that a large number of individuals are substantially af-
+fected by the increase in potential UI durations. Workers younger than 42 when claiming UI are
+eligible to 12 months of UI beneﬁts, of which they use an average of 6.7 months. At the 42-year
+threshold, UI eligibility increases to 18 months and the average duration or UI receipt increases
+to about 8.5 months. The increases in beneﬁt receipt duration at the other cutoffs are also quite
+substantial. They range from one fourth (at the 44-year cutoff) to one third (at the 49-year cut-
+off) of the increase in the maximum UI durations. The effects of the large UI extensions at the
+age thresholds on nonemployment durations are shown in Figure III (b). There is a clear jump in
+nonemployment durations at the age 42 cutoff from about 15.6 to 16.4 months of nonemployment.
+At age 44, nonemployment durations increase from 16.5 to 16.9 months and, at age 49, from 19.9
+to 20.3. Thus, visual evidence suggests that the UI exten

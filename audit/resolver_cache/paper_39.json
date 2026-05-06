@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_39",
+  "title": "The Impact of Immigration: Why Do Studies Reach Such Different Results?",
+  "authors": "Dustmann, Schonberg & Stuhler",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/jep.30.4.31",
+    "title": "The Impact of Immigration: Why Do Studies Reach Such Different Results?",
+    "year": 2016,
+    "journal": "The Journal of Economic Perspectives",
+    "citations": 391
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "stuhler",
+      "dustmann"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "the journal of economic perspectives",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 391,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

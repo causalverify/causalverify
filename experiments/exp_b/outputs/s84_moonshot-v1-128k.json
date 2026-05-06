@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s84",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Police Staffing on Crime Rates",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:06.350025",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 450,
+    "output_tokens": 424,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal effect of police staffing on crime rates. The key assumption for this approach is that the instrument (cops grant lottery) is correlated with the endogenous variable (police count) and is uncorrelated with the error term in the structural equation (crime rate). This assumption ensures that the instrument is a valid source of exogenous variation in police staffing.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s84_data.csv\")\n\n# First stage regression: police count on cops grant lottery and controls\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage regression: crime rate on predicted police count and controls\nsecond_stage <- lm(y ~ predict(first_stage) + controls, data = data)\n\n# Print the coefficient of the predicted police count in the second stage regression\nsummary(second_stage)$coefficients[2, 1]\n\n# Robustness check: test for overidentifying restrictions (Sargan test)\nivreg(y ~ x | z + controls, data = data)\nsargan_test <- vif(data = data, model = ivreg(y ~ x | z + controls, data = data))\nsargan_test$sargan\n\n# Robustness check: test for weak instruments (F-statistic)\nsummary(first_stage)$fstatistic\n```\n\n## 3. Expected Findings\nWe expect the coefficient of the predicted police count in the second stage regression to be negative, indicating that an increase in police staffing leads to a reduction in crime rates. The magnitude of the effect will depend on the strength of the relationship between police staffing and crime rates. If the instrument is strong and valid, we expect a significant negative coefficient. However, if the instrument is weak or invalid, the results may be inconclusive or biased.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use the cops grant lottery as an instrument for police count.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased police staffing significantly reduces crime rates.",
+    "main_effect": "-0.35"
+  }
+}

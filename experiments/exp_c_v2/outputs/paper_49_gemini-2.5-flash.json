@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_49",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:42:11.541336",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 632,
+    "output_tokens": 164,
+    "content": "The following protocol adheres to the Research Integrity by Design (RID) constraints, strictly following the 5 steps in order.\n\n---\n\n### STEP 1 — PRE-COMMITMENT\n\n*   **Causal Identification Strategy:** I will employ a sharp Regression Discontinuity Design (RDD). The assignment of students to mandatory summer school (the treatment) is determined by a strict, exogenously set cutoff score on the Iowa Test of Basic Skills (ITBS). Students scoring below this cutoff are mandated to attend, while those scoring above are not. This creates a sharp discontinuity in treatment assignment at the cutoff. The RDD strategy assumes that, within a narrow bandwidth around this cutoff, students' unobservable characteristics that influence achievement are smoothly distributed and effectively randomized. Therefore, any discontinuity in the outcome variable (subsequent ITBS",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": null,
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is spring ITBS reading score; cutoff is the minimum proficiency threshold for summer school assignment; students below the cutoff are assigned to mandatory summer school; outcome is subsequent test scores",
+    "key_variables": {
+      "treatment": "mandatory summer school attendance (required for students scoring below the ITBS proficiency cutoff)",
+      "control": "students scoring just above the cutoff (not required to attend summer school)",
+      "outcome": "ITBS reading and math scores in the following fall; also tested in subsequent years for persistence",
+      "time_period": "1997–2000 (CPS academic years)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Remedial summer school has modest but significant positive effects on math achievement, but small and generally insignificant effects on reading achievement. Math scores improve by approximately 0.05-0.10 standard deviations for students assigned to summer school at the RDD cutoff. Reading effects are smaller (~0.02 SD) and not statistically significant. The effects are concentrated in the immediate post-summer-school test and fade somewhat over subsequent years.",
+    "main_effect": "Summer school increases math scores by approximately 0.05-0.10 SD at the cutoff; reading effects are smaller (~0.02 SD) and generally insignificant",
+    "key_robustness": [
+      "Varying bandwidth around the cutoff score",
+      "Separate estimates for 3rd, 6th, and 8th graders",
+      "Polynomial specifications in test score",
+      "McCrary density test for score manipulation",
+      "Persistence of effects in subsequent years (fade-out analysis)",
+      "Separating summer school effect from grade retention effect"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD at the ITBS proficiency cutoff for summer school assignment",
+      "treatment": "Mandatory assignment to 6-week summer school program (binary, determined by ITBS score relative to cutoff)",
+      "event_window": "Test scores measured in fall after summer school (approximately 3 months post-treatment)",
+      "estimation_window": "ITBS scores within bandwidth of cutoff (various bandwidths tested)",
+      "sample_period": "1997–2000",
+      "unit_of_observation": "Individual student in tested grades (3rd, 6th, 8th)",
+      "key_assumption": "Students cannot precisely manipulate their spring ITBS score to sort around the cutoff. Near the cutoff, assignment is as-if random. The test score is a continuous measure with sufficient variation to support local polynomial estimation."
+    },
+    "key_magnitudes": {
+      "math_effect": "+0.05 to +0.10 SD improvement in fall math scores for students at the cutoff (significant at 5%)",
+      "reading_effect": "+0.02 SD improvement in fall reading scores (not significant at conventional levels)",
+      "fade_out": "Math gains diminish by approximately 30-50% by the following year",
+      "compliance": "Approximately 90% of students below the cutoff attend summer school (high compliance = near-sharp RDD)"
+    },
+    "robustness_notes_detail": "McCrary density test shows no manipulation of test scores at the cutoff. The high compliance rate (~90%) means the RDD is effectively sharp. Math effects are robust across bandwidths and polynomial specifications. Reading effects are consistently small and noisy. The differential response across subjects (math vs. reading) is consistent with the structured nature of the summer school curriculum (which focuses on concrete math skills more easily taught in a short program). Grade retention effects (for students who fail summer school) are harder to separate from summer school effects."
+  }
+}

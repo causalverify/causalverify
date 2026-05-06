@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_205",
+  "title": "E-ZTax: Tax Salience and Tax Rates",
+  "authors": "Finkelstein",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2009.124.3.969",
+    "title": "<i>E-ZTAX</i>: Tax Salience and Tax Rates<sup>*</sup>",
+    "year": 2009,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 534
+  },
+  "checks": {
+    "title_jaccard": 0.8,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "finkelstein"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 534,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

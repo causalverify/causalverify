@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_38",
+  "title": "Children and Their Parents' Labor Supply: Evidence from Exogenous Variation in Family Size",
+  "authors": "Angrist & Evans",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w5778",
+    "title": "Children and Their Parents' Labor Supply: Evidence from Exogenous Variation in Family Size",
+    "year": 1996,
+    "journal": "National Bureau of Economic Research",
+    "citations": 501
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "evans",
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 501,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

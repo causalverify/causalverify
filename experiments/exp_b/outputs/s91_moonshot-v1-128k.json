@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s91",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Very-Low-Birth-Weight Classification on Neonatal Mortality",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:46:11.926448",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 427,
+    "output_tokens": 426,
+    "content": "## 1. Identification Strategy\nFor this research question, a Regression Discontinuity Design (RDD) is the most appropriate causal method. The RDD exploits the fact that the treatment (very-low-birth-weight classification) is assigned based on a cutoff in the running variable (birth weight). The key assumption is that there is a sharp change in the probability of treatment at the cutoff, and that there are no other confounding factors that also change at the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s91_data.csv\")\n\n# Define the cutoff point\ncutoff <- 1500  # Assuming the cutoff is 1500 grams based on the data preview\n\n# Create a binary variable for being above or below the cutoff\ndata$cutoff_var <- ifelse(data$running_var >= cutoff, 1, 0)\n\n# Run the RDD analysis\nrdd_result <- rdrobust(data$y, data$cutoff_var, data$running_var, c=500, h=50)\n\n# Print the RDD estimate\nprint(rdd_result$beta.hat)\n\n# Basic robustness check: change the bandwidth\nrdd_result_wide <- rdrobust(data$y, data$cutoff_var, data$running_var, c=500, h=100)\nprint(rdd_result_wide$beta.hat)\n```\n\n## 3. Expected Findings\nI expect the coefficient estimate from the RDD analysis to be negative, indicating that being classified as very-low-birth-weight (i.e., having a birth weight below the cutoff) is associated with higher neonatal mortality rates. The magnitude of the effect will depend on the data, but it is likely to be substantial given the potential health risks associated with very-low-birth-weight. The robustness check with a wider bandwidth should provide a similar estimate, suggesting that the result is not sensitive to the choice of bandwidth.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the discontinuity at the birth weight threshold for classification.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Crossing the threshold for very-low-birth-weight classification increases neonatal mortality.",
+    "main_effect": "0.18"
+  }
+}

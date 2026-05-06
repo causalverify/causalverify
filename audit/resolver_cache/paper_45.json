@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_45",
+  "title": "The Persistent Effects of Peru's Mining Mita",
+  "authors": "Dell",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3982/ecta8121",
+    "title": "The Persistent Effects of Peru's Mining<i>Mita</i>",
+    "year": 2010,
+    "journal": "Econometrica",
+    "citations": 1124
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dell"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1124,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

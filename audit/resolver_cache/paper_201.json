@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_201",
+  "title": "Identification and Estimation of Local Average Treatment Effects",
+  "authors": "Imbens & Angrist",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2951620",
+    "title": "Identification and Estimation of Local Average Treatment Effects",
+    "year": 1994,
+    "journal": "Econometrica",
+    "citations": 4058
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "imbens",
+      "angrist"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 4058,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

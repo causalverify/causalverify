@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s24",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Oil price shocks as IV for inflation on investment",
+  "model": "o3",
+  "run_at": "2026-03-27T20:22:30.987386",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 441,
+    "output_tokens": 1258,
+    "content": "## 1. Identification Strategy  \nMethod: Two-stage least squares (IV).  \nWhy: Inflation (x) is likely endogenous to firm investment (y) because investment itself shapes macro activity and firms may anticipate future inflation. An external shock to world oil prices (z) is used as an instrument for inflation.  \n\nKey assumptions  \n1. Relevance – Oil‐price shocks must be strongly correlated with domestic inflation (Cov(z,x) ≠ 0).  \n2. Exclusion – Conditional on controls, oil shocks affect corporate investment only through the resulting change in inflation (Cov(z,ε)=0). We partially mitigate concerns about direct energy–cost effects by adding firm-level controls and by performing robustness checks that drop extreme oil shocks.  \n3. Linearity and first-stage strength – First-stage F-statistic > 10.\n\n## 2. R Code\n```r\n# ---- 0. Packages ----\nlibrary(AER)        # ivreg\nlibrary(lmtest)     # coeftest, waldtest\nlibrary(sandwich)   # vcovHC\nlibrary(dplyr)      # data wrangling\n\n# ---- 1. Read data ----\ndf <- read.csv(\"experiments/exp_b/data/s24_data.csv\")\n\n# ---- 2. Baseline OLS (for comparison) ----\nols <- lm(y ~ x + controls, data = df)\ncat(\"\\n--- OLS results ---\\n\")\nprint(coeftest(ols, vcov = vcovHC(ols, type = \"HC1\")))\n\n# ---- 3. IV specification ----\niv <- ivreg(y ~ x + controls | z + controls, data = df)\n\n# Robust (HC1) standard errors\niv_se <- vcovHC(iv, type = \"HC1\")\ncat(\"\\n--- IV results (robust s.e.) ---\\n\")\nprint(coeftest(iv, iv_se))\n\n# ---- 4. First-stage diagnostics ----\nfs_f <- summary(iv, diagnostics = TRUE)$diagnostics[\"Weak instruments\", \"df1\"]\nf_stat <- summary(iv, diagnostics = TRUE)$diagnostics[\"Weak instruments\", \"statistic\"]\np_val  <- summary(iv, diagnostics = TRUE)$diagnostics[\"Weak instruments\", \"p-value\"]\ncat(sprintf(\"\\nFirst-stage F-statistic = %.2f (p = %.3f, df1 = %.0f)\\n\", f_stat, p_val, fs_f))\n\n# ---- 5. Robustness 1: add quadratic control ----\niv_quad <- ivreg(y ~ x + controls + I(controls^2) | z + controls + I(controls^2), data = df)\ncat(\"\\n--- IV + quadratic control ---\\n\")\nprint(coeftest(iv_quad, vcovHC(iv_quad, type = \"HC1\")))\n\n# ---- 6. Robustness 2: drop top & bottom 5% oil shocks ----\np95 <- quantile(df$z, 0.95)\np05 <- quantile(df$z, 0.05)\ndf_trim <- df %>% filter(z <= p95 & z >= p05)\niv_trim <- ivreg(y ~ x + controls | z + controls, data = df_trim)\ncat(\"\\n--- IV trimmed sample ---\\n\")\nprint(coeftest(iv_trim, vcovHC(iv_trim, type = \"HC1\")))\n\n# ---- 7. Key numerical result ----\nbeta_iv <- coef(iv)[\"x\"]\nse_iv   <- sqrt(iv_se[\"x\",\"x\"])\ncat(sprintf(\"\\n\\nKEY RESULT: IV estimate of inflation on investment = %.3f (robust s.e. = %.3f)\\n\",\n            beta_iv, se_iv))\n```\n\n## 3. Expected Findings  \nSign: Negative. Higher inflation—instrumented by oil shocks—should lower real corporate investment because (i) inflation raises uncertainty about future real returns and (ii) it is associated with tighter monetary conditions.  \n\nMagnitude: With log investment on the LHS, an IV coefficient around –0.4 to –0.8 is plausible, implying that a 1-percentage-point increase in inflation reduces investment by roughly 0.4-0.8 %. The IV estimate is expected to be more negative (in absolute value) than the OLS estimate because OLS likely suffers from upward bias (periods of high growth entail both higher investment and higher inflation).",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — oil price instrument; must defend exclusion restriction; test overidentification if multiple instruments",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Inflation reduces investment; exclusion restriction requires sector-level controls",
+    "main_effect": "1pp inflation increase → 3% investment reduction (IV estimate)"
+  }
+}

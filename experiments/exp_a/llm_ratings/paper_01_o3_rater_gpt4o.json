@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model correctly identifies a Difference-in-Differences strategy and mentions crucial elements like the use of bank fixed effects and quarter fixed effects, aligning closely with the ground truth's DID approach. However, the AI output does not specify the conclusion direction, leading to a score of 0 for direction match and a 'Narrative Fabrication' failure type.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_01",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T10:40:25.640431+00:00"
+}

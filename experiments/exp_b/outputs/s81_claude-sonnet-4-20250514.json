@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s81",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Peer Ability on Academic Performance",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:02:10.397018",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 494,
+    "output_tokens": 803,
+    "content": "## 1. Identification Strategy\nThis requires an Instrumental Variables (IV) approach. The roommate's ability (z) serves as an instrument for peer quality effects on academic performance. The key assumptions are: (1) Relevance: roommate assignment affects peer quality exposure, (2) Exclusion restriction: roommate's ability only affects student GPA through peer effects, not directly, and (3) Exogeneity: roommate assignment is random/quasi-random, uncorrelated with unobserved student characteristics that affect GPA.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s81_data.csv\")\n\n# Display basic summary statistics\nprint(\"Summary Statistics:\")\nsummary(data)\n\n# First stage regression (relevance check)\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"\\nFirst Stage Results:\")\nprint(summary(first_stage))\n\n# Check instrument strength\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"\\nFirst Stage F-statistic:\", round(f_stat, 3)))\n\n# Reduced form regression\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"\\nReduced Form Results:\")\nprint(summary(reduced_form))\n\n# OLS regression (for comparison)\nols <- lm(y ~ x + controls, data = data)\nprint(\"\\nOLS Results:\")\nprint(summary(ols))\n\n# Two-Stage Least Squares (2SLS) estimation\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"\\n2SLS Results:\")\nprint(summary(iv_model))\n\n# Extract key coefficient\niv_coefficient <- coef(iv_model)[\"x\"]\nprint(paste(\"\\nKey Finding: IV coefficient on peer ability =\", round(iv_coefficient, 4)))\n\n# Robustness checks\nprint(\"\\nRobustness Checks:\")\n\n# Test for weak instruments\nif(f_stat < 10) {\n  print(\"Warning: Weak instrument (F-stat < 10)\")\n} else {\n  print(\"Instrument appears strong (F-stat >= 10)\")\n}\n\n# Compare OLS vs IV coefficients\nols_coef <- coef(ols)[\"x\"]\nprint(paste(\"OLS coefficient:\", round(ols_coef, 4)))\nprint(paste(\"IV coefficient:\", round(iv_coefficient, 4)))\nprint(paste(\"Bias correction:\", round(iv_coefficient - ols_coef, 4)))\n\n# Hausman test for endogeneity\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"\\nDiagnostic Tests:\")\nprint(hausman_test$diagnostics)\n```\n\n## 3. Expected Findings\nI expect a positive coefficient on peer ability (x), indicating that exposure to higher-ability roommates improves academic performance. The magnitude should be moderate (approximately 0.3-0.6), suggesting that a one standard deviation increase in roommate ability leads to a 0.3-0.6 point increase in GPA. The IV estimate may be larger than OLS if there's negative selection bias (weaker students seek out stronger peers) or smaller if there's positive assortative matching that OLS captures but IV corrects for.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use assigned roommate ability as an instrument for peer quality.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "A positive causal relationship between peer ability and student GPA is identified.",
+    "main_effect": 0.3
+  }
+}

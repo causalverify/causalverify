@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_01",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "moonshot-v1-128k",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T15:00:50.366541",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 604,
+    "output_tokens": 925,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nCausal Identification Strategy:\nWe will use a difference-in-differences (DiD) approach to identify the causal effect of the 2008 financial crisis on bank lending. We will compare the change in lending behavior of banks that relied more heavily on short-term wholesale funding (treatment group) to those that relied primarily on retail deposits (control group) around the event of Lehman Brothers' bankruptcy filing.\n\nDirectional Hypothesis:\nWe hypothesize that banks that relied more heavily on short-term wholesale funding reduced their lending more than banks that relied primarily on retail deposits during the 2008 financial crisis.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nSpecifications:\n1. Difference-in-differences (DiD) regression with new loan volume as the dependent variable, a dummy for the post-Lehman period, a dummy for banks with high wholesale funding, and their interaction.\n2. DiD regression with new loan volume as the dependent variable, a dummy for the post-Lehman period, a dummy for banks with high deposit funding, and their interaction.\n3. DiD regression with new loan volume as the dependent variable, a dummy for the post-Lehman period, a dummy for banks with high wholesale funding, a dummy for banks with high deposit funding, and their interactions.\n4. DiD regression with new loan volume as the dependent variable, including bank fixed effects and time fixed effects.\n5. DiD regression with new loan volume as the dependent variable, including bank fixed effects, time fixed effects, and control variables (total assets, deposit composition, short-term borrowings).\n\n**STEP 3 — FALSIFICATION GATE**\n\nEmpirical Result for Rejection:\nWe will reject our hypothesis if the interaction term between the post-Lehman period and the dummy for banks with high wholesale funding is not statistically significant (p > 0.10) or if it shows a sign reversal (indicating that banks with high wholesale funding did not reduce lending more than banks with high deposit funding).\n\n**STEP 4 — R CODE**\n\n```R\n# Load necessary libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Assuming data is in a dataframe called 'bank_data' with the following columns:\n# new_loan_volume, post_lehman, high_wholesale_funding, high_deposit_funding, total_assets, deposit_composition, short_term_borrowings, bank_id, time\n\n# Specification 1\nspec1 <- plm(new_loan_volume ~ post_lehman * high_wholesale_funding, data = bank_data, index = c(\"bank_id\", \"time\"), model = \"within\")\n\n# Specification 2\nspec2 <- plm(new_loan_volume ~ post_lehman * high_deposit_funding, data = bank_data, index = c(\"bank_id\", \"time\"), model = \"within\")\n\n# Specification 3\nspec3 <- plm(new_loan_volume ~ post_lehman * high_wholesale_funding * high_deposit_funding, data = bank_data, index = c(\"bank_id\", \"time\"), model = \"within\")\n\n# Specification 4\nspec4 <- plm(new_loan_volume ~ post_lehman + bank_id + time, data = bank_data, index = c(\"bank_id\", \"time\"), model = \"within\")\n\n# Specification 5\nspec5 <- plm(new_loan_volume ~ post_lehman * high_wholesale_funding + total_assets + deposit_composition + short_term_borrowings + bank_id + time, data = bank_data, index = c(\"bank_id\", \"time\"), model = \"within\")\n\n# Display results\nsummary(spec1)\nsummary(spec2)\nsummary(spec3)\nsummary(spec4)\nsummary(spec5)\n```\n\n**STEP 5 — FINDINGS & GATE ASSESSMENT**\n\nExpected Numerical Results:\nWe expect to find a negative and statistically significant coefficient on the interaction term between the post-Lehman period and the dummy for banks with high wholesale funding in specifications 1 and 3. This would indicate that banks with high wholesale funding reduced their lending more than banks with high deposit funding during the 2008 financial crisis.\n\nGate Assessment:\nIf the interaction term is not statistically significant (p > 0.10) or shows a sign reversal, we will reject our hypothesis. Otherwise, we will conclude that our hypothesis is supported by the data.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ]
+  }
+}

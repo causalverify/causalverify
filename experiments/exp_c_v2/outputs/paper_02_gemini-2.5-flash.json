@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_02",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:01.200498",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 642,
+    "output_tokens": 164,
+    "content": "## Research Integrity by Design (RID) Protocol\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe primary causal identification strategy will be a Difference-in-Differences (DiD) approach. Given that the data description states a \"matched sample of TARP recipients vs. non-recipients using propensity score matching on pre-TARP bank characteristics\" has already been created, we will apply the DiD method to this matched sample. This strategy aims to estimate the causal effect of TARP capital injection by comparing the change in mortgage loan risk-taking for TARP recipient banks (treatment group) to the change for non-recipient banks (control group) after the implementation of TARP. The identification relies on the parallel trends assumption, which implies that in the absence of TARP",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": null,
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks receiving TARP capital (CPP), control = banks that applied but were rejected or did not apply; pre-period = 2006–2008, post-period = 2009–2010",
+    "key_variables": {
+      "treatment": "TARP Capital Purchase Program recipient (binary)",
+      "control": "similar banks that did not receive TARP capital",
+      "outcome": "average loan-to-income ratio of new mortgage originations; share of high-LTI loans",
+      "time_period": "2006–2010, treatment begins Q4 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP recipients originated riskier mortgages (higher LTI, higher LTV) relative to non-recipients after receiving capital",
+    "main_effect": "TARP banks increased average LTI ratio by ~0.25 relative to non-TARP banks post-injection",
+    "key_robustness": [
+      "propensity score matching",
+      "placebo using non-TARP banks that received other support",
+      "heterogeneity by bank size"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences with IV for selection",
+      "treatment": "Banks whose TARP/CPP applications were approved",
+      "control": "Banks whose TARP/CPP applications were denied, plus non-applicants",
+      "event": "TARP CPP approval (bank-specific dates, starting 2008-10-28)",
+      "pre_period": "Pre-TARP (varies by bank approval date)",
+      "post_period": "Post-TARP approval",
+      "unit_of_observation": "Bank-quarter (balance sheet); individual mortgage applications (HMDA); syndicated loan level",
+      "instrument": "Geography-based political connections (bank HQ in district of House Financial Services subcommittee member)",
+      "key_assumption": "Political connections affect TARP approval probability but do not directly affect post-TARP risk-taking (exclusion restriction)"
+    },
+    "key_magnitudes": {
+      "mortgage_risk_shift": "TARP banks approved mortgages with significantly lower loan-to-income ratios post-bailout",
+      "volatility_increase": "Increase in bank stock return volatility and default risk measures post-TARP",
+      "capital_ratio_improvement": "Regulatory capital ratios improved mechanically due to equity injection, concealing risk shift"
+    },
+    "robustness_notes_detail": "Robust to IV (political connections), Heckman selection model, and propensity score matching. Risk shift occurs within asset classes and thus evades risk-weighted capital detection."
+  }
+}

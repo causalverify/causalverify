@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_250",
+  "title": "Evaluating the Cost of Conscription in the Netherlands",
+  "authors": "Imbens & van der Klaauw",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1080/07350015.1995.10524595",
+    "title": "Evaluating the Cost of Conscription in The Netherlands",
+    "year": 1995,
+    "journal": "Journal of Business and Economic Statistics",
+    "citations": 139
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "imbens",
+      "klaauw"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "journal of business and economic statistics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 139,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

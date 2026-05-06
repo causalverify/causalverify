@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_186",
+  "title": "Tax Incentives and the Decision to Purchase Health Insurance: Evidence from the Self-Employed",
+  "authors": "Gruber & Poterba",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.2307/2118419",
+    "title": "Tax Incentives and the Decision to Purchase Health Insurance: Evidence from the Self-Employed",
+    "year": 1994,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 306
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "poterba",
+      "gruber"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "qje",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 306,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

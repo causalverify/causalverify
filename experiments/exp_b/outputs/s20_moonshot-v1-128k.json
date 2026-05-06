@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s20",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Distance to bank as IV for savings rate",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:41.046909",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 439,
+    "output_tokens": 394,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal effect of having a bank account on household savings. The key assumption is that the instrument (distance to the nearest bank branch) is correlated with the endogenous variable (having a bank account) and affects the outcome (household savings) only through the endogenous variable.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s20_data.csv\")\n\n# First stage: distance to account ownership\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Second stage: savings on predicted account ownership\nsecond_stage <- feols(y ~ x + controls | 0 | z, data = data)\n\n# Print the coefficient of the predicted account ownership in the second stage\nprint(coef(second_stage)[\"x\"])\n\n# Robustness check: test for weak instruments\nlibrary(plm)\nivreg_fe <- ivreg(y ~ x | 0 | z, data = data)\nlibrary(lmtest)\nwaldtest(ivreg_fe, \"x\", order.by = \"z\")\n\n# Robustness check: test for overidentifying restrictions\noverid_test <- ovtest(ivreg_fe)\nprint(overid_test)\n```\n\n## 3. Expected Findings\nWe expect the coefficient of the predicted account ownership in the second stage to be positive, indicating that having a bank account increases household savings. The magnitude of the effect will depend on the strength of the instrument and the relationship between account ownership and savings. If the instrument is strong and the relationship is causal, we expect a substantial positive effect. However, if the instrument is weak or the relationship is not causal, the effect may be smaller or even non-significant.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: branch distance; first stage: distance → account ownership (negative)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank account ownership significantly increases savings",
+    "main_effect": "Having an account increases monthly savings by ~40% (IV estimate)"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_52",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:45:28.901509",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 639,
+    "output_tokens": 1985,
+    "content": "BEGIN RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nIdentification strategy  \n• Intention-to-treat (ITT) design exploiting the random timing of audit-report release relative to the October 2004 municipal election.  \n• Treatment indicator T_i = 1 if the CGU audit report for municipality i was publicly released before the 2004 election, 0 if released afterward.  \n• Because both audit selection and release timing are determined by publicly televised lotteries, T_i is as-good-as-random. Simple OLS yields the causal ITT effect.  \n\nDirectional hypothesis  \nH 0 : β_T = 0  \nH 1 : β_T < 0 (The release of audit information before the election lowers the incumbent mayor’s electoral performance.)  \n\nCommitment: I will not alter this strategy or hypothesis.  \n\n--------------------------------------------------  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (max = 5)  \n\nDependent-variable abbreviations  \n• REELEC04 = 1 if the incumbent mayor is re-elected in 2004, 0 otherwise.  \n• VOTE04 = incumbent mayor’s 2004 vote share (0–100).  \n• VOTE00 = incumbent mayor’s 2000 vote share (pre-trend placebo).  \n\nControl variables (where used)  \n• lnPOP = log of 2000 Census municipal population.  \n• REGION dummies = North, Northeast, Center-West, Southeast (South omitted).  \n\nCorruption severity measure  \n• HIGHCORR = 1 if the share of severe or very severe infractions is above the sample median, 0 otherwise.  \n\nCommitted specifications  \n\nSpec 1 REELEC04_i = α + β_T T_i + ε_i  \n\nSpec 2 REELEC04_i = α + β_T T_i + γ lnPOP_i + REGION FE + ε_i  \n\nSpec 3 REELEC04_i = α + β_1 T_i + β_2 HIGHCORR_i + β_3 (T_i × HIGHCORR_i) + ε_i  \n\nSpec 4 VOTE04_i   = α + β_1 T_i + β_2 HIGHCORR_i + β_3 (T_i × HIGHCORR_i) + ε_i  \n\nSpec 5 (placebo) VOTE00_i = α + β_T T_i + ε_i  \n\nNo other specifications, samples, or variable definitions will be used.  \n\n--------------------------------------------------  \n\nSTEP 3 — FALSIFICATION GATE  \n\nPrimary gate (treatment effect):  \n• For Specs 1–4, if β_T (or β_3 for interaction terms) is ≥ 0 OR has two-sided p-value > 0.10, the directional hypothesis is rejected.  \n\nRandomization validity gate:  \n• If in Spec 5 the coefficient β_T is statistically significant at p ≤ 0.10, randomization is suspect and the hypothesis is rejected irrespective of Specs 1–4.  \n\nI will not invoke any other criteria (e.g., first-stage F-tests).  \n\n--------------------------------------------------  \n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n############################################################\n# RID protocol   —   Brazil audit timing & electoral impact\n############################################################\n# Required packages\nlibrary(dplyr)\nlibrary(readr)\nlibrary(broom)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# 1. Load data  (assumes a CSV named \"brazil_audit_data.csv\")\n# Variables expected inside:\n# municipality_id, release_before (0/1), reelected_2004 (0/1),\n# vote_share_2004, vote_share_2000, severe_share,\n# pop2000, region                                  ############\ndat <- read_csv(\"brazil_audit_data.csv\")\n\n# 2. Construct analysis variables\ndat <- dat %>%\n  mutate(\n    T        = release_before,\n    lnPOP    = log(pop2000),\n    HIGHCORR = ifelse(severe_share > median(severe_share, na.rm = TRUE), 1, 0)\n  )\n\n# 3. Helper: cluster-robust SEs by municipality (singleton clusters OK)\ncl_vcov <- function(model){\n  vcovCL(model, cluster = dat$municipality_id, type = \"HC1\")\n}\nc_se <- function(model){\n  sqrt(diag(cl_vcov(model)))\n}\n\n# 4. Run pre-committed specifications\nspec1 <- lm(reelected_2004 ~ T, data = dat)\nspec2 <- lm(reelected_2004 ~ T + lnPOP + factor(region), data = dat)\nspec3 <- lm(reelected_2004 ~ T*HIGHCORR, data = dat)\nspec4 <- lm(vote_share_2004 ~ T*HIGHCORR, data = dat)\nspec5 <- lm(vote_share_2000 ~ T, data = dat)\n\n# 5. Collect results\nresults <- list(spec1, spec2, spec3, spec4, spec5) %>%\n  lapply(function(m){\n    tidy(m, conf.int = TRUE, se = c_se(m))\n  })\n\n# 6. Print condensed output\nnames(results) <- paste0(\"Spec\", 1:5)\nresults\n```\n\nThe code above implements exactly Specs 1–5 and nothing else; it uses cluster-robust standard errors by municipality and prints coefficient tables.  \n\n--------------------------------------------------  \n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \n\nBased on prior literature (Ferraz & Finan 2008) I anticipate:  \n\nSpec 1: β_T ≈ –0.12 (SE ≈ 0.05) p ≈ 0.02  \nSpec 2: β_T ≈ –0.11 (SE ≈ 0.05) p ≈ 0.03  \nSpec 3: β_3 (interaction) ≈ –0.18 (SE ≈ 0.07) p ≈ 0.01  \nSpec 4: β_3 ≈ –6.0 percentage-points (SE ≈ 2.5) p ≈ 0.02  \nSpec 5: β_T ≈ 0.2 pp (SE ≈ 1.8) p ≈ 0.91  \n\nGate assessment  \n\n• Primary gate: All relevant coefficients are negative and statistically significant at the 10% level → hypothesis NOT rejected.  \n• Randomization gate: Spec 5 shows no pre-treatment effect (p > 0.10) → gate passed.  \n\nConclusion (within RID constraints): The anticipated results would uphold the hypothesis that publicly released information about corruption decreases Brazilian incumbents’ electoral success.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Regression discontinuity / natural experiment based on random audit timing — the running variable is the timing of audit report release relative to the October 2004 election; municipalities whose reports were released before the election (voters informed) compared to those released after (voters uninformed); random lottery determines timing",
+    "key_variables": {
+      "treatment": "audit report publicly released before the October 2004 municipal election (binary, determined by random lottery timing)",
+      "control": "audit report released after the election (voters did not have corruption information when voting)",
+      "outcome": "incumbent mayor's vote share in October 2004 election; probability of re-election",
+      "time_period": "Audits 2003-2005; elections October 2004"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Voters significantly punish corrupt incumbents when they have information from audit reports. Incumbents found to have two or more corruption violations whose reports were released before the election received approximately 7 percentage points fewer votes than equally corrupt incumbents whose reports were released after the election. The effect is concentrated among incumbents with severe corruption findings and is larger in municipalities with local radio stations (better information dissemination).",
+    "main_effect": "Pre-election audit release reduces corrupt incumbents' vote share by approximately 7 percentage points; effect is larger with more corruption violations and with local radio coverage",
+    "key_robustness": [
+      "Controlling for number and severity of audit violations",
+      "Interaction with local media presence (radio stations amplify the information effect)",
+      "Placebo: no effect of audit timing on non-corrupt incumbents (those with zero violations)",
+      "Balance tests: pre-election and post-election audit municipalities are similar on observables",
+      "Continuous measure of corruption severity (not just binary corrupt/not corrupt)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Natural experiment based on random audit lottery timing; regression of incumbent vote share on audit-before-election indicator interacted with corruption level; equivalent to a DID where 'treatment' is information exposure",
+      "treatment": "Audit report released before October 2004 election (binary, randomly determined by lottery schedule)",
+      "event_window": "October 2004 municipal election",
+      "estimation_window": "Audits conducted 2003-2005; comparison of pre- vs post-election release groups",
+      "sample_period": "2003–2005 (audits); 2004 (election)",
+      "unit_of_observation": "Municipality (approximately 600 audited municipalities)",
+      "key_assumption": "The timing of audit report release (before vs. after the election) is random, determined by the lottery schedule. Municipalities audited before vs. after the election are comparable in all characteristics. The random lottery ensures that pre-election audit municipalities are not selected based on anticipated electoral outcomes."
+    },
+    "key_magnitudes": {
+      "vote_share_penalty": "-7 percentage points for corrupt incumbents (2+ violations) with pre-election report release",
+      "no_corruption_effect": "No significant vote share effect for incumbents with 0 violations (placebo: information about honest governance does not change votes)",
+      "radio_amplification": "Effect approximately 2x larger in municipalities with local radio stations (better information dissemination)",
+      "re_election_probability": "Corrupt incumbents with pre-election release approximately 20 percentage points less likely to win re-election"
+    },
+    "robustness_notes_detail": "Balance tests confirm that pre-election and post-election audit groups are similar on municipality characteristics (population, income, education, prior election outcomes). The placebo result (no effect on non-corrupt incumbents) rules out a general 'audit attention' effect and isolates the corruption information channel. The interaction with radio stations provides causal evidence on the media's role in democratic accountability. Results are robust to controlling for municipality fixed characteristics and state fixed effects."
+  }
+}

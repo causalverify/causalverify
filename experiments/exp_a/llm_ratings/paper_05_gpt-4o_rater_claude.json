@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "Perfect strategy match - AI correctly identifies event study methodology with the exact same event dates (first public announcement and final SEC enforcement action) and uses matched control firms. However, the AI doesn't state the direction of the expected effect (negative impact on stock prices), which is a clear conclusion from the ground truth showing -38% market value loss.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_05",
+  "scored_model": "gpt-4o",
+  "timestamp": "2026-03-30T13:05:20.361411+00:00"
+}

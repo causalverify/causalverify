@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s06",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Import tariff on domestic firm investment",
+  "model": "o3",
+  "run_at": "2026-03-27T20:16:30.753299",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 478,
+    "output_tokens": 1298,
+    "content": "## 1. Identification Strategy\nMethod: Difference-in-Differences (two-way fixed effects).  \nWhy: We have panel data with a clearly defined treatment group (steel/aluminum producers) and a sharp policy change that begins in period 4 (2018 Q2). DID compares the average change in log capital expenditures of treated firms before vs. after the tariff to the corresponding change for control firms.\n\nKey identifying assumption – Parallel Trends: In the absence of the tariff, treated and control firms would have followed the same trend in investment. Additional assumptions: no interference between firms (SUTVA) and no simultaneous shocks differentially affecting only treated firms in the post period.\n\n## 2. R Code\n```r\n# -------------------------------------------------------------\n#  Steel Tariff DID Analysis\n# -------------------------------------------------------------\n# 1. Packages\nif (!requireNamespace(\"fixest\", quietly = TRUE)) install.packages(\"fixest\")\nif (!requireNamespace(\"sandwich\", quietly = TRUE)) install.packages(\"sandwich\")\nif (!requireNamespace(\"lmtest\",  quietly = TRUE)) install.packages(\"lmtest\")\n\nlibrary(fixest)    # fast high-dimensional fixed-effects\nlibrary(lmtest)    # for coeftest\nlibrary(sandwich)  # clustered vcov\n\n# 2. Read data\npath <- \"experiments/exp_b/data/s06_data.csv\"\ndf   <- read.csv(path)\n\n# Quick checks\nprint(head(df)); print(summary(df$y))\n\n# 3. Vanilla two-way FE DID\ndid_mod <- feols(y ~ treat_x_post | unit_id + period, \n                 cluster = ~unit_id, data = df)\n\ncat(\"\\n=== Baseline DID result ===\\n\")\nprint(etable(did_mod, se = \"cluster\"))\n\n# 4. Robustness check 1: Event-study (dynamic effects)\n#    Relative time: 0 = first treated quarter (period 4)\ndf$rel_time <- df$period - 4          # tariff happens in period 4\nevent_mod <- feols(y ~ i(rel_time, treated, ref = -1) | unit_id + period,\n                   cluster = ~unit_id, data = df)\n\ncat(\"\\n=== Event-study coefficients (pre-trends robustness) ===\\n\")\nprint(etable(event_mod, keep = \"rel_time::\", se = \"cluster\"))\n\n# 5. Robustness check 2: Placebo treatment one period earlier\ndf$placebo_post        <- ifelse(df$period >= 3, 1, 0)\ndf$placebo_treatxpost  <- df$treated * df$placebo_post\n\nplacebo_mod <- feols(y ~ placebo_treatxpost | unit_id + period,\n                     cluster = ~unit_id, data = df)\n\ncat(\"\\n=== Placebo DID (fake start in period 3) ===\\n\")\nprint(etable(placebo_mod, se = \"cluster\"))\n\n# 6. Summarise key numerical result\ncoef_est <- coef(did_mod)[\"treat_x_post\"]\nse_est   <- did_mod$se[\"treat_x_post\"]\ncat(sprintf(\"\\nBaseline DID coefficient (log points): %.4f  (SE = %.4f)\\n\",\n            coef_est, se_est))\ncat(sprintf(\"Approximate percent change in cap-ex: %.2f%%\\n\",\n            100*(exp(coef_est)-1)))\n```\n\n## 3. Expected Findings\nEconomic intuition suggests the tariff raised domestic prices and profits for U.S. steel producers, freeing up cash flow for new investment. Hence we expect a positive treatment effect: treated firms’ log cap-ex should rise relative to controls. Magnitude: roughly +0.07–0.10 log points (≈7–10 % higher quarterly investment) in the post-tariff periods. Robustness checks should show (i) flat, statistically insignificant pre-trend coefficients and (ii) a null effect in the placebo DID.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treated=protected sector firms, control=unaffected manufacturers",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Tariff-protected firms increase capex relative to non-protected peers",
+    "main_effect": "22% higher investment in treated firms post-tariff"
+  }
+}

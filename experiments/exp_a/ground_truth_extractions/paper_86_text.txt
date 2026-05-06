@@ -1,0 +1,621 @@
+How do Extended Beneﬁts aﬀect Unemployment Duration?
+A Regression Discontinuity Approach
+Rafael Lalive
+University of Lausanne and CEPR∗
+First version: February 24, 2006
+This version: January 18, 2007
+Abstract
+This paper studies a targeted program that extends the maximum duration of unemployment
+beneﬁts from 30 weeks to 209 weeks in Austria. Sharp discontinuities in treatment assignment
+at age 50 and at the border between eligible regions and control regions identify the eﬀect
+of extended beneﬁts on unemployment duration.
+Results indicate that the duration of job
+search is prolonged by at least .09 weeks per additional week of beneﬁts among men, whereas
+unemployment duration increases by at least .32 weeks per additional week of beneﬁts. This
+ﬁnding is consistent with a lower early retirement age applying to women.
+JEL-Classiﬁcation: C41, J64, J65
+Keywords: beneﬁt duration, unemployment duration, early retirement, regression discontinuity
+∗Address: University of Lausanne, HEC/DEEP, CH-1015 Lausanne, Rafael.Lalive@unil.ch, Tel. +41 21 692
+3431, Fax. +41 21 692 33 05. I am also aﬃliated with CESifo, IEW, IFAU, and IZA.
+
+1
+Introduction
+Structural unemployment diﬀers tremendously among countries at relatively similar stages of
+economic development. For instance, the 20 OECD member countries analyzed by Nickell and
+Layard (1999) are characterized by an average unemployment rate over the period 1983 to
+1996 of about 8 %; but the standard deviation in unemployment rates across these countries
+amounts to more than 4 %.
+The literature on labor market institutions documents strong
+diﬀerences in policies that appear to contribute to unemployment with unemployment insurance
+being one of the most important candidate explanations. In particular, the potential duration
+of unemployment beneﬁts is strongly correlated with structural unemployment (Nickell and
+Layard, 1999). The idea is that extended beneﬁt duration discourages job search and thus leads
+to prolonged unemployment duration.
+This paper proposes to identify the causal eﬀect of extending beneﬁts on the duration of
+job search using information on a unique policy change in Austria. In June 1988, the Austrian
+government extended the potential duration of unemployment beneﬁts from 30 weeks to 209
+weeks for job seekers aged 50 or older when entering unemployment, living for at least 6 months in
+certain regions of Austria, who satisfy a previous work requirement. There are several interesting
+aspects of this regional extended beneﬁt program (REBP). First, the REBP provides a unique
+opportunity to study the eﬀect of a dramatic increase in the potential beneﬁt duration by almost
+3.5 years. The existing literature on the eﬀects of potential beneﬁt duration on unemployment
+duration are primarily based on extensions of beneﬁt duration by one or two quarters.1
+Second, the program is strictly targeted with respect to age at entry into unemployment
+and place of residence – two dimensions that can be readily observed in the available data.
+The age based identiﬁcation strategy compares job seekers who are aged 50 years to job seekers
+who just fail the age requirement. This strategy is intuitively appealing because both groups
+of job seekers are basically of the same age. However, since the program was strictly applied
+conditional on having completed the 50th year of age, the slightly older group of job seekers has
+access to REBP whereas the slightly younger group of job seekers does not have access to REBP.
+Thus assignment to treatment takes place in a so-called ”sharp” regression discontinuity design
+(Hahn et al., 2001). One potentially important concern with this strategy is that ﬁrms and
+workers could try to manipulate age at entry into unemployment. In particular, ﬁrms might be
+willing to oﬀer to their employees not to lay them oﬀuntil they just satisfy the age requirement.2
+1For instance, Katz and Meyer (1990) use state variation in federal supplementation of potential beneﬁt
+duration by one quarter (13 week) triggered by high unemployment.
+Lalive et al. (2006) study changes in
+potential beneﬁt duration in Austria by 9, and 22 weeks respectively.
+2Such a reaction can invalidate the regression discontinuity assumption that average unemployment duration
+for individuals just missing the age threshold is informative on the counterfactual duration without treatment for
+1
+
+The paper therefore proposes to focus on the second threshold, the border between treated and
+control regions, to identify the eﬀect of REBP on unemployment duration. This geography based
+strategy contrasts individuals living close to both sides of the border between treated and control
+regions. This contrast is appealing because labor market conditions are quite similar within a
+tightly deﬁned geographical area. Moreover, in contrast to age at entry into unemployment,
+region of residence can not be readily manipulated because workers have to move from control
+to treated regions well in advance of the eventual layoﬀ.
+Third, Austrian social insurance legislation allows for early retirement at age 54 years for
+unemployed women but only at age 59 years for unemployed men. This means that REBP can
+also be used to study the interactions between unemployment insurance provisions and early re-
+tirement rules. Speciﬁcally, by performing separate analyses for women and men, this paper can
+discuss the likely impacts of having an early retirement option after exhausting unemployment
+beneﬁts among women compared to not having this option among men.
+This paper contributes to two strands of the literature. The ﬁrst strand is concerned with
+measuring the eﬀects of potential beneﬁt duration on unemployment duration. A selective list
+of contributions includes Card and Levine (2000), Hunt (1995), Katz and Meyer (1990), Lalive
+and Zweim¨uller (2004b), Moﬃtt (1985), Moﬃtt and Nicholson (1982), Winter-Ebmer (1998) and
+Van Ours and Vodopivec (2006). These contributions to the literature are primarily based on
+diﬀerences-in-diﬀerences approaches.3 The present paper goes beyond the existing literature in
+proposing to use the regression discontinuity approach. This design is appealing. Berger et al.
+(2005) ﬁnd that the regression discontinuity design very robustly identiﬁes the eﬀect that would
+be found in a randomized experiment. The smaller second strand of the literature discusses
+interactions between unemployment insurance and early retirement.
+Heyma and Van Ours
+(2006) study how the early retirement option aﬀects job ﬁnding rates among older workers in
+the Netherlands. Riphahn (1997) compares the determinants of transitions into unemployment
+and disability among older workers in German data. She concludes that critical variables such
+as individual health or aggregate unemployment have clearly diﬀerent eﬀects on the two forms
+of exit from employment. Dahl et al. (1999) reach a similar conclusion using Norwegian data.
+The main contributions of this paper are the following. First, the paper studies a dramatic
+change in potential beneﬁt duration. This is appealing from an economic viewpoint because
+it provides evidence on the maximum extent to which changing the potential beneﬁt duration
+individuals who have just turned 50 years. See McCrary (2005) and Lee and McCrary (2005) for a discussion of
+manipulation in the regression discontinuity design.
+3In the static labor supply literature, Lemieux and Milligan (2005) study the incentive eﬀects of social assistance
+on the decision to work in a regression discontinuity design (RDD) and discuss the relationship between the RDD
+and the diﬀerences-in-diﬀerences approach. Moreover, Card et al. (2006) discuss the likely reasons for the eﬀects
+of extended beneﬁts on unemployment duration exploiting discontinuities in Austrian severance pay rules.
+2
+
+contributes to unemployment. Moreover, because the treatment dose is so large, a graphical
+analysis of the treatment eﬀect is quite informative. Second, this paper identiﬁes the eﬀects
+of the same change in potential beneﬁt duration at two thresholds – the age threshold and the
+border threshold. This is useful because the regression discontinuity assumption may be satisﬁed
+for the geographic analysis but not necessarily for the age based strategy. Moreover, because the
+eﬀect of treatment may depend on the characteristics of individuals, this paper illustrates that
+the average eﬀects identiﬁed at two thresholds do not agree because the underlying threshold
+populations diﬀer. Third, the analysis uses rich, high quality, comprehensive data from two
+administrative sources, the Austrian social security database, and the Austrian unemployment
+insurance register. These data provide a comprehensive account of the entire work history of
+individuals since the year 1972. Moreover, the data record very accurately both the age at entry
+into unemployment and the place of residence of job seekers. These two pieces of information are
+crucial in implementing a convincing regression discontinuity identiﬁcation strategy. Fourth, the
+data cover the universe of all unemployment spells. This allows concentrating on unemployment
+spells that are fairly close to the age and border thresholds thus limiting the possible biases due
+to mis-speciﬁcation. Indeed, results indicate that the eﬀects of both age and distance border on
+average unemployment duration can be captured in a relatively simple manner – a model with a
+linear trend on both sides of the threshold. This means that the empirical analysis convincingly
+identiﬁes the eﬀect of extended beneﬁts and early retirement rules on unemployment duration.
+Fifth, many countries are developing strategies for their pension systems to be able to cope with
+rapidly ageing populations. This paper argues that it may be important to focus on pathways
+to retirement that are generated by social assistance programs outside the pension system.
+The outline of this paper is as follows. Section 2 provides background on the unemployment
+insurance system, on the regional extended beneﬁt program, and on the early retirement rules
+in Austria. Section 3 discusses the dataset and provides descriptive statistics on the sub-samples
+of eligible and ineligible job seekers used in the main analysis. Section 4 provides descriptive
+evidence on the eﬀects of REBP on unemployment duration, on the composition of the unem-
+ployment inﬂow, and on the size of the unemployment inﬂow. Section 5 discusses identiﬁcation
+and estimation of treatment eﬀects in the regression discontinuity design. Section 6 provides the
+regression analysis of the eﬀects of REBP on unemployment duration, and section 7 concludes
+this paper with a summary of our ﬁndings.
+3
+
+2
+Background
+This section discusses the Austrian unemployment insurance and early retirement rules and it
+provides background on the REBP. Moreover, the section discusses why the REBP may aﬀect
+women diﬀerently from men.
+Unemployment insurance: The design of the Austrian unemployment insurance system
+is encoded in a national unemployment insurance law (Arbeitslosenversicherungsgesetz). Before
+August 1989, an unemployed person could draw regular unemployment beneﬁts (UB) for a maxi-
+mum period of 30 weeks provided that he or she had paid unemployment insurance contributions
+for at least 156 weeks within the last 5 years.4 In August 1989 the potential duration of UB
+payments became dependent not only on previous experience but also on age at the beginning
+of the unemployment spell. Beneﬁt duration for the age group 40-49 was increased to 39 weeks
+if the unemployed has been employed 312 weeks within the last 10 years prior to the current
+spell. For the age group 50 and older, UB-duration was increased to 52 weeks if the unemployed
+has been employed for at least 468 weeks within the last 15 years.
+Voluntary quitters and workers discharged for misconduct can not claim beneﬁts until a
+waiting period of 4 weeks has passed.
+UB recipients are expected to search actively for a
+new job that should be within the scope of the claimant’s qualiﬁcations, at least during the
+ﬁrst months of the unemployment spell. Non-compliance with the eligibility rules is subject to
+beneﬁt sanctions that can lead to the withdrawal of beneﬁts for up to 4 weeks.
+Compared to other European countries, the replacement ratio (UB relative to gross monthly
+earnings) is rather low. The amount of UB payments depends on previous earnings and, in 1990,
+the replacement ratio was 40.4 % for the median income earner; 48.2 % for a low-wage worker
+who earned half the median; and 29.6 % for a high-wage worker earning twice the median. On
+top, family allowances are paid. UB payments are not taxed implying that net-replacement
+rates are substantially higher than 40 %, and there is no experience rating of ﬁrms.
+After UB payments have been exhausted, job seekers can apply for ’transfer payments for
+those in need’ (Notstandshilfe).5 As the name indicates, these social assistance transfers are
+means-tested. Social assistance payments depend on the income and wealth situation of other
+family members and close relatives and may, in principle, last for an indeﬁnite time period. These
+transfers are granted for successive periods of 39 weeks after which eligibility requirements are
+recurrently checked. The social assistance transfers are lower than UB and can at most be 92
+% of UB. In 1990, the median post-UB transfer payment was about 70 % of the median UB
+4UB duration was 20 weeks for job-seekers who did not meet this requirement. This paper focuses on individuals
+who were entitled to at least 30 weeks of beneﬁts.
+5This implies that job seekers who do not meet UB eligibility criteria can apply at the beginning of their spell
+4
+
+among job seekers who were eligible for social assistance. Note however, that individuals who
+are eligible for such transfers may not be comparable to individuals who collect UB because not
+all individuals who exhaust UB pass the means test. The majority of the unemployed (59 %)
+received UB whereas 26 % received social assistance transfers.
+The Regional Extended Beneﬁts Program: The background of the REBP is strongly
+tied to the history of the Austrian steel sector. To protect its assets after World War II from
+Soviet appropriation and to provide the capital needed for reconstruction, Austria nationalized
+its iron, steel, and oil industries, large segments of the heavy engineering and electrical industries,
+most of the coal mines, and the nonferrous metals industries. State owned ﬁrms in manufacturing
+were part of a large holding company, the Oesterreichische Industrie AG, OeIAG. By the mid-
+1970s this holding company was running into serious problems related to shrinking markets,
+overstaﬃng, too heavy concentration on outmoded smokestack industries, insuﬃcient research
+and development, and low productivity. Initially, the Austrian government covered the losses
+by subsidies. But in 1986, after the steel industry was hit by an oil speculation scandal and
+failure of a U.S. steel plant project, this protectionist policy was abolished. A new management
+was appointed and a strict restructuring plan was implemented. This plan aimed at focusing on
+the holdings’ core competencies. The result were layoﬀs due to plant closures and downsizing,
+particularly in the steel industry.
+To mitigate the labor market problems in the concerned regions the Austrian government
+enacted a law that extended UB-entitlement to 209 weeks for a speciﬁc subgroup. An unem-
+ployed worker became eligible to 209 weeks of UB if he or she satisﬁed, at the beginning of his
+or her unemployment spell, each of the following criteria: (i) age 50 or older; (ii) a continuous
+work history (780 employment weeks during the last 25 years prior to the current unemploy-
+ment spell); (iii) location of residence in one of 28 selected labor market districts since at least
+6 months prior to the claim; and (iv) start of a new unemployment spell after June 1988 or
+spell in progress in June 1988. The REBP was initially expected to be in eﬀect until December
+1991. However, the Austrian parliament decided at the end of 1991 to extend the program until
+August 1993 when it was eventually abolished.
+The minister for social aﬀairs, a member of the ruling party SP¨O, was in charge of selecting
+those regions that became eligible to the program. Records of the meetings in which the set of
+regions eligible to the program was decided are not open to the public. However, Lalive and
+Zweim¨uller (2004a) show that eligible regions were characterized by a strong concentration of
+employment in the steel sector and that there are no diﬀerences between regions in terms of
+unemployment. These two facts support an explanation that the program was targeted towards
+5
+
+regions with a relatively high share of employment in the steel sector rather than towards
+regions with high structural unemployment. Note that except for the REBP, all other labor
+market institutions do not diﬀer across regions.
+This discussion implies, ﬁrst, that it might be diﬃcult to draw reliable evidence on the
+eﬀect of REBP from a global comparison of treated and control regions because these regions
+are characterized by a diﬀerent industry structure. However, a local comparison at the border
+between treated and control regions can be quite informative if communities located on both
+sides of the border are similar in terms of industry and age structure. Second, it is clear that
+individuals entering unemployment from a job in the steel industry were not only facing a
+diﬀerent unemployment insurance regime but were aﬀected by the restructuring of the steel
+sector. Thus it is very diﬃcult to isolate the eﬀects of extended beneﬁts on unemployment
+duration in the non-steel inﬂow. This paper therefore proposes to focus on the non-steel inﬂow.
+Note that more than 80 % of all job seekers were not previously employed in the steel sector.
+This means that concentrating on the non-steel inﬂow allows identifying the eﬀects of extended
+beneﬁts on an important sub-sample of the entire unemployment inﬂow.
+Early Retirement Rules: Austrian social security legislation provides for regular old age
+pensions at age 65 for men and age 60 for women. Pension beneﬁts depend on contributions
+to the pension system in the 156 months (13 years) prior to leaving the labor force, and on the
+total number of months contributed to the pension system.
+There are two early retirement pathways available at age 60 for men and at age 55 for women.
+The ﬁrst is provided for individuals who have a long contribution history, that is, worked for at
+least 420 months (35 years) prior to claiming early retirement. Also, individuals applying for
+this early retirement option must have worked for at least 2 out of the previous 3 years before
+entering early retirement. The second early retirement option is available to individuals who
+have spent at least 12 out of the previous 15 months claiming unemployment beneﬁts, post-UB
+transfers, or special income support.
+A third measure aﬀecting older workers is Sonderunterst¨utzung (special income support).
+This measure was originally created in January 1974 to support individuals in the mining sector
+who were permanently displaced just prior to becoming eligible for early retirement. The special
+income support program provides beneﬁts for at most one year; beneﬁts are 25 % higher than
+unemployment beneﬁts capped from above by the pension beneﬁt the individual is expected to
+receive from the pension system. In 1979, the system was extended to cover all men aged 59 years
+or older and women aged 54 years or older, provided they had contributed to the pension system
+for at least 15 out of the previous 25 years. Note that the previous contribution requirement for
+6
+
+the special income support is identical to the contribution requirement for REBP.
+Hypotheses: The eﬀects of the REBP for men can be analyzed in the standard job search
+framework where job seekers receive unemployment beneﬁts as long as they have not exhausted
+the potential beneﬁt duration. Thereafter job seekers are eligible for reduced social assistance
+transfers.
+Mortensen (1977) argues that extending the potential beneﬁt duration in such a
+system tends to reduce the transition rate to regular jobs because it postpones the exhaustion
+of regular unemployment beneﬁts.6
+This reduction in the unemployment exit rate leads to
+prolonged unemployment duration.
+In contrast to men, women have access to special income support once unemployment beneﬁts
+have been exhausted. This means that in contrast to the standard job search model, eligible
+women are facing an upward sloping time path of beneﬁts discouraging job search strongly.7
+Thus, REBP is expected to prolong unemployment duration much more strongly for women
+than for men.
+Moreover, ﬁrms and workers may even use REBP to change their early retirement strategies.
+Laying oﬀan older worker who is unproductive but has been employed with the ﬁrm for a long
+period damages the reputation of the ﬁrm. In contrast, oﬀering this worker an early retirement
+option is a way to end the employment relationship without damaging one’s reputation among
+on-going jobs. Thus, providing early retirement is an attractive option for ﬁrms who want to
+keep a reputation as a long-term employer but also desire to end employment relationships that
+are marginally unproductive. In general, ﬁnancing early retirement is costly. However, since
+REBP replaces at least 40 % of previous income, this strategy becomes attractive for ﬁrms
+who expect signiﬁcant savings from ending an employment relationship but do not want to be
+perceived as reneging on a promise of long-term employment. They merely need to provide
+severance pay to top oﬀunemployment beneﬁts in order to reach the level of a regular old
+age pension.
+Analyzing unemployment duration is informative on the extent to which such
+agreements may have taken place.
+Women with access to an early retirement package are
+certain not to leave unemployment until they reach age 54 (special income support program
+starts; income while unemployed is lower than special income support) or age 55 (regular early
+retirement program starts; income while unemployed is higher than special income support).
+This means that the duration of unemployment among eligible women with an early retirement
+option is a monotonically decreasing function of the time from age at entry into unemployment
+to age 54/55 years.
+6Lalive et al. (2006) ﬁnd that this is indeed the case for small beneﬁt extensions.
+7These predictions have been recently developed in the standard job search model (Hairault et al., 2006).
+7
+
+3
+Data
+To assess the impact of beneﬁt duration and early retirement rules on the duration of unem-
+ployment spells, I use longitudinal individual data from two diﬀerent sources: (i) the Austrian
+social security database (ASSD) which contains detailed information on the individuals’ age,
+employment, unemployment and earnings history since the year 1972, and some information
+on the employer like region and industry aﬃliation; and (ii) the Austrian unemployment reg-
+ister (AUR) from which I get information on the place of residence (community) and relevant
+socio-economic characteristics. The data cover the universe of the unemployment inﬂow over
+the period 1986 to 1995. The corresponding spells are followed up until the end of 1998.
+Unemployment duration is measured in weeks registered at the unemployment oﬃce. There
+are two important issues with analyzing unemployment duration. First, changes in beneﬁt du-
+ration may aﬀect weeks of registered unemployment in a purely mechanical way if all individuals
+are deregistered once unemployment beneﬁts have lapsed. We investigate the sensitivity of our
+results to measuring time in the unemployment register by also analyzing the time from regis-
+tering at the unemployment insurance oﬃce until the next job starts.8 Our main ﬁnding is that
+the results are not aﬀected by the type of duration measure used in a quantitatively important
+manner. Second, note that average unemployment duration is not aﬀected by right censoring
+because spells are observed until the end of 1998. Thus, fewer than 1% of all unemployment
+spells are right censored in the data.
+The empirical analysis extracts information on individuals entering unemployment from a job
+in the non-steel sector in the time period 1/1986 until 12/1987 (before REBP) and in the time
+period 8/1989 until 7/1991 (during REBP). The ﬁrst time period covers the situation before
+REBP was introduced.
+We restrict attention to the period after January 1986 because the
+Austrian unemployment register only started in 1986. Moreover, we do not include information
+on the period 1/1988 until 5/1988 because spells starting in this time period may already be
+aﬀected by REBP.9 The ’during REBP’ time period covers the longest possible time period
+where REBP is introduced but no other changes in beneﬁt entitlement take place.
+(Recall
+that the maximum unemployment duration was changed as of August 1989.) Furthermore, the
+analysis disregards the fourth quarter inﬂow into unemployment in the year 1991 because Lalive
+and Zweim¨uller (2004a) show that the inﬂow into unemployment was very strongly aﬀected just
+8If time to job exceeds 209 weeks (because there is no information on the next job in the data) we censor time
+to next job at 209 weeks.
+9Note that ongoing spells are aﬀected by REBP. However, once a job seeker has exhausted regular unemploy-
+ment beneﬁts he or she is no longer eligible for REBP. Since the potential beneﬁt duration was at most 30 weeks
+prior to REBP, this sample selection ensures that REBP does not aﬀect the ’before REBP’ analysis strongly.
+8
+
+prior to the end of 1991.10
+The analysis furthermore focuses on individuals with a ’continuous’ work history. Eligibility
+for REBP (and special income support) requires 780 employment weeks (15 years) within the
+last 25 years – an actual-to-potential experience ratio of at least 0.6. Since the Austrian social
+security database only contains information as of January 1, 1972, we can observe at most 19.5
+years prior to entry into unemployment on average. In order to keep possible misclassiﬁcation
+low, a continuous work history is deﬁned as a career with a ratio of actual to potential work
+experience (henceforth previous experience) since the year 1972 of at least 0.7. This ensures
+that only workers who satisfy the work experience requirement with a very high probability are
+included in the sample.11
+The data contain information on the month and year of birth, and month and year of entry
+into unemployment. This allows calculating the age at entry into unemployment by counting
+the number of years and months of a persons life completed before entering unemployment.
+For instance, a job seeker born in June 1940 who is entering unemployment in May 1990 is
+aged 49 years and 11 months. In contrast, a job seeker born in the same month but entering
+unemployment in June 1990 is aged 50 years and 0 months.12 The empirical analysis restricts
+attention to individuals aged 46 years to 53 years (and 11 months) at the beginning of the
+unemployment spell. This is the only age bracket where both women and men do not have
+access to early retirement on the ﬁrst day of the unemployment spell. Second, because age is
+only recorded up to a precision of one month, we allow for clustering of the regression errors at
+the age cell level to account for possible speciﬁcation error as suggested in Card and Lee (2006).
+The second identiﬁcation strategy identiﬁes the eﬀect of REBP at the border between treated
+and control regions.13 Figure 1 shows the distribution of REBP across the 2361 communities
+in Austria. Interestingly, the treated regions (communities with blue shading) were all located
+10Arguably, this can be rationalized by the fact that it was not certain whether REBP would be extended.
+Firms and workers therefore had a strong incentive to make use of the generous unemployment insurance rules
+provided by REBP.
+11The data contain information on employment dating back to the late 1940s for about 30 % of all individuals
+(REV Daten). This information can be used to assess the quality of the threshold rule used in the empirical
+analysis. Findings indicate that 61 % of all job seekers with an actual to potential experience ratio of .6 to .7
+actually fulﬁll the 15 out of 25 years requirement. The corresponding ﬁgure is 81 % for job seekers with a ratio
+of .7 to .8, it is 94 % for job seekers with a ratio of .8 to .9, and it is 99 % for job seekers with a ratio of .9 to
+1. This suggests that the .7 threshold is successful in identifying eligible individuals (the average probability of
+being eligible exceeds 94 %). Note, however, that we can not concentrate on the sub-sample of individuals with
+REV information since this sub-sample is not a random draw from the unemployment inﬂow.
+12Note that this job seeker may have been born on June 30, 1940 but entered unemployment on June 1, 1990
+missing almost one month to her or his 50th birthday. Results strongly suggest that this person was nevertheless
+eligible for REBP (see Figure 2).
+Arguably, this can be explained by the fact that the caseworkers in the
+unemployment insurance oﬃce only consider month and year of birth and unemployment entry when assessing a
+claimant’s eligibility status.
+13See Holmes (2005) and Hoxby (2000) for important geography based analyses in urban economics and the
+economics of education.
+9
+
+on a contiguous area located in the Eastern part of Austria and stretching from the North-
+ern border to the Southern border. The program covers parts of the provinces Burgenland,
+Carinthia (K¨arnten), Lower Austria (Nieder¨osterreich), Upper Austria (Ober¨osterreich), and
+Styria (Steiermark).
+Figure 1 about here
+It is crucial to measure the distance of each community to the border between treated and
+control regions. Figure 1 shows that communities which appear to be located close to the border
+on the map need not be close in economic terms because they are separated by mountainous
+terrain (for instance in the Alpine center of Austria). We therefore use a measure that reﬂects
+travel time – an economically more relevant measure of distance between locations than air
+distance. Speciﬁcally, the distance to the border of community A is the number of minutes it
+takes to drive a car from a community across the border, i.e. to the closest community that is
+located on the other side of the border.14 This travel distance measure is superior to using air
+distance between communities because it accounts for possible geographic barriers (mountains,
+rivers) between communities that look adjacent on a map. The minimal distance from a commu-
+nity in the treated region to the nearest control region community is 5 minutes. We normalize
+travel distance from this treated community to the border to be zero because this community
+is, eﬀectively, located exactly on the border between treated and control communities.15
+For control region communities we perform the same calculation with the only diﬀerence that
+we record the negative of the travel distance by car. Thus non-negative values of the distance
+to border variable refer to treated communities. Negative values of the distance to border refer
+to control communities. The analysis identiﬁes the eﬀect of REBP on unemployment duration
+at the border between treated and control communities, i.e. at zero minutes distance to border.
+The empirical analysis restricts attention to individuals living no farther than a 70 minutes
+car drive from the border because the density of the inﬂow into unemployment is very low
+in communities located further than 70 minutes car distance from the border. Furthermore,
+we also exclude unemployment spells that start in Vienna (a control region city located at 33
+minutes from the border between treated and control regions) because Vienna is a very dominant
+community characterized by long unemployment duration.
+14The distance measure reﬂects the time required to drive from the center of community A to the center of
+the community on the other side of the border using the fastest road connection between these two communities
+under normal conditions. We obtained this information in 2000 from a commercial provider of rout planning
+software in Austria (DDS Digital Services). Note that the travel distance by car measured in this paper may
+not properly reﬂect the travel distance at the beginning of the 1990s. Nevertheless, we believe that this measure
+of travel distance is likely to contain important information on the geographic distance between communities
+because there were no major changes to road infrastructure.
+15Speciﬁcally, we subtract 5 minutes travel distance from each treated region community’s distance to the
+border between regions.
+10
+
+The key issue in terms of identiﬁcation is the location of steel plants in terms of distance to
+the border between treated and control regions. Even though the analysis focuses on the non-
+steel inﬂow, the steel restructuring operations may spill over to other industries. There are two
+main channels for spillovers. First, industries that are supplying materials to the steel industry
+can be aﬀected. Second, the reduction in steel worker incomes may spill over to other industries
+via reduced demand for goods. The national steel holding’s two largest plants are located in the
+city of Linz (Upper Austria), and Donawitz, located near the city of Leoben (Styria). Our data
+indicates that it takes 24 minutes to drive from the city of Linz to the border between treated
+and control regions. The distance from Donawitz to the border is even longer – 34 minutes.
+Arguably, this suggests that spillovers from steel do not aﬀect estimates of the eﬀect of REBP
+at the border between treated and control regions.16
+Table 1 reports key background statistics on the job seekers entering unemployment from a
+job in the non-steel sector in the time during REBP (8/1989-7/1991), by gender, age and region
+of residence.17
+Table 1 about here
+Table 1 indicates that there are 4759 treated male individuals, that is individuals aged 50-53
+years, living in treated regions (Panel A, Column 1). Average age is slightly lower than 52 years
+reﬂecting the fact that the inﬂow is concentrated somewhat among individuals closer to the
+50 year threshold. On average, treated individuals live about a 28 minutes car drive from the
+border between treated and control regions. About 83 % of all men who enter unemployment
+are married, and about 48 % of the job seekers were previously employed in construction.18
+Table 1 shows that there are 4975 men starting an unemployment spell also in treated
+regions but aged 46-49 years (Panel A, Column 2). Clearly, average age (48 years) in this group
+is lower than in the group of treated individuals. However, this ﬁrst control group appears to
+be living at roughly similar distance to the border between treated and control regions and
+the younger group of job seekers living in treated regions is quite comparable to the eligible
+older group of job seekers in terms of the family situation. In the control communities, there
+are 8537 men entering unemployment in the age group 50-53 years (Table 1, Panel A, Column
+3).19 Average age for control region job seekers is identical to treated individuals. However,
+16Note that spillovers from steel are unlikely to bias the identiﬁcation strategy at the age 50 years threshold
+because these spillovers aﬀect both job seekers similarly on both sides of the threshold.
+17These control variables are used in the empirical analysis. In addition, the empirical analysis uses information
+on family situation, education, nationality, wage in previous job, skill level (white collar vs. blue collar), and
+previous industry to control for possible diﬀerences between treated and control spells.
+18Note that the high share of construction workers in the unemployment inﬂow reﬂects strong seasonal unem-
+ployment in the construction sector rather than the relative size of this sector compared to other sectors.
+19The inﬂow into unemployment is larger in the control regions than in treated regions because more people
+11
+
+these individuals are living on average 39 minutes from the border between treated and control
+regions. This indicates that the average control individual is living in a community that could be
+quite diﬀerent due to geographic location from the community of the average treated individual.
+Indeed, the construction sector inﬂow is much larger in control regions (60 %) than in treated
+regions (48 %). This suggests paying particular attention to how the construction share changes
+when approaching the border between treated and control regions. With respect to the family
+situation job seekers in control regions (82 % are married) are similar to job seekers in treated
+regions (83 % are married).
+There are 3466 women entering unemployment who satisfy both the age and region of res-
+idence requirement for REBP (Table 1 Panel B Column 1). The average age among women is
+51.5 years; about .3 years lower than the average age among treated men. This could be due
+to the fact that REBP might have been more relevant among women near the age 50 threshold
+compared to men. Second, about 78 % of all eligible women are married and about 3 % of these
+women were previously employed in the construction sector.
+Table 1 reports descriptive statistics on the two control groups for women (Panel B Columns
+2 and 3). There are 2193 women entering unemployment in the age bracket 46-49 years in the
+period with REBP in treated regions (Panel B Column 2). The family situation of the job
+seekers who fail the age requirement is quite diﬀerent from the eligible group of job seekers.
+Whereas 78 % of the eligible women are married, only 70 % of the women below the age 50
+threshold are married. In terms of identiﬁcation, it is important to see whether this diﬀerence
+occurs at the age threshold. The second control group comprises the 3625 women who do not
+live in treated regions but satisfy the age requirement (Panel B Column 3). Note that average
+age in this group is 51.9 which is slightly higher than the average age in the treated group is
+51.5 years. Moreover, the fraction married in the control group is again somewhat lower (72 %)
+than in the treated group (78 %).
+4
+Descriptive Evidence on the Eﬀects of REBP
+This section reports descriptive evidence on the eﬀects of REBP on unemployment duration,
+on the eﬀects of age and distance to border before REBP was introduced, and on the eﬀects of
+REBP on inﬂow composition and on inﬂow size.
+Results for Men: Figure 2 reports descriptive evidence on the eﬀect of REBP on average
+unemployment duration among men.
+Figure 2 about here
+live and work in control region communities than in treated regions.
+12
+
+Figure 2 reports average unemployment duration by age at entry into unemployment for
+each age quarter from 46 years and 1 quarter to 53 years and 4 quarters. The evidence is based
+on 9734 individuals living in treated regions, i.e. 4759 treated individuals aged 50 years and
+older and 4975 control individuals aged 46 to 49 years. All ﬁgures superimpose the ﬁt of a linear
+regression allowing for a discontinuity at the threshold and linear trends in the assignment
+variable (age or distance to border) on both sides of the threshold (see section 5 for further
+discussion on estimation).
+Control individuals remain unemployed for 13 weeks on average. In contrast, average unem-
+ployment duration exceeds 26 weeks in almost all age cells for individuals aged 50 years or older.
+There is a signiﬁcant discontinuity in average unemployment duration that occurs between indi-
+viduals aged 49 years and 4 quarters and individuals aged 50 years and 1 quarter. This suggests
+that there is a strong eﬀect of REBP on the average duration of unemployment spells.
+Figure 3 about here
+Figure 3 identiﬁes the eﬀect of REBP by comparing individuals living on both sides of the
+border between treated and control regions. This ﬁgure is based on 13296 individuals who are
+50 years or older at the beginning of their unemployment spell, i.e. the 4759 treated individuals
+(who live in treated regions) and the 8537 control individuals (who live in control regions).20
+Average unemployment duration is roughly 13 weeks in the control regions (negative values of
+distance to border). Furthermore, unemployment duration appears to decrease slightly when
+approaching the border between treated and control regions. In contrast, as soon as we enter
+the the treated region, average unemployment duration increases signiﬁcantly to more than 26
+weeks.
+This suggests, again, that REBP strongly increases average unemployment duration
+among men living close to the border between treated and control regions. In line with control
+regions, there is a negative relationship between average unemployment duration and distance
+to border in treated regions.
+The evidence in Figures 2 and 3 suggest that there are important discontinuities in the
+duration of unemployment at age 50 and at the border between treated and control regions.
+Have these discontinuities been caused by REBP? This is true only if the counterfactual average
+20The ﬁgure reports average unemployment duration for each distance to border cell of width 5 minutes, i.e.
+the ﬁrst cell reporting average unemployment duration in communities located 65-69 minutes from the border
+between treated and control regions (-67.6 minutes), the second cell reporting evidence for communities at 60-64
+minutes distance (-62.5 minutes), ..., and the last cell reporting evidence for the community located 55 to 69
+minutes from the border (62.5 minutes). Note that the cells at distance 10 to 14 minutes, 5 to 9 minutes to the
+border from the control region side, and the cells 0 to 4 minutes, and 5 to 9 minutes distance to the border on the
+treated region side are aggregated because the cells close to the border are based on fewer than 150 spells. For
+the same reason, the descriptive analysis aggregates the cells 55-59 minutes, 60-64 minutes, and 65-69 minutes
+distance to border into one cell. Note, however, that the econometric analysis is based on the continuous distance
+to border measure.
+13
+
+duration without REBP varies smoothly with age and distance to border. In particular, jumps
+in unemployment duration at age 50 and at the border that occur for reasons other than beneﬁt
+eligibility have to be ruled out. I therefore investigate whether average duration of unemployment
+varies smoothly before REBP was introduced. Figure 4 reports average unemployment duration
+as a function of age and distance to border in the period from 1/1986 until 12/1987, i.e. 2.5
+years to .5 years before REBP was introduced.
+Figure 4 about here
+Figure 4A reports the eﬀects of age on unemployment duration. Men who are 46 years old
+remain unemployed for about 13 weeks on average. As age increases, so does average unem-
+ployment duration. Men who are 53 years old when registering at the unemployment oﬃce are
+expected to be unemployed for about 16 weeks. Importantly, there are some diﬀerences in terms
+of average unemployment duration at the age 50 threshold. Men who are in the age bracket 49
+years and 4 quarters are unemployed for roughly 14 weeks. In contrast, men who have just cele-
+brated their 50th birthday remain unemployed for 17 weeks on average, and the linear regression
+suggests that this diﬀerence is statistically signiﬁcant. This evidence thus suggests that it may
+be important to account for pre-existing diﬀerences in average unemployment duration at the
+age 50 years threshold.
+Figure 4B assesses how average unemployment duration varies with distance to border.
+Before REBP, average unemployment duration is about 13 weeks in control region communities
+at 70 minutes distance to the border. Duration of job search increases monotonically from less
+than 13 weeks to about 20 weeks when approaching the border between treated and control
+regions. Importantly, there is no signiﬁcant diﬀerence in average unemployment duration on
+both sides of the border. The evidence in Figure 4B thus suggests that identifying the eﬀect of
+REBP by contrasting average unemployment duration in communities located at both sides of
+the border is a meaningful identiﬁcation strategy.
+For this identiﬁcation strategy to be valid, however, the composition of the inﬂow pool
+needs to be balanced at the age and border threshold in the period with REBP. Two important
+characteristics are marital status and previous employment in construction. Marital status is
+important primarily because it is related to the potential level of the social assistance transfers.
+The idea is that married individuals are more likely to live with a working spouse.
+Since
+means testing focuses on household rather than individual income, the likelihood that married
+individuals will receive social assistance is lower. This suggests that married individuals remain
+unemployed shorter than non-married individuals all else equal. Construction employment is
+important because it proxies for seasonal unemployment which reﬂects unemployment due to
+14
+
+a temporary rather than a permanent layoﬀ. Table 1 presents descriptive statistics on these
+important background characteristics and shows that the share married is not balanced with
+respect to age and the construction share is not balanced between treated and control regions.
+Figure 5 therefore assesses how the composition of the inﬂow into unemployment varies with
+age and distance to border.
+Figure 5 about here
+Focusing on men entering unemployment in treated regions in the age bracket 45-53 years,
+Figure 5A reveals that marital status indeed appears to be correlated with age. In the age
+bracket 46-48 years, the share married increases from about 75 % to about 80 %. Importantly,
+there is no discontinuity at the age 50 threshold. Roughly 80 % of all job seekers who are aged
+50 years and 1 quarter are married. The share married increases from 80 % to about 86 % in
+the age bracket 50 to 53.
+Figure 5B discusses inﬂow composition with respect to previous employment in construc-
+tion as a function of distance to border. In control regions, the share previously employed in
+construction is about 60 % irrespective of distance to the border between treated and control
+regions. Just on the other side of the border, the share previously employed in construction
+decreases quite strongly but insigniﬁcantly to 53 %. The share previously employed in con-
+struction decreases further as distance to border increases and reaches a level of less than 40
+% in communities located at distance 40 minutes to the border. Moving further away from the
+border, we ﬁnd that the construction share increases again to about 50 %.
+A ﬁnal concern with the identiﬁcation strategy refers to how likely it is that ﬁrms and
+individuals manipulate their location on either side of the threshold. While it is clearly diﬃcult
+to manipulate one’s age, it is very well possible that ﬁrms and individuals can manipulate the
+age at entry into unemployment. Figure 6 therefore assesses whether the relative size of the
+inﬂow into unemployment is aﬀected by the REBP.21
+Figure 6 about here
+Figure 6A reports relative inﬂow for the age based identiﬁcation strategy among men. Rel-
+ative inﬂow is the likelihood ratio of age, i.e. the ratio of the density of age in treated regions
+21It would be desirable to report the unemployment inﬂow rate, that is, the number of spells entering unem-
+ployment relative to employment. Our employment data, however, are based on the location of the previous
+employer rather than of the location of the individual’s residence. This means that it is not possible to calculate
+unemployment risk appropriately. Note that relative inﬂow is, however, informative on inﬂow risk (unemployment
+inﬂow divided by employment) if the age structure of employment is identical in treated and control regions up
+to a constant.
+15
+
+to the density of age in control regions.22 Figure 6A indicates that the likelihood ratio is close
+to 1 throughout the entire support suggesting that there is no concentration of the inﬂow at a
+particular age bracket. This suggests that manipulation of the age at entry into unemployment
+does not occur among men.
+Figure 6B reports relative inﬂow for the border based identiﬁcation strategy. Relative inﬂow
+is the likelihood ratio of distance to border, i.e. the ratio between the density of distance to
+border in the age bracket 50-53 years to the density of distance to border in the age bracket
+46-49 years. In control communities, relative inﬂow is 1 indicating that the number of older
+workers entering unemployment is almost identical to the number of younger workers. Relative
+inﬂow is also close to 1 in treated communities located no farther than 30 minutes from the
+border. Relative inﬂow becomes more noisy in communities located 35 minutes and more from
+the border reﬂecting the fact that these distance to border cells are relatively small. Again,
+there appears to be no manipulation of location of residence.
+Results for Women: Figure 7 concentrates on women entering unemployment in treated
+regions in the age bracket 46 to 53 years and it displays three striking facts.23 First, there is a
+very salient increase in unemployment duration at the age 50 threshold. Whereas the women who
+are slightly younger than the threshold leave unemployment on average after about 16 weeks,
+women who are slightly older than the threshold do not exit unemployment for more than 130
+weeks on average. Thus, there appears to be a strongly signiﬁcant increase in unemployment
+duration by at least 110 weeks. Second, in the age bracket 50 to 53 years, there is a very strong
+decrease in average unemployment duration from more than 130 weeks (age 50 years and 1
+quarter) to less than 52 weeks (ag

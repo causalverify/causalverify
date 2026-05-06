@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s87",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Unemployment Benefit Eligibility on Future Earnings",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:45:35.648190",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 434,
+    "output_tokens": 536,
+    "content": "## 1. Identification Strategy\nWe will use a Regression Discontinuity Design (RDD) to estimate the causal effect of unemployment benefit eligibility on future earnings. The key assumption for RDD is that there is a sharp discontinuity in the probability of treatment at the cutoff point, and that there are no other confounding factors that change at the cutoff point. In this case, the cutoff is the age at which individuals become eligible for unemployment benefits.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(ggplot2)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s87_data.csv\")\n\n# RDD analysis\n# Estimate the local linear regression around the cutoff point\nrdd_result <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.05)\n\n# Print the coefficient estimate\nprint(rdd_result$beta.hat)\n\n# Basic robustness checks\n# Vary the bandwidth\nrdd_result_wide <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.1)\nrdd_result_narrow <- rdrobust(data$running_var, data$y, data$treated, c=0.5, h=0.01)\n\n# Print the coefficient estimates for different bandwidths\nprint(rdd_result_wide$beta.hat)\nprint(rdd_result_narrow$beta.hat)\n\n# Plot the regression discontinuity\nggplot(data, aes(x = running_var, y = y, color = as.factor(treated))) +\n  geom_point() +\n  geom_smooth(method = \"loess\", se = FALSE) +\n  geom_vline(xintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"Regression Discontinuity Plot\", x = \"Age\", y = \"Log Earnings\")\n```\n\n## 3. Expected Findings\nWe expect the coefficient estimate to be negative, as individuals who are eligible for unemployment benefits may have lower future earnings due to reduced incentives to work or invest in human capital. The magnitude of the effect will depend on the generosity of the benefits and the labor market conditions. However, without more information on the specific context and the size of the benefits, it is difficult to provide an exact magnitude. The robustness checks with different bandwidths should provide some indication of the sensitivity of the results to the choice of bandwidth.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The cutoff age for benefit eligibility provides a natural experiment to assess causal impacts.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligibility for unemployment benefits at the cutoff age increases log earnings two years later.",
+    "main_effect": "0.3"
+  }
+}

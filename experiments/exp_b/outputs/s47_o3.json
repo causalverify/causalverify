@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s47",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "Impact of Catalytic Converter Mandate on NOx Emissions",
+  "model": "o3",
+  "run_at": "2026-04-14T19:44:55.288777",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 489,
+    "output_tokens": 1123,
+    "content": "## 1. Identification Strategy  \nMethod: Difference-in-Differences (DID)\n\nWhy:  \n• The policy is introduced in only a subset of regions (treated = 1), creating treated and control groups.  \n• We observe each region before (post = 0) and after (post = 1) the mandate.  \n• The interaction treat_x_post isolates the policy’s causal effect.\n\nKey assumption – Parallel Trends:  \nIn the absence of the mandate, treated and control regions would have experienced the same average change in log NOx emissions over time. We will partially validate this with a pre-trend (placebo) test.\n\n## 2. R Code\n```r\n# ------------------------------------------------------------\n#  Catalytic Converter Mandate – DID Estimation\n# ------------------------------------------------------------\n# Required packages\nrequired_pkgs <- c(\"data.table\", \"fixest\", \"ggplot2\")\nfor(p in required_pkgs) if(!requireNamespace(p, quietly=TRUE)) install.packages(p)\nlibrary(data.table)\nlibrary(fixest)\nlibrary(ggplot2)\n\n# 1. Read data ------------------------------------------------\ndata_path <- \"experiments/exp_b/data/s47_data.csv\"\ndt <- fread(data_path)\n\n# 2. Basic two‐way fixed-effects DID --------------------------\n#   y_it = α_i + δ_t + β*Treat×Post_it + ε_it\ndid_twfe <- feols(y ~ treat_x_post | unit_id + period, data = dt, cluster = ~unit_id)\n\ncat(\"\\n===== Baseline DID estimate =====\\n\")\netable(did_twfe, se = \"cluster\")\n\n# Extract and print the coefficient of interest\nbeta <- coef(did_twfe)[\"treat_x_post\"]\nse_beta <- se(did_twfe)[\"treat_x_post\"]\ncat(sprintf(\"\\nEstimated policy effect (β̂): %.4f  (SE = %.4f)\\n\", beta, se_beta))\n\n# 3. Robustness check 1: Allow unit-specific trends -----------\ndt[, period_c := period - min(period)]  # centred time\ndid_trend <- feols(y ~ treat_x_post + i(unit_id, period_c) | unit_id + period,\n                   data = dt, cluster = ~unit_id)\n\ncat(\"\\n===== DID with unit-specific linear trends =====\\n\")\netable(did_trend, se = \"cluster\")\n\n# 4. Robustness check 2: Pre-trend (placebo) test -------------\n# Create a fake \"placebo\" interaction for one period before the mandate\n# Assume the mandate starts at the first post==1; placebo at post_t1 where period == (start-1)\nstart_period <- dt[post == 1, min(period)]\ndt[, placebo := as.integer(treated == 1 & period == (start_period - 1))]\n\nplacebo_model <- feols(y ~ placebo | unit_id + period, data = dt, cluster = ~unit_id)\ncat(\"\\n===== Placebo (pre-trend) test =====\\n\")\netable(placebo_model, se = \"cluster\")\n\n# 5. Visualization: Event-study style graph -------------------\n# Generate leads/lags of treatment\ndt[, rel_time := period - start_period]               # 0 = first treated period\nes_model <- feols(y ~ i(rel_time, treated, ref = -1) | unit_id + period,\n                  data = dt, cluster = ~unit_id)\n\npng(\"event_study_plot.png\", 800, 500)\niplot(es_model, xlab = \"Periods relative to mandate\", ylab = \"Effect on log NOx\",\n      main = \"Event-study plot: Catalytic Converter Mandate\")\ndev.off()\ncat(\"\\nEvent-study plot saved as 'event_study_plot.png'\\n\")\n```\n\n## 3. Expected Findings  \nSign: Negative. The catalytic converter mandate should reduce NOx emissions, so the coefficient β̂ on treat_x_post is expected to be < 0.\n\nMagnitude: Because the outcome is in logs, a coefficient around −0.15 to −0.30 would imply a 14–26 % reduction in NOx emissions in treated regions relative to controls after the mandate. \n\nRationale: Prior environmental regulations of similar scope typically cut vehicular NOx by roughly 20 %. A log-point change of −0.2 is therefore plausible.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare changes in log NOx emissions between treated and untreated regions over time.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The catalytic converter mandate significantly reduces log NOx emissions.",
+    "main_effect": "-0.18"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_245",
+  "title": "The Clean Air Act of 1970 and Adult Mortality",
+  "authors": "Chay, Dobkin & Greenstone",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1023/a:1025897327639",
+    "title": "The Clean Air Act of 1970 and Adult Mortality",
+    "year": 2003,
+    "journal": "Journal of Risk and Uncertainty",
+    "citations": 161
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "dobkin",
+      "chay",
+      "greenstone"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "journal of risk and uncertainty",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 161,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

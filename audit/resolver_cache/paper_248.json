@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_248",
+  "title": "The Elasticity of Taxable Income: Evidence and Implications",
+  "authors": "Gruber & Saez",
+  "year": null,
+  "journal": "JPublE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/s0047-2727(01)00085-8",
+    "title": "The elasticity of taxable income: evidence and implications",
+    "year": 2002,
+    "journal": "Journal of Public Economics",
+    "citations": 986
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "gruber",
+      "saez"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpuble",
+    "journal_oa": "jpube",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 986,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

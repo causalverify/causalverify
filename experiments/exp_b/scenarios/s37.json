@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s37",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "Impact of Regional Carbon Pricing on CO2 Emissions",
+  "research_question": "Does the adoption of regional carbon pricing policies lead to a reduction in CO2 emissions per capita? By comparing regions with and without carbon pricing over time, we aim to identify the causal effect of these policies on emissions.",
+  "data_description": "The dataset includes 200 observations with columns: unit_id (region identifier), period (time period), treated (indicator for regions with carbon pricing), post (indicator for periods after policy implementation), treat_x_post (interaction term for treated regions post-policy), and y (log CO2 emissions per capita).",
+  "ground_truth": {
+    "identification_strategy": "Compare changes in emissions over time between treated and untreated regions.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Regions with carbon pricing show a reduction in CO2 emissions per capita.",
+    "main_effect": "-0.15"
+  },
+  "dgp_truth": {
+    "type": "did",
+    "effect": -0.15,
+    "direction": "negative"
+  },
+  "data_file": "experiments/exp_b/data/s37_data.csv"
+}

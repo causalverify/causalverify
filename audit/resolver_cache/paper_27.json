@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_27",
+  "title": "How Much Do Investors Care About Macroeconomic Risk? Evidence from Scheduled Economic Announcements",
+  "authors": "Savor & Wilson",
+  "year": null,
+  "journal": "Journal of Financial Economics",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1017/s002210901300015x",
+    "title": "How Much Do Investors Care About Macroeconomic Risk? Evidence from Scheduled Economic Announcements",
+    "year": 2013,
+    "journal": "Journal of Financial and Quantitative Analysis",
+    "citations": 419
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "savor",
+      "wilson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jfe",
+    "journal_oa": "journal of financial and quantitative analysis",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 419,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

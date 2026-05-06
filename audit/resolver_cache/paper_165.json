@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_165",
+  "title": "Are Consumers Myopic? Evidence from New and Used Car Purchases",
+  "authors": "Busse, Knittel & Zettelmeyer",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.103.1.220",
+    "title": "Are Consumers Myopic? Evidence from New and Used Car Purchases",
+    "year": 2013,
+    "journal": "American Economic Review",
+    "citations": 481
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "busse",
+      "knittel",
+      "zettelmeyer"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "aer",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 481,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

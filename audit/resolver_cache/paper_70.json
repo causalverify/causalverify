@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_70",
+  "title": "Control Rights and Capital Structure: An Empirical Investigation",
+  "authors": "Roberts & Sufi",
+  "year": null,
+  "journal": "JF",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2009.01476.x",
+    "title": "Control Rights and Capital Structure: An Empirical Investigation",
+    "year": 2009,
+    "journal": "The Journal of Finance",
+    "citations": 630
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "roberts",
+      "sufi"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 630,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Fed rate hike announcement on bank stock returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:25:13.074041",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 491,
+    "output_tokens": 776,
+    "content": "## 1. Identification Strategy\n\nWe will use an Event Study approach to analyze the impact of the Federal Reserve interest rate hike announcement on bank stock returns. The Event Study method is suitable for this research question because it allows us to measure the abnormal returns around a specific event (the Fed rate hike announcement) and determine if there is a significant impact on bank stock returns.\n\nThe key assumption in this approach is that the expected returns of the bank stocks are stationary and can be estimated using the market model with the pre-event data (days -10 to -2). We will use the market model to estimate the expected returns for each stock on each day, and then calculate the abnormal returns by subtracting the expected returns from the actual returns.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(dplyr)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s11_data.csv\")\n\n# Filter the data for the estimation window and event window\nestimation_window <- data %>% filter(event_day >= -10 & event_day <= -2)\nevent_window <- data %>% filter(event_day >= -1 & event_day <= 1)\n\n# Calculate expected returns using the market model\nestimation_window <- estimation_window %>%\n  group_by(stock_id) %>%\n  mutate(expected_ret = beta * mkt_ret)\n\n# Calculate abnormal returns\nabnormal_ret <- event_window %>%\n  left_join(estimation_window %>% select(stock_id, beta, mkt_ret), by = \"stock_id\") %>%\n  mutate(expected_ret = beta * mkt_ret,\n         abnormal_ret = ret - expected_ret)\n\n# Calculate cumulative abnormal returns (CAR) for each stock\ncar <- abnormal_ret %>%\n  group_by(stock_id) %>%\n  summarise(car = sum(abnormal_ret))\n\n# Calculate the average CAR across all stocks\naverage_car <- mean(car$car)\n\n# Print the average CAR\nprint(paste(\"Average Cumulative Abnormal Return (CAR):\", average_car))\n\n# Basic robustness check: Calculate CAR for different event windows\nevent_windows <- list(c(-2, 0), c(0, 2), c(-3, 3))\nrobustness_checks <- lapply(event_windows, function(window) {\n  event_window <- data %>% filter(event_day >= window[1] & event_day <= window[2])\n  abnormal_ret <- event_window %>%\n    left_join(estimation_window %>% select(stock_id, beta, mkt_ret), by = \"stock_id\") %>%\n    mutate(expected_ret = beta * mkt_ret,\n           abnormal_ret = ret - expected_ret)\n  car <- abnormal_ret %>%\n    group_by(stock_id) %>%\n    summarise(car = sum(abnormal_ret))\n  average_car <- mean(car$car)\n  return(average_car)\n})\n\n# Print the results of the robustness checks\nnames(robustness_checks) <- paste(\"Event window\", sapply(event_windows, function(x) paste(x[1], x[2])))\nprint(robustness_checks)\n```\n\n## 3. Expected Findings\n\nWe expect the cumulative abnormal returns (CAR) to be positive in the [-1, +1] window around the Fed rate hike announcement. This is because banks are likely to benefit from higher interest rates, as they can charge higher interest on loans and earn more on their assets. The magnitude of the CAR is difficult to predict without more information, but we expect it to be small, as the market may have already partially anticipated the rate hike. The robustness checks should provide additional insights into the sensitivity of the results to different event window specifications.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; estimation window [−10,−2]; event window [−1,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank stocks show negative CAR around the rate hike announcement",
+    "main_effect": "CAR ≈ −2% in [−1,+1] window"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s62",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Impact of Major Product Recall on Stock Returns",
+  "research_question": "How does a major product recall announcement affect the stock returns of a company? We aim to understand the short-term financial impact of such announcements on the company's market performance.",
+  "data_description": "The dataset comprises daily stock returns for 60 companies, including the company announcing the recall, over a period surrounding the recall event. Key columns include stock_id, event_day, ret for stock returns, mkt_ret for market returns, and beta for the estimated market sensitivity.",
+  "ground_truth": {
+    "identification_strategy": "We analyze the change in cumulative abnormal returns (CAR) around the recall announcement event.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The product recall announcement leads to a significant negative impact on the company's stock returns.",
+    "main_effect": "-0.018"
+  },
+  "dgp_truth": {
+    "type": "event",
+    "effect": -0.018,
+    "direction": "negative"
+  },
+  "data_file": "experiments/exp_b/data/s62_data.csv"
+}

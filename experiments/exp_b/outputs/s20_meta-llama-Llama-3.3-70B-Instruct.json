@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s20",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Distance to bank as IV for savings rate",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:33:56.160206",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 463,
+    "output_tokens": 469,
+    "content": "## 1. Identification Strategy\nWe employ the Instrumental Variable (IV) method, using distance to the nearest bank branch (z) as the instrument for having a bank account (x). The first stage equation models the relationship between z and x, where we expect a negative coefficient, indicating that households closer to a bank branch are more likely to have an account. The second stage equation models the relationship between x and the monthly savings (y). The key assumptions for the IV method are: (i) the instrument (z) is relevant, i.e., it affects the endogenous variable (x); (ii) the instrument satisfies the exclusion restriction, i.e., it affects the outcome variable (y) only through its effect on the endogenous variable (x); and (iii) the instrument is exogenous, i.e., it is not correlated with the error term in the second stage equation.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(readr)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s20_data.csv\")\n\n# First stage: distance -> account ownership\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Second stage: account ownership -> savings\nsecond_stage <- lm(y ~ x + controls, data = data)\nsummary(second_stage)\n\n# IV regression\nivRegression <- ivreg(y ~ x + controls | z + controls, data = data)\nsummary(ivRegression)\n\n# Basic robustness checks: check for overidentifying restrictions\n# (not applicable here since we have only one instrument)\n```\n\n## 3. Expected Findings\nWe expect the instrument (distance to the nearest bank branch) to have a negative effect on having a bank account in the first stage, as households closer to a bank branch are more likely to have an account. In the second stage, we expect the coefficient on having a bank account to be positive, indicating that households with a bank account tend to have higher savings rates. The magnitude of this effect is expected to be moderate, given that having a bank account can facilitate savings by providing a secure and convenient way to store money. However, the exact magnitude will depend on various factors, including income, education, and other household characteristics.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: branch distance; first stage: distance → account ownership (negative)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank account ownership significantly increases savings",
+    "main_effect": "Having an account increases monthly savings by ~40% (IV estimate)"
+  }
+}

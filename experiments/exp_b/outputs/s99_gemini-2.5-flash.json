@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s99",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Additional Representative on Public Spending",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T20:29:02.510257",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 459,
+    "output_tokens": 161,
+    "content": "## 1. Identification Strategy\n\nThe research question aims to determine if an additional representative, allocated based on a population threshold, affects public spending per capita. This scenario presents a classic application for a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nThe treatment (receiving a second representative) is assigned sharply based on whether a district's population (`running_var`) crosses a specific, known threshold. Districts just above the threshold receive the additional representative, while those just below do not. This creates a quasi-experimental setting where districts infinitesimally close to the threshold are highly comparable in all unobservable characteristics (except for the treatment itself), as they are virtually identical in terms of their `running_var` values. Any observed discontinuity in public spending per capita at the",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Exploit the population threshold for a second representative as a cutoff for treatment assignment.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The presence of a second representative decreases public spending per capita.",
+    "main_effect": -0.25
+  }
+}

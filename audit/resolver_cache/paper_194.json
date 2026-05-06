@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_194",
+  "title": "Medicare Spending, the Physician Workforce, and Beneficiaries' Quality of Care",
+  "authors": "Baicker & Chandra",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1377/hlthaff.w4.184",
+    "title": "Medicare Spending, The Physician Workforce, And Beneficiaries' Quality Of Care",
+    "year": 2004,
+    "journal": "Health Affairs",
+    "citations": 524
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "chandra",
+      "baicker"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "health affairs",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 524,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

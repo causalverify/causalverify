@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s97",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Grade Retention on Future Academic Performance",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:51:28.060765",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 455,
+    "output_tokens": 558,
+    "content": "## 1. Identification Strategy\nTo determine the causal impact of grade retention on subsequent test scores, we will use a Regression Discontinuity Design (RDD) approach. The key assumption for RDD is that the treatment (grade retention) is assigned based on a cutoff value of the running variable (end-of-year test scores), and that the students just above and below the cutoff are comparable in terms of observed and unobserved characteristics. We will use the near_cutoff column to identify the relevant sample for our analysis.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(broom)\n\n# Load data\ndata <- read_csv(\"experiments/exp_b/data/s97_data.csv\")\n\n# Filter data to only include students near the cutoff\ndata_near_cutoff <- data %>% \n  filter(near_cutoff == 1)\n\n# Perform RDD analysis using a linear regression model\nmodel <- lm(y ~ treated + running_var + treated * running_var, data = data_near_cutoff)\n\n# Print the results of the model\ntidy(model)\n\n# Perform a placebo test by shifting the cutoff to the left and right\ndata_near_cutoff_left <- data %>% \n  filter(running_var < quantile(data$running_var, 0.4))\ndata_near_cutoff_right <- data %>% \n  filter(running_var > quantile(data$running_var, 0.6))\n\nmodel_left <- lm(y ~ treated + running_var + treated * running_var, data = data_near_cutoff_left)\nmodel_right <- lm(y ~ treated + running_var + treated * running_var, data = data_near_cutoff_right)\n\n# Print the results of the placebo tests\ntidy(model_left)\ntidy(model_right)\n\n# Plot the data to visualize the effect of grade retention\nggplot(data_near_cutoff, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the treated variable to be negative, indicating that students who were retained have lower future test scores compared to students who were not retained. The magnitude of the effect is expected to be moderate, as grade retention is a significant intervention that can have long-lasting effects on a student's academic performance. A negative effect of around -0.1 to -0.2 standard deviations in test scores would be a reasonable expectation, given the literature on the topic. The placebo tests should show no significant effect of grade retention on test scores when the cutoff is shifted to the left or right, providing evidence that the effect is specific to the cutoff point and not due to other factors.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the cutoff in test scores to identify the causal effect.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Students retained due to scoring below the cutoff perform worse on future tests.",
+    "main_effect": "-0.18"
+  }
+}

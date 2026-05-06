@@ -1,0 +1,8 @@
+{
+  "doi": "10.3386/w18038",
+  "title": "Knowledge, Tests, and Fadeout in Educational Interventions",
+  "year": 2012,
+  "abstract": "Educational interventions are often evaluated and compared on the basis of their impacts on test scores. Decades of research have produced two empirical regularities: interventions in later grades tend to have smaller effects than the same interventions in earlier grades, and the test score impacts of early educational interventions almost universally \"fade out\" over time. This paper explores whether these empirical regularities are an artifact of the common practice of rescaling test scores in terms of a student's position in a widening distribution of knowledge. If a standard deviation in test scores in later grades translates into a larger difference in knowledge, an intervention's effect on normalized test scores may fall even as its effect on knowledge does not. We evaluate this hypothesis by fitting a model of education production to correlations in test scores across grades and with college-going using both administrative and survey data. Our results imply that the variance in knowledge does indeed rise as children progress through school, but not enough for test score normalization to fully explain these empirical regularities.",
+  "citation_count": 18,
+  "journal": "National Bureau of Economic Research"
+}

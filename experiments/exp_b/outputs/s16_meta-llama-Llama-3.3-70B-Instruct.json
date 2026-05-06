@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s16",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Supply chain disruption on auto manufacturer stocks",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:33:10.016913",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 493,
+    "output_tokens": 610,
+    "content": "## 1. Identification Strategy\nTo analyze the impact of the major semiconductor shortage announcement on auto manufacturer stocks, we will employ an event study methodology, which is a common approach in finance to assess the effect of a specific event on stock prices. The event study involves calculating the cumulative abnormal returns (CARs) for each stock over the event window, which spans from event day 0 to +5, and then examining if firms with higher chip dependency experience larger negative CARs through a cross-sectional regression. The key assumption of this approach is that the market model, estimated over the period [−10,−2], accurately captures the expected returns of the stocks in the absence of the event, allowing us to isolate the abnormal returns caused by the announcement.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(broom)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s16_data.csv\")\n\n# Calculate abnormal returns\ndata <- data %>%\n  group_by(stock_id) %>%\n  mutate(abn_ret = ret - beta * mkt_ret)\n\n# Calculate cumulative abnormal returns (CARs) for the event window [0, +5]\ndata_event_window <- data %>%\n  filter(event_day >= 0 & event_day <= 5) %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abn_ret))\n\n# Assume chip dependency is not directly provided, so for demonstration, \n# let's assume beta can proxy for chip dependency (higher beta implies higher dependency)\ndata_event_window <- data_event_window %>%\n  left_join(data %>%\n              group_by(stock_id) %>%\n              summarise(beta = mean(beta)), by = \"stock_id\")\n\n# Perform cross-sectional regression of CAR on chip dependency (proxied by beta)\nmodel <- lm(CAR ~ beta, data = data_event_window)\ntidy_model <- tidy(model)\nprint(tidy_model)\n\n# Basic robustness check: re-run the analysis with different assumptions or specifications\n# For example, consider a different market model or event window\n```\n\n## 3. Expected Findings\nGiven the context of a major semiconductor shortage announcement, we expect that auto manufacturer stocks will be negatively affected, especially those with higher dependency on semiconductor chips. This suggests a negative sign for the CARs and a negative coefficient for the beta variable in the cross-sectional regression, indicating that firms with higher chip dependency (proxied by higher beta in this example) experience larger negative CARs. The magnitude of these effects would depend on various factors, including the extent of the semiconductor shortage, the importance of chip components in the manufacturers' production processes, and the overall market conditions at the time of the announcement. A plausible expectation might be CARs in the range of -5% to -15% over the event window for the average stock, with firms highly dependent on chips potentially experiencing CARs at the higher end of this range or even more negative.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study + cross-sectional CAR regression on firm-level exposure variable",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Auto stocks decline; higher chip-dependency → larger CAR loss",
+    "main_effect": "CAR ≈ −2.8%; cross-sectional gradient significant"
+  }
+}

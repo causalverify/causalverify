@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_42",
+  "source": "Quarterly Journal of Economics, 2007",
+  "authors": "Finkelstein",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "The Aggregate Effects of Health Insurance: Evidence from the Introduction of Medicare",
+  "doi": "10.1162/qjec.122.1.1",
+  "volume": 122,
+  "issue": 1,
+  "pages": "1-37",
+  "domain": "health",
+  "research_question": "What is the effect of a large, market-wide expansion of health insurance coverage on the health care sector, including hospital utilization, employment, capital inputs, spending, treatment intensity, and the adoption of new medical technologies? How does the aggregate response of health spending to widespread insurance expansion compare to the response implied by individual-level changes in coverage, and how much of the long-run rise in real per capita health spending can the spread of insurance explain?",
+  "data_description": "The primary dataset is 26 years of hospital-level data (1948–1975, excluding 1954) from the annual surveys of the American Hospital Association, hand-collected from the August issues of Hospitals: The Journal of the American Hospital Association. The sample covers approximately 4,500 private hospitals per year. Hospital-level outcomes include total expenditures, payroll expenditures, employment, beds, inpatient admissions, patient days, and indicators for adoption of specific technologies (e.g., open heart surgery facility, cardiac intensive care unit, postoperative recovery room, EEG, ICU, renal dialysis units). Pre-Medicare insurance coverage of the elderly across 11 sub-regions is measured using a special version of the 1963 National Health Survey identifying sub-regions. Additional data come from the 1963 and 1970 Surveys of Health Service Utilization and Expenditures, the National Health Expenditure Accounts, and state-level socio-economic series (income, infant mortality, violent crime, population). Expenditures are deflated to 1960 dollars.",
+  "institutional_context": "Medicare, enacted in July 1965 and implemented nationally on July 1, 1966, provided universal public hospital and physician insurance to Americans aged 65 and over, representing the largest single expansion of U.S. health insurance coverage. Before Medicare, public coverage of the elderly was virtually nonexistent and meaningful private coverage was limited; only about 25 percent of the elderly held substantive private hospital insurance (typically Blue Cross). Medicare reimbursed providers based on 'reasonable costs,' with benefit and reimbursement structures modeled on Blue Cross/Blue Shield. Upon implementation, hospital insurance among the elderly rose to nearly 100 percent, raising covered share by roughly 75 percentage points. Crucially, pre-Medicare private coverage of the elderly varied substantially across the country—from 49 percent uninsured in New England to 88 percent in the East South Central region—so Medicare's impact on insurance coverage differed sharply across geographic areas, with areas of low prior coverage experiencing much larger insurance expansions than areas with high prior coverage.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.045,
+      "unit": "log points increase in total hospital spending per 10pp increase in pre-Medicare uninsurance (DID)",
+      "interpretation": "A 10 percentage point higher pre-Medicare elderly uninsurance rate (larger Medicare coverage shock) is associated with approximately 4.5% higher total hospital spending growth after 1966"
+    },
+    "secondary_estimate": {
+      "value": 6.0,
+      "unit": "ratio of aggregate spending increase to direct elderly spending increase",
+      "interpretation": "The total spending increase (all ages) is approximately 6 times larger than the increase in spending on the elderly alone, indicating that 5/6 of the total cost came from supply-side spillovers"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 3-5 in Finkelstein (2007)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "American Hospital Association (AHA) Annual Survey (available via AHA or ICPSR — requires purchase/subscription for historical years)",
+      "National Health Interview Survey 1963 (pre-Medicare insurance rates — free via ICPSR)",
+      "Census Bureau state demographics (free)"
+    ],
+    "proprietary_sources": [
+      "AHA Annual Survey historical files (1948-1975) — available but may require AHA licensing"
+    ],
+    "proxy_strategy": "AHA data is available to researchers, though historical years may require special data purchase. CMS Medicare enrollment data (free) can proxy for the coverage shock. State-level aggregate health spending is available from CMS national health expenditure accounts.",
+    "replicability": "medium — AHA historical data requires purchase; pre-Medicare insurance rates available from ICPSR",
+    "public_proxy_available": true,
+    "replication_tier": "partial (AHA historical data requires licensing; pre-Medicare insurance data and CMS enrollment data are public)",
+    "data_limitations": "AHA survey had variable response rates in early years (1948-1960). State-level aggregation means only 50 observations per year. Pre-Medicare uninsurance rates from 1963 NHS are measured with sampling error. Concurrent Medicaid introduction creates a confound (addressed with controls).",
+    "public_data_sources_detail": [
+      "AHA Annual Survey (hospital-level data — available with licensing)",
+      "ICPSR (National Health Survey 1963 — free)",
+      "CMS Medicare enrollment statistics (free)",
+      "Census Bureau (state demographics — free)",
+      "FRED (state economic indicators — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences exploiting cross-state variation in pre-Medicare elderly uninsurance rates — states with higher pre-Medicare uninsurance experienced a larger coverage shock when Medicare was introduced (continuous treatment intensity); comparing pre-Medicare (1948-1965) to post-Medicare (1966-1975) hospital spending trends across high vs. low pre-Medicare-uninsurance states",
+    "key_variables": {
+      "treatment": "pre-Medicare elderly uninsurance rate (continuous, state-level, measured in 1963); interacted with post-1966 indicator",
+      "control": "states with low pre-Medicare uninsurance (smaller coverage shock at Medicare's introduction)",
+      "outcome": "log total hospital spending per capita (all ages, not just elderly — to capture aggregate and spillover effects); also hospital beds, admissions, payroll per patient day",
+      "time_period": "1948–1975 (AHA hospital survey panel)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Medicare's introduction caused a large, statistically significant increase in total hospital spending that substantially exceeded the direct cost of insuring the elderly. A 10 percentage point higher pre-Medicare uninsurance rate is associated with approximately 4-5% higher total hospital spending growth post-Medicare. Critically, the increase in total spending (including non-elderly) is approximately 6x larger than the increase in elderly spending alone, indicating massive supply-side spillovers: hospitals expanded capacity, hired more staff, and adopted more technology in response to Medicare demand, raising costs for all patients.",
+    "main_effect": "10pp higher pre-Medicare uninsurance rate → approximately 4-5% higher total hospital spending growth; supply-side spillovers account for ~85% of the total spending increase (aggregate effect ≈ 6× direct elderly spending increase)",
+    "key_robustness": [
+      "Event-study specification showing no pre-trend in spending differences before 1966",
+      "Separating elderly vs. non-elderly spending (to isolate spillovers)",
+      "Controlling for Medicaid introduction (concurrent 1966 program)",
+      "Alternative treatment variables (pre-Medicare physician supply, hospital bed supply)",
+      "Subsample analysis by region",
+      "Placebo tests using pre-Medicare periods"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID with continuous treatment intensity: pre-Medicare elderly uninsurance rate × post-1966 indicator; state and year fixed effects",
+      "treatment": "Cross-state variation in Medicare coverage shock (larger for states with higher pre-1965 elderly uninsurance rates)",
+      "event_window": "Post-Medicare: 1966-1975; pre-Medicare baseline: 1948-1965",
+      "estimation_window": "Full panel 1948-1975; pre-trends tested on 1948-1965 data",
+      "sample_period": "1948–1975",
+      "unit_of_observation": "State-year (50 states × 28 years)",
+      "key_assumption": "Parallel trends: absent Medicare, hospital spending growth in high-uninsurance states would have followed the same trajectory as low-uninsurance states. Supported by event-study evidence showing no differential pre-trends in the 18 years before Medicare (1948-1965). Pre-Medicare uninsurance rates are not correlated with state-level spending trends."
+    },
+    "key_magnitudes": {
+      "total_spending_effect": "+4-5% increase in total hospital spending per 10pp increase in pre-Medicare uninsurance rate",
+      "supply_side_multiplier": "Aggregate spending increase is approximately 6x larger than the direct elderly spending increase",
+      "spillover_share": "Supply-side spillovers (to non-elderly) account for approximately 85% of the total spending increase",
+      "hospital_capacity": "States with bigger Medicare shocks saw larger increases in hospital beds and medical staff per capita"
+    },
+    "robustness_notes_detail": "Event-study analysis confirms parallel pre-trends over the 18-year pre-Medicare period (1948-1965). The spending increase begins precisely in 1966 (the year Medicare started) and grows over the subsequent decade, consistent with gradual hospital capacity expansion. Results survive controlling for Medicaid (introduced concurrently but with different cross-state variation) and for pre-existing differences in hospital supply. The 6× multiplier from supply-side spillovers implies that the true fiscal cost of Medicare was far larger than the actuarial cost of insuring the elderly alone."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 113849,
+  "phase1_source_version": "v2primeprime_full_text"
+}

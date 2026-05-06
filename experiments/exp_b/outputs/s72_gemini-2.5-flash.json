@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s72",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "The Impact of Education on Chronic Disease Risk",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:52:39.289788",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 490,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThe research question aims to establish a *causal* relationship between educational attainment and chronic disease risk. A simple OLS regression of chronic disease (y) on education (x) would likely suffer from endogeneity bias. This is because unobserved factors such as innate ability, family background, or time preferences could influence both an individual's educational attainment and their propensity to develop chronic diseases, leading to biased OLS estimates.\n\nTo address this endogeneity, we will employ an **Instrumental Variables (IV)** approach, specifically using **Two-Stage Least Squares (2SLS)**. The proposed instrument is **quarter-of-birth (z)**. This instrument exploits variations in educational attainment driven by compulsory schooling laws or other age-at-school-entry rules that",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Quarter-of-birth serves as an instrument for education.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Higher educational attainment significantly reduces the risk of chronic diseases.",
+    "main_effect": "-0.4"
+  }
+}

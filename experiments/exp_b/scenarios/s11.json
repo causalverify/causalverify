@@ -1,0 +1,22 @@
+{
+  "scenario_id": "s11",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Fed rate hike announcement on bank stock returns",
+  "research_question": "Do unexpected Federal Reserve interest rate hike announcements generate positive cumulative abnormal returns (CAR) for bank stocks in the [-1,+1] window?",
+  "data_description": "Event study data for 80 bank stocks around a single Fed rate hike event. Variables: stock_id, event_day (−10 to +10), ret (daily return), mkt_ret (S&P 500 return), beta (pre-estimated market model beta). Use days −10 to −2 as estimation window to compute expected returns; event window is [−1, +1].",
+  "ground_truth": {
+    "identification_strategy": "Event study — market model; estimation window [−10,−2]; event window [−1,+1]",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank stocks show negative CAR around the rate hike announcement",
+    "main_effect": "CAR ≈ −2% in [−1,+1] window"
+  },
+  "data_file": "experiments/exp_b/data/s11_data.csv",
+  "design_note": "Prior override test: Models typically cite net-interest-margin theory to predict positive bank CAR on rate hikes, but the synthetic data implements the short-run negative effect (liquidity tightening, higher discount rates). Empirical CAR in the data is -3.97%, consistent with negative GT.",
+  "verified_empirical_car": -0.0397,
+  "dgp_truth": {
+    "type": "event",
+    "effect": -0.02,
+    "direction": "negative"
+  }
+}

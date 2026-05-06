@@ -1,0 +1,6 @@
+{
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_28",
+  "scored_model": "o3",
+  "error": "Expecting value: line 1 column 1 (char 0)"
+}

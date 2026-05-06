@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_31",
+  "title": "Estimating the Value of Political Connections",
+  "authors": "Fisman",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.91.4.1095",
+    "title": "Estimating the Value of Political Connections",
+    "year": 2001,
+    "journal": "American Economic Review",
+    "citations": 3010
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "fisman"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 3010,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

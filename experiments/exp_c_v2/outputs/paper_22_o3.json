@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_22",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:31:08.040463",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 696,
+    "output_tokens": 1898,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy: A two-way fixed-effects difference-in-differences (DiD) design that exploits (i) birth-cohort exposure to INPRES (young cohorts 1968-72 fully exposed vs. older cohorts 1950-62 not exposed) and (ii) cross-district variation in program intensity (number of INPRES schools built per 1,000 children in the district). The causal parameter of interest is the coefficient β on the interaction TreatmentCohortᵢ × ProgramIntensity_d.  \nDirectional hypothesis H₁: β > 0 — greater program intensity (more schools built) raises (a) individual years of schooling and (b) log real wages in adulthood.\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nExactly five linear regression specifications are pre-committed. All regressions cluster standard errors at the district level.\n\n1. Schooling Baseline  \nYi = α + β (TreatmentCohortᵢ × ProgramIntensity_d) + δ_d + γ_c + εᵢ\n\n Yi: years of schooling  \n δ_d: district of birth fixed effects  \n γ_c: birth-year fixed effects  \n\n2. Schooling + Individual Controls  \nAdd controls for age at survey, age², and an indicator for urban birth.\n\n3. Schooling + Pre-trend Check  \nSame as (1) but sample restricted to PRE-program cohorts (1950-62). Replace TreatmentCohort with a pseudo-treatment indicator for cohorts 1960-62 (should be zero effect).\n\n4. Wages Baseline  \nlog(Wageᵢ) = α + β (TreatmentCohortᵢ × ProgramIntensity_d) + δ_d + γ_c + εᵢ  \nSample: wage earners only.\n\n5. Wages + Schooling Control  \nSame as (4) but add individual schooling as a control to test whether earnings effects operate through education.\n\nNo further specifications will be estimated.\n\nSTEP 3 — FALSIFICATION GATE  \nThe directional hypothesis is rejected if ANY of the following occur:  \n• In Spec 1 the estimated β ≤ 0 or its two-sided p-value > 0.10.  \n• In Spec 3 the estimated β is statistically different from zero at the 10 % level (|t| > 1.64), indicating a violated pre-trend.  \n• For wages, if Spec 4 yields β ≤ 0 or p > 0.10.  \n(All other results are secondary; the gate hinges on Specs 1, 3, 4.)\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n#----- Load packages -----\nlibrary(data.table)            # Efficient data handling\nlibrary(fixest)                # For fast fixed-effects regressions\n\n#----- Read data -----\nsupas   <- fread(\"supas_1995_individual.csv\")      # individual survey\nprogram <- fread(\"inpres_schools_7378.csv\")        # district INPRES counts\nenroll  <- fread(\"enrollment_1971.csv\")            # not used in specs but could merge\n\n#----- Construct key variables -----\n# Merge program intensity to individuals by district of birth\nsupas <- merge(supas, program, by = \"district_id\", all.x = TRUE)\n\n# Program intensity: schools per 1,000 primary-age children (variable already computed)\n# Treatment cohort indicator\nsupas[, treat_cohort := birth_year %between% c(1968, 1972)]\n\n# Specifications run on full sample unless otherwise stated\n# Clustered standard errors at district level with fixest (cluster = \"id\")\ncluster_var <- \"district_id\"\n\n#----- SPEC 1: Schooling Baseline -----\nspec1 <- feols(school_years ~ treat_cohort*program_intensity | district_id + birth_year,\n               data = supas, cluster = cluster_var)\n\n#----- SPEC 2: Schooling + Controls -----\nspec2 <- feols(school_years ~ treat_cohort*program_intensity + age + I(age^2) + urban_birth |\n                 district_id + birth_year,\n               data = supas, cluster = cluster_var)\n\n#----- SPEC 3: Pre-trend (older cohorts only) -----\npre_sample <- supas[birth_year %between% c(1950, 1962)]\npre_sample[, pseudo_treat := birth_year %between% c(1960, 1962)]\nspec3 <- feols(school_years ~ pseudo_treat*program_intensity | district_id + birth_year,\n               data = pre_sample, cluster = cluster_var)\n\n#----- SPEC 4: Wages Baseline -----\nwage_sample <- supas[!is.na(real_wage)]        # restrict to wage earners\nspec4 <- feols(log(real_wage) ~ treat_cohort*program_intensity | district_id + birth_year,\n               data = wage_sample, cluster = cluster_var)\n\n#----- SPEC 5: Wages + Schooling Control -----\nspec5 <- feols(log(real_wage) ~ treat_cohort*program_intensity + school_years |\n                 district_id + birth_year,\n               data = wage_sample, cluster = cluster_var)\n\n#----- Display results -----\netable(list(spec1, spec2, spec3, spec4, spec5),\n       keep = \"treat_cohort:program_intensity|pseudo_treat:program_intensity\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \nBased on prior literature, I expect:\n\n• Spec 1: β̂ ≈ 0.12 (s.e. ≈ 0.04) ⇒ p ≈ 0.003  \n• Spec 2: β̂ drops to ≈ 0.11 (s.e. ≈ 0.04)  \n• Spec 3: β̂ ≈ 0.01 (s.e. ≈ 0.03) ⇒ not statistically different from zero (pre-trend satisfied)  \n• Spec 4: β̂ ≈ 0.08 log-points (s.e. ≈ 0.04) ⇒ p ≈ 0.05  \n• Spec 5: β̂ falls to ≈ 0.03 (s.e. ≈ 0.03), suggesting education mediates earnings.\n\nGate assessment: All three gate criteria are expected to be met (positive and significant β in Specs 1 & 4; null effect in Spec 3). Therefore the falsification gate would NOT be triggered, and the directional hypothesis would be retained.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences — young birth cohorts (exposed to INPRES schools) compared to older cohorts (not exposed), in high-intensity districts compared to low-intensity districts; the interaction of program intensity × cohort exposure identifies the causal effect",
+    "key_variables": {
+      "treatment": "INPRES program intensity (number of new schools built per 1,000 children in the district of birth) × cohort exposure (born 1968-1972, young enough to benefit)",
+      "control": "older birth cohorts (born 1950-1962, too old to benefit from new primary schools) in the same districts",
+      "outcome": "years of education; log monthly wages; labor force participation",
+      "time_period": "Program: 1973-1978; Outcomes measured in 1995 survey; Birth cohorts: 1950-1972"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The INPRES school construction program significantly increased educational attainment and adult wages for exposed cohorts. Each school built per 1,000 children increased average education by 0.12-0.19 years and increased wages by 1.5-2.7% for the exposed cohorts relative to older cohorts in the same district.",
+    "main_effect": "One additional school per 1,000 children increased education by 0.12-0.19 years and wages by 1.5-2.7% for exposed cohorts; the implied return to education (IV/Wald estimate) is approximately 6.8-10.6%",
+    "key_robustness": [
+      "Controlling for district characteristics interacted with cohort dummies",
+      "Alternative definitions of exposed vs. control cohorts",
+      "Falsification test: program intensity should not predict outcomes for older (control) cohorts",
+      "Regional sub-sample analysis (Java vs. outer islands)",
+      "Using birth region (rather than current region) to avoid migration bias"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID: program intensity (continuous, schools per 1,000 children in birth district) interacted with cohort exposure (young enough to benefit from new schools)",
+      "treatment": "Number of INPRES schools constructed per 1,000 children in district of birth (continuous intensity measure) × binary indicator for exposed birth cohort (born 1968-1972)",
+      "event_window": "Program implemented 1973-1978; treated cohorts aged 2-6 at start",
+      "estimation_window": "Birth cohorts 1950-1972; outcomes measured in 1995",
+      "sample_period": "Program: 1973–1978; Survey data: 1995",
+      "unit_of_observation": "Individual male from 1995 SUPAS, identified by birth district and birth year",
+      "key_assumption": "Parallel trends: absent the school construction program, education and wage trends for young cohorts would have been the same in high-intensity and low-intensity districts. Supported by: (a) allocation was based on pre-program enrollment (rule-based, not endogenous to future trends); (b) placebo tests on older cohorts show no differential trends."
+    },
+    "key_magnitudes": {
+      "education_effect": "0.12-0.19 additional years of education per school built per 1,000 children (for exposed cohorts)",
+      "wage_effect": "1.5-2.7% higher wages per school per 1,000 children (for exposed cohorts)",
+      "implied_return": "6.8-10.6% return to an additional year of education (Wald/IV estimate: wage effect / education effect)"
+    },
+    "robustness_notes_detail": "Falsification tests confirm that program intensity does not predict education or wages for older cohorts (born before 1962). Results are robust to including district-level controls interacted with cohort dummies (pre-program enrollment, population density, district-level expenditure). The allocation rule (more schools in low-enrollment districts) creates variation that is driven by policy rather than local demand shocks."
+  }
+}

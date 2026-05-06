@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_158",
+  "title": "The Effects of Class Size on Student Achievement: New Evidence from Population Variation",
+  "authors": "Hoxby",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/003355300555060",
+    "title": "The Effects of Class Size on Student Achievement: New Evidence from Population Variation",
+    "year": 2000,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 948
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "hoxby"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 948,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

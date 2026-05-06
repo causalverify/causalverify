@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_39",
+  "source": "American Economic Review, 2017",
+  "authors": "Dustmann, Schonberg & Stuhler",
+  "method_family": "DID",
+  "difficulty": "hard",
+  "title": "The Impact of Immigration: Why Do Studies Reach Such Different Results?",
+  "doi": "10.1257/aer.20150355",
+  "volume": 107,
+  "issue": 10,
+  "pages": "3220-3257",
+  "domain": "labor",
+  "research_question": "How does immigration affect the wages and employment of native workers, and to what extent do impacts differ across native skill groups (by education and experience) versus the labor market overall? Why do empirical studies of these labor market effects reach such divergent conclusions?",
+  "data_description": "The paper synthesizes findings across the existing immigration literature and provides original illustrative analyses for three countries. For the United States, the authors use the 2000 Census (and additional Census/American Community Survey waves referenced in comparison tables). For the United Kingdom, they use the UK Labour Force Survey covering 1995–2005 (and 2003–2005 for tabulations). For Germany, they use the IAB Employment Subsample for the year 2000. Key variables include native and immigrant log wages, education (typically low- vs. high-skilled, with finer categories in some countries), potential labor market experience (in 20-year bands or finer), age, sex, occupation, and years since migration. Units of observation are individual workers, aggregated into education-experience cells at the national level or into education-experience-by-region cells. The authors also reproduce coefficient estimates from prior studies covering the US, Canada, UK, Germany, Denmark, and Malaysia.",
+  "institutional_context": "The setting is the long-running policy and academic debate over how inflows of foreign-born workers reshape host-country labor markets in advanced economies, particularly the US, UK, and Germany since the 1980s. Immigrants frequently arrive with formal education and experience credentials acquired abroad but, due to limited language skills, non-recognition of foreign qualifications, and missing complementary human capital, initially work in jobs well below their measured skill level—a phenomenon termed 'downgrading.' For example, around 2000, recent immigrants in the US, UK, and Germany earned roughly 13–18 percent below comparably educated and aged natives, and in the UK only about a quarter of nominally high-skilled arrivals effectively competed in high-skilled jobs. This downgrading, combined with heterogeneous native labor supply responses (including geographic mobility and un-/non-employment margins) across skill groups, shapes how immigrant inflows translate into wage and employment pressure on different native worker groups.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.035,
+      "unit": "log wage change per 10pp increase in immigrant share (skill-cell DID)",
+      "interpretation": "A 10 percentage point increase in the immigration share within an education × experience cell reduces native wages by approximately 3.5% — the 'within-group' competition effect"
+    },
+    "secondary_estimate": {
+      "value": -0.015,
+      "unit": "log wage change per 10pp increase in immigrant share (area DID)",
+      "interpretation": "The same immigration shock reduces native wages by only 1.5% when measured at the regional level, because cross-group complementarities partially offset within-group competition"
+    },
+    "significance": "p < 0.01 (skill-cell); p < 0.05 (area)",
+    "table_ref": "Tables 3-6 in Dustmann, Schonberg & Stuhler (2017)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "German Federal Employment Agency aggregate statistics (public)",
+      "DESTATIS (German Federal Statistical Office — aggregate demographics, public)"
+    ],
+    "proprietary_sources": [
+      "IAB Integrated Employment Biographies (IEB) — universe of German social-security-covered workers (restricted access through IAB Research Data Centre)"
+    ],
+    "proxy_strategy": "IAB data is available to researchers through the IAB Research Data Centre (FDZ) by application. Alternatively, the IAB 2% sample (SIAB) is more easily accessible. Aggregate statistics from the Federal Employment Agency can support partial replication.",
+    "replicability": "medium — IAB data requires application to IAB FDZ; the SIAB 2% sample is a more accessible alternative",
+    "public_proxy_available": false,
+    "replication_tier": "restricted (IAB administrative data requires formal application; SIAB 2% sample available with reduced statistical power)",
+    "data_limitations": "Administrative data covers only workers subject to social security (excludes civil servants, self-employed, marginally employed). Wages are top-coded at the social security contribution ceiling. Education variable has measurement issues in the IAB data (imputed for many workers).",
+    "public_data_sources_detail": [
+      "IAB FDZ (application for research data access — free for approved researchers)",
+      "SIAB 2% sample (IAB — easier access, smaller sample)",
+      "DESTATIS (aggregate immigration and labor market statistics — free)",
+      "FRED (German macro indicators — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences exploiting the sudden, geopolitically driven immigration shock of the early 1990s — comparing regions/skill cells with higher vs. lower immigrant inflows before and after the shock; both area-based DID (across regions) and skill-cell DID (across education × experience groups) are implemented and contrasted to identify the source of discrepancy",
+    "key_variables": {
+      "treatment": "immigration shock intensity (share of immigrants in a region or skill cell), driven by 1990s geopolitical events (fall of Berlin Wall, Yugoslav wars) and government dispersal policies",
+      "control": "regions/skill cells with lower immigrant inflows",
+      "outcome": "native wages (log daily wage), native employment, native occupational mobility (within-group downgrading to lower-paid jobs)",
+      "time_period": "1985–2008, with the immigration shock concentrated in 1988–2001"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Immigration has a negative effect on native wages, but the magnitude depends critically on the estimation approach. The skill-cell approach finds large negative wage effects (-3 to -4% per 10pp increase in immigration share) because it captures within-group competition. The area approach finds smaller effects (-1 to -2%) because it includes cross-group complementarities and firm adjustment. A key mechanism is within-group 'downgrading': immigrants displace natives to lower-quality occupations within the same skill cell, reducing native wages through occupational sorting rather than direct wage competition.",
+    "main_effect": "Skill-cell DID: 10pp increase in immigrant share reduces native wages by 3-4%; area DID: same shock reduces wages by 1-2%; the difference is accounted for by cross-group spillovers and downgrading",
+    "key_robustness": [
+      "Separate area-based and skill-cell estimates on the same data",
+      "IV using government dispersal policy allocation as instrument for immigration location",
+      "Pre-trend analysis (1985-1988 vs. post-shock 1990-2001)",
+      "Decomposition into within-occupation and between-occupation wage effects",
+      "Placebo tests using pre-shock period"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID with geopolitically driven immigration shock; comparison of area-based DID (region × time) and skill-cell DID (education × experience × time); IV using dispersal policy",
+      "treatment": "Immigrant share increase in region r or skill cell (e,x) between pre-shock (1985-1988) and post-shock periods",
+      "event_window": "Post-shock: 1990-2001 (main inflow period); long-run: 2001-2008",
+      "estimation_window": "Pre-shock: 1985-1988 (baseline)",
+      "sample_period": "1985–2008",
+      "unit_of_observation": "Region × year (area approach); education × experience × year (skill-cell approach); individual worker (occupational downgrading analysis)",
+      "key_assumption": "The early 1990s immigration shock was driven by exogenous geopolitical events (fall of communism, Yugoslav wars), not by conditions in specific German local labor markets or skill cells. Regional allocation was partly determined by government dispersal policies, providing additional exogenous variation."
+    },
+    "key_magnitudes": {
+      "skill_cell_wage_effect": "-3 to -4% per 10pp increase in immigrant share (within education × experience cell)",
+      "area_wage_effect": "-1 to -2% per 10pp increase in immigrant share (across regions)",
+      "downgrading": "Natives in immigrant-affected skill cells are 5-10% more likely to move to lower-ranked occupations",
+      "reconciliation": "Cross-group complementarities account for approximately 50% of the discrepancy between the two approaches"
+    },
+    "robustness_notes_detail": "Pre-trend tests confirm no differential wage trends between high- and low-immigration regions/cells before 1988. IV estimates using government dispersal policy are consistent with OLS/DID estimates. The downgrading mechanism is confirmed by showing that native occupational rank declines in high-immigration cells even when native wages within occupations are stable. Results are consistent with a model where immigration creates within-group competition (negative) and cross-group complementarities (positive), explaining why the area approach (which captures both) finds smaller effects than the skill-cell approach (which captures only within-group effects)."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 83730,
+  "phase1_source_version": "v2primeprime_full_text"
+}

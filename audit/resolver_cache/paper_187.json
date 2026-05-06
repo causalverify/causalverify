@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_187",
+  "title": "Health Insurance Eligibility, Utilization of Medical Care, and Child Health",
+  "authors": "Currie & Gruber",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w5052",
+    "title": "Health Insurance Eligibility, Utilization of Medical care, and Child Health",
+    "year": 1995,
+    "journal": "National Bureau of Economic Research",
+    "citations": 229
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "currie",
+      "gruber"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 229,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

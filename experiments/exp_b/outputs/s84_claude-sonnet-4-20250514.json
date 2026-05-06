@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s84",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Police Staffing on Crime Rates",
+  "model": "claude-sonnet-4-20250514",
+  "run_at": "2026-04-14T20:03:08.837421",
+  "llm_response": {
+    "model": "claude-sonnet-4-20250514",
+    "input_tokens": 480,
+    "output_tokens": 890,
+    "content": "## 1. Identification Strategy\nI will use Instrumental Variables (IV) estimation with the cops grant lottery (z) as an instrument for police count (x). The key assumptions are: (1) Relevance: the grant lottery affects police staffing levels, (2) Exclusion restriction: the lottery only affects crime rates through its impact on police staffing, and (3) Exogeneity: the lottery assignment is random and uncorrelated with unobserved determinants of crime rates.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(AER)\nlibrary(stargazer)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s84_data.csv\")\n\n# Display basic summary statistics\nprint(\"Summary Statistics:\")\nsummary(data)\n\n# Check instrument relevance (first stage)\nfirst_stage <- lm(x ~ z + controls, data = data)\nprint(\"First Stage Results:\")\nprint(summary(first_stage))\n\n# Calculate F-statistic for weak instrument test\nf_stat <- summary(first_stage)$fstatistic[1]\nprint(paste(\"First-stage F-statistic:\", round(f_stat, 2)))\n\n# Run IV estimation using 2SLS\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\nprint(\"IV (2SLS) Results:\")\nprint(summary(iv_model))\n\n# Store the main coefficient\niv_coefficient <- coef(iv_model)[\"x\"]\nprint(paste(\"Main IV Coefficient (Police on Crime):\", round(iv_coefficient, 4)))\n\n# Compare with OLS (biased) estimate\nols_model <- lm(y ~ x + controls, data = data)\nprint(\"OLS Results (for comparison):\")\nprint(summary(ols_model))\n\nols_coefficient <- coef(ols_model)[\"x\"]\nprint(paste(\"OLS Coefficient:\", round(ols_coefficient, 4)))\n\n# Robustness checks\nprint(\"=== ROBUSTNESS CHECKS ===\")\n\n# 1. Reduced form (direct effect of instrument on outcome)\nreduced_form <- lm(y ~ z + controls, data = data)\nprint(\"Reduced Form Results:\")\nprint(summary(reduced_form))\n\n# 2. Test overidentifying restrictions (if we had multiple instruments)\nprint(\"Sargan Test (not applicable with single instrument)\")\n\n# 3. Check instrument strength\nif(f_stat < 10) {\n  print(\"WARNING: Weak instrument detected (F-stat < 10)\")\n} else {\n  print(\"Instrument appears strong (F-stat >= 10)\")\n}\n\n# 4. Hausman test for endogeneity\nhausman_test <- summary(iv_model, diagnostics = TRUE)\nprint(\"Endogeneity Test:\")\nprint(hausman_test$diagnostics)\n\n# Print final summary\nprint(\"=== FINAL RESULTS ===\")\nprint(paste(\"IV Estimate: Police increase of 1 unit reduces crime by\", \n            round(abs(iv_coefficient), 4), \"units\"))\nprint(paste(\"95% CI: [\", \n            round(confint(iv_model)[\"x\", 1], 4), \",\", \n            round(confint(iv_model)[\"x\", 2], 4), \"]\"))\n```\n\n## 3. Expected Findings\nI expect a negative coefficient around -0.3 to -0.6, indicating that increased police staffing reduces crime rates. The IV estimate should be larger in magnitude than the OLS estimate due to measurement error and simultaneity bias that typically attenuate OLS coefficients toward zero. The effect should be statistically significant given the experimental nature of the grant lottery, which provides clean exogenous variation in police staffing levels.",
+    "stop_reason": "end_turn"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use the cops grant lottery as an instrument for police count.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Increased police staffing significantly reduces crime rates.",
+    "main_effect": "-0.35"
+  }
+}

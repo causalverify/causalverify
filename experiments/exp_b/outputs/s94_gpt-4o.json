@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s94",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of School District Boundaries on Urban House Prices",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:46:28.077179",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 428,
+    "output_tokens": 454,
+    "content": "## 1. Identification Strategy\nThe appropriate method for this analysis is a Regression Discontinuity Design (RDD). This is because we are interested in identifying the causal effect of being within a less desirable school district on house prices, leveraging the discontinuity at the school district boundary. The key assumption for RDD is that around the cutoff (the boundary), houses on either side are comparable except for the treatment of being in the less desirable district. This implies continuity in potential outcomes around the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(rdd)\n\n# Read the CSV file\ndata <- read.csv(\"experiments/exp_b/data/s94_data.csv\")\n\n# Inspect the data\nstr(data)\n\n# Implement RDD\n# Define the running variable and the outcome of interest\nrunning_var <- data$running_var\ny <- data$y\n\n# Fit a basic RDD model using local linear regression\nrdd_model <- RDestimate(y ~ running_var, data = data, cutpoint = 0, \n                        subset = near_cutoff == 1)\n\n# Print the RDD estimate (treatment effect at the boundary)\nsummary(rdd_model)\n\n# Robustness Check: Vary the bandwidth\nrdd_model_bw1 <- RDestimate(y ~ running_var, data = data, cutpoint = 0, \n                            subset = near_cutoff == 1, bw = 0.1)\nsummary(rdd_model_bw1)\n\nrdd_model_bw2 <- RDestimate(y ~ running_var, data = data, cutpoint = 0, \n                            subset = near_cutoff == 1, bw = 0.2)\nsummary(rdd_model_bw2)\n\n# Print summaries of different bandwidths to check robustness\n```\n\n## 3. Expected Findings\nI expect the RDD analysis to show a negative sign for the coefficient at the cutoff, indicating that proximity to the less desirable school district negatively impacts house prices. The magnitude is typically moderate, reflecting localized effects - likely a 5% to 15% decrease in log house prices, translating to significant pricing differences in real terms. This is reasonable due to preferences for better-performing school districts commonly capitalized into property values.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The identification strategy leverages the discontinuity at the school district boundary.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Houses in the less desirable school district exhibit lower log prices.",
+    "main_effect": "-0.22"
+  }
+}

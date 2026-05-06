@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_31",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:35:43.770098",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 633,
+    "output_tokens": 163,
+    "content": "The Research Integrity by Design (RID) protocol is followed below.\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy leverages a \"natural experiment\" approach, specifically an event study design with a cross-sectional difference-in-differences component. We exploit exogenous shocks to political stability, as proxied by news about President Suharto's health, and examine the differential stock price reactions of firms based on their pre-existing, independently-assessed Suharto dependence. The core identification relies on the assumption that Suharto's health news provides an unanticipated signal regarding the future stability of his regime and the associated value of political connections. Firms with higher Suharto dependence are hypothesized to be more sensitive to these signals. The \"Suharto dependence index\"",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study / instrumental variable approach — Suharto health rumors as exogenous shocks to the expected value of political connections; the cross-sectional regression of firm-level returns on the Suharto dependence index during health events identifies the value of connections; health events serve as instruments because they are plausibly exogenous to firm fundamentals",
+    "key_variables": {
+      "treatment": "Suharto dependence index (1-5, continuous, constructed by independent business intelligence firm) × negative health news",
+      "control": "firms with low Suharto dependence (index = 1) serve as the reference group",
+      "outcome": "firm-level abnormal stock returns during Suharto health events (negative health news days and positive health news days)",
+      "time_period": "1995–1997, six health event episodes"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Political connections to Suharto are highly valuable. A one-unit increase in the Suharto dependence index is associated with a 4-5% larger stock price decline on days of negative health news and a comparable increase on positive health news days. The most Suharto-dependent firms lost approximately 15-20% of their value during negative health episodes, compared to minimal effects on independent firms. The correlation between Suharto dependence and health-event returns is approximately 0.43, highly significant.",
+    "main_effect": "One-unit increase in Suharto dependence index → approximately 4-5% additional stock price decline on negative health news days; most-connected firms (index=5) lost ~20% during worst health episode",
+    "key_robustness": [
+      "Positive health events (recovery rumors) show the mirror-image effect (connected firms gain more)",
+      "Controlling for firm size, industry, and government ownership share",
+      "Using alternative dependence indices",
+      "Excluding largest firms (Suharto family firms)",
+      "Event-by-event analysis across the six health episodes"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-sectional regression of abnormal returns during health events on the Suharto dependence index (can be interpreted as event study with cross-sectional heterogeneity or as IV where health shocks instrument for expected political connection value)",
+      "treatment": "Suharto dependence index (1-5) interacted with negative health news (binary event indicator)",
+      "event_window": "1-2 day returns during each health news episode",
+      "estimation_window": "Pre-event returns for normal return estimation",
+      "sample_period": "1995–1997 (six health event episodes)",
+      "unit_of_observation": "Firm × health event (approximately 80-100 firms × 6 events)",
+      "key_assumption": "Suharto health shocks are exogenous to individual firm fundamentals. The dependence index accurately captures variation in political connection intensity. No other systematic factor correlated with the dependence index affects returns specifically during health events."
+    },
+    "key_magnitudes": {
+      "dependence_coefficient": "-0.045 per unit of Suharto dependence on negative health news days (4.5% additional decline per dependence unit)",
+      "cross_section_correlation": "Correlation between dependence index and health-event returns ≈ -0.43",
+      "most_vs_least": "Most dependent firms (index=5) decline approximately 15-20% during negative health events vs. ~2-3% for least dependent (index=1)"
+    },
+    "robustness_notes_detail": "Results are consistent across all six health episodes (negative and positive). The symmetry of effects (connected firms fall on bad health news, rise on good health news) rules out a general market-wide explanation. Controlling for firm size, industry, and explicit government ownership does not eliminate the effect, confirming that the dependence index captures informal connections beyond formal government ownership."
+  }
+}

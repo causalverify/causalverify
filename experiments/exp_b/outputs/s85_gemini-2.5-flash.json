@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s85",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Impact of Merit Scholarships on College Enrollment",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:56:35.277463",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 455,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThe most appropriate causal method for this research question is a **Regression Discontinuity Design (RDD)**.\n\n**Why RDD?**\nThe research scenario explicitly describes a situation where treatment (merit scholarship) is assigned based on whether a student meets a specific GPA threshold (a \"cutoff\" in the running variable). Students just above the cutoff receive the scholarship, while those just below do not. This sharp cutoff rule, applied to a continuous running variable (GPA), is the hallmark of a sharp RDD. By comparing students infinitesimally close to the GPA cutoff, we can isolate the causal effect of the scholarship, as these students are expected to be very similar in all unobservable characteristics relevant to college enrollment, differing primarily only by their scholarship eligibility.\n\n**Key Assumption",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "The analysis exploits the GPA threshold as a cutoff to compare students just above and below the threshold.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Meeting the GPA threshold for a merit scholarship significantly increases college enrollment rates.",
+    "main_effect": "0.25"
+  }
+}

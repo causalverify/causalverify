@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_08",
+  "title": "Cyclicality of Credit Supply: Firm Level Evidence",
+  "authors": "Becker & Ivashina",
+  "year": null,
+  "journal": "Journal of Monetary Economics",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jmoneco.2013.10.002",
+    "title": "Cyclicality of credit supply: Firm level evidence",
+    "year": 2013,
+    "journal": "Journal of Monetary Economics",
+    "citations": 554
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ivashina",
+      "becker"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jme",
+    "journal_oa": "jme",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 554,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

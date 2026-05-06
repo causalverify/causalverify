@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_38",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:38:32.398510",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 666,
+    "output_tokens": 2228,
+    "content": "STEP 1 — PRE-COMMITMENT  \nCausal identification strategy: 2-stage least squares (2SLS) using the indicator SAMESEX (1 = first two children are the same sex, 0 = mixed sex) as an instrument for FERT3PLUS, an indicator that the mother has three or more children. Randomness of child sex makes SAMESEX exogenous; the relevance condition is the documented higher probability of a third birth when the first two children are the same sex.  \n\nDirectional hypothesis H: An additional child (having ≥3 rather than exactly 2 children) causally reduces mothers’ labor supply. Formally, β < 0 where β is the 2SLS coefficient of FERT3PLUS on each labor-supply outcome. I lock-in this hypothesis now and will not alter it.\n\nSTEP 2 — SPECIFICATION DISCIPLINE  \nI will run EXACTLY five specifications on the pooled 1980 & 1990 Census PUMS sample of married women aged 21-35 with at least two children. All regressions include the control vector X = {mother’s age, mother’s age at first birth, race dummies (White, Black, Other), education dummies (<HS, HS, Some College, College+), census year fixed effect}.  \nStandard errors clustered by state of residence.\n\nSpec 1 (first stage)  \nFERT3PLUS = α₁ + π·SAMESEX + γ·X + ε₁\n\nSpec 2 (reduced form)  \nLFP = α₂ + ρ·SAMESEX + γ·X + ε₂  \n(LFP = 1 if mother worked at all last year, 0 otherwise)\n\nSpec 3 (2SLS)  \nLFP = α₃ + β₁·FERT3PLUŜ + γ·X + u₃\n\nSpec 4 (2SLS)  \nWEEKS_WORKED = α₄ + β₂·FERT3PLUŜ + γ·X + u₄\n\nSpec 5 (2SLS)  \nLOG_LABOR_INCOME = α₅ + β₃·FERT3PLUŜ + γ·X + u₅  \n(Only for mothers with positive labor income; others coded as missing.)\n\nNo additional, alternative, or interaction specifications will be estimated.\n\nSTEP 3 — FALSIFICATION GATE  \nI will REJECT hypothesis H if ANY of the following occur for the primary outcome (Spec 3, LFP):  \na) First-stage relevance fails: F-statistic on SAMESEX < 10.  \nb) 2SLS coefficient β₁ is ≥ 0 or its two-sided p-value > 0.10.  \nIf neither (a) nor (b) is triggered, H survives the gate. Results from Specs 4-5 are secondary and do not influence gate judgment.\n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# Required packages\nlibrary(haven)      # to read .dta or .sav if needed\nlibrary(dplyr)\nlibrary(fixest)     # fast felm/iv\nlibrary(stringr)\n\n#--------------------\n# 1. Load and combine data\n#--------------------\n# Assume data files 'pums1980.dta' and 'pums1990.dta'\nd80 <- read_dta(\"pums1980.dta\")\nd90 <- read_dta(\"pums1990.dta\")\n\npums <- bind_rows(d80, d90) %>%\n  mutate(year = factor(year))  # ensure year fixed effect\n\n#--------------------\n# 2. Construct variables\n#--------------------\npums <- pums %>%\n  # married women 21-35 with ≥2 kids\n  filter(sex == \"female\",\n         marital_status == \"married\",\n         age >= 21, age <= 35,\n         n_children >= 2) %>%\n  # SAMESEX instrument\n  mutate(samesex = as.integer(\n           (child1_sex == child2_sex) & !is.na(child1_sex) & !is.na(child2_sex)),\n         fert3plus = as.integer(n_children >= 3),\n         lfp = as.integer(weeks_worked_last_year > 0),\n         weeks_worked = weeks_worked_last_year,\n         log_income = if_else(labor_income > 0,\n                              log(labor_income), NA_real_),\n         # Controls\n         age_first_birth = age - years_since_first_birth,\n         race_white = as.integer(race == \"White\"),\n         race_black = as.integer(race == \"Black\"),\n         race_other = as.integer(!(race %in% c(\"White\",\"Black\"))),\n         edu_hs = as.integer(education == \"HS\"),\n         edu_somecol = as.integer(education == \"SomeCollege\"),\n         edu_colplus = as.integer(education == \"CollegePlus\"),\n         edu_less_hs = as.integer(education == \"<HS\")) %>%\n  # keep complete cases for covariates used\n  select(state, year, samesex, fert3plus, lfp,\n         weeks_worked, log_income,\n         age, age_first_birth,\n         race_white, race_black, race_other,\n         edu_less_hs, edu_hs, edu_somecol, edu_colplus) %>%\n  na.omit()\n\n#--------------------\n# 3. Estimation functions\n#--------------------\nctrls <- ~ age + age_first_birth +\n          race_black + race_other +\n          edu_hs + edu_somecol + edu_colplus +\n          year\n\n# Spec 1: first stage\nspec1 <- feols(fert3plus ~ samesex + ctrls | 0,\n               data = pums, cluster = ~state)\n\n# Spec 2: reduced form\nspec2 <- feols(lfp ~ samesex + ctrls | 0,\n               data = pums, cluster = ~state)\n\n# Specs 3-5: 2SLS\nspec3 <- feols(lfp ~ 1 | fert3plus ~ samesex + ctrls,\n               data = pums, cluster = ~state)\n\nspec4 <- feols(weeks_worked ~ 1 | fert3plus ~ samesex + ctrls,\n               data = pums, cluster = ~state)\n\nspec5 <- feols(log_income ~ 1 | fert3plus ~ samesex + ctrls,\n               data = pums, cluster = ~state)\n\n# Display results\netable(spec1, spec2, spec3, spec4, spec5,\n       dict = c(fert3plus = \"3+ Children\",\n                samesex = \"Same-Sex First Two\",\n                lfp = \"Labor Force Part.\",\n                weeks_worked = \"Weeks Worked\",\n                log_income = \"Log Income\"),\n       se.below = TRUE)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)\n\nBased on prior literature (Angrist & Evans 1998), I expect:\n\nSpec 1 (first stage): π ≈ 0.060 (s.e. ≈ 0.002), F-stat ≈ 900 → clears relevance threshold.\n\nSpec 2 (reduced form): ρ ≈ -0.015 (s.e. ≈ 0.004).\n\nSpec 3 (2SLS LFP): β₁ ≈ -0.25 (s.e. ≈ 0.07) meaning an additional child lowers labor-force participation by ~25 percentage points.\n\nSpec 4 (2SLS Weeks): β₂ ≈ -10 weeks (s.e. ≈ 3).\n\nSpec 5 (2SLS Log Income): β₃ ≈ -0.55 log-points (s.e. ≈ 0.15).\n\nGate assessment: Expected first-stage F ≫ 10 and β₁ < 0 with p < 0.01, so the falsification gate would NOT be triggered; hypothesis H would survive.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "negative",
+    "true_method": "IV",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — same-sex composition of the first two children as instrument for having a third (or more) child; first stage: same-sex → probability of having ≥3 children; second stage: number of children (instrumented) → maternal labor supply",
+    "key_variables": {
+      "treatment": "number of children (endogenous, specifically having a third or higher-order child), instrumented by same-sex composition of first two children",
+      "control": "N/A (continuous/binary treatment with IV; comparison is between families with same-sex vs. mixed-sex first two children)",
+      "outcome": "maternal labor force participation, weeks worked per year, hours worked per week, labor income",
+      "time_period": "1980 and 1990 U.S. Census cross-sections"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Having more than two children significantly reduces maternal labor supply. The IV estimates show that a third child reduces maternal labor force participation by approximately 10-12 percentage points, weeks worked by approximately 4-6 weeks per year, and labor income by approximately 15-20%. The effect is larger than OLS estimates, suggesting that OLS is biased toward zero by selection (women who have more children would have worked less anyway). Effects on fathers' labor supply are small and statistically insignificant.",
+    "main_effect": "Having a third child reduces maternal labor force participation by approximately 10-12 percentage points (2SLS) and weeks worked by approximately 4-6 weeks per year; father's labor supply is essentially unaffected",
+    "key_robustness": [
+      "Twins at second birth as alternative instrument",
+      "Separate 1980 and 1990 Census analyses",
+      "By race and education subgroups",
+      "Comparing same-sex boys (BB) vs. same-sex girls (GG) — both generate similar first stages",
+      "Overidentification test using both instruments simultaneously",
+      "Controlling for age at first birth and spacing between children"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-stage least squares (2SLS) with same-sex first two children as instrument for having ≥3 children",
+      "treatment": "Having three or more children (binary, endogenous), instrumented by same-sex indicator for first two children",
+      "event_window": "N/A (cross-sectional)",
+      "estimation_window": "N/A",
+      "sample_period": "1980 and 1990 Census cross-sections",
+      "unit_of_observation": "Married woman aged 21-35 with at least two children",
+      "key_assumption": "Exclusion restriction: the sex composition of children affects parents' labor supply only through its effect on the number of children (family size), not through direct effects. Potential violations: sex-specific childrearing costs, gender preferences in different cultural groups. The sex of a child is approximately random (50/50), so the instrument satisfies relevance and exogeneity conditions."
+    },
+    "key_magnitudes": {
+      "first_stage": "Same-sex first two children increases probability of having ≥3 children by approximately 6 percentage points (F-statistic well above 10)",
+      "lfp_effect": "-10 to -12 percentage points reduction in maternal labor force participation per additional child (2SLS)",
+      "weeks_effect": "-4 to -6 weeks reduction in annual weeks worked",
+      "income_effect": "-15 to -20% reduction in maternal labor income",
+      "father_effect": "Small, positive, and generally insignificant effects on fathers' labor supply"
+    },
+    "robustness_notes_detail": "The same-sex instrument and twins instrument yield similar 2SLS estimates, supporting the exclusion restriction. Overidentification test does not reject. Results are consistent across 1980 and 1990 Census data. Effects are larger for less-educated mothers, consistent with higher opportunity costs of childcare for lower-wage workers. The BB (two boys) and GG (two girls) indicators have similar first-stage effects, ruling out sex-specific alternative channels."
+  }
+}

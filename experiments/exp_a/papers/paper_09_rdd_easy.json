@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_09",
+  "source": "Journal of Finance, 2012",
+  "authors": "Cunat, Gine & Guadalupe",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "research_question": "Do improvements in a firm's internal corporate governance—specifically the adoption of shareholder-sponsored governance proposals such as removing antitakeover provisions, increasing board independence, or changing compensation and voting rules—causally increase shareholder value? How do such governance changes affect managerial behavior, including acquisitions, capital expenditures, and long-term firm performance, and how do these effects vary with ownership concentration, existing antitakeover protections, R&D intensity, and the identity of the proposal sponsor?",
+  "data_description": "The dataset combines shareholder-sponsored governance proposals from Riskmetrics covering all S&P 1500 firms plus an additional 500 widely held firms over 1997–2007, yielding 3,984 proposals across 948 firms and 2,377 firm-meeting observations. Riskmetrics provides company name, annual meeting date, percentage of votes in favor, proposal type (72 distinct types grouped into antitakeover/G-index, compensation, voting, auditors, board structure, and other), and proponent identity. Daily security prices around meeting dates come from CRSP and are benchmarked against standard asset-pricing factors including the Fama–French three-factor and Carhart momentum specifications. Firm financials (total assets, market value, EBITDA, capital expenditures, R&D, Tobin's Q, book-to-market, return on equity) come from Compustat; acquisition counts and values from SDC; institutional ownership concentration and 5%+ blockholders from Thomson Financial 13F filings; and the G-index (number of antitakeover provisions, available biennially) from Riskmetrics.",
+  "institutional_context": "Under SEC Rule 14a-8, qualifying shareholders may submit proposals to be voted on at a firm's annual meeting and included in the proxy materials. The setting examined is voting on shareholder-sponsored governance proposals at U.S. annual meetings, where outcomes are typically nonbinding recommendations to the board: only about 31% of passing proposals are ultimately implemented versus 3% of failing ones, so the vote tally produces a discrete change in the likelihood of implementation. Most proposals require a simple majority (50%) to pass. Proposals address antitakeover provisions (e.g., classified boards, poison pills), board independence and structure, executive compensation, voting rules, and auditor matters. Vote outcomes are revealed on the meeting day through newswires, real-time broadcasts, institutional investor postings (e.g., CALPERS), and media coverage. Unlike management-sponsored proposals, shareholder-sponsored proposals cannot be strategically withdrawn by managers based on anticipated vote outcomes, so the distribution of vote shares near the majority mark is smooth and not manipulated.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.013,
+      "unit": "CAR (fraction)",
+      "interpretation": "RDD discontinuity: just-passing governance proposals generate 1.3% abnormal return vs. just-failing; local linear regression estimate at 50% threshold"
+    },
+    "bandwidth": "±5 percentage points around 50%",
+    "significance": "p < 0.05",
+    "table_ref": "Table 3, Column (1) in Cunat, Gine & Guadalupe (2012)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "SEC DEF 14A proxy filings (EDGAR, public) — contain vote outcomes for post-2003 filings",
+      "CRSP (WRDS, proprietary but annual returns sometimes via Yahoo Finance)"
+    ],
+    "proprietary_sources": [
+      "ISS (Institutional Shareholder Services) proxy voting database — primary source for historical vote tallies pre-2003",
+      "Compustat for financial controls (WRDS)"
+    ],
+    "proxy_strategy": "Post-2003 vote data available from SEC EDGAR proxy filings; pre-2003 requires ISS. Partial replication feasible with 2003-2007 EDGAR-sourced votes",
+    "replicability": "medium — post-2003 EDGAR proxy filings are public but require text parsing; full sample needs ISS",
+    "public_proxy_available": true,
+    "replication_tier": "partial (RDD on available ISS data: straightforward; from raw EDGAR filings: requires NLP pipeline)",
+    "data_limitations": "ISS/RiskMetrics data is the standard source and requires institutional access. Extracting vote results from raw DEF 14A filings is feasible but labor-intensive. The RDD methodology is straightforward and well-understood, making this an excellent 'easy' benchmark. The key challenge for an AI system is correctly identifying the running variable and applying the McCrary density test.",
+    "public_data_sources_detail": [
+      "SEC EDGAR DEF 14A proxy filings (vote results for shareholder proposals — free, requires parsing)",
+      "yfinance (stock returns around annual meeting dates — free)",
+      "ISS Voting Analytics (commercial but widely available at academic institutions)",
+      "Annual meeting date calendars (available from proxy filings)"
+    ]
+  },
+  "title": "The Vote Is Cast: The Effect of Corporate Governance on Shareholder Value",
+  "doi": "10.1111/j.1540-6261.2012.01776.x",
+  "volume": 67,
+  "issue": 5,
+  "pages": "1943-1977",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "RDD — running variable = vote share in favor of governance proposal; cutoff = 50% majority threshold; identification relies on proposals passing by a bare majority being as-good-as-random relative to those failing by a bare majority",
+    "key_variables": {
+      "running_variable": "percentage of votes cast in favor of shareholder governance proposal",
+      "cutoff": "50% (simple majority)",
+      "outcome": "cumulative abnormal stock return in the [0, +1] window around vote announcement; longer-term changes in governance measures",
+      "time_period": "1997–2007, annual meeting dates"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Governance proposals that pass by a narrow margin generate positive abnormal returns of ~1.3% in the announcement window; long-run effects depend on proposal type (binding vs. advisory)",
+    "main_effect": "~1.3% CAR for just-passing governance proposals vs. just-failing proposals",
+    "key_robustness": [
+      "McCrary density test (no sorting)",
+      "bandwidth sensitivity",
+      "placebo cutoffs",
+      "binding vs. advisory proposal heterogeneity"
+    ],
+    "identification_strategy_detail": {
+      "method": "Regression discontinuity design",
+      "running_variable": "Vote share for the governance proposal (centered at 50% majority threshold)",
+      "cutoff": "50% (simple majority)",
+      "treatment": "Proposal passes (vote share > 50%)",
+      "control": "Proposal fails (vote share < 50%)",
+      "bandwidth": "Narrow window around 50% threshold (e.g., ±5-10 percentage points)",
+      "outcome": "Cumulative abnormal returns around the annual meeting date; subsequent governance changes",
+      "sample_period": "1994-2009 (ISS/RiskMetrics shareholder proposal data)",
+      "unit_of_observation": "Firm-proposal-meeting date",
+      "key_assumption": "No precise manipulation of vote outcomes around the 50% threshold (McCrary density test). Firms with proposals barely passing vs. barely failing are comparable on all relevant dimensions."
+    },
+    "key_magnitudes": {
+      "abnormal_return_at_cutoff": "~1.3% positive CAR on meeting day for proposals barely passing vs. barely failing",
+      "declassify_board_effect": "Largest effect among proposal types (~2.0%)",
+      "implementation_rate": "Proposals that pass are significantly more likely to be implemented by the board, despite being technically non-binding"
+    },
+    "robustness_notes_detail": "McCrary density test confirms no bunching at threshold. Robust to different bandwidth choices, polynomial orders, and controlling for proposal characteristics. Placebo tests at non-threshold vote levels show no discontinuity."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 94167,
+  "phase1_source_version": "v2primeprime_full_text_a4_deleak",
+  "v2primeprime_two_pass_deleak": true,
+  "v2primeprime_deleak_source": "audit/regen_strong_deleak_v2primeprime_6.json",
+  "v2primeprime_a4_action": "rewritten"
+}

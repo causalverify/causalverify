@@ -1,0 +1,20 @@
+{
+  "identification_strategy": "One-line: RDD — treatment = Extended benefits for unemployed aged 50+, control = Unemployed just under age 50; shock/instrument/cutoff = Age 50 and regional border",
+  "key_variables": {
+    "treatment": "Extended unemployment benefits from 30 weeks to 209 weeks",
+    "control": "Unemployed individuals just under age 50 and those in control regions",
+    "outcome": "Unemployment duration",
+    "instrument_or_cutoff": "Age 50 and regional border",
+    "time_period": "1986 to 1995"
+  },
+  "conclusion_direction": "positive",
+  "conclusion_detail": "Extended benefits increase unemployment duration by at least 0.32 weeks per additional week of benefits.",
+  "main_effect": "Unemployment duration increases by at least 0.32 weeks per additional week of benefits",
+  "key_robustness": [
+    "Comparison at age threshold",
+    "Comparison at regional border",
+    "Analysis of non-steel sector inflow"
+  ],
+  "confidence": 0.9,
+  "notes": "Potential manipulation of age at entry into unemployment and regional differences in industry structure could affect results."
+}

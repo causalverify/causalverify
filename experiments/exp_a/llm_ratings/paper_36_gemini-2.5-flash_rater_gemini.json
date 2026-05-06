@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies the core identification strategy as a Randomized Controlled Trial (RCT) / correspondence audit study, which is a strong match for the ground truth's 'randomized field experiment.' It accurately describes the random assignment of names, the treatment/control definitions, and the causal implications. However, the AI output does not state the conclusion direction or expected outcome within the provided text, hence a 'Narrative Fabrication' for that aspect.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_36",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:28:29.524956+00:00"
+}

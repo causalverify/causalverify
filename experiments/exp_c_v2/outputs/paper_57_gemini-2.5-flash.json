@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_57",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:45:13.409602",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 629,
+    "output_tokens": 163,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe primary causal identification strategy is a Fuzzy Regression Discontinuity Design (RDD). The running variable is the state's Scheduled Caste/Scheduled Tribe (SC/ST) population share. The assignment rule for the \"treatment\" (number of reserved legislative seats) is based on a deterministic, step-function rule: `round(total_assembly_seats * minority_pop_share)`. This rounding rule creates multiple discontinuous jumps in the *expected* number of reserved seats at specific thresholds of the minority population share. We exploit these exogenous jumps. Specifically, for each state-year observation, we will center the running variable around its nearest relevant rounding threshold and estimate the Local Average Treatment Effect (LATE) of a discrete increase in",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Regression discontinuity design — running variable is minority (SC/ST) population share in the state; the step function mapping population share to number of reserved seats creates multiple discontinuities (at each rounding threshold); an additional reserved seat is the treatment; redistributive policy is the outcome",
+    "key_variables": {
+      "treatment": "one additional reserved seat for SC or ST in the state legislative assembly (determined by rounding of population share × total seats)",
+      "control": "states with one fewer reserved seat (just below the rounding threshold)",
+      "outcome": "state government spending on SC/ST welfare, job reservation (quota) implementation, land reform policies, minority public sector employment",
+      "time_period": "1960–1992 (multiple election cycles and Census-based reapportionments)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Mandated minority representation significantly increases redistributive policy favoring the represented group. One additional reserved seat for Scheduled Castes increases state spending on SC welfare programs and strengthens implementation of job reservation (quota) policies. Similarly, additional ST seats increase spending on tribal welfare. The effects are concentrated in policy domains most salient to the minority group (welfare spending, job quotas) rather than general public goods.",
+    "main_effect": "One additional SC reserved seat increases SC-targeted welfare spending by approximately 1-2% of total state budget; one additional ST seat increases ST welfare spending by a similar magnitude",
+    "key_robustness": [
+      "Separate analysis for SC and ST reservations",
+      "Controlling for state-level economic and demographic characteristics",
+      "Different polynomial specifications in population share",
+      "Time-series variation from Census-based reapportionments",
+      "Placebo: reservation does not affect policies not targeted at the reserved group",
+      "State fixed effects to absorb time-invariant state characteristics"
+    ],
+    "identification_strategy_detail": {
+      "method": "RDD exploiting the step function mapping minority population share to number of reserved assembly seats; the rounding at each integer threshold creates discontinuities in representation",
+      "treatment": "One additional reserved legislative seat (discrete jump from the step function at rounding thresholds)",
+      "event_window": "Policy outcomes measured during the legislative term following reapportionment",
+      "estimation_window": "States near each rounding threshold (bandwidth in population share)",
+      "sample_period": "1960–1992 (spanning multiple Census-based reapportionments)",
+      "unit_of_observation": "State-year (16 states × ~33 years)",
+      "key_assumption": "Near the rounding thresholds, the exact minority population share is as-if random with respect to state characteristics that affect redistributive policy. Small differences in enumerated population (driven by Census enumeration quality) determine whether a state gets one more or one fewer reserved seat."
+    },
+    "key_magnitudes": {
+      "sc_welfare_spending": "One additional SC reserved seat increases SC-targeted spending by approximately 1-2% of total state budget",
+      "job_quota": "Stronger implementation of SC/ST job reservation policies in public sector",
+      "general_spending": "No significant effect on non-targeted spending (placebo: reservation affects only targeted policies)",
+      "st_effect": "ST reservation effects are similar in magnitude to SC effects"
+    },
+    "robustness_notes_detail": "The step function creates multiple thresholds, providing several sources of identifying variation within each state over time. Pre-treatment state characteristics (GDP, urbanization, education) are smooth through the thresholds, supporting the RDD validity. The placebo result (no effect on non-targeted policies) is important: it confirms that the effect operates through targeted representation rather than general state capacity. Panel variation from Census-based reapportionments provides within-state identification."
+  }
+}

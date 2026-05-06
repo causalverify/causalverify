@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_09",
+  "title": "The Vote Is Cast: The Effect of Corporate Governance on Shareholder Value",
+  "authors": "Cunat, Gine & Guadalupe",
+  "year": null,
+  "journal": "Journal of Finance",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1111/j.1540-6261.2012.01776.x",
+    "title": "The Vote Is Cast: The Effect of Corporate Governance on Shareholder Value",
+    "year": 2012,
+    "journal": "The Journal of Finance",
+    "citations": 437
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "guadalupe"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jf",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 437,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

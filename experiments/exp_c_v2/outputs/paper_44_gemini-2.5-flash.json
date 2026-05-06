@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_44",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:40:27.412165",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 702,
+    "output_tokens": 1611,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n**Causal Identification Strategy:**\nI will employ a Regression Discontinuity Design (RDD). The strategy exploits the sharp, exogenous discontinuity in medical treatment intensity at the 'very low birth weight' (VLBW) threshold of 1,500 grams. Infants just below this threshold receive substantially more intensive medical care than those just above, despite being physiologically very similar. By comparing outcomes of infants immediately on either side of this cutoff, I can estimate the causal effect of this additional medical care. The running variable will be birth weight in grams, centered at the 1,500g threshold.\n\n**Directional Hypothesis:**\nIncreased medical treatment intensity triggered by the VLBW classification (birth weight < 1,500g) significantly *reduces* infant mortality. Specifically, I hypothesize a negative and statistically significant causal effect of being classified as VLBW (and thus receiving more intensive care) on both one-year infant mortality and 28-day neonatal mortality.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**\n\nI will run the following five specifications using a local linear regression framework. All specifications will utilize the centered birth weight (birth weight - 1500 grams) as the running variable and estimate the discontinuity at 0. Unless otherwise specified, `rdrobust`'s default optimal bandwidth selection and triangular kernel will be used.\n\n1.  **Primary Outcome (1-year mortality):** Local linear RDD of one-year infant mortality on centered birth weight, controlling for gestational age, plurality (e.g., twin), and maternal age.\n2.  **Secondary Outcome (28-day neonatal mortality):** Local linear RDD of 28-day neonatal mortality on centered birth weight, controlling for gestational age, plurality, and maternal age.\n3.  **First Stage (Hospital Charges):** Local linear RDD of total hospital charges (as a proxy for medical treatment intensity) on centered birth weight, controlling for gestational age, plurality, and maternal age. This tests the core assumption that treatment intensity indeed jumps at the threshold.\n4.  **Robustness Check (1-year mortality with fixed bandwidth):** Local linear RDD of one-year infant mortality on centered birth weight, using a pre-specified fixed bandwidth (e.g., half the optimal bandwidth chosen in Specification 1) for robustness, controlling for gestational age, plurality, and maternal age.\n5.  **Placebo Test (Covariate Balance):** Local linear RDD of a pre-determined covariate, specifically gestational age, on centered birth weight. This tests for any pre-existing discontinuity or sorting around the threshold in an unmanipulable covariate.\n\n**STEP 3 — FALSIFICATION GATE**\n\nI will reject my hypothesis if any of the following conditions are met:\n\n1.  **Primary and Secondary Outcomes (Specs 1 & 2):** If the estimated coefficient for the discontinuity at the 1,500g threshold for either one-year infant mortality or 28-day neonatal mortality is **positive** (indicating increased mortality) or **not statistically significant** at the p < 0.10 level.\n2.  **First Stage (Spec 3):** If the estimated coefficient for the discontinuity at the 1,500g threshold for hospital charges is **negative** (indicating a decrease in treatment) or **not statistically significant** at the p < 0.10 level. A weak or absent first stage would invalidate the RDD as a test of the effect of treatment.\n3.  **Robustness Check (Spec 4):** If the estimated coefficient for the discontinuity at the 1,500g threshold for one-year infant mortality is **positive** or **not statistically significant** at the p < 0.10 level, using the alternative bandwidth.\n4.  **Placebo Test (Spec 5):** If the estimated coefficient for the discontinuity at the 1,500g threshold for gestational age is **statistically significant** at the p < 0.10 level. A significant discontinuity in a pre-determined covariate would suggest a violation of the identifying assumption (e.g., sorting or manipulation of covariates at the cutoff).\n\n**STEP 4 — R CODE**\n\n```R\n# Install and load necessary packages\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) install.packages(\"rdrobust\")\nif (!requireNamespace(\"dplyr\", quietly = TRUE)) install.packages(\"dplyr\")\nlibrary(rdrobust)\nlibrary(dplyr)\n\n# Set seed for reproducibility\nset.seed(123)\n\n# --- Simulate Data ---\n# Approximately 48 million births, ~100k near 1500g per year.\n# Let's simulate a large sample size around the threshold, e.g., 500,000 observations.\nn_obs <- 500000\n\n# Running variable: birth weight in grams (centered at 1500g)\n# Assume birth weights are normally distributed around 1500g for infants in this range\nbirthweight_raw <- rnorm(n_obs, mean = 1500, sd = 100) # Centered around 1500 for demonstration\n# Filter to a plausible range for RDD (e.g., 1000g to 2000g)\nbirthweight_raw <- pmax(1000, pmin(2000, birthweight_raw))\n\n# Centered running variable\nbirthweight_c <- birthweight_raw - 1500\n\n# Treatment indicator (VLBW: birth weight < 1500g)\nvlbw_indicator <- as.numeric(birthweight_raw < 1500)\n\n# Covariates: gestational age, plurality, maternal age\ngestational_age_weeks <- rnorm(n_obs, mean = 30 + birthweight_c/50, sd = 2) # Correlated with birthweight\nplurality_twin <- rbinom(n_obs, 1, 0.05 + vlbw_indicator * 0.02) # Small increase for VLBW group\nmaternal_age_yrs <- rnorm(n_obs, mean = 28, sd = 5)\n\n# Outcome 1: One-year infant mortality (probability)\n# Base mortality, plus a negative effect for VLBW, and a trend with birthweight\n# (Higher birthweight = lower mortality)\nbase_mortality_1yr <- 0.05 - (birthweight_c / 1000) * 0.02 # Trend: higher birthweight, lower mortality\nvlbw_effect_1yr <- -0.015 # HYPOTHESIZED: VLBW classification reduces mortality\nmortality_1yr_prob <- pmax(0, pmin(1, base_mortality_1yr + vlbw_effect_1yr * vlbw_indicator + rnorm(n_obs, 0, 0.01)))\nmortality_1yr <- rbinom(n_obs, 1, mortality_1yr_prob)\n\n# Outcome 2: 28-day neonatal mortality (probability)\nbase_mortality_28d <- 0.03 - (birthweight_c / 1000) * 0.015\nvlb",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Regression discontinuity design — running variable is birth weight in grams; cutoff at 1,500g (VLBW threshold); treatment is increased medical intervention triggered by VLBW classification; outcome is infant mortality; the design exploits the fact that infants just below 1,500g receive substantially more care than infants just above",
+    "key_variables": {
+      "treatment": "classification as very low birth weight (< 1,500g), which triggers greater medical treatment intensity (fuzzy RDD — treatment intensity jumps at the threshold but is not perfectly determined by it)",
+      "control": "infants just above 1,500g who receive less intensive care despite being physiologically similar",
+      "outcome": "one-year infant mortality; 28-day neonatal mortality; also medical treatment measures (hospital charges, length of stay, NICU admission)",
+      "time_period": "1983–2002 (linked birth-death cohort files)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Additional medical care at the VLBW threshold significantly reduces infant mortality. Infants just below 1,500g (who receive more treatment) have approximately 0.7-1.0 percentage point lower one-year mortality than infants just above 1,500g, a reduction of approximately 7-10% from a base mortality of about 10%. Hospital charges increase by approximately $4,000-$6,000 at the threshold. The implied cost per life saved is approximately $500,000-$1,000,000.",
+    "main_effect": "One-year mortality decreases by approximately 0.7-1.0 percentage points at the 1,500g threshold; hospital charges increase by $4,000-$6,000; implied cost per life saved ~$500K-$1M",
+    "key_robustness": [
+      "Varying bandwidth around 1,500g (50g, 100g, 200g, 300g)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation (birth weight heaping)",
+      "Controlling for gestational age (which also affects treatment decisions)",
+      "Additional thresholds (2,500g for 'low birth weight' as robustness)",
+      "Subsample by race, year, hospital type"
+    ],
+    "identification_strategy_detail": {
+      "method": "Fuzzy RDD at 1,500g birth weight threshold; first stage shows discontinuity in treatment intensity; reduced form shows discontinuity in mortality",
+      "treatment": "Medical treatment intensity (hospital charges, NICU admission, length of stay), which jumps discontinuously below the 1,500g threshold",
+      "event_window": "Mortality tracked for one year after birth",
+      "estimation_window": "Birth weight bandwidth: ±85g to ±300g around 1,500g",
+      "sample_period": "1983–2002",
+      "unit_of_observation": "Individual birth (approximately 100,000 births per year near the threshold)",
+      "key_assumption": "Birth weight near 1,500g is not precisely manipulated — infants born at 1,499g vs. 1,501g are comparable in all respects except the additional medical treatment triggered by the VLBW classification. McCrary test addresses the known concern of birth weight heaping (clustering at round numbers like 1,500g)."
+    },
+    "key_magnitudes": {
+      "mortality_reduction": "-0.7 to -1.0 percentage points at the 1,500g threshold (from ~10% base = 7-10% relative reduction)",
+      "charge_increase": "+$4,000-$6,000 increase in hospital charges at the threshold",
+      "los_increase": "Length of stay increases by approximately 3-5 days at the threshold",
+      "cost_effectiveness": "Implied cost per statistical life saved: approximately $500,000-$1,000,000"
+    },
+    "robustness_notes_detail": "McCrary density test reveals significant heaping at 1,500g (some hospitals report exactly 1,500g disproportionately), but results are robust to excluding births at exactly 1,500g ('donut hole' RDD). The 2,500g threshold (low birth weight) also shows a discontinuity in treatment and mortality, confirming the general pattern. Results are strongest for singleton births and in more recent years (when VLBW classification was more standardized). Gestational age is a potential confounder (both birth weight and gestational age affect treatment), but the discontinuity in treatment at 1,500g exists conditional on gestational age."
+  }
+}

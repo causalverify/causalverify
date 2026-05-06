@@ -1,0 +1,92 @@
+{
+  "paper_id": "paper_43",
+  "source": "Quarterly Journal of Economics, 2012",
+  "authors": "Finkelstein, Taubman, Wright, Bernstein, Gruber, Newhouse, Allen & Baicker",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "The Oregon Health Insurance Experiment",
+  "doi": "10.1093/qje/qjs020",
+  "volume": 127,
+  "issue": 3,
+  "pages": "1057-1106",
+  "domain": "health",
+  "research_question": "How does gaining public health insurance coverage affect emergency department utilization among low-income adults, and how do these effects vary across individuals and subgroups defined by demographics and prior healthcare use? Specifically, who drives the documented average increase in ED visits, and are there meaningful offsetting reductions for some recipients?",
+  "data_description": "The study uses publicly available data from the Oregon Health Insurance Experiment, comprising 24,646 (analysis sample 24,615) individuals who signed up for Oregon's 2008 lottery for OHP Standard. Emergency department visit records from 12 Portland-area hospitals span January 1, 2007 to September 30, 2009, with a pre-lottery period (Jan 2007–Mar 9, 2008) and an 18-month study period (Mar 10, 2008–Sep 30, 2009). Key variables include 14 ED visit measures (overall, inpatient/outpatient, on-/off-hours, and four condition types: emergent non-preventable, emergent preventable, primary care treatable, non-emergent) constructed via the Billings et al. ICD-9 algorithm, both as binary indicators and visit counts. Covariates include lottery sign-up information (age, sex, language, phone, address, household size), state administrative records on Medicaid coverage, and pre-lottery SNAP and TANF participation/benefit amounts. The unit of observation is the individual lottery applicant.",
+  "institutional_context": "In 2003, Oregon split its Medicaid program into OHP Plus (covering categorically eligible groups such as low-income children, pregnant women, disabled individuals, and TANF recipients) and OHP Standard, which served low-income, non-disabled adults otherwise ineligible for Medicaid under federal rules. OHP Standard had higher premiums and cost-sharing, leading to enrollment attrition and an accumulated budget surplus by 2007. In 2008, facing capacity for roughly 10,000 new enrollees but excess demand, Oregon used a lottery to allocate the opportunity to apply for OHP Standard among 89,824 sign-ups, of whom 35,169 were selected; about 30% of selected individuals ultimately enrolled. Eligibility required being aged 19–64, an Oregon resident, a U.S. citizen or legal immigrant, uninsured for at least six months, and below the federal poverty line with assets under $2,000. The setting provides random variation in coverage opportunity within a previously uninsured, low-income adult population.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.078,
+      "unit": "percentage point increase in probability of any outpatient visit (ITT estimate)",
+      "interpretation": "Winning the Medicaid lottery increases the probability of having any outpatient visit by 7.8 percentage points, representing a substantial increase in health care utilization among the previously uninsured"
+    },
+    "secondary_estimate": {
+      "value": -0.08,
+      "unit": "percentage point reduction in medical debt in collections (ITT estimate)",
+      "interpretation": "Lottery winners are 8 percentage points less likely to have any medical debt in collections, representing a significant improvement in financial protection from health shocks"
+    },
+    "significance": "p < 0.01 (most outcomes)",
+    "table_ref": "Tables 3-6 in Finkelstein et al. (2012)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Oregon Health Insurance Experiment public use data (NBER website — free)",
+      "Replication code and data documentation (NBER — free)"
+    ],
+    "proprietary_sources": [
+      "Oregon DHS administrative records (restricted access through Oregon state DUA)",
+      "Credit report data (restricted, from a credit bureau under research agreement)"
+    ],
+    "proxy_strategy": "NBER provides a public use dataset that is sufficient for replicating the main survey-based results. Full administrative data requires Oregon state data use agreement. Credit report data requires separate agreement.",
+    "replicability": "high — NBER public use data available for main results; administrative data requires state DUA",
+    "public_proxy_available": true,
+    "replication_tier": "full for survey outcomes (NBER public use data — free); partial for administrative outcomes (requires Oregon DUA)",
+    "data_limitations": "Low survey response rate (26%) may introduce non-response bias, addressed with Lee bounds. First-stage compliance of 25% means IV estimates apply to compliers (LATE) not the full population (ATE). Follow-up period is short (1-2 years), which may be insufficient for detecting health improvements.",
+    "public_data_sources_detail": [
+      "NBER Oregon Health Insurance Experiment public use data (free)",
+      "Replication code (NBER website — free)",
+      "Oregon DHS (administrative data — state DUA required)",
+      "CMS Medicaid enrollment data (aggregate — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Instrumental variables / lottery-based randomized experiment — lottery selection (intent-to-treat) as instrument for actual Medicaid enrollment; first stage: lottery win → Medicaid enrollment probability; reduced form: lottery win → outcomes (ITT); second stage: Medicaid enrollment (instrumented by lottery win) → outcomes (LATE/IV)",
+    "key_variables": {
+      "treatment": "Medicaid enrollment (endogenous — not all lottery winners enroll), instrumented by lottery win (random selection)",
+      "control": "lottery losers (who did not receive the option to apply for Medicaid through the lottery)",
+      "outcome": "health care utilization (outpatient visits, ER visits, hospitalizations, prescriptions); financial strain (medical debt in collections, out-of-pocket medical spending); self-reported health",
+      "time_period": "Lottery conducted February-March 2008; outcomes measured approximately 12 months later (2009)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Medicaid coverage increases health care utilization, reduces financial strain, and improves self-reported health. Lottery winners had approximately 25% more outpatient visits, 35% more prescriptions, higher preventive care use, and 30% less medical debt in collections. Self-reported health improved significantly. However, the study did not find significant improvements in clinical health measures (blood pressure, cholesterol, diabetes control) in the 2-year follow-up period (reported in the companion NEJM 2013 paper).",
+    "main_effect": "Medicaid coverage increases outpatient visits by ~25% (ITT: +8%), reduces probability of medical debt in collections by ~25% (ITT: -8pp), and increases probability of reporting good/excellent health by ~25% (ITT: +7pp)",
+    "key_robustness": [
+      "ITT (lottery win) vs. IV (Medicaid enrollment instrumented by lottery) comparisons",
+      "Survey vs. administrative data outcomes",
+      "Subgroup analysis by age, gender, prior health status",
+      "Attrition analysis (survey non-response)",
+      "Balance tests (lottery winners vs. losers on pre-lottery characteristics)",
+      "Lee bounds for survey-based outcomes (adjusting for differential response)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Lottery-based randomized experiment; analysis via IV (lottery selection instruments for Medicaid enrollment) and ITT (comparing all lottery winners to all lottery losers)",
+      "treatment": "Medicaid enrollment (endogenous), instrumented by winning the Oregon Health Plan lottery (binary, randomly assigned)",
+      "event_window": "Outcomes measured approximately 12 months after lottery (administrative data) and via mail survey (2009)",
+      "estimation_window": "N/A (randomized experiment — lottery provides the identifying variation)",
+      "sample_period": "Lottery: early 2008; outcomes: through 2009",
+      "unit_of_observation": "Individual lottery participant (approximately 75,000 in the analysis sample)",
+      "key_assumption": "Random assignment through the lottery ensures that lottery winners and losers are balanced on all pre-lottery characteristics. The exclusion restriction is that winning the lottery affects outcomes only through increased Medicaid enrollment (not through other channels such as lottery-win-induced optimism). Compliance: approximately 25% of lottery winners successfully enrolled in Medicaid."
+    },
+    "key_magnitudes": {
+      "first_stage": "Winning the lottery increases Medicaid enrollment by approximately 25 percentage points",
+      "utilization_itt": "+7.8 percentage points increase in probability of any outpatient visit (ITT, from ~58% to ~66%)",
+      "financial_itt": "-8.0 percentage points reduction in probability of any medical debt in collections (ITT)",
+      "health_itt": "+7.2 percentage points increase in probability of self-reported 'good' or better health (ITT)",
+      "iv_scaling": "IV (LATE) estimates are approximately 4× the ITT estimates (dividing by 0.25 first-stage compliance rate)"
+    },
+    "robustness_notes_detail": "Balance tests confirm that lottery winners and losers are statistically identical on pre-lottery demographics, health status, and prior health care utilization. Survey response rates are approximately 26%, raising concerns about non-response bias; Lee bounds are computed to address this. Administrative data outcomes (hospital visits, Medicaid enrollment) are available for the full sample and confirm survey-based findings. The 25% first-stage compliance rate is typical for Medicaid experiments (not everyone who gains eligibility successfully navigates the enrollment process)."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 99259,
+  "phase1_source_version": "v2primeprime_full_text"
+}

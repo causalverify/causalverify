@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI model output closely follows the ground truth's method by using an event study design with high-frequency data to estimate the effect of coworker arrivals and departures. However, it does not specify the conclusion direction, which is essential for scoring the direction match. The output is consistent with the correct strategy but fails in the narrative by not stating the effect's direction, leading to a narrative fabrication.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_41",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:03:20.351274+00:00"
+}

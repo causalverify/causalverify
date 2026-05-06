@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "ME"
+  ],
+  "reasoning": "The AI correctly identifies using the Fama-French-Carhart 4-factor model to measure abnormal returns, which is the right approach family. However, it frames this as a panel regression rather than the correct calendar-time portfolio event study methodology. The AI discusses predictive power and abnormal returns conceptually correctly, but gets the specific implementation wrong. No clear direction is stated in the provided excerpt.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_29",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:11:02.261643+00:00"
+}

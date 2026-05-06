@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - correctly identifies fuzzy RDD with FICO score as running variable, 620 as cutoff, and explains the discontinuity in securitization rates. Correctly distinguishes between ITT and fuzzy RDD approaches. However, no direction/conclusion about the effect is stated in the provided excerpt, so cannot score direction match.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_35",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:11:55.406617+00:00"
+}

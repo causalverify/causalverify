@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s23",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Judge leniency as IV for incarceration on recidivism",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:35:06.141324",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 481,
+    "output_tokens": 663,
+    "content": "## 1. Identification Strategy\nTo estimate the causal effect of incarceration on recidivism, we use the random assignment of criminal cases to lenient vs. strict judges as an instrument (z). The key assumption for instrumental variable (IV) analysis is that the instrument affects the outcome (recidivism) only through its effect on the treatment (incarceration), which is satisfied by the exclusion restriction. Additionally, we assume that the instrument is relevant (i.e., it has a significant effect on incarceration) and that there are no unmeasured confounders affecting both incarceration and recidivism. Given the binary nature of the instrument, treatment, and outcome, we will employ a binary instrumental variable (BIV) approach.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(AER)\n\n# Load data\ndata <- read_csv(\"experiments/exp_b/data/s23_data.csv\")\n\n# Convert binary variables to factor\ndata$z <- as.factor(data$z)\ndata$x <- ifelse(data$x > 0, 1, 0)\ndata$y <- ifelse(data$y > 0, 1, 0)\n\n# Estimate first stage: effect of judge leniency on incarceration\nfirst_stage <- glm(x ~ z + controls, data = data, family = binomial)\nsummary(first_stage)\n\n# Estimate reduced form: effect of judge leniency on recidivism\nreduced_form <- glm(y ~ z + controls, data = data, family = binomial)\nsummary(reduced_form)\n\n# Estimate IV model using two-stage least squares (2SLS)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data, family = binomial)\nsummary(iv_model)\n\n# Print the IV estimate\niv_estimate <- coef(iv_model)[2]\nprint(paste(\"The estimated effect of incarceration on recidivism is:\", iv_estimate))\n\n# Basic robustness check: check for weak instrument\nweak_instrument_test <- durbin.wu.hausman.test(y ~ x + controls, z ~ controls, data = data)\nprint(weak_instrument_test)\n```\n\n## 3. Expected Findings\nBased on the deterrence hypothesis, we expect that incarceration will reduce recidivism, implying a negative coefficient on x in the IV model. However, some research suggests that incarceration may have a criminogenic effect, leading to increased recidivism due to factors like social isolation, loss of employment opportunities, and increased exposure to criminal networks. In this case, we would expect a positive coefficient on x. Given the complexity of the relationship between incarceration and recidivism, the magnitude of the effect is difficult to predict without further context. However, we expect the effect size to be moderate, potentially in the range of -0.1 to -0.3, indicating a 10-30% reduction in the probability of recidivism among those incarcerated, assuming the deterrence hypothesis holds. If the criminogenic effect hypothesis is correct, the effect size could be positive, potentially in the range of 0.1 to 0.3, indicating a 10-30% increase in the probability of recidivism.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — judge leniency instrument; LATE for marginal defendants; test exclusion restriction carefully",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Incarceration increases recidivism for marginal defendants (criminogenic effect)",
+    "main_effect": "Incarceration raises 3-year recidivism probability by ~15pp for compliers"
+  }
+}

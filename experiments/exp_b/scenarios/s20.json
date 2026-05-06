@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s20",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Distance to bank as IV for savings rate",
+  "research_question": "Does having a bank account increase household savings, using distance to the nearest bank branch as an instrument for account ownership?",
+  "data_description": "Cross-sectional data on 500 households. Variables: y (monthly savings in USD), x (has_account binary), z (distance to nearest branch in km — instrument), controls (income, education). First stage: distance → account ownership (negative). Exclusion: distance affects savings only through account ownership.",
+  "ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: branch distance; first stage: distance → account ownership (negative)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Bank account ownership significantly increases savings",
+    "main_effect": "Having an account increases monthly savings by ~40% (IV estimate)"
+  },
+  "data_file": "experiments/exp_b/data/s20_data.csv",
+  "dgp_truth": {
+    "type": "iv",
+    "effect": 0.4,
+    "direction": "positive"
+  }
+}

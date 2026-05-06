@@ -1,0 +1,60 @@
+{
+  "paper_id": "paper_53",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:43:34.697093",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 686,
+    "output_tokens": 163,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\nMy causal identification strategy relies on the rigorous, quasi-experimental validation of teacher value-added (VA) measures as described in the institutional context (teacher mobility event studies). This validation is assumed to address concerns about student sorting into teachers that would otherwise confound the VA measure itself. Once validated, I will investigate the long-run impacts by relating a student's average exposure to these validated VA measures during their elementary/middle school years to their adult outcomes. To further mitigate potential confounding from non-random student assignment to teachers *within* schools and cohorts, my primary analysis will employ regressions including school-by-entry-cohort fixed effects, which control for all time-invariant differences across schools and all common shocks affecting students entering the same school in the same year",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": false,
+    "detected_method": null,
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study using teacher arrivals at and departures from schools as quasi-exogenous events — when a high-VA teacher moves to a new school, test scores in the receiving grade should jump up; when a high-VA teacher leaves, scores should drop; the timing of teacher moves (year of arrival/departure) is used as the event date to validate VA measures against a quasi-experimental benchmark",
+    "key_variables": {
+      "treatment": "exposure to a high-VA teacher (teacher VA measured from test score gains in prior years/other schools); teacher arrival/departure as the validating event",
+      "control": "same school-grade in years before the high-VA teacher arrives or after they depart; also students not assigned to the teacher within the school",
+      "outcome": "short-run: student test score gains (math, English); long-run: college attendance at age 20, earnings at ages 25-32, teen pregnancy, neighborhood quality in adulthood",
+      "time_period": "1989–2009 (school data); adult outcomes tracked through 2011 (tax data)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "High value-added teachers significantly improve both short-run test scores and long-run life outcomes. A one SD increase in teacher VA raises student test scores by approximately 0.14 SD in math, increases the probability of college attendance at age 20 by 0.82 percentage points, raises age-28 earnings by approximately 1.3% ($252/year), and reduces teen birth rates. The event-study validation confirms that VA measures capture true teacher quality: test scores jump immediately when a high-VA teacher arrives and drop when they leave, with no pre-trend.",
+    "main_effect": "1 SD increase in teacher VA → +0.14 SD in math scores, +0.82 pp college attendance, +1.3% age-28 earnings ($252/year), -1.25 pp teen birth rate",
+    "key_robustness": [
+      "Event-study validation: teacher arrivals/departures show immediate test score jumps with no pre-trend",
+      "Controlling for student demographics, prior test scores, class size, school fixed effects",
+      "Drift analysis: VA estimates from past data predict current student outcomes",
+      "Placebo: high-VA teacher in one subject does not predict gains in other subjects",
+      "Parent income controls (ruling out selection into high-VA teacher classrooms)",
+      "Multiple adult outcome measures (earnings, college, teen pregnancy, savings)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Teacher mobility event study (validation) + quasi-experimental assignment of students to teachers of varying VA (long-run outcomes); event study examines test score discontinuities in the year a high/low-VA teacher arrives at a new school",
+      "treatment": "Exposure to a teacher with one-SD-higher VA score (continuous treatment intensity based on estimated teacher quality)",
+      "event_window": "Test scores in the year of teacher arrival/departure vs. adjacent years",
+      "estimation_window": "Teacher VA estimated using leave-one-year-out cross-validation from multiple years of data",
+      "sample_period": "1989–2009 (school data); adult outcomes through 2011",
+      "unit_of_observation": "Student-year (for test score analysis); student (for adult outcome analysis, linked to childhood teacher assignments)",
+      "key_assumption": "Teacher mobility (switching schools) is not driven by anticipated changes in student quality at the receiving school. The event study validates this: if high-VA teachers are attracted to schools with improving students, we would see a pre-trend before teacher arrival, which is absent. Parent characteristics and prior student quality do not change at teacher transitions."
+    },
+    "key_magnitudes": {
+      "test_score_effect": "+0.14 SD math score gain per 1 SD increase in teacher VA (validated by event study)",
+      "college_effect": "+0.82 pp increase in college attendance at age 20 per 1 SD of teacher VA in a single year",
+      "earnings_effect": "+1.3% increase in age-28 earnings ($252/year) per 1 SD of teacher VA in a single year",
+      "teen_pregnancy_effect": "-1.25 pp reduction in teen birth rate per 1 SD of teacher VA",
+      "cumulative_value": "Replacing a bottom-5% VA teacher with an average teacher raises the cumulative lifetime earnings of a single classroom by approximately $250,000"
+    },
+    "robustness_notes_detail": "The event-study validation is the paper's key innovation: test scores in a grade jump precisely in the year a high-VA teacher arrives at the school, with no pre-trend in prior years and no effects on other grades in the same school (which serve as a within-school placebo). The absence of pre-trends rules out the hypothesis that high-VA teachers are assigned to improving student cohorts. Parent income controls confirm that classroom composition does not change when teachers switch. Long-run outcomes are robust to controlling for student demographics, school fixed effects, and year effects. The earnings effects are measured at ages 25-32, which may understate lifetime impacts if teacher quality effects compound through career trajectories."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s18",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "hard",
+  "title": "Contaminated event window: confounding news during event period",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:26:24.639196",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 478,
+    "output_tokens": 404,
+    "content": "## 1. Identification Strategy\nWe will use an Event Study approach to isolate the effect of the acquisition from the confounding earnings news. The key assumption is that the market reaction to the acquisition can be identified by controlling for the market return and the earnings surprise. We will use a fixed effects regression model to control for the stock-specific effects and the market return. The coefficient on the event day will capture the abnormal return due to the acquisition.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s18_data.csv\")\n\n# Convert event_day to a factor variable\ndata$event_day <- as.factor(data$event_day)\n\n# Create a group variable for each stock\ndata$stock_id <- as.factor(data$stock_id)\n\n# Run the fixed effects regression\nfe_model <- plm(ret ~ event_day + mkt_ret + eps_surprise + 0 | stock_id, data = data, model = \"within\")\n\n# Print the summary of the regression\nsummary(fe_model)\n\n# Calculate the robust standard errors\ncoeftest(fe_model, vcovHC(fe_model, type = \"HC1\"))\n\n# Plot the event study results\nplot(coeftest(fe_model, vcovHC(fe_model, type = \"HC1\")), xlab = \"Event Day\", ylab = \"Abnormal Return\", main = \"Event Study Results\")\n```\n\n## 3. Expected Findings\nWe expect the coefficient on the event day to be positive and significant, indicating a positive market reaction to the acquisition announcement. The magnitude of the coefficient will depend on the size and significance of the acquisition. The inclusion of the earnings surprise variable should help control for the confounding effect of the earnings news. The robust standard errors should account for any heteroskedasticity in the data.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study with confound adjustment — regress AR on eps_surprise + acquisition dummy",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "After controlling for earnings surprise, acquisition announcement generates negative AR",
+    "main_effect": "Acquisition CAR ≈ −1.5% after earnings adjustment"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Strong strategy match: AI correctly identifies DID approach with proper treatment (high wholesale funding banks) vs control (retail deposit banks) and correct timing around Lehman collapse. However, the output is cut off and doesn't clearly state the expected negative effect on lending, so direction cannot be assessed from the provided text.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_01",
+  "scored_model": "moonshot-v1-128k",
+  "timestamp": "2026-03-30T13:03:51.134494+00:00"
+}

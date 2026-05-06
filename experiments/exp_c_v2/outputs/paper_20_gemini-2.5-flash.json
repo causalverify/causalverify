@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_20",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:32:03.166132",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 649,
+    "output_tokens": 161,
+    "content": "**STEP 1 — PRE-COMMITMENT**\n\n*   **Causal Identification Strategy:** Regression Discontinuity Design (RDD). We will exploit the sharp discontinuity in the treatment assignment (winning election *t*) at the 50% vote share threshold for the Democratic candidate in election *t*. The running variable is the Democratic candidate's vote share in election *t*, centered at 50%. The cutoff point is 0.\n*   **Directional Hypothesis:** Winning a close election in *t* (i.e., becoming an incumbent) has a positive causal effect on both the Democratic candidate's vote share in election *t+1* and the probability of the Democratic candidate winning election *t+1*.\n\n**STEP 2 — SPECIFICATION DISCIPLINE**",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is the Democratic candidate's vote share in election t (continuous); cutoff at 50% (majority threshold); treatment is winning the current election (incumbency status); outcome is performance in the next election",
+    "key_variables": {
+      "treatment": "winning the current election (Democratic vote share > 50% in election t)",
+      "control": "losing the current election (Democratic vote share < 50% in election t)",
+      "outcome": "Democratic vote share in election t+1; probability of winning election t+1",
+      "time_period": "U.S. House elections, 1946–1998"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Winning a close election provides a large and statistically significant personal incumbency advantage. A candidate who barely wins (vs. barely loses) gains approximately 7-8 percentage points higher vote share in the next election and a substantially higher probability of winning. This is a true causal effect of incumbency, not selection.",
+    "main_effect": "RDD estimate of the incumbency advantage: approximately +7-8 percentage points in next-election vote share at the 50% threshold; probability of winning the next election jumps by approximately 35-45 percentage points",
+    "key_robustness": [
+      "Varying bandwidth around the 50% cutoff (narrow: 2%, wide: 10%)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation of the running variable",
+      "Balance tests: pre-determined covariates should be continuous at the cutoff",
+      "Placebo cutoffs at other vote shares (40%, 45%, 55%, 60%)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp regression discontinuity design with local polynomial regression",
+      "treatment": "Binary: winning the current House election (vote share > 50%)",
+      "event_window": "N/A (cross-election RDD)",
+      "estimation_window": "Vote shares within bandwidth of the 50% threshold (e.g., 48%-52% for narrow bandwidth)",
+      "sample_period": "1946–1998",
+      "unit_of_observation": "Congressional district-election pair (district in election t → outcome in election t+1)",
+      "key_assumption": "Near the 50% cutoff, potential outcomes are continuous — candidates who barely win and barely lose are comparable in all pre-determined characteristics. No precise manipulation of the vote share is possible (election outcomes near 50% are effectively random). McCrary (2008) density test should show no bunching at 50%."
+    },
+    "key_magnitudes": {
+      "vote_share_advantage": "+7-8 percentage points in next-election vote share for barely-winning vs. barely-losing candidates",
+      "win_probability_advantage": "+35-45 percentage points in probability of winning the next election",
+      "covariate_balance": "Pre-determined covariates (lagged vote share, candidate characteristics) show no discontinuity at 50%"
+    },
+    "robustness_notes_detail": "Results are robust to bandwidth choice, polynomial order, and various sample restrictions. McCrary density test shows no evidence of manipulation of vote shares at the 50% cutoff. Balance tests confirm that pre-determined characteristics (previous election vote share, district demographics) are smooth through the cutoff, supporting the as-if-random assumption. Placebo tests at non-50% cutoffs show no comparable discontinuities."
+  }
+}

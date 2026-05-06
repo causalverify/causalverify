@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_220",
+  "title": "The Welfare Economics of Land Use Planning",
+  "authors": "Cheshire & Sheppard",
+  "year": null,
+  "journal": "JUE",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/s0094-1190(02)00003-7",
+    "title": "The welfare economics of land use planning",
+    "year": 2002,
+    "journal": "Journal of Urban Economics",
+    "citations": 255
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "cheshire",
+      "sheppard"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jue",
+    "journal_oa": "journal of urban economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 255,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

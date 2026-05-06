@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_01",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-28T00:09:58.113588",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 591,
+    "output_tokens": 1793,
+    "content": "BEGIN RID PROTOCOL  \n==================  \n\nSTEP 1 — PRE-COMMITMENT  \n-----------------------  \nIdentification strategy: Difference-in-Differences (DiD) exploiting the sudden funding shock after Lehman’s bankruptcy (treatment date = 2008 Q4). The interaction between a bank’s pre-crisis wholesale-funding ratio (continuous, measured as average of 2007 Q4–2008 Q2) and a post-shock dummy (Post = 1 for 2008 Q4) identifies the causal effect of wholesale‐funding dependence on the change in lending. Bank and quarter fixed effects absorb invariant bank heterogeneity and common shocks.\n\nDirectional hypothesis H₁ (pre-committed): Banks with higher pre-crisis wholesale-funding ratios reduced their lending more after the Lehman shock. Formally, β₁ < 0 in  \n\nLending_{it} = β₀ + β₁ (Post_t × Wholesale_i) + λ_i + τ_t + ε_{it}.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly 4)  \n---------------------------------------------  \nAll regressions are weighted by lagged total assets (2007 Q4) and have robust SEs clustered at the bank level.\n\nSpec 1. Dependent variable: log(1 + $ new syndicated loan volume_{it}).  \n        Regressors: Post × Wholesale_i, Post_t, Wholesale_i, bank FE, quarter FE.\n\nSpec 2. Same as Spec 1 but adds time-varying controls: log(total assets), tier-1 capital ratio, ROA, and deposit funding ratio interacted with Post (all contemporaneous).\n\nSpec 3. Dependent variable: log(1 + # new syndicated loan deals_{it}); otherwise identical to Spec 1.\n\nSpec 4. Event-study: Replace Post_t with leads/lags δ_k for 4 quarters before and after Lehman (k = -4,…, +4, omit k = -1). Report coefficients on δ_k × Wholesale_i. Parallel-trend test: all k ≤ -2 jointly = 0.\n\nNo additional specifications will be run.\n\nSTEP 3 — FALSIFICATION GATE  \n---------------------------  \nThe directional hypothesis is rejected if ANY of the following hold:  \na) In Specs 1–3 the coefficient β̂₁ is ≥ 0 or |t| < 1.64 (p > 0.10, two-tailed).  \nb) In Spec 4, pre-trend test (F-test) rejects the null of zero differential trends at p < 0.10.\n\nSTEP 4 — SELF-CONTAINED R CODE  \n------------------------------  \n```r\n## Load libraries\nlibrary(fixest)     # for fast FE estimation\nlibrary(dplyr)\n\n## Assume dataframe 'bank_q' with variables:\n## bank_id, quarter (Date or factor), lend_vol, lend_cnt,\n## wholesale_ratio, total_assets, tier1_cap, roa, deposit_ratio\n\n## Create variables --------------------------------------------------------\nbank_q <- bank_q %>%\n  mutate(Post = ifelse(quarter == as.Date(\"2008-10-01\"), 1, 0),\n         ln_lend_vol = log1p(lend_vol),\n         ln_lend_cnt = log1p(lend_cnt))\n\n## Asset weights (2007Q4)\nasset_wts <- bank_q %>%\n  filter(quarter == as.Date(\"2007-10-01\")) %>%\n  select(bank_id, wt = total_assets)\n\nbank_q <- left_join(bank_q, asset_wts, by = \"bank_id\")\n\n## Specification 1 ---------------------------------------------------------\nspec1 <- feols(ln_lend_vol ~ Post*wholesale_ratio | bank_id + quarter,\n               data = bank_q, weights = ~wt, cluster = \"bank_id\")\n\n## Specification 2 ---------------------------------------------------------\nspec2 <- feols(ln_lend_vol ~ Post*wholesale_ratio +\n                 Post*deposit_ratio + log(total_assets) +\n                 tier1_cap + roa | bank_id + quarter,\n               data = bank_q, weights = ~wt, cluster = \"bank_id\")\n\n## Specification 3 ---------------------------------------------------------\nspec3 <- feols(ln_lend_cnt ~ Post*wholesale_ratio | bank_id + quarter,\n               data = bank_q, weights = ~wt, cluster = \"bank_id\")\n\n## Specification 4: Event study -------------------------------------------\n## Create relative quarter dummies k = -4,…,+4 (omit k=-1)\nquarters_vec <- sort(unique(bank_q$quarter))\nlehman_q <- as.Date(\"2008-10-01\")\nbank_q <- bank_q %>%\n  mutate(k = as.integer((as.yearqtr(quarter) - as.yearqtr(lehman_q))*4))\n\nfor(k in -4:4){\n  if(k == -1) next\n  bank_q[[paste0(\"D\",k)]] <- ifelse(bank_q$k == k, 1, 0)\n}\n\nevent_formula <- as.formula(\n  paste(\"ln_lend_vol ~\",\n        paste(paste0(\"D\", c(-4:-2,0:4), \"*wholesale_ratio\"), collapse = \" + \"),\n        \"| bank_id + quarter\"))\n\nspec4 <- feols(event_formula,\n               data = bank_q, weights = ~wt, cluster = \"bank_id\")\n\n## Pre-trend F-test (k ≤ −2)\npre_coefs <- paste0(\"D\", -4:-2, \"_wholesale_ratio\")\npretest <- wald(spec4, pre_coefs = 0)\n\n## Save/print results\netable(spec1, spec2, spec3)\nprint(pretest)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT  \n-----------------------------------  \nExpected qualitative results:  \n\nSpec 1: β̂₁ ≈ -0.25 (t ≈ -2.5).  \nSpec 2: β̂₁ ≈ -0.20 (t ≈ -2.1).  \nSpec 3: β̂₁ ≈ -0.30 (t ≈ -2.7).  \nSpec 4: Event-study coefficients k ≥ 0 increasingly negative; all pre-crisis coefficients (k ≤ -2) small and jointly insignificant (F-stat p ≈ 0.45).\n\nGate assessment: With the above anticipated numbers, neither criterion (a) nor (b) is violated; thus the falsification gate is NOT triggered and H₁ would be retained.\n\nEND RID PROTOCOL",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "DID — treatment = banks with high short-term wholesale funding dependence, control = banks with low wholesale funding (retail deposit-funded); shock = Lehman Brothers collapse 2008-09-15",
+    "key_variables": {
+      "treatment": "wholesale funding ratio (short-term market borrowings / total liabilities) above median",
+      "control": "banks below median wholesale funding ratio",
+      "outcome": "new syndicated loan originations (volume and number of deals)",
+      "time_period": "2007Q1–2009Q1, with Lehman shock as the treatment date"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "High-wholesale-funding banks reduced new lending by significantly more than retail-funded banks after Lehman collapse",
+    "main_effect": "~47% decline in new lending for Lehman co-syndicate banks vs. ~11% for others",
+    "key_robustness": [
+      "placebo pre-Lehman shocks",
+      "alternative funding measures",
+      "controlling for demand-side factors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences",
+      "treatment": "Banks with high dependence on short-term wholesale funding (measured by deposits-to-assets ratio, with low deposit share = high wholesale dependence)",
+      "control": "Banks with high retail deposit funding",
+      "event": "Lehman Brothers bankruptcy, 2008-09-15",
+      "pre_period": "Pre-Lehman (2006-Q1 to 2008-Q3)",
+      "post_period": "Post-Lehman (2008-Q4 to 2009-Q1)",
+      "unit_of_observation": "Syndicated loan facility level",
+      "key_assumption": "Parallel trends in lending between wholesale-funded and deposit-funded banks absent the Lehman shock"
+    },
+    "key_magnitudes": {
+      "new_loans_decline_peak": "47% decline in new loans to large borrowers (Q4 2008 vs Q3 2008)",
+      "new_loans_decline_boom": "79% decline relative to credit boom peak (Q2 2007)",
+      "real_investment_lending_decline": "14% decline in lending for real investment (Q4 2008)"
+    },
+    "robustness_notes_detail": "Authors acknowledge they cannot fully prove supply shock is uncorrelated with loan demand. Results hold across multiple loan types."
+  }
+}

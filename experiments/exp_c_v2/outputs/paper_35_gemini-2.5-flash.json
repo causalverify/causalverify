@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_35",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:37:06.068132",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 732,
+    "output_tokens": 1538,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nMy causal identification strategy is a Fuzzy Regression Discontinuity (FRD) design. I will exploit the discontinuous jump in the *probability of securitization* at the FICO credit score threshold of 620. The FICO score, centered at 620, will serve as the running variable. The binary indicator for a FICO score *at or above 620* will serve as the instrumental variable (the \"treatment\" in the prompt's language), which strongly predicts the actual treatment (securitization). The outcome variable is the default rate. This FRD design will estimate the Local Average Treatment Effect (LATE) of securitization on subsequent default rates for borrowers whose securitization status is affected by crossing the 620 FICO threshold.\n\n**Directional Hypothesis:**\nEasier securitization reduces lenders' incentives to carefully screen borrowers, leading to higher default rates. Therefore, I hypothesize that loans originated to borrowers with FICO scores just *at or above 620* (who are significantly more likely to have their loans securitized) will exhibit a *higher* probability of default compared to loans originated to borrowers with FICO scores just *below 620* (who are less likely to be securitized), *all else equal*. This implies a positive LATE of securitization on default rates.\n\n---\n\n## STEP 2 — SPECIFICATION DISCIPLINE\n\nI will estimate the following five FRD specifications using local linear regressions and the `rdrobust` package in R. The running variable will be `fico_centered` (borrower FICO score minus 620), the cutoff will be 0, the outcome variable will be `default_status` (binary: 1 for default, 0 otherwise), and the instrument for securitization will be `above_620` (binary: 1 if FICO >= 620, 0 otherwise).\n\n1.  **Primary Specification:** Local linear FRD using a triangular kernel, bandwidth selected by the data-driven \"Imbens-Kalyanaraman optimal bandwidth\" method for the fuzzy design (`h` for outcome, `h_ls` for first stage), and including all available controls (`ltv`, `doc_status`, `interest_rate`, `loan_amount`, `orig_year` fixed effects, `geo_fe` fixed effects).\n2.  **Robustness Check 1 (Half Bandwidth):** Local linear FRD using a triangular kernel, *half* of the optimal bandwidth from Spec 1, and including all available controls.\n3.  **Robustness Check 2 (Double Bandwidth):** Local linear FRD using a triangular kernel, *double* the optimal bandwidth from Spec 1, and including all available controls.\n4.  **Robustness Check 3 (Rectangular Kernel):** Local linear FRD using a *rectangular* kernel, optimal bandwidth selected by the data-driven method, and including all available controls.\n5.  **Robustness Check 4 (No Controls):** Local linear FRD using a triangular kernel, optimal bandwidth selected by the data-driven method, *excluding* all controls.\n\nFor all specifications, robust standard errors will be used.\n\n---\n\n## STEP 3 — FALSIFICATION GATE\n\nI will reject my hypothesis if *any* of the following conditions are met for the **Primary Specification (Specification 1)**:\n\n1.  **LATE Sign Reversal:** The estimated Local Average Treatment Effect (LATE) of securitization on default rate is negative.\n2.  **LATE Insignificance:** The estimated LATE for the default rate is not statistically significant at the 10% level (p-value > 0.10).\n3.  **First-Stage Failure:** The first-stage estimate (discontinuity in securitization rate at the 620 FICO cutoff) is not statistically significant at the 10% level (p-value > 0.10) or has a negative sign. This would indicate that the instrument is not valid or strong enough.\n4.  **Running Variable Manipulation:** A McCrary test (`rddensity` package) for the FICO score distribution at the cutoff indicates significant manipulation of the running variable (p-value for the discontinuity in density at 0 is less than 0.10).\n\n---\n\n## STEP 4 — R CODE\n\n```R\n# STEP 4: R CODE\n\n# Install and load necessary packages\nif (!requireNamespace(\"rdrobust\", quietly = TRUE)) install.packages(\"rdrobust\")\nif (!requireNamespace(\"rddensity\", quietly = TRUE)) install.packages(\"rddensity\")\nif (!requireNamespace(\"estimatr\", quietly = TRUE)) install.packages(\"estimatr\") # For lm_robust if needed, but rdrobust handles SEs\nif (!requireNamespace(\"dplyr\", quietly = TRUE)) install.packages(\"dplyr\")\nlibrary(rdrobust)\nlibrary(rddensity)\nlibrary(dplyr)\n\n# Set a seed for reproducibility\nset.seed(123)\n\n# --- Simulate Data ---\n# Approximately 1.3 million subprime and Alt-A mortgage originations, 2001-2006\nN <- 1300000\n\n# FICO score: running variable, centered at 620\n# FICO scores typically range from 300-850. Subprime usually below 660.\n# We need a concentration around 620.\nfico <- rnorm(N, mean = 615, sd = 25)\nfico <- pmax(500, pmin(700, fico)) # Clip to a realistic subprime range\nfico_centered <- fico - 620\n\n# Instrument: above_620 (1 if FICO >= 620, 0 otherwise)\nabove_620 <- as.numeric(fico >= 620)\n\n# Covariates: smooth around the cutoff\nltv <- runif(N, 0.7, 0.95) # Loan-to-value ratio\ndoc_status <- sample(c(\"Full Doc\", \"Low Doc\"), N, replace = TRUE, prob = c(0.7, 0.3))\ninterest_rate <- runif(N, 0.05, 0.08)\nloan_amount <- runif(N, 100000, 500000)\norig_year <- sample(2001:2006, N, replace = TRUE)\ngeo_fe <- sample(paste0(\"MSA_\", 1:50), N, replace = TRUE)\n\n# --- Treatment (Securitization Status) ---\n# Securitization probability has a significant jump at 620\n# Logit model for probability of securitization\nbeta_fico_securitization <- 0.02 # Small effect of FICO itself\nbeta_jump_securitization <- 0.6 # Significant jump for FICO >= 620\nprob_securitized <- pl",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "RDD",
+    "detected_direction": "negative",
+    "true_method": "RDD",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Fuzzy regression discontinuity design — running variable is borrower FICO score; cutoff at 620; the discontinuity in securitization rates at 620 (first stage) is used to identify the causal effect of securitization on default rates (second stage / reduced form); loans above 620 are more easily securitized, creating a discontinuity in lender screening incentives",
+    "key_variables": {
+      "treatment": "higher securitization probability for loans with FICO ≥ 620 (fuzzy treatment — not all loans above 620 are securitized, but the rate jumps discontinuously)",
+      "control": "loans with FICO just below 620 (harder to securitize, lender retains more screening incentive)",
+      "outcome": "probability of default (90+ day delinquency or foreclosure within 2 years of origination)",
+      "time_period": "originations 2001–2006; performance tracked through 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Securitization leads to lax screening: loans just above the 620 FICO threshold (more easily securitized) have approximately 10-25% higher default rates than loans just below the threshold, despite having marginally better credit scores. The effect is concentrated in low-documentation loans, where screening effort matters most. This provides direct evidence that securitization created moral hazard in mortgage lending.",
+    "main_effect": "Default rate discontinuously increases by approximately 10-25% at the 620 FICO threshold; the securitization rate jumps by ~15-20 percentage points at the same threshold (first stage)",
+    "key_robustness": [
+      "Bandwidth variation around 620 (FICO 600-640, 610-630, 615-625)",
+      "Controlling for loan characteristics (LTV, documentation, loan amount)",
+      "Low-doc vs. full-doc subsamples (effect concentrated in low-doc)",
+      "Year-by-year analysis (effect strengthens from 2003 to 2006)",
+      "Placebo tests at other FICO scores (580, 600, 640, 660)",
+      "McCrary density test for FICO manipulation"
+    ],
+    "identification_strategy_detail": {
+      "method": "Fuzzy RDD (securitization rate discontinuity at FICO 620) / reduced-form sharp RDD (default rate discontinuity at 620)",
+      "treatment": "Securitization probability (endogenous, jumps at FICO 620); reduced form directly tests default rate discontinuity",
+      "event_window": "Default tracked for 24 months after origination",
+      "estimation_window": "FICO bandwidth around 620 (various widths: ±5, ±10, ±20 points)",
+      "sample_period": "Originations 2001–2006",
+      "unit_of_observation": "Individual mortgage loan",
+      "key_assumption": "Borrowers cannot precisely manipulate their FICO score to sort around 620. The 620 threshold is set by the securitization market (investors and rating agencies), not by individual lenders or borrowers. Potential outcomes (default risk without the securitization incentive effect) are continuous at 620."
+    },
+    "key_magnitudes": {
+      "securitization_jump": "+15-20 percentage point increase in securitization probability at FICO 620 (first stage)",
+      "default_jump": "+10-25% increase in default rate at FICO 620 (reduced form)",
+      "low_doc_effect": "Effect on default is approximately 2x larger for low-documentation loans (where screening effort matters most)",
+      "temporal_pattern": "Effect grows from 2003 to 2006, consistent with increasing moral hazard during the housing boom"
+    },
+    "robustness_notes_detail": "McCrary density test shows some bunching at round FICO numbers (620, 640, 660) consistent with score manipulation, but the discontinuity in default rates survives after excluding exact 620 observations. Placebo tests at 580, 600, 640, and 660 show no comparable default rate discontinuities, confirming the 620 threshold is special due to its role in securitization. The effect is robust to controlling for all observable loan characteristics, suggesting it reflects lender screening effort (unobservable soft information) rather than observable borrower quality."
+  }
+}

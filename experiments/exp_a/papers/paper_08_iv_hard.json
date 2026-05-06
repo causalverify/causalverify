@@ -1,0 +1,86 @@
+{
+  "paper_id": "paper_08",
+  "source": "Journal of Monetary Economics, 2014",
+  "authors": "Becker & Ivashina",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "research_question": "Does the supply of bank credit vary systematically over the business cycle, independently of fluctuations in firms' demand for credit, and do contractions in bank credit supply have real effects on borrowing and investment by firms that depend on banks?",
+  "data_description": "The analysis uses a quarterly firm-level panel of U.S. nonfinancial corporations from 1990:Q2 to 2010:Q4. Syndicated loan issuance data come from Reuters DealScan; corporate bond issuance (non-convertible public and private U.S. issues) comes from Thomson One Banker; commercial paper issuance is inferred from Standard & Poor's instrument-level ratings. Firm financials are from Compustat, with segment data from the Compustat Segment Database. Aggregate credit stocks (1953–2011) come from the Federal Reserve Flow of Funds. Time-series indicators of bank conditions include the Fed Senior Loan Officer Opinion Survey on tightening lending standards, asset-weighted non-performing loans and loan allowances from Call Reports for the largest U.S. banks, a market-adjusted bank stock index from Kenneth French's library, and federal funds rate deviations from a Taylor rule. The unit of observation is a firm-quarter, conditional on raising new debt.",
+  "institutional_context": "U.S. corporations finance themselves through two main external debt sources: bank loans (largely syndicated term loans and revolving credit lines) and public debt markets (corporate bonds and commercial paper). Large, rated firms typically have access to both, while smaller, unrated firms depend almost exclusively on banks. Over the 1990–2010 period, the U.S. economy experienced two NBER recessions, the LTCM/Russian crisis of 1998, substantial monetary policy shifts, and the 2007–2009 financial crisis, during which bank balance sheets deteriorated sharply (rising non-performing loans, falling bank equity values) and policymakers implemented programs such as TARP premised on the view that bank loan supply was impaired. These episodes generated pronounced variation in banks' willingness and capacity to lend, while bond markets remained comparatively open, creating a setting in which firms with access to both markets could shift between loan and bond financing.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.04,
+      "unit": "percentage point per recession quarter",
+      "interpretation": "IV estimate: credit supply contraction of ~3–5pp per recession quarter independent of borrower quality; within-firm β on recession × bond_access_indicator"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Table 3–4 in Becker & Ivashina (2014)"
+  },
+  "data_availability": {
+    "status": "mostly_proprietary",
+    "public_sources": [
+      "Fed Senior Loan Officer Opinion Survey / SLOOS (Federal Reserve, public, quarterly)",
+      "NBER recession dates (public)",
+      "Call Reports (FFIEC, public)"
+    ],
+    "proprietary_sources": [
+      "DealScan (WRDS) for syndicated loan data",
+      "Compustat (WRDS) for borrower financials and bond market access"
+    ],
+    "proxy_strategy": "SLOOS is public for macro credit conditions; bond issuance data partially available via TRACE (public for corporate bonds post-2002); DealScan alternative: Refinitiv LPC but expensive",
+    "replicability": "low — within-firm loan-level analysis requires DealScan and Compustat match",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (aggregate credit supply cycle: feasible; firm-level loan-bond substitution: requires commercial data)",
+    "data_limitations": "DealScan (syndicated loans) and FISD (bond-level data) both require commercial licenses. The revealed-preference identification strategy fundamentally requires observing firm-level borrowing from both bank loans and bonds simultaneously, which is difficult without DealScan+FISD. Proxy replication using aggregate SLOOS data tests a related but weaker hypothesis. This is the most identification-complex paper in the benchmark set.",
+    "public_data_sources_detail": [
+      "SEC EDGAR (bond prospectuses / 424B filings — free, but requires parsing)",
+      "FRED (Senior Loan Officer Survey / SLOOS for credit conditions — free)",
+      "FRED (NBER recession indicators — free)",
+      "SEC EDGAR (firm financials from 10-K/10-Q — free)",
+      "yfinance (firm stock returns, Tobin's Q proxy — free)"
+    ]
+  },
+  "title": "Cyclicality of Credit Supply: Firm Level Evidence",
+  "doi": "10.1016/j.jmoneco.2013.10.002",
+  "volume": 62,
+  "pages": "76-93",
+  "_note_on_journal": "Previously listed as JFE; actual publication is Journal of Monetary Economics. Retained because the IV design is exemplary for credit supply identification.",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "IV using within-firm substitution between bank loans and public bonds — instrument = firm's ability to access public bond markets (investment-grade rating, bond market history); first stage: firms with bond market access substitute into bonds when credit conditions tighten; identifies bank credit supply cycle independent of demand",
+    "key_variables": {
+      "instrument": "firm's public bond market access (rated firm with prior bond issuance)",
+      "treatment": "bank credit supply tightness (constructed from SLOOS + bank balance sheet measures)",
+      "outcome": "firm bank borrowing (loan volume, spreads, covenants)",
+      "time_period": "1987–2010, quarterly"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Bank credit supply is strongly procyclical: banks contract lending during recessions by more than justified by borrower risk. Supply-driven contractions reduce loan growth by ~3–5 percentage points per quarter at the trough.",
+    "main_effect": "~3–5pp procyclical credit supply contraction per recession quarter, independent of borrower quality",
+    "key_robustness": [
+      "borrower fixed effects to control for demand",
+      "SLOOS as external supply measure",
+      "cross-sectional: more bank-dependent firms suffer more",
+      "alternative bond-access instruments"
+    ],
+    "identification_strategy_detail": {
+      "method": "Instrumental variables / revealed-preference approach",
+      "treatment": "Periods of tight bank credit supply",
+      "instrument": "The share of firm borrowing from bonds (vs. bank loans) as a revealed-preference measure of bank loan supply. When the bank loan share falls and bond share rises for firms with access to both markets, this reveals a supply contraction (not a demand shift, since total borrowing need not change).",
+      "endogenous_variable": "Bank credit supply conditions",
+      "outcome": "Total firm investment and economic activity",
+      "first_stage": "During economic downturns, the bond-to-loan substitution ratio increases for firms with bond market access",
+      "exclusion_restriction": "The shift from loans to bonds among dual-access firms reflects supply conditions, not differential demand, because these firms can substitute freely between the two sources",
+      "sample_period": "1990-2010",
+      "unit_of_observation": "Firm-quarter"
+    },
+    "key_magnitudes": {
+      "bond_substitution_increase": "Bond share increases significantly during tight credit conditions",
+      "supply_vs_demand_decomposition": "A meaningful fraction of lending decline during recessions is attributable to supply contraction",
+      "real_effects": "Credit supply tightening is associated with reduced firm investment"
+    },
+    "robustness_notes_detail": "Key challenge is that bond issuance might also respond to demand. Authors address this by focusing on firms with pre-existing bond market access and by controlling for firm-level demand proxies (Tobin's Q, cash flow). Robust to alternative measures of credit conditions."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 118152,
+  "phase1_source_version": "v2primeprime_full_text"
+}

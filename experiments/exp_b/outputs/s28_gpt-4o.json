@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s28",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Asset size threshold and regulatory burden on bank profitability",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:10:03.156457",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 456,
+    "output_tokens": 386,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this analysis is a Regression Discontinuity Design (RDD). This is because we want to exploit the discontinuity at the $10B asset threshold to identify the causal effect of additional regulatory requirements on bank profitability. The key assumption is that, absent the treatment (crossing the threshold), banks just above and below the threshold (i.e., within a small bandwidth) are comparable in all respects except for the treatment.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(foreign)\nlibrary(rdrobust)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s28_data.csv\")\n\n# Select data near the cutoff\nnear_cutoff_data <- subset(data, near_cutoff == 1)\n\n# Implement the RDD using running_var as the running variable and treated as the cutoff indicator\nrdd_result <- rdrobust(y = near_cutoff_data$y, x = near_cutoff_data$running_var, c = 0.5)\n\n# Print the primary result (ATE at the cutoff)\nsummary(rdd_result)\n\n# Basic robustness check: Re-estimate with different bandwidth\nrd_robust_result2 <- rdrobust(y = near_cutoff_data$y, x = near_cutoff_data$running_var, c = 0.5, h = 0.2)\n\n# Print the robustness check result\nsummary(rd_robust_result2)\n```\n\n## 3. Expected Findings\nI expect to find a negative effect on profitability (ROA) for banks whose asset size crosses the $10B threshold. This is because the additional regulatory requirements likely impose higher compliance costs and operational constraints, which might restrict profitability. The magnitude of this effect is uncertain without empirical analysis, but it is expected to be practically significant enough to motivate banks to manage their asset size strategically.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — asset threshold; test for bunching below $10B; local linear regression",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Banks just above threshold have lower ROA than just-below peers",
+    "main_effect": "~25bp ROA reduction for above-threshold banks"
+  }
+}

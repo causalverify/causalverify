@@ -1,0 +1,30 @@
+{
+  "paper_id": "paper_224",
+  "title": "The Geographic Determinants of Housing Supply",
+  "authors": "Saiz",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.2010.125.3.1253",
+    "title": "The Geographic Determinants of Housing Supply<sup>*</sup>",
+    "year": 2010,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 1943
+  },
+  "checks": {
+    "title_jaccard": 0.8,
+    "title_gate_pass": true,
+    "author_overlap": [],
+    "author_gate_pass": false,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1943,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

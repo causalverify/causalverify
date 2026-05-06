@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_04",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:33:21.340049",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 633,
+    "output_tokens": 1157,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nI will employ an event study methodology focusing on the stock market's reaction to the surprise component of Federal Reserve monetary policy changes. Specifically, I will use the surprise component of the rate change (actual change minus the expected change indicated by fed funds futures) as the key independent variable to isolate the effect of unexpected policy actions on stock prices. By focusing on narrow windows around the FOMC announcement dates, I can effectively control for confounding factors and isolate the causal impact of monetary policy surprises on stock returns.\n\nDirectional Hypothesis:\nThe hypothesis is that unexpected increases in the federal funds rate (surprise rate hikes) will lead to a decrease in stock prices, while unexpected decreases (surprise rate cuts) will lead to an increase in stock prices. This is based on the notion that unexpected rate hikes increase discount rates and decrease future cash flow valuations, whereas cuts have the opposite effect.\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\n1. Regress daily returns of the CRSP value-weighted market index on the surprise component of the federal funds rate change using a 2-day window (day of the announcement and the day after).\n\n2. Regress daily returns of CRSP portfolios by industry on the surprise component using a 2-day window, to explore heterogeneous responses across industries.\n\n3. Regress daily returns of the CRSP value-weighted market index on the surprise component using a 1-day window (day of the announcement only) to test immediate market reactions.\n\n4. Regress daily returns of the CRSP value-weighted market index on both the surprise component and the expected component of the rate change using a 2-day window, to verify the isolated effect of the surprise component.\n\n5. Run a robustness check by regressing daily returns of individual stocks from the CRSP daily file on the surprise component using a 2-day window for a random sample of 500 stocks.\n\nSTEP 3 — FALSIFICATION GATE\n\nI will reject my hypothesis if:\n- The coefficient on the surprise component is positive and statistically significant (p < 0.05) in specifications 1, 2, 3, or 5, indicating a contradiction to the hypothesized negative reaction to surprise rate hikes.\n- The p-value for the coefficient on the surprise component is greater than 0.10 in more than three of the five specifications, suggesting statistical insignificance.\n- The F-test for the surprise component in a pre-estimation window (e.g., 5 days before the announcement) shows significant effects (p < 0.10), indicating failure of the assumption that surprises are exogenous.\n- The first stage F-stat in specification 4 is less than 10 for the surprise component, suggesting weak identification of its effect.\n\nSTEP 4 — R CODE\n\n```r\n# Required libraries\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Load data\n# Assuming data frames: market_returns, industry_returns, and stock_returns\n# Each with columns Date, Return, SurpriseComponent, and ExpectedComponent\n\n# Specification 1: Market index, 2-day window\nmodel1 <- lm(Return ~ SurpriseComponent, data = subset(market_returns, Date %in% c(\"AnnouncementDate\", \"DayAfter\")))\nsummary(model1)\n\n# Specification 2: Industry portfolios, 2-day window\nindustry_models <- lapply(split(industry_returns, industry_returns$Industry),\n                          function(df) lm(Return ~ SurpriseComponent, data = subset(df, Date %in% c(\"AnnouncementDate\", \"DayAfter\"))))\nindustry_summaries <- lapply(industry_models, summary)\n\n# Specification 3: Market index, 1-day window\nmodel3 <- lm(Return ~ SurpriseComponent, data = subset(market_returns, Date == \"AnnouncementDate\"))\nsummary(model3)\n\n# Specification 4: Market index, 2-day window with both components\nmodel4 <- lm(Return ~ SurpriseComponent + ExpectedComponent, data = subset(market_returns, Date %in% c(\"AnnouncementDate\", \"DayAfter\")))\nsummary(model4)\n\n# Specification 5: Individual stocks, random sample, 2-day window\nset.seed(123)\nsampled_stocks <- stock_returns[stock_returns$StockID %in% sample(unique(stock_returns$StockID), 500), ]\nstock_models <- lapply(split(sampled_stocks, sampled_stocks$StockID),\n                       function(df) lm(Return ~ SurpriseComponent, data = subset(df, Date %in% c(\"AnnouncementDate\", \"DayAfter\"))))\nstock_summaries <- lapply(stock_models, summary)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Numerical Results:\n1. The coefficient on the SurpriseComponent in specifications 1 and 3 is expected to be negative and statistically significant (e.g., -0.01, p < 0.05).\n2. Industry models (specification 2) should show negative coefficients for most industries, although magnitudes may vary.\n3. Specification 4 should confirm specification 1’s results showing significance for the SurpriseComponent even after controlling for ExpectedComponent.\n4. Specification 5 should predominantly show negative coefficients across the sampled stocks.\n5. Pre-estimation F-tests on surprise components should exhibit no significant pre-trend effects (p > 0.10).\n\nGate Assessment:\nIf the above expectations are met to a reasonable extent (negative coefficients when hypothesized), the falsification gate is not triggered. However, should any criterion for rejection materialize (e.g., reversed coefficient signs or consistent statistical insignificance), it will trigger the falsification gate, leading to a rejection or reconsideration of the hypothesis.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "negative",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event = FOMC target rate change announcements; surprise = actual rate change minus futures-implied expected change; outcome = same-day equity market return",
+    "key_variables": {
+      "treatment": "surprise component of fed funds rate change (continuous, in percentage points)",
+      "control": "anticipated component (expected rate change) — which should have no effect",
+      "outcome": "daily CRSP value-weighted return on FOMC announcement day",
+      "time_period": "1989–2002, FOMC meeting dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "A surprise 25bp rate cut increases stock market returns by approximately 1%; rate hikes reduce returns. Unanticipated changes have much larger effects than anticipated changes.",
+    "main_effect": "~1% stock market return per 25bp surprise rate cut",
+    "key_robustness": [
+      "separate anticipated vs unanticipated component",
+      "cross-sectional variation by sector",
+      "growth vs. value stocks"
+    ]
+  }
+}

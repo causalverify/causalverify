@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 1,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies the core identification strategy as a Randomized Controlled Trial/field experiment, aligning perfectly with the ground truth's primary method. It accurately describes the randomization mechanism, treatment/control, and key identifying assumptions. The AI's research question, 'Do Employers Discriminate Against Resumes with African-American–Sounding Names?', clearly posits the correct direction of the effect (negative discrimination) as the phenomenon to be investigated, matching the ground truth's conclusion direction.",
+  "rater_id": "rater_gemini",
+  "paper_id": "paper_36",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:28:36.373780+00:00"
+}

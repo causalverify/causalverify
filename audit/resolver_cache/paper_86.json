@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_86",
+  "title": "How Do Extended Benefits Affect Unemployment Duration? A Regression Discontinuity Approach",
+  "authors": "Lalive",
+  "year": null,
+  "journal": "REStat",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jeconom.2007.05.013",
+    "title": "How do extended benefits affect unemployment duration? A regression discontinuity approach",
+    "year": 2007,
+    "journal": "Journal of Econometrics",
+    "citations": 315
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lalive"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "restat",
+    "journal_oa": "journal of econometrics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 315,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

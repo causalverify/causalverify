@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s29",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Bandwidth sensitivity and RDD robustness checks",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:10:11.578754",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 463,
+    "output_tokens": 638,
+    "content": "## 1. Identification Strategy\nWe will use the Regression Discontinuity Design (RDD) because we are examining the causal effect of crossing a threshold (Russell 1000/2000 cutoff) on an outcome variable (institutional ownership). The key assumption for RDD is the continuity assumption, which assumes that all other factors besides the treatment (in this case, index membership) change smoothly at the cutoff.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the data from CSV file\ndata <- read.csv(\"experiments/exp_b/data/s29_data.csv\")\n\n# Basic RDD using rdrobust\nrdd_result <- rdrobust(y = data$y, x = data$running_var, c = 0.5)\n\n# Print main RDD result\ncat(\"RDD estimate using default bandwidth:\", rdd_result$coef[1], \"\\n\")\n\n# Robustness check: Bandwidth sensitivity\n\n# Test multiple bandwidths\nbandwidths <- c(0.1, 0.15, 0.2, 0.25)\nresults <- sapply(bandwidths, function(bw) {\n    rdrobust(y = data$y, x = data$running_var, c = 0.5, h = bw)$coef[1]\n})\nnames(results) <- paste(\"Bandwidth\", bandwidths)\nprint(results)\n\n# Robustness check: Polynomial order sensitivity\n\n# Test polynomial orders 1 (linear) to 3 (cubic)\npoly_orders <- c(1, 2, 3)\npoly_results <- sapply(poly_orders, function(p) {\n    rdrobust(y = data$y, x = data$running_var, c = 0.5, p = p)$coef[1]\n})\nnames(poly_results) <- paste(\"Polynomial Order\", poly_orders)\nprint(poly_results)\n\n# Robustness check: Placebo cutoffs\n\n# Test placebo cutoffs\nplacebo_cutoffs <- c(0.4, 0.45, 0.55, 0.6)\nplacebo_results <- sapply(placebo_cutoffs, function(cutoff) {\n    rdrobust(y = data$y, x = data$running_var, c = cutoff)$coef[1]\n})\nnames(placebo_results) <- paste(\"Placebo Cutoff\", placebo_cutoffs)\nprint(placebo_results)\n\n# Plotting the results for visualization (Optional)\nrdplot(data$y, data$running_var, c = 0.5)\n\n```\n\n## 3. Expected Findings\nWe expect a positive sign for the RDD estimate, indicating that firms just below the cutoff (members of Russell 2000) have higher institutional ownership compared to those just above the cutoff. The magnitude of the effect could be noticeable, but not overly large, given that institutional investors may pay attention to both index membership and a variety of other factors. Robustness checks should show that the results are stable across bandwidths and polynomial orders, with placebo cutoffs yielding non-significant results.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — rank cutoff; rdrobust with CCT bandwidth; donut-hole robustness; placebo cutoffs",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Russell 2000 membership increases institutional ownership; robust to bandwidth choice",
+    "main_effect": "~25pp ownership increase at boundary"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "paper_id": "paper_05",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "gpt-4o",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-27T16:34:33.507099",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 640,
+    "output_tokens": 1237,
+    "content": "STEP 1 — PRE-COMMITMENT\n\nCausal Identification Strategy:\nI will utilize an event study methodology to identify the impact of financial misrepresentation on firms' stock prices following SEC enforcement actions. This strategy leverages the event of the first public announcement of misconduct as an exogenous shock to assess its impact on firm value. Matched control firms, selected based on industry, size, and fiscal year, will serve as a counterfactual to isolate the effect of the enforcement action from broader market movements and industry-specific events.\n\nDirectional Hypothesis:\nMisrepresentation in financial statements leads to a significant negative abnormal return on stock prices of targeted firms at the announcement of SEC enforcement actions, reflecting both direct costs such as penalties and indirect costs like reputational damage.\n\nSTEP 2 — SPECIFICATION DISCIPLINE\n\n1. Estimate daily abnormal returns for target firms from 10 days before to 10 days after the first public announcement of misconduct using a market model with the CRSP equal-weighted index. Compare these to matched-control firms to calculate abnormal returns.\n\n2. Conduct a cumulative abnormal return (CAR) analysis over the window [-1, +1] around the announcement date using an independent sample t-test to compare target firms to matched control firms.\n\n3. Perform a cross-sectional regression of CARs (from specification 2) on firm-specific variables such as market-to-book ratio, firm size (log of total assets), and leverage to explore the determinants of the market's reaction.\n\n4. Repeat the CAR analysis (specification 2) over an extended window [-5, +5] around the announcement date to evaluate robustness to window length.\n\n5. Estimate the impact of firm and event characteristics (e.g., penalty amount, restatement occurrence) on CARs using a regression framework to account for heterogeneity in firm responses.\n\nSTEP 3 — FALSIFICATION GATE\n\nI will reject my hypothesis if:\n- The average CAR in the event window [-1, +1] for target firms is not significantly negative at a 5% significance level (p > 0.05).\n- The sign of the CAR for the treatment firms is positive.\n- CAR does not significantly differ from zero in any of the specified windows.\n- There is a weak correlation (R^2 < 0.10) in the cross-sectional regression of CARs on firm-specific attributes.\n- The first-stage F-statistic for any instrumental variable model (if applicable) is less than 10.\n\nSTEP 4 — R CODE\n\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Step 1: Calculate daily abnormal returns\ncalculate_abnormal_returns <- function(event_date, returns, market_returns, control_returns) {\n  model <- lm(returns ~ market_returns, data = control_returns)\n  alpha <- coef(model)[1]\n  beta <- coef(model)[2]\n  abnormal_returns <- returns - (alpha + beta * market_returns)\n  return(abnormal_returns)\n}\n\n# Load data (ensure paths and data names are correct)\n# event_data <- read.csv(\"event_data.csv\")\n\n# Assume event_data has columns: date, firm_id, target_firm, return, market_return\n\n# Calculate abnormal returns for target firms\nevent_data <- event_data %>%\n  group_by(firm_id) %>%\n  mutate(abnormal_return = calculate_abnormal_returns(date, return, market_return, control_returns)) %>%\n  ungroup()\n\n# Step 2: CAR analysis for window [-1, +1]\ncar_analysis <- function(abnormal_returns, window = c(-1, 1)) {\n  event_period <- event_data %>%\n    filter(date >= event_date + window[1] & date <= event_date + window[2])\n  \n  target_car <- event_period %>%\n    filter(target_firm == TRUE) %>%\n    summarize(car = sum(abnormal_return))\n  \n  control_car <- event_period %>%\n    filter(target_firm == FALSE) %>%\n    summarize(car = sum(abnormal_return))\n  \n  t_test_result <- t.test(target_car$car, control_car$car)\n  return(t_test_result)\n}\n\ncar_result <- car_analysis(event_data$abnormal_return)\n\n# Step 5: Cross-sectional regression\ncross_sectional_regression <- function(car_data) {\n  regression_model <- lm(car ~ market_to_book + log(total_assets) + leverage, data = car_data)\n  return(summary(regression_model))\n}\n\ncross_sectional_result <- cross_sectional_regression(event_data)\n\n# Step 4: Robustness checks with different windows\ncar_analysis_extended <- car_analysis(event_data$abnormal_return, window = c(-5, 5))\n\n# Step 5: Regression on penalties and restatements\npenalty_regression <- function(car_data) {\n  regression_model <- lm(car ~ penalty_amount + restatement + market_to_book + log(total_assets) + leverage, data = car_data)\n  return(summary(regression_model))\n}\n\npenalty_result <- penalty_regression(event_data)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT\n\nExpected Findings:\n- I expect to find significantly negative CARs for target firms in the [-1, +1] event window, consistent with negative market reactions to the announcement of misconduct.\n- The cross-sectional regression is expected to show that larger penalties and restatements are associated with more negative CARs, indicating market sensitivity to the severity of the misconduct.\n\nAssessment Against Falsification Gate:\n- If the CARs are not significantly negative, have a positive sign, or do not differ significantly from zero, the falsification gate would be triggered, causing a rejection of the hypothesis.\n- If the cross-sectional regression indicates no significant determinants of CAR variance (R^2 < 0.10), the hypothesis will similarly be questioned.\n- Based on my understanding of the financial penalty and reputational loss dynamics, this unlikely result would prompt a reassessment of underlying assumptions or a consideration of alternative explanations such as sample selection issues or omitted variable bias.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": "negative",
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event dates are (1) first public announcement of potential misconduct and (2) final SEC enforcement action; outcome = cumulative abnormal return around each event date; benchmark = matched-firm adjusted returns",
+    "key_variables": {
+      "treatment": "SEC AAER enforcement action (misconduct revelation)",
+      "control": "matched firms on industry, size, book-to-market",
+      "outcome": "cumulative abnormal return (CAR) from CRSP daily returns adjusted for matched-firm returns",
+      "time_period": "event windows of [-1,0], [-1,+1], [-10,+10] around announcement dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Firms lose on average 38% of market value from the misconduct period through final resolution; direct penalties account for only a small fraction (~3%) of total costs — the majority is reputational loss",
+    "main_effect": "-38% total market value loss from misconduct revelation through resolution",
+    "key_robustness": [
+      "decomposition of loss into direct penalties vs. reputational",
+      "alternative event windows",
+      "cross-sectional drivers of penalty severity"
+    ]
+  }
+}

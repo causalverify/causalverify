@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s14",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "title": "Positive earnings surprise on stock returns",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-03-27T13:25:45.928802",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 460,
+    "output_tokens": 527,
+    "content": "## 1. Identification Strategy\nWe will use an Event Study methodology to analyze the impact of positive earnings surprises on stock returns. The key assumption in an event study is that the expected returns are not affected by the event in the absence of the event. In this case, we assume that the expected returns are captured by the market model estimated on the [-10, -2] window. The abnormal returns (AR) are calculated as the difference between the actual returns and the expected returns based on the market model.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(dplyr)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s14_data.csv\")\n\n# Calculate expected returns using the market model\ndata <- data %>%\n  group_by(stock_id) %>%\n  mutate(expected_ret = beta * mkt_ret) %>%\n  ungroup()\n\n# Calculate abnormal returns\ndata <- data %>%\n  mutate(abnormal_ret = ret - expected_ret)\n\n# Focus on the event window [0, +2]\nevent_window_data <- filter(data, event_day >= 0 & event_day <= 2)\n\n# Calculate the average abnormal return (AAR) in the event window\naar <- mean(event_window_data$abnormal_ret, na.rm = TRUE)\n\n# Print the result\nprint(paste(\"Average Abnormal Return (AAR) in the [0, +2] window:\", aar))\n\n# Basic robustness check: Check if the AAR is significantly different from zero\n# Using a t-test\nt_test_result <- t.test(event_window_data$abnormal_ret, mu = 0, alternative = \"two.sided\")\nprint(paste(\"t-test p-value:\", t_test_result$p.value))\n```\n\n## 3. Expected Findings\nWe expect the average abnormal return (AAR) in the [0, +2] window to be positive. This is because firms with positive earnings surprises (actual EPS > consensus forecast) are likely to experience positive abnormal returns around earnings announcements, as the market reacts to the better-than-expected earnings. The magnitude of the AAR will depend on the specific dataset and the market's reaction to the earnings surprises. However, based on previous studies, we can expect the AAR to be in the range of 1-3%. The t-test result should indicate whether the AAR is significantly different from zero, providing evidence of the impact of positive earnings surprises on stock returns.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — market model; positive surprise sample; event window [0,+2]",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Firms with positive earnings surprises earn significantly positive CAR",
+    "main_effect": "CAR ≈ +2.2%"
+  }
+}

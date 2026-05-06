@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s90",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Impact of Elite High School Admission on SAT Scores",
+  "model": "o3",
+  "run_at": "2026-04-14T19:54:13.132791",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 438,
+    "output_tokens": 1236,
+    "content": "## 1. Identification Strategy  \nMethod: Sharp Regression Discontinuity Design (RDD)  \n\nWhy: Admission to the elite high school is determined solely by whether the student’s entrance‐exam score exceeds a known cutoff. Students just above and just below the threshold are assumed to be quasi-randomly assigned, so comparing their SAT scores identifies the causal effect of admission.  \n\nKey assumptions  \n1. Continuity: In the absence of admission, potential SAT scores are smooth in the admission-test score around the cutoff.  \n2. No precise manipulation: Students cannot perfectly sort just above or below the cutoff.  \n3. Sharp design: Treated = 1 iff running_var ≥ cutoff (verified in data).  \n\n## 2. R Code\n```r\n# -----------------------------------------------------------\n# Impact of Elite High-School Admission on SAT Scores (RDD)\n# -----------------------------------------------------------\n\n# 0) Packages\nrequired <- c(\"tidyverse\", \"rdrobust\")\nnew_pkgs <- required[!(required %in% installed.packages()[,1])]\nif(length(new_pkgs)) install.packages(new_pkgs, repos = \"https://cloud.r-project.org\")\nlibrary(tidyverse)\nlibrary(rdrobust)\n\n# 1) Read data\ndata_path <- \"experiments/exp_b/data/s90_data.csv\"\ndf <- read_csv(data_path, col_types = cols())\n\n# 2) Inspect & set cutoff (verified by treated indicator)\ncutoff <- 0.5                                # admission rule in the experiment\nstopifnot(all(df$treated == as.integer(df$running_var >= cutoff)))\n\n# 3) Main RDD estimate (local linear, MSE-optimal bandwidth)\nmain_rd <- rdrobust(y = df$y, x = df$running_var, c = cutoff)\n\ncat(\"\\n--- Main RDD Estimate (Local Linear) ---\\n\")\nprint(main_rd)\ncat(\"\\nTreatment effect at cutoff =\", round(main_rd$coef[1], 4),\n    \" (SE =\", round(main_rd$se[1], 4), \")\\n\")\n\n# 4) Basic robustness checks ---------------------------------\n\n# (a) Tighter bandwidth: half of MSE-optimal\nh_half <- main_rd$bws[1] / 2\nrd_half <- rdrobust(df$y, df$running_var, c = cutoff, h = h_half)\ncat(\"\\n[Robustness] Half bandwidth (h =\", round(h_half,3),\") effect =\",\n    round(rd_half$coef[1],4), \" (SE =\", round(rd_half$se[1],4),\")\\n\")\n\n# (b) Quadratic polynomial\nrd_quad <- rdrobust(df$y, df$running_var, c = cutoff, p = 2)\ncat(\"[Robustness] Quadratic fit effect =\",\n    round(rd_quad$coef[1],4), \" (SE =\", round(rd_quad$se[1],4),\")\\n\")\n\n# (c) Donut RDD: drop observations extremely close to cutoff (|score-0.5|<0.01)\ndf_donut <- df %>% filter(abs(running_var - cutoff) >= 0.01)\nrd_donut <- rdrobust(df_donut$y, df_donut$running_var, c = cutoff)\ncat(\"[Robustness] Donut (exclude ±0.01) effect =\",\n    round(rd_donut$coef[1],4), \" (SE =\", round(rd_donut$se[1],4),\")\\n\")\n```\n\n## 3. Expected Findings  \nSign: Positive. Students just above the cutoff (admitted) should score higher on the SAT than those just below the cutoff who were not admitted.  \n\nMagnitude: Because SAT scores are standardized in the data (mean ≈ 0, SD ≈ 1), a reasonable local treatment effect is roughly +0.20 to +0.35 standard deviations—large enough to be educationally meaningful but consistent with prior literature on selective-school effects.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare SAT scores of students just above and below the admission cutoff.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Admission to the elite high school slightly decreases SAT scores.",
+    "main_effect": "-0.25"
+  }
+}

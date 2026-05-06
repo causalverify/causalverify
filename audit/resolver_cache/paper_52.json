@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_52",
+  "title": "Exposing Corrupt Politicians: The Effects of Brazil's Publicly Released Audits on Electoral Outcomes",
+  "authors": "Ferraz & Finan",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.2139/ssrn.997867",
+    "title": "Exposing Corrupt Politicians: The Effects of Brazil's Publicly Released Audits on Electoral Outcomes",
+    "year": 2007,
+    "journal": "SSRN Electronic Journal",
+    "citations": 161
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ferraz",
+      "finan"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "ssrn electronic journal",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 161,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

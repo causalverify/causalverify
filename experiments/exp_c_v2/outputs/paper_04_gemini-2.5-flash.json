@@ -1,0 +1,55 @@
+{
+  "paper_id": "paper_04",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:26:39.265286",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 639,
+    "output_tokens": 163,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nOur strategy is to exploit the \"surprise\" component of Federal Reserve monetary policy announcements as an exogenous shock to the financial markets. The key insight is that anticipated policy changes are already priced into assets, while only the unanticipated component should trigger an immediate market reaction. By using the difference between the actual federal funds rate change and the market's expectation (derived from federal funds futures prices) on FOMC announcement days, we isolate this surprise component. This approach effectively creates an event study framework where the surprise is the treatment variable, allowing us to estimate its causal effect on stock returns, controlling for specific event dates.\n\n**Directional Hypothesis:**\nWe hypothesize that an unexpected *tightening* of monetary policy (i.e., an",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "negative"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study — event = FOMC target rate change announcements; surprise = actual rate change minus futures-implied expected change; outcome = same-day equity market return",
+    "key_variables": {
+      "treatment": "surprise component of fed funds rate change (continuous, in percentage points)",
+      "control": "anticipated component (expected rate change) — which should have no effect",
+      "outcome": "daily CRSP value-weighted return on FOMC announcement day",
+      "time_period": "1989–2002, FOMC meeting dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "A surprise 25bp rate cut increases stock market returns by approximately 1%; rate hikes reduce returns. Unanticipated changes have much larger effects than anticipated changes.",
+    "main_effect": "~1% stock market return per 25bp surprise rate cut",
+    "key_robustness": [
+      "separate anticipated vs unanticipated component",
+      "cross-sectional variation by sector",
+      "growth vs. value stocks"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with surprise decomposition",
+      "treatment": "Unexpected component of federal funds rate changes (measured from fed funds futures on the day of FOMC announcement)",
+      "event_window": "1-day (day of FOMC announcement)",
+      "estimation_window": "Pre-event trading days for normal return estimation",
+      "sample_period": "1989-2002 (FOMC decisions)",
+      "unit_of_observation": "FOMC announcement date",
+      "key_assumption": "Fed funds futures efficiently price expected rate changes; the residual is a valid measure of monetary policy surprise. No other systematic news coincides with FOMC announcements."
+    },
+    "key_magnitudes": {
+      "stock_response_per_surprise_bp": "Approximately -4 to -5 basis points of stock return per 1 basis point of unexpected rate increase (broad market index)",
+      "r_squared_expected_vs_surprise": "Expected component has near-zero explanatory power; surprise component drives all of the response",
+      "channel_decomposition": "Largest share attributed to changes in expected excess returns (equity premium channel)"
+    },
+    "robustness_notes_detail": "Robust to excluding inter-meeting moves, using alternative surprise measures, different stock indices. VAR decomposition confirms equity premium channel dominates."
+  }
+}

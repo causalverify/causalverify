@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s21",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Vietnam draft lottery as IV for military service on earnings",
+  "model": "gpt-4o",
+  "run_at": "2026-03-27T18:09:10.030512",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 450,
+    "output_tokens": 391,
+    "content": "## 1. Identification Strategy\nIn this scenario, we will use an Instrumental Variable (IV) approach. The Vietnam-era draft lottery number serves as an instrument for military service (veteran status). The key assumption here is the exclusion restriction: the draft lottery number affects earnings only through its impact on the likelihood of military service. Additionally, the draft lottery number should be randomly assigned, making it independent of potential earnings, thus satisfying the relevance and exogeneity conditions for a valid instrument.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\n\n# Read the data from the provided CSV file\ndata <- read.csv(\"experiments/exp_b/data/s21_data.csv\")\n\n# Instrumental Variable Regression using Two-Stage Least Squares (2SLS)\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Print summary of the IV regression\nsummary(iv_model)\n\n# Basic Robustness Checks: Weak Instrument Test and Overidentification Test\n# Weak Instrument Test (F-statistic for first stage)\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n\n# Overidentification Test\n# Add another instrument for robustness (example: control for additional unobserved factors)\niv_model_robust <- ivreg(y ~ x + controls | z + controls * z, data = data)\nsummary(iv_model_robust)\n```\n\n## 3. Expected Findings\nI expect the coefficient on veteran status from the IV regression to be negative, suggesting that military service reduced long-run civilian earnings. The approximate magnitude might reflect a small to moderate reduction in earnings, possibly ranging between -0.05 and -0.20 on the log earnings scale, given historical evidence that military service, especially during a high-conflict period like the Vietnam War, can have negative consequences on civilian labor market outcomes due to skill mismatch or psychological impact.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "IV/2SLS — instrument: draft lottery number; LATE for compliers (drafted but wouldn't have volunteered)",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Military service reduces earnings for complier veterans",
+    "main_effect": "~15% earnings penalty for draft-induced veterans"
+  }
+}

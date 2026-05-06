@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s25",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Vote share cutoff and policy adoption",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:35:37.007614",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 467,
+    "output_tokens": 715,
+    "content": "## 1. Identification Strategy\nTo address the research question of whether winning a ballot initiative (vote share ≥ 50%) causes a discontinuous jump in municipal spending on the targeted policy, we will employ a Sharp Regression Discontinuity Design (RDD). The key assumption in this design is that the vote share threshold (50%) is the only factor determining policy adoption at the cutoff point, and the continuity of the underlying distribution of potential outcomes. By comparing the municipal spending changes just above and just below the 50% threshold, we can identify the causal effect of winning the ballot initiative on municipal spending.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\n\n# Read the data\ndata <- read_csv(\"experiments/exp_b/data/s25_data.csv\")\n\n# Fit the sharp RDD model\n# We'll use a simple linear model for the treated and control groups separately\n# around the cutoff (0.5) for observations near the cutoff (|running_var - 0.5| <= 0.3)\n\n# Filter observations near the cutoff\ndata_near_cutoff <- data %>% filter(near_cutoff == 1)\n\n# Run the regression for observations near the cutoff\n# First, for treated (running_var >= 0.5)\ntreated_model <- lm(y ~ running_var, data = data_near_cutoff %>% filter(treated == 1))\n# Second, for control (running_var < 0.5)\ncontrol_model <- lm(y ~ running_var, data = data_near_cutoff %>% filter(treated == 0))\n\n# Predict y at the cutoff for both groups\n# Treated group prediction at the cutoff\ntreated_pred <- predict(treated_model, newdata = data.frame(running_var = 0.5))\n# Control group prediction at the cutoff\ncontrol_pred <- predict(control_model, newdata = data.frame(running_var = 0.5))\n\n# Calculate the discontinuity (the treatment effect)\ndiscontinuity <- treated_pred - control_pred\nprint(paste(\"The estimated treatment effect (discontinuity) is:\", discontinuity))\n\n# For robustness, also include a pooled regression with interaction term\npooled_model <- lm(y ~ running_var + treated + running_var:treated, data = data_near_cutoff)\nsummary(pooled_model)\n\n# Plot the data and regression lines for visualization\nggplot(data_near_cutoff, aes(x = running_var, y = y, color = factor(treated))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"RDD Plot\", x = \"Vote Share\", y = \"Log Municipal Spending Change\")\n```\n\n## 3. Expected Findings\nGiven the nature of the research question, we expect a positive discontinuity (jump) in municipal spending on the targeted policy at the 50% vote share threshold. This is because winning a ballot initiative is expected to lead to an increase in municipal spending on the policy in question, as the initiative's passage directly influences budget allocations. The magnitude of the discontinuity will depend on various factors, including the specific nature of the policy, the size of the jurisdiction, and the political context. However, we anticipate the effect to be statistically significant, indicating a clear causal relationship between winning a ballot initiative and the subsequent increase in municipal spending. The exact magnitude (e.g., a 10% increase in spending) will depend on the data analysis results.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — cutoff = 50% vote share; local linear regression with optimal bandwidth",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Passing the initiative causes a discrete jump in targeted spending",
+    "main_effect": "Winning increases spending by ~25%"
+  }
+}

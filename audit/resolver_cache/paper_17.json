@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_17",
+  "title": "Economic Shocks and Civil Conflict: An Instrumental Variables Approach",
+  "authors": "Miguel, Satyanath & Sergenti",
+  "year": null,
+  "journal": "Journal of Political Economy",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/421174",
+    "title": "Economic Shocks and Civil Conflict: An Instrumental Variables Approach",
+    "year": 2004,
+    "journal": "Journal of Political Economy",
+    "citations": 2447
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "miguel",
+      "satyanath",
+      "sergenti"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 2447,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

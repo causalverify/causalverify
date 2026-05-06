@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_33",
+  "title": "Does Corporate Social Responsibility Lead to Superior Financial Performance? A Regression Discontinuity Approach",
+  "authors": "Flammer",
+  "year": null,
+  "journal": "Management Science",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1287/mnsc.2014.2038",
+    "title": "Does Corporate Social Responsibility Lead to Superior Financial Performance? A Regression Discontinuity Approach",
+    "year": 2015,
+    "journal": "Management Science",
+    "citations": 1722
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "flammer"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ms",
+    "journal_oa": "ms",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1722,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

@@ -1,0 +1,58 @@
+{
+  "paper_id": "paper_56",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:47:39.566567",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 615,
+    "output_tokens": 1839,
+    "content": "RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \nCausal identification strategy: difference-in-means (OLS with state fixed effects and robust village-clustered SEs) exploiting the exogenous, lottery-based assignment of “Reserved for Women” Gram Panchayats (GPs). Random assignment satisfies the exclusion restriction; hence, E[ε|Reserved] = 0. Directional hypothesis H1: reservation of the GP head position for women (Reserved = 1) increases village‐level provision/quality of public goods that women value relatively more (drinking water, roads) and does not increase—and may decrease—goods men value more (irrigation infrastructure, school buildings). Formally:  \n\nβWater > 0, βRoad > 0, βIrrigation ≤ 0, βEducation ≤ 0.  \n\nNo post-description modification of this strategy or hypothesis is allowed.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (exactly 5)  \n\nOutcomes are standardized (mean 0, SD 1) to make coefficients comparable. All specifications include state fixed effects and robust SEs clustered at the GP level.  \n\n1. WaterSpec: Water_Index ~ Reserved + State_FE  \n   (Water_Index = z-score of number & condition of drinking-water facilities)  \n\n2. RoadSpec: Road_Index ~ Reserved + State_FE  \n   (Road_Index = z-score of road length & condition measures)  \n\n3. IrrigSpec: Irrigation_Index ~ Reserved + State_FE  \n   (Irrigation_Index = z-score of number & condition of irrigation facilities)  \n\n4. EducSpec: Education_Index ~ Reserved + State_FE  \n   (Education_Index = z-score of number & condition of school buildings)  \n\n5. ComplaintsSpec: Complaints_Water_Share ~ Reserved + State_FE  \n   (share of all complaints that concern drinking water, capturing revealed preferences)  \n\nNo other covariates or alternative functional forms will be run.  \n\nSTEP 3 — FALSIFICATION GATE  \n\nThe directional hypothesis will be rejected if ANY of the following occurs:  \na) βWater ≤ 0 OR p-value(βWater) > 0.10  \nb) βRoad ≤ 0 OR p > 0.10  \nc) βIrrigation > 0 AND p ≤ 0.10  \nd) βEducation > 0 AND p ≤ 0.10  \nAdditionally, if the clustered-SE t-statistic for βWater or βRoad is < 1.64 (|t|<1.64), we treat that as p > 0.10.  \n\nSTEP 4 — R CODE (self-contained)  \n\n```r\n############################################################\n#  Female Political Reservation & Public Goods in India\n#  RID Protocol – pre-committed code\n############################################################\n\n# 1. Package setup -----------------------------------------------------------\npkgs <- c(\"tidyverse\", \"lmtest\", \"sandwich\")\ninvisible(lapply(pkgs, require, character.only = TRUE))\n\n# 2. Load data ---------------------------------------------------------------\n# Expect a .csv called \"gp_data.csv\" with one row per Gram Panchayat\n# Required columns:\n#   Reserved  (0/1)                         | state  (factor)\n#   Water_Index Road_Index                  | Irrigation_Index Education_Index\n#   Complaints_Water_Share                  | gp_id  (cluster id)\ngp_data <- read_csv(\"gp_data.csv\") %>%\n  mutate(state = factor(state),\n         Reserved = as.numeric(Reserved))\n\n# 3. Helper function for clustered SEs --------------------------------------\nclu_se <- function(model, cluster){\n  # cluster: vector of cluster IDs, length = nrow(model$model)\n  M  <- length(unique(cluster))\n  N  <- length(cluster)\n  K  <- model$rank\n  dfc <- (M/(M-1)) * ((N-1)/(N-K))\n  uj  <- apply(estfun(model), 2, function(x) tapply(x, cluster, sum))\n  vcovCL <- dfc * sandwich(model, meat = crossprod(uj)/N)\n  coeftest(model, vcovCL)\n}\n\n# 4. Run specifications ------------------------------------------------------\nspecs <- list()\n\n# Spec 1: Drinking water\nspecs$water <- lm(Water_Index ~ Reserved + state, data = gp_data)\n\n# Spec 2: Roads\nspecs$road  <- lm(Road_Index ~ Reserved + state, data = gp_data)\n\n# Spec 3: Irrigation\nspecs$irrig <- lm(Irrigation_Index ~ Reserved + state, data = gp_data)\n\n# Spec 4: Education buildings\nspecs$educ  <- lm(Education_Index ~ Reserved + state, data = gp_data)\n\n# Spec 5: Complaint share on water\nspecs$comp  <- lm(Complaints_Water_Share ~ Reserved + state, data = gp_data)\n\n# 5. Output results with clustered SEs ---------------------------------------\nresults <- lapply(specs, clu_se, cluster = gp_data$gp_id)\nnames(results) <- c(\"Water\", \"Roads\", \"Irrigation\", \"Education\", \"Complaints\")\n\n# Print\nfor(i in names(results)){\n  cat(\"\\n========================\", i, \"========================\\n\")\n  print(results[[i]])\n}\n\n# 6. Save results for replication\nsaveRDS(results, \"RID_results.rds\")\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected)  \n\nBased on the published literature (e.g., Chattopadhyay & Duflo, 2004), I expect:  \n\n• βWater ≈ +0.25 σ (t ≈ 2.3, p ≈ 0.02)  \n• βRoad  ≈ +0.18 σ (t ≈ 1.9, p ≈ 0.06)  \n• βIrrigation ≈ –0.10 σ (t ≈ –1.2, p ≈ 0.23)  \n• βEducation ≈ –0.05 σ (t ≈ –0.6, p ≈ 0.55)  \n• βComplaints_Water_Share ≈ +0.07 (t ≈ 2.0, p ≈ 0.05)  \n\nGate assessment:  \n– Conditions (a) & (b) are NOT triggered because βWater and βRoad are positive with p < 0.10.  \n– Conditions (c) & (d) are NOT triggered because βIrrigation and βEducation are non-positive and/or insignificant.  \n\nTherefore, the falsification gate would NOT be breached; the data would support H1.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": false,
+    "L3b_direction": true,
+    "detected_method": null,
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Randomized natural experiment with DID structure — random reservation of GP head positions for women (treatment) vs. unreserved GPs (control); comparison of public goods provision in reserved vs. unreserved villages, with pre-reservation characteristics as controls",
+    "key_variables": {
+      "treatment": "GP head position reserved for women (randomly assigned by state lottery for each election cycle)",
+      "control": "unreserved GPs (men and women can compete for head position; typically won by men)",
+      "outcome": "number of drinking water facilities, road quality, number of formal complaints about water vs. irrigation, investment priorities",
+      "time_period": "Post-reservation election cycle (late 1990s-early 2000s); public goods measured at survey date"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Female leaders invest significantly more in public goods that women value. In West Bengal, reserved GPs have 9% more drinking water facilities and better road infrastructure; in Rajasthan, reserved GPs have more drinking water projects. The pattern of investment aligns with the pattern of complaints: women complain more about drinking water (their traditional responsibility), and female leaders respond by investing more in water infrastructure. Female leaders do not invest more overall — they reallocate spending toward women's priorities.",
+    "main_effect": "Reserved (female-led) GPs invest significantly more in drinking water facilities (+9% in West Bengal) and roads; investment pattern matches gender-specific complaint patterns",
+    "key_robustness": [
+      "Balance tests: reserved and unreserved GPs are similar on pre-treatment characteristics",
+      "Separate analysis by state (West Bengal vs. Rajasthan)",
+      "Controlling for GP size, population, caste composition, distance to district headquarters",
+      "Using complaint data as mechanism evidence (female-led GPs respond to women's complaints)",
+      "Multiple public goods outcomes (water, roads, irrigation, education)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Cross-sectional comparison of randomly reserved vs. unreserved GPs, equivalent to a DID with randomized treatment; OLS regression of public goods on reservation status with controls",
+      "treatment": "Random reservation of GP head position for women (binary, lottery-assigned)",
+      "event_window": "One election cycle (approximately 5 years of GP leadership)",
+      "estimation_window": "Cross-sectional survey of public goods at a single point during the reservation cycle",
+      "sample_period": "Late 1990s–early 2000s (post-73rd Amendment implementation)",
+      "unit_of_observation": "Gram Panchayat (village council) — 265 in West Bengal, 100 in Rajasthan",
+      "key_assumption": "Random lottery assignment of reservation ensures that reserved and unreserved GPs are comparable in all pre-treatment characteristics. The reservation affects public goods only through the gender of the elected leader (not through other channels such as changed voter behavior in reserved GPs)."
+    },
+    "key_magnitudes": {
+      "water_facilities_wb": "+9% more drinking water facilities in reserved GPs in West Bengal",
+      "water_complaints": "Women file 2-3x more complaints about water than men; female leaders invest correspondingly more in water",
+      "road_quality": "Significantly better road conditions in reserved GPs in West Bengal",
+      "no_total_increase": "Total GP investment is similar in reserved and unreserved GPs — the effect is reallocation, not expansion"
+    },
+    "robustness_notes_detail": "Balance tests confirm randomization is successful: reserved and unreserved GPs are statistically indistinguishable on population, caste composition, literacy, distance to nearest town, and prior public goods levels. The pattern differs between states (West Bengal: water and roads; Rajasthan: water only), reflecting different baseline provision levels and state-specific preferences. The complaint data provides a clean mechanism: women's complaints predict female leaders' investment priorities, establishing that female leaders are responsive to women constituents' expressed needs."
+  }
+}

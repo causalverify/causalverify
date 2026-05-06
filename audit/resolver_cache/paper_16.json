@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_16",
+  "title": "The China Syndrome: Local Labor Market Effects of Import Competition in the United States",
+  "authors": "Autor, Dorn & Hanson",
+  "year": null,
+  "journal": "American Economic Review",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.103.6.2121",
+    "title": "The China Syndrome: Local Labor Market Effects of Import Competition in the United States",
+    "year": 2013,
+    "journal": "American Economic Review",
+    "citations": 4237
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "hanson",
+      "dorn",
+      "autor"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 4237,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

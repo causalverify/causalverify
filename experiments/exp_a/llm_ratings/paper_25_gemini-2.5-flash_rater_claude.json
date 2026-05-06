@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "The AI correctly identifies difference-in-differences as the identification strategy, properly defines treatment (financially constrained firms) and control groups (unconstrained firms), and correctly frames the 2008-2009 crisis as an exogenous shock. The strategy matches the ground truth strongly. However, the output is cut off before stating the expected direction of effects, so no direction can be scored.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_25",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T13:10:30.214578+00:00"
+}

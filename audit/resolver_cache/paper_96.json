@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_96",
+  "title": "Islamic Rule and the Empowerment of the Poor and Pious",
+  "authors": "Meyersson",
+  "year": null,
+  "journal": "Econometrica",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3982/ecta9878",
+    "title": "Islamic Rule and the Empowerment of the Poor and Pious",
+    "year": 2014,
+    "journal": "Econometrica",
+    "citations": 172
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "meyersson"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "ecma",
+    "journal_oa": "ecma",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 172,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

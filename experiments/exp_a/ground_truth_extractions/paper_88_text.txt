@@ -1,0 +1,778 @@
+DO RURAL BANKS MATTER? 
+EVIDENCE FROM THE INDIAN SOCIAL BANKING EXPERIMENT 
+ 
+Robin Burgess 
+London School of Economics and Political Science 
+ 
+and 
+ 
+Rohini Pande 
+Yale University 
+ 
+ 
+ 
+ 
+ 
+Contents: 
+1. Introduction 
+2. Data and Program Description 
+3. Identification Strategy 
+4. Effects on Rural Development 
+5. Discussion 
+References 
+Data Appendix 
+Tables 1 – 11 
+Figures 1 - 9 
+ 
+ 
+ 
+ 
+ 
+ 
+The Suntory Centre 
+ 
+ 
+ 
+ 
+ 
+Suntory and Toyota International Centres for 
+ 
+ 
+ 
+ 
+ 
+Economics and Related Disciplines 
+ 
+ 
+ 
+ 
+ 
+London School of Economics and Political Science 
+Discussion Paper 
+ 
+ 
+Houghton Street 
+No. DEDPS/40 
+ 
+ 
+London WC2A 2AE 
+August 2003  
+ 
+ 
+Tel.: 020-7955 6674 
+ 
+ 
+We thank Esther Duflo for very helpful and detailed comments. We have benefited from 
+comments and suggestions from Josh Angrist, Abhijit Banerjee, Tim Besley, Richard 
+Blundell, Bronwen Burgess, Anne Case, Ken Chay, Dom Leggett, Jonathan Murdoch, Atif 
+Mian, Andrew Newman, Debraj Ray, Mark Rosenzweig, Ken Sokoloff, Duncan Thomas, 
+Robert Townsend, and seminar participants at the Bureau for Research in Economic 
+Analysis of Development (BREAD) 2002 Meeting, Caltech, Cornell, Harvard, IMF, LSE, 
+Michigan, MIT, NYU, Princeton, Southampton, Stanford, Stockholm, UBC, UCLA, UCSD, 
+World Bank and Yale. Juan de Laiglesia, Mattia Romani, Gaurav Shah, Heideeflower Stoller 
+and Grace Wong provided exceptional research assistance. 
+ 
+
+ 
+ 
+Abstract 
+ 
+Lack of access to finance is often cited as a key reason why poor people remain 
+poor. This paper uses data on the Indian rural branch expansion program to provide 
+empirial evidence on this issue. Between 1977 and 1990, the Indian Central Bank 
+mandated that a commercial bank can open a branch in a location with one or more 
+bank branches only if it opens four in locations with no bank branches. We show that 
+between 1977 and 1990 this rule caused banks to open relatively more rural 
+branches in Indian states with lower initial financial development. The reverse is true 
+outside this period. We exploit this fact to identify the impact of opening a rural bank 
+on poverty and output. Our estimates suggest that the Indian rural branch expansion 
+program significantly lowered rural poverty, and increased non-agricultural output. 
+ 
+Keywords: Finance and development; rural banking; bank licensing; credit 
+constraints; structural change; diversification; redistribution; poverty, growth. 
+ 
+JEL Nos.: E5, G2, H1, H4, I3, N2, O0, O1, O2, O4. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© The authors. All rights reserved. Short sections of text, not to exceed two 
+paragraphs, may be quoted without explicit permission provided that full credit, 
+including  notice, is given to the source. 
+ 
+ 
+ 
+ 
+ 
+ 
+Contact address: 
+Dr Robin Burgess, STICERD, London School of Economics and Political Science, 
+Houghton Street, London WC2A 2AE, UK. Email: r.burgess@lse.ac.uk 
+ 
+
+1
+Introduction
+A key objective in development economics is to work out ways to lift people out of
+poverty. Access to ﬁnance has been seen as a critical factor in enabling people to
+transform their production and employment activities and to exit poverty (Banerjee
+and Newman 1993; Aghion and Bolton 1997; Banerjee, 2001). Countries with better
+developed ﬁnancial systems, it is argued, should be better able to exploit growth op-
+portunities (Schumpeter, 1934; Gerschenkron 1962; Greenwood and Jovanovic, 1990;
+Bencivenga and Smith, 1991).
+Financial development may also enhance ﬁnancial
+stability with positive implications for economic performance (Bernanke and Gertler,
+1990). While these arguments have often provided the theoretical justiﬁcation for
+widespread government intervention in the banking sector, evidence on the success
+of such interventions in reducing poverty remains limited.1 In this paper we use data
+on the Indian rural bank branch expansion program — the largest ever attempted in
+a developing country — to provide such evidence.
+The Indian branch expansion program was representative of a whole host of state-
+led rural ﬁnance programs that spread across the developing world in the post-colonial
+period. This trend was not restricted to low income countries — in the United States,
+for example, the Community Reinvestment Act of 1977 requires a bank to meet the
+credit needs of its entire community, including low income neighborhoods (Zinman
+2002). In most cases such ﬁnancial interventions went hand in hand with government
+oversight of the banking sector, often aided by government ownership of banks.2
+However, it is now widely believed that state control of the banking sector implied
+that political, not economic, considerations determined the ﬂow of credit across sec-
+tors and individuals. Political imperatives also implied that widespread loan default
+on the part of borrowers was permitted, and made the banking sector more suscepti-
+ble to elite capture (La Porta, Lopez-De-Silanes and Shleifer, 2003; Sapienza, 2003).
+Some go as far as to claim that elite capture, combined with the imposition of interest
+rate ceilings in the formal sector, led to ﬁnancial dualism wherein formal subsidized
+funds are concentrated in the hands of the powerful few and terms in the informal
+markets (on which the poor depend) worsened (see Adams et al 1984; Braverman
+and Guasch 1986; Hoﬀand Stiglitz, 1998). In sum, it is believed that formal sub-
+sidized credit was ineﬀective in reaching the poor, and may even have undermined
+rural development and increased rural poverty.
+However, the evidence in support of such claims remains thin. By virtue of their
+vintage social banking episodes, though numerous and large in scale, have largely
+escaped serious evaluation. And this is despite the fact that, even today, state provi-
+sion remains the dominant source for formal ﬁnance in the rural areas of developing
+1Cross country data shows that banking expansion and economic growth are positively correlated
+(King and Levine, 1993; Levine and Zervos, 1998; Rajan and Zingales, 1998). However, the fact that
+countries (or regions) with greater growth potential attract more banks renders a causal interpretation
+problematic. In addition, the absence of comparable cross-country poverty data across time makes
+working out the distributional impact of banking expansion problematic.
+2La Porta, Lopez-De-Silanes and Shleifer (2002) report that, in the average country, 42 percent
+of the equity of the ten largest banks remained government owned in 1995.
+
+countries (Besley 1995). This paper seeks to address this lacuna in the literature.
+India is an appropriate place for such an evaluation, both because of the size and
+scope of the social banking experiment and also because it is home to close to a third
+of the world’s poor, the bulk of whom are located in rural areas (Deaton and Dreze,
+2002).
+Between bank nationalization in 1969 and the onset of ﬁnancial liberalization in
+1990 bank branches were opened in over 30,000 rural locations which had no prior
+presence of commercial banks (henceforth, unbanked locations).3
+Alongside, the
+share of bank credit and savings which was accounted for by rural branches rose from
+1.5 and 3 percent respectively to 15 percent each. The branch expansion program
+was an integral part of India’s social banking experiment which sought to improve the
+access of the rural poor to cheap formal credit. The preamble to the Bank Company
+Acquisition Act of 1969 — the piece of legislation which empowered the state to
+nationalize commercial banks — makes the intentions of the Indian government plain.
+“The Banking system touches the lives of millions and has to be inspired
+by a larger social purpose and has to subserve national priorities and ob-
+jectives such as rapid growth of agriculture, small industries and exports,
+raising of employment levels, encouragement of new entrepreneurs and
+development of backward areas. For this purpose it is necessary for the
+government to take direct responsibility for the extension and diversiﬁca-
+tion of banking services and for the working of a substantial part of the
+banking system”.
+Key to the rural branch expansion endeavor was the imposition of the 1:4 license
+rule in 1977. This rule stated that a bank could open a branch in a location with
+one or more branches (now on, a banked location) only if it opened four in unbanked
+locations. This rule was abandoned in 1990. States with lower initial ﬁnancial de-
+velopment (as measured by the number of bank branches per capita in 1961) had a
+higher incidence of unbanked locations. We use a panel data-set for the sixteen ma-
+jor Indian states (1961-2000), and show that, between 1977 and 1990, the 1:4 license
+rule caused ﬁnancially less developed states to attract more rural branches than their
+more ﬁnancially developed counterparts. The reverse was true outside this period.
+We show that an identical temporal and geographic pattern exists for rural poverty
+— rural poverty reductions were more rapid in states with lower ﬁnancial development
+between 1977 and 1990. The opposite was true outside this period. In contrast, po-
+litical and policy variables which may have reduced poverty in India over this period
+did not show trend breaks in their relationship with initial ﬁnancial development in
+1977 or 1990. This allows us to use the trend breaks in 1977 and 1990 in the rela-
+tionship between a state’s initial ﬁnancial development and rural branch expansion
+as instruments for the number of rural locations banked in a state. Our instrumental
+variable estimates suggest that a one percent increase in the number of rural banked
+locations reduced rural poverty by 0.36 percent and increased total output by 0.55
+3Locations here refer to villages, towns and cities as deﬁned by the Indian census.
+2
+
+percent. The output eﬀects are solely accounted for by increases in non-primary sec-
+tor output — a ﬁnding which suggests that increased ﬁnancial intermediation in rural
+India aided output and employment diversiﬁcation out of agriculture.
+The rapid increase in the Indian rural branch network and rural credit and sav-
+ings share after bank nationalization in 1969, and the subsequent slowdown post
+1990, has been widely documented (Nair 2000). However, evidence on the impact of
+the social banking program on poverty remains limited. Our ﬁndings on output line
+up with Binswanger, Khandker and Rozensweig (1993) and Binswanger and Khand-
+ker (1995). These papers use Indian district-level data, and ﬁnd that rural branch
+expansion increased non-agricultural but not agricultural growth.4 Our results are
+also consistent with the simulations by Townsend and Ueda (2001) based on Thai
+data which show that increased participation in the formal ﬁnancial sector enhances
+growth. By exploiting the policy induced reversal in the relationship between ini-
+tial branch placement we are able to control for endogenous bank branch placement
+and to identify the impact of rural branch expansion on poverty. Our identiﬁcation
+strategy is related to a number of recent program evaluation studies which exploit
+policy-induced trend breaks in the variables of interest for identiﬁcation purposes —
+important related examples include Duﬂo (2001) and Almond, Chay and Greenstone
+(2002).
+The paper is organized as follows. Section 2 describes the data we use, and the
+program we study. Section 3 contains our identiﬁcation strategy, and Section 4 the
+empirical analysis. Section 5 discusses the policy implications of our ﬁndings.
+2
+Data and Program Description
+2.1
+Data
+We use a panel data-set for the sixteen major Indian states over the period 1961-2000.
+We start in 1961 as it is the year of the census which preceded bank nationalization.
+Also, our poverty and output series begin around this year. Table 1 gives the means
+and standard deviations for our main variables and the Data Appendix information
+on variable deﬁnitions and data sources.5
+We use a branch level data-set which records, for every bank branch opened since
+1805, the date it was opened, whether it was situated in a rural location and the
+number of branches already existing in that location to construct three measures of
+ﬁnancial development (Reserve Bank of India, 2000).6 The number of bank branches
+per 100,000 persons in a state in 1961 is our measure of initial ﬁnancial development.
+4Eastwood and Kohli (1999) use ﬁrm level data and ﬁnd that the branch expansion program and
+directed lending program enhanced small scale industrial activity in India. Our ﬁndings are also in
+line with Dehejia and Lleras-Muney (2002) who ﬁnd that ﬁnancial development was associated with
+manufacturing growth in US states between 1900 and 1940.
+5The sixteen states in our sample cover over 95% of the Indian population. For some variables
+the data span fewer years; details are in the Data Appendix.
+6We always use the census deﬁnition of a rural location — that is, a location with a population of
+less than 10,000 persons. This is the same deﬁnition used to distinguish rural from urban poverty.
+3
+
+If a branch is the ﬁrst to be opened in a rural location we classify it as having
+opened in a rural unbanked location. In our sample states between 1961 and 2000 the
+number of rural locations so banked increased from 116 to 30,428. The total number
+of branches opened in rural unbanked locations per 100,000 persons is our ‘social
+banking’ measure. A branch opening in a census location with at least one bank is
+classiﬁed as opening in a banked location. Our third measure of ﬁnancial development
+is the number of branches opened in already banked locations per 100,000 persons.
+Figure 1 charts the evolution of (cumulative) branch openings in banked, unbanked
+and rural unbanked locations.
+Every bank branch in our sample is a distinct physical entity which undertakes
+both deposit-taking and lending activities.7 Deposit taking is relatively straightfor-
+ward, with the interest rate and other terms and conditions laid down by the Indian
+central bank. In the area of lending, bank branch oﬃcials enjoy discretion in choosing
+borrowers, subject to satisfying directed lending targets for the so-called ‘priority’ sec-
+tors of agriculture, entrepreneurs and small scale industry. The Indian central bank
+mandates that every bank branch satisfy a credit-deposit ratio of 60 percent within
+its geographical area of operation — this is to ensure that lending activities are not
+concentrated in urban locales.
+In 2000, the Indian rural banking sector accounted for the rupee equivalent of
+26,768 million dollars as deposits and 10,834 million dollars as loans outstanding.
+In terms of population reached, the rural sector accounted for 125 million savings
+accounts and 25 million borrowing accounts.8 Figure 2 shows the dramatic expansion
+in rural savings and credit over our sample period; the ﬁgure plots the state-wise
+shares of total bank credit and savings accounted for by rural banks. Finally, in
+terms of lending portfolio the average rural bank lent 38.6 percent to agriculture, 27.5
+percent to industry, 13.9 percent to trade and 9 percent as personal loans (Reserve
+Bank of India, 2000).
+In Table 2, we use Indian household survey data to decompose rural household
+debt by source for ten year intervals between 1951 and 1991. In 1951, four years after
+independence, the informal credit sector accounted for the bulk of rural lending, with
+moneylenders contributing close to 70 percent of the total. In contrast, less than
+one percent of rural household debt came from commercial banks. These banks were
+conﬁned to urban areas and geared towards the ﬁnancing of trade and commerce
+activities (Reserve Bank of India, 1954).9
+By 1971 lending by commercial banks
+contributed only 3 percent to rural household debt. However, by 1991 this ﬁgure
+7The average bank branch is staﬀed by one oﬃcer, two clerks, one of whom also acts as the
+cashier, and one security guard.
+8If we assume every savings account is held by a diﬀerent person and the rural population consisted
+of 700 million persons in 2000, then roughly one in every ﬁve or six rural persons had a savings account
+by 2000.
+9These ﬁndings were published the 1951 All-India Credit Survey Report (Reserve Bank of India,
+1954). It concluded that ﬁnancial backwardness was a root cause of rural poverty, and that commer-
+cial banks needed to be harnessed to enhance formal credit in rural areas — both to enable poor, rural
+households to adopt new technologies and production processes, and to displace ‘evil’ moneylenders
+who exploited their monopoly power to charge high rates of interest. These conclusions guided Indian
+rural banking policy for the next four decades.
+4
+
+had risen ten fold to 29 percent. Over the same time period the moneylender share
+of rural household debt more than halved from 35 to 15.7 percent. Thus over this
+period, arguably due to the large scale expansion of commercial banks into rural
+India, commercial banks transited from being the smallest to the largest lender in
+rural areas. Our focus is on identifying the economic implications of this change in
+rural India.
+India is unique amongst developing countries in having carried out household ex-
+penditure surveys on a regular basis since the 1950s. This allows us to construct a
+consistent and comparable series of rural and urban poverty measures across our pe-
+riod.10 We use the head count ratio which measures the proportion of the population
+below the Indian poverty line. Poverty incidence in India is high — over the 1961-2000
+period 48 percent of the rural and 40 percent of the urban population are classiﬁed
+as poor. Figure 3 shows the evolution of poverty across Indian states between 1961
+and 1990. Up to the early 1970s there are sharp year-to-year ﬂuctuations followed by
+a downward trend in both the rural and urban series between 1973 and 1990. Imme-
+diately after 1990, as India entered a period of economic liberalization, the pattern
+becomes less clear with considerable debate over the net direction (Deaton 2001). The
+most recent ﬁgures suggests that the post 1990 trend is overall downward. What is
+even more striking, however, are the diﬀerences in poverty trajectories across states.
+A key objective of this paper is to examine whether the pattern of branch expansion
+into rural unbanked areas altered these rural poverty trajectories. Over this period
+real male agricultural wages, an important inverse correlate of rural poverty, doubled.
+Given the controversy surrounding the more recent poverty ﬁgures using agricultural
+wages as an alternative dependent variable provides a useful robustness check.
+Separate output estimates for the rural and urban sectors of an Indian state are
+unavailable.
+For this reason, we focus on the sector-wise evolution of state out-
+put. The primary sector which includes agriculture, forestry, ﬁsheries and mining is
+mainly rural. The secondary sector consists of construction, registered and unregis-
+tered manufacturing, and electricity, water and gas output. Of these, construction
+and registered manufacturing are mainly located in the urban sector, while unregis-
+tered manufacturing (which consists of small businesses which employ less than ten
+persons with power, or twenty without) and electricity, water and gas output have
+a substantial rural presence. The tertiary sector consists of various service sectors
+such as trade and transportation which occur in both rural and urban areas. In
+1961 the primary sector contributed the most to total state output; however, since
+the mid 1970s the growth rates in the non-primary sector exceeded those in the
+primary sector (see Figure 4). We examine the links, if any, between rural branch
+expansion and sector-wise increases in economic activity. Evidence both from the
+economic history and economic development literatures suggests the process of struc-
+tural change, where the secondary and tertiary sectors become the main contributors
+to total output, is typically associated with poverty reduction (see Chenery, Robinson
+10We are grateful to Gaurav Datt and Martin Ravallion for providing us these state-level poverty
+ﬁgures (see Ozler, Datt and Ravallion (1996)). Gaurav Datt was kind enough to provide us with
+comparable updates which allowed us to extend the series from 1994-2000.
+5
+
+and Syrquin, 1986; Dehejia and Lleras-Muney, 2002; Burgess and Venables, 2003).
+We also examine whether the fraction of non-agricultural laborers in the rural labor
+force is aﬀected.
+2.2
+The Program
+In 1969 the fourteen largest Indian commercial banks were nationalized, at which
+point they came under the direct control of the Indian central bank and were formally
+incorporated into the planning architecture of the country (Balachandran, 1998).
+Bank nationalization was intended to allow the state to target ﬁnancial backwardness
+as a means of promoting social objectives. A central aim was to reduce and equalize
+the average population per bank branch across Indian states.
+To achieve this the Indian central bank adopted an area approach whereby un-
+banked locations — census locations with no prior presence of commercial banks —
+were targeted (Desai 1987). At any point in time, the central bank sought to ﬁll
+unbanked locations with populations exceeding a speciﬁc number. Unbanked loca-
+tions in states whose population per bank branch exceeded the national average had
+priority. Over time, as unbanked locations were ﬁlled, the population target was
+lowered. The priority status assigned to ﬁnancially less developed states, combined
+with a common deﬁnition for unbanked locations across Indian states, meant that
+more unbanked locations were targeted in ﬁnancially backward states.
+In every Indian district a commercial bank was designated as the Lead Bank and
+made responsible for identifying unbanked locations (based on the criteria set by the
+central bank). Every three years new (district-wise) lists of unbanked locations were
+drawn up by the central bank (in consultation with Lead Banks and state development
+authorities) and made available to commercial banks working in a district. The Lead
+Bank was responsible for coordinating branch expansion into these locations with
+other commercial banks working in the district.11
+The Indian central bank, however, still needed to coerce commercial banks to
+expand into unbanked, rural locations. In particular, in states where unbanked loca-
+tions were remote and/or unproﬁtable. Under the Banking Regulation Act of 1949
+commercial banks have to obtain a license from the central bank in order to open a
+new branch. On January 1, 1977 the Indian central bank announced that to qualify
+to open a branch in an already banked location a commercial bank must open four
+in unbanked locations.12 In 1990 the licensing procedure was frozen, and in 1991
+formally repealed. At this point it was deemed that future branch expansion should
+depend on “need, business potential and ﬁnancial viability of location” (Government
+of India, 1991).
+Branch level data shows that the 1:4 rule was binding — the annual ratio of bank
+branches opened in unbanked locations to total branches opened stands at, or around,
+11The district is the administrative unit below a state. An alternative would be undertake the
+analysis at the district level. However, annual poverty and output estimates are only available at
+the state level.
+12Up to this point banks had enjoyed some latitude as regards branch placement as the central
+bank emphasized the banking of towns and the need to satisfy pent up urban demand.
+6
+
+0.8 for every year between 1977 and 1990, and falls to zero thereafter. This eﬀect
+is also visible in Figure 1 which shows that from about 1975 onwards, increases in
+the number of locations banked are due to increases in the number of rural locations
+banked.
+Between 1977 and 1990 branch expansion into rural unbanked locations
+accelerated while that of already banked locations fell. After 1990 branch expansion in
+unbanked locations came to a halt, while that in already banked locations increased.
+To date, a bank cannot close a rural branch if it is the only branch servicing the
+location. The 1990 rural branch network is therefore, in eﬀect, frozen.13
+The typical commercial bank in India operates in districts in both ﬁnancially
+developed and backward states (either as a Lead Bank or collaborator). The cen-
+tral bank prioritized branch expansion in ﬁnancially backward states, and this was
+reﬂected in the unbanked location lists. Therefore, compliance with the 1:4 rule im-
+plied that banks opened more branches in unbanked locations in ﬁnancially backward
+states. Figure 5 shows the equalization and reduction in population per bank branch
+across Indian states over this period. Between 1961 and 2000 the average population
+per bank branch fell tenfold from 139,790 to 14,681. There is some, albeit limited,
+evidence of convergence in population per bank branch across Indian states prior
+to nationalization. Convergence, however, is much stronger between 1970 and 1990,
+with the post-1976 convergence driven by diﬀerential rates of rural branch expansion
+across Indian states. By 1990, all states were at or below the national target of 17,000
+persons per bank branch. Interestingly, after the removal of placement restrictions
+in 1990 and an increase in branch building in already banked locations there is some
+evidence that population per bank branch began to increase and diverge across In-
+dian states with more backward states seeing larger increases (see inset panel, Figure
+5).
+This period also saw the central bank aﬀect the credit policies of commercial
+banks. Since 1968, the central bank has mandated that a certain fraction of every
+bank’s lending had to be to individuals or ﬁrms who are in the ‘priority’ sector. This
+sector includes agriculture, entrepreneurs and small scale industries.14 These loans
+were intended to encourage new productive activities, and were also disbursed via
+rural bank branches. However, unlike rural branch expansion, the incidence of these
+credit policies does not vary with a state’s initial ﬁnancial development.
+3
+Identiﬁcation Strategy
+In this section we demonstrate that the bulk of rural branch expansion in India was
+policy-driven and signiﬁcantly increased the ﬂows of bank credit and savings to rural
+areas. The ﬁrst fact allows for a credible evaluation of the branch expansion program,
+and the second implies we can interpret our results as informative of the economic
+13Additional credit needs of the rural population post 1990 are supposed to be met through other
+means, principally microﬁnance (Ramachandran and Swaminathan, 2001).
+14These targets were ratcheted up over time — they started at 33 percent of total bank lending and
+have stood at 40 percent since 1985.
+7
+
+impact of state-led ﬁnancial intermediation.15
+The 1:4 license rule sought to coerce commercial banks to open more branches
+in rural unbanked locations in less ﬁnancially developed states. The underlying as-
+sumption was that ﬁnancially developed states oﬀered more proﬁtable locations for
+banks and therefore, in the absence of such a rule, would attract more branches. This
+suggests that if the rule had any bite its imposition in 1977 and subsequent removal
+in 1990 should have altered the relationship between initial ﬁnancial development of
+a state and subsequent rural branch expansion. To examine this possibility we run a
+ﬁxed eﬀects regression of the form:
+BR
+it = αi + βt +
+2000
+X
+t=1961
+(Bi61 × Dk)γk +
+2000
+X
+t=1961
+(Xi61 × Dk)δk + ²it
+(1)
+αi and βt are state and year eﬀects respectively. BR
+it, the number of branches opened
+in rural unbanked locations per capita, is our social banking measure and Bi61, the
+number of bank branches per capita in state i in 1961, our measure of initial ﬁnancial
+development.16
+Dk is a dummy which equals one where k = t.
+The coeﬃcient
+set γk captures the year-wise eﬀect of initial ﬁnancial development on rural branch
+expansion. As other initial conditions in a state may also have a time-varying eﬀect
+on branch expansion we include a vector of control variables (Xi61) as additional
+covariates. This vector includes log real state income per capita, population density
+and the number of rural locations per capita, all measured in 1961. These controls
+also enter the regression interacted with year dummies.
+Figure 6 graphs the γk coeﬃcients for two speciﬁcations. The dots on the solid
+line are the coeﬃcients from a speciﬁcation without the Xi61 controls, and the dots
+on the broken line are from a speciﬁcation with the Xi61 controls. In both cases 1961
+is the control year, and the 1961 dummy is omitted.17 γk summarizes the eﬀect of
+between-state variation in initial ﬁnancial development on the cumulative number of
+branches opened in rural unbanked locations as of year t. As our dependent variable
+is a cumulative variable, a comparison of the coeﬃcients for any two adjacent years
+(γk and γk+1) is informative of the relationship between initial ﬁnancial development
+and the growth in rural branch openings.
+Over this period the number of rural banked locations trend upwards in every
+state. However, two clear reversals in the relationship between a state’s initial ﬁ-
+nancial development and the number of rural banked locations stand out in Figure
+6 — one in 1977 and one in 1990. Between 1961 and 1977 the γk coeﬃcients increase
+with time — that is, ﬁnancially more developed states witness higher growth of rural
+banked locations. As banks enjoyed considerable leeway regarding where to locate
+15Our focus on the economic impact of bank branches sidesteps many of the endogeneity problems
+associated with a direct study of the impact of credit ﬂows. In a similar vein Jayarathne and Strahan
+(1996) use information on when a U.S. state relaxed branching restrictions to examine how ﬁnancial
+markets aﬀect economic growth
+16Both variables are normalized by 1961 population.
+The results are also robust to, instead,
+normalizing the banking variables by land area (as in Binswanger, Khandker and Rosenzwieg 1993).
+17We chose 1961 as it is the census year preceding bank nationalization. Our results are robust to
+choosing any alternative year as the control year.
+8
+
+this suggests that ﬁnancially more developed states oﬀered banks greater proﬁt op-
+portunities. This relationship is reversed in 1977 precisely when the 1:4 license rule
+was imposed. Moreover, the reversal is not temporary. Between 1977 and 1990 the
+γk coeﬃcients decrease with time — that is, ﬁnancially less developed states witnessed
+higher growth of rural banked locations. After 1990 rural branch expansion into rural
+unbanked locations ended, and is reﬂected in the lack of over time variation in the
+size of the γk coeﬃcients. Overall, the precise correspondence in the timing of these
+trend reversals and license regime shifts provides strong prima facie evidence that
+the pattern of rural branch expansion across Indian states was policy driven.
+We include the vector of economic controls, Xi61, as additional controls to check
+that convergence in economic activity (as proxied for by income, population density or
+number of rural locations) across Indian states is not driving the observed relationship
+between rural branch expansion and initial ﬁnancial development. The broken line
+graph in Figure 6 shows that this is not the case. If we graph out the δk coeﬃcients for
+the interaction between initial state income and year dummies we ﬁnd the relationship
+between initial state income and rural branch expansion is throughout positive (i.e.
+the graph is upward sloping). That is, controlling for initial ﬁnancial development,
+banks open more branches in states with higher initial state income.18
+Further evidence that economic convergence does not underlie the trend reversals
+in Figure 6 comes from data on branch openings in already banked locations. The 1:4
+license rule linked branch expansion in already banked locations to that in unbanked
+locations. Banks, however, were free to decide branch placement in already banked
+locations. If the relationship between initial ﬁnancial development and bank prof-
+itability remained unchanged during this period, then the imposition and subsequent
+removal of the 1:4 license rule should have aﬀected the rate of branch expansion in
+already banked locations but not its distribution across states.
+To check this we
+run regression (1) where the outcome variable is the cumulative number of branches
+opened in banked locations per capita. Figure 7 graphs out the γk coeﬃcients on the
+interaction between initial ﬁnancial development of a state (Bi61) and year dummies
+(Dk). This relationship, though aﬀected by license regime shifts in 1977 and 1990,
+is positive throughout. This mirrors what was happening with branch openings in
+rural unbanked locations pre-1977 but is in strict contrast to what was happening
+between 1977 and 1990.
+In Figure 8 we examine the relationship between rural bank credit and initial ﬁ-
+nancial development. That is, we report the γk coeﬃcients from regression (1) where
+the dependent variable is the share of bank credit disbursed by rural branches.19 We
+observe a pattern that mirrors that for rural unbanked locations (Figure 6). Disburse-
+ments via rural banks are higher in more ﬁnancially developed states until around
+1975 when there is a trend reversal. Between 1976 and 1989 we see more backward
+states experiencing a greater share of credit being disbursed via rural banks. After
+1989 the relationship between rural credit share and initial ﬁnancial development
+18For obvious reasons, this relationship is much more muted between 1977 and 1990 if we exclude
+the interaction between initial ﬁnancial development and year dummies from this regression.
+19Data on credit and savings ﬂows from rural banks is only available from 1969.
+9
+
+reverts to being broadly positive. A similar pattern exists for the rural savings share.
+The most likely explanation for the negative relationship between credit and saving
+ﬂows and initial ﬁnancial development between mid 1970s and 1990 is the higher
+growth of rural branches in ﬁnancially backward states. These ﬁndings put us on
+stronger grounds in interpreting the economic eﬀects of rural banks as coming, at
+least in part, through improved ﬁnancial intermediation in rural areas.
+The key trend reversals in the relationship between rural branch expansion and
+initial ﬁnancial intermediation occur in 1977 and 1990, with only very limited vari-
+ation in this relationship in other years (Figure 6). The variation in Figure 6 can,
+therefore, be summarized by a linear trend break model:
+BR
+it
+=
+αi + βt + (Bi61 × [t −61])γ1 + (Bi61 × [t −76] × P77)γ2 +
+(2)
+(Bi61 × [t −89] × P90)γ3 + (Bi61 × P77)γ4 + (Bi61 × P90)γ5 + ²it.
+The ﬁrst coeﬃcient of interest, γ1, measures the trend relationship between initial
+ﬁnancial development (Bi61) and rural branch expansion. To check for trend reversals
+in this relationship we include two further interaction terms — ﬁrst, an interaction of
+Bi61 with dummy variable which equals one post 1976 (P77) and a post 1976 time
+trend (t−76), and second, an interaction of Bi61 with a dummy variable which equals
+one post 1990 (P90) and a post 1989 time trend (t−89). To allow for intercept changes
+we also include the interactions of Bi61 with P77 and P90 respectively. Finally, we
+always include the set of additional controls Xi61, entered in the regression in the
+same way as Bi61. A standard concern with diﬀerence in diﬀerence estimation using
+panel data is serial correlation. Therefore in all regressions we cluster our standard
+errors by state.
+This procedure gives us an estimator of the variance covariance
+matrix which is consistent in the presence of any correlation pattern within states
+over time (Bertrand, Duﬂo and Mullainathan, 2002).20
+Column (1) in Table 3 reports the trend break model results for branch expansion
+into rural unbanked locations. Both the 1977 and 1990 trend reversals are statistically
+signiﬁcant which lines up with the pattern observed in Figure 6.
+It is useful to
+interpret the reported coeﬃcients with reference to the states at the 25th and 75th
+percentile of the initial ﬁnancial development distribution — Madhya Pradesh and
+Tamil Nadu respectively. The initial ﬁnancial development of these two states diﬀer
+by one point. The coeﬃcient γ1, given in the ﬁrst row, tells us that between 1961
+and 1976, relative to Madhya Pradesh, 0.08 additional rural locations per capita were
+banked in Tamil Nadu. The second row, which reports γ2, shows that this positive
+trend was reversed between 1977 and 1990 with 0.16 fewer rural locations receiving
+a branch in Tamil Nadu annually relative to Madhya Pradesh.21 Finally, the third
+row, which reports γ3, tells us that after 1989 no rural branch expansion occurred
+and hence, Tamil Nadu and Madhya Pradesh were equally likely to receive rural
+20As Bertrand et al (2002) demonstrate for the US rejection rates using this method do increase
+above 5 percent when the number of states falls below 20. As we only have 16 states in India the
+signiﬁcance levels we obtain using this method should be treated as conservative.
+21This is given by γ1 + γ2. F-test 1 shows that γ1 + γ2 is signiﬁcantly diﬀerent from zero.
+10
+
+branches.22 In contrast, and in line with Figure 7, the results for branch expansion
+into banked locations shown in column (2) do not show any trend reversals.
+Columns (3) and (4) consider the relationship between the shares of bank credit
+and savings disbursed by rural branches and initial ﬁnancial development.23 Prior
+to 1977 both variables are uncorrelated with initial ﬁnancial development. However,
+between 1977 and 1990 both are signiﬁcantly negatively correlated with initial ﬁnan-
+cial development. Rural credit share exhibits a second trend reversal in 1990 with
+rural credit and initial ﬁnancial development unrelated after 1990. Rural savings,
+however, remain negatively related with initial ﬁnancial development post 1990. In
+column (5) we ﬁnd no evidence of trend reversals in the case of the share of bank
+lending going to priority sectors. This makes sense as priority sector targets were
+set at the bank-level, and remained independent of the state-wise distribution of a
+commercial bank’s rural and urban branches. In a similar vein in column (6) we see
+no trend breaks in the relationship between the share of formal credit disbursed by
+rural credit cooperatives and initial ﬁnancial development.24 The fact that the trend
+breaks are only observed for variables which were directly aﬀected by licensing rule
+increases our conﬁdence that the observed trend reversals are policy-driven.
+4
+Eﬀects on Rural Development
+The exposure of an Indian state to the rural branch expansion program was jointly
+determined by its initial ﬁnancial development and the license regime shifts in 1977
+and 1990. Between 1977 and 1990 initial ﬁnancial development and rural branch
+expansion were negatively correlated, with the reverse true outside this time-period.
+We exploit this fact to provide two types of evidence on the link between rural
+development and rural branch expansion.
+In section 4.1 we check whether rural
+development outcomes also exhibit trend breaks in 1977 and 1990 in their relationship
+with initial ﬁnancial development, and in section 4.2 we use these trend breaks as
+instruments for rural branch expansion.
+4.1
+Reduced Form Evidence
+Basic Results
+We start by examining the relationship between initial ﬁnancial development and
+poverty outcomes.
+The bold line in Figure 9 traces out the γk coeﬃcients for a
+regression (of the form in equation (1)) where rural poverty is the dependent variable,
+and the dotted line the γk coeﬃcients from a regression where urban poverty is the
+dependent variable.
+Each γk summarizes the eﬀect of between state variation in
+initial ﬁnancial development on poverty in year t. The pattern across years thus
+tells how poverty rose or fell in relation to the ﬁnancial development of a state. In
+22γ1 + γ2 +γ3 equals zero. F-test 2 shows that γ1 + γ2+ γ3 does not diﬀer signiﬁcantly from zero.
+23These data are only available from 1969.
+24Credit cooperatives were the other main source of formal credit in rural areas across the 1961-
+2000 period.
+11
+
+interpreting these coeﬃcients it is useful to remember that over our sample period
+both rural and urban poverty series trend downwards (Figure 3). Figure 9 shows
+that between 1970 and 1978 both rural and urban poverty correlate negatively with
+ﬁnancial development. That is poverty falls more rapidly in states with higher initial
+ﬁnancial development. After this the two series diverge. The urban poverty series
+ﬂattens out in 1978 with the γk coeﬃcients close to zero until 1990. In contrast,
+the rural poverty series continues its downward trend until the early 1980s after
+which rural poverty reductions are more pronounced in less developed states until
+1990.25 After 1990 both series return to being negatively correlated with ﬁnancial
+development as they were pre-1978. The plot for rural poverty in Figure 9 is thus the
+inverse of that for rural branch expansion in Figure 6. Backward states, in contrast,
+did not experience more rapid urban poverty reduction between 1977 and 1990. This
+matches up with the fact that branch expansion into urban locales which tended to
+be already banked was higher in ﬁnancially developed states throughout the period
+(Figure 7).
+In Table 4 we summarize these, and other, ﬁndings for poverty outcomes using
+our basic trend break model (see equation (2)). In column (1) we observe that rural
+poverty reduction is more rapid in ﬁnancially developed states both before 1977 and
+after 1990. This trend is, however, reversed between 1977 and 1990. Comparing the
+states at the 25th (Madhya Pradesh) and 75th percentile (Tamil Nadu) of the initial
+ﬁnancial development distribution these coeﬃcients imply that annual reductions in
+the rural head count ratio were 0.77 percent higher in Tamil Nadu than Madhya
+Pradesh before 1977. However, between 1977 and 1990 this trend was reversed with
+Madhya Pradesh experiencing a 1.15 percent more rural poverty reduction per year
+relative to Tamil Nadu. There is then a second reversal in 1990 when rural branch
+expansion is discontinued. After this year the more developed state (Tamil Nadu)
+experiences 1.15 percent more rural poverty reduction per year relative to the more
+backward state (Madhya Pradesh). These results strongly suggest that more rapid
+expansion of rural bank branches into more ﬁnancially backward states during the
+1977-1990 period is aﬀecting poverty reduction in these states relative to what was
+happening in more ﬁnancially developed states.
+Consistent with the fact that we are evaluating a rural program, column (2) shows
+that initial ﬁnancial development and urban poverty reductions are unrelated. Rural
+poverty tends to lie above urban poverty in India (see Figure 3).
+The results in
+columns (1) and (2) imply that results for the diﬀerence between rural and urban
+poverty will mirror those for rural poverty. The closing of the gap between rural and
+urban poverty will be more rapid in more ﬁnancially developed states pre-1977 and
+post-1990. In contrast between 1977 and 1990 it will be more backward states that
+are experiencing more rapid closing of their rural-urban poverty gaps. The results
+for aggregate poverty in column (3) also mirror those for rural poverty in column (1)
+and tell us that changes in rural poverty drive the aggregate pattern.
+25We would expect there to be a lag between the opening of rural branches and their exerting
+any eﬀect on rural poverty. This may explain why trend breaks in poverty lead those in branch
+expansion.
+12
+
+In column (4) we see that the results for real daily male agricultural wages mirror
+those for rural poverty. Relative to ﬁnancially developed states, agricultural wages in
+ﬁnancially backward states grew more quickly only between 1977 and 1990. Column
+(4) serves as a robustness check on our poverty results, and points to an impor-
+tant route through which rural branch expansion may have reduced poverty. As a
+robustness check we show in column (5) that real wages for workers in registered
+manufacturing — which is mainly located in the urban sector — do not exhibit breaks
+in 1977 and 1990.
+Table 5 considers diﬀerent components of state output. Column (1) tells us that
+the relationship between state output per capita and initial ﬁnancial development
+exhibited trend reversals in 1977 and 1990.
+Evaluated at the sample mean, and
+comparing states at the 25th and 75th percentile of the initial ﬁnancial development
+distribution, the point estimates imply that, prior to 1977 annual increases in total
+output were 18.5 Rupees per capita lower in Madhya Pradesh than Tamil Nadu. Be-
+tween 1977 and 1990, this trend was exactly reversed. Post 1990 the pattern is both
+reversed and magniﬁed. In columns (2) and (3) we see that this pattern is not shared
+by primary sector output, or within this sector agricultural output.26 In column (4)
+we see that non-primary sector output drove the growth in total output, with the
+latter also exhibiting trend breaks in 1977 and 1990. Columns (5)-(8) focus in on the
+diﬀerent components of the secondary sector. Initial ﬁnancial development is uncor-
+related with construction output and registered manufacturing output. Both these
+activities are concentrated in the urban sector. In contrast, column (7) shows that
+unregistered manufacturing and initial ﬁnancial development are positively correlated
+until 1977, negatively between 1977 and 1990 and positively thereafter. The small
+businesses which make up unregistered manufacturing are important contributors to
+non-agricultural output in the rural sector (Visaria and Basant, 1994). Electricity,
+water and gas output is also negatively correlated with initial ﬁnancial development
+after 1977 — this, possibly, also reﬂects the increase in rural non-agricultural activities.
+In column (9) we examine tertiary sector output. Between 1977 and 1990 tertiary
+sector output is lower in ﬁnancially developed states. The opposite is true outside
+this period. Consistent with the thesis that the branch expansion program increased
+rural non-primary sector output, in column (10) we observe that while before 1977
+ﬁnancially developed states witnessed faster growth in the share of non-agricultural
+laborers in total unskilled rural labor, this trend is reversed between 1977 and 1987.27
+Robustness
+We interpret the observed trend breaks in the rural development outcomes and initial
+ﬁnancial development relationship as reﬂecting the economic eﬀects of rural branch
+expansion. We have provided evidence that these changes were caused by the 1:4
+license rule, not by a reversal in the relationship between an Indian state’s initial
+ﬁnancial development and potential for economic growth after 1977.
+A diﬀerent
+26We have checked that the results are unaﬀected if we instead use agricultural output per hectare
+as our dependent variable
+27As our data series ends in 1987 we cannot check for a 1990 trend break in employment
+13
+
+source of potential omitted variable bias is poverty alleviation policies pursued by
+state governments. In our estimation framework this is a cause of concern if key
+political and policy variables which have the potential to inﬂuence rural development
+exhibited trend reversals in their relationship with initial ﬁnancial development at
+the same points as rural branch expansion. Table 6 examines this possibility.
+The Congress party which had been the dominant party in Indian politics since
+independence suﬀered a major electoral setback in 1977.28 A ﬁrst concern is that
+the extent of state-wise ousting of Congress may have been systematically related to
+both the state’s initial ﬁnancial development and the subsequent choice of state-level
+public policies. Column (1), Table 6, however, ﬁnds no evidence of trend breaks
+in the relationship between the fraction of Congress legislators and initial ﬁnancial
+development in 1977 or 1990.
+A second concern is that the 1977 political shock
+realigned political interests between the center and states with possible implications
+for resource ﬂows. More backward states, for example, may have received more federal
+resources post-1977 as a result of this reconﬁguration.29 However, in column (2) we
+ﬁnd no evidence of trend breaks in the relationship between center-state alignment, as
+measured by whether the same party is in power in both places, and initial ﬁnancial
+development.
+The remainder of Table 6 considers an array of state-level anti-poverty policies.
+In the ﬁrst few decades after independence land reform as a program for ushering in
+a just social order was an important item on almost every state government’s policy
+agenda (Besley and Burgess, 2000; Banerjee, Gertler and Ghatak, 2002). Using state
+panel data 1958-1992 Besley and Burgess (2000) show that this land reform measure
+reduced rural poverty.
+We, however, in column (3) we ﬁnd no evidence of trend
+breaks in the relationship the cumulative number of land reform acts passed by a
+state government bears to initial ﬁnancial development. In column (4) we examine
+the relationship between the extent of public food distribution in a state and its initial
+ﬁnancial development.30
+The use of this program as a major poverty alleviation
+policy increased in the 1970s, with its incidence showing substantial variation across
+states (Besley and Burgess, 2002).
+However, again, we see no evidence of trend
+breaks. Finally, in columns (5) and (6) we directly consider the shares of government
+spending going to sectors which have the potential to impact rural development —
+spending on education and health , and other development spending. We ﬁnd no
+evidence of trend breaks for these variables.
+These ﬁndings suggest that our identiﬁcation strategy is reasonable and that rural
+branch expansion aﬀected rural, but not urban, outcomes. We now turn to a more
+struct

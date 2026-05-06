@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_108",
+  "title": "Does Head Start Improve Children's Life Chances? Evidence from a Regression Discontinuity Design",
+  "authors": "Ludwig & Miller",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1162/qjec.122.1.159",
+    "title": "Does Head Start Improve Children's Life Chances? Evidence from a Regression Discontinuity Design",
+    "year": 2006,
+    "journal": "The Quarterly Journal of Economics",
+    "citations": 21
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "ludwig",
+      "miller"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "qje",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 21,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

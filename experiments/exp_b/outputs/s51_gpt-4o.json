@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s51",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "title": "Impact of Earnings Announcements on Stock Returns",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:40:24.835176",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 485,
+    "output_tokens": 630,
+    "content": "## 1. Identification Strategy\nIn this scenario, we will use the Event Study methodology to measure the impact of quarterly earnings announcements on abnormal stock returns. The key assumption for this method is that the market efficiently incorporates public information into stock prices, allowing us to isolate the effect of the earnings announcement itself on stock returns. Specifically, we are interested in calculating the Cumulative Abnormal Return (CAR) around the event day (typically event_day 0 or adjacent days) to capture the immediate market reaction.\n\n## 2. R Code\n```r\n# Load necessary library\nlibrary(dplyr)\n\n# Path to the data file\ndata_path <- \"experiments/exp_b/data/s51_data.csv\"\n\n# Read the data\ndata <- read.csv(data_path)\n\n# Calculate Abnormal Return (AR) for each stock-day as the difference between actual return and expected return\n# Expected return is calculated using market model: expected_return = beta * mkt_ret\ndata <- data %>%\n  mutate(expected_ret = beta * mkt_ret,\n         abnormal_ret = ret - expected_ret)\n\n# Define event window (e.g., days -1 to +1 around announcement)\nevent_window <- data %>%\n  filter(event_day >= -1 & event_day <= 1)\n\n# Calculate Cumulative Abnormal Return (CAR) for each stock over the event window\ncar_results <- event_window %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abnormal_ret))\n\n# Print average CAR across all stocks\naverage_CAR <- mean(car_results$CAR)\ncat(\"Average Cumulative Abnormal Return (CAR) across all stocks in event window (-1, 1):\", average_CAR, \"\\n\")\n\n# Calculate t-statistics for robustness check: t = (average_CAR) / (SD(CAR) / sqrt(n))\ncar_sd <- sd(car_results$CAR)\nn <- nrow(car_results)\nt_stat <- average_CAR / (car_sd / sqrt(n))\ncat(\"T-statistic for CAR significance test:\", t_stat, \"\\n\")\n\n# Robustness check: Analyze alternate windows, e.g., (0, 2)\nalternate_window <- data %>%\n  filter(event_day >= 0 & event_day <= 2)\n\nalternate_car_results <- alternate_window %>%\n  group_by(stock_id) %>%\n  summarise(CAR = sum(abnormal_ret))\n\n# Print average CAR for alternate window\naverage_alternate_CAR <- mean(alternate_car_results$CAR)\ncat(\"Average CAR for alternate window (0, 2):\", average_alternate_CAR, \"\\n\")\n```\n\n## 3. Expected Findings\nI expect to find a positive sign on the Cumulative Abnormal Return (CAR) around earnings announcement days, particularly if the market anticipates positive news or reacts to better-than-expected earnings. The magnitude might vary, but typically it could be around 1-3%, reflecting immediate price adjustment to new information. However, this effect is subject to the specific news content of the earnings and other market conditions.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "We analyze stock returns before and after earnings announcements to isolate the impact of the announcements themselves.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Quarterly earnings announcements lead to a significant negative abnormal return.",
+    "main_effect": "-0.02"
+  }
+}

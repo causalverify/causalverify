@@ -1,0 +1,20 @@
+{
+  "scenario_id": "s03",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "title": "School voucher program on student test scores",
+  "research_question": "Did introduction of a school voucher program (period 4) improve standardized test scores for students in treated school districts compared to control districts?",
+  "data_description": "Panel data on 200 school districts over 8 annual periods. Variables: unit_id, period, treated (1=voucher district), post, treat_x_post, y (standardized test score, mean-centered). Voucher program begins in period 4.",
+  "ground_truth": {
+    "identification_strategy": "DID — treated=voucher districts, control=non-voucher; shock=program introduction",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Test scores increase significantly in voucher districts after program launch",
+    "main_effect": "0.25 SD improvement in test scores"
+  },
+  "data_file": "experiments/exp_b/data/s03_data.csv",
+  "dgp_truth": {
+    "type": "did",
+    "effect": 0.25,
+    "direction": "positive"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "paper_id": "paper_14",
+  "method_family": "DID",
+  "difficulty": "easy",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:30:00.765325",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 674,
+    "output_tokens": 926,
+    "content": "## RID PROTOCOL\n\n### STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy will be a Difference-in-Differences (DiD) approach. I will compare the change in full-time equivalent (FTE) employment in fast-food restaurants in New Jersey (the treatment group, where the minimum wage increased) to the change in FTE employment in fast-food restaurants in eastern Pennsylvania (the control group, where the minimum wage remained constant) over the period before (February-March 1992) and after (November-December 1992) the minimum wage increase in New Jersey. This strategy exploits the staggered timing of the minimum wage policy across the two geographically proximate regions.\n\n**Directional Hypothesis:**\nBased on standard competitive labor market theory and prior empirical evidence, I hypothesize that the binding increase in the minimum wage in New Jersey will lead to a **reduction** in FTE employment in its fast-food restaurants relative to those in Pennsylvania. Therefore, the estimated DiD coefficient is expected to be **negative**.\n\n### STEP 2 — SPECIFICATION DISCIPLINE\n\nI will run the following 5 specifications:\n\n1.  **Basic Pooled OLS DiD:**\n    `FTE_employment_i,t = β0 + β1*NJ_i + β2*Post_t + β3*(NJ_i * Post_t) + ε_i,t`\n    Where `NJ_i` is a dummy for New Jersey restaurants (treatment group), `Post_t` is a dummy for the post-treatment period (Wave 2), and `(NJ_i * Post_t)` is the interaction term representing the DiD estimator.\n\n2.  **Pooled OLS DiD with Restaurant Fixed Effects:**\n    `FTE_employment_i,t = α_i + β1*Post_t + β2*(NJ_i * Post_t) + ε_i,t`\n    Where `α_i` represents restaurant-specific fixed effects. The `NJ_i` dummy is absorbed by the restaurant fixed effects.\n\n3.  **Pooled OLS DiD with Restaurant Fixed Effects and Time-Varying Covariates:**\n    `FTE_employment_i,t = α_i + β1*Post_t + β2*(NJ_i * Post_t) + γ1*starting_wage_i,t + γ2*meal_price_i,t + γ3*hours_of_operation_i,t + ε_i,t`\n    This adds time-varying controls (starting wage, price of a full meal, hours of operation) to Specification 2 to improve precision.\n\n4.  **First-Differences Model (Balanced Panel):**\n    `ΔFTE_employment_i = β0 + β1*NJ_i + ε_i`\n    Where `ΔFTE_employment_i` is the change in FTE employment for restaurant `i` between Wave 2 and Wave 1, and `NJ_i` is a dummy for New Jersey restaurants. This specification is algebraically equivalent to Specification 2 for a two-period panel and estimates the DiD effect directly on the balanced panel.\n\n5.  **First-Differences Model with Chain Fixed Effects (Balanced Panel):**\n    `ΔFTE_employment_i = β0 + β1*NJ_i + δ_c + ε_i`\n    Where `ΔFTE_employment_i` and `NJ_i` are as above, and `δ_c` represents fixed effects for each fast-food chain (`Burger King`, `KFC`, `Wendy's`, `Roy Rogers`). This controls for unobserved, time-invariant chain-specific factors that might influence employment changes.\n\n### STEP 3 — FALSIFICATION GATE\n\nMy hypothesis is that the minimum wage increase reduces employment, meaning the DiD coefficient (β3 in Spec 1, β2 in Spec 2 & 3, β1 in Spec 4 & 5) should be negative.\n\nThe falsification gate will be triggered if:\n\n1.  The estimated DiD coefficient (on the `NJ_dummy:Post_dummy` interaction term or the `NJ_dummy` in first-differences models) is **positive** and statistically significant (p-value < ",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "DID",
+    "detected_direction": "negative",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Difference-in-differences — New Jersey restaurants (treated by minimum wage increase) compared to eastern Pennsylvania restaurants (control, no minimum wage change) before vs. after April 1992",
+    "key_variables": {
+      "treatment": "New Jersey (minimum wage increased from $4.25 to $5.05 on April 1, 1992)",
+      "control": "eastern Pennsylvania (minimum wage unchanged at $4.25)",
+      "outcome": "full-time equivalent (FTE) employment per restaurant",
+      "time_period": "February-March 1992 (pre) vs. November-December 1992 (post)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The minimum wage increase in New Jersey did not reduce employment; if anything, employment increased slightly in New Jersey relative to Pennsylvania. The DID estimate is positive but not statistically significant at conventional levels. This contradicts the standard competitive model prediction of employment loss.",
+    "main_effect": "DID estimate: NJ employment increased by approximately 2.76 FTE relative to PA (not statistically significant at 5%)",
+    "key_robustness": [
+      "Within-NJ comparison: high-wage (already above $5.05) vs. low-wage (affected) restaurants",
+      "Chain-specific effects (Burger King, KFC, Wendy's, Roy Rogers separately)",
+      "Controlling for restaurant-level characteristics (chain, ownership, pre-period wage)",
+      "BLS employment data for the same industry/region as alternative data source"
+    ],
+    "identification_strategy_detail": {
+      "method": "Two-group two-period DID (classic 2x2 design)",
+      "treatment": "New Jersey minimum wage increase from $4.25 to $5.05 (April 1, 1992)",
+      "event_window": "Pre: Feb-Mar 1992; Post: Nov-Dec 1992",
+      "estimation_window": "N/A (only two periods)",
+      "sample_period": "1992",
+      "unit_of_observation": "Individual fast-food restaurant",
+      "key_assumption": "Absent the minimum wage increase, employment trends in NJ fast-food restaurants would have followed the same trajectory as PA fast-food restaurants (parallel trends). Supported by the geographic proximity and similar economic conditions in the NJ-PA border region."
+    },
+    "key_magnitudes": {
+      "did_estimate": "+2.76 FTE increase in NJ relative to PA (standard error ~1.36, not significant at 5%)",
+      "nj_change": "NJ employment increased from 20.44 to 21.03 FTE on average",
+      "pa_change": "PA employment decreased from 23.33 to 21.17 FTE on average"
+    },
+    "robustness_notes_detail": "Within-NJ comparison (low-wage vs. high-wage restaurants) confirms the result: restaurants most affected by the wage increase (those initially paying $4.25) showed larger employment gains than those already paying above $5.05. BLS data for the NJ and PA fast-food sector show similar patterns. Results robust to trimming outliers and using alternative FTE definitions."
+  }
+}

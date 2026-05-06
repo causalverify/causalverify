@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s27",
+  "method_family": "RDD",
+  "difficulty": "medium",
+  "title": "Income cutoff and subsidy program participation",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:36:07.204266",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 467,
+    "output_tokens": 734,
+    "content": "## 1. Identification Strategy\nThis research scenario is well-suited for a Regression Discontinuity Design (RDD) analysis. The key assumption is that households with incomes just below the threshold are comparable to those with incomes just above the threshold in all respects except their eligibility for the housing subsidy. The running variable (income/threshold ratio) is used to determine treatment status, and the discontinuity in housing expenditure share at the cutoff point can be estimated to identify the causal effect of the subsidy program. To check for manipulation of the running variable, a McCrary test will be performed.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(rdrobust)\nlibrary(ggplot2)\n\n# Read the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s27_data.csv\")\n\n# Perform McCrary test to check for manipulation\nmccrary_test <- rdrobust::rdrobust(data$running_var, data$treated, \n                                 model = \"ols\", covs = ~1, \n                                 bw = NULL, kernel = \"uniform\", \n                                 weights = NULL, \n                                 cluster = NULL, fuzzy = NULL)\nmccrary_test\n\n# Perform RDD analysis\nrdd_result <- rdrobust::rdrobust(data$running_var, data$y, \n                                model = \"ols\", covs = ~1, \n                                bw = NULL, kernel = \"uniform\", \n                                weights = NULL, \n                                cluster = NULL, fuzzy = NULL)\nrdd_result\n\n# Print the estimated treatment effect\ncat(\"Estimated treatment effect:\", rdd_result$ks[1], \"\\n\")\n\n# Check robustness with different bandwidths\nrdd_result_10 <- rdrobust::rdrobust(data$running_var, data$y, \n                                  model = \"ols\", covs = ~1, \n                                  bw = 0.1, kernel = \"uniform\", \n                                  weights = NULL, \n                                  cluster = NULL, fuzzy = NULL)\ncat(\"Estimated treatment effect with 10% bandwidth:\", rdd_result_10$ks[1], \"\\n\")\n\nrdd_result_20 <- rdrobust::rdrobust(data$running_var, data$y, \n                                  model = \"ols\", covs = ~1, \n                                  bw = 0.2, kernel = \"uniform\", \n                                  weights = NULL, \n                                  cluster = NULL, fuzzy = NULL)\ncat(\"Estimated treatment effect with 20% bandwidth:\", rdd_result_20$ks[1], \"\\n\")\n\n# Visualize the data\nggplot(data, aes(x = running_var, y = y, color = factor(treated))) + \n  geom_point() + \n  geom_smooth(method = \"loess\", se = FALSE) + \n  theme_classic()\n```\n\n## 3. Expected Findings\nWe expect a positive treatment effect, indicating that households eligible for the housing subsidy (those with incomes below the threshold) spend more on housing compared to those with incomes just above the threshold. The magnitude of the effect will depend on various factors, including the generosity of the subsidy and the price elasticity of housing demand. A positive effect would suggest that the subsidy program is effective in increasing housing expenditure among eligible households. We anticipate a coefficient in the range of 0.05 to 0.15, indicating a 5-15% increase in housing expenditure share due to the subsidy program. However, the actual magnitude of the effect may vary depending on the specific characteristics of the data and the subsidy program.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Sharp RDD — income cutoff; test for manipulation; local linear; optimal bandwidth (IK or CCT)",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Eligible households increase housing expenditure share",
+    "main_effect": "~25pp increase in housing spend for eligible households"
+  }
+}

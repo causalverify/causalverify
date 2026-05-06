@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_51",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "model": "o3",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:45:04.066038",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 635,
+    "output_tokens": 2340,
+    "content": "BEGIN RID PROTOCOL  \n\nSTEP 1 — PRE-COMMITMENT  \n\nIdentification strategy  \n• Instrumental-variables panel design with country and year fixed effects.  \n• Instrument: (U.S. annual wheat production) × (country-specific historical share of U.S. wheat food aid).  \n• Exclusion restriction: Conditional on country & year FE and controls, contemporaneous U.S. wheat production affects a recipient country’s conflict risk only through the quantity of U.S. wheat food aid it receives; the historical share is time-invariant and captures only aid-allocation propensities.  \nDirectional hypothesis  \nH: Exogenous increases in U.S. wheat food aid raise the likelihood of civil conflict (positive causal effect on conflict incidence/onset). I will not alter this hypothesis after this step.  \n\nSTEP 2 — SPECIFICATION DISCIPLINE (maximum 5 specifications, fully locked-in)  \n\nCommon features for all specs  \n• Unit of observation: country-year, 1971-2006.  \n• Controls: log GDP per capita (lagged one year), log population, Polity democracy score, oil-exporter dummy.  \n• Two-way fixed effects: country FE and year FE.  \n• SEs clustered at the country level.  \n• Endogenous regressor: log(food aid metric tons + 1).  \n• Instrument: hist_share × us_wheat_prod (in million MT).  \n\nSpec 1  (First-stage only)  \nlog(food aid + 1)_{it} = α_i + γ_t + β₁ Instrument_{it} + X'_{it} δ + ε_{it}.  \n\nSpec 2  (Main 2SLS)  \nConflictIncidence_{it} = α_i + γ_t + θ₁ Ê[log(food aid + 1)]_{it} + X'_{it} δ + u_{it}.  \nConflictIncidence = 1 if any active conflict (≥25 battle deaths) in year t.  \n\nSpec 3  (Conflict onset)  \nConflictOnset_{it} = α_i + γ_t + θ₂ Ê[log(food aid + 1)]_{it} + X'_{it} δ + v_{it}.  \nOnset = 1 only in the first year of a new conflict episode.  \n\nSpec 4  (High-intensity onset)  \nHighIntOnset_{it} = α_i + γ_t + θ₃ Ê[log(food aid + 1)]_{it} + X'_{it} δ + w_{it}.  \nHigh-intensity = conflicts that reach ≥1,000 battle deaths.  \n\nSpec 5  (Robustness: country-specific linear trends)  \nConflictIncidence_{it} = α_i + γ_t + λ_i t + θ₄ Ê[log(food aid + 1)]_{it} + X'_{it} δ + e_{it}.  \n\nNo further specifications will be run.  \n\nSTEP 3 — FALSIFICATION GATE  \n\nThe directional hypothesis is rejected if ANY of the following hold for Spec 2 (primary test):  \na) Sign reversal: θ₁ < 0.  \nb) Lack of statistical support: |t-stat(θ₁)| ≤ 1.64  (p > 0.10, two-sided).  \nc) Weak instrument: Kleibergen-Paap first-stage F-stat < 10.  \nd) For robustness, if both Spec 3 and Spec 4 yield θ₂, θ₃ ≤ 0 or p > 0.10.  \nMeeting any one criterion triggers rejection.  \n\nSTEP 4 — R CODE (self-contained)\n\n```r\n# Load required packages\nlibrary(fixest)     # fast IV with high-dim FE\nlibrary(readr)      # data import\nlibrary(dplyr)\n\n# ------------------------------------------------------------------\n# 1. Read and prepare data\n# ------------------------------------------------------------------\ndf <- read_csv(\"aid_conflict_panel.csv\") %>% \n  mutate(\n    log_food_aid = log(food_aid_mt + 1),\n    instrument   = hist_share * us_wheat_prod,   # wheat prod in same units as data\n    log_gdp_pc   = log(gdp_pc),\n    log_pop      = log(population)\n  )\n\n# ------------------------------------------------------------------\n# 2. Specification 1: First-stage\n# ------------------------------------------------------------------\nfs <- feols(log_food_aid ~ 1 | 0 | instrument + \n            log_gdp_pc + log_pop + democracy + oil_exporter | country + year,\n            data = df, cluster = \"country\")\n\nsummary(fs)\n\n# ------------------------------------------------------------------\n# 3. Specification 2: Conflict incidence (2SLS)\n# ------------------------------------------------------------------\niv_incidence <- feols(conflict_incidence ~ log_gdp_pc + log_pop + democracy + oil_exporter | country + year |\n                      log_food_aid ~ instrument, \n                      data = df, cluster = \"country\")\n\nsummary(iv_incidence)\n\n# ------------------------------------------------------------------\n# 4. Specification 3: Conflict onset (2SLS)\n# ------------------------------------------------------------------\niv_onset <- feols(conflict_onset ~ log_gdp_pc + log_pop + democracy + oil_exporter | country + year |\n                  log_food_aid ~ instrument, \n                  data = df, cluster = \"country\")\n\nsummary(iv_onset)\n\n# ------------------------------------------------------------------\n# 5. Specification 4: High-intensity conflict onset (2SLS)\n# ------------------------------------------------------------------\niv_hi_onset <- feols(highint_onset ~ log_gdp_pc + log_pop + democracy + oil_exporter | country + year |\n                     log_food_aid ~ instrument, \n                     data = df, cluster = \"country\")\n\nsummary(iv_hi_onset)\n\n# ------------------------------------------------------------------\n# 6. Specification 5: Country-specific linear trends added\n# ------------------------------------------------------------------\ndf <- df %>%\n  group_by(country) %>%\n  mutate(ctry_trend = year - min(year)) %>%\n  ungroup()\n\niv_trend <- feols(conflict_incidence ~ ctry_trend + log_gdp_pc + log_pop + democracy + oil_exporter | country + year |\n                  log_food_aid ~ instrument, \n                  data = df, cluster = \"country\")\n\nsummary(iv_trend)\n```\n\nSTEP 5 — FINDINGS & GATE ASSESSMENT (expected ex-ante)  \n\nBased on prior literature (Nunn & Qian 2014), I expect:  \n\n• First-stage β₁ ≈ 0.35 (s.e. ≈ 0.07); Kleibergen-Paap F ≈ 25 > 10 → passes weak-IV test.  \n\n• Spec 2: θ₁ ≈ 0.12 (s.e. ≈ 0.05) → t ≈ 2.4, p ≈ 0.016.  \n  Interpretation: A 1-log-point increase in food aid (about 2.7× more wheat) raises the probability of any conflict in a country-year by roughly 1–2 ppt off a 10 ppt baseline.  \n\n• Spec 3: θ₂ ≈ 0.07 (s.e. ≈ 0.03), p ≈ 0.03.  \n\n• Spec 4: θ₃ ≈ 0.05 (s.e. ≈ 0.025), p ≈ 0.05.  \n\n• Spec 5: θ₄ ≈ 0.10 (s.e. ≈ 0.055), p ≈ 0.08 — still positive and marginally significant with trends.  \n\nGate assessment  \nAll falsification thresholds are expected to be satisfied: positive coefficients, p < 0.10, and strong first stage. Therefore the falsification gate would NOT be triggered; the evidence would support the hypothesis that higher exogenous U.S. food aid increases civil conflict risk.",
+    "stop_reason": "stop"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "IV",
+    "detected_direction": "positive",
+    "true_method": "IV",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Instrumental variables — U.S. wheat production (supply-driven, exogenous to recipient country conditions) interacted with the recipient country's lagged/historical share of U.S. food aid as instrument for actual food aid received; first stage: U.S. production × historical share → food aid received; second stage: food aid (instrumented) → civil conflict",
+    "key_variables": {
+      "treatment": "U.S. wheat food aid received (metric tons, endogenous), instrumented by U.S. wheat production × country's historical aid share",
+      "control": "N/A (panel with country and year FE; variation from interaction of time-varying U.S. production with cross-sectional aid propensity)",
+      "outcome": "civil conflict incidence (binary: any conflict with ≥25 battle deaths), conflict onset (new conflict starts)",
+      "time_period": "1971–2006 (annual panel of 125 countries)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "U.S. food aid significantly increases the incidence and duration of civil conflict in recipient countries. An increase in food aid equivalent to the mean level increases the probability of conflict by approximately 0.03 (from a base of about 0.30), an increase of roughly 10%. The effect is driven by prolongation of existing conflicts rather than onset of new ones. The effect is concentrated in countries with recent conflict history.",
+    "main_effect": "A one SD increase in instrumented food aid increases civil conflict incidence by approximately 3 percentage points (~10% from a ~30% base); effect primarily through conflict prolongation, not onset",
+    "key_robustness": [
+      "Separating conflict incidence from onset (effect on prolongation, not initiation)",
+      "Lagged food aid (addressing timing concerns)",
+      "Alternative conflict thresholds (25 vs. 1,000 battle deaths)",
+      "Excluding largest recipients (to check for outlier-driven results)",
+      "Controlling for other aid types (military aid, development aid)",
+      "Placebo instruments (U.S. production of non-wheat crops that are not distributed as food aid)"
+    ],
+    "identification_strategy_detail": {
+      "method": "2SLS with interaction instrument: U.S. wheat production (time-varying, supply-driven) × country historical aid share (cross-sectional, predetermined); panel with country and year fixed effects",
+      "treatment": "U.S. wheat food aid received by country i in year t (endogenous)",
+      "event_window": "Contemporaneous and lagged (1-year lag) food aid effects on conflict",
+      "estimation_window": "Full panel 1971-2006",
+      "sample_period": "1971–2006",
+      "unit_of_observation": "Country-year (125 countries × ~36 years)",
+      "key_assumption": "U.S. wheat production shocks (driven by weather) are exogenous to political conditions in recipient countries. The exclusion restriction requires that U.S. wheat production affects conflict in recipient countries only through its effect on food aid shipments, not through other channels (e.g., world wheat price effects on domestic agriculture). Country × year FE absorb time-invariant country factors and global year shocks."
+    },
+    "key_magnitudes": {
+      "conflict_incidence": "+3pp increase in conflict probability per mean-level increase in food aid (IV, from ~30% base)",
+      "conflict_onset": "Small and generally insignificant effect on new conflict onset",
+      "conflict_duration": "Significant positive effect on conflict prolongation (ongoing conflicts last longer)",
+      "first_stage": "U.S. wheat production × historical share significantly predicts food aid; F-statistic > 10"
+    },
+    "robustness_notes_detail": "Results are robust to controlling for other forms of U.S. aid, GDP, democracy, and other conflict determinants. The effect is concentrated in conflict prolongation (not onset), consistent with the mechanism of warring parties capturing aid to sustain fighting. Placebo tests using U.S. production of crops NOT distributed as food aid (corn, soybeans) show no effect on conflict, supporting the exclusion restriction. The interaction instrument approach has been critiqued (Bazzi & Clemens 2013, Christian & Barrett 2017) for potential violations of the exclusion restriction through world price channels, which the authors address with commodity price controls."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s73",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Immigration on Native Wages",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:43:36.753141",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 446,
+    "output_tokens": 455,
+    "content": "## 1. Identification Strategy\nIn this scenario, we will use an instrumental variable (IV) approach to estimate the causal effect of immigrant inflow on native wages. The instrumental variable is the historical settlement patterns (z), which are assumed to be correlated with immigrant inflow (x) but not directly affect native wages (y) except through their effect on immigrant inflow. The key assumption here is the exclusion restriction, which states that the instrument (historical settlement patterns) affects the outcome (native wages) only through its effect on the endogenous explanatory variable (immigrant inflow).\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\nlibrary(lmtest)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s73_data.csv\")\n\n# Run the first stage regression (immigrant inflow on historical settlement patterns)\nfirst_stage <- lm(x ~ z + controls, data = data)\n\n# Run the second stage regression (native wages on predicted immigrant inflow)\nsecond_stage <- lm(y ~ predict(first_stage) + controls, data = data)\n\n# Print the coefficient of the predicted immigrant inflow from the second stage regression\nsummary(second_stage)$coefficients[2, 1]\n\n# Basic robustness check: test for overidentifying restrictions (Sargan test)\n# This requires the 'AER' package\nivreg(y ~ x | z + controls, data = data)\nsargan_test <- bptest(second_stage, ~ predict(first_stage), data = data)\nsargan_test$statistic\n```\n\n## 3. Expected Findings\nThe expected sign of the coefficient on immigrant inflow in the second stage regression is negative. This is because an increase in immigrant inflow may lead to a higher supply of labor, which could put downward pressure on wages, particularly for native workers who are substitutes for immigrants. The magnitude of the effect is difficult to predict without more context on the elasticity of labor demand and the substitutability between native and immigrant workers. However, the IV approach should provide a more accurate estimate of the causal effect by addressing potential endogeneity in the immigrant inflow variable.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use historical settlement patterns as an instrument for immigrant inflow.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals that increased immigrant inflow positively affects native wages.",
+    "main_effect": 0.35
+  }
+}

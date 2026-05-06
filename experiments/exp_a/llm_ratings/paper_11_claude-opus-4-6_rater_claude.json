@@ -1,0 +1,10 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [],
+  "reasoning": "Perfect strategy match - AI correctly identifies cross-sectional event study with OLS regression, proper CAR methodology, and governance indices as treatment. However, no directional conclusion is stated in the provided excerpt, so direction score is 0. No fundamental methodological errors observed.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_11",
+  "scored_model": "claude-opus-4-6",
+  "timestamp": "2026-03-30T13:07:38.651759+00:00"
+}

@@ -1,0 +1,94 @@
+{
+  "paper_id": "paper_33",
+  "source": "Management Science, 2015",
+  "authors": "Flammer",
+  "method_family": "RDD",
+  "difficulty": "easy",
+  "title": "Does Corporate Social Responsibility Lead to Superior Financial Performance? A Regression Discontinuity Approach",
+  "doi": "10.1287/mnsc.2014.2038",
+  "volume": 61,
+  "issue": 11,
+  "pages": "2549-2568",
+  "domain": "finance",
+  "research_question": "Does engaging in corporate social responsibility activities causally improve a firm's financial performance, including its market value and operating outcomes? Through which channels (e.g., labor productivity, sales growth, investment) might CSR translate into superior performance, and does this effect depend on the firm's existing level of social engagement?",
+  "data_description": "The study combines shareholder proposal data from RiskMetrics (covering S&P 1500 firms plus additional widely held companies, 1997–2011) and SharkRepellent (Russell 3000 firms, 2005–2012), yielding 2,729 CSR-related shareholder proposals voted on between 1997 and 2012, classified into social and environmental subcategories. These correspond to 1,845 firm-year observations. Daily stock returns come from CRSP, and Carhart four-factor returns are computed around meeting dates. Firm financials (market value, total assets, ROA, ROE, net profit margin, Tobin's Q, sales growth, labor productivity, capital expenditures, leverage, cash) are drawn from Compustat. CSR strengths come from the KLD database; the Gompers-Ishii-Metrick governance index from RiskMetrics; institutional ownership from Thomson-Reuters; insider ownership from ExecuComp. Industry-level labor intensity and a B2C indicator are also constructed.",
+  "institutional_context": "In the United States, shareholders of publicly traded companies can submit proposals for vote at annual meetings, including proposals concerning corporate social responsibility issues such as nondiscrimination policies, employee fairness, environmental hazards, sustainability reporting, human rights, and political contributions. These proposals are typically nonbinding: even when approved by a majority of votes, management retains discretion over implementation, though approved proposals are implemented roughly half the time. Most CSR proposals receive little support (average vote share around 13.5%), but a meaningful subset attract sufficient backing to receive vote outcomes near the 50% majority threshold. Sponsors include religious groups, public pension funds, socially responsible investment funds, unions, and individuals. Whether a proposal narrowly passes or narrowly fails near this threshold determines whether the firm is pushed toward adopting the CSR initiative, generating quasi-random variation in CSR adoption across otherwise similar firms.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.017,
+      "unit": "fractional increase in Tobin's Q (RDD estimate at 50% cutoff)",
+      "interpretation": "CSR proposals that narrowly pass increase firm Tobin's Q by approximately 1.7% relative to proposals that narrowly fail, indicating that CSR adoption improves firm value"
+    },
+    "secondary_estimate": {
+      "value": 0.007,
+      "unit": "percentage point increase in ROA (RDD estimate)",
+      "interpretation": "Narrowly passing CSR proposals increase return on assets by approximately 0.7 percentage points over the following 2-3 years"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Tables 2-4 in Flammer (2015)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "ISS/RiskMetrics shareholder proposal database (available via WRDS ISS module)",
+      "Compustat annual financials (via WRDS)",
+      "CRSP stock returns (via WRDS)",
+      "SEC EDGAR proxy statements (DEF 14A — shareholder proposal vote results, free)"
+    ],
+    "proprietary_sources": [
+      "ISS shareholder proposals database requires WRDS subscription",
+      "KLD/MSCI ESG ratings (proprietary, available via WRDS)"
+    ],
+    "proxy_strategy": "Shareholder proposal vote results can be manually extracted from DEF 14A proxy filings on SEC EDGAR (free but labor-intensive). Financial data from Compustat/CRSP via WRDS.",
+    "replicability": "medium — ISS proposal data requires WRDS; vote results can be manually collected from EDGAR",
+    "public_proxy_available": true,
+    "replication_tier": "partial (vote results from EDGAR free; ISS database and ESG ratings require WRDS)",
+    "data_limitations": "Shareholder proposals are non-binding in the U.S., so passage does not guarantee implementation. The effect measures the impact of passage pressure, not necessarily full implementation. Sample is limited to firms that receive CSR shareholder proposals (typically larger, more visible firms).",
+    "public_data_sources_detail": [
+      "SEC EDGAR DEF 14A proxy statements (shareholder vote results — free)",
+      "ISS via WRDS (shareholder proposal database — subscription)",
+      "Compustat via WRDS (firm financials — subscription)",
+      "CRSP via WRDS (stock returns — subscription)",
+      "MSCI ESG ratings via WRDS (ESG scores — subscription)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Sharp regression discontinuity design — running variable is the vote share for CSR shareholder proposals; cutoff at 50% (majority threshold); treatment is proposal passage (which increases CSR adoption pressure); outcome is subsequent firm financial performance",
+    "key_variables": {
+      "treatment": "CSR shareholder proposal passes with majority vote (vote share > 50%)",
+      "control": "CSR proposal fails to achieve majority (vote share < 50%)",
+      "outcome": "Tobin's Q, ROA, stock returns in 1-3 years following the vote; changes in CSR/ESG ratings",
+      "time_period": "1997–2012 (shareholder proposal votes)"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "CSR proposals that narrowly pass are associated with significant improvements in firm financial performance. Firms whose CSR proposals pass (vs. narrowly fail) experience approximately 1.7% higher Tobin's Q, 0.7% higher ROA, and improved labor productivity in subsequent years. The effect is larger for firms with weaker prior CSR performance, suggesting diminishing returns to CSR.",
+    "main_effect": "Narrowly passing CSR proposals increase Tobin's Q by approximately 1.7% and ROA by ~0.7% over the following 2-3 years relative to narrowly failing proposals",
+    "key_robustness": [
+      "Varying bandwidth around the 50% threshold (1%, 5%, 10%)",
+      "Local linear vs. polynomial specifications",
+      "McCrary density test for manipulation at 50%",
+      "Balance tests (pre-determined firm characteristics smooth through cutoff)",
+      "Subsample by CSR proposal type (environmental vs. social vs. governance)",
+      "Placebo cutoffs at 40% and 60%"
+    ],
+    "identification_strategy_detail": {
+      "method": "Sharp RDD with local linear regression around the 50% vote share threshold",
+      "treatment": "Binary: CSR proposal receives majority support (>50% vote share)",
+      "event_window": "1-3 years after the shareholder vote for financial outcomes",
+      "estimation_window": "Bandwidth of ~5-10 percentage points around 50% threshold",
+      "sample_period": "1997–2012",
+      "unit_of_observation": "Firm × shareholder proposal vote",
+      "key_assumption": "Near the 50% cutoff, whether a CSR proposal passes or fails is as-if random. Firms cannot precisely manipulate the vote share. Pre-determined characteristics should be balanced at the cutoff. McCrary test should show no bunching."
+    },
+    "key_magnitudes": {
+      "tobins_q_effect": "+1.7% increase in Tobin's Q for narrowly passing proposals",
+      "roa_effect": "+0.7 percentage points increase in ROA",
+      "labor_productivity": "Significant increase in revenue per employee",
+      "csr_rating_effect": "CSR/ESG rating improves by approximately 0.2-0.3 SD after passage"
+    },
+    "robustness_notes_detail": "McCrary density test shows no manipulation of vote shares at the 50% cutoff. Pre-determined firm characteristics (size, leverage, prior CSR rating, industry) are balanced at the cutoff. Results are robust to bandwidth choice, polynomial specification, and different outcome horizons. Effects are concentrated in environmental and social proposals (governance proposals show weaker effects). Placebo cutoffs at non-50% thresholds show no comparable discontinuities."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 111139,
+  "phase1_source_version": "v2primeprime_full_text"
+}

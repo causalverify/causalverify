@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_247",
+  "title": "Evaluating the Effect of Teachers' Group Performance Incentives on Pupil Achievement",
+  "authors": "Lavy",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "IV",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/342810",
+    "title": "Evaluating the Effect of Teachers\u2019 Group Performance Incentives on Pupil Achievement",
+    "year": 2002,
+    "journal": "Journal of Political Economy",
+    "citations": 452
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "lavy"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "jpe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 452,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

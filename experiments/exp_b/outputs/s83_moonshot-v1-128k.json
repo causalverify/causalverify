@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s83",
+  "method_family": "IV",
+  "difficulty": "hard",
+  "title": "Impact of Local Labor Demand Shocks on Wages",
+  "model": "moonshot-v1-128k",
+  "run_at": "2026-04-14T19:44:58.575785",
+  "llm_response": {
+    "model": "moonshot-v1-128k",
+    "input_tokens": 460,
+    "output_tokens": 399,
+    "content": "## 1. Identification Strategy\nWe will use an instrumental variable (IV) approach to estimate the causal impact of local labor demand on wages. The key assumption is that the Bartik shift-share instrument (z) is correlated with local labor demand (x) but not directly with wages (y), except through its effect on local labor demand. This assumption is plausible because the instrument captures exogenous variation in labor demand due to industry-specific productivity changes, which should not directly affect wages in the absence of changes in labor demand.\n\n## 2. R Code\n```r\n# Load required libraries\nlibrary(plm)\nlibrary(lmtest)\nlibrary(sandwich)\n\n# Read the data\ndata <- read.csv(\"experiments/exp_b/data/s83_data.csv\")\n\n# Run the IV regression\niv_model <- ivreg(y ~ x | z + controls, data = data)\n\n# Print the coefficient estimate\nsummary(iv_model)\n\n# Basic robustness checks\n# 1. Test for weak instruments\nlibrary(AER)\nestat_overid, vce(unconditional)\n\n# 2. Test for heteroskedasticity\nbptest(iv_model)\n\n# 3. Cluster-robust standard errors\ncoeftest(iv_model, vcovHC(iv_model, type = \"HC1\"))\n```\n\n## 3. Expected Findings\nWe expect the coefficient on local labor demand (x) to be positive, indicating that an increase in local labor demand leads to higher wages. The magnitude of the effect will depend on the elasticity of wages with respect to labor demand, which is likely to vary across regions and industries. Given the nature of the Bartik instrument, we expect the estimated effect to capture the causal impact of exogenous labor demand shocks on wages, rather than just a correlation. The magnitude of the effect will provide insights into the responsiveness of wages to changes in local labor demand.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use Bartik shift-share as an instrument for local labor demand.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "The analysis reveals a significant positive effect of local labor demand on wages.",
+    "main_effect": "0.15"
+  }
+}

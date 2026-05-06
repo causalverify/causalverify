@@ -1,0 +1,88 @@
+{
+  "paper_id": "paper_15",
+  "source": "Review of Economics and Statistics, 2010",
+  "authors": "Dube, Lester & Reich",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "Minimum Wage Effects Across State Borders",
+  "doi": "10.1162/REST_a_00039",
+  "volume": 92,
+  "issue": 4,
+  "pages": "945-964",
+  "domain": "labor",
+  "research_question": "What is the effect of minimum wage increases on earnings and employment in low-wage sectors, particularly the restaurant industry? Do minimum wage hikes generate disemployment effects, and how do these effects vary once local economic conditions and spatial heterogeneity in employment growth are properly accounted for?",
+  "data_description": "The primary data source is the Quarterly Census of Employment and Wages (QCEW), based on ES-202 unemployment insurance filings covering approximately 98% of U.S. workers. The authors construct a quarterly county-level panel from 1990Q1 through 2006Q2 (66 quarters) of employment and average weekly earnings, focusing on Full-Service Restaurants (NAICS 7221) and Limited-Service Restaurants (NAICS 7222), with extensions to accommodation and food services, retail, and manufacturing. State and federal minimum wage data are merged in from the U.S. Department of Labor. County population comes from the Census Bureau. The all-county sample includes 1,380 counties with balanced panels; the contiguous border county-pair sample contains 504 border counties forming 316 pairs (337 counties and 288 pairs with minimum wage differentials at some point). County Business Patterns data are used for robustness, and the 2006 CPS supplements information on minimum-wage worker shares.",
+  "institutional_context": "Between 1990 and 2006, U.S. minimum wage policy featured federal increases in 1991-1992 and 1996-1997, alongside growing state-level activism: the number of states with minimum wages exceeding the federal floor rose from 3 in 1990 to 32 by 2006. This produced numerous, geographically dispersed policy differentials, including substantial wage gaps (7%-20%) between adjacent jurisdictions on opposite sides of state lines. Restaurants are the focal sector because they are the largest and most intensive employer of minimum-wage workers (29.9% of near-minimum-wage workers in 2006; 33% of restaurant workers earn within 10% of the minimum). State borders create sharp policy discontinuities between economically similar local labor markets, while the South's faster overall employment growth—despite having no state minimum wages—illustrates the spatial heterogeneity in employment trends that confounds national comparisons. Prior case studies (New Jersey-Pennsylvania; San Francisco) examined isolated policy changes.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.016,
+      "unit": "employment elasticity w.r.t. minimum wage (border county pair specification)",
+      "interpretation": "A 10% minimum wage increase is associated with a 0.16% decrease in restaurant employment, which is economically negligible and statistically insignificant (SE=0.044)"
+    },
+    "secondary_estimate": {
+      "value": -0.176,
+      "unit": "employment elasticity (traditional state/year FE specification)",
+      "interpretation": "Without border-pair spatial controls, the same data shows a significant -0.176 elasticity, demonstrating that traditional estimates are biased by spatial confounding"
+    },
+    "significance": "p > 0.50 (border pair); p < 0.01 (traditional specification)",
+    "table_ref": "Table 2 in Dube, Lester & Reich (2010)"
+  },
+  "data_availability": {
+    "status": "public",
+    "public_sources": [
+      "Census Bureau Quarterly Workforce Indicators (QWI, public via LED/LEHD)",
+      "BLS Quarterly Census of Employment and Wages (QCEW, public)",
+      "State minimum wage histories (various compilations, public)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "All data is publicly available. QWI and QCEW are free from federal statistical agencies.",
+    "replicability": "high — all data sources are public and freely available",
+    "public_proxy_available": true,
+    "replication_tier": "full (all data publicly available from Census and BLS)",
+    "data_limitations": "QWI data has some county-quarter cells suppressed for confidentiality. NAICS industry codes were not available before 1990. County-pair identification requires geographic boundary files (available from Census TIGER/Line).",
+    "public_data_sources_detail": [
+      "Census QWI via LEHD (county-quarter employment by industry — free)",
+      "BLS QCEW (county-quarter employment and wages — free)",
+      "Census TIGER/Line geographic boundary files (county adjacency — free)",
+      "State minimum wage data (David Neumark compilations, or University of Oregon/Washington databases — free)",
+      "FRED (state unemployment rates, economic conditions — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Spatial difference-in-differences using contiguous cross-border county pairs — counties on the higher-minimum-wage side of a state border (treated) compared to adjacent counties on the lower-minimum-wage side (control), absorbing county-pair-specific time-invariant factors",
+    "key_variables": {
+      "treatment": "county in the state with a higher effective minimum wage (in a cross-border pair)",
+      "control": "adjacent county across state border with a lower effective minimum wage",
+      "outcome": "log restaurant-sector employment at the county-quarter level",
+      "time_period": "1990–2006, quarterly"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "No significant negative employment effects of minimum wage increases in the restaurant sector when using contiguous border county pairs as controls; the employment elasticity is effectively zero. Traditional specifications without spatial controls find significant negative effects, but these disappear when spatial heterogeneity is properly controlled.",
+    "main_effect": "Employment elasticity with respect to minimum wage: approximately 0.00 to +0.05 (not significantly different from zero) using border county pair design; traditional specifications find -0.10 to -0.20",
+    "key_robustness": [
+      "Various event-study specifications showing no pre-trend differences",
+      "Alternative industry definitions (full-service vs. limited-service restaurants)",
+      "Quarterly Census of Employment and Wages (QCEW) as alternative data source",
+      "Subsample analysis by Census division",
+      "Placebo tests using non-minimum-wage-sensitive sectors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Spatial DID with contiguous border county pairs, county-pair × period fixed effects",
+      "treatment": "Log effective minimum wage (continuous, driven by state legislation changes) interacted with being on the higher-minimum-wage side of a border pair",
+      "event_window": "Quarterly employment data surrounding each state minimum wage change",
+      "estimation_window": "Full panel 1990-2006",
+      "sample_period": "1990–2006",
+      "unit_of_observation": "County-quarter within a contiguous border pair",
+      "key_assumption": "Within a contiguous county pair, employment trends in the restaurant sector would have evolved identically absent the minimum wage differential. Supported by: (a) counties share the same local labor market; (b) pre-trend tests show no differential trends before minimum wage changes."
+    },
+    "key_magnitudes": {
+      "border_pair_elasticity": "Employment elasticity w.r.t. minimum wage: -0.016 (SE 0.044), not significantly different from zero",
+      "traditional_elasticity": "Same specification without border-pair controls: elasticity of -0.176 (SE 0.054), significant at 1%",
+      "earnings_effect": "Earnings elasticity w.r.t. minimum wage: +0.20 to +0.25, significant (minimum wages raise earnings as intended)"
+    },
+    "robustness_notes_detail": "Results are robust to alternative industry definitions, data sources (QWI vs. QCEW), time periods, and Census division subsamples. Event-study plots show no pre-treatment differential trends, supporting the parallel trends assumption. The key insight is that the significant negative employment effects found in traditional specifications are fully explained by confounding spatial heterogeneity (regional economic trends) rather than minimum wage effects."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 95757,
+  "phase1_source_version": "v2primeprime_full_text"
+}

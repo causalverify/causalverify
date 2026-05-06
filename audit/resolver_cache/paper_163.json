@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_163",
+  "title": "Into College, Out of Poverty? Policies to Increase the Postsecondary Attainment of the Poor",
+  "authors": "Deming & Dynarski",
+  "year": null,
+  "journal": "JHR",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.3386/w15387",
+    "title": "Into College, Out of Poverty? Policies to Increase the Postsecondary Attainment of the Poor",
+    "year": 2009,
+    "journal": "National Bureau of Economic Research",
+    "citations": 244
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "deming",
+      "dynarski"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jhr",
+    "journal_oa": "national bureau of economic research",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 244,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

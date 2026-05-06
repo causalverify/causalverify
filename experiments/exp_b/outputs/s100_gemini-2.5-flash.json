@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s100",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Impact of Obesity Diagnosis on Medication Use",
+  "model": "gemini-2.5-flash",
+  "run_at": "2026-04-14T19:37:41.221313",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 450,
+    "output_tokens": 163,
+    "content": "## 1. Identification Strategy\n\nThe research question investigates the causal impact of an obesity diagnosis on medication use, where the diagnosis is determined by whether an individual's BMI (`running_var`) crosses a specific cutoff. This scenario perfectly aligns with a **Regression Discontinuity Design (RDD)**.\n\n*   **Method:** Sharp Regression Discontinuity Design (SRDD).\n*   **Why:** Treatment (obesity diagnosis) is assigned discontinuously based on whether the `running_var` (BMI) is above a fixed threshold. Individuals just below the cutoff (untreated) are very similar to individuals just above the cutoff (treated) in all pre-determined characteristics, except for the treatment status itself. This allows for a quasi-experimental comparison at the cutoff point.\n*   **Key Assumption:**",
+    "stop_reason": "length"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Compare medication use for individuals just above and below the BMI cutoff.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Receiving an obesity diagnosis at the BMI cutoff leads to increased medication use.",
+    "main_effect": "0.22"
+  }
+}

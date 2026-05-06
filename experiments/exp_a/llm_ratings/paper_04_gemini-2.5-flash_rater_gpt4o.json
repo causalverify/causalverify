@@ -1,0 +1,12 @@
+{
+  "strategy_score": 3,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies the event study with a focus on the 'surprise' component, aligning with the ground truth method for assessing immediate stock market reactions. However, the AI does not clearly state the direction of the effect, which is known to be negative per the ground truth, hence there is a narrative fabrication.",
+  "rater_id": "rater_gpt4o",
+  "paper_id": "paper_04",
+  "scored_model": "gemini-2.5-flash",
+  "timestamp": "2026-03-30T10:40:54.636534+00:00"
+}

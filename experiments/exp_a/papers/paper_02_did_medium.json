@@ -1,0 +1,82 @@
+{
+  "paper_id": "paper_02",
+  "source": "Journal of Financial Economics, 2014",
+  "authors": "Duchin & Sosyura",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "research_question": "Does receiving government capital assistance during a financial crisis change banks' risk-taking behavior in their lending and investment activities, and how does any such change in asset risk interact with changes in regulatory capital ratios to affect banks' overall default risk?",
+  "data_description": "The sample consists of 521 publicly traded U.S. financial institutions eligible for the Capital Purchase Program (CPP) as of September 30, 2008, excluding 17 large firms subject to the Capital Assessment Plan. The authors hand-collect each firm's CPP application status (applied/not, approved/denied, accepted/declined, repaid/not) from quarterly filings, annual reports, proxy statements, and press releases, identifying 416 applicants of which 329 were approved and 278 received funds totaling $36.7 billion. Bank financials come from quarterly Call Reports (Camels proxies, capital ratios, charge-offs, securities holdings). Mortgage-level data on approvals/denials, loan amounts, applicant income, and demographics come from HMDA (2006–2010). Corporate syndicated loan data are from DealScan. County-level housing/economic conditions come from the U.S. Postal Service and BLS. Stock returns and risk measures are computed from CRSP. The sample period is January 2006 to December 2010.",
+  "institutional_context": "The setting is the 2008–2009 U.S. financial crisis and the Troubled Asset Relief Program's Capital Purchase Program (CPP), launched October 14, 2008, which invested $204.9 billion in 707 financial institutions in exchange for preferred stock paying 5% dividends (rising to 9% after five years) and warrants. Qualifying institutions submitted two-page applications to their primary regulator (Federal Reserve, FDIC, OCC, or OTS), which screened applicants using the Camels rating system before forwarding to Treasury for final approval. Investment amounts were typically set between 1% and 3% of risk-weighted assets. Participation was voluntary, applicant identities and rejection decisions were kept confidential, and recipients faced restrictions on executive compensation, dividends, and share repurchases. The hasty crisis-era adoption left enforcement mechanisms loose: about 21% of recipients later skipped required Treasury dividends, and capital deployment was not tracked. The program's perceived signal of government backing motivates analysis of whether implicit protection altered bank behavior.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": 0.25,
+      "unit": "loan-to-income ratio (LTI)",
+      "interpretation": "DID coefficient: TARP recipients increased average LTI by 0.25 relative to non-recipients post-injection"
+    },
+    "significance": "p < 0.05",
+    "table_ref": "Table 4, Column (2) in Duchin & Sosyura (2014)"
+  },
+  "data_availability": {
+    "status": "mostly_public",
+    "public_sources": [
+      "HMDA loan-level data (CFPB/FFIEC, public)",
+      "TARP recipient list (U.S. Treasury, public)",
+      "FR Y-9C call reports (FFIEC, public)"
+    ],
+    "proprietary_sources": [],
+    "proxy_strategy": "Fully replicable from public sources; HMDA + Treasury TARP list + FFIEC Y-9C",
+    "replicability": "high — all core data sources are public",
+    "public_proxy_available": true,
+    "replication_tier": "partial (mortgages: full; syndicated loans: proxy)",
+    "data_limitations": "DealScan syndicated loan data requires commercial license. Exact application-level TARP approval/denial data was hand-collected by authors and may not be fully replicable without significant effort. Main results on mortgage risk can be replicated with public HMDA data.",
+    "public_data_sources_detail": [
+      "U.S. Treasury TARP Transaction Reports (free, lists all recipients and amounts)",
+      "HMDA mortgage application data (FFIEC, free)",
+      "FDIC Call Reports (free, quarterly)",
+      "yfinance (bank stock prices for volatility measures)",
+      "Congressional committee membership (public record)"
+    ]
+  },
+  "title": "Safer Ratios, Riskier Portfolios: Banks' Response to Government Aid",
+  "doi": "10.1016/j.jfineco.2014.03.005",
+  "volume": 113,
+  "issue": 1,
+  "pages": "1-28",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "DID — treatment = banks receiving TARP capital (CPP), control = banks that applied but were rejected or did not apply; pre-period = 2006–2008, post-period = 2009–2010",
+    "key_variables": {
+      "treatment": "TARP Capital Purchase Program recipient (binary)",
+      "control": "similar banks that did not receive TARP capital",
+      "outcome": "average loan-to-income ratio of new mortgage originations; share of high-LTI loans",
+      "time_period": "2006–2010, treatment begins Q4 2008"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "TARP recipients originated riskier mortgages (higher LTI, higher LTV) relative to non-recipients after receiving capital",
+    "main_effect": "TARP banks increased average LTI ratio by ~0.25 relative to non-TARP banks post-injection",
+    "key_robustness": [
+      "propensity score matching",
+      "placebo using non-TARP banks that received other support",
+      "heterogeneity by bank size"
+    ],
+    "identification_strategy_detail": {
+      "method": "Difference-in-differences with IV for selection",
+      "treatment": "Banks whose TARP/CPP applications were approved",
+      "control": "Banks whose TARP/CPP applications were denied, plus non-applicants",
+      "event": "TARP CPP approval (bank-specific dates, starting 2008-10-28)",
+      "pre_period": "Pre-TARP (varies by bank approval date)",
+      "post_period": "Post-TARP approval",
+      "unit_of_observation": "Bank-quarter (balance sheet); individual mortgage applications (HMDA); syndicated loan level",
+      "instrument": "Geography-based political connections (bank HQ in district of House Financial Services subcommittee member)",
+      "key_assumption": "Political connections affect TARP approval probability but do not directly affect post-TARP risk-taking (exclusion restriction)"
+    },
+    "key_magnitudes": {
+      "mortgage_risk_shift": "TARP banks approved mortgages with significantly lower loan-to-income ratios post-bailout",
+      "volatility_increase": "Increase in bank stock return volatility and default risk measures post-TARP",
+      "capital_ratio_improvement": "Regulatory capital ratios improved mechanically due to equity injection, concealing risk shift"
+    },
+    "robustness_notes_detail": "Robust to IV (political connections), Heckman selection model, and propensity score matching. Risk shift occurs within asset classes and thus evades risk-weighted capital detection."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 150213,
+  "phase1_source_version": "v2primeprime_full_text"
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_227",
+  "title": "Do Stock Prices Influence Corporate Decisions? Evidence from the Technology Bubble",
+  "authors": "Campello & Graham",
+  "year": null,
+  "journal": "JF",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1016/j.jfineco.2012.08.002",
+    "title": "Do stock prices influence corporate decisions? Evidence from the technology bubble",
+    "year": 2012,
+    "journal": "Journal of Financial Economics",
+    "citations": 231
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "campello",
+      "graham"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jf",
+    "journal_oa": "jfe",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 231,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

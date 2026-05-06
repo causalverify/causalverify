@@ -1,0 +1,82 @@
+{
+  "paper_id": "paper_04",
+  "source": "Journal of Finance, 2005",
+  "authors": "Bernanke & Kuttner",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "easy",
+  "research_question": "How do unanticipated changes in the Federal Reserve's monetary policy stance affect equity prices, and through which economic channels—revisions in expected future dividends, expected real interest rates, or expected future excess returns—does this effect operate?",
+  "data_description": "The analysis combines daily and monthly financial data from June 1989 through December 2002. Monetary policy surprises are constructed from prices of 30-Day Federal Funds Futures contracts traded on the Chicago Board of Trade, decomposing target rate changes into expected and unexpected components. Equity returns come from the CRSP value-weighted index, the S&P 500, and ten Fama-French industry portfolios. The daily sample comprises 131 observations defined as the union of days with target funds rate changes and FOMC meeting dates. Additional variables include the 1-month and 3-month-ahead futures rates, the 1-month Treasury bill rate, the 10-year Treasury yield, the dividend-price ratio, CPI inflation, and macroeconomic data surprises (nonfarm payrolls, industrial production, retail sales, CPI, PPI) from Money Market Services surveys. A six-variable VAR is estimated over 1973-2002.",
+  "institutional_context": "The setting is U.S. monetary policy implementation by the Federal Open Market Committee (FOMC), which adjusts its target for the Federal funds rate to influence financial conditions and ultimately macroeconomic outcomes. A key institutional shift occurred in February 1994, when the FOMC began explicitly announcing target rate changes on the day of its decision; before then, policy actions were typically inferred by market participants the following day from Open Market Desk operations. Policy actions occur both at scheduled FOMC meetings and, occasionally, between meetings. Federal funds futures contracts, introduced in the late 1980s, embed market expectations about the average effective funds rate over a calendar month, providing a market-based measure of anticipated policy. The sample spans multiple tightening and easing cycles, including intermeeting moves in 1998 and 2001 and rate decisions sometimes coinciding with major macroeconomic data releases such as the employment report.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -4.68,
+      "unit": "% equity return per percentage point surprise",
+      "interpretation": "OLS coefficient: 25bp surprise cut → ~1.17% market return (−4.68 × −0.25)"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Table 1, Column (1) in Bernanke & Kuttner (2005)"
+  },
+  "data_availability": {
+    "status": "mostly_public",
+    "public_sources": [
+      "FOMC meeting dates and rate decisions (Federal Reserve, public)",
+      "Fed funds futures prices (CME historical, partially public)",
+      "CRSP daily returns (WRDS — proprietary, but market index available via Yahoo Finance/FRED)"
+    ],
+    "proprietary_sources": [
+      "CRSP (WRDS license for full daily stock data)"
+    ],
+    "proxy_strategy": "Use FRED daily federal funds rate + CME fed funds futures (public) for surprises; use SPY/total market ETF daily returns as market proxy instead of CRSP index",
+    "replicability": "high — core analysis fully replicable with public + free data (FRED, Yahoo Finance, CME)",
+    "public_proxy_available": true,
+    "replication_tier": "full (main event study results replicable with public data; VAR decomposition requires more effort)",
+    "data_limitations": "Intraday fed funds futures data (used for precise surprise measurement) requires commercial tick data. Daily closing prices from FRED are a reasonable approximation for most FOMC dates. The original VAR decomposition uses Campbell-Ammer (1993) framework requiring dividend/earnings forecasts.",
+    "public_data_sources_detail": [
+      "Federal Reserve (FOMC dates, rate decisions, minutes — all free)",
+      "FRED (fed funds rate, 30-day fed funds futures rate — free)",
+      "yfinance (S&P 500 / sector ETF daily returns — free)",
+      "Ken French Data Library (industry portfolio returns — free)",
+      "Published monetary policy surprise series (Nakamura-Steinsson 2018, available on authors' websites)"
+    ]
+  },
+  "title": "What Explains the Stock Market's Reaction to Federal Reserve Policy?",
+  "doi": "10.1111/j.1540-6261.2005.00760.x",
+  "volume": 60,
+  "issue": 3,
+  "pages": "1221-1257",
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Event study — event = FOMC target rate change announcements; surprise = actual rate change minus futures-implied expected change; outcome = same-day equity market return",
+    "key_variables": {
+      "treatment": "surprise component of fed funds rate change (continuous, in percentage points)",
+      "control": "anticipated component (expected rate change) — which should have no effect",
+      "outcome": "daily CRSP value-weighted return on FOMC announcement day",
+      "time_period": "1989–2002, FOMC meeting dates"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "A surprise 25bp rate cut increases stock market returns by approximately 1%; rate hikes reduce returns. Unanticipated changes have much larger effects than anticipated changes.",
+    "main_effect": "~1% stock market return per 25bp surprise rate cut",
+    "key_robustness": [
+      "separate anticipated vs unanticipated component",
+      "cross-sectional variation by sector",
+      "growth vs. value stocks"
+    ],
+    "identification_strategy_detail": {
+      "method": "Event study with surprise decomposition",
+      "treatment": "Unexpected component of federal funds rate changes (measured from fed funds futures on the day of FOMC announcement)",
+      "event_window": "1-day (day of FOMC announcement)",
+      "estimation_window": "Pre-event trading days for normal return estimation",
+      "sample_period": "1989-2002 (FOMC decisions)",
+      "unit_of_observation": "FOMC announcement date",
+      "key_assumption": "Fed funds futures efficiently price expected rate changes; the residual is a valid measure of monetary policy surprise. No other systematic news coincides with FOMC announcements."
+    },
+    "key_magnitudes": {
+      "stock_response_per_surprise_bp": "Approximately -4 to -5 basis points of stock return per 1 basis point of unexpected rate increase (broad market index)",
+      "r_squared_expected_vs_surprise": "Expected component has near-zero explanatory power; surprise component drives all of the response",
+      "channel_decomposition": "Largest share attributed to changes in expected excess returns (equity premium channel)"
+    },
+    "robustness_notes_detail": "Robust to excluding inter-meeting moves, using alternative surprise measures, different stock indices. VAR decomposition confirms equity premium channel dominates."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 106223,
+  "phase1_source_version": "v2primeprime_full_text"
+}

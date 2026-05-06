@@ -1,0 +1,33 @@
+{
+  "paper_id": "paper_73",
+  "title": "People, Places, and Public Policy: Some Simple Welfare Economics of Local Economic Development Programs",
+  "authors": "Kline & Moretti",
+  "year": null,
+  "journal": "QJE",
+  "method_family": "DID",
+  "best_match": {
+    "doi": "https://doi.org/10.1146/annurev-economics-080213-041024",
+    "title": "People, Places, and Public Policy: Some Simple Welfare Economics of Local Economic Development Programs",
+    "year": 2014,
+    "journal": "Annual Review of Economics",
+    "citations": 510
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "moretti",
+      "kline"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "qje",
+    "journal_oa": "annual review of economics",
+    "journal_gate_pass": false,
+    "citation_reasonable": true,
+    "citation_count": 510,
+    "years_old": 0
+  },
+  "status": "weak_match",
+  "notes": "2/3 gates pass, citation_reasonable=True",
+  "error_msg": ""
+}

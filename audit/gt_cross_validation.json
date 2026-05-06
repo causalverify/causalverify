@@ -1,0 +1,502 @@
+[
+  {
+    "paper_id": "paper_14",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_61",
+    "orig_method": "DID",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_202",
+    "orig_method": "IV",
+    "indep_method": "DID",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_58",
+    "orig_method": "DID",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "low"
+  },
+  {
+    "paper_id": "paper_55",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "positive",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_56",
+    "orig_method": "DID",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_208",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_53",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "EVENT_STUDY",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_120",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_27",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "EVENT_STUDY",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_38",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_207",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "low"
+  },
+  {
+    "paper_id": "paper_157",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_43",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_47",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "unclear",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_63",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "EVENT_STUDY",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_248",
+    "orig_method": "IV",
+    "indep_method": "DID",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_187",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_108",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_44",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "positive",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_57",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_60",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_82",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_42",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_101",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "DID",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_198",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "neutral",
+    "indep_direction": "unclear",
+    "direction_agree": false,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_122",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_147",
+    "orig_method": "RDD",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_215",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_50",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_90",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_46",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_26",
+    "orig_method": "DID",
+    "indep_method": "RDD",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_240",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "DID",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_96",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "positive",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_115",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_20",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_231",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_258",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "unclear",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_171",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_150",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "OTHER",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_127",
+    "orig_method": "RDD",
+    "indep_method": "DID",
+    "method_agree": false,
+    "orig_direction": "negative",
+    "indep_direction": "negative",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_217",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "unclear",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_29",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "EVENT_STUDY",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_107",
+    "orig_method": "RDD",
+    "indep_method": "RDD",
+    "method_agree": true,
+    "orig_direction": "negative",
+    "indep_direction": "positive",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_229",
+    "orig_method": "DID",
+    "indep_method": "DID",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "negative",
+    "direction_agree": false,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_219",
+    "orig_method": "DID",
+    "indep_method": "IV",
+    "method_agree": false,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "medium"
+  },
+  {
+    "paper_id": "paper_66",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "mixed",
+    "direction_agree": false,
+    "indep_confidence": "low"
+  },
+  {
+    "paper_id": "paper_30",
+    "orig_method": "EVENT_STUDY",
+    "indep_method": "EVENT_STUDY",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  },
+  {
+    "paper_id": "paper_103",
+    "orig_method": "IV",
+    "indep_method": "IV",
+    "method_agree": true,
+    "orig_direction": "positive",
+    "indep_direction": "positive",
+    "direction_agree": true,
+    "indep_confidence": "high"
+  }
+]

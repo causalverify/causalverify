@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_136",
+  "title": "The Effect of State Policies on the Location of Manufacturing: Evidence from State Borders",
+  "authors": "Holmes",
+  "year": null,
+  "journal": "JPE",
+  "method_family": "RDD",
+  "best_match": {
+    "doi": "https://doi.org/10.1086/250026",
+    "title": "The Effect of State Policies on the Location of Manufacturing: Evidence from State Borders",
+    "year": 1998,
+    "journal": "Journal of Political Economy",
+    "citations": 860
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "holmes"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "jpe",
+    "journal_oa": "jpe",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 860,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

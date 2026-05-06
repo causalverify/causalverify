@@ -1,0 +1,89 @@
+{
+  "paper_id": "paper_25",
+  "source": "Journal of Financial Economics, 2010",
+  "authors": "Campello, Graham & Harvey",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "title": "The Real Effects of Financial Constraints: Evidence from a Financial Crisis",
+  "doi": "10.1016/j.jfineco.2010.02.009",
+  "volume": 97,
+  "issue": 3,
+  "pages": "470-487",
+  "domain": "finance",
+  "research_question": "How do financial constraints affect firms' real and financial decisions—including capital investment, employment, technology and marketing spending, cash holdings, dividend payments, line-of-credit usage, asset sales, and the willingness to undertake attractive investment projects—during a severe contraction in the supply of credit?",
+  "data_description": "The authors use proprietary survey data collected from 1,050 Chief Financial Officers (CFOs) across 39 countries in North America, Europe, and Asia during the fourth quarter of 2008 (with the U.S. survey fielded November 25–December 5, 2008). The U.S. sample contains 574 non-financial firms (both public and private), Europe 192, and Asia 284. CFOs were asked about firm demographics (size, ownership form, credit rating, profitability, dividend status, growth prospects, industry), self-assessed difficulty in accessing credit, planned annual percentage changes for 2009 in technology spending, capital expenditures, marketing, employment, cash holdings, and dividends, as well as current and prior-year cash-to-assets and lines-of-credit-to-assets ratios, motives for drawing down credit lines, and use of internal funds, project cancellation, and asset sales. Earlier quarterly surveys (2007Q3–2008Q3, 2,226 observations) provide a pre-crisis rotating panel. Public-firm respondents are benchmarked against 4,979 Compustat non-financial firms.",
+  "institutional_context": "The setting is the global financial crisis of fall 2008, a period of historic breadth and depth in credit market disruption following the Lehman Brothers collapse in September 2008. Banks sharply curtailed lending, costs of external finance rose, and firms faced quantity rationing, higher borrowing costs, and difficulties initiating or renewing credit lines. The crisis represented a pronounced, largely exogenous contraction in the aggregate supply of credit affecting firms worldwide, including those in the U.S., Europe, and Asia. This environment provides a natural laboratory for examining how an inward shift in credit supply differentially affects firms depending on their pre-existing access to external finance. Prior work documenting 'draw-now-just-in-case' behavior on credit lines (Ivashina and Scharfstein, 2009) and precautionary cash management (Almeida, Campello, and Weisbach, 2004) motivates examining cash and credit-line policies alongside investment, employment, and asset-sale responses during this episode.",
+  "ground_truth_coefficients": {
+    "main_estimate": {
+      "value": -0.09,
+      "unit": "percentage point differential in planned capex reduction (constrained minus unconstrained)",
+      "interpretation": "Financially constrained firms planned to reduce capital expenditure by approximately 9 percentage points more than unconstrained firms during the 2008-2009 crisis"
+    },
+    "secondary_estimate": {
+      "value": 2.5,
+      "unit": "odds ratio for asset sales (constrained vs. unconstrained)",
+      "interpretation": "Constrained firms were 2.5 times more likely than unconstrained firms to sell assets to fund operations during the crisis"
+    },
+    "significance": "p < 0.01",
+    "table_ref": "Tables 2-4 in Campello, Graham & Harvey (2010)"
+  },
+  "data_availability": {
+    "status": "partially_public",
+    "public_sources": [
+      "Duke/CFO Magazine Global Business Outlook Survey (summary results publicly available; microdata by application)",
+      "Compustat (firm financials for matched subsample, via WRDS)"
+    ],
+    "proprietary_sources": [
+      "Duke CFO Survey microdata (requires application to Duke Fuqua researchers)"
+    ],
+    "proxy_strategy": "Summary statistics are published. Individual firm survey responses require application to the Duke CFO Survey team. Compustat matching data available via WRDS.",
+    "replicability": "medium — survey microdata requires application; conceptual replication possible with Compustat-only sample using balance-sheet constraint measures",
+    "public_proxy_available": true,
+    "replication_tier": "proxy (Compustat-only replication using balance-sheet constraint classification is feasible without the survey data)",
+    "data_limitations": "Survey-based constraint measures are self-reported and may reflect subjective assessments. Response rates to CFO surveys are typically 5-10%. Sample is skewed toward larger firms whose CFOs participate in the Duke survey.",
+    "public_data_sources_detail": [
+      "Duke CFO Survey (summary results — free; microdata by application)",
+      "Compustat via WRDS (firm financials — subscription required)",
+      "FRED (crisis-period financial market indicators — free)",
+      "Federal Reserve Senior Loan Officer Survey (credit conditions — free)"
+    ]
+  },
+  "_legacy_v1_ground_truth": {
+    "identification_strategy": "Difference-in-differences — financially constrained firms (treatment) vs. unconstrained firms (control) during the 2008-2009 crisis (post-shock period) vs. pre-crisis baseline; the crisis serves as an exogenous credit supply shock that differentially affects constrained firms",
+    "key_variables": {
+      "treatment": "financially constrained firm (self-reported difficulty accessing external capital during crisis; also classified by pre-crisis balance sheet characteristics: low cash, high leverage, no credit rating)",
+      "control": "financially unconstrained/flexible firms (able to access external capital during crisis)",
+      "outcome": "planned and actual changes in capital expenditure, employment, R&D spending, and technology spending during crisis relative to pre-crisis plans",
+      "time_period": "Q4 2008 – Q1 2009 (crisis period) vs. pre-crisis (Q1-Q3 2008)"
+    },
+    "conclusion_direction": "negative",
+    "conclusion_detail": "Financially constrained firms cut investment, employment, and R&D spending significantly more than unconstrained firms during the crisis. Constrained firms planned to cut capital expenditure by approximately 9% more than unconstrained firms, and were more likely to draw down credit lines, sell assets, and bypass attractive investment opportunities.",
+    "main_effect": "Financially constrained firms planned to reduce capex by ~9 percentage points more than unconstrained firms; constrained firms were 2.5x more likely to sell assets and 2.0x more likely to bypass attractive projects",
+    "key_robustness": [
+      "Alternative constraint definitions (credit rating, cash holdings, leverage, survey-based vs. balance-sheet-based)",
+      "U.S. vs. European vs. Asian subsamples",
+      "Industry fixed effects",
+      "Controlling for firm size and pre-crisis growth opportunities",
+      "Matched-sample analysis (propensity score matching on pre-crisis characteristics)"
+    ],
+    "identification_strategy_detail": {
+      "method": "DID comparing constrained vs. unconstrained firms' planned investment changes during vs. before the crisis; supplemented by cross-sectional analysis during the crisis period",
+      "treatment": "Financial constraint status (survey-based: self-reported difficulty accessing capital; balance-sheet-based: low cash/sales, high leverage, no credit rating)",
+      "event_window": "Q4 2008 – Q1 2009 (crisis quarters)",
+      "estimation_window": "Pre-crisis survey responses (Q1-Q3 2008) as baseline",
+      "sample_period": "2008–2009",
+      "unit_of_observation": "Individual firm (CFO survey respondent)",
+      "key_assumption": "The 2008-2009 financial crisis was an exogenous shock to credit supply that differentially affected constrained firms. Conditional on pre-crisis characteristics, constrained and unconstrained firms would have had similar investment trajectories absent the crisis. The crisis shock is aggregate (not firm-specific), supporting exogeneity."
+    },
+    "key_magnitudes": {
+      "capex_cut_constrained": "Constrained firms planned to cut capex by ~19% during crisis",
+      "capex_cut_unconstrained": "Unconstrained firms planned to cut capex by ~10% during crisis",
+      "differential": "~9 percentage point larger capex cut for constrained vs. unconstrained firms",
+      "credit_line_drawdown": "Constrained firms 2.3x more likely to fully draw down credit lines"
+    },
+    "robustness_notes_detail": "Results hold across U.S., European, and Asian subsamples. Alternative constraint classifications (Hadlock-Pierce index, credit rating, cash-to-assets) yield qualitatively similar results. Matched-sample analysis (matching on size, industry, and pre-crisis characteristics) confirms the differential effect is not driven by selection on observables."
+  },
+  "v2primeprime_source_type": "pdf_full_text_up_to_50pg_250000c",
+  "v2primeprime_source_chars": 88794,
+  "phase1_source_version": "v2primeprime_full_text"
+}

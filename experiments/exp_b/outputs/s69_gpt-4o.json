@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s69",
+  "method_family": "IV",
+  "difficulty": "easy",
+  "title": "Impact of Vietnam Service on Long-Term Earnings",
+  "model": "gpt-4o",
+  "run_at": "2026-04-14T19:43:02.769118",
+  "llm_response": {
+    "model": "gpt-4o",
+    "input_tokens": 443,
+    "output_tokens": 371,
+    "content": "## 1. Identification Strategy\nThe appropriate causal method for this analysis is the Instrumental Variable (IV) approach. We use the draft lottery number (`z`) as an instrument for Vietnam service (`x`). The key assumptions are:\n- **Relevance**: The draft lottery number is strongly correlated with actual Vietnam service. \n- **Exogeneity**: The draft lottery number affects long-term earnings only through its impact on Vietnam service (exclusion restriction).\n- **Independence**: The draft lottery number is randomly assigned and independent of other factors affecting earnings.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(AER)\n\n# Read the CSV file\ndata_path <- \"experiments/exp_b/data/s69_data.csv\"\ndata <- read.csv(data_path)\n\n# Perform the Instrumental Variable regression using draft lottery as an instrument for Vietnam service\niv_model <- ivreg(y ~ x + controls | z + controls, data = data)\n\n# Print the summary for the Instrumental Variable regression model\nsummary(iv_model)\n\n# Robustness check: Test for weak instrument using F-statistic\niv_diagnostics <- summary(iv_model, diagnostic = TRUE)\nprint(iv_diagnostics$diagnostics)\n\n# Check relevance: first stage regression\nfirst_stage <- lm(x ~ z + controls, data = data)\nsummary(first_stage)\n```\n\n## 3. Expected Findings\nWe expect the sign of the coefficient on Vietnam service (`x`) to be negative, suggesting that being drafted and serving in Vietnam might have had adverse effects on long-term earnings. This effect could be due to interruptions in education or career development for those who served. The magnitude of the effect will depend on the strength of the instrument and the degree to which Vietnam service affected earnings later in life. Previous literature typically suggests a small to moderate negative impact.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use draft lottery number as an instrument for Vietnam service.",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Military service during the Vietnam War positively affects long-term earnings.",
+    "main_effect": "0.3"
+  }
+}

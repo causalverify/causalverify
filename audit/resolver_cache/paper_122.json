@@ -1,0 +1,32 @@
+{
+  "paper_id": "paper_122",
+  "title": "The Economic Costs of Conflict: A Case Study of the Basque Country",
+  "authors": "Abadie & Gardeazabal",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/000282803321455188",
+    "title": "The Economic Costs of Conflict: A Case Study of the Basque Country",
+    "year": 2003,
+    "journal": "American Economic Review",
+    "citations": 4451
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "abadie"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 4451,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

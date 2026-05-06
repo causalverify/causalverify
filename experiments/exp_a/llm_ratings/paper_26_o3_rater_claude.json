@@ -1,0 +1,12 @@
+{
+  "strategy_score": 2,
+  "direction_score": 0,
+  "failure_types": [
+    "NF"
+  ],
+  "reasoning": "The AI correctly identifies RDD as the primary method and mentions complementary difference-in-differences, which aligns with the ground truth hybrid approach. However, it fails to state the direction of the effect (negative impact on financing and investment), only describing the methodology without conclusions.",
+  "rater_id": "rater_claude",
+  "paper_id": "paper_26",
+  "scored_model": "o3",
+  "timestamp": "2026-03-30T13:10:40.959282+00:00"
+}

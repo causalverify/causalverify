@@ -1,0 +1,59 @@
+{
+  "paper_id": "paper_41",
+  "method_family": "EVENT_STUDY",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:39:28.503733",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 623,
+    "output_tokens": 164,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe core identification strategy is a quasi-experimental event study design. We exploit the \"quasi-exogenous\" timing of high-productivity coworker arrivals and departures on a cashier's shift, which are driven by manager scheduling based on anticipated demand rather than peer productivity. This allows us to estimate the causal effect of peer presence by comparing a focal cashier's productivity before and after such an event, controlling for cashier-specific time-invariant factors, store-specific factors, and general time trends. The use of lead indicators will serve as a pre-trend test to support the exogeneity assumption. We will also examine heterogeneity based on visual line of sight.\n\n**Directional Hypothesis:**\nWe hypothesize that a focal cashier's productivity",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": false,
+    "detected_method": "EVENT_STUDY",
+    "detected_direction": null,
+    "true_method": "EVENT_STUDY",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Event study exploiting the within-shift timing of coworker arrivals and departures — the 'event' is a high-productivity coworker starting or ending their shift; the focal cashier's productivity in the 10-minute intervals around the event identifies the peer effect; individual cashier fixed effects and time controls absorb confounding variation",
+    "key_variables": {
+      "treatment": "presence of a high-productivity coworker on the same shift (quasi-exogenous, determined by store scheduling)",
+      "control": "periods when high-productivity coworkers are not on the same shift; also uses coworker departures as the reverse event",
+      "outcome": "focal cashier's items scanned per second (measured in 10-minute intervals from scanner data)",
+      "time_period": "2 years of scanner data across 6 stores"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Significant positive peer effects exist: a cashier's productivity increases by approximately 1-2% when a highly productive coworker joins the same shift. The effect is larger when the coworker is in the cashier's line of sight (visual monitoring channel). Low-productivity workers respond more to high-productivity peers than vice versa. The mechanism is consistent with social pressure or social norms rather than learning.",
+    "main_effect": "A 10% increase in the average permanent productivity of coworkers on the same shift increases the focal cashier's productivity by approximately 1.5-2%; effects are larger when coworkers are visible",
+    "key_robustness": [
+      "Cashier fixed effects (within-cashier variation only)",
+      "Controlling for store × time-of-day × day-of-week effects",
+      "Line-of-sight variation (can vs. cannot see coworker)",
+      "Asymmetric effects (low workers respond more to high peers)",
+      "Falsification: no effect from coworkers in different aisles (not visible)",
+      "Ruling out managerial assignment (manager does not match on productivity)"
+    ],
+    "identification_strategy_detail": {
+      "method": "Within-cashier event study using 10-minute interval scanner data; the event is a coworker arriving at or departing from the shift",
+      "treatment": "Presence of high-productivity coworker on the same shift (determined by store scheduling, quasi-exogenous to focal cashier's productivity)",
+      "event_window": "10-minute intervals within a shift; peer effect measured continuously as coworker composition changes",
+      "estimation_window": "Full panel with cashier fixed effects and time controls",
+      "sample_period": "2 years (approximately 7 million observations)",
+      "unit_of_observation": "Cashier × 10-minute interval",
+      "key_assumption": "Shift scheduling is determined by store managers based on anticipated customer demand, not on peer productivity matching. Conditional on cashier FE and store × time-of-day × day-of-week FE, coworker composition is quasi-random. The arrival/departure timing within a shift is exogenous to the focal cashier's momentary productivity."
+    },
+    "key_magnitudes": {
+      "peer_elasticity": "Approximately 0.15-0.20 (a 10% increase in coworker productivity raises own productivity by 1.5-2%)",
+      "line_of_sight": "Effect is approximately 2-3x larger when the peer is visible (within line of sight)",
+      "asymmetric": "Low-productivity cashiers respond approximately 3x more to high-productivity peers than the reverse",
+      "no_learning": "Effect is immediate and does not persist after the peer leaves, ruling out learning and supporting social pressure"
+    },
+    "robustness_notes_detail": "Cashier fixed effects ensure that the peer effect is identified from within-cashier variation (the same cashier exposed to different coworkers at different times). The line-of-sight result rules out team production explanations (peers in different aisles have no effect). The immediacy and non-persistence of effects (productivity returns to baseline when the peer leaves) is consistent with social pressure rather than learning. Falsification tests confirm no effect from schedule overlap without physical proximity."
+  }
+}

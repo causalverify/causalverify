@@ -1,0 +1,57 @@
+{
+  "paper_id": "paper_15",
+  "method_family": "DID",
+  "difficulty": "medium",
+  "model": "gemini-2.5-flash",
+  "experiment": "C_v2_RID_ON",
+  "run_at": "2026-03-30T16:30:21.758171",
+  "llm_response": {
+    "model": "gemini-2.5-flash",
+    "input_tokens": 617,
+    "output_tokens": 163,
+    "content": "## STEP 1 — PRE-COMMITMENT\n\n**Causal Identification Strategy:**\nThe causal identification strategy is a difference-in-differences (DiD) approach leveraging a geographic discontinuity design. We will compare changes in restaurant sector employment within contiguous county pairs that straddle state borders. The identification relies on the assumption that counties sharing a border segment share similar underlying economic trends and labor market dynamics, but are subject to potentially different state minimum wage policies. This allows us to use the contiguous county in the neighboring state (not experiencing a minimum wage change or experiencing a different change) as a counterfactual for the treated county. The core comparison is between a county that experiences a minimum wage increase and its neighboring county in an adjacent state that does not, over time, while controlling for county-specific and time-specific",
+    "stop_reason": "length"
+  },
+  "scores": {
+    "L3a_strategy": true,
+    "L3b_direction": true,
+    "detected_method": "DID",
+    "detected_direction": "positive",
+    "true_method": "DID",
+    "true_direction": "positive"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Spatial difference-in-differences using contiguous cross-border county pairs — counties on the higher-minimum-wage side of a state border (treated) compared to adjacent counties on the lower-minimum-wage side (control), absorbing county-pair-specific time-invariant factors",
+    "key_variables": {
+      "treatment": "county in the state with a higher effective minimum wage (in a cross-border pair)",
+      "control": "adjacent county across state border with a lower effective minimum wage",
+      "outcome": "log restaurant-sector employment at the county-quarter level",
+      "time_period": "1990–2006, quarterly"
+    },
+    "conclusion_direction": "positive",
+    "conclusion_detail": "No significant negative employment effects of minimum wage increases in the restaurant sector when using contiguous border county pairs as controls; the employment elasticity is effectively zero. Traditional specifications without spatial controls find significant negative effects, but these disappear when spatial heterogeneity is properly controlled.",
+    "main_effect": "Employment elasticity with respect to minimum wage: approximately 0.00 to +0.05 (not significantly different from zero) using border county pair design; traditional specifications find -0.10 to -0.20",
+    "key_robustness": [
+      "Various event-study specifications showing no pre-trend differences",
+      "Alternative industry definitions (full-service vs. limited-service restaurants)",
+      "Quarterly Census of Employment and Wages (QCEW) as alternative data source",
+      "Subsample analysis by Census division",
+      "Placebo tests using non-minimum-wage-sensitive sectors"
+    ],
+    "identification_strategy_detail": {
+      "method": "Spatial DID with contiguous border county pairs, county-pair × period fixed effects",
+      "treatment": "Log effective minimum wage (continuous, driven by state legislation changes) interacted with being on the higher-minimum-wage side of a border pair",
+      "event_window": "Quarterly employment data surrounding each state minimum wage change",
+      "estimation_window": "Full panel 1990-2006",
+      "sample_period": "1990–2006",
+      "unit_of_observation": "County-quarter within a contiguous border pair",
+      "key_assumption": "Within a contiguous county pair, employment trends in the restaurant sector would have evolved identically absent the minimum wage differential. Supported by: (a) counties share the same local labor market; (b) pre-trend tests show no differential trends before minimum wage changes."
+    },
+    "key_magnitudes": {
+      "border_pair_elasticity": "Employment elasticity w.r.t. minimum wage: -0.016 (SE 0.044), not significantly different from zero",
+      "traditional_elasticity": "Same specification without border-pair controls: elasticity of -0.176 (SE 0.054), significant at 1%",
+      "earnings_effect": "Earnings elasticity w.r.t. minimum wage: +0.20 to +0.25, significant (minimum wages raise earnings as intended)"
+    },
+    "robustness_notes_detail": "Results are robust to alternative industry definitions, data sources (QWI vs. QCEW), time periods, and Census division subsamples. Event-study plots show no pre-treatment differential trends, supporting the parallel trends assumption. The key insight is that the significant negative employment effects found in traditional specifications are fully explained by confounding spatial heterogeneity (regional economic trends) rather than minimum wage effects."
+  }
+}

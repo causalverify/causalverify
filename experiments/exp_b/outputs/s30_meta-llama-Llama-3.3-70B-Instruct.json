@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s30",
+  "method_family": "RDD",
+  "difficulty": "hard",
+  "title": "Fuzzy RDD: imperfect compliance with admission cutoff",
+  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "run_at": "2026-05-01T17:37:01.223126",
+  "llm_response": {
+    "model": "meta-llama/Llama-3.3-70B-Instruct",
+    "input_tokens": 523,
+    "output_tokens": 571,
+    "content": "## 1. Identification Strategy\nTo estimate the Local Average Treatment Effect (LATE) of scholarship receipt on graduation rates, we use a fuzzy Regression Discontinuity Design (RDD). The key assumption is that the probability of receiving a scholarship discontinuously changes at the cutoff point (GPA ≥ 3.0 or 0.75 normalized to 0.5) due to the eligibility instrument `z`. However, since compliance is imperfect, some students below the cutoff receive scholarships, and some above the cutoff do not. The running variable `running_var` (normalized GPA) will be used to identify the discontinuity. We assume that the only reason for the discontinuity in the probability of receiving a scholarship at the cutoff is the eligibility rule itself and not any other factors that could affect graduation rates.\n\n## 2. R Code\n```r\n# Load necessary libraries\nlibrary(readr)\nlibrary(plm)\nlibrary(foreach)\n\n# Read data from the CSV file\ndata <- read_csv(\"experiments/exp_b/data/s30_data.csv\")\n\n# Create a binary variable for the running variable being above the cutoff\ndata$cutoff_above <- ifelse(data$running_var >= 0.5, 1, 0)\n\n# First-stage regression for the fuzzy RDD\nfirst_stage <- glm(treated ~ cutoff_above, data = data, family = binomial)\n\n# Reduced-form regression for the fuzzy RDD\nreduced_form <- lm(y ~ cutoff_above, data = data)\n\n# Main analysis usingInstrumental Variables (2SLS) for LATE estimation\nlate_model <- ivreg(y ~ treated | cutoff_above, data = data)\n\n# Summary of the late_model\nsummary(late_model)\n\n# Print the coefficient of the treated variable, which represents the LATE\nprint(late_model$coefficients[2])\n\n# Basic robustness checks\n# Checking the discontinuity in the probability of receiving a scholarship\nsummary(glm(treated ~ running_var, data = data))\n\n# Checking the discontinuity in the graduation rates\nsummary(lm(y ~ running_var, data = data))\n```\n\n## 3. Expected Findings\nWe expect a positive coefficient for the `treated` variable, indicating that receiving a scholarship increases graduation rates. The magnitude will likely be moderately sized, reflecting the impact of the scholarship program. A possible range for the coefficient could be between 0.05 and 0.20, suggesting that the scholarship increases the graduation rate by 5 to 20 percentage points for the subpopulation whose scholarship receipt is induced by the eligibility rule. However, the actual magnitude will depend on the specific data and analysis. The results of the first-stage and reduced-form regressions should show a significant discontinuity in scholarship receipt and graduation rates at the cutoff, supporting the validity of the fuzzy RDD design.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Fuzzy RDD — eligibility cutoff as IV for scholarship receipt; LATE = ITT / first-stage jump",
+    "conclusion_direction": "positive",
+    "conclusion_detail": "Scholarship receipt significantly improves graduation rates for compliers",
+    "main_effect": "~25pp graduation rate increase (LATE via fuzzy RDD)"
+  }
+}

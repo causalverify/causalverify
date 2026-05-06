@@ -1,0 +1,34 @@
+{
+  "paper_id": "paper_159",
+  "title": "Measuring the Impacts of Teachers I: Evaluating Bias in Teacher Value-Added Estimates",
+  "authors": "Chetty, Friedman & Rockoff",
+  "year": null,
+  "journal": "AER",
+  "method_family": "EVENT_STUDY",
+  "best_match": {
+    "doi": "https://doi.org/10.1257/aer.104.9.2593",
+    "title": "Measuring the Impacts of Teachers I: Evaluating Bias in Teacher Value-Added Estimates",
+    "year": 2014,
+    "journal": "American Economic Review",
+    "citations": 1214
+  },
+  "checks": {
+    "title_jaccard": 1.0,
+    "title_gate_pass": true,
+    "author_overlap": [
+      "rockoff",
+      "friedman",
+      "chetty"
+    ],
+    "author_gate_pass": true,
+    "journal_input": "aer",
+    "journal_oa": "aer",
+    "journal_gate_pass": true,
+    "citation_reasonable": true,
+    "citation_count": 1214,
+    "years_old": 0
+  },
+  "status": "resolved",
+  "notes": "",
+  "error_msg": ""
+}

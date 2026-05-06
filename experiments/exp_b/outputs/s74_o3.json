@@ -1,0 +1,21 @@
+{
+  "scenario_id": "s74",
+  "method_family": "IV",
+  "difficulty": "medium",
+  "title": "Impact of Political Turnover on Public Spending",
+  "model": "o3",
+  "run_at": "2026-04-14T19:51:22.627030",
+  "llm_response": {
+    "model": "o3",
+    "input_tokens": 445,
+    "output_tokens": 1239,
+    "content": "## 1. Identification Strategy  \nCausal method: Instrumental‐Variables (2SLS).  \nRationale: Democratic control (x) may be endogenous to unobserved local characteristics that also affect spending (y). A “close-election Democratic win” (z) provides quasi-random variation in party control that is plausibly unrelated to those unobservables, supplying an instrument.  \n\nKey assumptions  \n• Relevance: z is strongly correlated with Democratic control (Cov(z,x) ≠ 0).  \n• Exogeneity / exclusion: Conditional on controls, z affects public spending only through its effect on Democratic control (Cov(z,ε) = 0).  \n• Monotonicity (for LATE interpretation): a close win cannot make a jurisdiction less likely to be Democratic.  \n\n## 2. R Code\n```r\n# ---------- 0. Packages ----------\nrequired <- c(\"readr\", \"AER\", \"sandwich\", \"lmtest\")\nnew      <- required[!(required %in% installed.packages()[,\"Package\"])]\nif(length(new)) install.packages(new, repos = \"https://cran.r-project.org\")\nlapply(required, library, character.only = TRUE)\n\n# ---------- 1. Load data ----------\ndat_path <- \"experiments/exp_b/data/s74_data.csv\"\ndf <- read_csv(dat_path, show_col_types = FALSE)\n\n# ---------- 2. Naïve OLS ----------\nols <- lm(y ~ x + controls, data = df)\nols_robust_se <- coeftest(ols, vcov = vcovHC(ols, type = \"HC1\"))\n\ncat(\"\\nNaïve OLS (robust SE):\\n\")\nprint(ols_robust_se[\"x\",])\n\n# ---------- 3. First stage ----------\nfs <- lm(x ~ z + controls, data = df)\nfs_robust <- coeftest(fs, vcov = vcovHC(fs, type = \"HC1\"))\nF_stat <- waldtest(fs, \"z\", vcov = vcovHC(fs, type = \"HC1\"))$F[2]\n\ncat(\"\\nFirst-stage coefficient on z (robust SE):\\n\")\nprint(fs_robust[\"z\",])\ncat(sprintf(\"First-stage F-statistic on instrument z: %.2f\\n\", F_stat))\n\n# ---------- 4. 2SLS ----------\niv <- ivreg(y ~ x + controls | z + controls, data = df)\niv_robust_se <- coeftest(iv, vcov = vcovHC(iv, type = \"HC1\"))\n\ncat(\"\\n2SLS estimate (robust SE):\\n\")\nprint(iv_robust_se[\"x\",])\n\n# ---------- 5. Reduced form ----------\nrf <- lm(y ~ z + controls, data = df)\nrf_robust <- coeftest(rf, vcov = vcovHC(rf, type = \"HC1\"))\n\ncat(\"\\nReduced-form effect of z on y (robust SE):\\n\")\nprint(rf_robust[\"z\",])\n\n# ---------- 6. Anderson–Rubin test (weak-IV robust inference) ----------\nar_test <- linearHypothesis(iv, \"x = 0\", test = \"Chisq\", vcov = vcovHC(iv, type = \"HC1\"))\ncat(\"\\nAnderson-Rubin test of H0: effect = 0\\n\")\nprint(ar_test)\n\n# ---------- 7. Summary output ----------\ncat(\"\\n--- Summary ---\\n\")\ncat(sprintf(\"Naïve OLS coefficient on x:  %.4f (robust SE %.4f)\\n\",\n            ols_robust_se[\"x\",\"Estimate\"], ols_robust_se[\"x\",\"Std. Error\"]))\ncat(sprintf(\"2SLS coefficient on x:       %.4f (robust SE %.4f)\\n\",\n            iv_robust_se[\"x\",\"Estimate\"], iv_robust_se[\"x\",\"Std. Error\"]))\ncat(sprintf(\"First-stage F-statistic:     %.2f\\n\", F_stat))\n```\n\n## 3. Expected Findings  \nSign: Positive. A Democratic victory is anticipated to raise log public spending.  \nMagnitude: In logs, a 0/1 change from Republican to Democratic control may increase spending by roughly 0.25–0.40 log-points (≈ 28–50 %). OLS may show a smaller effect (≈ 0.15) due to downward bias from strategic fiscal conservatism in competitive districts, whereas the 2SLS estimate should lie nearer the upper half of that range if the instrument is strong.",
+    "stop_reason": "stop"
+  },
+  "_ground_truth": {
+    "identification_strategy": "Use close-election Democratic wins as an instrument for Democratic control.",
+    "conclusion_direction": "negative",
+    "conclusion_detail": "The analysis suggests a negative causal impact of Democratic control on public spending.",
+    "main_effect": "-0.3"
+  }
+}
