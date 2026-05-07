@@ -40,7 +40,10 @@ clarification only.
 
 - Final submission paper: [`paper/latex/causalverify_neurips2026.pdf`](paper/latex/causalverify_neurips2026.pdf), source [`paper/latex/causalverify_neurips2026.tex`](paper/latex/causalverify_neurips2026.tex).
 - Submission build summary: [`audit/SUBMISSION_BUILD_SUMMARY.md`](audit/SUBMISSION_BUILD_SUMMARY.md).
-- Frozen result gates: [`audit/V11_ACCEPTANCE_GATES.md`](audit/V11_ACCEPTANCE_GATES.md).
+- Build provenance / SHA trail: [`audit/sha_trail_investigation.md`](audit/sha_trail_investigation.md).
+- Phase-1 derived analyses (rebuttal-ready evidence): [`paper/derived_analyses/`](paper/derived_analyses/).
+- Exp B failure decomposition (per-model and per-method): [`audit/exp_b_failure_taxonomy/`](audit/exp_b_failure_taxonomy/).
+- Exp B rank-stability and tolerance sweep diagnostics: [`audit/exp_b_robustness/`](audit/exp_b_robustness/).
 - Human validation audit: [`audit/human_gold/human_vs_llm_consensus.md`](audit/human_gold/human_vs_llm_consensus.md).
 - Release navigation for reviewers: [`RELEASE_NAVIGATION.md`](RELEASE_NAVIGATION.md).
 - Datasheet and licensing: [`DATASHEET.md`](DATASHEET.md), [`LICENSE_DATA.md`](LICENSE_DATA.md).
@@ -65,8 +68,10 @@ CausalVerify is a benchmark of **259 active published economics papers** (Experi
 | Statement | Evidence |
 |---|---|
 | L2b (code executes) ranks models tightly with L2b+ correctness | Kendall τ = +0.81; Spearman ρ = +0.93 across 7 models |
+| Scenario-clustered bootstrap CI on the L2b–L2b+ rank correlation | Kendall τ ∈ [0.62, 0.90] (1000/1000 bootstrap replicates exceed the L4-vs-L2b+ upper bound +0.10) — [`paper/derived_analyses/bootstrap_tau_ci.json`](paper/derived_analyses/bootstrap_tau_ci.json) |
 | L4 agreement against consensus direction labels does not track Exp B L2b+ ranking | τ ∈ [−0.20, +0.10] across the frozen S1/S2 text-direction scorers |
 | Code that runs is not code that computes correctly | L2b rates span 32–94%; final ES-aware canonical L2b+ spans 10–88% (GPT-5 ranks second at 72%) |
+| L2b+ ranking is robust to a stricter tolerance | At 25% relative-error tolerance the seven-model spread is 9–84% and the qualitative ranking is preserved — [`paper/derived_analyses/tolerance_25_co_headline.json`](paper/derived_analyses/tolerance_25_co_headline.json) |
 | The coefficient extractor is validated, not regex-only | Regex L2b+ is retained as legacy; v11 uses Haiku extraction + ES-aware canonical scoring |
 | Text-level scores are supporting diagnostics | L3/L4 are method-family and direction agreement diagnostics, not verified causal correctness |
 
@@ -150,10 +155,8 @@ CAUSALVERIFY/
 │   └── llm_client.py                   # unified LLM client
 │
 ├── evaluate.py                         # safe dispatcher to current scoring scripts
-├── legacy/                             # audit-only: pre-CausalVerify CAUSAL-BENCH evaluator
 ├── requirements.txt                    # Python dependencies
 ├── config.yaml                         # global configuration
-├── sample.env                          # API key template
 ├── DATASHEET.md                        # NeurIPS D&B datasheet
 ├── LICENSE_DATA.md                     # component-level data/license notes
 ├── LICENSE
@@ -183,12 +186,15 @@ install.packages(c("fixest", "AER", "rdrobust", "sandwich",
 
 ### 3. API keys
 
-Copy the template and fill in your provider keys:
+Create a `.env` file in the repository root with your provider keys (only required for re-running model inference; the frozen scoring path uses cached outputs and needs no keys):
 
 ```bash
-cp sample.env .env
-# edit .env with OPENAI_API_KEY, ANTHROPIC_API_KEY,
-#                GOOGLE_API_KEY, MOONSHOT_API_KEY
+cat > .env <<'EOF'
+OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
+GOOGLE_API_KEY=...
+MOONSHOT_API_KEY=...
+EOF
 ```
 
 ---
@@ -232,6 +238,23 @@ Final submission reporting uses `experiments/exp_b/l2b_plus_scores_canonical_jud
 These L2b+ files also retain Llama-3.3-70B-Instruct rows for the open-weights
 robustness check. The primary leaderboard and `head_to_head_ranking.json`
 exclude Llama and report the seven-model panel only.
+
+### Hardening derived analyses (Phase 1)
+
+These reproduce the rebuttal-ready evidence in
+[`paper/derived_analyses/`](paper/derived_analyses/) directly from the frozen
+scoring CSVs — no LLM calls, no API keys, no external data:
+
+```bash
+python scripts/bootstrap_kendall_tau.py        # τ=0.81, scenario-clustered 95% CI [0.62, 0.90]
+python scripts/per_model_failure_taxonomy.py   # 340 non-L2b+ cells, per-model decomposition
+python scripts/ece_bootstrap_ci.py             # ECE 95% CIs per model (10 equal-width bins)
+python scripts/gemini_calibration_mcar.py      # Gemini missingness χ² (p = 0.877, MCAR not rejected)
+python scripts/tolerance_25_co_headline.py     # L2b+ spread under 25% relative-error tolerance (9–84%)
+```
+
+All five scripts are deterministic; outputs match the frozen JSON/CSV files
+in `paper/derived_analyses/` byte-for-byte (verified on a clean clone).
 
 ### Multi-scorer L4 fragility analysis
 
@@ -337,7 +360,7 @@ The paper structure mirrors the repository layout:
 |---|---|
 | §1 Introduction | [`paper/latex/causalverify_neurips2026.tex`](paper/latex/causalverify_neurips2026.tex) |
 | §2 Related Work and Positioning | [`paper/latex/causalverify_neurips2026.tex`](paper/latex/causalverify_neurips2026.tex) |
-| §3 Benchmark Design | [`src/agents/`](src/agents/), [`experiments_log/decisions/`](experiments_log/decisions/) |
+| §3 Benchmark Design | [`src/agents/`](src/agents/), [`audit/SUBMISSION_BUILD_SUMMARY.md`](audit/SUBMISSION_BUILD_SUMMARY.md) |
 | §4 Evaluation Layers | [`src/pipeline/score_l2b_plus.py`](src/pipeline/score_l2b_plus.py), [`src/pipeline/auto_score_exp_a.py`](src/pipeline/auto_score_exp_a.py) |
 | §5 Findings (R1–R5) | [`experiments/exp_b/head_to_head_ranking.json`](experiments/exp_b/head_to_head_ranking.json), [`paper/tables/exp_a_l3_l4_by_model.csv`](paper/tables/exp_a_l3_l4_by_model.csv) |
 | §5 Experiment A — 259 papers | [`experiments/exp_a/`](experiments/exp_a/), [`experiments/exp_a/auto_scores.csv`](experiments/exp_a/auto_scores.csv) |
