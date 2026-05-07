@@ -27,12 +27,10 @@ clarification only.
   scenarios, 100 realised CSV datasets, 800 cached LLM outputs (8 models
   × 100 scenarios), frozen scoring CSV/JSON, datasheet, Croissant
   metadata.
-- **Code:** [`causalverify/causalverify-code-neurips2026`](https://huggingface.co/datasets/causalverify/causalverify-code-neurips2026/tree/neurips2026-submission)
-  at tag `neurips2026-submission`. Mirrors this repository at the
-  submission commit, identity-cleaned (no institution-specific fetchers,
-  no internal session notes, anonymous LICENSE).
 - **Anonymous code mirror:** [`anonymous.4open.science/r/causalverify-1B47/`](https://anonymous.4open.science/r/causalverify-1B47/)
-  auto-syncs from this repository's `main`.
+  auto-syncs from this repository's `main`. Reviewers should treat this URL
+  as the canonical anonymous code release (identity-cleaned, no institution-specific
+  fetchers, no internal session notes, anonymous LICENSE).
 
 ---
 

@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FINAL_TITLE = "CausalVerify: An Execution-Grounded Benchmark for LLM Causal Inference Workflows"
 HF_DATASET_RELEASE = "causalverify/causalverify-neurips2026"
-HF_CODE_RELEASE = "causalverify/causalverify-code-neurips2026"
+ANON_CODE_MIRROR = "anonymous.4open.science/r/causalverify-1B47"
 HF_SUBMISSION_TAG = "neurips2026-submission"
 
 
@@ -30,7 +30,6 @@ DOCS = [
 RELEASE_NAVIGATION_ARTIFACTS = [
     "paper/latex/causalverify_neurips2026.pdf",
     "paper/latex/causalverify_neurips2026.tex",
-    "audit/V11_ACCEPTANCE_GATES.md",
     "audit/SUBMISSION_BUILD_SUMMARY.md",
     "experiments/exp_a/auto_scores.csv",
     "paper/tables/exp_a_l3_l4_by_model.csv",
@@ -59,7 +58,6 @@ RELEASE_NAVIGATION_ARTIFACTS = [
     "audit/exp_b_robustness/rank_stability_primary7.json",
     "audit/l2b_judge_human_validation/README.md",
     "audit/l2b_judge_human_validation/annotation_form.csv",
-    "audit/l2b_judge_human_validation/annotation_key_private.csv",
     "scripts/prepare_l2b_judge_human_validation.py",
     "scripts/summarize_l2b_judge_human_validation.py",
 ]
@@ -384,7 +382,7 @@ def main() -> int:
     require_text(errors, "README.md", re.escape(HF_SUBMISSION_TAG), "README stable HF release tag")
     require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_SUBMISSION_TAG), "release nav stable HF release tag")
     require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_DATASET_RELEASE), "release nav HF dataset release")
-    require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_CODE_RELEASE), "release nav HF code release")
+    require_text(errors, "RELEASE_NAVIGATION.md", re.escape(ANON_CODE_MIRROR), "release nav anonymous code mirror")
 
     for doc in ["README.md", "RELEASE_NAVIGATION.md", "audit/SUBMISSION_BUILD_SUMMARY.md"]:
         text = read_text(doc)

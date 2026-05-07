@@ -11,14 +11,14 @@ drafts, final result artifacts, and legacy diagnostics.
 - Final gate status: `audit/V11_ACCEPTANCE_GATES.md`
 - Submission build summary: `audit/SUBMISSION_BUILD_SUMMARY.md`
 
-## Stable Hugging Face Releases
+## Stable Releases
 
 - Exp B dataset release:
   `https://huggingface.co/datasets/causalverify/causalverify-neurips2026`
   at tag `neurips2026-submission`.
 - Anonymous code release:
-  `https://huggingface.co/datasets/causalverify/causalverify-code-neurips2026`
-  at tag `neurips2026-submission`.
+  `https://anonymous.4open.science/r/causalverify-1B47/`
+  (auto-syncs from the anonymous review repository's `main`).
 
 ## Frozen Headline Data
 
