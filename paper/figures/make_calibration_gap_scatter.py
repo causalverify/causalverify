@@ -173,7 +173,10 @@ def plot(rows: list[dict[str, object]]) -> None:
     ax.yaxis.set_major_formatter(PercentFormatter(xmax=1, decimals=0))
     from palette import AXIS_LABEL_KW
     ax.set_xlabel("Execution-grounded correctness: L2b+ pass rate", **AXIS_LABEL_KW)
-    ax.set_ylabel("Confidence gap: correct - wrong", **AXIS_LABEL_KW)
+    # Shortened from "Confidence gap: correct - wrong" — the longer rotated
+    # label was being clipped against the (6.70, 2.52) figure height. The
+    # full semantics are explained in the caption.
+    ax.set_ylabel("Confidence gap (pp)", **AXIS_LABEL_KW)
     ax.set_title("Correctness vs. Self-Assessment", pad=5)
     ax.grid(axis="both", color="#E5E7EB", linewidth=0.65)
 
@@ -183,7 +186,7 @@ def plot(rows: list[dict[str, object]]) -> None:
 
     for ext in ("png", "pdf"):
         out = OUT_DIR / f"calibration_gap_scatter.{ext}"
-        fig.savefig(out, dpi=300, bbox_inches="tight")
+        fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05)
         print(f"Wrote {out.relative_to(ROOT)}")
     plt.close(fig)
 
