@@ -66,34 +66,9 @@ DISPLAY_N = {
 
 
 def set_style() -> None:
-    plt.rcParams.update(
-        {
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
-            "mathtext.fontset": "dejavusans",
-            "font.size": FONT_TEXT,
-            "axes.titlesize": FONT_TITLE,
-            "axes.titleweight": "bold",
-            "axes.labelsize": FONT_AXIS,
-            "xtick.labelsize": FONT_TICK,
-            "ytick.labelsize": FONT_TICK,
-            "legend.fontsize": FONT_LEGEND,
-            "axes.spines.top": False,
-            "axes.spines.right": False,
-            "axes.facecolor": "white",
-            "figure.facecolor": "white",
-            "axes.edgecolor": AXIS,
-            "axes.linewidth": 0.65,
-            "xtick.color": INK,
-            "ytick.color": INK,
-            "axes.labelcolor": INK,
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
-            "savefig.dpi": 600,
-            "savefig.bbox": "tight",
-            "savefig.pad_inches": 0.03,
-        }
-    )
+    # Canonical paper-wide style (cream bg, dotted grid, Arial sans-serif).
+    from palette import apply_paper_rc
+    apply_paper_rc()
 
 
 def load_l3_by_method() -> dict[str, np.ndarray]:

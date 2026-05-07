@@ -214,11 +214,18 @@ RC_PARAMS = {
 }
 
 
-# ── Canonical typography for all paper-rendered figures ──
+# ── Canonical typography + axes-style for all paper-rendered figures ──
 # Single source of truth. Every figure script should call apply_paper_rc()
 # before drawing, then use AXIS_LABEL_KW for set_xlabel / set_ylabel so that
 # axis labels (font, size, padding) are byte-identical across figures.
+#
+# The visual look matches fig_rid_pilot's polished style:
+#   - Cream-white axes background (#FAFAFA)
+#   - Dotted gray grid behind data
+#   - Light gray axis spines, no top/right
+#   - Arial sans-serif typography throughout
 PAPER_RC = {
+    # Typography
     "font.family":       "sans-serif",
     "font.sans-serif":   ["Arial", "Helvetica", "DejaVu Sans"],
     "mathtext.fontset":  "dejavusans",
@@ -229,15 +236,24 @@ PAPER_RC = {
     "xtick.labelsize":    9,
     "ytick.labelsize":    9,
     "legend.fontsize":    9,
+    # Spines
     "axes.spines.top":   False,
     "axes.spines.right": False,
-    "axes.facecolor":    "white",
-    "figure.facecolor":  "white",
     "axes.edgecolor":    "#94A3B8",
     "axes.linewidth":    0.65,
+    # Colors (cream background, ink-dark text)
+    "axes.facecolor":    "#FAFAFA",
+    "figure.facecolor":  "white",
     "xtick.color":       "#1F2937",
     "ytick.color":       "#1F2937",
     "axes.labelcolor":   "#1F2937",
+    # Grid (dotted, behind data)
+    "axes.grid":         True,
+    "axes.axisbelow":    True,
+    "grid.color":        "#E8E4DF",
+    "grid.linestyle":    "--",
+    "grid.linewidth":    0.5,
+    # Output
     "pdf.fonttype":      42,
     "ps.fonttype":       42,
     "savefig.dpi":       600,

@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 
 sys.path.insert(0, str(Path(__file__).parent))
-from palette import PAL, MODEL_MARKERS, MODEL_ORDER, RC_PARAMS
+from palette import PAL, MODEL_MARKERS, MODEL_ORDER, apply_paper_rc
 
-plt.rcParams.update(RC_PARAMS)
+apply_paper_rc()
 
 # RID pilot data (from Table 14 in v8/v9)
 rid_data = {
