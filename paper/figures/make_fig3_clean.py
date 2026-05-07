@@ -164,10 +164,10 @@ def make_figure() -> plt.Figure:
                 val,
                 i + dy,
                 marker=MODEL_MARKERS[model],
-                s=70,
+                s=26,
                 facecolors=MODEL_COLORS[model],
                 edgecolors="black",
-                linewidths=0.7,
+                linewidths=0.45,
                 alpha=0.95,
                 zorder=4,
             )
@@ -218,8 +218,8 @@ def make_figure() -> plt.Figure:
             color="white",
             markerfacecolor=MODEL_COLORS[model],
             markeredgecolor="black",
-            markeredgewidth=0.55,
-            markersize=7,
+            markeredgewidth=0.45,
+            markersize=5.0,
             label=model,
         )
         for model in MODELS
