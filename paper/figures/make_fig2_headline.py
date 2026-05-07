@@ -286,22 +286,22 @@ def panel_rank_agreement(ax, head_to_head) -> None:
 
 def panel_exp_a_text_agreement(ax, exp_a) -> None:
     label_offsets = {
-        "Sonnet": (-8, 10),
-        "Opus": (7, 3),
-        "Kimi": (7, 8),
-        "GPT-4o": (-10, -8),
-        "Gemini": (7, -8),
-        "o3": (7, -10),
-        "GPT-5": (7, -8),
+        "Sonnet": (0, 7),
+        "Opus": (6, 0),
+        "Kimi": (6, 0),
+        "GPT-4o": (0, -7),
+        "Gemini": (0, -8),
+        "o3": (0, -7),
+        "GPT-5": (0, -7),
     }
     label_align = {
-        "Sonnet": ("right", "bottom"),
+        "Sonnet": ("center", "bottom"),
         "Opus": ("left", "center"),
-        "Kimi": ("left", "bottom"),
-        "GPT-4o": ("right", "top"),
-        "Gemini": ("left", "top"),
-        "o3": ("left", "top"),
-        "GPT-5": ("left", "top"),
+        "Kimi": ("left", "center"),
+        "GPT-4o": ("center", "top"),
+        "Gemini": ("center", "top"),
+        "o3": ("center", "top"),
+        "GPT-5": ("center", "top"),
     }
 
     for model in [m for m in MODEL_ORDER if m in exp_a]:

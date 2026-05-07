@@ -8,7 +8,17 @@ drafts, final result artifacts, and legacy diagnostics.
 
 - Final submission PDF: `paper/latex/causalverify_neurips2026.pdf`
 - Final submission source: `paper/latex/causalverify_neurips2026.tex`
+- Final gate status: `audit/V11_ACCEPTANCE_GATES.md`
 - Submission build summary: `audit/SUBMISSION_BUILD_SUMMARY.md`
+
+## Stable Hugging Face Releases
+
+- Exp B dataset release:
+  `https://huggingface.co/datasets/causalverify/causalverify-neurips2026`
+  at tag `neurips2026-submission`.
+- Anonymous code release:
+  `https://huggingface.co/datasets/causalverify/causalverify-code-neurips2026`
+  at tag `neurips2026-submission`.
 
 ## Frozen Headline Data
 
@@ -20,31 +30,32 @@ drafts, final result artifacts, and legacy diagnostics.
   `head_to_head_ranking.json`.
 - Exp A text-level scores: `experiments/exp_a/auto_scores.csv`
 - Exp A model table: `paper/tables/exp_a_l3_l4_by_model.csv`
-- Exp B realised CSV datasets (100 scenarios, one CSV per scenario):
-  `experiments/exp_b/data/s*_data.csv`
-- Exp B scenario metadata (100 scenario JSONs, one per scenario):
-  `experiments/exp_b/scenarios/s*.json`
-- Exp B canonical-estimator targets and L2b+ scoring outputs:
-  `experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv` (per-cell
-  rows include `canonical_estimate`, `judge_effect`, `rel_error_v2`,
-  `L2b_plus_v2`)
 - Exp B L2b+ scores: `experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv`
   (7 primary models plus Llama robustness rows)
 - Exp B L2b+ summary: `experiments/exp_b/l2b_plus_summary_canonical_judge_v2.json`
   (7 primary models plus Llama robustness entry)
 - L2b/L2b+ ranking analysis: `experiments/exp_b/head_to_head_ranking.json`
 - Calibration summary: `experiments/exp_b/calibration_summary_v2.json`
-- Human-gold validation audit: `audit/human_gold/human_vs_llm_consensus.md`
+- Human ambiguity audit: `audit/human_gold/human_vs_llm_consensus.md`
 - Exp B Dataset URL: `https://huggingface.co/datasets/causalverify/causalverify-neurips2026`
 - Exp B Croissant metadata: `experiments/exp_b/croissant.json`
 
 ## Exp B Robustness Audit
 
 - Audit overview: `audit/exp_b_robustness/README.md`
+- Failure taxonomy audit: `audit/exp_b_failure_taxonomy/README.md`,
+  `audit/exp_b_failure_taxonomy/failure_taxonomy_primary7.csv`, and
+  `audit/exp_b_failure_taxonomy/failure_taxonomy_by_method.csv`
+- Canonical-estimator appendix table: `paper/latex/causalverify_neurips2026.tex`
+  (`app:canonical_estimators`)
 - Conditional L2b table: `paper/tables/exp_b_l2b_conditional_primary7.csv`
+- Rank-stability audit: `audit/exp_b_robustness/rank_stability_primary7.csv`
+  and `audit/exp_b_robustness/rank_stability_primary7.json`
 - Scorer evolution table: `paper/tables/exp_b_scorer_evolution_primary7.csv`
 - Method-family breakdown: `paper/tables/exp_b_l2bplus_by_model_method_primary7.csv`
-- Tolerance sweep: `paper/tables/exp_b_tolerance_sweep_primary7.csv`
+- Tolerance sweep: `paper/tables/exp_b_tolerance_sweep_primary7.csv`,
+  `audit/exp_b_robustness/tolerance_sweep_primary7.csv`, and
+  `audit/exp_b_robustness/tolerance_sweep_primary7.json`
 
 ## L2b Judge Human-Validation Audit
 
@@ -57,12 +68,8 @@ drafts, final result artifacts, and legacy diagnostics.
   90.9% numeric agreement and 88.6% induced L2b+ pass/fail agreement among
   comparable audited cells. Disagreements concentrate in event-study window
   choices and RDD sign/printing ambiguities.
-- The hidden unblinding key (`annotation_key_private.csv`) is **intentionally
-  withheld from this anonymous release** because it contains unblinding
-  metadata (model identity, canonical estimates, judge effects, and L2b+
-  labels). Reviewers should consult `summary.md` and `summary.json` for the
-  completed audit results; the `summarize` script gracefully reports the
-  withheld-key case and exits with status 0.
+- The hidden audit key (`annotation_key_private.csv`) is retained for local
+  reproducibility, but is not the annotator-facing artifact.
 
 ## Figures
 
@@ -98,15 +105,13 @@ path.
 ## Legacy Artifacts
 
 The repository keeps older artifacts for auditability. They should not be
-used for the headline benchmark claims unless explicitly labeled in the paper.
+used for headline v12 claims unless explicitly labeled in the paper.
 
 - `legacy/evaluate_v1_causalbench.py`: pre-CausalVerify CAUSAL-BENCH-era
   evaluator. Audit-only; replaced by the dispatcher at `evaluate.py` and
   the scoring scripts under `src/pipeline/` and `scripts/`.
-- `experiments/exp_a/outputs_v1_legacy/`: Exp A outputs from before the
-  final paper-field reconstruction pass.
-- `experiments/exp_a/auto_scores_v1_legacy.csv`: Exp A scores from before
-  the final paper-field reconstruction pass.
+- `experiments/exp_a/outputs_v1_legacy/`: pre-V2'' Exp A outputs.
+- `experiments/exp_a/auto_scores_v1_legacy.csv`: pre-V2'' Exp A scores.
 - `experiments/exp_b/l2b_plus_scores.csv`: regex-era L2b+ diagnostic.
 - `experiments/exp_b/head_to_head_bootstrap.json`: legacy diagnostic bootstrap.
 

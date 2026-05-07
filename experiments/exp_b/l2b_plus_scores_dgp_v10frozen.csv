@@ -1,0 +1,1125 @@
+scenario_id,method,true_effect,true_direction,L1,L2a,L2b,estimated,rel_error,L2b_plus,err_excerpt,model,model_slug
+s01,DID,-0.3,negative,1,1,1,-0.238664,0.2045,1,,Kimi,moonshot-v1-128k
+s01,DID,-0.3,negative,1,1,0,,,0,"Error in waldtest(pretrend_model, ""treated:period_2 = treated:period_3 = 0"") : 
+  could not find function ""waldtest""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s01,DID,-0.3,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s01,DID,-0.3,negative,1,1,1,-0.2387,0.2043,1,,o3,o3
+s01,DID,-0.3,negative,1,1,1,-0.2387,0.2043,1,,Opus,claude-opus-4-6
+s01,DID,-0.3,negative,1,1,0,,,0,"Error in tidy(event_study_model) : could not find function ""tidy""
+Calls: suppressMessages -> withCallingHandlers -> as.data.frame
+Execution halted",Gemini,gemini-2.5-flash
+s02,DID,-0.15,negative,1,1,1,0.244583,2.6306,0,,Kimi,moonshot-v1-128k
+s02,DID,-0.15,negative,1,1,1,-0.1876,0.2507,1,,Sonnet,claude-sonnet-4-20250514
+s02,DID,-0.15,negative,1,1,1,0.514671,4.4311,0,,GPT-4o,gpt-4o
+s02,DID,-0.15,negative,1,1,1,-0.164,0.0933,1,,o3,o3
+s02,DID,-0.15,negative,1,1,1,-0.1876,0.2507,1,,Opus,claude-opus-4-6
+s02,DID,-0.15,negative,1,1,0,,,0,"Error: in feols(y ~ i(treated, period, ref = 3) | unit_id +...: 
+Evaluation of the right-hand-side of the formula raises an error: 
+  in i(factor_var = treated, var = period, ref = 3): 
+In argument `r",Gemini,gemini-2.5-flash
+s03,DID,0.25,positive,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'event_time' not found
+Calls: suppressMessages ... model.frame.Formula -> model.frame -> model.frame.default -> eval -> eval
+Execution halted",Kimi,moonshot-v1-128k
+s03,DID,0.25,positive,1,1,0,,,0,"Error in summary(trend_test)$coefficients[""treated:period"", ] : 
+  incorrect number of dimensions
+Calls: suppressMessages -> withCallingHandlers -> print
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s03,DID,0.25,positive,1,1,1,0.48904,0.9562,0,,GPT-4o,gpt-4o
+s03,DID,0.25,positive,1,1,0,,,0,"Error in grepl(var2keep, vect2check, perl = TRUE) : 
+  invalid regular expression 'rel_year::[-3:-1]'
+Calls: suppressMessages ... etable -> etable_internal_df -> keep_apply -> grepl
+Execution halted",o3,o3
+s03,DID,0.25,positive,1,1,1,0.2845713,0.1383,1,,Opus,claude-opus-4-6
+s03,DID,0.25,positive,1,1,1,0.2846,0.1384,1,,Gemini,gemini-2.5-flash
+s04,DID,0.2,positive,1,1,1,0.524496,1.6225,0,,Kimi,moonshot-v1-128k
+s04,DID,0.2,positive,1,1,1,0.1058,0.471,1,,Sonnet,claude-sonnet-4-20250514
+s04,DID,0.2,positive,1,1,1,0.105831,0.4708,1,,GPT-4o,gpt-4o
+s04,DID,0.2,positive,1,1,0,,,0,"Error: in feols(y ~ sunab(first_treat_period, period) | uni...: 
+All variables, 'period::-4:cohort::5', 'period::-3:cohort::5' and 5 others,
+are collinear with the fixed effects. Without doubt, your m",o3,o3
+s04,DID,0.2,positive,1,1,1,0.1058,0.471,1,,Opus,claude-opus-4-6
+s04,DID,0.2,positive,1,1,0,,,0,"Error in tidy(event_study_model) : could not find function ""tidy""
+Calls: suppressMessages ... withCallingHandlers -> %>% -> mutate -> filter -> as.data.frame
+Execution halted",Gemini,gemini-2.5-flash
+s05,DID,0.18,positive,1,1,0,,,0,"Error in plm.fit(data, model, effect, random.method, random.models, random.dfcor,  : 
+  0 (non-NA) cases
+Calls: suppressMessages -> withCallingHandlers -> plm -> plm.fit
+Execution halted",Kimi,moonshot-v1-128k
+s05,DID,0.18,positive,1,1,1,0.263,0.4611,1,,Sonnet,claude-sonnet-4-20250514
+s05,DID,0.18,positive,1,1,1,0.420672,1.3371,0,,GPT-4o,gpt-4o
+s05,DID,0.18,positive,1,1,0,,,0,"Error in cat(""β (Treat×Post) ="", round(b, 4), "" | 95% CI ["", round(ci[1],  : 
+  argument 4 (type 'list') cannot be handled by 'cat'
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halt",o3,o3
+s05,DID,0.18,positive,1,1,1,0.263,0.4611,1,,Opus,claude-opus-4-6
+s05,DID,0.18,positive,1,1,1,0.263036,0.4613,1,,Gemini,gemini-2.5-flash
+s06,DID,0.22,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s06,DID,0.22,positive,1,1,1,0.2494,0.1336,1,,Sonnet,claude-sonnet-4-20250514
+s06,DID,0.22,positive,1,1,0,,,0,"erve = .preserve)
+  8. │   └─dplyr:::dplyr_row_slice.data.frame(.data, loc, preserve = .preserve)
+  9. │     ├─dplyr::dplyr_reconstruct(vec_slice(data, i), data)
+ 10. │     │ └─dplyr:::dplyr_new_data_",GPT-4o,gpt-4o
+s06,DID,0.22,positive,1,1,0,,,0,"Error: in etable(event_mod, keep = ""rel_time::"", se = ""clus...: 
+Not any variable was selected, please reframe your keep/drop arguments. In
+particular, to 'keep' variables using their original names (",o3,o3
+s06,DID,0.22,positive,1,1,1,0.2494,0.1336,1,,Opus,claude-opus-4-6
+s06,DID,0.22,positive,1,1,0,,,0,"Error: in etable(did_model, se = did_model$se, cl...:
+ Argument 'se' (which has been replaced by arg. 'vcov') must be a single
+ character equal to 'iid', 'normal', 'standard', 'hetero', 'white', 'hc1'",Gemini,gemini-2.5-flash
+s07,DID,-0.12,negative,1,1,0,,,0,"Error in vcovHC.default(type = ""HC1"") : 
+  argument ""x"" is missing, with no default
+Calls: suppressMessages ... coeftest.default -> vcovHC -> vcovHC.default -> meatHC
+Execution halted",Kimi,moonshot-v1-128k
+s07,DID,-0.12,negative,1,1,0,,,0,"Error: in feols(y ~ treated_x_t_3 + treated_x_t_2 + treated...: 
+The variables 'treated_x_t_3' and 'treated_x_t_2' are in the RHS (first
+part) of the formula but not in the data set.
+Maybe you meant: ",Sonnet,claude-sonnet-4-20250514
+s07,DID,-0.12,negative,1,1,1,-0.1594968,0.3291,1,,GPT-4o,gpt-4o
+s07,DID,-0.12,negative,1,1,0,,,0,"Error in library(did) : there is no package called ‘did’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",o3,o3
+s07,DID,-0.12,negative,1,1,1,-0.0982,0.1817,1,,Opus,claude-opus-4-6
+s07,DID,-0.12,negative,1,1,0,,,0,"Error in etable(did_model, se.type = ""robust"") : 
+  The second element of '...' (named 'se.type') is not valid: it should be a fixest object or a list of fixest objects, it is neither.
+Calls: suppress",Gemini,gemini-2.5-flash
+s08,DID,-0.25,negative,1,1,0,,,0,"Error in match.arg(cluster) : 'arg' must be NULL or a character vector
+Calls: suppressMessages ... vcovHC -> vcovHC.plm -> vcovG -> vcovG.plm -> match.arg
+Execution halted",Kimi,moonshot-v1-128k
+s08,DID,-0.25,negative,1,1,0,,,0,"Error in library(lfe) : there is no package called ‘lfe’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s08,DID,-0.25,negative,1,1,0,,,0,"Error: in feols(y ~ iperiod(treat_x_post, period) | unit_id...: 
+Evaluation of the right-hand-side of the formula raises an error: 
+  In iperiod(treat_x_post, period): could not find function ""iperiod",GPT-4o,gpt-4o
+s08,DID,-0.25,negative,1,1,0,,,0,"Error in library(did) : there is no package called ‘did’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",o3,o3
+s08,DID,-0.25,negative,1,1,1,0.0792,1.3168,0,,Opus,claude-opus-4-6
+s08,DID,-0.25,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s09,DID,0.28,positive,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'size_group' not found
+Calls: suppressMessages ... model.frame.Formula -> model.frame -> model.frame.default -> eval -> eval
+Execution halted",Kimi,moonshot-v1-128k
+s09,DID,0.28,positive,1,1,1,0.2975,0.0625,1,,Sonnet,claude-sonnet-4-20250514
+s09,DID,0.28,positive,1,1,1,0.491504,0.7554,0,,GPT-4o,gpt-4o
+s09,DID,0.28,positive,1,1,1,0.2975003,0.0625,1,,o3,o3
+s09,DID,0.28,positive,1,1,1,-0.1624483,1.5802,0,,Opus,claude-opus-4-6
+s09,DID,0.28,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s10,DID,0.35,positive,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'announce' not found
+Calls: suppressMessages ... model.frame.Formula -> model.frame -> model.frame.default -> eval -> eval
+Execution halted",Kimi,moonshot-v1-128k
+s10,DID,0.35,positive,1,1,0,,,0,"Error: in feols(y ~ treat_x_announce + treat_x_post | unit_...: 
+The variable 'treat_x_announce' is in the RHS (first part) of the formula
+but not in the data set.
+Maybe you meant: `treat_x_period_1`,",Sonnet,claude-sonnet-4-20250514
+s10,DID,0.35,positive,1,1,1,0.57994117,0.657,0,,GPT-4o,gpt-4o
+s10,DID,0.35,positive,1,1,1,0.3908,0.1166,1,,o3,o3
+s10,DID,0.35,positive,1,1,1,0.3908,0.1166,1,,Opus,claude-opus-4-6
+s10,DID,0.35,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s11,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"pected_ret = beta * mkt_ret, abnormal_ret = ret - expected_ret)
+  6. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+  7. │   ├─base::withCallingHandlers(...)
+  8. │   └─dplyr:::mutate_col(dot",Kimi,moonshot-v1-128k
+s11,EVENT_STUDY,-0.02,negative,1,1,1,-0.0397,0.985,0,,Sonnet,claude-sonnet-4-20250514
+s11,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"  4. ├─dplyr::mutate(...)
+  5. ├─dplyr:::mutate.data.frame(...)
+  6. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+  7. │   ├─base::withCallingHandlers(...)
+  8. │   └─dplyr:::mutate_col(dot",GPT-4o,gpt-4o
+s11,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"Error in setnames(estimates, c(""term"", ""estimate""), c(""param"", ""value"")) : 
+  Items of 'old' not found in column names: [term]. Consider skip_absent=TRUE.
+Calls: suppressMessages ... withCallingHandle",o3,o3
+s11,EVENT_STUDY,-0.02,negative,1,1,1,-0.035803,0.7902,0,,Opus,claude-opus-4-6
+s11,EVENT_STUDY,-0.02,negative,1,1,1,-1.0,49.0,0,,Gemini,gemini-2.5-flash
+s12,EVENT_STUDY,-0.025,negative,1,1,0,,,0,"Error in UseMethod(""estfun"") : 
+  no applicable method for 'estfun' applied to an object of class ""formula""
+Calls: suppressMessages ... NeweyWest -> vcovHAC -> vcovHAC.default -> meatHAC -> estfun
+Exe",Kimi,moonshot-v1-128k
+s12,EVENT_STUDY,-0.025,negative,1,1,1,1.0,41.0,0,,Sonnet,claude-sonnet-4-20250514
+s12,EVENT_STUDY,-0.025,negative,1,1,1,1.0,41.0,0,,GPT-4o,gpt-4o
+s12,EVENT_STUDY,-0.025,negative,1,1,1,-0.0485,0.94,0,,o3,o3
+s12,EVENT_STUDY,-0.025,negative,1,1,1,-0.1947,6.788,0,,Opus,claude-opus-4-6
+s12,EVENT_STUDY,-0.025,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s13,EVENT_STUDY,-0.018,negative,1,1,1,-0.03288083,0.8267,0,,Kimi,moonshot-v1-128k
+s13,EVENT_STUDY,-0.018,negative,1,1,1,-0.051197,1.8443,0,,Sonnet,claude-sonnet-4-20250514
+s13,EVENT_STUDY,-0.018,negative,1,1,1,-0.0328808284675,0.8267,0,,GPT-4o,gpt-4o
+s13,EVENT_STUDY,-0.018,negative,1,1,1,-1.0,54.5556,0,,o3,o3
+s13,EVENT_STUDY,-0.018,negative,1,1,1,-1.0,54.5556,0,,Opus,claude-opus-4-6
+s13,EVENT_STUDY,-0.018,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s14,EVENT_STUDY,0.022,positive,1,1,1,1.0,44.4545,0,,Kimi,moonshot-v1-128k
+s14,EVENT_STUDY,0.022,positive,1,1,1,0.0665,2.0227,0,,Sonnet,claude-sonnet-4-20250514
+s14,EVENT_STUDY,0.022,positive,1,1,1,0.06113154,1.7787,0,,GPT-4o,gpt-4o
+s14,EVENT_STUDY,0.022,positive,1,1,1,0.0665,2.0227,0,,o3,o3
+s14,EVENT_STUDY,0.022,positive,1,1,1,0.3943,16.9227,0,,Opus,claude-opus-4-6
+s14,EVENT_STUDY,0.022,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s15,EVENT_STUDY,0.03,positive,1,1,0,,,0,"Error in bptest(lm(aar$mean_AR ~ 1), data = aar) : 
+  the auxiliary variance regression requires at least an intercept and a regressor
+Calls: suppressMessages -> withCallingHandlers -> bptest
+Executio",Kimi,moonshot-v1-128k
+s15,EVENT_STUDY,0.03,positive,1,1,1,0.1196,2.9867,0,,Sonnet,claude-sonnet-4-20250514
+s15,EVENT_STUDY,0.03,positive,1,1,0,,,0,"  4. ├─dplyr::mutate(...)
+  5. ├─dplyr:::mutate.data.frame(...)
+  6. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+  7. │   ├─base::withCallingHandlers(...)
+  8. │   └─dplyr:::mutate_col(dot",GPT-4o,gpt-4o
+s15,EVENT_STUDY,0.03,positive,1,1,0,,,0,"::mutate.data.frame(., ab_ret = ret - (alpha + beta * mkt_ret))
+ 10. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+ 11. │   ├─base::withCallingHandlers(...)
+ 12. │   └─dplyr:::mutate_col(dot",o3,o3
+s15,EVENT_STUDY,0.03,positive,1,1,1,-0.0056,1.1867,0,,Opus,claude-opus-4-6
+s15,EVENT_STUDY,0.03,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s16,EVENT_STUDY,-0.028,negative,1,1,0,,,0,"Error in library(quantmod) : there is no package called ‘quantmod’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Kimi,moonshot-v1-128k
+s16,EVENT_STUDY,-0.028,negative,1,1,1,-0.1063,2.7964,0,,Sonnet,claude-sonnet-4-20250514
+s16,EVENT_STUDY,-0.028,negative,1,1,1,0.04736,2.6914,0,,GPT-4o,gpt-4o
+s16,EVENT_STUDY,-0.028,negative,1,1,0,,,0,"Error in withCallingHandlers(expr, message = function(c) if (inherits(c,  : 
+  No chip-dependency variable found in the dataset.
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s16,EVENT_STUDY,-0.028,negative,1,1,1,-0.161988,4.7853,0,,Opus,claude-opus-4-6
+s16,EVENT_STUDY,-0.028,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s17,EVENT_STUDY,-0.035,negative,1,1,0,,,0,"base::withCallingHandlers(...)
+  9. │   └─dplyr:::map(quosures, summarise_eval_one, mask = mask)
+ 10. │     └─base::lapply(.x, .f, ...)
+ 11. │       └─dplyr (local) FUN(X[[i]], ...)
+ 12. │         └─m",Kimi,moonshot-v1-128k
+s17,EVENT_STUDY,-0.035,negative,1,1,1,-0.0716,1.0457,0,,Sonnet,claude-sonnet-4-20250514
+s17,EVENT_STUDY,-0.035,negative,1,1,0,,,0,"lyr:::mutate.data.frame(., AR = ret - (alpha + beta * mkt_ret))
+  6. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+  7. │   ├─base::withCallingHandlers(...)
+  8. │   └─dplyr:::mutate_col(dot",GPT-4o,gpt-4o
+s17,EVENT_STUDY,-0.035,negative,1,1,0,,,0,"Error in `distinct()`:
+! Must use existing variables.
+✖ `fine_ratio` not found in `.data`.
+Backtrace:
+    ▆
+ 1. ├─base::suppressMessages(...)
+ 2. │ └─base::withCallingHandlers(...)
+ 3. ├─dt %>% distin",o3,o3
+s17,EVENT_STUDY,-0.035,negative,1,1,1,-0.071573,1.0449,0,,Opus,claude-opus-4-6
+s17,EVENT_STUDY,-0.035,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s18,EVENT_STUDY,-0.015,negative,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'eps_surprise' not found
+Calls: suppressMessages ... model.frame.Formula -> model.frame -> model.frame.default -> eval -> eval
+Execution halted",Kimi,moonshot-v1-128k
+s18,EVENT_STUDY,-0.015,negative,1,1,1,-1.0,65.6667,0,,Sonnet,claude-sonnet-4-20250514
+s18,EVENT_STUDY,-0.015,negative,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'eps_surprise' not found
+Calls: suppressMessages ... eval -> <Anonymous> -> model.frame.default -> eval -> eval
+Execution halted",GPT-4o,gpt-4o
+s18,EVENT_STUDY,-0.015,negative,1,1,0,,,0,"Error in withCallingHandlers(expr, message = function(c) if (inherits(c,  : 
+  Column `eps_surprise` is not in the data. Analysis cannot proceed.
+Calls: suppressMessages -> withCallingHandlers
+Executi",o3,o3
+s18,EVENT_STUDY,-0.015,negative,1,1,0,,,0,"Error in eval(jsub, SDenv, parent.frame()) : object 'mean_ar' not found
+Calls: suppressMessages ... withCallingHandlers -> [ -> [.data.table -> eval -> eval
+Execution halted",Opus,claude-opus-4-6
+s18,EVENT_STUDY,-0.015,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s19,IV,0.4,positive,1,1,1,0.21798,0.4551,1,,Kimi,moonshot-v1-128k
+s19,IV,0.4,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s19,IV,0.4,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s19,IV,0.4,positive,1,1,0,,,0,"Error in cd$diagnostics[""weak instruments"", ""statistic""] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",o3,o3
+s19,IV,0.4,positive,1,1,1,0.2175,0.4563,1,,Opus,claude-opus-4-6
+s19,IV,0.4,positive,1,1,1,0.21752,0.4562,1,,Gemini,gemini-2.5-flash
+s20,IV,0.4,positive,1,1,0,,,0,"Error in feols(y ~ x + controls | 0 | z, data = data) : 
+  could not find function ""feols""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s20,IV,0.4,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s20,IV,0.4,positive,1,1,0,,,0,"Error in hausman.iv(y ~ x + controls | z + controls, ivreg = iv_model) : 
+  could not find function ""hausman.iv""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",GPT-4o,gpt-4o
+s20,IV,0.4,positive,1,1,1,,,0,,o3,o3
+s20,IV,0.4,positive,1,1,1,0.4967308,0.2418,1,,Opus,claude-opus-4-6
+s20,IV,0.4,positive,1,1,0,,,0,"Error in round(weak_instrument_stat, 2) : 
+  non-numeric argument to mathematical function
+Calls: suppressMessages -> withCallingHandlers -> print -> paste
+Execution halted",Gemini,gemini-2.5-flash
+s21,IV,-0.15,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s21,IV,-0.15,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s21,IV,-0.15,negative,1,1,1,-0.161703,0.078,1,,GPT-4o,gpt-4o
+s21,IV,-0.15,negative,1,1,0,,,0,"Error in `$<-.data.frame`(`*tmp*`, z_num, value = numeric(0)) : 
+  replacement has 0 rows, data has 500
+Calls: suppressMessages -> withCallingHandlers -> $<- -> $<-.data.frame
+Execution halted",o3,o3
+s21,IV,-0.15,negative,1,1,1,-0.209,0.3933,1,,Opus,claude-opus-4-6
+s21,IV,-0.15,negative,1,1,0,,,0,"Error in vcovHC(first_stage_model, type = ""HC1"") : 
+  could not find function ""vcovHC""
+Calls: suppressMessages ... withCallingHandlers -> coeftest -> coeftest.default
+Execution halted",Gemini,gemini-2.5-flash
+s22,IV,0.4,positive,1,1,1,1.148109,1.8703,0,,Kimi,moonshot-v1-128k
+s22,IV,0.4,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s22,IV,0.4,positive,1,1,1,0.4566631,0.1417,1,,GPT-4o,gpt-4o
+s22,IV,0.4,positive,1,1,0,,,0,"Error in linearHypothesis(iv_mod, ""x = 0"", test = ""F"", vcov. = vcovHC(iv_mod,  : 
+  could not find function ""linearHypothesis""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s22,IV,0.4,positive,1,1,1,0.8415,1.1038,0,,Opus,claude-opus-4-6
+s22,IV,0.4,positive,1,1,1,1.14811,1.8703,0,,Gemini,gemini-2.5-flash
+s23,IV,0.4,positive,1,1,0,,,0,"Error: object 'saragan_test' not found
+Execution halted",Kimi,moonshot-v1-128k
+s23,IV,0.4,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s23,IV,0.4,positive,1,1,1,0.07107621,0.8223,0,,GPT-4o,gpt-4o
+s23,IV,0.4,positive,1,1,1,0.193716,0.5157,0,,o3,o3
+s23,IV,0.4,positive,1,1,1,0.1937,0.5158,0,,Opus,claude-opus-4-6
+s23,IV,0.4,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s24,IV,-0.3,negative,1,1,0,,,0,"Error in pdata.frame(data, index = c(""id"", ""time"")) : 
+  variable 'id' does not exist (individual index)
+Calls: suppressMessages -> withCallingHandlers -> pdata.frame
+Execution halted",Kimi,moonshot-v1-128k
+s24,IV,-0.3,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s24,IV,-0.3,negative,1,1,1,-0.23283,0.2239,1,,GPT-4o,gpt-4o
+s24,IV,-0.3,negative,1,1,1,0.383672,2.2789,0,,o3,o3
+s24,IV,-0.3,negative,1,1,1,0.3837,2.279,0,,Opus,claude-opus-4-6
+s24,IV,-0.3,negative,1,1,1,0.38367,2.2789,0,,Gemini,gemini-2.5-flash
+s25,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var | treated, data = data, h = 0.3, kernel = ""triangular"",  : 
+  unused arguments (data = data, degree = 1)
+Calls: suppressMessages -> withCallingHandlers
+Execution halt",Kimi,moonshot-v1-128k
+s25,RDD,0.25,positive,1,1,0,,,0,"Error in round(pvalue, 4) : non-numeric argument to mathematical function
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s25,RDD,0.25,positive,1,1,1,1.0,3.0,0,,GPT-4o,gpt-4o
+s25,RDD,0.25,positive,1,1,1,0.2973277,0.1893,1,,o3,o3
+s25,RDD,0.25,positive,1,1,1,0.2973,0.1892,1,,Opus,claude-opus-4-6
+s25,RDD,0.25,positive,1,1,0,,,0,"Error in contrib.url(repos, ""source"") : 
+  trying to use CRAN without setting a mirror
+Calls: suppressMessages ... withCallingHandlers -> install.packages -> contrib.url
+Execution halted",Gemini,gemini-2.5-flash
+s26,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var, data = data, c = 0.5, h = 0.3, kernel = ""gaussian"",  : 
+  unused arguments (data = data, degree = 2, biasadj = TRUE)
+Calls: suppressMessages -> withCallingHandlers
+E",Kimi,moonshot-v1-128k
+s26,RDD,0.25,positive,1,1,1,0.2188,0.1248,1,,Sonnet,claude-sonnet-4-20250514
+s26,RDD,0.25,positive,1,1,1,1.0,3.0,0,,GPT-4o,gpt-4o
+s26,RDD,0.25,positive,1,1,0,,,0,"Error in rd_main$coef[1, 2] : subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s26,RDD,0.25,positive,1,1,1,0.1976572,0.2094,1,,Opus,claude-opus-4-6
+s26,RDD,0.25,positive,1,1,0,,,0,"Error in rdplot(y = data$y, x = data$running_var, c = cutoff, title = ""RDD Plot: College Enrollment by Test Score"",  : 
+  unused arguments (xlabel = ""Standardized Test Score"", ylabel = ""College Enroll",Gemini,gemini-2.5-flash
+s27,RDD,0.25,positive,1,1,0,,,0,"Error in rddensityplot(data$running_var, data$treated, c = 0.5, h = 0.05) : 
+  could not find function ""rddensityplot""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s27,RDD,0.25,positive,1,1,0,,,0,"Error in matrix(NA, n_B, o_B + 1) : 
+  invalid 'nrow' value (too large or NA)
+Calls: suppressMessages ... withCallingHandlers -> rdrobust -> rdrobust_bw -> matrix
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s27,RDD,0.25,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s27,RDD,0.25,positive,1,1,0,,,0,"Error in rd_main$Estimate[1, ""coef""] : subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s27,RDD,0.25,positive,1,1,1,0.1847,0.2612,1,,Opus,claude-opus-4-6
+s27,RDD,0.25,positive,1,1,0,,,0,"Error in rddensity(X = running_var, c = cutoff) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s28,RDD,-0.25,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s28,RDD,-0.25,negative,1,1,1,1.0,5.0,0,,Sonnet,claude-sonnet-4-20250514
+s28,RDD,-0.25,negative,1,1,1,1.0,5.0,0,,GPT-4o,gpt-4o
+s28,RDD,-0.25,negative,1,1,0,,,0,"Error in r_main$Estimate[1, ""tau_BC""] : subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s28,RDD,-0.25,negative,1,1,1,-0.2535,0.014,1,,Opus,claude-opus-4-6
+s28,RDD,-0.25,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s29,RDD,0.25,positive,1,1,0,,,0,"Error in loadNamespace(x) : there is no package called ‘rdd’
+Calls: suppressMessages ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted",Kimi,moonshot-v1-128k
+s29,RDD,0.25,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s29,RDD,0.25,positive,1,1,1,0.3442678,0.3771,1,,GPT-4o,gpt-4o
+s29,RDD,0.25,positive,1,1,1,0.3443,0.3772,1,,o3,o3
+s29,RDD,0.25,positive,1,0,0,,,0,,Opus,claude-opus-4-6
+s29,RDD,0.25,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s30,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(data$running_var, data$treated, data$y, c = 0.75, h = 0.1,  : 
+  unused arguments (degree = 1, bias = TRUE)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s30,RDD,0.25,positive,1,1,1,0.2212,0.1152,1,,Sonnet,claude-sonnet-4-20250514
+s30,RDD,0.25,positive,1,1,1,0.31995,0.2798,1,,GPT-4o,gpt-4o
+s30,RDD,0.25,positive,1,1,1,,,0,,o3,o3
+s30,RDD,0.25,positive,1,1,0,,,0,"Error in matrix(NA, n_B, o_B + 1) : 
+  invalid 'nrow' value (too large or NA)
+Calls: suppressMessages ... withCallingHandlers -> rdrobust -> rdrobust_bw -> matrix
+Execution halted",Opus,claude-opus-4-6
+s30,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(y = Y, x = R, c = 0, fuzzy = D, instrument = W) : 
+  unused argument (instrument = W)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s31,DID,-0.3,negative,1,1,1,0.115008,1.3834,0,,Kimi,moonshot-v1-128k
+s31,DID,-0.3,negative,1,1,1,-0.251343,0.1622,1,,Sonnet,claude-sonnet-4-20250514
+s31,DID,-0.3,negative,1,1,1,-0.2513435,0.1622,1,,GPT-4o,gpt-4o
+s31,DID,-0.3,negative,1,1,0,,,0,"Error: in feols(y ~ sunab(adopt_year, period_num) | unit_id...: 
+All variables, 'period_num::-3:cohort::4', 'period_num::-2:cohort::4' and 5
+others, are collinear with the fixed effects. Without doubt",o3,o3
+s31,DID,-0.3,negative,1,1,1,-0.2513,0.1623,1,,Opus,claude-opus-4-6
+s31,DID,-0.3,negative,1,1,0,,,0,"Error in round(did_pvalue, 4) : 
+  non-numeric argument to mathematical function
+Calls: suppressMessages -> withCallingHandlers -> cat -> paste0
+Execution halted",Gemini,gemini-2.5-flash
+s32,DID,0.25,positive,1,1,1,0.67621,1.7048,0,,Kimi,moonshot-v1-128k
+s32,DID,0.25,positive,1,1,1,0.3111,0.2444,1,,Sonnet,claude-sonnet-4-20250514
+s32,DID,0.25,positive,1,1,1,0.311092399999992,0.2444,1,,GPT-4o,gpt-4o
+s32,DID,0.25,positive,1,1,1,0.3111,0.2444,1,,o3,o3
+s32,DID,0.25,positive,1,1,1,0.3111,0.2444,1,,Opus,claude-opus-4-6
+s32,DID,0.25,positive,1,1,1,0.3110924,0.2444,1,,Gemini,gemini-2.5-flash
+s33,DID,-0.2,negative,1,1,1,-0.27914,0.3957,1,,Kimi,moonshot-v1-128k
+s33,DID,-0.2,negative,1,1,1,-0.27914,0.3957,1,,Sonnet,claude-sonnet-4-20250514
+s33,DID,-0.2,negative,1,1,1,0.8695268,5.3476,0,,GPT-4o,gpt-4o
+s33,DID,-0.2,negative,1,1,0,,,0,"Error: in feols(y ~ sunab(treated, rel_year, ref = -1) | un...: 
+Evaluation of the right-hand-side of the formula raises an error: 
+  In sunab(treated, rel_year, ref = -1): argument 3 matches multiple",o3,o3
+s33,DID,-0.2,negative,1,1,1,0.129335,1.6467,0,,Opus,claude-opus-4-6
+s33,DID,-0.2,negative,1,1,1,0.533271,3.6664,0,,Gemini,gemini-2.5-flash
+s34,DID,0.18,positive,1,1,1,0.564224,2.1346,0,,Kimi,moonshot-v1-128k
+s34,DID,0.18,positive,1,1,1,0.1539,0.145,1,,Sonnet,claude-sonnet-4-20250514
+s34,DID,0.18,positive,1,1,1,1.0,4.5556,0,,GPT-4o,gpt-4o
+s34,DID,0.18,positive,1,1,1,0.153932,0.1448,1,,o3,o3
+s34,DID,0.18,positive,1,1,1,0.1539,0.145,1,,Opus,claude-opus-4-6
+s34,DID,0.18,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s35,DID,-0.35,negative,1,1,0,,,0,"Error in x$terms : $ operator is invalid for atomic vectors
+Calls: suppressMessages ... model.matrix.default -> terms -> terms.default -> %||% -> %||%
+Execution halted",Kimi,moonshot-v1-128k
+s35,DID,-0.35,negative,1,1,1,-0.2905,0.17,1,,Sonnet,claude-sonnet-4-20250514
+s35,DID,-0.35,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s35,DID,-0.35,negative,1,1,0,,,0,"Error: in feols(y ~ sunab(treated, period) | unit_id + peri...: 
+Evaluation of the right-hand-side of the formula raises an error: 
+  dimension extent is '0' while length of names is '1'
+Execution hal",o3,o3
+s35,DID,-0.35,negative,1,1,1,-0.2905,0.17,1,,Opus,claude-opus-4-6
+s35,DID,-0.35,negative,1,1,1,-0.2905,0.17,1,,Gemini,gemini-2.5-flash
+s36,DID,0.22,positive,1,1,1,0.616545,1.8025,0,,Kimi,moonshot-v1-128k
+s36,DID,0.22,positive,1,1,1,0.2071,0.0586,1,,Sonnet,claude-sonnet-4-20250514
+s36,DID,0.22,positive,1,1,1,0.2070831,0.0587,1,,GPT-4o,gpt-4o
+s36,DID,0.22,positive,1,1,0,,,0,"Error in contrib.url(repos, ""source"") : 
+  trying to use CRAN without setting a mirror
+Calls: suppressMessages ... withCallingHandlers -> install.packages -> contrib.url
+Execution halted",o3,o3
+s36,DID,0.22,positive,1,1,1,0.550747,1.5034,0,,Opus,claude-opus-4-6
+s36,DID,0.22,positive,1,1,1,0.550747,1.5034,0,,Gemini,gemini-2.5-flash
+s37,DID,-0.15,negative,1,1,1,0.222978,2.4865,0,,Kimi,moonshot-v1-128k
+s37,DID,-0.15,negative,1,1,1,-0.181,0.2067,1,,Sonnet,claude-sonnet-4-20250514
+s37,DID,-0.15,negative,1,1,1,0.44924,3.9949,0,,GPT-4o,gpt-4o
+s37,DID,-0.15,negative,1,1,0,,,0,"Error in coeftest(did_naive, vcov. = vcovHC(did_naive, type = ""HC1"")) : 
+  could not find function ""coeftest""
+Calls: suppressMessages -> withCallingHandlers -> print
+Execution halted",o3,o3
+s37,DID,-0.15,negative,1,1,1,-0.181,0.2067,1,,Opus,claude-opus-4-6
+s37,DID,-0.15,negative,1,1,1,0.449236,3.9949,0,,Gemini,gemini-2.5-flash
+s38,DID,-0.2,negative,1,1,1,0.25744,2.2872,0,,Kimi,moonshot-v1-128k
+s38,DID,-0.2,negative,1,1,0,,,0,"Error in library(lfe) : there is no package called ‘lfe’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s38,DID,-0.2,negative,1,1,1,-0.161,0.195,1,,GPT-4o,gpt-4o
+s38,DID,-0.2,negative,1,1,0,,,0," ssc, forceCovariance = forceCovariance,  : 
+  To compute the Clustered VCOV, we need a variable for the clusters. Since you didn't provide it in the formula, we typically deduce it from a) the 'panel",o3,o3
+s38,DID,-0.2,negative,1,1,1,-0.1612,0.194,1,,Opus,claude-opus-4-6
+s38,DID,-0.2,negative,1,1,1,0.44001,3.2,0,,Gemini,gemini-2.5-flash
+s39,DID,0.15,positive,1,1,1,0.197254,0.315,1,,Kimi,moonshot-v1-128k
+s39,DID,0.15,positive,1,1,1,0.57785,2.8523,0,,Sonnet,claude-sonnet-4-20250514
+s39,DID,0.15,positive,1,1,1,0.1972537,0.315,1,,GPT-4o,gpt-4o
+s39,DID,0.15,positive,1,1,0,,,0,", ssc = ssc, forceCovariance = forceCovariance,  : 
+  To compute the Clustered VCOV, we need a variable for the clusters. Since you didn't provide it in the formula, we typically deduce it from a) the",o3,o3
+s39,DID,0.15,positive,1,1,1,0.1973,0.3153,1,,Opus,claude-opus-4-6
+s39,DID,0.15,positive,1,1,0,,,0,"Error in contrib.url(repos, ""source"") : 
+  trying to use CRAN without setting a mirror
+Calls: suppressMessages ... withCallingHandlers -> install.packages -> contrib.url
+Execution halted",Gemini,gemini-2.5-flash
+s40,DID,0.3,positive,1,1,1,0.760546,1.5352,0,,Kimi,moonshot-v1-128k
+s40,DID,0.3,positive,1,1,1,0.4505,0.5017,0,,Sonnet,claude-sonnet-4-20250514
+s40,DID,0.3,positive,1,1,1,0.4127509,0.3758,1,,GPT-4o,gpt-4o
+s40,DID,0.3,positive,1,1,0,,,0,"Error: in feols(y ~ sunab(treated, period) | unit_id + peri...: 
+Evaluation of the right-hand-side of the formula raises an error: 
+  dimension extent is '0' while length of names is '1'
+Execution hal",o3,o3
+s40,DID,0.3,positive,1,1,1,0.4128,0.376,1,,Opus,claude-opus-4-6
+s40,DID,0.3,positive,1,1,0,,,0,", ssc = ssc, forceCovariance = forceCovariance,  : 
+  To compute the Clustered VCOV, we need a variable for the clusters. Since you didn't provide it in the formula, we typically deduce it from a) the",Gemini,gemini-2.5-flash
+s41,DID,-0.1,negative,1,1,1,0.27122,3.7122,0,,Kimi,moonshot-v1-128k
+s41,DID,-0.1,negative,1,1,0,,,0,"Error in sprintf(""Interpretation: The ACA mandate %.4f log premium points\n"",  : 
+  invalid format '%.4f'; use format %s for character objects
+Calls: suppressMessages -> withCallingHandlers -> cat -> ",Sonnet,claude-sonnet-4-20250514
+s41,DID,-0.1,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s41,DID,-0.1,negative,1,1,0,,,0,"Error in contrib.url(repos, ""source"") : 
+  trying to use CRAN without setting a mirror
+Calls: suppressMessages ... withCallingHandlers -> install.packages -> contrib.url
+Execution halted",o3,o3
+s41,DID,-0.1,negative,1,1,1,-0.0847,0.153,1,,Opus,claude-opus-4-6
+s41,DID,-0.1,negative,1,1,0,,,0,"Error in etable(model_did_ols, se.type = ""robust"") : 
+  The second element of '...' (named 'se.type') is not valid: it should be a fixest object or a list of fixest objects, it is neither.
+Calls: supp",Gemini,gemini-2.5-flash
+s42,DID,0.2,positive,1,1,1,0.673488,2.3674,0,,Kimi,moonshot-v1-128k
+s42,DID,0.2,positive,1,1,1,0.35472267,0.7736,0,,Sonnet,claude-sonnet-4-20250514
+s42,DID,0.2,positive,1,1,1,0.182152,0.0892,1,,GPT-4o,gpt-4o
+s42,DID,0.2,positive,1,1,0,,,0,"Error in cat(""95% CI: "", round(confint(did_twfe, ""treat_x_post""), 4),  : 
+  argument 2 (type 'list') cannot be handled by 'cat'
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",o3,o3
+s42,DID,0.2,positive,1,1,0,,,0,"Error: in feols(y ~ i(period, treated, ref = max(df$period[...: 
+The variable 'df' is in the RHS (first part) of the formula but not in the
+data set.
+Execution halted",Opus,claude-opus-4-6
+s42,DID,0.2,positive,1,1,1,0.1822,0.089,1,,Gemini,gemini-2.5-flash
+s43,DID,-0.25,negative,1,1,1,0.118652,1.4746,0,,Kimi,moonshot-v1-128k
+s43,DID,-0.25,negative,1,1,1,-0.1883,0.2468,1,,Sonnet,claude-sonnet-4-20250514
+s43,DID,-0.25,negative,1,1,1,-0.188,0.248,1,,GPT-4o,gpt-4o
+s43,DID,-0.25,negative,1,1,0,,,0,"Error in etable(event_mod, se.bare = ""cluster"") : 
+  The second element of '...' (named 'se.bare') is not valid: it should be a fixest object or a list of fixest objects, it is neither.
+Calls: suppres",o3,o3
+s43,DID,-0.25,negative,1,1,1,-0.1883,0.2468,1,,Opus,claude-opus-4-6
+s43,DID,-0.25,negative,1,1,1,-0.1882721,0.2469,1,,Gemini,gemini-2.5-flash
+s44,DID,0.12,positive,1,1,0,,,0,"Error in coef(did_model)[""treat_x_post"", 1] : 
+  incorrect number of dimensions
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s44,DID,0.12,positive,1,1,1,0.1433,0.1942,1,,Sonnet,claude-sonnet-4-20250514
+s44,DID,0.12,positive,1,1,1,0.42567,2.5473,0,,GPT-4o,gpt-4o
+s44,DID,0.12,positive,1,1,0,,,0,"Error: in feols(y ~ treat_x_post | unit_id + period, data =...: 
+The only variable, 'treat_x_post', is collinear with the fixed effects.
+Without doubt, your model is misspecified.
+Execution halted",o3,o3
+s44,DID,0.12,positive,1,1,1,0.1433,0.1942,1,,Opus,claude-opus-4-6
+s44,DID,0.12,positive,1,1,1,0.1432542,0.1938,1,,Gemini,gemini-2.5-flash
+s45,DID,-0.12,negative,1,1,1,0.216644,2.8054,0,,Kimi,moonshot-v1-128k
+s45,DID,-0.12,negative,1,1,0,,,0,"Error: in feols(y ~ treat_x_post + treated + post | unit_id...: 
+You cannot use the argument 'vcov' in combination with 'cluster'.
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s45,DID,-0.12,negative,1,1,1,-0.2786443,1.322,0,,GPT-4o,gpt-4o
+s45,DID,-0.12,negative,1,1,0,,,0,"Error: in feols(y ~ faux_int | unit_id + period, data = dat...: 
+The data set contains 0 observation: the estimation cannot be done.
+Execution halted",o3,o3
+s45,DID,-0.12,negative,1,1,1,-0.2786,1.3217,0,,Opus,claude-opus-4-6
+s45,DID,-0.12,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s46,DID,0.08,positive,1,1,1,0.30449,2.8061,0,,Kimi,moonshot-v1-128k
+s46,DID,0.08,positive,1,1,0,,,0,"Error in library(lfe) : there is no package called ‘lfe’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s46,DID,0.08,positive,1,1,1,-0.428118,6.3515,0,,GPT-4o,gpt-4o
+s46,DID,0.08,positive,1,1,1,-0.1789,3.2363,0,,o3,o3
+s46,DID,0.08,positive,1,1,1,-0.1789,3.2363,0,,Opus,claude-opus-4-6
+s46,DID,0.08,positive,1,1,1,,,0,,Gemini,gemini-2.5-flash
+s47,DID,-0.18,negative,1,1,1,-0.251963,0.3998,1,,Kimi,moonshot-v1-128k
+s47,DID,-0.18,negative,1,1,0,,,0,"Error: in feols(y ~ placebo_interact | unit_id + period, da...: 
+The only variable, 'placebo_interact', is collinear with the fixed effects.
+Without doubt, your model is misspecified.
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s47,DID,-0.18,negative,1,1,1,1.0,6.5556,0,,GPT-4o,gpt-4o
+s47,DID,-0.18,negative,1,1,1,,,0,,o3,o3
+s47,DID,-0.18,negative,1,1,1,-0.252,0.4,1,,Opus,claude-opus-4-6
+s47,DID,-0.18,negative,1,1,0,,,0,"Error in etable(model_did_fe, model_ols_did, headers = list(`DID with FE` = ""model_did_fe"",  : 
+  The second element of '...' is not valid: it should be a fixest object or a list of fixest objects, it",Gemini,gemini-2.5-flash
+s48,DID,0.1,positive,1,1,1,0.4128588,3.1286,0,,Kimi,moonshot-v1-128k
+s48,DID,0.1,positive,1,1,1,0.3114,2.114,0,,Sonnet,claude-sonnet-4-20250514
+s48,DID,0.1,positive,1,1,1,0.39045,2.9045,0,,GPT-4o,gpt-4o
+s48,DID,0.1,positive,1,1,0,,,0,"Error: in feols(leadlag_fml, data = df, cluster = ""unit_id""): 
+The variable 'D' is in the RHS (first part) of the formula but not in the
+data set.
+Maybe you meant: `D-3`, `D-2`, `D-1`, `D0`, `D1`, `D2",o3,o3
+s48,DID,0.1,positive,1,1,1,0.3113586,2.1136,0,,Opus,claude-opus-4-6
+s48,DID,0.1,positive,1,1,1,0.3114,2.114,0,,Gemini,gemini-2.5-flash
+s49,DID,-0.15,negative,1,1,1,0.366824,3.4455,0,,Kimi,moonshot-v1-128k
+s49,DID,-0.15,negative,1,1,1,0.380923,3.5395,0,,Sonnet,claude-sonnet-4-20250514
+s49,DID,-0.15,negative,1,1,1,1.0,7.6667,0,,GPT-4o,gpt-4o
+s49,DID,-0.15,negative,1,1,0,,,0,"Error: in feols(y ~ treated * post | unit_id + period + i(u...: 
+The fixed-effects part of the formula (unit_id + per..) is not valid:
+
+  The function i() should not be used in the fixed-effects part ",o3,o3
+s49,DID,-0.15,negative,1,1,1,-0.0306,0.796,0,,Opus,claude-opus-4-6
+s49,DID,-0.15,negative,1,1,0,,,0,"Error: 'coef' is not an exported object from 'namespace:fixest'
+Execution halted",Gemini,gemini-2.5-flash
+s50,DID,0.25,positive,1,1,1,0.703571,1.8143,0,,Kimi,moonshot-v1-128k
+s50,DID,0.25,positive,1,1,1,0.4062,0.6248,0,,Sonnet,claude-sonnet-4-20250514
+s50,DID,0.25,positive,1,1,1,0.848954,2.3958,0,,GPT-4o,gpt-4o
+s50,DID,0.25,positive,1,1,0,,,0,"Error in Math.data.frame(list(Model = c(""Simple"", ""TWFE"", ""Trend FE"",  : 
+  non-numeric-alike variable(s) in data frame: Model
+Calls: suppressMessages -> withCallingHandlers -> print -> Math.data.fram",o3,o3
+s50,DID,0.25,positive,1,1,1,0.4062,0.6248,0,,Opus,claude-opus-4-6
+s50,DID,0.25,positive,1,1,1,0.4062,0.6248,0,,Gemini,gemini-2.5-flash
+s51,EVENT_STUDY,-0.02,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s51,EVENT_STUDY,-0.02,negative,1,1,1,-0.0536,1.68,0,,Sonnet,claude-sonnet-4-20250514
+s51,EVENT_STUDY,-0.02,negative,1,1,1,-1.0,49.0,0,,GPT-4o,gpt-4o
+s51,EVENT_STUDY,-0.02,negative,1,1,1,-1.7827,88.135,0,,o3,o3
+s51,EVENT_STUDY,-0.02,negative,1,1,1,-0.0324,0.62,0,,Opus,claude-opus-4-6
+s51,EVENT_STUDY,-0.02,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s52,EVENT_STUDY,0.025,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s52,EVENT_STUDY,0.025,positive,1,1,0,,,0,"│     └─base::lapply(.x, .f, ...)
+ 10. │       └─dplyr (local) FUN(X[[i]], ...)
+ 11. │         └─mask$eval_all_summarise(quo)
+ 12. │           └─dplyr (local) eval()
+ 13. ├─stats::lm(ret ~ mkt_ret)
+ 1",Sonnet,claude-sonnet-4-20250514
+s52,EVENT_STUDY,0.025,positive,1,1,0,,,0,"Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...) : 
+  0 (non-NA) cases
+Calls: suppressMessages ... eval_tidy -> calculate_abnormal_returns -> lm -> lm.fit
+Execution halted",GPT-4o,gpt-4o
+s52,EVENT_STUDY,0.025,positive,1,1,0,,,0,"Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...) : 
+  0 (non-NA) cases
+Calls: suppressMessages ... do -> do.grouped_df -> eval_tidy -> tidy -> lm -> lm.fit
+Execution halted",o3,o3
+s52,EVENT_STUDY,0.025,positive,1,1,1,0.0507,1.028,0,,Opus,claude-opus-4-6
+s52,EVENT_STUDY,0.025,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s53,EVENT_STUDY,-0.03,negative,1,1,0,,,0,"Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : 
+  contrasts can be applied only to factors with 2 or more levels
+Calls: suppressMessages ... model.matrix -> model.matrix.default -",Kimi,moonshot-v1-128k
+s53,EVENT_STUDY,-0.03,negative,1,1,1,-1.0,32.3333,0,,Sonnet,claude-sonnet-4-20250514
+s53,EVENT_STUDY,-0.03,negative,1,1,0,,,0,". │   └─dplyr:::mutate_col(dots[[i]], data, mask, new_columns)
+  9. │     └─mask$eval_all_mutate(quo)
+ 10. │       └─dplyr (local) eval()
+ 11. ├─dplyr:::dplyr_internal_error(...)
+ 12. │ └─rlang::abort",GPT-4o,gpt-4o
+s53,EVENT_STUDY,-0.03,negative,1,1,1,-1.0,32.3333,0,,o3,o3
+s53,EVENT_STUDY,-0.03,negative,1,1,1,-0.027325,0.0892,1,,Opus,claude-opus-4-6
+s53,EVENT_STUDY,-0.03,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s54,EVENT_STUDY,0.018,positive,1,1,1,0.45733,24.4072,0,,Kimi,moonshot-v1-128k
+s54,EVENT_STUDY,0.018,positive,1,1,1,0.0164,0.0889,1,,Sonnet,claude-sonnet-4-20250514
+s54,EVENT_STUDY,0.018,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s54,EVENT_STUDY,0.018,positive,1,1,1,-1.0,56.5556,0,,o3,o3
+s54,EVENT_STUDY,0.018,positive,1,1,1,0.0367,1.0389,0,,Opus,claude-opus-4-6
+s54,EVENT_STUDY,0.018,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s55,EVENT_STUDY,-0.028,negative,1,1,0,,,0,"Error in model.frame.default(formula = car ~ event_day, data = data %>%  : 
+  invalid type (list) for variable 'car'
+Calls: suppressMessages ... lm -> eval -> eval -> <Anonymous> -> model.frame.defaul",Kimi,moonshot-v1-128k
+s55,EVENT_STUDY,-0.028,negative,1,1,1,-0.087,2.1071,0,,Sonnet,claude-sonnet-4-20250514
+s55,EVENT_STUDY,-0.028,negative,1,1,1,-0.0051,0.8179,0,,GPT-4o,gpt-4o
+s55,EVENT_STUDY,-0.028,negative,1,1,1,-0.0591,1.1107,0,,o3,o3
+s55,EVENT_STUDY,-0.028,negative,1,1,1,-1.0,34.7143,0,,Opus,claude-opus-4-6
+s55,EVENT_STUDY,-0.028,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s56,EVENT_STUDY,0.022,positive,1,1,0,,,0,"Error in x$event_day : $ operator is invalid for atomic vectors
+Calls: suppressMessages ... withCallingHandlers -> ave -> lapply -> FUN -> mean
+Execution halted",Kimi,moonshot-v1-128k
+s56,EVENT_STUDY,0.022,positive,1,1,1,0.529,23.0455,0,,Sonnet,claude-sonnet-4-20250514
+s56,EVENT_STUDY,0.022,positive,1,1,0,,,0,", value = `<dbl[,80]>`)
+  4. ├─tibble:::`$<-.tbl_df`(`*tmp*`, ar, value = `<dbl[,80]>`)
+  5. │ └─tibble:::tbl_subassign(...)
+  6. │   └─tibble:::vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = N",GPT-4o,gpt-4o
+s56,EVENT_STUDY,0.022,positive,1,1,1,,,0,,o3,o3
+s56,EVENT_STUDY,0.022,positive,1,1,1,-1.0,46.4545,0,,Opus,claude-opus-4-6
+s56,EVENT_STUDY,0.022,positive,1,1,1,-1.0,46.4545,0,,Gemini,gemini-2.5-flash
+s57,EVENT_STUDY,-0.015,negative,1,1,0,,,0,"ta, mask, new_columns)
+  9. │     └─mask$eval_all_mutate(quo)
+ 10. │       └─dplyr (local) eval()
+ 11. ├─dplyr:::dplyr_internal_error(""dplyr:::mutate_not_vector"", `<named list>`)
+ 12. │ └─rlang::abort",Kimi,moonshot-v1-128k
+s57,EVENT_STUDY,-0.015,negative,1,1,1,-1.552,102.4667,0,,Sonnet,claude-sonnet-4-20250514
+s57,EVENT_STUDY,-0.015,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s57,EVENT_STUDY,-0.015,negative,1,1,1,-1.0,65.6667,0,,o3,o3
+s57,EVENT_STUDY,-0.015,negative,1,1,1,-0.0334,1.2267,0,,Opus,claude-opus-4-6
+s57,EVENT_STUDY,-0.015,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s58,EVENT_STUDY,-0.025,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s58,EVENT_STUDY,-0.025,negative,1,1,0,,,0,"│     └─base::lapply(.x, .f, ...)
+ 10. │       └─dplyr (local) FUN(X[[i]], ...)
+ 11. │         └─mask$eval_all_summarise(quo)
+ 12. │           └─dplyr (local) eval()
+ 13. ├─stats::lm(ret ~ mkt_ret)
+ 1",Sonnet,claude-sonnet-4-20250514
+s58,EVENT_STUDY,-0.025,negative,1,1,1,1.0,41.0,0,,GPT-4o,gpt-4o
+s58,EVENT_STUDY,-0.025,negative,1,1,1,0.0301,2.204,0,,o3,o3
+s58,EVENT_STUDY,-0.025,negative,1,1,1,-0.025362,0.0145,1,,Opus,claude-opus-4-6
+s58,EVENT_STUDY,-0.025,negative,1,1,1,-0.024024,0.039,1,,Gemini,gemini-2.5-flash
+s59,EVENT_STUDY,0.03,positive,1,1,0,,,0,"Error in eval(predvars, data, env) : object 'event_day' not found
+Calls: suppressMessages ... eval -> <Anonymous> -> model.frame.default -> eval -> eval
+Execution halted",Kimi,moonshot-v1-128k
+s59,EVENT_STUDY,0.03,positive,1,1,1,0.0575,0.9167,0,,Sonnet,claude-sonnet-4-20250514
+s59,EVENT_STUDY,0.03,positive,1,1,1,-1.0,34.3333,0,,GPT-4o,gpt-4o
+s59,EVENT_STUDY,0.03,positive,1,1,1,,,0,,o3,o3
+s59,EVENT_STUDY,0.03,positive,1,1,1,-0.0006,1.02,0,,Opus,claude-opus-4-6
+s59,EVENT_STUDY,0.03,positive,1,1,1,,,0,,Gemini,gemini-2.5-flash
+s60,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"Error in aggregate.data.frame(lhs, mf[-1L], FUN = FUN, ...) : 
+  no rows to aggregate
+Calls: suppressMessages ... aggregate -> aggregate.formula -> aggregate.data.frame
+Execution halted",Kimi,moonshot-v1-128k
+s60,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"Error in cat(""Cumulative Abnormal Return on Event Day (0):"", round(event_day_0_car *  : 
+  argument 2 (type 'list') cannot be handled by 'cat'
+Calls: suppressMessages -> withCallingHandlers -> cat
+Exe",Sonnet,claude-sonnet-4-20250514
+s60,EVENT_STUDY,-0.02,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s60,EVENT_STUDY,-0.02,negative,1,1,0,,,0,"Error in beta[match(stock_id, df$stock_id[df$event_day == 0])] : 
+  object of type 'closure' is not subsettable
+Calls: suppressMessages ... model.frame.default -> eval -> eval -> I -> unique.default
+E",o3,o3
+s60,EVENT_STUDY,-0.02,negative,1,1,1,-0.04176,1.088,0,,Opus,claude-opus-4-6
+s60,EVENT_STUDY,-0.02,negative,1,1,1,1.0,51.0,0,,Gemini,gemini-2.5-flash
+s61,EVENT_STUDY,0.018,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s61,EVENT_STUDY,0.018,positive,1,1,1,0.0321,0.7833,0,,Sonnet,claude-sonnet-4-20250514
+s61,EVENT_STUDY,0.018,positive,1,1,1,0.1789554,8.942,0,,GPT-4o,gpt-4o
+s61,EVENT_STUDY,0.018,positive,1,1,0,,,0,"Error in coeftest(reg, vcov = se_clust)[""treat"", ] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers -> print
+Execution halted",o3,o3
+s61,EVENT_STUDY,0.018,positive,1,1,1,0.0364,1.0222,0,,Opus,claude-opus-4-6
+s61,EVENT_STUDY,0.018,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s62,EVENT_STUDY,-0.018,negative,1,1,0,,,0,"Error in market_models[[stock_id]] : recursive indexing failed at level 3
+Calls: suppressMessages ... withCallingHandlers -> with -> with.default -> eval -> eval -> predict
+Execution halted",Kimi,moonshot-v1-128k
+s62,EVENT_STUDY,-0.018,negative,1,1,1,-0.0476,1.6444,0,,Sonnet,claude-sonnet-4-20250514
+s62,EVENT_STUDY,-0.018,negative,1,1,1,0.006807347,1.3782,0,,GPT-4o,gpt-4o
+s62,EVENT_STUDY,-0.018,negative,1,1,1,,,0,,o3,o3
+s62,EVENT_STUDY,-0.018,negative,1,1,1,-0.0476,1.6444,0,,Opus,claude-opus-4-6
+s62,EVENT_STUDY,-0.018,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s63,EVENT_STUDY,0.015,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s63,EVENT_STUDY,0.015,positive,1,1,1,0.0174,0.16,1,,Sonnet,claude-sonnet-4-20250514
+s63,EVENT_STUDY,0.015,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s63,EVENT_STUDY,0.015,positive,1,1,0,,,0,"Error: in feols(fmla, data = dt, cluster = ""stock_id""): 
+The variable 'D' is in the RHS of the formula but not in the data set.
+Maybe you meant: `D-5`, `D-4`, `D-3`, `D-2`, `D-1`, `D0`, `D1`, `D2`, `D",o3,o3
+s63,EVENT_STUDY,0.015,positive,1,1,1,0.0299,0.9933,0,,Opus,claude-opus-4-6
+s63,EVENT_STUDY,0.015,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s64,EVENT_STUDY,-0.022,negative,1,1,0,,,0,"Error in `$<-.data.frame`(`*tmp*`, car, value = c(NA, 0.0248463429, 0.0115751236,  : 
+  replacement has 1261 rows, data has 1260
+Calls: suppressMessages -> withCallingHandlers -> $<- -> $<-.data.frame",Kimi,moonshot-v1-128k
+s64,EVENT_STUDY,-0.022,negative,1,1,1,-0.0918,3.1727,0,,Sonnet,claude-sonnet-4-20250514
+s64,EVENT_STUDY,-0.022,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s64,EVENT_STUDY,-0.022,negative,1,1,0,,,0,"Error in pivot_wider(., names_from = term, values_from = estimate) : 
+  could not find function ""pivot_wider""
+Calls: suppressMessages -> withCallingHandlers -> %>% -> rename
+Execution halted",o3,o3
+s64,EVENT_STUDY,-0.022,negative,1,1,1,1.0,46.4545,0,,Opus,claude-opus-4-6
+s64,EVENT_STUDY,-0.022,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s65,EVENT_STUDY,0.028,positive,1,1,0,,,0,"Error in covHC(residuals, method = ""HC1"") : 
+  could not find function ""covHC""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s65,EVENT_STUDY,0.028,positive,1,1,1,0.016,0.4286,1,,Sonnet,claude-sonnet-4-20250514
+s65,EVENT_STUDY,0.028,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s65,EVENT_STUDY,0.028,positive,1,1,1,-1.0,36.7143,0,,o3,o3
+s65,EVENT_STUDY,0.028,positive,1,1,1,0.02075,0.2589,1,,Opus,claude-opus-4-6
+s65,EVENT_STUDY,0.028,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s66,EVENT_STUDY,-0.012,negative,1,1,0,,,0,"Error in rowSums(event_data$ar - event_data$ar.x) : 
+  'x' must be an array of at least two dimensions
+Calls: suppressMessages -> withCallingHandlers -> rowSums
+Execution halted",Kimi,moonshot-v1-128k
+s66,EVENT_STUDY,-0.012,negative,1,1,1,-0.0338,1.8167,0,,Sonnet,claude-sonnet-4-20250514
+s66,EVENT_STUDY,-0.012,negative,1,1,1,-0.06820738,4.6839,0,,GPT-4o,gpt-4o
+s66,EVENT_STUDY,-0.012,negative,1,1,1,,,0,,o3,o3
+s66,EVENT_STUDY,-0.012,negative,1,1,1,-0.0074,0.3833,1,,Opus,claude-opus-4-6
+s66,EVENT_STUDY,-0.012,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s67,IV,0.4,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s67,IV,0.4,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s67,IV,0.4,positive,1,1,1,0.4872382,0.2181,1,,GPT-4o,gpt-4o
+s67,IV,0.4,positive,1,1,1,0.487,0.2175,1,,o3,o3
+s67,IV,0.4,positive,1,1,1,0.4872,0.218,1,,Opus,claude-opus-4-6
+s67,IV,0.4,positive,1,1,1,1.0,1.5,0,,Gemini,gemini-2.5-flash
+s68,IV,-0.35,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s68,IV,-0.35,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s68,IV,-0.35,negative,1,1,1,-0.4347463,0.2421,1,,GPT-4o,gpt-4o
+s68,IV,-0.35,negative,1,1,1,0.376855,2.0767,0,,o3,o3
+s68,IV,-0.35,negative,1,1,1,-0.4347,0.242,1,,Opus,claude-opus-4-6
+s68,IV,-0.35,negative,1,1,1,-0.434746,0.2421,1,,Gemini,gemini-2.5-flash
+s69,IV,0.3,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s69,IV,0.3,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s69,IV,0.3,positive,1,1,1,1.0,2.3333,0,,GPT-4o,gpt-4o
+s69,IV,0.3,positive,1,1,1,0.4053975,0.3513,1,,o3,o3
+s69,IV,0.3,positive,1,1,1,0.3954,0.318,1,,Opus,claude-opus-4-6
+s69,IV,0.3,positive,1,1,0,,,0,"Error in summary(iv_model, diagnostics = TRUE)$diagnostics[1, ""F-Statistic""] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s70,IV,-0.25,negative,1,1,0,,,0,"Error in overid(second_stage, first_stage) : 
+  could not find function ""overid""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s70,IV,-0.25,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s70,IV,-0.25,negative,1,1,1,-0.2924272,0.1697,1,,GPT-4o,gpt-4o
+s70,IV,-0.25,negative,1,1,1,,,0,,o3,o3
+s70,IV,-0.25,negative,1,1,1,-0.2924,0.1696,1,,Opus,claude-opus-4-6
+s70,IV,-0.25,negative,1,1,1,0.3937,2.5748,0,,Gemini,gemini-2.5-flash
+s71,IV,0.45,positive,1,1,0,,,0,"Error in bptest(second_stage, ~predict(first_stage) + controls, data = data,  : 
+  formal argument ""data"" matched by multiple actual arguments
+Calls: suppressMessages -> withCallingHandlers
+Execution ",Kimi,moonshot-v1-128k
+s71,IV,0.45,positive,1,1,1,0.5117,0.1371,1,,Sonnet,claude-sonnet-4-20250514
+s71,IV,0.45,positive,1,1,1,0.51174554,0.1372,1,,GPT-4o,gpt-4o
+s71,IV,0.45,positive,1,1,1,,,0,,o3,o3
+s71,IV,0.45,positive,1,1,1,0.5117455,0.1372,1,,Opus,claude-opus-4-6
+s71,IV,0.45,positive,1,1,0,,,0,"Error in if (!is.na(weak_instrument_fstat)) { : 
+  argument is of length zero
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s72,IV,-0.4,negative,1,1,0,,,0,"Error in areg(x ~ z + controls, data = data, absorb = ""id"") : 
+  could not find function ""areg""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s72,IV,-0.4,negative,1,1,1,0.304,1.76,0,,Sonnet,claude-sonnet-4-20250514
+s72,IV,-0.4,negative,1,1,1,-0.4692516,0.1731,1,,GPT-4o,gpt-4o
+s72,IV,-0.4,negative,1,1,0,,,0,"Error in match.arg(test) : 'arg' should be one of “Chisq”, “F”
+Calls: suppressMessages ... linearHypothesis -> linearHypothesis.default -> match.arg
+Execution halted",o3,o3
+s72,IV,-0.4,negative,1,1,1,-0.4693,0.1732,1,,Opus,claude-opus-4-6
+s72,IV,-0.4,negative,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s73,IV,0.35,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s73,IV,0.35,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s73,IV,0.35,positive,1,1,1,0.4122,0.1777,1,,GPT-4o,gpt-4o
+s73,IV,0.35,positive,1,1,0,,,0,"Error in anova.ivreg(iv, diagnostics = TRUE) : 
+  argument ""object2"" is missing, with no default
+Calls: suppressMessages ... anova -> anova.ivreg -> waldtest -> waldtest.default
+Execution halted",o3,o3
+s73,IV,0.35,positive,1,1,1,0.2203,0.3706,1,,Opus,claude-opus-4-6
+s73,IV,0.35,positive,1,1,1,0.412201,0.1777,1,,Gemini,gemini-2.5-flash
+s74,IV,-0.3,negative,1,1,0,,,0,"Error in constants(lhs, cnames_symb) : 
+  The hypothesis ""z = 0"" is not well formed: contains bad coefficient/variable names.
+Calls: suppressMessages ... linearHypothesis.default -> makeHypothesis -> ",Kimi,moonshot-v1-128k
+s74,IV,-0.3,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s74,IV,-0.3,negative,1,1,0,,,0,"Error in phtest(iv_model, lm(y ~ x + controls, data = data)) : 
+  could not find function ""phtest""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",GPT-4o,gpt-4o
+s74,IV,-0.3,negative,1,1,1,0.3843,2.281,0,,o3,o3
+s74,IV,-0.3,negative,1,1,1,-0.1539,0.487,1,,Opus,claude-opus-4-6
+s74,IV,-0.3,negative,1,1,1,0.0692871449220491,1.231,0,,Gemini,gemini-2.5-flash
+s75,IV,0.25,positive,1,1,0,,,0,"Error in library(clubSandwich) : 
+  there is no package called ‘clubSandwich’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Kimi,moonshot-v1-128k
+s75,IV,0.25,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s75,IV,0.25,positive,1,1,1,0.449853,0.7994,0,,GPT-4o,gpt-4o
+s75,IV,0.25,positive,1,1,1,0.4498533,0.7994,0,,o3,o3
+s75,IV,0.25,positive,1,1,0,,,0,"Error in summary(balance_test)$coefficients[""z"", ""Pvalue""] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",Opus,claude-opus-4-6
+s75,IV,0.25,positive,1,1,0,,,0,"Error in se(iv_model) : could not find function ""se""
+Calls: suppressMessages -> withCallingHandlers -> cat -> sprintf
+Execution halted",Gemini,gemini-2.5-flash
+s76,IV,-0.2,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s76,IV,-0.2,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s76,IV,-0.2,negative,1,1,1,-0.1936427,0.0318,1,,GPT-4o,gpt-4o
+s76,IV,-0.2,negative,1,1,1,,,0,,o3,o3
+s76,IV,-0.2,negative,1,1,1,-0.1936427,0.0318,1,,Opus,claude-opus-4-6
+s76,IV,-0.2,negative,1,1,0,,,0,"Error in contrib.url(repos, ""source"") : 
+  trying to use CRAN without setting a mirror
+Calls: suppressMessages ... withCallingHandlers -> install.packages -> contrib.url
+Execution halted",Gemini,gemini-2.5-flash
+s77,IV,0.5,positive,1,1,0,,,0,"Error in bptest(second_stage, ~predicted_x + controls, data = data, order.by = ""fitted"") : 
+  unused argument (order.by = ""fitted"")
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s77,IV,0.5,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s77,IV,0.5,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s77,IV,0.5,positive,1,1,0,,,0,"Error in first_stage$diagnostics : 
+  $ operator is invalid for atomic vectors
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",o3,o3
+s77,IV,0.5,positive,1,1,1,0.6373,0.2746,1,,Opus,claude-opus-4-6
+s77,IV,0.5,positive,1,1,1,0.6373,0.2746,1,,Gemini,gemini-2.5-flash
+s78,IV,-0.45,negative,1,1,0,,,0,"Error in x$terms : $ operator is invalid for atomic vectors
+Calls: suppressMessages ... model.matrix.default -> terms -> terms.default -> %||% -> %||%
+Execution halted",Kimi,moonshot-v1-128k
+s78,IV,-0.45,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s78,IV,-0.45,negative,1,1,1,-0.314225,0.3017,1,,GPT-4o,gpt-4o
+s78,IV,-0.45,negative,1,1,0,,,0,"Error in fs$diagnostics[""weak"", ] : subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers -> print
+Execution halted",o3,o3
+s78,IV,-0.45,negative,1,1,1,-0.3142,0.3018,1,,Opus,claude-opus-4-6
+s78,IV,-0.45,negative,1,1,1,0.315128,1.7003,0,,Gemini,gemini-2.5-flash
+s79,IV,0.2,positive,1,1,0,,,0,"Error in bptest(second_stage, ~predict(first_stage) + controls, data = data,  : 
+  unused argument (order.by = ""nw"")
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s79,IV,0.2,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s79,IV,0.2,positive,1,1,1,0.166640871067737,0.1668,1,,GPT-4o,gpt-4o
+s79,IV,0.2,positive,1,1,1,1.024525,4.1226,0,,o3,o3
+s79,IV,0.2,positive,1,1,1,0.2292,0.146,1,,Opus,claude-opus-4-6
+s79,IV,0.2,positive,1,1,0,,,0,"Error in iv_diag[""Weak instrument"", ""F-Statistic""] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s80,IV,-0.15,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s80,IV,-0.15,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s80,IV,-0.15,negative,1,1,0,,,0,"Error in array(x, c(length(x), 1L), if (!is.null(names(x))) list(names(x),  : 
+  'data' must be of a vector type, was 'NULL'
+Calls: suppressMessages ... sargan_test -> as.matrix -> as.matrix.default -",GPT-4o,gpt-4o
+s80,IV,-0.15,negative,1,1,1,0.5813,4.8753,0,,o3,o3
+s80,IV,-0.15,negative,1,1,1,-0.3029,1.0193,0,,Opus,claude-opus-4-6
+s80,IV,-0.15,negative,1,1,0,,,0,"Error in summary_iv$diagnostics[""Weak instrument test"", ""statistic""] : 
+  subscript out of bounds
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Gemini,gemini-2.5-flash
+s81,IV,0.3,positive,1,1,0,,,0,"Error in coeftest(second_stage, vcovHC(first_stage, type = ""HC1""), se = TRUE)$estimate : 
+  $ operator is invalid for atomic vectors
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s81,IV,0.3,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s81,IV,0.3,positive,1,1,1,,,0,,GPT-4o,gpt-4o
+s81,IV,0.3,positive,1,1,1,0.3877025,0.2923,1,,o3,o3
+s81,IV,0.3,positive,1,1,1,0.3877025,0.2923,1,,Opus,claude-opus-4-6
+s81,IV,0.3,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s82,IV,-0.25,negative,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s82,IV,-0.25,negative,1,1,1,0.003635,1.0145,0,,Sonnet,claude-sonnet-4-20250514
+s82,IV,-0.25,negative,1,1,1,0.0036345,1.0145,0,,GPT-4o,gpt-4o
+s82,IV,-0.25,negative,1,1,1,,,0,,o3,o3
+s82,IV,-0.25,negative,1,1,1,0.0036,1.0144,0,,Opus,claude-opus-4-6
+s82,IV,-0.25,negative,1,1,1,0.4672,2.8688,0,,Gemini,gemini-2.5-flash
+s83,IV,0.15,positive,1,1,0,,,0,"Error: unexpected ',' in:
+""library(AER)
+estat_overid,""
+Execution halted",Kimi,moonshot-v1-128k
+s83,IV,0.15,positive,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s83,IV,0.15,positive,1,1,1,0.08307,0.4462,1,,GPT-4o,gpt-4o
+s83,IV,0.15,positive,1,1,1,,,0,,o3,o3
+s83,IV,0.15,positive,1,1,1,0.8926,4.9507,0,,Opus,claude-opus-4-6
+s83,IV,0.15,positive,1,1,1,0.892577,4.9505,0,,Gemini,gemini-2.5-flash
+s84,IV,-0.35,negative,1,1,0,,,0,"Error in vif.default(data = data, model = ivreg(y ~ x | z + controls,  : 
+  argument ""mod"" is missing, with no default
+Calls: suppressMessages -> withCallingHandlers -> vif -> vif.default -> coef
+Exec",Kimi,moonshot-v1-128k
+s84,IV,-0.35,negative,1,1,0,,,0,"Error in library(stargazer) : there is no package called ‘stargazer’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s84,IV,-0.35,negative,1,1,1,,,0,,GPT-4o,gpt-4o
+s84,IV,-0.35,negative,1,1,0,,,0,"Error in x$terms %||% attr(x, ""terms"") %||% stop(""no terms component nor attribute"") : 
+  no terms component nor attribute
+Calls: suppressMessages ... model.matrix.default -> terms -> terms.default ->",o3,o3
+s84,IV,-0.35,negative,1,1,1,0.39413,2.1261,0,,Opus,claude-opus-4-6
+s84,IV,-0.35,negative,1,1,1,-0.189,0.46,1,,Gemini,gemini-2.5-flash
+s85,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var | treated, data = data, kernel = ""triangular"",  : 
+  unused arguments (data = data, degree = 2)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s85,RDD,0.25,positive,1,1,0,,,0,"Error in rddensity(data$running_var, c = cutoff) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s85,RDD,0.25,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s85,RDD,0.25,positive,1,1,0,,,0,"Error in round(rd_main$pval[1], 4) : 
+  non-numeric argument to mathematical function
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",o3,o3
+s85,RDD,0.25,positive,1,1,1,0.2766505,0.1066,1,,Opus,claude-opus-4-6
+s85,RDD,0.25,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s86,RDD,0.2,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var + treated + I(running_var^2), data = data,  : 
+  unused argument (data = data)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s86,RDD,0.2,positive,1,1,0,,,0,"Error in rdrobust(data$y, data$age_centered, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s86,RDD,0.2,positive,1,1,1,1.0,4.0,0,,GPT-4o,gpt-4o
+s86,RDD,0.2,positive,1,1,1,0.2015,0.0075,1,,o3,o3
+s86,RDD,0.2,positive,1,1,1,0.201513,0.0076,1,,Opus,claude-opus-4-6
+s86,RDD,0.2,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s87,RDD,0.3,positive,1,1,1,,,0,`geom_smooth()` using formula = 'y ~ x',Kimi,moonshot-v1-128k
+s87,RDD,0.3,positive,1,1,1,0.2592,0.136,1,,Sonnet,claude-sonnet-4-20250514
+s87,RDD,0.3,positive,1,1,1,1.0,2.3333,0,,GPT-4o,gpt-4o
+s87,RDD,0.3,positive,1,1,0,,,0,"Error in rdrobust(y = df$y, x = df$running_var, c = 0, p = 1, kernel = ""triangular"") : 
+  
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",o3,o3
+s87,RDD,0.3,positive,1,1,1,0.2592,0.136,1,,Opus,claude-opus-4-6
+s87,RDD,0.3,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$running_var, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Gemini,gemini-2.5-flash
+s88,RDD,0.15,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s88,RDD,0.15,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$running_var, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s88,RDD,0.15,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s88,RDD,0.15,positive,1,1,0,,,0,"Error in rdrobust(y = df$y, x = df$running, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",o3,o3
+s88,RDD,0.15,positive,1,1,1,0.1181,0.2127,1,,Opus,claude-opus-4-6
+s88,RDD,0.15,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$running_var, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Gemini,gemini-2.5-flash
+s89,RDD,0.22,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var | treated, data = data, c = 0.5, h = 0.05) : 
+  unused argument (data = data)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s89,RDD,0.22,positive,1,1,0,,,0,"Error in rddensity(data$running_var_centered, c = 0) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s89,RDD,0.22,positive,1,1,1,1.0,3.5455,0,,GPT-4o,gpt-4o
+s89,RDD,0.22,positive,1,1,1,,,0,,o3,o3
+s89,RDD,0.22,positive,1,1,1,0.2891448,0.3143,1,,Opus,claude-opus-4-6
+s89,RDD,0.22,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s90,RDD,0.25,positive,1,1,0,,,0,"Error in chol.default(crossprod(x)) : 
+  the leading minor of order 3 is not positive
+Calls: suppressMessages ... rdrobust -> qrXXinv -> chol2inv -> chol -> chol.default
+Execution halted",Kimi,moonshot-v1-128k
+s90,RDD,0.25,positive,1,1,1,0.1806,0.2776,1,,Sonnet,claude-sonnet-4-20250514
+s90,RDD,0.25,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s90,RDD,0.25,positive,1,1,1,1.0,3.0,0,,o3,o3
+s90,RDD,0.25,positive,1,1,1,1.0,3.0,0,,Opus,claude-opus-4-6
+s90,RDD,0.25,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s91,RDD,0.18,positive,1,1,0,,,0,"Error in if (var(T_l) == 0 | var(T_r) == 0) perf_comp = TRUE : 
+  missing value where TRUE/FALSE needed
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Kimi,moonshot-v1-128k
+s91,RDD,0.18,positive,1,1,1,0.3122,0.7344,0,,Sonnet,claude-sonnet-4-20250514
+s91,RDD,0.18,positive,1,1,0,,,0,"Error in rdplot(data$y, data$running_var, c = 0.15, title = ""RDD Plot of Log Neonatal Mortality by Birth Weight"",  : 
+  unused arguments (xlabel = ""Birth Weight (grams)"", ylabel = ""Log Neonatal Mortal",GPT-4o,gpt-4o
+s91,RDD,0.18,positive,1,1,1,0.0542,0.6989,0,,o3,o3
+s91,RDD,0.18,positive,1,1,1,0.3134036,0.7411,0,,Opus,claude-opus-4-6
+s91,RDD,0.18,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s92,RDD,0.3,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$running_var, c = cutoff, h = 0.05,  : 
+  unused arguments (degree = 2, bias = TRUE)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s92,RDD,0.3,positive,1,1,0,,,0,"Error in rddensity(data$running_var, c = cutoff) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s92,RDD,0.3,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s92,RDD,0.3,positive,1,1,1,0.3017534,0.0058,1,"`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'",o3,o3
+s92,RDD,0.3,positive,1,1,1,0.3070864,0.0236,1,,Opus,claude-opus-4-6
+s92,RDD,0.3,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s93,RDD,0.2,positive,1,1,0,,,0,"Error in rdplot(data$running_var, data$y, data$treated, c = 0.05, xlab = ""Elevation"",  : 
+  unused arguments (xlab = ""Elevation"", ylab = ""Deforestation Rate"")
+Calls: suppressMessages -> withCallingHan",Kimi,moonshot-v1-128k
+s93,RDD,0.2,positive,1,1,0,,,0,"Error in rddensity(data$running_var_centered, c = 0) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s93,RDD,0.2,positive,1,1,1,1.0,4.0,0,,GPT-4o,gpt-4o
+s93,RDD,0.2,positive,1,1,1,1.0,4.0,0,"`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'",o3,o3
+s93,RDD,0.2,positive,1,1,1,0.1535,0.2325,1,,Opus,claude-opus-4-6
+s93,RDD,0.2,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s94,RDD,0.22,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var | treated, data = data, c = 0.1, h = 0.1) : 
+  unused argument (data = data)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s94,RDD,0.22,positive,1,1,0,,,0,"Error in chol.default(crossprod(x)) : 
+  the leading minor of order 1 is not positive
+Calls: suppressMessages ... rdrobust_bw -> qrXXinv -> chol2inv -> chol -> chol.default
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s94,RDD,0.22,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s94,RDD,0.22,positive,1,1,0,,,0,"Error in rdrobust(y = df$y, x = df$running_var, c = cutoff) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",o3,o3
+s94,RDD,0.22,positive,1,1,1,0.1952524,0.1125,1,,Opus,claude-opus-4-6
+s94,RDD,0.22,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s95,RDD,0.28,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = running_var, c = cutoff, h = 0.5, x2 = NULL,  : 
+  unused arguments (x2 = NULL, control = NULL)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s95,RDD,0.28,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$age_from_21, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s95,RDD,0.28,positive,1,1,1,1.0,2.5714,0,,GPT-4o,gpt-4o
+s95,RDD,0.28,positive,1,1,0,,,0,"Error in rddensity(X = df$running_var, c = 0) : 
+  The cutoff should be set within the range of the data.
+Calls: suppressMessages -> withCallingHandlers -> rddensity
+Execution halted",o3,o3
+s95,RDD,0.28,positive,1,1,1,0.2636,0.0586,1,,Opus,claude-opus-4-6
+s95,RDD,0.28,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s96,RDD,0.15,positive,1,1,0,,,0,"Error in rdrobust(y ~ running_var, data = data, c = cutoff, h = ""rd"",  : 
+  unused argument (data = data)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s96,RDD,0.15,positive,1,1,1,0.2749,0.8327,0,,Sonnet,claude-sonnet-4-20250514
+s96,RDD,0.15,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s96,RDD,0.15,positive,1,1,1,0.2596,0.7307,0,,o3,o3
+s96,RDD,0.15,positive,1,1,1,0.2465,0.6433,0,,Opus,claude-opus-4-6
+s96,RDD,0.15,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s97,RDD,0.18,positive,1,1,0,,,0,"Error in rdrobust(data$running_var, data$treated, data$y, c = 0.4949,  : 
+  unused argument (degree = 1)
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Kimi,moonshot-v1-128k
+s97,RDD,0.18,positive,1,1,0,,,0,"Error in rddensity(data$running_var_centered, c = 0) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s97,RDD,0.18,positive,1,1,0,,,0,"Error in rdrobust(y = data$y, x = data$running_var, c = 0) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",GPT-4o,gpt-4o
+s97,RDD,0.18,positive,1,1,0,,,0,"Error in rdrobust(y = dat$y, x = dat$running_var, c = cutoff) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",o3,o3
+s97,RDD,0.18,positive,1,1,0,,,0,"Error: object 'rdd_type' not found
+Execution halted",Opus,claude-opus-4-6
+s97,RDD,0.18,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s98,RDD,0.12,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s98,RDD,0.12,positive,1,1,0,,,0,"Error in rddensity(data$running_var_centered, c = 0) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s98,RDD,0.12,positive,1,1,1,1.0,7.3333,0,,GPT-4o,gpt-4o
+s98,RDD,0.12,positive,1,1,0,,,0,"Error in round(dens$test$p_jkn, 4) : 
+  non-numeric argument to mathematical function
+Calls: suppressMessages -> withCallingHandlers -> cat
+Execution halted",o3,o3
+s98,RDD,0.12,positive,1,1,1,0.5003,3.1692,0,,Opus,claude-opus-4-6
+s98,RDD,0.12,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s99,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(data$y, data$running_var, c = cutoff, h = 0.05, kernel = ""gaussian"",  : 
+  unused arguments (degree = 2, biasadj = TRUE, covmodel = ""HC1"")
+Calls: suppressMessages -> withCallingHandl",Kimi,moonshot-v1-128k
+s99,RDD,0.25,positive,1,1,0,,,0,"Error in rdrobust(data$y, data$running_var, c = cutoff) : 
+Calls: suppressMessages -> withCallingHandlers -> rdrobust
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s99,RDD,0.25,positive,1,1,0,,,0,"Error in library(rdd) : there is no package called ‘rdd’
+Calls: suppressMessages -> withCallingHandlers -> library
+Execution halted",GPT-4o,gpt-4o
+s99,RDD,0.25,positive,1,1,1,0.2011,0.1956,1,,o3,o3
+s99,RDD,0.25,positive,1,1,1,0.2011,0.1956,1,,Opus,claude-opus-4-6
+s99,RDD,0.25,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash
+s100,RDD,0.22,positive,1,1,1,,,0,,Kimi,moonshot-v1-128k
+s100,RDD,0.22,positive,1,1,0,,,0,"Error in rddensity(data$bmi_centered) : 
+  could not find function ""rddensity""
+Calls: suppressMessages -> withCallingHandlers
+Execution halted",Sonnet,claude-sonnet-4-20250514
+s100,RDD,0.22,positive,1,1,1,1.0,3.5455,0,,GPT-4o,gpt-4o
+s100,RDD,0.22,positive,1,1,1,0.098,0.5545,0,,o3,o3
+s100,RDD,0.22,positive,1,1,1,0.1999707,0.091,1,,Opus,claude-opus-4-6
+s100,RDD,0.22,positive,1,0,0,,,0,,Gemini,gemini-2.5-flash

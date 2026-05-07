@@ -47,9 +47,9 @@ CausalVerify has two main experimental components plus a calibration audit.
   (DD), and institutional context (IC).
 - Labels: 4-LLM consensus labels for method family and effect direction, with
   a 30-paper human ambiguity audit used to estimate label ambiguity rather than
-  convert the full corpus into human-gold ground truth.
+  convert the full corpus into fully human-adjudicated reference labels.
 - Primary reported layers: L1, L3, and L4. L3/L4 are text-level agreement
-  metrics, not verified causal-correctness metrics.
+  metrics, not executable correctness metrics.
 
 ### Experiment B: synthetic DGP execution benchmark
 
@@ -65,7 +65,7 @@ CausalVerify has two main experimental components plus a calibration audit.
 
 - Records: 646 retrospective self-assessment records across seven models.
 - Protocol: each model is shown its own prior Exp B answer without the hidden
-  truth and asked for confidence scores.
+  L2b+ correctness label and asked for confidence scores.
 - Reported use: compares self-reported confidence with final L2b+ correctness.
 
 ### Model output coverage
@@ -94,7 +94,7 @@ Typical fields include:
 - automatic text-level scores
 
 Exp A should be interpreted as a realistic-context diagnostic. Its labels are
-consensus labels under ambiguity, not executable ground truth.
+consensus labels under ambiguity, not executable reference estimates.
 
 ### Exp B scenario records
 
@@ -122,9 +122,12 @@ in RQ/DD/IC fields. A later human audit estimated the ambiguity of consensus
 labels on a 30-paper blinded slice.
 
 **Experiment B.** DGP mathematics, realised datasets, canonical estimators, and
-ground-truth correctness checks are fixed by the benchmark code. LLMs may write
-natural-language analysis and R code, but they do not define the answer key.
-The answer key is the canonical estimator evaluated on the fixed realised data.
+L2b+ pass/fail checks are fixed by the benchmark code. LLMs may write
+natural-language analysis and R code, but they do not define the reference
+estimate. The reference estimate is the canonical estimator evaluated on the
+fixed realised data. These canonical estimators are benchmark-defined reference
+paths for executable evaluation; they are not universal econometric gold
+standards and are not the structural DGP parameters.
 
 **Calibration.** Calibration records were generated retrospectively from each
 model's own Exp B outputs. Hidden correctness labels were not shown to the
@@ -137,19 +140,22 @@ CausalVerify is intended for:
 - evaluating LLM causal-inference workflow reliability,
 - comparing text-level agreement with execution-grounded correctness,
 - studying whether code execution is a useful proxy for numerical correctness,
-- studying whether models know when their causal workflow is wrong, and
-- reproducing or auditing the frozen benchmark claims.
+- studying whether retrospective self-reported confidence aligns with
+  execution-grounded correctness under the released confidence prompt, and
+- reproducing or auditing the frozen v12 benchmark claims.
 
 ## Out-of-scope uses and misuses
 
 CausalVerify should not be used to claim:
 
-- that Exp A measures verified causal correctness on published papers,
+- that Exp A provides execution-grounded correctness on published papers,
 - that L3/L4 are method-blind causal understanding scores,
 - that L2b (code executes) is equivalent to numerical correctness,
+- that Exp B canonical estimators are universal econometric gold standards,
 - that Exp B covers the full practice of empirical economics,
-- that a model passing L2b+ is a complete empirical researcher, or
-- that model confidence is a reliable correctness signal without calibration.
+- that a model passing L2b+ has full empirical-economics competence, or
+- that naive retrospective model confidence is a reliable correctness signal
+  across calibration interfaces.
 
 Exp B intentionally uses stylized, controlled DGPs so numerical correctness can
 be verified. Full empirical-economics competence also involves data cleaning,
@@ -159,14 +165,17 @@ assumption checking, which are outside the direct scope of L2b+.
 ## Known limitations
 
 - Exp A labels are consensus labels under real-paper ambiguity. The 30-paper
-  human audit should be read as an ambiguity bound rather than a full human-gold
-  validation of all 259 papers.
+  human audit should be read as an ambiguity bound rather than a full
+  human-adjudicated validation of all 259 papers.
 - Exp B uses controlled synthetic DGPs and does not capture every complication
   of empirical economics.
 - L2b+ uses a coefficient-extraction judge for robust parsing of heterogeneous
   R outputs. This is documented and should be audited when extending the
   benchmark to new outputs.
 - L2b+ pass rates depend on the frozen tolerance and canonical-judge-v2 scorer.
+- Exp B fixes R as the execution backend. L2b+ measures executable workflow
+  reliability under this backend; cross-language Python/Stata/Julia invariance
+  is outside the present benchmark scope.
 - Calibration coverage is not perfectly balanced across models because some
   provider responses failed or were truncated.
 - Model identities refer to provider snapshots available at run time; API model
@@ -209,7 +218,9 @@ The final CausalVerify NeurIPS 2026 submission package is documented by:
 - `README.md`
 - `RELEASE_NAVIGATION.md`
 - `ARTIFACT_MANIFEST.json`
+- `audit/V11_ACCEPTANCE_GATES.md`
 - `audit/SUBMISSION_BUILD_SUMMARY.md`
+- `audit/V11_FREEZE_PDF_SHA.md`
 
 Future updates should change the release manifest and rerun claim-consistency
 checks before new numbers are reported.

@@ -100,22 +100,6 @@ def incomplete_summary(form_rows: list[dict[str, str]], key_rows: list[dict[str,
 
 
 def main() -> int:
-    if not KEY_CSV.exists() and (SUMMARY_MD.exists() or SUMMARY_JSON.exists()):
-        # Anonymous reviewer-facing release: the hidden audit metadata key
-        # is intentionally withheld. The completed audit summary remains
-        # available in summary.md and summary.json.
-        print(
-            "annotation_key_private.csv is intentionally withheld from the "
-            "anonymous release because it contains hidden audit metadata. "
-            "The completed reviewer-facing audit summary is available in "
-            "summary.md and summary.json."
-        )
-        if SUMMARY_MD.exists():
-            print(f"  - {SUMMARY_MD}")
-        if SUMMARY_JSON.exists():
-            print(f"  - {SUMMARY_JSON}")
-        return 0
-
     if not FORM_CSV.exists() or not KEY_CSV.exists():
         raise SystemExit("Run scripts/prepare_l2b_judge_human_validation.py first.")
 

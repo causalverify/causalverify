@@ -141,7 +141,8 @@ for y, m, rate in zip(y_pos, MODELS, correct):
         ax.text(rate / 2, y, f"{rate:.0f}%", ha="center", va="center",
                 color="white", fontweight="bold", fontsize=FONT_PERCENT)
     else:
-        ax.text(rate + 1.3, y, f"{rate:.0f}%", ha="left", va="center",
+        ax.text(max(rate - 0.9, 0.5), y, f"{rate:.0f}%",
+                ha="right", va="center",
                 color=INK, fontweight="bold", fontsize=FONT_PERCENT)
 
 ax.set_xlim(0, 100)

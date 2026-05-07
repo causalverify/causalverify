@@ -1,0 +1,23 @@
+{
+  "tau_point": 0.8095238095238096,
+  "tau_ci_low": 0.6190476190476191,
+  "tau_ci_high": 0.9047619047619049,
+  "spearman_point": 0.9285714285714288,
+  "spearman_ci_low": 0.7500000000000002,
+  "spearman_ci_high": 0.9642857142857145,
+  "prob_exceeds_L4_upper": 1.0,
+  "L4_upper_threshold": 0.1,
+  "n_bootstrap": 1000,
+  "n_scenarios": 100,
+  "seed": 20260507,
+  "primary_models": [
+    "Opus",
+    "Sonnet",
+    "GPT-4o",
+    "o3",
+    "Kimi",
+    "Gemini",
+    "GPT-5"
+  ],
+  "source_csv": "experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv"
+}

@@ -1,0 +1,257 @@
+{
+  "ambiguous_or_uncategorized": 0,
+  "description": "Conservative rule-based diagnostic taxonomy for primary-seven Exp B failures.",
+  "n_failures": 340,
+  "n_l2b1_l2bplus0": 66,
+  "n_primary_cells": 700,
+  "notes": [
+    "Diagnostic audit only; not a replacement for L2b+ scoring.",
+    "Categories are conservative and rule-based.",
+    "Ambiguous cases are not forced into narrow labels.",
+    "No new model calls were made.",
+    "Frozen headline L2b+ scores are unchanged."
+  ],
+  "overall_broad_groups": {
+    "A_no_code_or_unparseable": 44,
+    "B_execution_failure": 230,
+    "C_executed_no_extractable_effect": 26,
+    "D_executed_wrong_coefficient": 40
+  },
+  "overall_failure_categories": {
+    "bandwidth_or_statistic_only": 2,
+    "coefficient_not_reported": 15,
+    "event_window_or_scale_mismatch": 11,
+    "executed_wrong_coefficient": 26,
+    "execution_failure": 230,
+    "iv_first_stage_or_wrong_stage": 5,
+    "no_code_or_unparseable": 44,
+    "pretrend_or_placebo_coefficient": 1,
+    "rdd_cutoff_or_sign_convention": 3,
+    "wrong_did_interaction": 1,
+    "wrong_target_variable": 2
+  },
+  "primary_models": [
+    "Opus",
+    "GPT-5",
+    "GPT-4o",
+    "Sonnet",
+    "o3",
+    "Gemini",
+    "Kimi"
+  ],
+  "source_artifacts": [
+    "experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv",
+    "experiments/exp_b/outputs",
+    "audit/l2b_judge_cache.json"
+  ],
+  "top_categories_by_method": {
+    "DID": [
+      {
+        "category": "execution_failure",
+        "count": 64
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 17
+      },
+      {
+        "category": "no_code_or_unparseable",
+        "count": 5
+      },
+      {
+        "category": "pretrend_or_placebo_coefficient",
+        "count": 1
+      },
+      {
+        "category": "coefficient_not_reported",
+        "count": 1
+      }
+    ],
+    "EVENT_STUDY": [
+      {
+        "category": "execution_failure",
+        "count": 43
+      },
+      {
+        "category": "no_code_or_unparseable",
+        "count": 19
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 11
+      },
+      {
+        "category": "wrong_target_variable",
+        "count": 2
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 2
+      }
+    ],
+    "IV": [
+      {
+        "category": "execution_failure",
+        "count": 56
+      },
+      {
+        "category": "coefficient_not_reported",
+        "count": 8
+      },
+      {
+        "category": "iv_first_stage_or_wrong_stage",
+        "count": 5
+      },
+      {
+        "category": "no_code_or_unparseable",
+        "count": 3
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 2
+      }
+    ],
+    "RDD": [
+      {
+        "category": "execution_failure",
+        "count": 67
+      },
+      {
+        "category": "no_code_or_unparseable",
+        "count": 17
+      },
+      {
+        "category": "coefficient_not_reported",
+        "count": 6
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 5
+      },
+      {
+        "category": "rdd_cutoff_or_sign_convention",
+        "count": 3
+      }
+    ]
+  },
+  "top_categories_by_model": {
+    "GPT-4o": [
+      {
+        "category": "execution_failure",
+        "count": 22
+      },
+      {
+        "category": "iv_first_stage_or_wrong_stage",
+        "count": 4
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 3
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 3
+      },
+      {
+        "category": "bandwidth_or_statistic_only",
+        "count": 2
+      }
+    ],
+    "GPT-5": [
+      {
+        "category": "execution_failure",
+        "count": 24
+      },
+      {
+        "category": "rdd_cutoff_or_sign_convention",
+        "count": 3
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 1
+      }
+    ],
+    "Gemini": [
+      {
+        "category": "no_code_or_unparseable",
+        "count": 43
+      },
+      {
+        "category": "execution_failure",
+        "count": 25
+      }
+    ],
+    "Kimi": [
+      {
+        "category": "execution_failure",
+        "count": 55
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 18
+      },
+      {
+        "category": "coefficient_not_reported",
+        "count": 13
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 3
+      },
+      {
+        "category": "iv_first_stage_or_wrong_stage",
+        "count": 1
+      }
+    ],
+    "Opus": [
+      {
+        "category": "execution_failure",
+        "count": 5
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 3
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 2
+      },
+      {
+        "category": "no_code_or_unparseable",
+        "count": 1
+      },
+      {
+        "category": "wrong_target_variable",
+        "count": 1
+      }
+    ],
+    "Sonnet": [
+      {
+        "category": "execution_failure",
+        "count": 49
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 1
+      }
+    ],
+    "o3": [
+      {
+        "category": "execution_failure",
+        "count": 50
+      },
+      {
+        "category": "executed_wrong_coefficient",
+        "count": 2
+      },
+      {
+        "category": "event_window_or_scale_mismatch",
+        "count": 1
+      },
+      {
+        "category": "coefficient_not_reported",
+        "count": 1
+      }
+    ]
+  }
+}

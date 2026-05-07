@@ -11,7 +11,7 @@
 #  Usage:
 #    docker build -t causalverify .
 #
-#  Re-score the frozen results without any new LLM calls:
+#  Re-score v10 without any new LLM calls:
 #    docker run --rm -v $(pwd):/app causalverify bash scripts/rescore.sh
 #
 #  Interactive shell inside the container:

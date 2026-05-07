@@ -25,6 +25,11 @@ plt.rcParams.update(RC_PARAMS)
 MODELS = MODEL_ORDER
 COLORS = MODEL_COLORS
 SUMMARY = Path("experiments/exp_b/l2b_plus_summary_canonical_judge_v2.json")
+TITLE_STYLE = {
+    "fontfamily": "sans-serif",
+    "fontweight": "bold",
+    "color": "#1F2937",
+}
 
 # Load per-scenario errors from canonical_judge_v2 (7-model frozen).
 # Use rel_error_v2 (judge-extracted, ES-window-aware), not the legacy
@@ -88,8 +93,14 @@ for i, model in enumerate(MODELS):
     ax.set_ylim(-0.05, 2.55)
     ax.grid(axis="y", color="#e6e6e6", linewidth=0.7)
     ax.grid(axis="x", color="#f0f0f0", linewidth=0.5)
-    ax.set_title(f"{model}: {rate*100:.0f}% L2b+", fontsize=11,
-                 fontweight="bold", color=COLORS[model], pad=5)
+    ax.set_title(
+        f"{model}: {rate*100:.0f}% L2b+",
+        fontsize=13,
+        fontfamily="sans-serif",
+        fontweight="bold",
+        color=COLORS[model],
+        pad=5,
+    )
     ax.text(0.03, 0.88, f"valid n={len(errs)}", transform=ax.transAxes,
             fontsize=8.5, color="#555555")
     if clipped:
@@ -104,7 +115,7 @@ for i, model in enumerate(MODELS):
 # Legend / reading guide in the empty eighth panel.
 guide = axes[-1]
 guide.axis("off")
-guide.set_title("Reading guide", fontsize=11, fontweight="bold", pad=5)
+guide.set_title("Reading guide", fontsize=13, pad=5, **TITLE_STYLE)
 guide.plot([0.08, 0.42], [0.78, 0.78], transform=guide.transAxes,
            color="#555555", linestyle="--", linewidth=1.2)
 guide.text(0.48, 0.76, "50% L2b+ tolerance", transform=guide.transAxes,
@@ -124,16 +135,22 @@ guide.text(0.08, 0.20,
            transform=guide.transAxes, fontsize=9.5, va="top",
            color="#333333")
 
-fig.suptitle("L2b+ relative-error profiles by model", fontsize=14,
-             fontweight="bold", y=0.965)
+fig.suptitle(
+    "L2b+ relative-error profiles by model",
+    fontsize=17.5,
+    y=0.965,
+    **TITLE_STYLE,
+)
 fig.supxlabel("Scenario rank within model (sorted by relative error)", y=0.045)
 fig.supylabel("Relative error against canonical estimator (clipped at 2.5)",
               x=0.018)
 
-out = Path("paper/figures/fig_error_cdf.pdf")
-plt.savefig(out, dpi=180, bbox_inches="tight")
-png = out.with_suffix(".png")
-plt.savefig(png, dpi=180, bbox_inches="tight")
-print(f"  ✓ {out}")
-print(f"  ✓ {png}")
+for out_dir in [Path("paper/figures"), Path("paper/latex/figures")]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / "fig_error_cdf.pdf"
+    plt.savefig(out, dpi=180, bbox_inches="tight")
+    png = out.with_suffix(".png")
+    plt.savefig(png, dpi=180, bbox_inches="tight")
+    print(f"  ✓ {out}")
+    print(f"  ✓ {png}")
 plt.close()

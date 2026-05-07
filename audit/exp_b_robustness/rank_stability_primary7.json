@@ -1,0 +1,338 @@
+{
+  "description": "Derived rank-stability diagnostics for Exp B. The primary leaderboard remains the frozen seven-model panel in experiments/exp_b/head_to_head_ranking.json.",
+  "source_artifacts": [
+    "experiments/exp_b/head_to_head_ranking.json",
+    "experiments/exp_b/l2b_plus_summary_canonical_judge_v2.json",
+    "experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv"
+  ],
+  "score_rows_by_model": {
+    "Kimi": 100,
+    "Sonnet": 100,
+    "GPT-4o": 100,
+    "o3": 100,
+    "Opus": 100,
+    "Gemini": 100,
+    "GPT-5": 100,
+    "Llama": 100
+  },
+  "primary_models": [
+    "Opus",
+    "GPT-5",
+    "GPT-4o",
+    "Sonnet",
+    "o3",
+    "Gemini",
+    "Kimi"
+  ],
+  "baseline_primary7": {
+    "n_models": 7,
+    "models": [
+      "Opus",
+      "GPT-5",
+      "GPT-4o",
+      "Sonnet",
+      "o3",
+      "Gemini",
+      "Kimi"
+    ],
+    "kendall_tau": 0.8095,
+    "kendall_p": 0.0107,
+    "spearman_rho": 0.9286,
+    "spearman_p": 0.0025,
+    "l2b_ranking": [
+      "Opus",
+      "GPT-4o",
+      "GPT-5",
+      "Sonnet",
+      "o3",
+      "Kimi",
+      "Gemini"
+    ],
+    "l2b_plus_ranking": [
+      "Opus",
+      "GPT-5",
+      "GPT-4o",
+      "Sonnet",
+      "o3",
+      "Gemini",
+      "Kimi"
+    ]
+  },
+  "leave_one_model_out": [
+    {
+      "n_models": 6,
+      "models": [
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "kendall_tau": 0.7333,
+      "kendall_p": 0.0556,
+      "spearman_rho": 0.8857,
+      "spearman_p": 0.0188,
+      "l2b_ranking": [
+        "GPT-4o",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Kimi",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "excluded_model": "Opus"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "kendall_tau": 0.8667,
+      "kendall_p": 0.0167,
+      "spearman_rho": 0.9429,
+      "spearman_p": 0.0048,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Kimi",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "excluded_model": "GPT-5"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "kendall_tau": 0.8667,
+      "kendall_p": 0.0167,
+      "spearman_rho": 0.9429,
+      "spearman_p": 0.0048,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Kimi",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "excluded_model": "GPT-4o"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "kendall_tau": 0.7333,
+      "kendall_p": 0.0556,
+      "spearman_rho": 0.8857,
+      "spearman_p": 0.0188,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-4o",
+        "GPT-5",
+        "o3",
+        "Kimi",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "o3",
+        "Gemini",
+        "Kimi"
+      ],
+      "excluded_model": "Sonnet"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "Gemini",
+        "Kimi"
+      ],
+      "kendall_tau": 0.7333,
+      "kendall_p": 0.0556,
+      "spearman_rho": 0.8857,
+      "spearman_p": 0.0188,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-4o",
+        "GPT-5",
+        "Sonnet",
+        "Kimi",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "Gemini",
+        "Kimi"
+      ],
+      "excluded_model": "o3"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Kimi"
+      ],
+      "kendall_tau": 0.8667,
+      "kendall_p": 0.0167,
+      "spearman_rho": 0.9429,
+      "spearman_p": 0.0048,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-4o",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Kimi"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Kimi"
+      ],
+      "excluded_model": "Gemini"
+    },
+    {
+      "n_models": 6,
+      "models": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini"
+      ],
+      "kendall_tau": 0.8667,
+      "kendall_p": 0.0167,
+      "spearman_rho": 0.9429,
+      "spearman_p": 0.0048,
+      "l2b_ranking": [
+        "Opus",
+        "GPT-4o",
+        "GPT-5",
+        "Sonnet",
+        "o3",
+        "Gemini"
+      ],
+      "l2b_plus_ranking": [
+        "Opus",
+        "GPT-5",
+        "GPT-4o",
+        "Sonnet",
+        "o3",
+        "Gemini"
+      ],
+      "excluded_model": "Kimi"
+    }
+  ],
+  "leave_one_model_out_summary": {
+    "kendall_tau": {
+      "min": 0.7333,
+      "max": 0.8667,
+      "mean": 0.8095
+    },
+    "spearman_rho": {
+      "min": 0.8857,
+      "max": 0.9429,
+      "mean": 0.9184
+    }
+  },
+  "primary_7_plus_llama_robustness_only": {
+    "label": "primary 7 plus Llama robustness-only",
+    "note": "This n=8 diagnostic is not the primary leaderboard and is not written to head_to_head_ranking.json.",
+    "n_models": 8,
+    "models": [
+      "Opus",
+      "GPT-5",
+      "GPT-4o",
+      "Sonnet",
+      "o3",
+      "Gemini",
+      "Kimi",
+      "Llama"
+    ],
+    "kendall_tau": 0.7143,
+    "kendall_p": 0.0141,
+    "spearman_rho": 0.881,
+    "spearman_p": 0.0039,
+    "l2b_ranking": [
+      "Opus",
+      "GPT-4o",
+      "GPT-5",
+      "Sonnet",
+      "o3",
+      "Kimi",
+      "Llama",
+      "Gemini"
+    ],
+    "l2b_plus_ranking": [
+      "Opus",
+      "GPT-5",
+      "GPT-4o",
+      "Sonnet",
+      "o3",
+      "Gemini",
+      "Llama",
+      "Kimi"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+panel,analysis_type,excluded_model,n_models,kendall_tau,spearman_rho,kendall_tau_min,kendall_tau_max,kendall_tau_mean,spearman_rho_min,spearman_rho_max,spearman_rho_mean,l2b_ranking,l2b_plus_ranking,note
+primary_7,baseline,,7,0.8095,0.9286,,,,,,,Opus > GPT-4o > GPT-5 > Sonnet > o3 > Kimi > Gemini,Opus > GPT-5 > GPT-4o > Sonnet > o3 > Gemini > Kimi,Frozen primary seven-model panel.
+primary_7,leave_one_model_out,Opus,6,0.7333,0.8857,,,,,,,GPT-4o > GPT-5 > Sonnet > o3 > Kimi > Gemini,GPT-5 > GPT-4o > Sonnet > o3 > Gemini > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,GPT-5,6,0.8667,0.9429,,,,,,,Opus > GPT-4o > Sonnet > o3 > Kimi > Gemini,Opus > GPT-4o > Sonnet > o3 > Gemini > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,GPT-4o,6,0.8667,0.9429,,,,,,,Opus > GPT-5 > Sonnet > o3 > Kimi > Gemini,Opus > GPT-5 > Sonnet > o3 > Gemini > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,Sonnet,6,0.7333,0.8857,,,,,,,Opus > GPT-4o > GPT-5 > o3 > Kimi > Gemini,Opus > GPT-5 > GPT-4o > o3 > Gemini > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,o3,6,0.7333,0.8857,,,,,,,Opus > GPT-4o > GPT-5 > Sonnet > Kimi > Gemini,Opus > GPT-5 > GPT-4o > Sonnet > Gemini > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,Gemini,6,0.8667,0.9429,,,,,,,Opus > GPT-4o > GPT-5 > Sonnet > o3 > Kimi,Opus > GPT-5 > GPT-4o > Sonnet > o3 > Kimi,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out,Kimi,6,0.8667,0.9429,,,,,,,Opus > GPT-4o > GPT-5 > Sonnet > o3 > Gemini,Opus > GPT-5 > GPT-4o > Sonnet > o3 > Gemini,Sensitivity after excluding one primary model.
+primary_7,leave_one_model_out_summary,,,,,0.7333,0.8667,0.8095,0.8857,0.9429,0.9184,,,Min/max/mean over seven leave-one-model-out exclusions.

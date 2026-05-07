@@ -1,13 +1,8 @@
 <h1 align="center">CausalVerify</h1>
 
-<p align="center"><em>Code that runs is not code that computes the right causal estimate.</em></p>
-
 <p align="center">
-  <b>An execution-grounded benchmark for LLM causal-inference workflows.</b>
-</p>
-
-<p align="center">
-  <sub>259 real economics papers&nbsp;·&nbsp;100 synthetic DGPs&nbsp;·&nbsp;7 LLMs&nbsp;·&nbsp;Kendall&nbsp;τ=0.81 (L2b vs L2b+) vs τ∈[−0.20,&nbsp;+0.10] (L4 vs L2b+)</sub>
+  <b>CausalVerify: An Execution-Grounded Benchmark for LLM Causal Inference Workflows</b><br>
+  <sub>An execution-grounded benchmark for causal-inference workflows.</sub>
 </p>
 
 <p align="center">
@@ -16,34 +11,7 @@
   <a href="LICENSE_DATA.md"><img alt="Data license notes" src="https://img.shields.io/badge/Data-component--level-lightgrey.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11-green.svg">
   <img alt="R" src="https://img.shields.io/badge/R-4.4.2-blueviolet.svg">
-  <img alt="NeurIPS 2026" src="https://img.shields.io/badge/NeurIPS-2026%20E%26D-9b59b6.svg">
 </p>
-
----
-
-> 🕵️ **Anonymous double-blind reviewer release.** Real-name attribution is held back per the NeurIPS double-blind policy. This repository auto-mirrors at [`anonymous.4open.science/r/CAUSALVERIFY-A84B`](https://anonymous.4open.science/r/CAUSALVERIFY-A84B/). The frozen submission is pinned at tag `neurips2026-submission`.
-
----
-
-## 60-second TL;DR for reviewers
-
-> **What.** A benchmark that scores LLM causal-inference workflows by *executing* model-written R code and comparing the recovered coefficient against a canonical estimator on the realised dataset — not by reading what the model says.
->
-> **Why it matters.** Code that runs is not code that computes the right causal estimate. Text-level scoring of method-family names and effect-direction labels can miss this verification gap entirely.
->
-> **Headline numbers** (Exp B: 7 LLMs × 100 synthetic DGPs):
-> - Final L2b+ pass rates span **10% – 88%**.
-> - L2b vs L2b+ ranking: **Kendall τ = +0.81** (Spearman ρ = +0.93).
-> - L4 text-direction vs L2b+ ranking: **τ ∈ [−0.20, +0.10]**.
-> - 50-cell blinded coefficient-extraction audit: **90.9% numeric / 88.6% L2b+ pass-fail** agreement.
->
-> **Reproduce without API keys** (deterministic scoring on frozen artifacts):
->
-> ```bash
-> tectonic paper/latex/causalverify_neurips2026.tex
-> python3 scripts/check_claim_consistency.py
-> python3 scripts/summarize_l2b_judge_human_validation.py
-> ```
 
 ---
 
@@ -61,34 +29,30 @@ clarification only.
   metadata.
 - **Code:** [`causalverify/causalverify-code-neurips2026`](https://huggingface.co/datasets/causalverify/causalverify-code-neurips2026/tree/neurips2026-submission)
   at tag `neurips2026-submission`. Mirrors this repository at the
-  submission commit, identity-cleaned (no UAM-specific fetchers, no
-  internal session notes, anonymous LICENSE).
-- **Anonymous code mirror:** [`anonymous.4open.science/r/CAUSALVERIFY-A84B/`](https://anonymous.4open.science/r/CAUSALVERIFY-A84B/)
+  submission commit, identity-cleaned (no institution-specific fetchers,
+  no internal session notes, anonymous LICENSE).
+- **Anonymous code mirror:** [`anonymous.4open.science/r/causalverify-1B47/`](https://anonymous.4open.science/r/causalverify-1B47/)
   auto-syncs from this repository's `main`.
 
 ---
 
 ## Reviewer quick map
 
-| What | Where |
-|---|---|
-| Final submission paper (PDF) | [`paper/latex/causalverify_neurips2026.pdf`](paper/latex/causalverify_neurips2026.pdf) |
-| Final submission paper (LaTeX) | [`paper/latex/causalverify_neurips2026.tex`](paper/latex/causalverify_neurips2026.tex) |
-| Submission build summary (PDF SHA + scope) | [`audit/SUBMISSION_BUILD_SUMMARY.md`](audit/SUBMISSION_BUILD_SUMMARY.md) |
-| Human ambiguity audit (30-paper Exp A) | [`audit/human_gold/human_vs_llm_consensus.md`](audit/human_gold/human_vs_llm_consensus.md) |
-| Coefficient-extraction audit (50-cell, completed) | [`audit/l2b_judge_human_validation/summary.md`](audit/l2b_judge_human_validation/summary.md) |
-| Release navigation for reviewers | [`RELEASE_NAVIGATION.md`](RELEASE_NAVIGATION.md) |
-| Datasheet and licensing | [`DATASHEET.md`](DATASHEET.md), [`LICENSE_DATA.md`](LICENSE_DATA.md) |
-| Exp B realised CSVs (one per scenario) | `experiments/exp_b/data/s*_data.csv` (100 files) |
-| Exp B canonical estimates + L2b+ scores | [`experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv`](experiments/exp_b/l2b_plus_scores_canonical_judge_v2.csv) |
-| Exp B HuggingFace dataset (frozen tag) | https://huggingface.co/datasets/causalverify/causalverify-neurips2026 |
-| Exp B Croissant 1.0 metadata | [`experiments/exp_b/croissant.json`](experiments/exp_b/croissant.json) |
+- Final submission paper: [`paper/latex/causalverify_neurips2026.pdf`](paper/latex/causalverify_neurips2026.pdf), source [`paper/latex/causalverify_neurips2026.tex`](paper/latex/causalverify_neurips2026.tex).
+- Submission build summary: [`audit/SUBMISSION_BUILD_SUMMARY.md`](audit/SUBMISSION_BUILD_SUMMARY.md).
+- Frozen result gates: [`audit/V11_ACCEPTANCE_GATES.md`](audit/V11_ACCEPTANCE_GATES.md).
+- Human validation audit: [`audit/human_gold/human_vs_llm_consensus.md`](audit/human_gold/human_vs_llm_consensus.md).
+- Release navigation for reviewers: [`RELEASE_NAVIGATION.md`](RELEASE_NAVIGATION.md).
+- Datasheet and licensing: [`DATASHEET.md`](DATASHEET.md), [`LICENSE_DATA.md`](LICENSE_DATA.md).
+- Exp B dataset URL: https://huggingface.co/datasets/causalverify/causalverify-neurips2026
+- Exp B Croissant metadata: [`experiments/exp_b/croissant.json`](experiments/exp_b/croissant.json).
 
-**Frozen scope.** Exp A: 259 active papers × 7 primary models = 1813 outputs.
-Exp B: 100 synthetic DGPs × 7 primary models = 700 primary execution records.
-Calibration: 646 valid records. The primary leaderboard uses seven models;
-Llama-3.3-70B-Instruct is retained only as an open-weights robustness check
-in Exp B artifacts and is excluded from the primary Kendall/Spearman ranking.
+Frozen scope: Exp A has 259 active papers and 1813 outputs (259 x 7 primary
+models); Exp B has 100 synthetic DGPs and 700 primary execution cells
+(100 x 7 primary models); calibration has 646 valid records.
+The primary leaderboard uses seven models. Llama-3.3-70B-Instruct is retained
+only as an open-weights robustness check in Exp B artifacts and is excluded
+from the primary Kendall/Spearman ranking.
 
 ## Why CausalVerify
 
@@ -100,11 +64,11 @@ CausalVerify is a benchmark of **259 active published economics papers** (Experi
 
 | Statement | Evidence |
 |---|---|
-| L2b (code executes) ranks models tightly with the L2b+ correctness ranking | Kendall τ = +0.81; Spearman ρ = +0.93 across 7 models |
-| L4 text scoring is essentially uncorrelated with the L2b+ correctness ranking | τ ∈ [−0.20, +0.10] across the frozen S1/S2 text-direction scorers |
+| L2b (code executes) ranks models tightly with L2b+ correctness | Kendall τ = +0.81; Spearman ρ = +0.93 across 7 models |
+| L4 agreement against consensus direction labels does not track Exp B L2b+ ranking | τ ∈ [−0.20, +0.10] across the frozen S1/S2 text-direction scorers |
 | Code that runs is not code that computes correctly | L2b rates span 32–94%; final ES-aware canonical L2b+ spans 10–88% (GPT-5 ranks second at 72%) |
-| The coefficient extractor is validated, not regex-only | The final release uses an audited coefficient-extraction judge and ES-aware canonical scoring; regex L2b+ is retained as a legacy diagnostic |
-| Text-level scores are supporting diagnostics | L3/L4 are method-family and direction agreement metrics, not pure method-blind detection |
+| The coefficient extractor is validated, not regex-only | Regex L2b+ is retained as legacy; v11 uses Haiku extraction + ES-aware canonical scoring |
+| Text-level scores are supporting diagnostics | L3/L4 are method-family and direction agreement diagnostics, not verified causal correctness |
 
 ---
 
@@ -189,7 +153,7 @@ CAUSALVERIFY/
 ├── legacy/                             # audit-only: pre-CausalVerify CAUSAL-BENCH evaluator
 ├── requirements.txt                    # Python dependencies
 ├── config.yaml                         # global configuration
-├── .env.example                          # API key template
+├── sample.env                          # API key template
 ├── DATASHEET.md                        # NeurIPS D&B datasheet
 ├── LICENSE_DATA.md                     # component-level data/license notes
 ├── LICENSE
@@ -222,7 +186,7 @@ install.packages(c("fixest", "AER", "rdrobust", "sandwich",
 Copy the template and fill in your provider keys:
 
 ```bash
-cp .env.example .env
+cp sample.env .env
 # edit .env with OPENAI_API_KEY, ANTHROPIC_API_KEY,
 #                GOOGLE_API_KEY, MOONSHOT_API_KEY
 ```
@@ -295,7 +259,7 @@ All figures share a canonical font/color stack via `paper/figures/palette.py`.
 python scripts/check_claim_consistency.py
 ```
 
-This check scans reviewer-facing docs for stale legacy-era numbers and
+This check scans reviewer-facing docs for stale v10/v11-era numbers and
 verifies that release-navigation artifact paths exist.
 
 ### Security note for new R-code execution

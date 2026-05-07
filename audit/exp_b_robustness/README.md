@@ -12,11 +12,38 @@ make LLM API calls or regenerate model outputs.
 - The conditional metric `P(L2b+ v2 | L2b)` asks a sharper question:
   among outputs whose code executed, how often did the workflow compute
   the canonical treatment-effect estimate on the realised dataset?
+- The n=7 rank correlations are descriptive diagnostics over the frozen
+  primary model panel, not population-level claims about all possible LLMs.
+- Leave-one-model-out rank stability is reported to show sensitivity to
+  model-panel composition.
 - Primary-7 results are kept separate from Llama. Llama-3.3-70B-Instruct
   is retained only as an open-weights robustness check and is not part of
   the primary 7-model Kendall/Spearman ranking.
 - L2b+ means coefficient agreement with the canonical estimator on the
   realised dataset, not recovery of the ideal DGP beta parameter.
+- The tolerance sweep is an all-scenario diagnostic over the primary seven
+  models. It reports alternative relative-error cutoffs while keeping the
+  frozen headline endpoint at the default 50% tolerance.
+
+## Rank-Stability Diagnostic
+
+The primary seven-model L2b-vs-L2b+ rank diagnostic is unchanged:
+Kendall tau is 0.8095 and Spearman rho is 0.9286. Leave-one-model-out
+diagnostics keep the Kendall tau range between 0.7333 and 0.8667
+(mean 0.8095) and the Spearman rho range between 0.8857 and 0.9429
+(mean 0.9184). A separate `primary 7 plus Llama robustness-only`
+diagnostic gives Kendall tau 0.7143 and Spearman rho 0.8810. This
+Llama-inclusion diagnostic is not part of the primary leaderboard and
+is not written to `experiments/exp_b/head_to_head_ranking.json`.
+
+## Tolerance-Sweep Diagnostic
+
+The W2 tolerance sweep recomputes primary-seven all-scenario L2b+ pass rates
+at 10%, 25%, 50%, 75%, and 100% relative-error cutoffs. The denominator is
+100 Exp B scenarios per model; non-executing outputs remain failures. At the
+default 50% tolerance, the sweep exactly reproduces the frozen headline L2b+
+counts. At 25% tolerance, the top three primary models remain above the
+remaining four, and Gemini/Kimi remain the bottom two.
 
 ## Primary-7 Conditional L2b Table
 
@@ -39,11 +66,15 @@ make LLM API calls or regenerate model outputs.
 ## Generated Files
 
 - `paper/tables/exp_b_l2b_conditional_primary7.csv`
+- `paper/tables/exp_b_rank_stability_primary7.csv`
 - `paper/tables/exp_b_scorer_evolution_primary7.csv`
 - `paper/tables/exp_b_l2bplus_by_model_method_primary7.csv`
 - `paper/tables/exp_b_tolerance_sweep_primary7.csv`
 - `audit/exp_b_robustness/l2b_conditional_primary7.json`
 - `audit/exp_b_robustness/l2b_conditional_llama_robustness.json`
+- `audit/exp_b_robustness/rank_stability_primary7.csv`
+- `audit/exp_b_robustness/rank_stability_primary7.json`
 - `audit/exp_b_robustness/scorer_evolution_primary7.json`
 - `audit/exp_b_robustness/l2bplus_by_model_method_primary7.json`
+- `audit/exp_b_robustness/tolerance_sweep_primary7.csv`
 - `audit/exp_b_robustness/tolerance_sweep_primary7.json`

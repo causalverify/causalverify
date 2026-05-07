@@ -35,6 +35,11 @@ COLOR_ON = PAL["code"]          # blue
 COLOR_IMPROVE = PAL["deter"]    # seafoam green
 COLOR_DECLINE = PAL["novel"]    # coral
 COLOR_FLAT = "#A8A8A8"          # grey
+TITLE_STYLE = {
+    "fontfamily": "sans-serif",
+    "fontweight": "bold",
+    "color": "#1F2937",
+}
 
 fig, (ax_s, ax_d) = plt.subplots(
     1, 2, figsize=(10.5, 4.4),
@@ -92,7 +97,7 @@ def plot_dots(ax, off_key, on_key, title):
     ax.set_xlim(0, 110)
     ax.set_ylim(-0.6, len(MODELS) - 0.4)
     ax.invert_yaxis()
-    ax.set_title(title, fontweight="bold", pad=8)
+    ax.set_title(title, fontsize=11, pad=8, **TITLE_STYLE)
 
 
 plot_dots(ax_s, "s_off", "s_on", "(a) L3 Strategy (RID OFF $\\to$ ON)")
@@ -121,7 +126,8 @@ fig.legend(
 
 fig.suptitle(
     "RID pre-commitment ablation (pilot, N=10 papers)",
-    fontweight="bold",
+    fontsize=13.5,
+    **TITLE_STYLE,
     y=0.99,
 )
 

@@ -173,4 +173,4 @@ Attempted to fetch PDFs for 262 papers.
 
 ## Interpretation
 
-⚠️  **43% coverage** — moderate. Many papers will need manual retrieval or EZproxy access (not implemented).
+⚠️  **43% coverage** — moderate. Many papers will need manual retrieval (institutional library access not used).

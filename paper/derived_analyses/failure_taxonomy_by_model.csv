@@ -1,0 +1,8 @@
+model,total_non_l2bplus,exec_failure_n,exec_failure_share,no_code_n,no_code_share,exec_wrong_coef_n,exec_wrong_coef_share,coef_not_reported_n,coef_not_reported_share,event_window_scale_n,event_window_scale_share,iv_stage_n,iv_stage_share,rdd_cutoff_n,rdd_cutoff_share,other_n,other_share
+Opus,12,5,0.4167,1,0.0833,2,0.1667,0,0.0,3,0.25,0,0.0,0,0.0,1,0.0833
+Sonnet,50,49,0.98,0,0.0,1,0.02,0,0.0,0,0.0,0,0.0,0,0.0,0,0.0
+GPT-4o,38,22,0.5789,0,0.0,3,0.0789,1,0.0263,3,0.0789,4,0.1053,0,0.0,5,0.1316
+o3,54,50,0.9259,0,0.0,2,0.037,1,0.0185,1,0.0185,0,0.0,0,0.0,0,0.0
+Kimi,90,55,0.6111,0,0.0,18,0.2,13,0.1444,3,0.0333,1,0.0111,0,0.0,0,0.0
+Gemini,68,25,0.3676,43,0.6324,0,0.0,0,0.0,0,0.0,0,0.0,0,0.0,0,0.0
+GPT-5,28,24,0.8571,0,0.0,0,0.0,0,0.0,1,0.0357,0,0.0,3,0.1071,0,0.0

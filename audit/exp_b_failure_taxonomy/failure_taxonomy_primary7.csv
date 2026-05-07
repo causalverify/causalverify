@@ -1,0 +1,33 @@
+model,broad_group,broad_group_label,failure_category,count,share_of_all_cells,l2b1_l2bplus0_denominator,share_among_l2b1_l2bplus0
+GPT-4o,B_execution_failure,Code present but execution failed,execution_failure,22,0.2200,16,
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,bandwidth_or_statistic_only,2,0.0200,16,0.1250
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,1,0.0100,16,0.0625
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,event_window_or_scale_mismatch,1,0.0100,16,0.0625
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,iv_first_stage_or_wrong_stage,4,0.0400,16,0.2500
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,pretrend_or_placebo_coefficient,1,0.0100,16,0.0625
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,wrong_did_interaction,1,0.0100,16,0.0625
+GPT-4o,C_executed_no_extractable_effect,Executed but no extractable treatment effect,wrong_target_variable,1,0.0100,16,0.0625
+GPT-4o,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,2,0.0200,16,0.1250
+GPT-4o,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,3,0.0300,16,0.1875
+GPT-5,B_execution_failure,Code present but execution failed,execution_failure,24,0.2400,4,
+GPT-5,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,1,0.0100,4,0.2500
+GPT-5,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",rdd_cutoff_or_sign_convention,3,0.0300,4,0.7500
+Gemini,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,43,0.4300,0,
+Gemini,B_execution_failure,Code present but execution failed,execution_failure,25,0.2500,0,
+Kimi,B_execution_failure,Code present but execution failed,execution_failure,55,0.5500,35,
+Kimi,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,13,0.1300,35,0.3714
+Kimi,C_executed_no_extractable_effect,Executed but no extractable treatment effect,event_window_or_scale_mismatch,1,0.0100,35,0.0286
+Kimi,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,2,0.0200,35,0.0571
+Kimi,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,18,0.1800,35,0.5143
+Kimi,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",iv_first_stage_or_wrong_stage,1,0.0100,35,0.0286
+Opus,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,1,0.0100,6,
+Opus,B_execution_failure,Code present but execution failed,execution_failure,5,0.0500,6,
+Opus,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,3,0.0300,6,0.5000
+Opus,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,2,0.0200,6,0.3333
+Opus,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",wrong_target_variable,1,0.0100,6,0.1667
+Sonnet,B_execution_failure,Code present but execution failed,execution_failure,49,0.4900,1,
+Sonnet,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,1,0.0100,1,1.0000
+o3,B_execution_failure,Code present but execution failed,execution_failure,50,0.5000,4,
+o3,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,1,0.0100,4,0.2500
+o3,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,1,0.0100,4,0.2500
+o3,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,2,0.0200,4,0.5000

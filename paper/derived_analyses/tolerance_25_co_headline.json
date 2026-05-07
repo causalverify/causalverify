@@ -1,0 +1,35 @@
+{
+  "tolerance": 0.25,
+  "primary_models": [
+    "Opus",
+    "Sonnet",
+    "GPT-4o",
+    "o3",
+    "Kimi",
+    "Gemini",
+    "GPT-5"
+  ],
+  "pass_rate_25": {
+    "Opus": 0.84,
+    "Sonnet": 0.48,
+    "GPT-4o": 0.59,
+    "o3": 0.44,
+    "Kimi": 0.09,
+    "Gemini": 0.32,
+    "GPT-5": 0.71
+  },
+  "pass_rate_25_pct": {
+    "Opus": 84.0,
+    "Sonnet": 48.0,
+    "GPT-4o": 59.0,
+    "o3": 44.0,
+    "Kimi": 9.0,
+    "Gemini": 32.0,
+    "GPT-5": 71.0
+  },
+  "min_pct": 9.0,
+  "max_pct": 84.0,
+  "argmin_model": "Kimi",
+  "argmax_model": "Opus",
+  "source_csv": "paper/tables/exp_b_tolerance_sweep_primary7.csv"
+}

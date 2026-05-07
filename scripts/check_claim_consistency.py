@@ -10,11 +10,15 @@ from __future__ import annotations
 
 import json
 import re
+import csv
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 FINAL_TITLE = "CausalVerify: An Execution-Grounded Benchmark for LLM Causal Inference Workflows"
+HF_DATASET_RELEASE = "causalverify/causalverify-neurips2026"
+HF_CODE_RELEASE = "causalverify/causalverify-code-neurips2026"
+HF_SUBMISSION_TAG = "neurips2026-submission"
 
 
 DOCS = [
@@ -26,6 +30,7 @@ DOCS = [
 RELEASE_NAVIGATION_ARTIFACTS = [
     "paper/latex/causalverify_neurips2026.pdf",
     "paper/latex/causalverify_neurips2026.tex",
+    "audit/V11_ACCEPTANCE_GATES.md",
     "audit/SUBMISSION_BUILD_SUMMARY.md",
     "experiments/exp_a/auto_scores.csv",
     "paper/tables/exp_a_l3_l4_by_model.csv",
@@ -41,11 +46,20 @@ RELEASE_NAVIGATION_ARTIFACTS = [
     "paper/figures/calibration_reliability.pdf",
     "audit/exp_b_robustness/README.md",
     "paper/tables/exp_b_l2b_conditional_primary7.csv",
+    "paper/tables/exp_b_rank_stability_primary7.csv",
     "paper/tables/exp_b_scorer_evolution_primary7.csv",
     "paper/tables/exp_b_l2bplus_by_model_method_primary7.csv",
     "paper/tables/exp_b_tolerance_sweep_primary7.csv",
+    "audit/exp_b_robustness/tolerance_sweep_primary7.csv",
+    "audit/exp_b_robustness/tolerance_sweep_primary7.json",
+    "audit/exp_b_failure_taxonomy/README.md",
+    "audit/exp_b_failure_taxonomy/failure_taxonomy_primary7.csv",
+    "audit/exp_b_failure_taxonomy/failure_taxonomy_by_method.csv",
+    "audit/exp_b_robustness/rank_stability_primary7.csv",
+    "audit/exp_b_robustness/rank_stability_primary7.json",
     "audit/l2b_judge_human_validation/README.md",
     "audit/l2b_judge_human_validation/annotation_form.csv",
+    "audit/l2b_judge_human_validation/annotation_key_private.csv",
     "scripts/prepare_l2b_judge_human_validation.py",
     "scripts/summarize_l2b_judge_human_validation.py",
 ]
@@ -78,6 +92,72 @@ EXEMPT_PREFIXES = (
     # CAUSAL-BENCH only when explaining what they replaced.
     "scripts/tier2_",
 )
+
+# Reviewer-facing claim surfaces where ground-truth terminology is most likely
+# to affect interpretation. Frozen CSV/JSON outputs and scenario metadata are
+# intentionally not scanned by these wording checks.
+CLAIM_LANGUAGE_PATHS = [
+    "README.md",
+    "DATASHEET.md",
+    "RELEASE_NAVIGATION.md",
+    "LICENSE_DATA.md",
+    "audit/SUBMISSION_BUILD_SUMMARY.md",
+    "paper/latex/causalverify_neurips2026.tex",
+    "paper/latex/checklist.tex",
+]
+CLAIM_LANGUAGE_FIGURE_SUFFIXES = {".py", ".svg", ".tex"}
+RISKY_CLAIM_LANGUAGE = [
+    (r"\bExp(?:eriment)?(?:\\?~|\s)+A\s+ground[- ]truth\b",
+     "Exp A ground-truth wording; use Exp A reference labels"),
+    (r"\bexecutable\s+ground[- ]truth\b",
+     "executable ground-truth wording; use executable reference estimates"),
+    (r"\btarget\s+causal\s+estimate\b",
+     "target causal estimate; use target estimate or canonical estimate"),
+    (r"\bL2b\+\s+truth\b",
+     "L2b+ truth wording; use L2b+ pass/fail label"),
+    (r"\bhidden\s+truth\b",
+     "hidden truth wording; use hidden L2b+ correctness label"),
+    (r"\bhuman[- ]gold\b",
+     "human-gold wording in active reviewer-facing docs"),
+    (r"\bverified\s+ground[- ]truth\b",
+     "verified ground-truth wording"),
+    (r"(?<!not\s)(?<!not\sas\s)\bverified\s+causal\s+correctness\b",
+     "verified causal-correctness wording in active reviewer-facing docs"),
+    (r"\bDGP\s+true\s+effect\b",
+     "DGP true effect wording as an active scoring claim"),
+    (r"\bL2b\+[^.\n]{0,80}\brecovers?[^.\n]{0,80}"
+     r"\b(?:true effect|DGP|ideal DGP|beta star|β\*)\b",
+     "L2b+ recovery of the ideal/true DGP effect"),
+    (r"\bL4\s+text\s+scoring\s+is\s+essentially\s+uncorrelated\b",
+     "overbroad L4-text-scoring claim"),
+    (r"\btext\s+scoring\s+is\s+useless\b",
+     "overbroad text-scoring claim"),
+    (r"\bself-confidence\s+does\s+not\s+identify\s+mistakes\b",
+     "overbroad self-confidence heading"),
+    (r"\bmodels\s+do\s+not\s+know\s+when\s+they\s+are\s+wrong\b",
+     "overbroad model-self-knowledge claim"),
+    (r"\bcalibration\s+is\s+impossible\b",
+     "overbroad calibration impossibility claim"),
+    (r"\bmodel\s+confidence\s+never\s+helps\b",
+     "overbroad confidence claim"),
+    (r"\blanguage-invariant\s+ranking\b",
+     "overbroad language-invariant ranking claim"),
+    (r"\buniversal\s+causal\s+ability\b",
+     "overbroad universal causal ability claim"),
+    (r"\bgeneral\s+causal\s+intelligence\b",
+     "overbroad general causal intelligence claim"),
+    (r"\bcomplete\s+empirical\s+researcher\b",
+     "overbroad complete empirical researcher claim"),
+]
+EXPECTED_PRIMARY_L2B_PLUS_COUNTS = {
+    "Opus": 88,
+    "GPT-5": 72,
+    "GPT-4o": 62,
+    "Sonnet": 50,
+    "o3": 46,
+    "Gemini": 32,
+    "Kimi": 10,
+}
 
 
 def read_text(path: str) -> str:
@@ -121,6 +201,60 @@ def forbid_text(errors: list[str], path: str, pattern: str, label: str) -> None:
         fail(errors, f"{path}: stale {label}")
 
 
+def claim_language_files() -> list[str]:
+    files = list(CLAIM_LANGUAGE_PATHS)
+    figures_dir = ROOT / "paper/figures"
+    if figures_dir.exists():
+        for p in sorted(figures_dir.rglob("*")):
+            if p.is_file() and p.suffix in CLAIM_LANGUAGE_FIGURE_SUFFIXES:
+                files.append(p.relative_to(ROOT).as_posix())
+    return sorted(set(files))
+
+
+def forbid_risky_claim_language(errors: list[str], path: str) -> None:
+    if not (ROOT / path).exists():
+        return
+    text = read_text(path)
+    for pattern, label in RISKY_CLAIM_LANGUAGE:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            if (
+                path == "paper/latex/causalverify_neurips2026.tex"
+                and label == "target causal estimate; use target estimate or canonical estimate"
+            ):
+                abstract = re.search(
+                    r"\\begin\{abstract\}(.*?)\\end\{abstract\}",
+                    text,
+                    re.IGNORECASE | re.DOTALL,
+                )
+                if abstract and abstract.start() <= match.start() <= abstract.end():
+                    continue
+            line_no = text.count("\n", 0, match.start()) + 1
+            fail(errors, f"{path}:{line_no}: {label}")
+
+    # dgp_truth is a valid field name in scenario/Croissant metadata, but
+    # reviewer-facing prose must distinguish it from the L2b+ scoring baseline.
+    for match in re.finditer(r"\bdgp_truth\b", text, re.IGNORECASE):
+        window = text[max(0, match.start() - 180): match.end() + 180]
+        metadata_context = re.search(
+            r"\b(field|metadata|schema|Croissant|scenario)\b",
+            window,
+            re.IGNORECASE,
+        )
+        distinguishes_l2b = re.search(
+            r"\b(not|distinct|separate|rather than)\b[^.\n]{0,80}\bL2b\+|"
+            r"\bL2b\+[^.\n]{0,80}\b(not|distinct|separate|rather than)\b|"
+            r"\bcanonical estimator\b",
+            window,
+            re.IGNORECASE,
+        )
+        if not (metadata_context and distinguishes_l2b):
+            line_no = text.count("\n", 0, match.start()) + 1
+            fail(errors,
+                 f"{path}:{line_no}: dgp_truth must appear only as a "
+                 f"clearly distinguished scenario/Croissant metadata field")
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -128,6 +262,9 @@ def main() -> int:
         require_path(errors, doc)
         for pattern, label in STALE_PATTERNS:
             forbid_text(errors, doc, pattern, label)
+
+    for doc in claim_language_files():
+        forbid_risky_claim_language(errors, doc)
 
     # Active code paths must also be free of stale terms.
     code_files: list[str] = list(CODE_PATHS)
@@ -194,6 +331,24 @@ def main() -> int:
     require_text(
         errors,
         "RELEASE_NAVIGATION.md",
+        r"audit/exp_b_failure_taxonomy/README\.md",
+        "release nav links Exp B failure-taxonomy audit",
+    )
+    require_text(
+        errors,
+        "audit/exp_b_failure_taxonomy/README.md",
+        r"diagnostic audit, not a replacement for L2b\+ scoring",
+        "failure taxonomy is diagnostic, not replacement scoring",
+    )
+    require_text(
+        errors,
+        "audit/exp_b_failure_taxonomy/README.md",
+        r"No new model calls were made",
+        "failure taxonomy no-new-model-call statement",
+    )
+    require_text(
+        errors,
+        "RELEASE_NAVIGATION.md",
         r"audit/l2b_judge_human_validation/README\.md",
         "release nav links L2b judge human-validation scaffold",
     )
@@ -217,9 +372,19 @@ def main() -> int:
         fail(errors, "causalverify_neurips2026.tex must use official anonymous E&D style")
     if "nonanonymous" in paper_tex:
         fail(errors, "causalverify_neurips2026.tex must not contain nonanonymous")
+    if r"\label{app:canonical_estimators}" not in paper_tex:
+        fail(errors, "causalverify_neurips2026.tex must document Exp B canonical estimators")
+    if not re.search(r"benchmark-defined\s+reference\s+path\s+for\s+executable\s+evaluation", paper_tex):
+        fail(errors, "causalverify_neurips2026.tex must bound the canonical-estimator construct claim")
+    if "not a claim that only one empirical analysis is" not in paper_tex:
+        fail(errors, "causalverify_neurips2026.tex must state canonical estimator is not uniquely defensible")
 
     require_text(errors, "README.md", re.escape(FINAL_TITLE), "README final paper title")
     require_text(errors, "audit/SUBMISSION_BUILD_SUMMARY.md", re.escape(FINAL_TITLE), "submission summary final paper title")
+    require_text(errors, "README.md", re.escape(HF_SUBMISSION_TAG), "README stable HF release tag")
+    require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_SUBMISSION_TAG), "release nav stable HF release tag")
+    require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_DATASET_RELEASE), "release nav HF dataset release")
+    require_text(errors, "RELEASE_NAVIGATION.md", re.escape(HF_CODE_RELEASE), "release nav HF code release")
 
     for doc in ["README.md", "RELEASE_NAVIGATION.md", "audit/SUBMISSION_BUILD_SUMMARY.md"]:
         text = read_text(doc)
@@ -239,6 +404,46 @@ def main() -> int:
     ranking_blob = json.dumps(ranking.get("rankings", {}))
     if "Llama" in ranking_blob:
         fail(errors, "head_to_head_ranking.json: Llama must not appear in primary rankings")
+
+    l2b_summary = json.loads(read_text("experiments/exp_b/l2b_plus_summary_canonical_judge_v2.json"))
+    if float(l2b_summary.get("tolerance", -1)) != 0.5:
+        fail(errors, "l2b_plus_summary_canonical_judge_v2.json: default tolerance must remain 0.5")
+    by_model = l2b_summary.get("by_model", {})
+    for model, expected_count in EXPECTED_PRIMARY_L2B_PLUS_COUNTS.items():
+        record = by_model.get(model)
+        if not isinstance(record, dict):
+            fail(errors, f"l2b_plus_summary_canonical_judge_v2.json: missing {model}")
+            continue
+        if int(record.get("n", -1)) != 100:
+            fail(errors, f"l2b_plus_summary_canonical_judge_v2.json: {model} denominator must remain 100")
+        if int(record.get("L2b_plus_v2", -1)) != expected_count:
+            fail(errors, f"l2b_plus_summary_canonical_judge_v2.json: {model} L2b+ headline count changed")
+        expected_rate = expected_count / 100
+        if abs(float(record.get("L2b_plus_v2_rate", -1)) - expected_rate) > 1e-9:
+            fail(errors, f"l2b_plus_summary_canonical_judge_v2.json: {model} L2b+ headline rate changed")
+
+    tolerance_csv = ROOT / "audit/exp_b_robustness/tolerance_sweep_primary7.csv"
+    if tolerance_csv.exists():
+        with tolerance_csv.open(newline="") as f:
+            tolerance_rows = list(csv.DictReader(f))
+        default_rows = {r.get("model"): r for r in tolerance_rows if r.get("tolerance") == "0.50"}
+        for model, expected_count in EXPECTED_PRIMARY_L2B_PLUS_COUNTS.items():
+            row = default_rows.get(model)
+            if row is None:
+                fail(errors, f"tolerance_sweep_primary7.csv: missing 0.50 row for {model}")
+                continue
+            if int(row.get("denominator", -1)) != 100:
+                fail(errors, f"tolerance_sweep_primary7.csv: {model} 0.50 denominator must be 100")
+            if int(row.get("pass_count", -1)) != expected_count:
+                fail(errors, f"tolerance_sweep_primary7.csv: {model} 0.50 count must match headline")
+    tolerance_json_path = ROOT / "audit/exp_b_robustness/tolerance_sweep_primary7.json"
+    if tolerance_json_path.exists():
+        tolerance_payload = json.loads(tolerance_json_path.read_text(encoding="utf-8"))
+        if float(tolerance_payload.get("default_headline_tolerance", -1)) != 0.5:
+            fail(errors, "tolerance_sweep_primary7.json: default headline tolerance must remain 0.5")
+        primary_models = tolerance_payload.get("primary_models", [])
+        if "Llama" in primary_models:
+            fail(errors, "tolerance_sweep_primary7.json: Llama must not appear in primary_models")
 
     hv_readme_path = ROOT / "audit/l2b_judge_human_validation/README.md"
     hv_summary_path = ROOT / "audit/l2b_judge_human_validation/summary.json"

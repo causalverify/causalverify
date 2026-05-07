@@ -8,8 +8,7 @@ or pulled the wrong number from the regression table.
 Spot-check (audit/l2b_extraction_spot_check.json) showed 73% of L2b+
 failures with L2b=1 are scorer issues, not model issues. This script
 fixes that by sending R stdout + the executed R code + scenario method
-context to a coefficient-extraction judge, which returns the
-treatment-effect estimate.
+context to Haiku, which returns the treatment-effect estimate.
 
 Cost: ~$0.30-0.50 for ~350 L2b=1 cells across 6 models × 100 scenarios.
 

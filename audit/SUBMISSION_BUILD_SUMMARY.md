@@ -1,98 +1,87 @@
-# CausalVerify NeurIPS 2026 submission build summary
+# Submission Build Summary — v11.2-camera-ready
 
-Date: 2026-05-06
-
-Purpose: record the final anonymous CausalVerify NeurIPS 2026 Evaluations &
-Datasets submission build. This file replaces the prior internal draft
-summary and should be treated as the reviewer-facing paper build record.
+**Build date:** 2026-05-07
+**Audit tag:** v11.2-camera-ready
+**PDF SHA-256:** `953594344c52330f0d9607450b344a19f8e97c5b2100994872623b23f259c1d3`
+**PDF size:** 895699 bytes
+**Total pages:** 24
+**Main body pages:** 9
+**References start page:** 10
+**Bib entries:** 116 (+2 from v11-freeze: silberzahn2018many, botviniknezer2020variability)
 
 ## Files
 
 - Title: CausalVerify: An Execution-Grounded Benchmark for LLM Causal Inference Workflows
 - Source: `paper/latex/causalverify_neurips2026.tex`
 - PDF: `paper/latex/causalverify_neurips2026.pdf`
-- Style: official NeurIPS 2026 E&D style via
-  `\usepackage[eandd]{neurips_2026}` (anonymous submission mode).
-- SHA256: `eaff2475f2f73e747b97d85738b76cf6ede7742de5290a09b64dcb6fc051f78a`
-- Size: 934846 bytes
+- Style: official NeurIPS 2026 E&D style via `\usepackage[eandd]{neurips_2026}` (anonymous submission mode).
+
+## Lineage
+
+- v11-freeze-2026-04-29 → bib-fix run (transient SHA `802467f3...`, never committed) →
+  hardening run (transient SHA `2b25e2f4...`, also never committed) →
+  hardening commit (`a1c15edd...`) → Figure 9 colored update →
+  **v11.2-camera-ready (final SHA `953594344c...`)**
+- See `audit/sha_trail_investigation.md` for the SHA gap between bib-fix and hardening.
+
+## Changes since v11-freeze
+
+- **Phase 1 derived analyses** (`paper/derived_analyses/`):
+  scenario-clustered bootstrap τ CI [0.62, 0.90] (1000/1000 replicates exceed L4 upper bound);
+  per-model failure taxonomy (Gemini 63% no-code, Kimi 20% wrong-coef);
+  ECE bootstrap CIs (Opus 0.351 [0.288, 0.413] etc.);
+  Gemini MCAR check (p=0.877, not rejected);
+  tolerance-25 spread (9% to 84%).
+- **Tier-1 paper edits (W1/W3/W4/W6/W19):**
+  scenario-clustered bootstrap CI in §5 Finding 3;
+  Cohen's κ=0.294 hedge lifted into §5 Finding 1;
+  L2b+ reframed as agreement with reference implementation;
+  Table 7 replaced with per-model breakdown (reconciles to 340 non-L2b+ cells);
+  4-LLM consensus pool named (Claude Opus 4.7, GPT-4o, Kimi, Gemini 2.5 Flash);
+  structural circularity acknowledged in §3 and §7.
+- **Tier-2 polish (10 of 13 applied):**
+  Silberzahn 2018 + Botvinik-Nezer 2020 cited (only sanctioned bib changes);
+  Llama τ=0.714 honest sentence;
+  Event Study n=13 caveat in figure caption;
+  tolerance-25 co-headline added to abstract;
+  ECE CI note in Figure 8 caption.
+  T2.3 footnote inlined (page budget); T2.5 dropped (page budget; stashed in rebuttal kit).
+- **Final follow-up:**
+  CS=TWFE forward-defense sentence APPLIED in §4 (no compensation trim required);
+  T2.5 concurrent-work response stashed in `audit/rebuttal_kit/concurrent_work_response.md`;
+  SHA audit trail closed via `audit/sha_trail_investigation.md`.
 
 ## Frozen benchmark scope
 
 - Exp A: 259 active papers, 2 quarantined papers, 1813 outputs
-  (259 papers x 7 primary models).
+  (259 papers × 7 primary models).
 - Exp B: 100 synthetic DGP scenarios, 700 primary execution cells
-  (100 scenarios x 7 primary models).
+  (100 scenarios × 7 primary models).
 - Calibration: 646 valid retrospective self-assessment records.
-- Llama-3.3-70B-Instruct is retained only as an open-weights Exp B robustness
-  check and is excluded from the primary seven-model ranking.
+- Llama-3.3-70B-Instruct retained only as an open-weights Exp B robustness
+  check; excluded from the primary seven-model ranking.
 
-## Page budget
+## Rebuttal kit (`audit/rebuttal_kit/`)
 
-The NeurIPS 2026 main-track / E&D-track formatting rule limits the main
-content to 9 pages; references, appendices, and checklist do not count as
-content pages.
+- `cs_sa_estimator_check.csv` + `.py` — defends W3
+  (CS package missing locally, but SA via `fixest::sunab` passes L2b+ on all 3 sampled DIDs at rel-err < 32%)
+- `python_replication_plan.md` — defends W7 (n=20 stratified Python replication design)
+- `human_baseline_forms/` — defends W5 (10 stratified scenarios, annotation forms ready)
+- `concurrent_work_response.md` — defends concurrent-work novelty questions (T2.5 content)
 
-Current final-submission layout, revalidated under the official NeurIPS 2026
-E&D style:
+## Frozen-number integrity
 
-- Total PDF pages: 21
-- Main content pages before References: 9
-- References start: page 10
-- Appendix starts: page 14
-- Checklist starts: page 19
+All headline numbers preserved:
 
-The main text now satisfies the 9-page limit under the official NeurIPS 2026
-E&D style. Detailed reproducibility, human-audit material, the RID pilot, and
-additional diagnostic figures are placed in the appendix so the main text
-remains within the submission budget.
+- L2b+ pass rates 10%–88%
+- Kendall τ = 0.81, Spearman ρ = 0.93
+- L4 vs L2b+ τ ∈ [−0.20, 0.10]
+- Cohen's κ = 0.606 (method) / 0.294 (direction)
+- ECE values per `experiments/exp_b/calibration_summary_v2.json` unchanged
+- 50-cell coefficient-extraction audit: 90.9% numeric / 88.6% L2b+ pass-fail
+- EconCausal N = 10,490 triplets / 2,595 studies
 
-Local validation command:
-
-```bash
-cd paper/latex
-tectonic -X compile causalverify_neurips2026.tex --outdir /tmp/causalverify_neurips2026_build --keep-logs
-```
-
-The compile completed successfully with layout warnings only (underfull boxes
-and a `lineno.sty` UTF-8 warning), not fatal errors.
-
-## Submission source
-
-- `paper/latex/causalverify_neurips2026.tex` and
-  `paper/latex/causalverify_neurips2026.pdf` are the only submission source
-  and PDF. Earlier internal drafts (`neurips_v10*`, `neurips_v11*`,
-  `neurips_v12*`) were removed; the pre-restructure state remains accessible
-  via the git tag `pre-v2prime-restructure-2026-04-25`.
-
-## Human-validation status
-
-The 30-paper blinded Exp A human validation audit is completed:
-
-- Target30 completed: 30/30 first-pass human labels.
-- Replacement: `paper_159` was excluded because the available PDF was
-  appendix-only; `paper_17` was added as a blinded replacement.
-- Human vs 4-LLM consensus:
-  - Method-family agreement: 18/30 = 60.0% (Cohen's kappa 0.606).
-  - Direction agreement: 10/21 = 47.6% (Cohen's kappa 0.294).
-- Source: `audit/human_gold/human_vs_llm_consensus.md`.
-
-This audit bounds Exp A label ambiguity. It does not make the full Exp A
-corpus human-gold labeled.
-
-The L2b coefficient-judge human-validation audit is completed:
-
-- Protocol: `audit/l2b_judge_human_validation/README.md`
-- Current summary: `audit/l2b_judge_human_validation/summary.json`
-- Scope: 50 primary-panel L2b=1 cells sampled with seed 20260502.
-- Result: 90.9% numeric agreement and 88.6% induced L2b+ pass/fail
-  agreement among comparable audited cells.
-- Disagreements concentrate in event-study window choices and RDD
-  sign/printing ambiguities.
-
-## Claim-boundary reminders
-
-- L2b+ means coefficient agreement with the canonical estimator on the
-  realised dataset, not recovery of the ideal DGP beta parameter.
-- L3/L4 are text-level method-family and direction agreement diagnostics, not
-  verified causal correctness.
-- The primary leaderboard has seven models; Llama remains robustness-only.
+No frozen artifact under `audit/` (except `audit/SUBMISSION_BUILD_SUMMARY.md`,
+`audit/sha_trail_investigation.md`, `audit/figure_checks/`, and the new
+`audit/rebuttal_kit/`), `experiments/exp_a/outputs/`, or `experiments/exp_b/outputs/`
+was modified by this hardening pass.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-#  CausalVerify — re-score the frozen results from existing model outputs.
+#  CausalVerify — re-score the v10 results from existing model outputs.
 #
 #  This script does NOT make any LLM API calls. It only re-runs the
 #  deterministic scoring + ranking pipeline on the model outputs already
@@ -13,7 +13,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "==> [1/5] auto_score_exp_a (L1/L2a/L2b/L3/L4 on 259 active papers)"
+echo "==> [1/5] auto_score_exp_a (L1/L2a/L2b/L3/L4 on 262 papers)"
 python src/pipeline/auto_score_exp_a.py
 
 echo "==> [2/5] score_l2b_plus (L2b+ on 100 DGP scenarios)"

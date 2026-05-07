@@ -1,0 +1,95 @@
+2026-04-23 12:32:10,291 [INFO] Seed = 20260423
+2026-04-23 12:32:10,298 [INFO] Loaded 262 papers; 240 eligible
+2026-04-23 12:32:10,298 [INFO]   ineligible: method_family='NONE' not in allowed set  (17 papers)
+2026-04-23 12:32:10,298 [INFO]   ineligible: source_type='openalex_abstract' not in {'pdf_first_8_pages'}  (4 papers)
+2026-04-23 12:32:10,298 [INFO]   ineligible: source_type='unknown' not in {'pdf_first_8_pages'}  (1 papers)
+2026-04-23 12:32:10,298 [INFO] Eligible papers per cell:
+2026-04-23 12:32:10,298 [INFO]       DID             × easy  :  99 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]       DID             × hard  :  32 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]       EVENT_STUDY     × easy  :  14 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]    ⚠️ EVENT_STUDY     × hard  :   2 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]       IV              × easy  :  27 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]    ⚠️ IV              × hard  :   7 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]       RDD             × easy  :  47 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]    ⚠️ RDD             × hard  :   3 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]    ⚠️ OTHER           × easy  :   6 eligible (target 8)
+2026-04-23 12:32:10,298 [INFO]    ⚠️ OTHER           × hard  :   3 eligible (target 8)
+2026-04-23 12:32:10,298 [WARNING] cell ('EVENT_STUDY', 'hard'): only 2 eligible, drew 2
+2026-04-23 12:32:10,298 [WARNING] cell ('RDD', 'hard'): only 3 eligible, drew 3
+2026-04-23 12:32:10,298 [WARNING] cell ('OTHER', 'hard'): only 3 eligible, drew 3
+2026-04-23 12:32:10,298 [WARNING] cell ('OTHER', 'easy'): only 6 eligible, drew 6
+2026-04-23 12:32:10,299 [WARNING] cell ('IV', 'hard'): only 7 eligible, drew 7
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'easy') for paper paper_127
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('RDD', 'easy') for paper paper_161
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'hard') for paper paper_198
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('IV', 'easy') for paper paper_67
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_28
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'easy') for paper paper_120
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('RDD', 'easy') for paper paper_162
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'hard') for paper paper_214
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('IV', 'easy') for paper paper_115
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_30
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'easy') for paper paper_168
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('RDD', 'easy') for paper paper_107
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'hard') for paper paper_159
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('IV', 'easy') for paper paper_38
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_11
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'easy') for paper paper_111
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('RDD', 'easy') for paper paper_154
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('DID', 'hard') for paper paper_200
+2026-04-23 12:32:10,299 [INFO] backfill: +1 to cell ('IV', 'easy') for paper paper_182
+2026-04-23 12:32:10,299 [INFO] Direction distribution before rebalance: {'positive': 11, 'unclear': 24, 'none': 34, 'negative': 11}
+2026-04-23 12:32:10,299 [INFO] direction swap #1: evicted paper_79 (unclear) for paper_215 (positive)
+2026-04-23 12:32:10,299 [INFO] direction swap #2: evicted paper_168 (unclear) for paper_243 (positive)
+2026-04-23 12:32:10,299 [INFO] direction swap #3: evicted paper_111 (unclear) for paper_42 (positive)
+2026-04-23 12:32:10,299 [INFO] direction swap #4: evicted paper_178 (unclear) for paper_53 (positive)
+2026-04-23 12:32:10,299 [INFO] direction swap #5: evicted paper_74 (unclear) for paper_08 (negative)
+2026-04-23 12:32:10,299 [INFO] direction swap #6: evicted paper_180 (unclear) for paper_129 (negative)
+2026-04-23 12:32:10,299 [INFO] direction swap #7: evicted paper_250 (unclear) for paper_40 (negative)
+2026-04-23 12:32:10,299 [INFO] direction swap #8: evicted paper_107 (unclear) for paper_231 (negative)
+2026-04-23 12:32:10,299 [INFO] Direction distribution after rebalance: {'positive': 15, 'unclear': 16, 'none': 34, 'negative': 15}
+2026-04-23 12:32:10,299 [INFO] Wrote VISIBLE manifest:  sample_manifest.csv (80 rows)
+2026-04-23 12:32:10,299 [INFO] Wrote SEALED manifest:   sample_manifest_SEALED.csv
+2026-04-23 12:32:10,299 [INFO] Wrote manifest hash:     sample_manifest.sha256
+2026-04-23 12:32:10,299 [INFO] === Per-cell counts ===
+2026-04-23 12:32:10,299 [INFO]   DID × easy                : 12
+2026-04-23 12:32:10,299 [INFO]   DID × hard                : 12
+2026-04-23 12:32:10,299 [INFO]   EVENT_STUDY × easy        : 11
+2026-04-23 12:32:10,300 [INFO]   EVENT_STUDY × hard        : 2
+2026-04-23 12:32:10,300 [INFO]   IV × easy                 : 12
+2026-04-23 12:32:10,300 [INFO]   IV × hard                 : 7
+2026-04-23 12:32:10,300 [INFO]   OTHER × easy              : 6
+2026-04-23 12:32:10,300 [INFO]   OTHER × hard              : 3
+2026-04-23 12:32:10,300 [INFO]   RDD × easy                : 12
+2026-04-23 12:32:10,300 [INFO]   RDD × hard                : 3
+2026-04-23 12:32:10,300 [INFO] === Per-direction counts ===
+2026-04-23 12:32:10,300 [INFO]   negative   : 15
+2026-04-23 12:32:10,300 [INFO]   none       : 34
+2026-04-23 12:32:10,300 [INFO]   positive   : 15
+2026-04-23 12:32:10,300 [INFO]   unclear    : 16
+2026-04-23 12:32:10,300 [WARNING] === Shortfalls / backfills ===
+2026-04-23 12:32:10,300 [WARNING]   cell ('EVENT_STUDY', 'hard'): only 2 eligible, drew 2
+2026-04-23 12:32:10,300 [WARNING]   cell ('RDD', 'hard'): only 3 eligible, drew 3
+2026-04-23 12:32:10,300 [WARNING]   cell ('OTHER', 'hard'): only 3 eligible, drew 3
+2026-04-23 12:32:10,300 [WARNING]   cell ('OTHER', 'easy'): only 6 eligible, drew 6
+2026-04-23 12:32:10,300 [WARNING]   cell ('IV', 'hard'): only 7 eligible, drew 7
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'easy') for paper paper_127
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('RDD', 'easy') for paper paper_161
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'hard') for paper paper_198
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('IV', 'easy') for paper paper_67
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_28
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'easy') for paper paper_120
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('RDD', 'easy') for paper paper_162
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'hard') for paper paper_214
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('IV', 'easy') for paper paper_115
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_30
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'easy') for paper paper_168
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('RDD', 'easy') for paper paper_107
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'hard') for paper paper_159
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('IV', 'easy') for paper paper_38
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('EVENT_STUDY', 'easy') for paper paper_11
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'easy') for paper paper_111
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('RDD', 'easy') for paper paper_154
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('DID', 'hard') for paper paper_200
+2026-04-23 12:32:10,300 [WARNING]   backfill: +1 to cell ('IV', 'easy') for paper paper_182
+2026-04-23 12:32:10,300 [INFO] Done. Review sample_manifest.csv and sample_selection.log before labeling.

@@ -2,7 +2,7 @@
 """
 sample_selection.py — A1 paper-native gold subset sampler.
 
-Selects 80 papers from the CausalVerify corpus, stratified by:
+Selects 80 papers from the CAUSAL-BENCH corpus, stratified by:
   primary   : method_family (5) × difficulty (2) = 10 cells × 8 papers
   secondary : conclusion_direction balanced as post-hoc constraint (≥ 15 per direction)
 
@@ -16,7 +16,7 @@ Usage:
         --out-dir . \
         --seed 20260423
 
-This version is adapted to the CausalVerify data shape:
+This version is adapted to the CAUSAL-BENCH v11 data shape:
   - `audit/gt_aggregate_decisions.json` is a LIST of per-paper records
   - Consensus levels use `m_level` / `d_level` (not `consensus_level`)
     with values {all4_agree, 3of4_agree, 2of4_plurality, 2of4_tie, split}

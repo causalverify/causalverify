@@ -1,0 +1,26 @@
+method,broad_group,broad_group_label,failure_category,count,share_of_all_cells,l2b1_l2bplus0_denominator,share_among_l2b1_l2bplus0
+DID,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,5,0.0238,20,
+DID,B_execution_failure,Code present but execution failed,execution_failure,64,0.3048,20,
+DID,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,1,0.0048,20,0.0500
+DID,C_executed_no_extractable_effect,Executed but no extractable treatment effect,pretrend_or_placebo_coefficient,1,0.0048,20,0.0500
+DID,C_executed_no_extractable_effect,Executed but no extractable treatment effect,wrong_did_interaction,1,0.0048,20,0.0500
+DID,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,17,0.0810,20,0.8500
+EVENT_STUDY,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,19,0.1131,15,
+EVENT_STUDY,B_execution_failure,Code present but execution failed,execution_failure,43,0.2560,15,
+EVENT_STUDY,C_executed_no_extractable_effect,Executed but no extractable treatment effect,event_window_or_scale_mismatch,2,0.0119,15,0.1333
+EVENT_STUDY,C_executed_no_extractable_effect,Executed but no extractable treatment effect,wrong_target_variable,1,0.0060,15,0.0667
+EVENT_STUDY,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",event_window_or_scale_mismatch,9,0.0536,15,0.6000
+EVENT_STUDY,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,2,0.0119,15,0.1333
+EVENT_STUDY,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",wrong_target_variable,1,0.0060,15,0.0667
+IV,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,3,0.0179,15,
+IV,B_execution_failure,Code present but execution failed,execution_failure,56,0.3333,15,
+IV,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,8,0.0476,15,0.5333
+IV,C_executed_no_extractable_effect,Executed but no extractable treatment effect,iv_first_stage_or_wrong_stage,4,0.0238,15,0.2667
+IV,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,2,0.0119,15,0.1333
+IV,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",iv_first_stage_or_wrong_stage,1,0.0060,15,0.0667
+RDD,A_no_code_or_unparseable,No code or unparseable code block,no_code_or_unparseable,17,0.1104,16,
+RDD,B_execution_failure,Code present but execution failed,execution_failure,67,0.4351,16,
+RDD,C_executed_no_extractable_effect,Executed but no extractable treatment effect,bandwidth_or_statistic_only,2,0.0130,16,0.1250
+RDD,C_executed_no_extractable_effect,Executed but no extractable treatment effect,coefficient_not_reported,6,0.0390,16,0.3750
+RDD,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",executed_wrong_coefficient,5,0.0325,16,0.3125
+RDD,D_executed_wrong_coefficient,"Executed and effect extracted, but L2b+ failed",rdd_cutoff_or_sign_convention,3,0.0195,16,0.1875

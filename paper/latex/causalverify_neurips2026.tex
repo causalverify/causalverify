@@ -93,10 +93,12 @@ method-family and direction agreement against four-LLM consensus labels.
 Experiment~B runs model-written R code and checks whether the extracted
 treatment-effect estimate matches a canonical estimator on the same
 realised dataset. A calibration arm asks whether self-reported confidence
-separates correct from incorrect workflows. On Experiment~B, seven
-evaluated LLMs reach final L2b+ pass rates between 10\% and 88\%.
-Execution ranking (L2b) agrees with coefficient recovery (L2b+) far
-better than text-direction scoring (L4): Kendall $\tau=0.81$ and Spearman
+separates correct from incorrect workflows. On Experiment~B, seven evaluated LLMs reach final L2b+ pass rates
+between 10\% and 88\% at the default 50\% tolerance (9\% to 84\% at
+a stricter 25\%; Appendix~\ref{app:tolerance_sweep}).
+Execution ranking (L2b) agrees with reference-agreement correctness
+(L2b+) far better than text-direction scoring (L4):
+Kendall $\tau=0.81$ and Spearman
 $\rho=0.93$, versus Kendall $\tau$ between $-0.20$ and $0.10$ for L4. A
 robustness run with Llama-3.3-70B-Instruct shows the same qualitative
 gap, and reported confidence does not reliably separate correct from
@@ -106,8 +108,9 @@ released with the submission.
 
 \section{Introduction}
 
-Evaluating LLMs for empirical causal inference is a verification
-problem, not merely a text-scoring problem. A valid empirical claim
+Evaluating LLMs for empirical causal inference requires more than text
+scoring of methods and effect signs: it requires verifying that the
+executed analysis recovers a target estimate. A valid empirical claim
 requires an estimand, an identification argument, an estimator,
 executable analysis code, and a numerical result whose interpretation
 matches the target causal quantity~\citep{rubin1974estimating,
@@ -177,13 +180,14 @@ realised dataset.
 textual interpretation, code executability, numerical coefficient
 recovery, and self-assessed confidence. Across seven evaluated LLMs,
 final L2b+ pass rates range from 10\% to 88\%. Execution success is
-strongly aligned with coefficient recovery (Kendall $\tau = 0.81$,
-Spearman $\rho = 0.93$), whereas text-direction agreement is weakly or
-negatively aligned with Exp~B L2b+ ranking (Kendall $\tau \in [-0.20,
-0.10]$). Execution is not sufficient---some code runs and estimates
-the wrong coefficient---but it is a stronger proxy for execution-grounded
-coefficient recovery under our reference-label construction than L4
-direction agreement. A calibration arm further shows that naive
+strongly aligned with reference-agreement correctness (Kendall
+$\tau = 0.81$, Spearman $\rho = 0.93$), whereas text-direction
+agreement is weakly or negatively aligned with Exp~B L2b+ ranking
+(Kendall $\tau \in [-0.20, 0.10]$). Execution is not
+sufficient---some code runs and estimates the wrong coefficient---but
+it is a stronger proxy for execution-grounded agreement with the
+reference implementation under our reference-label construction than
+L4 direction agreement. A calibration arm further shows that naive
 retrospective confidence reports do not cleanly separate correct from
 incorrect workflows under our prompt,
 connecting the benchmark to work on calibration, verbalized
@@ -192,10 +196,11 @@ self-checking~\citep{guo2017calibration,geifman2017selective,
 jiang2021know,lin2022uncertaintywords,mielke2022linguistic,
 kadavath2022know,kuhn2023semantic,manakul2023selfcheckgpt,
 tian2023calibration,xiong2024uncertainty}. Our contributions are a
-benchmark design separating real-paper agreement from executable
-correctness, L2b+ as an execution-grounded coefficient-recovery
-metric, and empirical evidence that plausible text, runnable code,
-numerical correctness, and confidence can diverge sharply.
+benchmark design separating real-paper agreement from execution-grounded
+reference-agreement correctness, L2b+ as a metric for agreement with a
+benchmark-fixed reference implementation, and empirical evidence that
+plausible text, runnable code, agreement with the reference
+implementation, and confidence can diverge sharply.
 
 \begin{figure}[t]
   \centering
@@ -317,12 +322,15 @@ intentionally a text-level benchmark, comparable to prior LLM
 causal-reasoning evaluations that score textual causal direction, method
 recognition, sign judgments, or identification/estimation
 judgments~\citep{jin2023cladder,jin2024corr2cause,lee2025econcausal,
-sawarni2026causalreasoningbenchmark}. It measures method-family agreement
-(L3) and direction agreement (L4) against four-LLM consensus reference
-labels. The benchmark does not treat these labels as human-adjudicated
-causal claims; instead, it uses real papers to test whether models read applied
-study contexts in the same way as a structured consensus procedure.
-The executable correctness endpoint is reserved for Exp~B.
+sawarni2026causalreasoningbenchmark}. It measures method-family agreement (L3) and direction agreement (L4)
+against four-LLM consensus reference labels from a pool of Claude
+Opus~4.7, GPT-4o, Kimi, and Gemini 2.5 Flash; this pool overlaps with
+the evaluated panel and we discuss the implied structural circularity in
+§\ref{sec:limitations}. The benchmark does not treat these labels as
+human-adjudicated causal claims; it uses real papers to test whether
+models read applied study contexts in the same way as a structured
+consensus procedure. The execution-grounded reference-agreement
+endpoint is reserved for Exp~B.
 
 \paragraph{Exp B: synthetic DGP execution.}
 Exp~B contains 100 fixed-seed synthetic DGP scenarios across standard
@@ -341,7 +349,8 @@ This realised-data comparison avoids penalizing models for finite-sample
 deviations between the realised sample and the ideal DGP parameter.
 Recent large-scale multi-analyst evidence shows that empirical claims can
 vary under alternative defensible analyses of the same research question
-and data~\citep{aczel2026analyticalrobustness}. We therefore treat the
+and data~\citep{silberzahn2018many,botviniknezer2020variability,aczel2026analyticalrobustness}.
+We therefore treat the
 Exp~B canonical estimator as a fixed reference path for executable
 evaluation, not as the only scientifically defensible analysis.
 
@@ -438,6 +447,19 @@ canonical per-day abnormal-return scale. This mapping is fixed before
 model comparison.
 Appendix~\ref{app:canonical_estimators} lists the canonical reference
 estimate and accepted reported coefficient for each Exp~B method family.
+L2b+ is therefore best read as agreement with a benchmark-fixed reference
+implementation, not as a verdict on causal-econometric correctness in
+general; a model that selects a methodologically more appropriate
+estimator (e.g.\ Callaway--Sant'Anna~\citep{callaway2021did} or
+Sun--Abraham~\citep{sun2021eventstudy}) may diverge from the canonical
+reference, and we treat such divergence as benchmark coverage limitation
+rather than model error.
+All 30 Exp~B DID scenarios use common adoption timing, in which
+Callaway--Sant'Anna and Sun--Abraham reduce to TWFE; Sun--Abraham
+implementations on three sampled scenarios pass L2b+ at 50\% tolerance
+with relative errors below 32\%
+(\texttt{audit/rebuttal\_kit/cs\_sa\_estimator\_check.csv}), confirming
+that the TWFE canonical reference is appropriate for this design space.
 
 \paragraph{Why L3/L4 are supporting metrics.}
 Exp~A institutional context necessarily describes identifying variation,
@@ -493,28 +515,34 @@ prompt.
 \end{figure}
 
 \paragraph{Finding 1: real-paper text agreement is useful but not decisive.}
-On Exp~A, L3 is scoreable for 187/259 papers and L4 for 92/259 papers.
-GPT-4o leads L3 (88.8\%), Claude Sonnet leads L4 (85.9\%), and GPT-5 is
-lowest on L3 (67.4\%) but middle of the pack on L4 (81.5\%). The rankings
-do not collapse to one textual ability score. Figure~\ref{fig:headline}(c)
-summarizes the model-level separation between L3 method-family agreement and
-L4 direction agreement, while Figure~\ref{fig:expa_text} breaks L3 down by
-method family. Event Study has the lowest observed cross-model L3 mean in
-this sample, but its smaller corpus size limits precision. The 30-paper
-blinded human ambiguity audit reinforces this
-interpretation: agreement with the 4-LLM consensus is 60.0\% for method
-family and 47.6\% for direction. Exp~A is therefore best read as a
-real-context text diagnostic, not as the paper's primary correctness
-endpoint.
+On Exp~A, L3 is scoreable for 187/259 papers and L4 for 92/259 papers
+(unscoreable cases are predominantly papers where the 4-LLM consensus
+did not converge on a single canonical method-family label or
+positive/negative direction label).
+GPT-4o leads L3 (88.8\%) and Sonnet leads L4 (85.9\%); the rankings
+do not collapse to one textual ability score.
+The 30-paper blinded human ambiguity audit reinforces this caution:
+agreement with the 4-LLM consensus is only fair for direction labels
+(Cohen's $\kappa = 0.294$), so L4 scores partly reflect reference-label
+noise rather than purely model behavior.
+Figure~\ref{fig:headline}(c) summarizes the L3/L4 separation;
+Figure~\ref{fig:expa_text} breaks L3 down by method family, and
+Event Study has the lowest observed cross-model L3 mean in this sample
+with smaller corpus size limiting precision. Exp~A is therefore best
+read as a real-context text diagnostic, not as the paper's primary
+correctness endpoint.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.90\textwidth]{fig3_method_dotplot.pdf}
 \caption{Exp~A L3 method-family agreement by method family. Colored markers
 show the seven model-level agreement rates; black diamonds and whiskers show
-the cross-model mean with paper-cluster bootstrap 95\% intervals. Event Study
-has the lowest observed mean (64\%, $n=13$) and the widest uncertainty. L3 is
-a text-agreement diagnostic, not an executable correctness endpoint.}
+the cross-model mean with paper-cluster bootstrap 95\% intervals.
+Event Study has the lowest observed mean (64\%, $n=13$); with $n=13$
+papers the cross-model 95\% bootstrap CI is wide and Event Study
+agreement should be treated as exploratory rather than as a comparative
+finding. L3 is a text-agreement diagnostic, not an executable
+correctness endpoint.}
 \label{fig:expa_text}
 \end{figure}
 
@@ -540,18 +568,19 @@ runnable code alone is not sufficient.}
 \label{fig:cascade}
 \end{figure}
 
-\paragraph{Finding 3: execution ranking tracks numerical correctness.}
+\paragraph{Finding 3: execution ranking tracks reference-agreement correctness.}
 Across the seven models, the L2b ranking strongly matches the final L2b+
-ranking (Kendall $\tau=+0.81$, Spearman $\rho=+0.93$).
+ranking (Kendall $\tau=+0.81$, scenario-clustered 95\% bootstrap CI
+$[0.62, 0.90]$; Spearman $\rho=+0.93$, $[0.75, 0.96]$; 1{,}000 resamples,
+seed 20260507; every replicate exceeds the L4-vs-L2b+ upper bound $+0.10$).
 Appendix~\ref{app:rank_stability} reports leave-one-model-out stability:
 Kendall $\tau$ remains in $[0.733,0.867]$, with $\tau=0.714$ when adding
 Llama as robustness-only. By contrast, L4 agreement against consensus
 direction labels has weak or negative association with Exp~B L2b+
 ranking ($\tau\in[-0.20,+0.10]$ across two frozen scorer variants).
-Execution is not sufficient for correctness, but it is a much stronger
-proxy for execution-grounded coefficient recovery under our reference-label
-construction than text-level directional agreement. Because L2b+ is conditional
-on execution, Appendix~\ref{app:expb-robustness} reports
+Execution is not sufficient, but it is a much stronger proxy for
+reference-agreement correctness than text-level direction.
+Appendix~\ref{app:expb-robustness} reports
 $P(\mathrm{L2b+}\mid\mathrm{L2b})$ to separate execution failures from
 executed-but-wrong estimates.
 
@@ -615,8 +644,11 @@ As a single cross-vendor check, we evaluate Llama-3.3-70B-Instruct on the
 same 100 Exp~B scenarios using the same prompt and scoring pipeline. It
 reaches L2b $=41\%$ and final ES-aware L2b+ $=20\%$, placing it between
 Kimi and Gemini and reproducing the same qualitative gap between runnable
-code and numerically correct code. We treat this as a robustness check,
-not a complete benchmark of the open-source ecosystem.
+code and numerically correct code. Adding Llama as an eighth model
+lowers Kendall $\tau$ to $0.714$ (Appendix~\ref{app:rank_stability})
+without changing the qualitative L2b--L2b+ ordering or L2b--L4
+separation. We treat this as a robustness check, not a complete
+benchmark of the open-source ecosystem.
 
 \section{Reproducibility and Human Audits}
 
@@ -631,16 +663,15 @@ release treats cached JSON outputs as the reproducible model-output layer.
 Appendix~\ref{app:reproducibility} lists artifact paths and checksums.
 
 Human annotation is intentionally an ambiguity audit rather than a
-training or tuning input. A blinded 30-paper Exp~A slice was labeled from
-the original PDFs after the automated benchmark freeze, without access to
-Phase-2 LLM votes, consensus labels, or model outputs. These human labels
-are not used to change the frozen consensus labels, prompts, model
-outputs, or scoring thresholds. Agreement with the four-LLM consensus is
-60.0\% for method family ($18/30$; Cohen's $\kappa=0.606$) and 47.6\% for
-direction ($10/21$; Cohen's $\kappa=0.294$ among direction-scoreable
-cases). This supports our interpretation of Exp~A as a real-context
-agreement diagnostic with substantial ambiguity, while Exp~B supplies
-executable correctness.
+training or tuning input. A blinded 30-paper Exp~A slice was labeled
+from the original PDFs after the automated benchmark freeze without
+access to Phase-2 LLM votes, consensus labels, or model outputs, and
+these human labels are not used to change frozen consensus labels,
+prompts, outputs, or scoring thresholds. Agreement with the four-LLM
+consensus is method 60.0\% / direction 47.6\% (Cohen's
+$\kappa = 0.606$ and $0.294$), supporting our interpretation of Exp~A
+as a real-context agreement diagnostic with substantial ambiguity;
+Exp~B supplies executable correctness.
 
 A separate blinded human audit validates the coefficient-extraction
 instrument used for L2b+. The completed 50-cell audit finds 90.9\%
@@ -651,20 +682,20 @@ measurement instrument but does not change the frozen headline L2b+
 rates.
 
 \section{Limitations}
+\label{sec:limitations}
 
 First, Exp~A labels are reference labels rather than L2b+ correctness
-labels.
-The final labels come from a four-LLM consensus after the final
-paper-field reconstruction pass, and 100 disagreement cases remain
-flagged for potential human adjudication. The completed blinded 30-paper
-ambiguity audit agrees with the consensus on 60.0\% of method labels and
-47.6\% of direction labels, indicating that real-paper method and
-direction labels are noisy even under careful reading. This audit is
-useful as an ambiguity check, but it does not make the 259-paper Exp~A
-corpus fully human-adjudicated. We therefore use Exp~A to study text-level
-agreement in real research contexts, not as verified causal correctness.
-Because Exp~A uses published papers, we also cannot fully rule out
-model familiarity with some studies from pretraining or public metadata.
+labels: the final labels come from a four-LLM consensus, and the
+completed blinded 30-paper ambiguity audit agrees with consensus on
+60.0\% of method labels and 47.6\% of direction labels, with Cohen's
+$\kappa = 0.294$ for direction. The audit is an ambiguity check, not a
+full human re-adjudication of the 259-paper corpus. The consensus pool
+also overlaps with the evaluated panel (two exact matches, two
+same-provider siblings; see §3), so L3/L4 are agreement diagnostics
+under structural overlap rather than independent text-correctness
+measurements; L2b+ in Exp~B does not use this pool. Because Exp~A uses
+published papers, we also cannot fully rule out model familiarity with
+some studies from pretraining or public metadata.
 
 Second, Exp~B is synthetic and structured. This is necessary for
 executable reference estimates, but it measures whether models can
@@ -717,19 +748,16 @@ causal study.
 \section{Conclusion}
 
 \textsc{CausalVerify} shows that the right unit of evaluation for
-LLM-assisted causal inference is the workflow. A model may produce
-plausible causal text and runnable code while still estimating the wrong
-causal quantity. By separating real-paper agreement, execution,
-coefficient recovery, and self-assessment, the benchmark exposes where
-such workflows fail. Across seven evaluated LLMs, final L2b+ correctness
-ranges from 10\% to 88\%, execution ranking tracks coefficient recovery
-much better than L4 agreement against consensus direction labels, and naive
-retrospective confidence reports do not reliably separate correct from
-incorrect workflows under our prompt. For causal inference, the
-question is therefore not whether an LLM can produce an analysis that
-looks correct, but whether the workflow can be executed, checked against
-a specified target, and accompanied by uncertainty signals that are
-themselves audited.
+LLM-assisted causal inference is the workflow: a model may produce
+plausible causal text and runnable code while still estimating the
+wrong causal quantity. Across seven evaluated LLMs, final L2b+ pass
+rates range from 10\% to 88\%; execution ranking tracks
+reference-agreement much better than L4 direction agreement, and
+naive retrospective confidence does not reliably separate correct
+from incorrect workflows. The question for causal inference is
+therefore not whether the model sounds right, but whether its
+workflow executes, agrees with a specified target, and carries
+audited uncertainty.
 
 \clearpage
 \phantomsection
@@ -893,24 +921,31 @@ uncategorized rather than forced into a narrow label.
 
 \begin{table}[h]
 \centering
-\caption{Exp~B failure-taxonomy diagnostic for the primary seven models.
-Counts are over the 340 non-L2b+ cells and use existing frozen outputs,
-scores, and judge-cache metadata.}
+\caption{Exp~B failure-taxonomy diagnostic, per primary model. Cells show counts
+and (share of that model's non-L2b+ failures). Per-model breakdown reveals that
+strong models execute correctly when they execute (Opus, Sonnet, Gemini conditional
+pass rates $\ge 93\%$; see Table~\ref{tab:conditional-l2b}), while weaker models
+more often produce executed-but-wrong code (Kimi 22.2\%, GPT-4o 79.5\% conditional
+pass). Per-model rows sum to 340 non-L2b+ cells, matching the aggregate decomposition
+(Exec fail 230, No code 44, Wrong coef 26, Coef-not-reported 15, Window/scale 11,
+IV stage 5, RDD 3, Other 6).}
 \label{tab:failure-taxonomy}
-\small
-\renewcommand{\arraystretch}{1.08}
-\begin{tabular}{lrr}
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{lrrrrrrrrr}
 \toprule
-\textbf{Failure category} & \textbf{Count} & \textbf{Share of failures} \\
+\textbf{Model} & \textbf{n} & \textbf{Exec fail} & \textbf{No code} &
+\textbf{Wrong coef} & \textbf{Coef N/R} & \textbf{Win/scale} &
+\textbf{IV stage} & \textbf{RDD} & \textbf{Other} \\
 \midrule
-Execution failure & 230 & 67.6\% \\
-No code or unparseable code & 44 & 12.9\% \\
-Executed wrong coefficient & 26 & 7.6\% \\
-Coefficient not reported & 15 & 4.4\% \\
-Event-window or scale mismatch & 11 & 3.2\% \\
-IV first-stage or wrong-stage output & 5 & 1.5\% \\
-RDD cutoff/sign convention & 3 & 0.9\% \\
-Other target-specific categories & 6 & 1.8\% \\
+Opus   & 12 & 5 (41.7\%)  & 1 (8.3\%)   & 2 (16.7\%)  & 0           & 3 (25.0\%) & 0          & 0          & 1 (8.3\%) \\
+Sonnet & 50 & 49 (98.0\%) & 0           & 1 (2.0\%)   & 0           & 0          & 0          & 0          & 0 \\
+GPT-4o & 38 & 22 (57.9\%) & 0           & 3 (7.9\%)   & 1 (2.6\%)   & 3 (7.9\%)  & 4 (10.5\%) & 0          & 5 (13.2\%) \\
+o3     & 54 & 50 (92.6\%) & 0           & 2 (3.7\%)   & 1 (1.9\%)   & 1 (1.9\%)  & 0          & 0          & 0 \\
+Kimi   & 90 & 55 (61.1\%) & 0           & 18 (20.0\%) & 13 (14.4\%) & 3 (3.3\%)  & 1 (1.1\%)  & 0          & 0 \\
+Gemini & 68 & 25 (36.8\%) & 43 (63.2\%) & 0           & 0           & 0          & 0          & 0          & 0 \\
+GPT-5  & 28 & 24 (85.7\%) & 0           & 0           & 0           & 1 (3.6\%)  & 0          & 3 (10.7\%) & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1101,7 +1136,9 @@ by a single cutoff.}
 retrospective self-reported confidence with empirical L2b+ correctness.
 These diagnostics support the main-text finding that naive retrospective
 self-reported confidence does not reliably separate correct from incorrect
-workflows under our retrospective confidence prompt.}
+workflows under our retrospective confidence prompt.
+95\% bootstrap CI on ECE (1{,}000 resamples within model):
+see \texttt{paper/derived\_analyses/ece\_bootstrap\_ci.csv}.}
 \label{fig:calibration}
 \end{figure}
 

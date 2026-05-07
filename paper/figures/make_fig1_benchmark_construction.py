@@ -12,7 +12,8 @@ This script follows the coordinate system and visual grammar of
   - black arrows and code-like artifact boxes
 
 The content is updated to the current CausalVerify v12 state:
-Exp A = 259 papers; Exp B = 100 DGPs; calibration = confidence vs L2b+ truth.
+Exp A = 259 papers; Exp B = 100 DGPs; calibration = confidence vs L2b+
+pass/fail labels.
 
 Outputs:
   paper/figures/fig1_benchmark_construction_v12.pdf
@@ -220,7 +221,7 @@ def write_code(ax, x, y, lines, fs=13, dy=23):
 
 def experiment_a(ax):
     outer(ax, 55, 55, 1590, 305)
-    header(ax, 520, 32, 660, "Exp A: Real Papers → Text-Agreement Tasks")
+    header(ax, 520, 32, 660, "Exp A: Real Papers → Text-Agreement Diagnostics")
 
     soft_box(ax, 95, 110, 170, 76)
     txt(ax, 180, 144, "Published", fs=24)
@@ -280,7 +281,7 @@ def experiment_a(ax):
 
 def experiment_b(ax):
     outer(ax, 55, 410, 1590, 305)
-    header(ax, 500, 387, 700, "Exp B: Synthetic DGPs → Execution-Grounded Tasks")
+    header(ax, 500, 387, 700, "Exp B: Synthetic DGPs → Execution-Grounded Coefficient Recovery")
 
     soft_box(ax, 95, 470, 170, 76)
     txt(ax, 180, 504, "Synthetic", fs=24)
@@ -320,8 +321,8 @@ def experiment_b(ax):
 
     blue_box(ax, 1515, 485, 95, 100)
     txt(ax, 1562, 525, "L2b+", fs=22)
-    txt(ax, 1562, 555, "truth", fs=22)
-    txt(ax, 1562, 600, "verified effect", fs=11, color=MUTED)
+    txt(ax, 1562, 555, "label", fs=22)
+    txt(ax, 1562, 600, "β̂_model vs β̂_canon", fs=11, color=MUTED)
     arrow(ax, 1325, 605, 1325, 615, lw=2, color="#64748B")
     elbow_arrow(ax, [(1470, 644), (1500, 644), (1500, 535), (1515, 535)])
 

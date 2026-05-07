@@ -14,20 +14,16 @@ coefficient the code reports, not whether the code used the right method.
 
 - The annotator form omits model identity, L2b+ labels, canonical estimates,
   judge effects, regex effects, and primary-ranking information.
-- The hidden metadata key (`annotation_key_private.csv`) is **intentionally
-  withheld from the anonymous reviewer-facing release** because it contains
-  unblinding information (model identity, canonical estimates, judge
-  effects, and L2b+ labels). The completed reviewer-facing audit summary
-  is available in `summary.md` and `summary.json`.
+- `annotation_key_private.csv` stores hidden metadata for the later audit.
+- Human annotators should not open the private key while filling
+  `annotation_form.csv`.
 
 ## Files
 
-- `annotation_form.csv`: blinded form (released).
-- `summary.md` / `summary.json`: completed audit summary (released).
-- `sample_distribution.json`: realised sample distribution and replay status (released).
-- `annotation_key_private.csv`: hidden unblinding metadata. **Withheld from
-  the anonymous release.** Reviewers should consult `summary.md` /
-  `summary.json` for the audit results.
+- `annotation_form.csv`: blinded form to fill.
+- `annotation_key_private.csv`: hidden key for reproducibility and scoring.
+- `sample_distribution.json`: realised sample distribution and replay status.
+- `summary.md` / `summary.json`: produced by the summary script.
 
 ## Annotation Columns
 
@@ -51,17 +47,6 @@ This is a validation audit of coefficient extraction, not a change to frozen
 headline L2b+ rates.
 
 ## Reproduce
-
-The completed audit numbers are pre-recorded in `summary.md` and
-`summary.json`. The `summarize` script gracefully reports this when the
-private unblinding key is absent (the anonymous-release case):
-
-```bash
-python3 scripts/summarize_l2b_judge_human_validation.py
-```
-
-To re-run the full audit pipeline with a private unblinding key (not
-included in this release), use the prepare script first:
 
 ```bash
 python3 scripts/prepare_l2b_judge_human_validation.py --n 50 --seed 20260502

@@ -5075,7 +5075,7 @@ z
 " clip-path="url(#p6af1a7f06c)" style="fill: #8b8f96"/>
    </g>
    <g id="text_77">
-    <!-- Exp A: Real Papers → Text-Agreement Tasks -->
+    <!-- Exp A: Real Papers → Text-Agreement Diagnostics -->
     <g style="fill: #ffffff" transform="translate(451.229512 61.276163) scale(0.1512 -0.1512)">
      <defs>
       <path id="Arial-BoldMT-45" d="M 466 0 
@@ -5245,7 +5245,7 @@ z
     </g>
    </g>
    <g id="text_78">
-    <!-- Exp B: Synthetic DGPs → Execution-Grounded Tasks -->
+    <!-- Exp B: Synthetic DGPs → Execution-Grounded Coefficient Recovery -->
     <g style="fill: #ffffff" transform="translate(419.752744 311.8563) scale(0.1512 -0.1512)">
      <defs>
       <path id="Arial-BoldMT-42" d="M 469 4581 

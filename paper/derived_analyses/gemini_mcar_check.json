@@ -1,0 +1,21 @@
+{
+  "model": "Gemini",
+  "n_calibrated": 48,
+  "n_missing": 52,
+  "pass_rate_calibrated": 0.3125,
+  "pass_rate_missing": 0.3269,
+  "contingency_2x2": [
+    [
+      15,
+      33
+    ],
+    [
+      17,
+      35
+    ]
+  ],
+  "chi2_stat": 0.0239,
+  "chi2_pvalue": 0.8772,
+  "dof": 1,
+  "verdict": "MCAR not rejected at 0.05"
+}
