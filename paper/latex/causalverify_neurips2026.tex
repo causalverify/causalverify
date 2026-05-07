@@ -301,9 +301,9 @@ Discovery / science agents~\citep{majumder2024discoverybench,chen2024scienceagen
 \section{Benchmark Construction and Controls}
 
 \textsc{CausalVerify} separates three evaluation regimes because no single
-setting provides both ecological realism and executable truth. Real papers
-test whether models parse applied research contexts, but their ground
-truth is interpretive: the original cleaned data, exact runnable
+setting provides both ecological realism and executable reference estimates.
+Real papers test whether models parse applied research contexts, but their
+reference labels are interpretive: the original cleaned data, exact runnable
 specification, and counterfactual effect are usually unavailable. This
 reflects the structure of empirical causal work, where claims depend on
 the alignment of estimand, identification, estimator, and
@@ -1098,7 +1098,7 @@ sampled with seed 20260502: DID 13, Event Study 12, IV 11, and RDD 14. Among
 comparable audited cells, it found 90.9\% numeric agreement and 88.6\%
 agreement on the induced L2b+ pass/fail decision. Disagreements concentrate in
 event-study window choices and RDD sign/printing ambiguities. This audit
-validates the coefficient-extraction instrument; it does not change the frozen
+supports the coefficient-extraction instrument; it does not change the frozen
 headline L2b+ rates.
 
 \paragraph{Disagreement categories.}

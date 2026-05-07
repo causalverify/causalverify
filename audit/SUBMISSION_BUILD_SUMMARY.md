@@ -2,12 +2,16 @@
 
 **Build date:** 2026-05-07
 **Audit tag:** v11.2-camera-ready
-**PDF SHA-256:** `953594344c52330f0d9607450b344a19f8e97c5b2100994872623b23f259c1d3`
-**PDF size:** 895699 bytes
+**PDF SHA-256:** `f71063e38ca9a56a978c9bfba8b124e3986d6b5a45b54ff30b35fd3cbaba5479`
+**PDF size:** 895685 bytes
 **Total pages:** 24
 **Main body pages:** 9
 **References start page:** 10
 **Bib entries:** 116 (+2 from v11-freeze: silberzahn2018many, botviniknezer2020variability)
+
+Main content pages before References: 9
+References start: page 10
+SHA256: `f71063e38ca9a56a978c9bfba8b124e3986d6b5a45b54ff30b35fd3cbaba5479`
 
 ## Files
 
@@ -21,7 +25,7 @@
 - v11-freeze-2026-04-29 → bib-fix run (transient SHA `802467f3...`, never committed) →
   hardening run (transient SHA `2b25e2f4...`, also never committed) →
   hardening commit (`a1c15edd...`) → Figure 9 colored update →
-  **v11.2-camera-ready (final SHA `953594344c...`)**
+  **v11.2-camera-ready (final SHA `f71063e3...`)**
 - See `audit/sha_trail_investigation.md` for the SHA gap between bib-fix and hardening.
 
 ## Changes since v11-freeze
