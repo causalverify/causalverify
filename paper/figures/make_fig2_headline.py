@@ -39,7 +39,7 @@ GRID = "#E5E7EB"
 GUIDE = "#DDE3EA"
 GREEN = "#59A14F"
 BLUE = "#4E79A7"
-GAP = "#DADDE1"
+GAP = "#9CA3AF"  # darker mid-gray (was #DADDE1, too pale)
 L4_PURPLE = "#B07AA1"
 
 # Canonical (color, shape) palette — single source of truth in palette.py.
@@ -181,7 +181,7 @@ def panel_execution_gap(ax, canonical, v2) -> None:
         frameon=False,
         ncol=1,
         loc="lower right",
-        bbox_to_anchor=(1.04, 0.02),
+        bbox_to_anchor=(1.0, 0.02),
         handlelength=1.15,
         columnspacing=0.70,
         borderaxespad=0.2,

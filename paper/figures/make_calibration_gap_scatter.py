@@ -122,7 +122,10 @@ def plot(rows: list[dict[str, object]]) -> None:
         "o3": (-18, -12),
         "Sonnet": (-36, 7),
         "GPT-4o": (5, 4),
-        "GPT-5": (5, -12),
+        # GPT-5 marker sits at the bottom of the chart (~-5pp). Putting the
+        # label below the marker collides with the x-axis line, so move it
+        # LEFT of the marker instead.
+        "GPT-5": (-58, 0),
         "Opus": (5, 4),
     }
     for row in rows:
