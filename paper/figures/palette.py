@@ -44,30 +44,103 @@ PAL = {
 }
 
 # ── Canonical per-model colors (used across all figures) ──
+# Adapted from the Wong-Okabe-Ito 8-color color-blind-safe palette
+# (Wong 2011, Nature Methods). Each model has BOTH a unique color AND
+# a unique shape, so figures stay readable in B&W and under all common
+# forms of color-vision deficiency.
 MODEL_COLORS = {
-    "Opus":    "#D4785A",  # coral (best L2b+ performer, matches novel color)
-    "GPT-4o":  "#5B8DB8",  # cornflower blue
-    "Sonnet":  "#9B82BB",  # muted violet
-    "o3":      "#7D9CAD",  # slate blue
-    "Kimi":    "#D4A85A",  # golden amber
-    "Gemini":  "#6BA898",  # seafoam green
-    "GPT-5":   "#3D5A80",  # deep navy (OpenAI provider family)
+    "Opus":    "#E69F00",  # orange (Anthropic flagship, warm)
+    "Sonnet":  "#CC79A7",  # reddish purple (Anthropic, secondary)
+    "GPT-4o":  "#56B4E9",  # sky blue (OpenAI mid-tier)
+    "GPT-5":   "#0072B2",  # strong blue (OpenAI flagship)
+    "o3":      "#009E73",  # bluish green / teal (OpenAI reasoning)
+    "Kimi":    "#D55E00",  # vermillion (Moonshot)
+    "Gemini":  "#F0E442",  # yellow (Google) — needs black edge to read on white
 }
 
-# Ordering for consistent bar/rank positions. GPT-5 is kept last for
-# visual stability with earlier v11 figures.
-MODEL_ORDER = ["Opus", "GPT-4o", "Sonnet", "o3", "Kimi", "Gemini", "GPT-5"]
+# Ordering for consistent bar/rank positions in legends and axis labels.
+# Mirrors the L2b+ ranking from Finding 2 (descending pass rate).
+MODEL_ORDER = ["Opus", "GPT-5", "GPT-4o", "Sonnet", "o3", "Gemini", "Kimi"]
 
 # Canonical per-model marker shapes (shape + color = double encoding)
 MODEL_MARKERS = {
     "Opus":   "o",   # circle
-    "GPT-4o": "s",   # square
     "Sonnet": "^",   # triangle up
+    "GPT-4o": "s",   # square
+    "GPT-5":  "*",   # star
     "o3":     "D",   # diamond
     "Kimi":   "P",   # plus (filled)
     "Gemini": "X",   # x (filled)
-    "GPT-5":  "*",   # star
 }
+
+# Llama-3.3-70B-Instruct (open-weights robustness only). De-emphasized
+# in gray with a downward triangle so it never visually competes with
+# the primary panel.
+LLAMA_STYLE = {
+    "color":  "#888888",
+    "marker": "v",
+    "label":  "Llama (robustness)",
+}
+
+# ── Standard scatter kwargs for model markers ──
+# Centralized so all figures render at the same visual weight.
+MARKER_KWARGS = dict(
+    s=80,                       # area in points^2
+    edgecolor="black",
+    linewidth=0.7,
+    alpha=0.95,
+)
+
+
+def style_for(model: str) -> dict:
+    """Return matplotlib scatter kwargs for one model.
+
+    Use as: ax.scatter(x, y, **style_for("Opus"))
+    """
+    if model in MODEL_COLORS:
+        return dict(
+            c=MODEL_COLORS[model],
+            marker=MODEL_MARKERS[model],
+            label=model,
+            **MARKER_KWARGS,
+        )
+    if model == "Llama":
+        return dict(
+            c=LLAMA_STYLE["color"],
+            marker=LLAMA_STYLE["marker"],
+            label=LLAMA_STYLE["label"],
+            **MARKER_KWARGS,
+        )
+    raise ValueError(f"Unknown model: {model!r}")
+
+
+def line_style_for(model: str) -> dict:
+    """Return matplotlib plot/line kwargs for one model (line + marker).
+
+    Use as: ax.plot(x, y, **line_style_for("Opus"))
+    """
+    if model in MODEL_COLORS:
+        return dict(
+            color=MODEL_COLORS[model],
+            marker=MODEL_MARKERS[model],
+            markersize=8,
+            markeredgecolor="black",
+            markeredgewidth=0.5,
+            linewidth=1.6,
+            label=model,
+        )
+    if model == "Llama":
+        return dict(
+            color=LLAMA_STYLE["color"],
+            marker=LLAMA_STYLE["marker"],
+            markersize=8,
+            markeredgecolor="black",
+            markeredgewidth=0.5,
+            linewidth=1.6,
+            linestyle="--",
+            label=LLAMA_STYLE["label"],
+        )
+    raise ValueError(f"Unknown model: {model!r}")
 
 # ── Method family colors (used in sunburst, method-level heatmap) ──
 METHOD_COLORS = {

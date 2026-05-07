@@ -83,10 +83,10 @@ for i, model in enumerate(MODELS):
     p50_valid = sum(e <= 0.5 for e in errs) / len(errs)
     rate = rates.get(model, p50_valid)
 
-    ax.scatter(x, y, s=22, color=COLORS[model], alpha=0.72,
-               marker=MODEL_MARKERS[model], edgecolor="white",
-               linewidth=0.35, zorder=3)
-    ax.plot(x, y, color=COLORS[model], linewidth=1.5, alpha=0.9, zorder=2)
+    ax.scatter(x, y, s=42, color=COLORS[model], alpha=0.85,
+               marker=MODEL_MARKERS[model], edgecolor="black",
+               linewidth=0.55, zorder=3)
+    ax.plot(x, y, color=COLORS[model], linewidth=1.5, alpha=0.85, zorder=2)
     ax.axhline(0.5, color="#555555", linestyle="--", linewidth=1.0, zorder=1)
     ax.axhline(1.0, color="#999999", linestyle=":", linewidth=0.8, zorder=1)
     ax.set_xlim(0, max(42, len(errs) + 3))

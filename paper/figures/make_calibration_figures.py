@@ -33,16 +33,13 @@ L2B_SUM = PROJECT_ROOT / "experiments/exp_b/l2b_plus_summary_canonical_judge_v2.
 OUT_DIR = PROJECT_ROOT / "paper/figures"
 OUT_DIRS = [PROJECT_ROOT / "paper/figures", PROJECT_ROOT / "paper/latex/figures"]
 
+# Canonical (color, shape) palette — single source of truth in palette.py.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from palette import MODEL_COLORS, MODEL_MARKERS
+
+# Reliability-diagram subplot order: keep visual stability with prior figures.
 MODEL_ORDER = ["Opus", "Sonnet", "GPT-4o", "o3", "Kimi", "Gemini", "GPT-5"]
-MODEL_COLORS = {
-    "Opus":   "#1F4E79",
-    "Sonnet": "#5B9BD5",
-    "GPT-4o": "#ED7D31",
-    "o3":     "#FFC000",
-    "Kimi":   "#70AD47",
-    "Gemini": "#A5A5A5",
-    "GPT-5":  "#3D5A80",
-}
 TITLE_STYLE = {
     "fontfamily": "sans-serif",
     "fontweight": "bold",
@@ -108,8 +105,9 @@ def fig1_reliability_diagrams(rows, summary):
         xs = [c for c in bin_confs if c is not None]
         ys = [a for a, c in zip(bin_accs, bin_confs) if c is not None]
         sizes = [max(w * 1.5, 10) for w, c in zip(bin_weights, bin_confs) if c is not None]
-        ax.scatter(xs, ys, s=sizes, color=MODEL_COLORS[model], alpha=0.75,
-                    edgecolors="white", linewidths=0.7, zorder=3)
+        ax.scatter(xs, ys, s=sizes, color=MODEL_COLORS[model], alpha=0.85,
+                    marker=MODEL_MARKERS[model],
+                    edgecolors="black", linewidths=0.7, zorder=3)
         if xs and ys:
             ax.plot(xs, ys, color=MODEL_COLORS[model], lw=1.5, alpha=0.6)
 
@@ -180,7 +178,8 @@ def fig2_correctness_vs_self_assessment(summary_cal, l2b_rates):
         xs.append(x)
         ys.append(y)
         ax.scatter(x, y, s=300, color=MODEL_COLORS[m], alpha=0.85,
-                    edgecolors="white", linewidths=1.5, zorder=3)
+                    marker=MODEL_MARKERS[m],
+                    edgecolors="black", linewidths=1.0, zorder=3)
         ax.annotate(m, (x, y), xytext=(10, 6), textcoords="offset points",
                      fontsize=11, fontweight="bold", color=MODEL_COLORS[m])
 

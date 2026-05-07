@@ -42,16 +42,10 @@ BLUE = "#4E79A7"
 GAP = "#DADDE1"
 L4_PURPLE = "#B07AA1"
 
-MODEL_ORDER = ["Opus", "GPT-5", "GPT-4o", "Sonnet", "o3", "Gemini", "Kimi"]
-MODEL_COLORS = {
-    "Opus": "#D77A61",
-    "GPT-5": "#3F5F86",
-    "GPT-4o": "#5C8DB8",
-    "Sonnet": "#8E6BBE",
-    "o3": "#7F9AA8",
-    "Gemini": "#69A88F",
-    "Kimi": "#D9A441",
-}
+# Canonical (color, shape) palette — single source of truth in palette.py.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from palette import MODEL_COLORS, MODEL_MARKERS, MODEL_ORDER
 
 
 def set_style() -> None:
@@ -310,10 +304,11 @@ def panel_exp_a_text_agreement(ax, exp_a) -> None:
         ax.scatter(
             x,
             y,
-            s=50,
+            s=80,
             color=MODEL_COLORS[model],
-            edgecolor="white",
-            linewidth=0.60,
+            marker=MODEL_MARKERS[model],
+            edgecolor="black",
+            linewidth=0.7,
             alpha=0.95,
             zorder=3,
         )

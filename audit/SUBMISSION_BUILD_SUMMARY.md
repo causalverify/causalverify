@@ -2,8 +2,8 @@
 
 **Build date:** 2026-05-07
 **Audit tag:** v11.2-camera-ready
-**PDF SHA-256:** `f71063e38ca9a56a978c9bfba8b124e3986d6b5a45b54ff30b35fd3cbaba5479`
-**PDF size:** 895685 bytes
+**PDF SHA-256:** `5d4b0e9ef21f4ed954e4f61efeff83fe984a5d4e8854055e1016d83cfb4e21c1`
+**PDF size:** 890939 bytes
 **Total pages:** 24
 **Main body pages:** 9
 **References start page:** 10
@@ -11,7 +11,7 @@
 
 Main content pages before References: 9
 References start: page 10
-SHA256: `f71063e38ca9a56a978c9bfba8b124e3986d6b5a45b54ff30b35fd3cbaba5479`
+SHA256: `5d4b0e9ef21f4ed954e4f61efeff83fe984a5d4e8854055e1016d83cfb4e21c1`
 
 ## Files
 

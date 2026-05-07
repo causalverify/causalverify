@@ -30,16 +30,13 @@ L2B_SUM = ROOT / "experiments/exp_b/l2b_plus_summary_canonical_judge_v2.json"
 OUT_DIR = ROOT / "paper/figures"
 TABLE_PATH = ROOT / "paper/tables/exp_b_calibration_gap_scatter.csv"
 
+# Canonical (color, shape) palette — single source of truth in palette.py.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from palette import MODEL_COLORS, MODEL_MARKERS
+
+# Local plot order: ascending L2b+ pass rate (so Opus appears top-right).
 MODEL_ORDER = ["Kimi", "Gemini", "o3", "Sonnet", "GPT-4o", "GPT-5", "Opus"]
-MODEL_COLORS = {
-    "Kimi": "#9A7B4F",
-    "Gemini": "#8FA6B3",
-    "o3": "#B07AA1",
-    "Sonnet": "#59A14F",
-    "GPT-4o": "#F28E2B",
-    "GPT-5": "#4E79A7",
-    "Opus": "#1F4E79",
-}
 
 
 def load_rows() -> list[dict[str, object]]:
@@ -144,11 +141,12 @@ def plot(rows: list[dict[str, object]]) -> None:
         ax.scatter(
             x,
             y,
-            s=78 if not partial else 70,
+            s=120 if not partial else 100,
             color=MODEL_COLORS[model],
-            edgecolor="white",
-            linewidth=0.85,
-            alpha=0.95 if not partial else 0.62,
+            marker=MODEL_MARKERS[model],
+            edgecolor="black",
+            linewidth=0.7,
+            alpha=0.95 if not partial else 0.65,
             zorder=3,
         )
         dx, dy = offsets[model]

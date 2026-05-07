@@ -44,17 +44,11 @@ MODELS_SLUG = [
     ("Gemini-2.5", "Gemini"),
     ("Kimi-128k", "Kimi"),
 ]
-MODELS = ["Opus", "GPT-5", "GPT-4o", "Sonnet", "o3", "Gemini", "Kimi"]
-MODEL_COLORS = {
-    "Opus": "#D77A61",
-    "GPT-5": "#3F5F86",
-    "GPT-4o": "#5C8DB8",
-    "Sonnet": "#8E6BBE",
-    "o3": "#7F9AA8",
-    "Gemini": "#69A88F",
-    "Kimi": "#D9A441",
-}
-MODEL_MARKERS = {model: "o" for model in MODELS}
+# Canonical (color, shape) palette — single source of truth in palette.py.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from palette import MODEL_COLORS, MODEL_MARKERS, MODEL_ORDER as _ORDER
+MODELS = _ORDER  # ["Opus", "GPT-5", "GPT-4o", "Sonnet", "o3", "Gemini", "Kimi"]
 
 METHODS = ["Event Study", "DID", "IV", "RDD"]
 METHOD_KEY = {
@@ -170,10 +164,10 @@ def make_figure() -> plt.Figure:
                 val,
                 i + dy,
                 marker=MODEL_MARKERS[model],
-                s=31,
+                s=70,
                 facecolors=MODEL_COLORS[model],
-                edgecolors="white",
-                linewidths=0.55,
+                edgecolors="black",
+                linewidths=0.7,
                 alpha=0.95,
                 zorder=4,
             )
@@ -223,9 +217,9 @@ def make_figure() -> plt.Figure:
             marker=MODEL_MARKERS[model],
             color="white",
             markerfacecolor=MODEL_COLORS[model],
-            markeredgecolor="white",
+            markeredgecolor="black",
             markeredgewidth=0.55,
-            markersize=5.2,
+            markersize=7,
             label=model,
         )
         for model in MODELS
