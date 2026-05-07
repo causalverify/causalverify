@@ -31,7 +31,7 @@ FONT_LEGEND = 7
 FONT_PERCENT = 9
 
 INK = "#1F2937"
-AXIS = "#94A3B8"
+AXIS = "black"  # Paper-wide: black axis lines on both x and y
 GRID = "#E5E7EB"
 
 SEGMENT_COLORS = {

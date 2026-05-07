@@ -30,7 +30,7 @@ FONT_TEXT = 9
 FONT_LEGEND = 9
 
 INK = "#1F2937"
-AXIS = "#94A3B8"
+AXIS = "black"  # Paper-wide: black axis lines on both x and y
 GRID = "#E5E7EB"
 CI_COLOR = "#374151"
 MEAN_LABEL = "#374151"
@@ -169,9 +169,10 @@ def make_figure() -> plt.Figure:
     ax.set_xlabel("L3 method-family agreement rate (%)", fontsize=FONT_AXIS, labelpad=5)
     ax.grid(axis="x", color=GRID, linestyle="-", linewidth=0.6, zorder=0)
     ax.set_axisbelow(True)
-    ax.spines["left"].set_visible(False)
+    ax.spines["left"].set_visible(True)
+    ax.spines["left"].set_color(AXIS)
     ax.spines["bottom"].set_color(AXIS)
-    ax.tick_params(axis="y", length=0)
+    ax.tick_params(axis="y", length=0, colors=AXIS)
     ax.tick_params(axis="x", length=3, color=AXIS)
 
     mean_handle = Line2D(

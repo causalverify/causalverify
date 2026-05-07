@@ -34,7 +34,7 @@ FONT_PERCENT = 9
 
 INK = "#1F2937"
 MUTED = "#6B7280"
-AXIS = "#94A3B8"
+AXIS = "black"  # Paper-wide: black axis lines on both x and y
 GRID = "#E5E7EB"
 GUIDE = "#DDE3EA"
 GREEN = "#59A14F"
@@ -158,8 +158,9 @@ def panel_execution_gap(ax, canonical, v2) -> None:
     ax.set_xlabel("")
     ax.set_title("(a) Execution vs. coefficient correctness", loc="left", pad=3)
     clean_axis(ax, "x")
-    ax.spines["left"].set_visible(False)
-    ax.tick_params(axis="y", length=0)
+    ax.spines["left"].set_visible(True)
+    ax.spines["left"].set_color(AXIS)
+    ax.tick_params(axis="y", length=0, colors=AXIS)
 
     handles = [
         Line2D([0], [0], color=GREEN, lw=4.2, solid_capstyle="butt", label="L2b+ correct"),
@@ -231,8 +232,9 @@ def panel_rank_agreement(ax, head_to_head) -> None:
     ax.set_ylim(-0.62, 1.48)
     ax.set_title("(b) Rank agreement with L2b+", loc="left", pad=3)
     clean_axis(ax, "x")
-    ax.spines["left"].set_visible(False)
-    ax.tick_params(axis="y", length=0)
+    ax.spines["left"].set_visible(True)
+    ax.spines["left"].set_color(AXIS)
+    ax.tick_params(axis="y", length=0, colors=AXIS)
     ax.text(
         -0.95,
         1,

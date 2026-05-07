@@ -236,17 +236,17 @@ PAPER_RC = {
     "xtick.labelsize":    9,
     "ytick.labelsize":    9,
     "legend.fontsize":    9,
-    # Spines
+    # Spines — black, paper-wide
     "axes.spines.top":   False,
     "axes.spines.right": False,
-    "axes.edgecolor":    "#94A3B8",
-    "axes.linewidth":    0.65,
+    "axes.edgecolor":    "black",
+    "axes.linewidth":    0.85,
     # Colors (cream background, ink-dark text)
     "axes.facecolor":    "#FAFAFA",
     "figure.facecolor":  "white",
-    "xtick.color":       "#1F2937",
-    "ytick.color":       "#1F2937",
-    "axes.labelcolor":   "#1F2937",
+    "xtick.color":       "black",
+    "ytick.color":       "black",
+    "axes.labelcolor":   "black",
     # Grid (dotted, behind data)
     "axes.grid":         True,
     "axes.axisbelow":    True,
