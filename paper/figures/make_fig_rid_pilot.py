@@ -119,6 +119,7 @@ fig.legend(
     handles=legend_elements,
     loc="lower center",
     ncol=3,
+    fontsize=9,
     framealpha=0.94,
     edgecolor="#cccccc",
     bbox_to_anchor=(0.5, 0.01),
@@ -126,7 +127,7 @@ fig.legend(
 
 fig.suptitle(
     "RID pre-commitment ablation (pilot, N=10 papers)",
-    fontsize=13.5,
+    fontsize=12,
     **TITLE_STYLE,
     y=0.99,
 )

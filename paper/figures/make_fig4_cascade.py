@@ -27,7 +27,7 @@ FONT_TITLE = 11
 FONT_AXIS = 10
 FONT_TICK = 9
 FONT_TEXT = 9
-FONT_LEGEND = 7
+FONT_LEGEND = 9   # paper-wide canonical (matches Fig 2/3/8); was 7
 FONT_PERCENT = 9
 
 INK = "#1F2937"

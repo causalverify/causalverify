@@ -95,7 +95,7 @@ for i, model in enumerate(MODELS):
     ax.grid(axis="x", color="#f0f0f0", linewidth=0.5)
     ax.set_title(
         f"{model}: {rate*100:.0f}% L2b+",
-        fontsize=13,
+        fontsize=11,
         fontfamily="sans-serif",
         fontweight="bold",
         color=COLORS[model],
@@ -115,30 +115,30 @@ for i, model in enumerate(MODELS):
 # Legend / reading guide in the empty eighth panel.
 guide = axes[-1]
 guide.axis("off")
-guide.set_title("Reading guide", fontsize=13, pad=5, **TITLE_STYLE)
+guide.set_title("Reading guide", fontsize=11, pad=5, **TITLE_STYLE)
 guide.plot([0.08, 0.42], [0.78, 0.78], transform=guide.transAxes,
            color="#555555", linestyle="--", linewidth=1.2)
 guide.text(0.48, 0.76, "50% L2b+ tolerance", transform=guide.transAxes,
-           fontsize=9.5, va="center")
+           fontsize=9, va="center")
 guide.plot([0.08, 0.42], [0.62, 0.62], transform=guide.transAxes,
            color="#999999", linestyle=":", linewidth=1.0)
 guide.text(0.48, 0.60, "100% reference", transform=guide.transAxes,
-           fontsize=9.5, va="center")
+           fontsize=9, va="center")
 guide.scatter([0.12], [0.44], transform=guide.transAxes, s=40,
               color="#555555", edgecolor="white", linewidth=0.5)
 guide.plot([0.08, 0.42], [0.44, 0.44], transform=guide.transAxes,
            color="#555555", linewidth=1.3)
 guide.text(0.48, 0.42, "scenarios sorted within model", transform=guide.transAxes,
-           fontsize=9.5, va="center")
+           fontsize=9, va="center")
 guide.text(0.08, 0.20,
            "Lower, flatter profiles mean\nsmaller numerical errors across\nmore executed scenarios.",
-           transform=guide.transAxes, fontsize=9.5, va="top",
+           transform=guide.transAxes, fontsize=9, va="top",
            color="#333333")
 
 fig.suptitle(
     "L2b+ relative-error profiles by model",
-    fontsize=17.5,
-    y=0.965,
+    fontsize=12,
+    y=0.975,
     **TITLE_STYLE,
 )
 fig.supxlabel("Scenario rank within model (sorted by relative error)",

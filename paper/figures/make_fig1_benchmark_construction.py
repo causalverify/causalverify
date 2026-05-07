@@ -32,7 +32,12 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle
 
 
-plt.rcParams["font.family"] = ["Arial", "Helvetica", "DejaVu Sans"]
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from palette import apply_paper_rc
+
+apply_paper_rc()
 FS_SCALE = 0.54
 
 INK = "#111827"

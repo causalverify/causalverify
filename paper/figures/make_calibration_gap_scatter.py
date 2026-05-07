@@ -87,7 +87,9 @@ def plot(rows: list[dict[str, object]]) -> None:
     from palette import apply_paper_rc
     apply_paper_rc()
 
-    fig, ax = plt.subplots(figsize=(5.35, 3.2))
+    # Match Fig 3/4 dimensions (6.70 x 2.52) so reviewers see all three
+    # figures at the same physical size at \includegraphics{...,width=0.90}.
+    fig, ax = plt.subplots(figsize=(6.70, 2.52))
 
     # Regions: a useful self-assessment signal should be comfortably above 0.
     ax.axhline(0, color="#4B5563", linestyle=(0, (5, 3)), linewidth=0.9)
@@ -176,8 +178,8 @@ def plot(rows: list[dict[str, object]]) -> None:
     ax.grid(axis="both", color="#E5E7EB", linewidth=0.65)
 
     note = "One point per model. Labels report n when calibration coverage is incomplete."
-    fig.text(0.5, 0.012, note, ha="center", va="bottom", fontsize=6.5, color="#555555")
-    fig.tight_layout(rect=[0, 0.06, 1, 1])
+    fig.text(0.5, 0.04, note, ha="center", va="bottom", fontsize=8, color="#555555")
+    fig.tight_layout(rect=[0, 0.07, 1, 1])
 
     for ext in ("png", "pdf"):
         out = OUT_DIR / f"calibration_gap_scatter.{ext}"

@@ -123,7 +123,7 @@ def fig1_reliability_diagrams(rows, summary):
         ax.set_ylim(0, 1)
         ax.set_title(
             model,
-            fontsize=13,
+            fontsize=11,
             fontfamily="sans-serif",
             fontweight="bold",
             color=MODEL_COLORS[model],
@@ -140,7 +140,7 @@ def fig1_reliability_diagrams(rows, summary):
 
     fig.suptitle(
         "Calibration of self-reported numerical confidence",
-        fontsize=17,
+        fontsize=12,
         **TITLE_STYLE,
     )
     fig.text(0.5, 0.01, "Dotted diagonal = perfect calibration. "

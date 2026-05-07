@@ -22,6 +22,11 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Circle, Rectangle, Polygon
 
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from palette import apply_paper_rc
+apply_paper_rc()
+
 
 INK = "#111111"
 DASH = "#1F2A7C"
