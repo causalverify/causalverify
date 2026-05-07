@@ -334,7 +334,7 @@ def panel_exp_a_text_agreement(ax, exp_a) -> None:
     ax.set_xticks([60, 70, 80, 90])
     ax.set_yticks([72, 76, 80, 84, 88])
     ax.set_xlabel("")
-    ax.set_ylabel("Exp A L4 direction agreement (%)", fontsize=FONT_AXIS)
+    ax.set_ylabel("Exp A L4 direction agreement (%)", fontsize=FONT_AXIS, labelpad=5)
     ax.set_title("(c) Exp A text agreement", loc="left", pad=3)
     clean_axis(ax, None)
     ax.grid(True, axis="both", color=GRID, linewidth=0.55, alpha=0.72, zorder=0)

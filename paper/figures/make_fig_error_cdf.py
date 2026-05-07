@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
-from palette import PAL, MODEL_COLORS, MODEL_MARKERS, MODEL_ORDER, RC_PARAMS
+from palette import PAL, MODEL_COLORS, MODEL_MARKERS, MODEL_ORDER, apply_paper_rc
 
-plt.rcParams.update(RC_PARAMS)
+apply_paper_rc()
 
 MODELS = MODEL_ORDER
 COLORS = MODEL_COLORS
@@ -141,9 +141,10 @@ fig.suptitle(
     y=0.965,
     **TITLE_STYLE,
 )
-fig.supxlabel("Scenario rank within model (sorted by relative error)", y=0.045)
+fig.supxlabel("Scenario rank within model (sorted by relative error)",
+              fontsize=10, y=0.045)
 fig.supylabel("Relative error against canonical estimator (clipped at 2.5)",
-              x=0.018)
+              fontsize=10, x=0.018)
 
 for out_dir in [Path("paper/figures"), Path("paper/latex/figures")]:
     out_dir.mkdir(parents=True, exist_ok=True)

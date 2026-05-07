@@ -82,19 +82,10 @@ def write_table(rows: list[dict[str, object]]) -> None:
 
 
 def plot(rows: list[dict[str, object]]) -> None:
-    plt.rcParams.update(
-        {
-            "font.family": "DejaVu Sans",
-            "font.size": 7.5,
-            "axes.titlesize": 8.8,
-            "axes.labelsize": 8.2,
-            "xtick.labelsize": 7.6,
-            "ytick.labelsize": 7.6,
-            "legend.fontsize": 7.4,
-            "axes.spines.top": False,
-            "axes.spines.right": False,
-        }
-    )
+    # Apply paper-wide canonical typography (sans-serif Arial, FONT_AXIS=10,
+    # FONT_TICK=9, etc.) for byte-identical axis labels across all figures.
+    from palette import apply_paper_rc
+    apply_paper_rc()
 
     fig, ax = plt.subplots(figsize=(5.35, 3.2))
 
@@ -178,8 +169,9 @@ def plot(rows: list[dict[str, object]]) -> None:
     ax.set_ylim(-0.075, 0.255)
     ax.xaxis.set_major_formatter(PercentFormatter(xmax=1, decimals=0))
     ax.yaxis.set_major_formatter(PercentFormatter(xmax=1, decimals=0))
-    ax.set_xlabel("Execution-grounded correctness: L2b+ pass rate")
-    ax.set_ylabel("Confidence gap: correct - wrong")
+    from palette import AXIS_LABEL_KW
+    ax.set_xlabel("Execution-grounded correctness: L2b+ pass rate", **AXIS_LABEL_KW)
+    ax.set_ylabel("Confidence gap: correct - wrong", **AXIS_LABEL_KW)
     ax.set_title("Correctness vs. Self-Assessment", pad=5)
     ax.grid(axis="both", color="#E5E7EB", linewidth=0.65)
 

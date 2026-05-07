@@ -186,6 +186,7 @@ HEATMAP_STOPS = [
 ]
 
 # ── Standard matplotlib rcParams for all figures ──
+# (Legacy; superseded by PAPER_RC below for paper-rendered figures.)
 RC_PARAMS = {
     # Match NeurIPS body text (Times / serif) for visual consistency
     "font.family":       "serif",
@@ -211,3 +212,47 @@ RC_PARAMS = {
     "pdf.fonttype":      42,
     "ps.fonttype":       42,
 }
+
+
+# ── Canonical typography for all paper-rendered figures ──
+# Single source of truth. Every figure script should call apply_paper_rc()
+# before drawing, then use AXIS_LABEL_KW for set_xlabel / set_ylabel so that
+# axis labels (font, size, padding) are byte-identical across figures.
+PAPER_RC = {
+    "font.family":       "sans-serif",
+    "font.sans-serif":   ["Arial", "Helvetica", "DejaVu Sans"],
+    "mathtext.fontset":  "dejavusans",
+    "font.size":          9,        # body / tick text
+    "axes.titlesize":    11,        # subplot title
+    "axes.titleweight":  "bold",
+    "axes.labelsize":    10,        # x-/y-axis label
+    "xtick.labelsize":    9,
+    "ytick.labelsize":    9,
+    "legend.fontsize":    9,
+    "axes.spines.top":   False,
+    "axes.spines.right": False,
+    "axes.facecolor":    "white",
+    "figure.facecolor":  "white",
+    "axes.edgecolor":    "#94A3B8",
+    "axes.linewidth":    0.65,
+    "xtick.color":       "#1F2937",
+    "ytick.color":       "#1F2937",
+    "axes.labelcolor":   "#1F2937",
+    "pdf.fonttype":      42,
+    "ps.fonttype":       42,
+    "savefig.dpi":       600,
+    "savefig.bbox":      "tight",
+    "savefig.pad_inches": 0.03,
+}
+
+
+# Canonical kwargs for ax.set_xlabel / ax.set_ylabel calls.
+# Every figure should pass **AXIS_LABEL_KW so the label font, size, and
+# distance-to-axis are byte-identical paper-wide.
+AXIS_LABEL_KW = dict(fontsize=10, labelpad=5)
+
+
+def apply_paper_rc() -> None:
+    """Apply the canonical paper rcParams. Call once per figure script."""
+    import matplotlib.pyplot as plt
+    plt.rcParams.update(PAPER_RC)

@@ -130,9 +130,9 @@ def fig1_reliability_diagrams(rows, summary):
         )
         ax.grid(True, alpha=0.2)
         if ax_idx % n_cols == 0:
-            ax.set_ylabel("Empirical accuracy\n(L2b+ pass rate)")
+            ax.set_ylabel("Empirical accuracy\n(L2b+ pass rate)", fontsize=10, labelpad=5)
         if ax_idx >= (n_rows - 1) * n_cols:
-            ax.set_xlabel("Self-reported confidence")
+            ax.set_xlabel("Self-reported confidence", fontsize=10, labelpad=5)
 
     # Hide unused axes (e.g. the 8th tile when 7 models fit in 2x4)
     for k in range(n_models, len(axes)):
@@ -191,11 +191,11 @@ def fig2_correctness_vs_self_assessment(summary_cal, l2b_rates):
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.set_xlabel("Execution-grounded correctness — L2b+ pass rate",
-                   fontsize=11)
+                   fontsize=10, labelpad=5)
     ax.set_ylabel("Self-assessment signal — 1 − ECE of numerical confidence",
-                   fontsize=11)
+                   fontsize=10, labelpad=5)
     ax.set_title("Execution-grounded correctness vs. self-assessment signal",
-                  fontsize=13, fontweight="bold")
+                  fontsize=11, fontweight="bold")
     ax.grid(True, alpha=0.25)
     ax.legend(loc="lower right", fontsize=9, framealpha=0.9)
 
@@ -212,6 +212,10 @@ def main():
     if not CAL_CSV.exists():
         print(f"ERROR: {CAL_CSV} not found. Run run_calibration_full.py first.")
         return
+
+    # Paper-wide canonical typography (font, size, labelpad).
+    from palette import apply_paper_rc
+    apply_paper_rc()
 
     rows = load_scores()
     print(f"Loaded {len(rows)} calibration records")
